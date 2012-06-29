@@ -1,0 +1,122 @@
+create_seq_mgr.lo: create_seq_mgr.c \
+ ../../../include/sandesha2_create_seq_mgr.h \
+ /usr/include/axis2-1.6.0/axutil_allocator.h \
+ /usr/include/axis2-1.6.0/axutil_utils_defines.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h /usr/include/stdint.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+ /usr/include/axis2-1.6.0/axutil_env.h \
+ /usr/include/axis2-1.6.0/axutil_error.h \
+ /usr/include/axis2-1.6.0/axutil_log.h \
+ /usr/include/axis2-1.6.0/axutil_thread_pool.h \
+ /usr/include/axis2-1.6.0/axutil_thread.h \
+ /usr/include/axis2-1.6.0/axutil_string.h /usr/include/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/string3.h \
+ /usr/include/axis2-1.6.0/axutil_utils.h \
+ /usr/include/axis2-1.6.0/axutil_date_time.h \
+ /usr/include/axis2-1.6.0/axutil_base64_binary.h \
+ /usr/include/axis2-1.6.0/axutil_base64.h \
+ /usr/include/axis2-1.6.0/axis2_ctx.h \
+ /usr/include/axis2-1.6.0/axis2_defines.h \
+ /usr/include/axis2-1.6.0/axutil_hash.h \
+ /usr/include/axis2-1.6.0/axutil_property.h \
+ /usr/include/axis2-1.6.0/axutil_array_list.h \
+ ../../../include/sandesha2_create_seq_bean.h \
+ /usr/include/axis2-1.6.0/axutil_qname.h \
+ ../../../include/sandesha2_constants.h \
+ ../../../include/sandesha2_error.h
+
+../../../include/sandesha2_create_seq_mgr.h:
+
+/usr/include/axis2-1.6.0/axutil_allocator.h:
+
+/usr/include/axis2-1.6.0/axutil_utils_defines.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/bits/predefs.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+/usr/include/axis2-1.6.0/axutil_env.h:
+
+/usr/include/axis2-1.6.0/axutil_error.h:
+
+/usr/include/axis2-1.6.0/axutil_log.h:
+
+/usr/include/axis2-1.6.0/axutil_thread_pool.h:
+
+/usr/include/axis2-1.6.0/axutil_thread.h:
+
+/usr/include/axis2-1.6.0/axutil_string.h:
+
+/usr/include/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/string2.h:
+
+/usr/include/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/x86_64-linux-gnu/bits/string3.h:
+
+/usr/include/axis2-1.6.0/axutil_utils.h:
+
+/usr/include/axis2-1.6.0/axutil_date_time.h:
+
+/usr/include/axis2-1.6.0/axutil_base64_binary.h:
+
+/usr/include/axis2-1.6.0/axutil_base64.h:
+
+/usr/include/axis2-1.6.0/axis2_ctx.h:
+
+/usr/include/axis2-1.6.0/axis2_defines.h:
+
+/usr/include/axis2-1.6.0/axutil_hash.h:
+
+/usr/include/axis2-1.6.0/axutil_property.h:
+
+/usr/include/axis2-1.6.0/axutil_array_list.h:
+
+../../../include/sandesha2_create_seq_bean.h:
+
+/usr/include/axis2-1.6.0/axutil_qname.h:
+
+../../../include/sandesha2_constants.h:
+
+../../../include/sandesha2_error.h:

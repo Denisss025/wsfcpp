@@ -1,0 +1,834 @@
+rahas_request_processor.lo: rahas_request_processor.c \
+ ../../include/secconv_security_context_token.h /usr/include/stdio.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h \
+ /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+ /usr/include/axis2-1.6.0/axutil_utils.h \
+ /usr/include/axis2-1.6.0/axutil_utils_defines.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/axis2-1.6.0/axutil_error.h \
+ /usr/include/axis2-1.6.0/axutil_allocator.h \
+ /usr/include/axis2-1.6.0/axutil_env.h \
+ /usr/include/axis2-1.6.0/axutil_log.h \
+ /usr/include/axis2-1.6.0/axutil_thread_pool.h \
+ /usr/include/axis2-1.6.0/axutil_thread.h \
+ /usr/include/axis2-1.6.0/axutil_date_time.h \
+ /usr/include/axis2-1.6.0/axutil_base64_binary.h \
+ /usr/include/axis2-1.6.0/axutil_base64.h \
+ /usr/include/axis2-1.6.0/axutil_string.h /usr/include/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/string3.h ../../include/oxs_buffer.h \
+ /usr/include/axis2-1.6.0/axis2_defines.h \
+ /usr/include/axis2-1.6.0/axis2_util.h \
+ /usr/include/axis2-1.6.0/axutil_array_list.h \
+ /usr/include/axis2-1.6.0/axutil_class_loader.h \
+ /usr/include/axis2-1.6.0/axutil_qname.h \
+ /usr/include/axis2-1.6.0/axutil_dll_desc.h \
+ /usr/include/axis2-1.6.0/platforms/axutil_platform_auto_sense.h \
+ /usr/include/axis2-1.6.0/platforms/unix/axutil_unix.h \
+ /usr/include/axis2-1.6.0/axutil_config.h ../../config.h \
+ /usr/include/dlfcn.h /usr/include/x86_64-linux-gnu/bits/dlfcn.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/bits/sigset.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/sys/timeb.h /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/sys/param.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/linux/limits.h \
+ /usr/include/linux/param.h /usr/include/x86_64-linux-gnu/asm/param.h \
+ /usr/include/asm-generic/param.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/axis2-1.6.0/platforms/unix/axutil_uuid_gen_unix.h \
+ /usr/include/netinet/tcp.h /usr/include/utime.h /usr/include/getopt.h \
+ /usr/include/axis2-1.6.0/platforms/unix/axutil_date_time_util_unix.h \
+ /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h \
+ /usr/include/x86_64-linux-gnu/sys/socket.h \
+ /usr/include/x86_64-linux-gnu/sys/uio.h \
+ /usr/include/x86_64-linux-gnu/bits/uio.h \
+ /usr/include/x86_64-linux-gnu/bits/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+ /usr/include/x86_64-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h \
+ /usr/include/x86_64-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/x86_64-linux-gnu/bits/socket2.h /usr/include/arpa/inet.h \
+ /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h /usr/include/netdb.h \
+ /usr/include/x86_64-linux-gnu/bits/netdb.h \
+ /usr/include/x86_64-linux-gnu/sys/ioctl.h \
+ /usr/include/x86_64-linux-gnu/bits/ioctls.h \
+ /usr/include/x86_64-linux-gnu/asm/ioctls.h \
+ /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
+ /usr/include/x86_64-linux-gnu/asm/ioctl.h \
+ /usr/include/asm-generic/ioctl.h \
+ /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
+ /usr/include/x86_64-linux-gnu/sys/ttydefaults.h /usr/include/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h /usr/include/dirent.h \
+ /usr/include/x86_64-linux-gnu/bits/dirent.h /usr/include/pthread.h \
+ /usr/include/sched.h /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/axis2-1.6.0/axutil_param.h \
+ /usr/include/axis2-1.6.0/axutil_hash.h \
+ /usr/include/axis2-1.6.0/axutil_dir_handler.h \
+ /usr/include/axis2-1.6.0/axutil_file.h \
+ /usr/include/axis2-1.6.0/axutil_file_handler.h \
+ /usr/include/axis2-1.6.0/axutil_linked_list.h \
+ /usr/include/axis2-1.6.0/axutil_network_handler.h \
+ /usr/include/axis2-1.6.0/axutil_param_container.h \
+ /usr/include/axis2-1.6.0/axutil_property.h \
+ /usr/include/axis2-1.6.0/axutil_stack.h \
+ /usr/include/axis2-1.6.0/axutil_stream.h \
+ /usr/include/axis2-1.6.0/axutil_string_util.h \
+ /usr/include/axis2-1.6.0/axutil_types.h \
+ /usr/include/axis2-1.6.0/axutil_url.h \
+ /usr/include/axis2-1.6.0/axutil_uri.h \
+ /usr/include/axis2-1.6.0/axutil_uuid_gen.h ../../include/oxs_axiom.h \
+ /usr/include/axis2-1.6.0/axiom_node.h ../../include/oxs_error.h \
+ ../../include/oxs_constants.h ../../include/trust_rst.h \
+ /usr/include/axis2-1.6.0/axiom_soap.h \
+ /usr/include/axis2-1.6.0/axiom_soap_body.h \
+ /usr/include/axis2-1.6.0/axiom_element.h \
+ /usr/include/axis2-1.6.0/axiom_namespace.h \
+ /usr/include/axis2-1.6.0/axiom_output.h \
+ /usr/include/axis2-1.6.0/axiom_xml_writer.h \
+ /usr/include/axis2-1.6.0/axiom_defines.h \
+ /usr/include/axis2-1.6.0/axiom_attribute.h \
+ /usr/include/axis2-1.6.0/axiom_children_iterator.h \
+ /usr/include/axis2-1.6.0/axiom_text.h \
+ /usr/include/axis2-1.6.0/axiom_data_handler.h \
+ /usr/include/axis2-1.6.0/axiom_children_qname_iterator.h \
+ /usr/include/axis2-1.6.0/axiom_child_element_iterator.h \
+ /usr/include/axis2-1.6.0/axiom_soap_fault.h \
+ /usr/include/axis2-1.6.0/axiom_soap_const.h \
+ /usr/include/axis2-1.6.0/axiom_soap_envelope.h \
+ /usr/include/axis2-1.6.0/axiom_soap_builder.h \
+ /usr/include/axis2-1.6.0/axiom_stax_builder.h \
+ /usr/include/axis2-1.6.0/axiom_xml_reader.h \
+ /usr/include/axis2-1.6.0/axiom_document.h \
+ /usr/include/axis2-1.6.0/axiom_mime_parser.h \
+ /usr/include/axis2-1.6.0/axiom_mime_const.h \
+ /usr/include/axis2-1.6.0/axiom_soap_fault_code.h \
+ /usr/include/axis2-1.6.0/axiom_soap_fault_detail.h \
+ /usr/include/axis2-1.6.0/axiom_soap_fault_node.h \
+ /usr/include/axis2-1.6.0/axiom_soap_fault_reason.h \
+ /usr/include/axis2-1.6.0/axiom_soap_fault_role.h \
+ /usr/include/axis2-1.6.0/axiom_soap_fault_sub_code.h \
+ /usr/include/axis2-1.6.0/axiom_soap_fault_text.h \
+ /usr/include/axis2-1.6.0/axiom_soap_fault_value.h \
+ /usr/include/axis2-1.6.0/axiom_soap_header_block.h \
+ /usr/include/axis2-1.6.0/axiom_soap_header.h \
+ /usr/include/axis2-1.6.0/axiom_children_with_specific_attribute_iterator.h \
+ /usr/include/axis2-1.6.0/axiom.h \
+ /usr/include/axis2-1.6.0/axiom_comment.h \
+ /usr/include/axis2-1.6.0/axiom_doctype.h \
+ /usr/include/axis2-1.6.0/axiom_navigator.h \
+ /usr/include/axis2-1.6.0/axiom_processing_instruction.h \
+ /usr/include/axis2-1.6.0/axiom_data_source.h \
+ ../../include/trust_constants.h ../../include/trust_entropy.h \
+ ../../include/trust_util.h ../../include/trust_claims.h \
+ ../../include/trust_life_time.h /usr/include/axis2-1.6.0/axis2_msg_ctx.h \
+ /usr/include/axis2-1.6.0/axis2_ctx.h \
+ /usr/include/axis2-1.6.0/axis2_relates_to.h \
+ /usr/include/axis2-1.6.0/axis2_const.h \
+ /usr/include/axis2-1.6.0/axis2_handler_desc.h \
+ /usr/include/axis2-1.6.0/axis2_phase_rule.h \
+ /usr/include/axis2-1.6.0/axis2_handler.h \
+ /usr/include/axis2-1.6.0/axis2_msg_info_headers.h \
+ /usr/include/axis2-1.6.0/axis2_endpoint_ref.h \
+ /usr/include/axis2-1.6.0/axis2_any_content_type.h \
+ /usr/include/axis2-1.6.0/axis2_svc_name.h \
+ /usr/include/axis2-1.6.0/axis2_addr.h \
+ /usr/include/axis2-1.6.0/rp_issued_token.h \
+ /usr/include/axis2-1.6.0/rp_includes.h \
+ /usr/include/axis2-1.6.0/axutil_log_default.h \
+ /usr/include/axis2-1.6.0/axutil_error_default.h \
+ /usr/include/axis2-1.6.0/rp_defines.h \
+ /usr/include/axis2-1.6.0/neethi_operator.h \
+ /usr/include/axis2-1.6.0/neethi_includes.h \
+ /usr/include/axis2-1.6.0/neethi_constants.h \
+ /usr/include/axis2-1.6.0/neethi_policy.h \
+ /usr/include/axis2-1.6.0/neethi_exactlyone.h \
+ /usr/include/axis2-1.6.0/neethi_all.h \
+ /usr/include/axis2-1.6.0/neethi_engine.h \
+ /usr/include/axis2-1.6.0/neethi_reference.h \
+ /usr/include/axis2-1.6.0/neethi_registry.h \
+ /usr/include/axis2-1.6.0/neethi_assertion.h ../../include/trust_rstr.h \
+ ../../include/rampart_constants.h ../../include/rampart_error.h \
+ ../../include/rampart_context.h /usr/include/axis2-1.6.0/rp_secpolicy.h \
+ /usr/include/axis2-1.6.0/rp_property.h \
+ /usr/include/axis2-1.6.0/rp_username_token.h \
+ /usr/include/axis2-1.6.0/rp_token.h \
+ /usr/include/axis2-1.6.0/rp_x509_token.h \
+ /usr/include/axis2-1.6.0/rp_saml_token.h \
+ /usr/include/axis2-1.6.0/rp_security_context_token.h \
+ /usr/include/axis2-1.6.0/rp_https_token.h \
+ /usr/include/axis2-1.6.0/rp_asymmetric_binding.h \
+ /usr/include/axis2-1.6.0/rp_symmetric_asymmetric_binding_commons.h \
+ /usr/include/axis2-1.6.0/rp_binding_commons.h \
+ /usr/include/axis2-1.6.0/rp_algorithmsuite.h \
+ /usr/include/axis2-1.6.0/rp_layout.h \
+ /usr/include/axis2-1.6.0/rp_supporting_tokens.h \
+ /usr/include/axis2-1.6.0/rp_signed_encrypted_parts.h \
+ /usr/include/axis2-1.6.0/rp_header.h \
+ /usr/include/axis2-1.6.0/rp_signed_encrypted_elements.h \
+ /usr/include/axis2-1.6.0/rp_symmetric_binding.h \
+ /usr/include/axis2-1.6.0/rp_transport_binding.h \
+ /usr/include/axis2-1.6.0/rp_signed_encrypted_items.h \
+ /usr/include/axis2-1.6.0/rp_element.h \
+ /usr/include/axis2-1.6.0/rp_rampart_config.h \
+ /usr/include/axis2-1.6.0/rp_wss10.h /usr/include/axis2-1.6.0/rp_wss11.h \
+ /usr/include/axis2-1.6.0/rp_trust10.h \
+ ../../include/rampart_authn_provider.h ../../include/rampart_callback.h \
+ ../../include/axis2_key_type.h ../../include/oxs_key.h \
+ ../../include/rampart_saml_token.h ../../include/oxs_saml_token.h \
+ ../../include/oxs_tokens.h ../../include/oxs_utility.h \
+ ../../include/oxs_asym_ctx.h ../../include/oxs_x509_cert.h \
+ ../../include/openssl_pkey.h /usr/include/openssl/rand.h \
+ /usr/include/openssl/ossl_typ.h /usr/include/openssl/e_os2.h \
+ /usr/include/openssl/opensslconf.h /usr/include/openssl/evp.h \
+ /usr/include/openssl/symhacks.h /usr/include/openssl/bio.h \
+ /usr/include/openssl/crypto.h /usr/include/openssl/stack.h \
+ /usr/include/openssl/safestack.h /usr/include/openssl/opensslv.h \
+ /usr/include/openssl/objects.h /usr/include/openssl/obj_mac.h \
+ /usr/include/openssl/asn1.h /usr/include/openssl/bn.h \
+ /usr/include/openssl/pem.h /usr/include/openssl/x509.h \
+ /usr/include/openssl/buffer.h /usr/include/openssl/ec.h \
+ /usr/include/openssl/ecdsa.h /usr/include/openssl/ecdh.h \
+ /usr/include/openssl/rsa.h /usr/include/openssl/dsa.h \
+ /usr/include/openssl/dh.h /usr/include/openssl/sha.h \
+ /usr/include/openssl/x509_vfy.h /usr/include/openssl/lhash.h \
+ /usr/include/openssl/pkcs7.h /usr/include/openssl/pem2.h \
+ ../../include/openssl_constants.h ../../include/oxs_key_mgr.h \
+ ../../include/oxs_ctx.h ../../include/openssl_x509.h \
+ /usr/include/openssl/pkcs12.h ../../include/openssl_pkcs12.h \
+ ../../include/openssl_pkcs12_keystore.h \
+ ../../include/rampart_issued_token.h ../../include/openssl_hmac.h \
+ /usr/include/openssl/hmac.h ../../include/openssl_util.h \
+ ../../include/openssl_cipher_property.h \
+ ../../include/rampart_handler_util.h
+
+../../include/secconv_security_context_token.h:
+
+/usr/include/stdio.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/bits/predefs.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdarg.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+/usr/include/axis2-1.6.0/axutil_utils.h:
+
+/usr/include/axis2-1.6.0/axutil_utils_defines.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/axis2-1.6.0/axutil_error.h:
+
+/usr/include/axis2-1.6.0/axutil_allocator.h:
+
+/usr/include/axis2-1.6.0/axutil_env.h:
+
+/usr/include/axis2-1.6.0/axutil_log.h:
+
+/usr/include/axis2-1.6.0/axutil_thread_pool.h:
+
+/usr/include/axis2-1.6.0/axutil_thread.h:
+
+/usr/include/axis2-1.6.0/axutil_date_time.h:
+
+/usr/include/axis2-1.6.0/axutil_base64_binary.h:
+
+/usr/include/axis2-1.6.0/axutil_base64.h:
+
+/usr/include/axis2-1.6.0/axutil_string.h:
+
+/usr/include/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/string2.h:
+
+/usr/include/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/string3.h:
+
+../../include/oxs_buffer.h:
+
+/usr/include/axis2-1.6.0/axis2_defines.h:
+
+/usr/include/axis2-1.6.0/axis2_util.h:
+
+/usr/include/axis2-1.6.0/axutil_array_list.h:
+
+/usr/include/axis2-1.6.0/axutil_class_loader.h:
+
+/usr/include/axis2-1.6.0/axutil_qname.h:
+
+/usr/include/axis2-1.6.0/axutil_dll_desc.h:
+
+/usr/include/axis2-1.6.0/platforms/axutil_platform_auto_sense.h:
+
+/usr/include/axis2-1.6.0/platforms/unix/axutil_unix.h:
+
+/usr/include/axis2-1.6.0/axutil_config.h:
+
+../../config.h:
+
+/usr/include/dlfcn.h:
+
+/usr/include/x86_64-linux-gnu/bits/dlfcn.h:
+
+/usr/include/x86_64-linux-gnu/sys/time.h:
+
+/usr/include/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigset.h:
+
+/usr/include/x86_64-linux-gnu/bits/select2.h:
+
+/usr/include/x86_64-linux-gnu/sys/timeb.h:
+
+/usr/include/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/x86_64-linux-gnu/sys/param.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/limits.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/linux/param.h:
+
+/usr/include/x86_64-linux-gnu/asm/param.h:
+
+/usr/include/asm-generic/param.h:
+
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/strings.h:
+
+/usr/include/x86_64-linux-gnu/sys/stat.h:
+
+/usr/include/x86_64-linux-gnu/bits/stat.h:
+
+/usr/include/axis2-1.6.0/platforms/unix/axutil_uuid_gen_unix.h:
+
+/usr/include/netinet/tcp.h:
+
+/usr/include/utime.h:
+
+/usr/include/getopt.h:
+
+/usr/include/axis2-1.6.0/platforms/unix/axutil_date_time_util_unix.h:
+
+/usr/include/unistd.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
+
+/usr/include/x86_64-linux-gnu/sys/socket.h:
+
+/usr/include/x86_64-linux-gnu/sys/uio.h:
+
+/usr/include/x86_64-linux-gnu/bits/uio.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+
+/usr/include/x86_64-linux-gnu/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/x86_64-linux-gnu/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket2.h:
+
+/usr/include/arpa/inet.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/x86_64-linux-gnu/bits/in.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/netdb.h:
+
+/usr/include/x86_64-linux-gnu/bits/netdb.h:
+
+/usr/include/x86_64-linux-gnu/sys/ioctl.h:
+
+/usr/include/x86_64-linux-gnu/bits/ioctls.h:
+
+/usr/include/x86_64-linux-gnu/asm/ioctls.h:
+
+/usr/include/asm-generic/ioctls.h:
+
+/usr/include/linux/ioctl.h:
+
+/usr/include/x86_64-linux-gnu/asm/ioctl.h:
+
+/usr/include/asm-generic/ioctl.h:
+
+/usr/include/x86_64-linux-gnu/bits/ioctl-types.h:
+
+/usr/include/x86_64-linux-gnu/sys/ttydefaults.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl2.h:
+
+/usr/include/dirent.h:
+
+/usr/include/x86_64-linux-gnu/bits/dirent.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/axis2-1.6.0/axutil_param.h:
+
+/usr/include/axis2-1.6.0/axutil_hash.h:
+
+/usr/include/axis2-1.6.0/axutil_dir_handler.h:
+
+/usr/include/axis2-1.6.0/axutil_file.h:
+
+/usr/include/axis2-1.6.0/axutil_file_handler.h:
+
+/usr/include/axis2-1.6.0/axutil_linked_list.h:
+
+/usr/include/axis2-1.6.0/axutil_network_handler.h:
+
+/usr/include/axis2-1.6.0/axutil_param_container.h:
+
+/usr/include/axis2-1.6.0/axutil_property.h:
+
+/usr/include/axis2-1.6.0/axutil_stack.h:
+
+/usr/include/axis2-1.6.0/axutil_stream.h:
+
+/usr/include/axis2-1.6.0/axutil_string_util.h:
+
+/usr/include/axis2-1.6.0/axutil_types.h:
+
+/usr/include/axis2-1.6.0/axutil_url.h:
+
+/usr/include/axis2-1.6.0/axutil_uri.h:
+
+/usr/include/axis2-1.6.0/axutil_uuid_gen.h:
+
+../../include/oxs_axiom.h:
+
+/usr/include/axis2-1.6.0/axiom_node.h:
+
+../../include/oxs_error.h:
+
+../../include/oxs_constants.h:
+
+../../include/trust_rst.h:
+
+/usr/include/axis2-1.6.0/axiom_soap.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_body.h:
+
+/usr/include/axis2-1.6.0/axiom_element.h:
+
+/usr/include/axis2-1.6.0/axiom_namespace.h:
+
+/usr/include/axis2-1.6.0/axiom_output.h:
+
+/usr/include/axis2-1.6.0/axiom_xml_writer.h:
+
+/usr/include/axis2-1.6.0/axiom_defines.h:
+
+/usr/include/axis2-1.6.0/axiom_attribute.h:
+
+/usr/include/axis2-1.6.0/axiom_children_iterator.h:
+
+/usr/include/axis2-1.6.0/axiom_text.h:
+
+/usr/include/axis2-1.6.0/axiom_data_handler.h:
+
+/usr/include/axis2-1.6.0/axiom_children_qname_iterator.h:
+
+/usr/include/axis2-1.6.0/axiom_child_element_iterator.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_fault.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_const.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_envelope.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_builder.h:
+
+/usr/include/axis2-1.6.0/axiom_stax_builder.h:
+
+/usr/include/axis2-1.6.0/axiom_xml_reader.h:
+
+/usr/include/axis2-1.6.0/axiom_document.h:
+
+/usr/include/axis2-1.6.0/axiom_mime_parser.h:
+
+/usr/include/axis2-1.6.0/axiom_mime_const.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_fault_code.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_fault_detail.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_fault_node.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_fault_reason.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_fault_role.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_fault_sub_code.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_fault_text.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_fault_value.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_header_block.h:
+
+/usr/include/axis2-1.6.0/axiom_soap_header.h:
+
+/usr/include/axis2-1.6.0/axiom_children_with_specific_attribute_iterator.h:
+
+/usr/include/axis2-1.6.0/axiom.h:
+
+/usr/include/axis2-1.6.0/axiom_comment.h:
+
+/usr/include/axis2-1.6.0/axiom_doctype.h:
+
+/usr/include/axis2-1.6.0/axiom_navigator.h:
+
+/usr/include/axis2-1.6.0/axiom_processing_instruction.h:
+
+/usr/include/axis2-1.6.0/axiom_data_source.h:
+
+../../include/trust_constants.h:
+
+../../include/trust_entropy.h:
+
+../../include/trust_util.h:
+
+../../include/trust_claims.h:
+
+../../include/trust_life_time.h:
+
+/usr/include/axis2-1.6.0/axis2_msg_ctx.h:
+
+/usr/include/axis2-1.6.0/axis2_ctx.h:
+
+/usr/include/axis2-1.6.0/axis2_relates_to.h:
+
+/usr/include/axis2-1.6.0/axis2_const.h:
+
+/usr/include/axis2-1.6.0/axis2_handler_desc.h:
+
+/usr/include/axis2-1.6.0/axis2_phase_rule.h:
+
+/usr/include/axis2-1.6.0/axis2_handler.h:
+
+/usr/include/axis2-1.6.0/axis2_msg_info_headers.h:
+
+/usr/include/axis2-1.6.0/axis2_endpoint_ref.h:
+
+/usr/include/axis2-1.6.0/axis2_any_content_type.h:
+
+/usr/include/axis2-1.6.0/axis2_svc_name.h:
+
+/usr/include/axis2-1.6.0/axis2_addr.h:
+
+/usr/include/axis2-1.6.0/rp_issued_token.h:
+
+/usr/include/axis2-1.6.0/rp_includes.h:
+
+/usr/include/axis2-1.6.0/axutil_log_default.h:
+
+/usr/include/axis2-1.6.0/axutil_error_default.h:
+
+/usr/include/axis2-1.6.0/rp_defines.h:
+
+/usr/include/axis2-1.6.0/neethi_operator.h:
+
+/usr/include/axis2-1.6.0/neethi_includes.h:
+
+/usr/include/axis2-1.6.0/neethi_constants.h:
+
+/usr/include/axis2-1.6.0/neethi_policy.h:
+
+/usr/include/axis2-1.6.0/neethi_exactlyone.h:
+
+/usr/include/axis2-1.6.0/neethi_all.h:
+
+/usr/include/axis2-1.6.0/neethi_engine.h:
+
+/usr/include/axis2-1.6.0/neethi_reference.h:
+
+/usr/include/axis2-1.6.0/neethi_registry.h:
+
+/usr/include/axis2-1.6.0/neethi_assertion.h:
+
+../../include/trust_rstr.h:
+
+../../include/rampart_constants.h:
+
+../../include/rampart_error.h:
+
+../../include/rampart_context.h:
+
+/usr/include/axis2-1.6.0/rp_secpolicy.h:
+
+/usr/include/axis2-1.6.0/rp_property.h:
+
+/usr/include/axis2-1.6.0/rp_username_token.h:
+
+/usr/include/axis2-1.6.0/rp_token.h:
+
+/usr/include/axis2-1.6.0/rp_x509_token.h:
+
+/usr/include/axis2-1.6.0/rp_saml_token.h:
+
+/usr/include/axis2-1.6.0/rp_security_context_token.h:
+
+/usr/include/axis2-1.6.0/rp_https_token.h:
+
+/usr/include/axis2-1.6.0/rp_asymmetric_binding.h:
+
+/usr/include/axis2-1.6.0/rp_symmetric_asymmetric_binding_commons.h:
+
+/usr/include/axis2-1.6.0/rp_binding_commons.h:
+
+/usr/include/axis2-1.6.0/rp_algorithmsuite.h:
+
+/usr/include/axis2-1.6.0/rp_layout.h:
+
+/usr/include/axis2-1.6.0/rp_supporting_tokens.h:
+
+/usr/include/axis2-1.6.0/rp_signed_encrypted_parts.h:
+
+/usr/include/axis2-1.6.0/rp_header.h:
+
+/usr/include/axis2-1.6.0/rp_signed_encrypted_elements.h:
+
+/usr/include/axis2-1.6.0/rp_symmetric_binding.h:
+
+/usr/include/axis2-1.6.0/rp_transport_binding.h:
+
+/usr/include/axis2-1.6.0/rp_signed_encrypted_items.h:
+
+/usr/include/axis2-1.6.0/rp_element.h:
+
+/usr/include/axis2-1.6.0/rp_rampart_config.h:
+
+/usr/include/axis2-1.6.0/rp_wss10.h:
+
+/usr/include/axis2-1.6.0/rp_wss11.h:
+
+/usr/include/axis2-1.6.0/rp_trust10.h:
+
+../../include/rampart_authn_provider.h:
+
+../../include/rampart_callback.h:
+
+../../include/axis2_key_type.h:
+
+../../include/oxs_key.h:
+
+../../include/rampart_saml_token.h:
+
+../../include/oxs_saml_token.h:
+
+../../include/oxs_tokens.h:
+
+../../include/oxs_utility.h:
+
+../../include/oxs_asym_ctx.h:
+
+../../include/oxs_x509_cert.h:
+
+../../include/openssl_pkey.h:
+
+/usr/include/openssl/rand.h:
+
+/usr/include/openssl/ossl_typ.h:
+
+/usr/include/openssl/e_os2.h:
+
+/usr/include/openssl/opensslconf.h:
+
+/usr/include/openssl/evp.h:
+
+/usr/include/openssl/symhacks.h:
+
+/usr/include/openssl/bio.h:
+
+/usr/include/openssl/crypto.h:
+
+/usr/include/openssl/stack.h:
+
+/usr/include/openssl/safestack.h:
+
+/usr/include/openssl/opensslv.h:
+
+/usr/include/openssl/objects.h:
+
+/usr/include/openssl/obj_mac.h:
+
+/usr/include/openssl/asn1.h:
+
+/usr/include/openssl/bn.h:
+
+/usr/include/openssl/pem.h:
+
+/usr/include/openssl/x509.h:
+
+/usr/include/openssl/buffer.h:
+
+/usr/include/openssl/ec.h:
+
+/usr/include/openssl/ecdsa.h:
+
+/usr/include/openssl/ecdh.h:
+
+/usr/include/openssl/rsa.h:
+
+/usr/include/openssl/dsa.h:
+
+/usr/include/openssl/dh.h:
+
+/usr/include/openssl/sha.h:
+
+/usr/include/openssl/x509_vfy.h:
+
+/usr/include/openssl/lhash.h:
+
+/usr/include/openssl/pkcs7.h:
+
+/usr/include/openssl/pem2.h:
+
+../../include/openssl_constants.h:
+
+../../include/oxs_key_mgr.h:
+
+../../include/oxs_ctx.h:
+
+../../include/openssl_x509.h:
+
+/usr/include/openssl/pkcs12.h:
+
+../../include/openssl_pkcs12.h:
+
+../../include/openssl_pkcs12_keystore.h:
+
+../../include/rampart_issued_token.h:
+
+../../include/openssl_hmac.h:
+
+/usr/include/openssl/hmac.h:
+
+../../include/openssl_util.h:
+
+../../include/openssl_cipher_property.h:
+
+../../include/rampart_handler_util.h:

@@ -1,0 +1,274 @@
+mod_rampart.lo: mod_rampart.c /usr/include/axis2-1.6.0/axis2_module.h \
+ /usr/include/axis2-1.6.0/axis2_const.h \
+ /usr/include/axis2-1.6.0/axutil_env.h \
+ /usr/include/axis2-1.6.0/axutil_allocator.h \
+ /usr/include/axis2-1.6.0/axutil_utils_defines.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h /usr/include/stdint.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+ /usr/include/axis2-1.6.0/axutil_error.h \
+ /usr/include/axis2-1.6.0/axutil_log.h \
+ /usr/include/axis2-1.6.0/axutil_thread_pool.h \
+ /usr/include/axis2-1.6.0/axutil_thread.h \
+ /usr/include/axis2-1.6.0/axutil_utils.h \
+ /usr/include/axis2-1.6.0/axutil_date_time.h \
+ /usr/include/axis2-1.6.0/axutil_base64_binary.h \
+ /usr/include/axis2-1.6.0/axutil_base64.h \
+ /usr/include/axis2-1.6.0/axis2_defines.h \
+ /usr/include/axis2-1.6.0/axutil_string.h /usr/include/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string.h \
+ /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/string3.h \
+ /usr/include/axis2-1.6.0/axis2_conf.h \
+ /usr/include/axis2-1.6.0/axutil_param_container.h \
+ /usr/include/axis2-1.6.0/axutil_array_list.h \
+ /usr/include/axis2-1.6.0/axutil_hash.h \
+ /usr/include/axis2-1.6.0/axutil_qname.h \
+ /usr/include/axis2-1.6.0/axutil_param.h \
+ /usr/include/axis2-1.6.0/axis2_svc_grp.h \
+ /usr/include/axis2-1.6.0/axis2_desc.h \
+ /usr/include/axis2-1.6.0/axis2_description.h \
+ /usr/include/axis2-1.6.0/axis2_svc.h \
+ /usr/include/axis2-1.6.0/axis2_flow_container.h \
+ /usr/include/axis2-1.6.0/axis2_flow.h \
+ /usr/include/axis2-1.6.0/axis2_handler_desc.h \
+ /usr/include/axis2-1.6.0/axis2_phase_rule.h \
+ /usr/include/axis2-1.6.0/axis2_handler.h \
+ /usr/include/axis2-1.6.0/axis2_op.h \
+ /usr/include/axis2-1.6.0/axis2_msg_recv.h \
+ /usr/include/axis2-1.6.0/axis2_svc_skeleton.h \
+ /usr/include/axis2-1.6.0/axiom_node.h \
+ /usr/include/axis2-1.6.0/axis2_msg_ctx.h \
+ /usr/include/axis2-1.6.0/axis2_ctx.h \
+ /usr/include/axis2-1.6.0/axutil_property.h \
+ /usr/include/axis2-1.6.0/axis2_relates_to.h \
+ /usr/include/axis2-1.6.0/axutil_stream.h /usr/include/stdio.h \
+ /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h \
+ /usr/include/axis2-1.6.0/axis2_msg_info_headers.h \
+ /usr/include/axis2-1.6.0/axis2_endpoint_ref.h \
+ /usr/include/axis2-1.6.0/axis2_any_content_type.h \
+ /usr/include/axis2-1.6.0/axis2_svc_name.h \
+ /usr/include/axis2-1.6.0/axiom_attribute.h \
+ /usr/include/axis2-1.6.0/axiom_namespace.h \
+ /usr/include/axis2-1.6.0/axiom_output.h \
+ /usr/include/axis2-1.6.0/axiom_xml_writer.h \
+ /usr/include/axis2-1.6.0/axiom_defines.h \
+ /usr/include/axis2-1.6.0/axis2_op_ctx.h \
+ /usr/include/axis2-1.6.0/axis2_svr_callback.h \
+ /usr/include/axis2-1.6.0/axis2_module_desc.h \
+ /usr/include/axis2-1.6.0/axis2_phase_meta.h \
+ /usr/include/axis2-1.6.0/axis2_svc_ctx.h \
+ /usr/include/axis2-1.6.0/axis2_phase_resolver.h \
+ /usr/include/axis2-1.6.0/axis2_phase.h \
+ /usr/include/axis2-1.6.0/axis2_phase_holder.h \
+ /usr/include/axis2-1.6.0/axis2_svc_grp_ctx.h \
+ /usr/include/axis2-1.6.0/axis2_transport_in_desc.h \
+ /usr/include/axis2-1.6.0/axis2_transport_out_desc.h \
+ /usr/include/axis2-1.6.0/axis2_transport_sender.h \
+ /usr/include/axis2-1.6.0/axis2_phases_info.h ../../include/rampart_mod.h \
+ ../../include/rampart_constants.h ../../include/oxs_constants.h \
+ ../../include/rampart_error.h /usr/include/axis2-1.6.0/axis2_conf_ctx.h
+
+/usr/include/axis2-1.6.0/axis2_module.h:
+
+/usr/include/axis2-1.6.0/axis2_const.h:
+
+/usr/include/axis2-1.6.0/axutil_env.h:
+
+/usr/include/axis2-1.6.0/axutil_allocator.h:
+
+/usr/include/axis2-1.6.0/axutil_utils_defines.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/bits/predefs.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+/usr/include/axis2-1.6.0/axutil_error.h:
+
+/usr/include/axis2-1.6.0/axutil_log.h:
+
+/usr/include/axis2-1.6.0/axutil_thread_pool.h:
+
+/usr/include/axis2-1.6.0/axutil_thread.h:
+
+/usr/include/axis2-1.6.0/axutil_utils.h:
+
+/usr/include/axis2-1.6.0/axutil_date_time.h:
+
+/usr/include/axis2-1.6.0/axutil_base64_binary.h:
+
+/usr/include/axis2-1.6.0/axutil_base64.h:
+
+/usr/include/axis2-1.6.0/axis2_defines.h:
+
+/usr/include/axis2-1.6.0/axutil_string.h:
+
+/usr/include/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/string.h:
+
+/usr/include/x86_64-linux-gnu/bits/string2.h:
+
+/usr/include/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/x86_64-linux-gnu/bits/string3.h:
+
+/usr/include/axis2-1.6.0/axis2_conf.h:
+
+/usr/include/axis2-1.6.0/axutil_param_container.h:
+
+/usr/include/axis2-1.6.0/axutil_array_list.h:
+
+/usr/include/axis2-1.6.0/axutil_hash.h:
+
+/usr/include/axis2-1.6.0/axutil_qname.h:
+
+/usr/include/axis2-1.6.0/axutil_param.h:
+
+/usr/include/axis2-1.6.0/axis2_svc_grp.h:
+
+/usr/include/axis2-1.6.0/axis2_desc.h:
+
+/usr/include/axis2-1.6.0/axis2_description.h:
+
+/usr/include/axis2-1.6.0/axis2_svc.h:
+
+/usr/include/axis2-1.6.0/axis2_flow_container.h:
+
+/usr/include/axis2-1.6.0/axis2_flow.h:
+
+/usr/include/axis2-1.6.0/axis2_handler_desc.h:
+
+/usr/include/axis2-1.6.0/axis2_phase_rule.h:
+
+/usr/include/axis2-1.6.0/axis2_handler.h:
+
+/usr/include/axis2-1.6.0/axis2_op.h:
+
+/usr/include/axis2-1.6.0/axis2_msg_recv.h:
+
+/usr/include/axis2-1.6.0/axis2_svc_skeleton.h:
+
+/usr/include/axis2-1.6.0/axiom_node.h:
+
+/usr/include/axis2-1.6.0/axis2_msg_ctx.h:
+
+/usr/include/axis2-1.6.0/axis2_ctx.h:
+
+/usr/include/axis2-1.6.0/axutil_property.h:
+
+/usr/include/axis2-1.6.0/axis2_relates_to.h:
+
+/usr/include/axis2-1.6.0/axutil_stream.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdarg.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/include/axis2-1.6.0/axis2_msg_info_headers.h:
+
+/usr/include/axis2-1.6.0/axis2_endpoint_ref.h:
+
+/usr/include/axis2-1.6.0/axis2_any_content_type.h:
+
+/usr/include/axis2-1.6.0/axis2_svc_name.h:
+
+/usr/include/axis2-1.6.0/axiom_attribute.h:
+
+/usr/include/axis2-1.6.0/axiom_namespace.h:
+
+/usr/include/axis2-1.6.0/axiom_output.h:
+
+/usr/include/axis2-1.6.0/axiom_xml_writer.h:
+
+/usr/include/axis2-1.6.0/axiom_defines.h:
+
+/usr/include/axis2-1.6.0/axis2_op_ctx.h:
+
+/usr/include/axis2-1.6.0/axis2_svr_callback.h:
+
+/usr/include/axis2-1.6.0/axis2_module_desc.h:
+
+/usr/include/axis2-1.6.0/axis2_phase_meta.h:
+
+/usr/include/axis2-1.6.0/axis2_svc_ctx.h:
+
+/usr/include/axis2-1.6.0/axis2_phase_resolver.h:
+
+/usr/include/axis2-1.6.0/axis2_phase.h:
+
+/usr/include/axis2-1.6.0/axis2_phase_holder.h:
+
+/usr/include/axis2-1.6.0/axis2_svc_grp_ctx.h:
+
+/usr/include/axis2-1.6.0/axis2_transport_in_desc.h:
+
+/usr/include/axis2-1.6.0/axis2_transport_out_desc.h:
+
+/usr/include/axis2-1.6.0/axis2_transport_sender.h:
+
+/usr/include/axis2-1.6.0/axis2_phases_info.h:
+
+../../include/rampart_mod.h:
+
+../../include/rampart_constants.h:
+
+../../include/oxs_constants.h:
+
+../../include/rampart_error.h:
+
+/usr/include/axis2-1.6.0/axis2_conf_ctx.h:

@@ -1,0 +1,49 @@
+rampart_error.lo: rampart_error.c /usr/include/stdlib.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+ ../../include/rampart_error.h \
+ /home/denis/Downloads/wso2/src/cpp/wsf_c/rampartc/../axis2c/util/include/axutil_error.h \
+ /home/denis/Downloads/wso2/src/cpp/wsf_c/rampartc/../axis2c/util/include/axutil_utils_defines.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /home/denis/Downloads/wso2/src/cpp/wsf_c/rampartc/../axis2c/util/include/axutil_allocator.h \
+ /home/denis/Downloads/wso2/src/cpp/wsf_c/rampartc/../axis2c/util/include/axutil_error_default.h
+
+/usr/include/stdlib.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/bits/predefs.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stddef.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+../../include/rampart_error.h:
+
+/home/denis/Downloads/wso2/src/cpp/wsf_c/rampartc/../axis2c/util/include/axutil_error.h:
+
+/home/denis/Downloads/wso2/src/cpp/wsf_c/rampartc/../axis2c/util/include/axutil_utils_defines.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/4.6/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/home/denis/Downloads/wso2/src/cpp/wsf_c/rampartc/../axis2c/util/include/axutil_allocator.h:
+
+/home/denis/Downloads/wso2/src/cpp/wsf_c/rampartc/../axis2c/util/include/axutil_error_default.h:
