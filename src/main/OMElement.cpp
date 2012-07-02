@@ -40,6 +40,7 @@ void OMElement::init(OMNode * parent, std::string localname, OMNamespace * ns)
     {
         ns_c = ns->getAxiomNamespace();
         _namespace = new OMNamespace(ns_c);
+        _added_namespaces.push_back(_namespace);
     }
     
     _wsf_axiom_element = axiom_element_create(Environment::getEnv(), parent_c, localname.c_str(), ns_c, &node);
@@ -110,6 +111,7 @@ OMElement::OMElement(OMNode * parent, axiom_node_t * node)
         if (ns)
         {
             _namespace = new OMNamespace(ns);
+            _added_namespaces.push_back(_namespace);
         }
     }
 
@@ -166,11 +168,11 @@ OMElement::~OMElement()
         _default_namespace->setAxiomNamespace(NULL);
         delete _default_namespace;
     }
-    if (_namespace)
-    {
-		_namespace->setAxiomNamespace(NULL);
-		delete _namespace;
-    }
+  //   if (_namespace)
+  //   {
+		// _namespace->setAxiomNamespace(NULL);
+		// delete _namespace;
+  //   }
    for (vector<OMNamespace *>::iterator ite = _added_namespaces.begin();
             ite != _added_namespaces.end(); ++ite)
     {
@@ -356,7 +358,7 @@ OMNamespace * OMElement::getNamespace()
     if (_namespace)
     {
         return _namespace;
-    }*/
+    } */
 
     axiom_namespace_t * ns =
         axiom_element_get_namespace(_wsf_axiom_element, Environment::getEnv(), getAxiomNode());
@@ -365,6 +367,7 @@ OMNamespace * OMElement::getNamespace()
         return NULL;
     }
     _namespace = new OMNamespace(ns);
+    _added_namespaces.push_back(_namespace);
     return _namespace;
 }
 
