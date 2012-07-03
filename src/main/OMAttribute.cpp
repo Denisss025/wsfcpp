@@ -38,7 +38,7 @@ OMAttribute::OMAttribute(std::string name, std::string value, OMNamespace * ns)
         _wsf_axiom_attribute = axiom_attribute_create(Environment::getEnv(), name.c_str(), value.c_str(), ns->getAxiomNamespace());
         if (_wsf_axiom_attribute)
         {
-            _namespace = new OMNamespace(*ns);
+            _namespace = new OMNamespace(ns->getAxiomNamespace());
         }
     }
 }
@@ -54,7 +54,7 @@ OMAttribute::OMAttribute(OMAttribute & attribute)
 {
     _wsf_axiom_attribute = axiom_attribute_create(Environment::getEnv(), (attribute.getName()).c_str(),
         (attribute.getValue()).c_str(), (attribute.getNamespace())->getAxiomNamespace());
-    _namespace = new OMNamespace(*attribute.getNamespace());
+    _namespace = new OMNamespace(attribute.getNamespace()->getAxiomNamespace());
 }
 
 OMAttribute::~OMAttribute()
@@ -157,7 +157,7 @@ bool OMAttribute::setNamespace(OMNamespace *ns, bool deleteExisting)
 	{
 		axiom_attribute_set_namespace(_wsf_axiom_attribute, Environment::getEnv(), ns->getAxiomNamespace());
 	}
-	_namespace = new OMNamespace(*ns);
+	_namespace = new OMNamespace(ns->getAxiomNamespace());
 	return true;
 }
 
