@@ -91,7 +91,10 @@ axis2_apache_out_transport_info_set_content_type(
     }
     else
     {
-        info->request->content_type = apr_pstrdup(info->request->pool, content_type);
+        /* info->request->content_type = apr_pstrdup(info->request->pool, content_type); */
+        tmp1 = axutil_stracat(env, content_type, ";charset=UTF-8");
+        info->request->content_type = apr_pstrdup(info->request->pool, tmp1);
+        AXIS2_FREE(env->allocator, tmp1);
     }
     return AXIS2_SUCCESS;
 }
