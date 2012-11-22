@@ -336,6 +336,10 @@ axis2_http_worker_process_request(
         {
             axis2_msg_ctx_set_http_accept_record_list(msg_ctx, env, accept_record_list);
         }
+        if (accept_header_field_list)
+        {
+            axutil_array_list_free(accept_header_field_list, env);
+        }
     }
 
     accept_charset_header = axis2_http_simple_request_get_first_header(simple_request, env,
@@ -1782,6 +1786,10 @@ axis2_http_worker_process_request(
     {
         response_stream = axis2_http_simple_response_get_body(response, env);
         axis2_http_simple_response_set_body_stream(response, env, NULL);
+        if (response_stream == axis2_msg_ctx_get_transport_out_stream(msg_ctx, env))
+        {
+            response_stream = NULL;
+        }
     }
 
     if (response_stream)
