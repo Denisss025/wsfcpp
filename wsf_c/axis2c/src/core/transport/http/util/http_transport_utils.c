@@ -1389,6 +1389,7 @@ axis2_http_transport_utils_process_http_get_request(
 
     engine = axis2_engine_create(env, conf_ctx);
     axis2_engine_receive(engine, env, msg_ctx);
+    axis2_engine_free(engine, env);
     return AXIS2_TRUE;
 }
 
