@@ -1782,21 +1782,6 @@ axis2_http_worker_process_request(
         }
     }
 
-    if (response)
-    {
-        response_stream = axis2_http_simple_response_get_body(response, env);
-        axis2_http_simple_response_set_body_stream(response, env, NULL);
-        if (response_stream == axis2_msg_ctx_get_transport_out_stream(msg_ctx, env))
-        {
-            response_stream = NULL;
-        }
-    }
-
-    if (response_stream)
-    {
-        axutil_stream_free(response_stream, env);
-    }
-
     if (url_external_form)
     {
         AXIS2_FREE(env->allocator, url_external_form);

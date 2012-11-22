@@ -31,6 +31,8 @@ struct axis2_http_simple_response
     axutil_stream_t *stream;
     axutil_array_list_t *mime_parts;
     axis2_char_t *mtom_sending_callback_name;
+
+    axis2_bool_t owns_stream;
 };
 
 AXIS2_EXTERN axis2_http_simple_response_t *AXIS2_CALL
@@ -62,6 +64,9 @@ axis2_http_simple_response_create(
         }
     }
     ret->stream = content;
+
+    ret->owns_stream = AXIS2_FALSE;
+
     return ret;
 }
 
@@ -122,6 +127,10 @@ axis2_http_simple_response_free(
         axutil_array_list_free(simple_response->mime_parts, env);
     }
 
+    if (simple_response->owns_stream == AXIS2_TRUE)
+    {
+        axutil_stream_free(simple_response->stream, env);
+    }
      /* Stream is not freed. Assumption : stream doesn't belong to the response */
 
     AXIS2_FREE(env->allocator, simple_response);
@@ -458,6 +467,7 @@ axis2_http_simple_response_set_body_string(
             return AXIS2_FAILURE;
         }
         simple_response->stream = body_stream;
+        simple_response->owns_stream = AXIS2_TRUE;
     }
     axutil_stream_write(body_stream, env, str, axutil_strlen(str));
 
@@ -475,6 +485,11 @@ axis2_http_simple_response_set_body_stream(
      * Problem in freeing is most of the time the stream doesn't belong
      * to the http_simple_response
      */
+    if (simple_response->owns_stream == AXIS2_TRUE)
+    {
+        axutil_stream_free(simple_response->stream, env);
+        simple_response->owns_stream = AXIS2_FALSE;
+    }
     simple_response->stream = stream;
     return AXIS2_SUCCESS;
 }

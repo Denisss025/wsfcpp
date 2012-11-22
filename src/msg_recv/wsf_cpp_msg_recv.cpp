@@ -399,6 +399,8 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 
 	default_envelope = axiom_soap_envelope_create(env, env_ns);
 
+	axiom_namespace_free(env_ns, env);
+
 	if (!default_envelope)
 	{
 		Environment::removeEnv();
