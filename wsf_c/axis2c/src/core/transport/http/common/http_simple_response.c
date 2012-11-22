@@ -460,6 +460,7 @@ axis2_http_simple_response_set_body_string(
         simple_response->stream = body_stream;
     }
     axutil_stream_write(body_stream, env, str, axutil_strlen(str));
+
     return AXIS2_SUCCESS;
 }
 

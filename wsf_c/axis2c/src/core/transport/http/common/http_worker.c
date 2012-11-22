@@ -115,6 +115,7 @@ axis2_http_worker_process_request(
     /* Creating out_stream as basic stream */
     axutil_stream_t *out_stream = axutil_stream_create_basic(env);
     axis2_http_simple_response_t *response = NULL;
+    axutil_stream_t *response_stream = NULL;
 
     /* Transport in and out descriptions */
     axis2_transport_out_desc_t *out_desc = NULL;
@@ -1775,6 +1776,17 @@ axis2_http_worker_process_request(
                     response);
             }
         }
+    }
+
+    if (response)
+    {
+        response_stream = axis2_http_simple_response_get_body(response, env);
+        axis2_http_simple_response_set_body_stream(response, env, NULL);
+    }
+
+    if (response_stream)
+    {
+        axutil_stream_free(response_stream, env);
     }
 
     if (url_external_form)
