@@ -1515,6 +1515,7 @@ axis2_http_transport_utils_get_request_params(
             tmp_value = NULL;
         }
     }
+
     if(tmp_name && AXIS2_ESC_NULL != *tmp2)
     {
         if(!ret)
@@ -1524,6 +1525,11 @@ axis2_http_transport_utils_get_request_params(
         tmp_value = axutil_strdup(env, tmp2);
         axis2_http_transport_utils_strdecode(env, tmp_value, tmp_value);
         axutil_hash_set(ret, tmp_name, AXIS2_HASH_KEY_STRING, tmp_value);
+    }
+
+    if (query_str)
+    {
+        AXIS2_FREE(env->allocator, query_str);
     }
 
     return ret;
@@ -1878,6 +1884,7 @@ axis2_http_transport_utils_get_services_static_wsdl(
 			fclose(wsdl_file);
         }
 		
+        AXIS2_FREE(env->allocator, content);
         AXIS2_FREE(env->allocator, wsdl_path);
     }
     else
