@@ -509,6 +509,13 @@ axis2_http_worker_process_request(
                 request_params);
         }
 
+        /* release request params */
+        if (request_params)
+        {
+            axutil_hash_free(request_params, env);
+            request_params = NULL;
+        }
+
         if(AXIS2_FALSE == processed)
         {
             axis2_http_header_t *cont_len = NULL;
