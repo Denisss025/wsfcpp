@@ -847,12 +847,6 @@ axis2_http_transport_utils_process_http_post_request(
     {
         axutil_string_free(char_set_str, env);
     }
-
-    if (soap_builder && soap_envelope)
-    {
-        axiom_soap_envelope_free(soap_envelope, env);
-    }
-
     if(!soap_builder && om_builder)
     {
         axiom_stax_builder_free_self(om_builder, env);

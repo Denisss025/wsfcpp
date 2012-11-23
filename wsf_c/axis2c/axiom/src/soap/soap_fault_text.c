@@ -29,8 +29,6 @@ struct axiom_soap_fault_text
     axiom_namespace_t *lang_namespace;
 
     axiom_node_t *om_ele_node;
-
-    axis2_bool_t lang_ns_used;
 };
 
 AXIS2_EXTERN axiom_soap_fault_text_t *AXIS2_CALL
@@ -51,7 +49,6 @@ axiom_soap_fault_text_create(
     fault_text->om_ele_node = NULL;
     fault_text->lang_attribute = NULL;
     fault_text->lang_namespace = NULL;
-    fault_text->lang_ns_used = AXIS2_FALSE;
 
     fault_text->lang_namespace = axiom_namespace_create(env,
         AXIOM_SOAP12_SOAP_FAULT_TEXT_LANG_ATTR_NS_URI,
@@ -59,6 +56,7 @@ axiom_soap_fault_text_create(
 
     if(!(fault_text->lang_namespace))
     {
+        AXIS2_FREE(env->allocator, fault_text);
         return NULL;
     }
 
@@ -128,7 +126,7 @@ axiom_soap_fault_text_free(
     const axutil_env_t * env)
 {
 
-    if(fault_text->lang_ns_used == AXIS2_FALSE && fault_text->lang_namespace)
+    if(fault_text->lang_namespace)
     {
         axiom_namespace_free(fault_text->lang_namespace, env);
         fault_text->lang_namespace = NULL;
@@ -186,11 +184,7 @@ axiom_soap_fault_text_set_lang(
     status = axiom_element_add_attribute(om_ele, env, fault_text->lang_attribute,
         fault_text->om_ele_node);
 
-    if(status == AXIS2_SUCCESS)
-    {
-        fault_text->lang_ns_used = AXIS2_TRUE;
-    }
-    else
+    if(status != AXIS2_SUCCESS)
     {
         axiom_attribute_free(fault_text->lang_attribute, env);
         fault_text->lang_attribute = NULL;
