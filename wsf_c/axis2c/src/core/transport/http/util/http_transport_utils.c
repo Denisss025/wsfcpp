@@ -1846,9 +1846,13 @@ axis2_http_transport_utils_get_services_static_wsdl(
                     wsdl_path = axutil_strcat(env, axis2_svc_get_svc_folder_path(
                         (axis2_svc_t *)service, env), AXIS2_PATH_SEP_STR, svc_name, ".wsdl", NULL);
                 }
+                if (hi)
+                {
+                    AXIS2_FREE(env->allocator, hi);
+                    hi = NULL;
+                }
                 break;
             }
-
         }
     }
 
@@ -1890,6 +1894,19 @@ axis2_http_transport_utils_get_services_static_wsdl(
     else
     {
         wsdl_string = axutil_strdup(env, "Unable to retrieve wsdl for this service");
+    }
+
+    if (url_tok)
+    {
+        if (url_tok[0])
+        {
+            AXIS2_FREE(env->allocator, url_tok[0]);
+        }
+        if (url_tok[1])
+        {
+            AXIS2_FREE(env->allocator, url_tok[1]);
+        }
+        AXIS2_FREE(env->allocator, url_tok);
     }
 
     return wsdl_string;
