@@ -601,18 +601,6 @@ axis2_engine_create_fault_msg_ctx(
 
     if(!envelope)
     {
-/*        if(axis2_msg_ctx_get_is_soap_11(processing_context, env))
-        {
-            envelope = axiom_soap_envelope_create_default_soap_fault_envelope(env, code_value,
-                reason_text, AXIOM_SOAP11, NULL, NULL);
-
-        }
-        else
-        {
-            envelope = axiom_soap_envelope_create_default_soap_fault_envelope(env, code_value,
-                reason_text, AXIOM_SOAP12, NULL, NULL);
-        }
-*/
         envelope = axiom_soap_envelope_create_default_soap_fault_envelope(env, code_value, reason_text, 
                 (axis2_msg_ctx_get_is_soap_11(processing_context, env)?AXIOM_SOAP11:AXIOM_SOAP12),
                 NULL, NULL);
