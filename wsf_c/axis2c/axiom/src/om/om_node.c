@@ -136,6 +136,8 @@ axiom_node_free_detached_subtree(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    if (!om_node) return;
+
     /* Free any child nodes first */
     if(om_node->first_child)
     {
@@ -226,6 +228,7 @@ axiom_node_add_child(
     const axutil_env_t * env,
     axiom_node_t * child)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, child, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, om_node, AXIS2_FAILURE);
 
@@ -262,6 +265,9 @@ axiom_node_detach_without_namespaces(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_node, NULL);
+
     axiom_node_t *parent = NULL;
 
     parent = om_node->parent;
@@ -375,6 +381,8 @@ axiom_node_set_parent(
     const axutil_env_t * env,
     axiom_node_t * parent)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, om_node, AXIS2_FAILURE);
 
     if(parent == om_node->parent)
     { /* same parent already exist */
@@ -408,8 +416,8 @@ axiom_node_insert_sibling_after(
     axiom_node_t *next_sib = NULL;
 
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
-
     AXIS2_PARAM_CHECK(env->error, node_to_insert, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, om_node, AXIS2_FAILURE);
 
     if(!om_node->parent)
     {
@@ -445,6 +453,7 @@ axiom_node_insert_sibling_before(
 
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, node_to_insert, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, om_node, AXIS2_FAILURE);
 
     if(!om_node->parent)
     {
@@ -1051,6 +1060,8 @@ axiom_node_get_parent(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_node, NULL);
     return om_node->parent;
 }
 
@@ -1117,6 +1128,8 @@ axiom_node_get_last_child(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_node, NULL);
     return om_node->last_child;
 }
 
@@ -1125,6 +1138,8 @@ axiom_node_get_previous_sibling(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_node, NULL);
     return om_node->prev_sibling;
 }
 
@@ -1133,6 +1148,8 @@ axiom_node_get_previous_sibling_element(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_node, NULL);
     axiom_node_t * result = axiom_node_get_previous_sibling( om_node, env );
     while ( result && axiom_node_get_node_type(result, env) != AXIOM_ELEMENT )
         result = axiom_node_get_previous_sibling( result, env );
@@ -1176,6 +1193,8 @@ axiom_node_get_next_sibling_element(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_node, NULL);
     axiom_node_t * result = axiom_node_get_next_sibling( om_node, env );
     while ( result && axiom_node_get_node_type(result, env) != AXIOM_ELEMENT )
         result = axiom_node_get_next_sibling( result, env );
@@ -1188,6 +1207,8 @@ axiom_node_get_node_type(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIOM_INVALID);
+    AXIS2_PARAM_CHECK(env->error, om_node, AXIOM_INVALID);
     return om_node->node_type;
 }
 
@@ -1196,8 +1217,9 @@ axiom_node_is_complete(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, om_node, AXIS2_FALSE);
     return om_node->done;
-
 }
 
 AXIS2_EXTERN struct axiom_document *AXIS2_CALL
@@ -1205,6 +1227,9 @@ axiom_node_get_document(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_node, NULL);
+
     if(om_node->builder)
     {
         return axiom_stax_builder_get_document(om_node->builder, env);
@@ -1218,6 +1243,8 @@ axiom_node_get_data_element(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_node, NULL);
     return om_node->data_element;
 }
 
@@ -1231,6 +1258,7 @@ axiom_node_set_first_child(
     const axutil_env_t * env,
     axiom_node_t * first_child)
 {
+    if (!om_node) return;
     /** set the parent */
     axiom_node_set_parent(first_child, env, om_node);
     om_node->first_child = first_child;
@@ -1247,6 +1275,7 @@ axiom_node_set_previous_sibling(
     const axutil_env_t * env,
     axiom_node_t * prev_sibling)
 {
+    if (!om_node) return;
     om_node->prev_sibling = prev_sibling;
 }
 
@@ -1260,6 +1289,7 @@ axiom_node_set_next_sibling(
     const axutil_env_t * env,
     axiom_node_t * next_sibling)
 {
+    if (!om_node) return;
     om_node->next_sibling = next_sibling;
 }
 
@@ -1274,6 +1304,8 @@ axiom_node_set_node_type(
     const axutil_env_t * env,
     axiom_types_t type)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+   AXIS2_PARAM_CHECK(env->error, om_node, AXIS2_FAILURE);
     om_node->node_type = type;
     return AXIS2_SUCCESS;
 }
@@ -1288,6 +1320,7 @@ axiom_node_set_data_element(
     const axutil_env_t * env,
     void *data_element)
 {
+    if (!om_node) return;
     om_node->data_element = data_element;
 }
 
@@ -1302,6 +1335,7 @@ axiom_node_set_complete(
     const axutil_env_t * env,
     axis2_bool_t done)
 {
+    if (!om_node) return;
     om_node->done = done;
 }
 
@@ -1315,6 +1349,7 @@ axiom_node_set_builder(
     const axutil_env_t * env,
     axiom_stax_builder_t * builder)
 {
+    if (!om_node) return;
     /* builder == NULL is a valid case */
     om_node->builder = builder;
 }
@@ -1324,6 +1359,7 @@ axiom_node_assume_builder_ownership(
     axiom_node_t *om_node,
     const axutil_env_t * env)
 {
+    if (!om_node) return;
     om_node->own_builder = AXIS2_TRUE;
 }
 
