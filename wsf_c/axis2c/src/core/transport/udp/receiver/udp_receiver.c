@@ -687,7 +687,6 @@ axis2_udp_receiver_process_request(
         return AXIS2_FAILURE;
     }
 
-    out_stream = axutil_stream_create_basic(env);
     reader = axiom_xml_reader_create_for_memory(env, request->buff,
                                                 request->buf_size,
                                                 NULL,
@@ -731,6 +730,8 @@ axis2_udp_receiver_process_request(
 
     msg_ctx = axis2_msg_ctx_create(env, conf_ctx, in_desc, out_desc);
     axis2_msg_ctx_set_server_side(msg_ctx, env, AXIS2_TRUE);
+
+    out_stream = axutil_stream_create_basic(env);
     axis2_msg_ctx_set_transport_out_stream(msg_ctx, env, out_stream);
 
     soap_envelope = axiom_soap_builder_get_soap_envelope(soap_builder, env);

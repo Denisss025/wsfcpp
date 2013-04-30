@@ -544,6 +544,7 @@ axis2_http_simple_response_get_body_bytes(
 
         if(!buffer)
         {
+            axutil_stream_free(tmp_stream, env);
             AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
             return -1;
         }

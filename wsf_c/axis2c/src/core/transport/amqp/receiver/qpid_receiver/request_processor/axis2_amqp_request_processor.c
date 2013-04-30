@@ -209,6 +209,7 @@ axis2_amqp_process_request(
                  mime_boundary);*/
                 if(!binary_data_map)
                 {
+                    axutil_stream_free(stream, env);
                     return AXIS2_FAILURE;
                 }
 

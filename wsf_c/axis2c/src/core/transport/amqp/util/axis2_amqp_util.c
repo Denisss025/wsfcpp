@@ -208,6 +208,7 @@ axis2_amqp_util_get_soap_envelope(
 
                 if(!binary_data_map)
                 {
+                    axutil_stream_free(stream, env);
                     return AXIS2_FAILURE;
                 }
 

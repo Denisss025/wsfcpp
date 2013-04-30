@@ -112,8 +112,8 @@ axis2_http_worker_process_request(
     axis2_msg_ctx_t *msg_ctx = NULL;
     axutil_stream_t *request_body = NULL;
 
-    /* Creating out_stream as basic stream */
-    axutil_stream_t *out_stream = axutil_stream_create_basic(env);
+    /* out_stream will be created later ONLY if msg_ctx does exist */
+    axutil_stream_t *out_stream = NULL;
     axis2_http_simple_response_t *response = NULL;
     axutil_stream_t *response_stream = NULL;
 
@@ -436,7 +436,14 @@ axis2_http_worker_process_request(
      * To avoid double freeing of out_stream we reset the out message context at the end of engine 
      * receive function.
      */
-    axis2_msg_ctx_set_transport_out_stream(msg_ctx, env, out_stream);
+    if (msg_ctx)
+    {
+        out_stream = axutil_stream_create_basic(env);
+        if (out_stream)
+        {
+            axis2_msg_ctx_set_transport_out_stream(msg_ctx, env, out_stream);
+        }
+    }
 
     headers = axis2_http_worker_get_headers(http_worker, env, simple_request);
     axis2_msg_ctx_set_transport_headers(msg_ctx, env, headers);
