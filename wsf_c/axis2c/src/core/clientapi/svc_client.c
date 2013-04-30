@@ -695,6 +695,23 @@ axis2_svc_client_send_receive_with_op_qname(
         if(!msg_ctx)
             return NULL;
 
+        axis2_http_header_t *ct = axis2_http_header_create(env, "Content-Type", "plain/xml;UTF-8");
+        if (!ct)
+        {
+            axis2_msg_ctx_free(msg_ctx, env);
+            return NULL;
+        }
+
+        axutil_array_list_t *headers = axutil_array_list_create(env, 1);
+        if (!headers)
+        {
+            axutil_array_list_free(headers, env);
+            axis2_msg_ctx_free(msg_ctx, env);
+            return NULL;
+        }
+
+        axis2_msg_ctx_set_http_output_headers(msg_ctx, env, headers);
+
         if(!axis2_svc_client_fill_soap_envelope(env, svc_client, msg_ctx, payload))
         {
             return NULL;
