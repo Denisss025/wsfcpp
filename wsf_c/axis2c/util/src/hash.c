@@ -82,8 +82,14 @@ axutil_hash_alloc_array(
     axutil_hash_t *ht,
     unsigned int max)
 {
-    return memset(AXIS2_MALLOC(ht->env->allocator, sizeof(*ht->array) * (max + 1)), 0,
-        sizeof(*ht->array) * (max + 1));
+    axutil_hash_entry_t **array = (axutil_hash_entry_t*)AXIS2_MALLOC(ht->env->allocator, 
+        sizeof(*array) * (max + 1));
+    if (!array)
+    {
+        return NULL;
+    }
+    memset(array, 0, sizeof(*array) * (max + 1));
+    return array;
 }
 
 AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -155,6 +161,11 @@ axutil_hash_first(
     const axutil_env_t *env)
 {
     axutil_hash_index_t *hi;
+    if (ht->count == 0)
+    {
+        return NULL;
+    }
+
     if(env)
         hi = AXIS2_MALLOC(env->allocator, sizeof(*hi));
     else

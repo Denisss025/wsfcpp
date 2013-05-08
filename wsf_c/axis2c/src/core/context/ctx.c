@@ -44,8 +44,6 @@ axis2_ctx_create(
         return NULL;
     }
 
-    ctx->property_map = NULL;
-
     ctx->property_map = axutil_hash_make(env);
     ctx->property_map_deep_copy = AXIS2_TRUE;
     if(!(ctx->property_map))

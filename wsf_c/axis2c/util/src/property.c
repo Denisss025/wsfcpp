@@ -16,6 +16,7 @@
  */
 
 #include <axutil_property.h>
+#include <axutil_utils.h>
 #include <stdio.h>
 
 struct axutil_property
@@ -83,6 +84,7 @@ axutil_property_free(
     const axutil_env_t * env)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK_VOID(env->error, property);
 
     if(property->value)
     {
@@ -113,6 +115,7 @@ axutil_property_set_scope(
     axis2_scope_t scope)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, property, AXIS2_FAILURE);
 
     property->scope = scope;
     return AXIS2_SUCCESS;
@@ -125,6 +128,7 @@ axutil_property_set_free_func(
     AXIS2_FREE_VOID_ARG free_func)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, property, AXIS2_FAILURE);
 
     property->free_func = free_func;
     return AXIS2_SUCCESS;
@@ -137,6 +141,7 @@ axutil_property_set_value(
     void *value)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, property, AXIS2_FAILURE);
 
     if(property->value)
     {
@@ -162,6 +167,10 @@ axutil_property_get_value(
     axutil_property_t * property,
     const axutil_env_t * env)
 {
+    if (!property)
+    {
+        return (NULL);
+    }
     return property->value;
 }
 
@@ -172,6 +181,7 @@ axutil_property_set_own_value(
     axis2_bool_t own_value)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, property, AXIS2_FAILURE);
 
     property->own_value = own_value;
     return AXIS2_SUCCESS;
@@ -185,10 +195,13 @@ axutil_property_clone(
     axutil_property_t *new_property = NULL;
     AXIS2_ENV_CHECK(env, NULL);
     new_property = axutil_property_create(env);
-    axutil_property_set_free_func(new_property, env, property->free_func);
-    axutil_property_set_scope(new_property, env, property->scope);
-    axutil_property_set_own_value(new_property, env, property->own_value);
-    axutil_property_set_value(new_property, env, property->value);
+    if (property)
+    {
+        axutil_property_set_free_func(new_property, env, property->free_func);
+        axutil_property_set_scope(new_property, env, property->scope);
+        axutil_property_set_own_value(new_property, env, property->own_value);
+        axutil_property_set_value(new_property, env, property->value);
+    }
     return new_property;
 }
 
@@ -198,5 +211,6 @@ axutil_property_get_scope(
 	axutil_property_t *prop,
 	const axutil_env_t *env)
 {
+    AXIS2_PARAM_CHECK(env->error, prop, -1);
 	return prop->scope;
 }
