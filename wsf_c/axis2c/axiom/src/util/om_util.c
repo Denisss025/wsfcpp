@@ -19,6 +19,7 @@
 #include <axiom_element.h>
 #include <axiom_document.h>
 #include <axutil_array_list.h>
+#include <axutil_env.h>
 #include <axutil_uri.h>
 #include <axiom_util.h>
 
@@ -28,6 +29,9 @@ axiom_util_get_child_text(
     axiom_node_t *node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, node, NULL);
+
     axiom_element_t *ele = NULL;
     axis2_char_t *txt = NULL;
 
@@ -44,6 +48,8 @@ axiom_util_get_first_child_element_with_uri(
     axis2_char_t * uri,
     axiom_node_t ** child)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, child, NULL);
     axiom_node_t *child_node = NULL;
 
     if(!ele_node || !uri)
@@ -86,6 +92,8 @@ axiom_util_get_next_sibling_element_with_uri(
     axis2_char_t * uri,
     axiom_node_t ** next_node)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, next_node, NULL);
     axiom_node_t *next_sib_node = NULL;
     if(!ele_node || !uri)
     {
@@ -127,6 +135,8 @@ axiom_util_get_first_child_element(
     axiom_node_t * ele_node,
     axiom_node_t ** child_node)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
 
@@ -141,6 +151,8 @@ axiom_util_get_last_child_element(
     axiom_node_t ** child_node)
 {
     axiom_node_t *last_node = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
 
@@ -149,7 +161,7 @@ axiom_util_get_last_child_element(
     {
         if(axiom_node_get_node_type(last_node, env) == AXIOM_ELEMENT)
         {
-            *child_node = last_node;
+            (*child_node) = last_node;
             return (axiom_element_t *)axiom_node_get_data_element(last_node, env);
 
         }
@@ -166,14 +178,17 @@ axiom_util_get_next_sibling_element(
     axiom_node_t ** next_node)
 {
     axiom_node_t *next_sibling = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
+    AXIS2_PARAM_CHECK(env->error, next_node, NULL);
 
     next_sibling = axiom_node_get_next_sibling(ele_node, env);
     while(next_sibling)
     {
         if(axiom_node_get_node_type(next_sibling, env) == AXIOM_ELEMENT)
         {
-            *next_node = next_sibling;
+            (*next_node) = next_sibling;
             return (axiom_element_t *)axiom_node_get_data_element(next_sibling, env);
         }
         next_sibling = axiom_node_get_next_sibling(next_sibling, env);
@@ -193,6 +208,8 @@ axiom_util_get_first_child_element_with_localname(
     axiom_node_t *next_sibling = NULL;
     axis2_char_t *child_localname = NULL;
     axiom_element_t *om_ele = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
     AXIS2_PARAM_CHECK(env->error, localname, NULL);
@@ -208,7 +225,7 @@ axiom_util_get_first_child_element_with_localname(
                 child_localname = axiom_element_get_localname(om_ele, env);
                 if(child_localname && axutil_strcmp(child_localname, localname) == 0)
                 {
-                    *child_node = child;
+                    (*child_node) = child;
                     return om_ele;
                 }
             }
@@ -253,6 +270,8 @@ axiom_util_get_last_child_element_with_localname(
     axiom_element_t *om_ele = NULL;
     axis2_char_t *child_localname = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, localname, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
@@ -293,7 +312,11 @@ axiom_util_get_next_siblng_element_with_localname(
     axiom_element_t *om_ele = NULL;
     axis2_char_t *ele_localname = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
+    AXIS2_PARAM_CHECK(env->error, localname, NULL);
+    AXIS2_PARAM_CHECK(env->error, next_node, NULL);
 
     next_sibling = axiom_node_get_next_sibling(ele_node, env);
     while(next_sibling)
@@ -334,6 +357,8 @@ axiom_util_get_first_child_element_with_uri_localname(
     axiom_namespace_t *ns = NULL;
     axis2_char_t *ns_uri = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
     AXIS2_PARAM_CHECK(env->error, localname, NULL);
@@ -417,6 +442,8 @@ axiom_util_get_last_child_element_with_uri_localname(
     axiom_namespace_t *ns = NULL;
     axis2_char_t *ns_uri = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, localname, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
@@ -467,7 +494,12 @@ axiom_util_get_next_sibling_element_with_uri_localname(
     axis2_char_t *ele_localname = NULL;
     axiom_namespace_t *ns = NULL;
     axis2_char_t *ns_uri = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
+    AXIS2_PARAM_CHECK(env->error, localname, NULL);
+    AXIS2_PARAM_CHECK(env->error, uri, NULL);
+    AXIS2_PARAM_CHECK(env->error, next_node, NULL);
 
     next_sibling = axiom_node_get_next_sibling(ele_node, env);
     while(next_sibling)
@@ -515,6 +547,8 @@ axiom_util_get_first_child_element_with_localnames(
     axiom_element_t *om_ele = NULL;
     int size = 0;
     int i = 0;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
     AXIS2_PARAM_CHECK(env->error, names, NULL);
@@ -597,6 +631,8 @@ axiom_util_get_last_child_element_with_localnames(
     int size = 0;
     int i = 0;
 
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, names, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
@@ -645,6 +681,9 @@ axiom_util_get_next_siblng_element_with_localnames(
     axis2_char_t *given_localname = NULL;
     int size = 0;
     int i = 0;
+
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, names, NULL);
     AXIS2_PARAM_CHECK(env->error, next_node, NULL);
@@ -699,6 +738,8 @@ axiom_util_get_first_child_element_with_localname_attr(
     axis2_char_t *om_attr_value = NULL;
     axis2_char_t *om_attr_name = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
     AXIS2_PARAM_CHECK(env->error, localname, NULL);
@@ -824,9 +865,13 @@ axiom_util_get_last_child_element_with_localname_attr(
     axutil_hash_index_t *hi = NULL;
     axutil_hash_t *attr_ht = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
     AXIS2_PARAM_CHECK(env->error, localname, NULL);
     AXIS2_PARAM_CHECK(env->error, child_node, NULL);
+    AXIS2_PARAM_CHECK(env->error, attr_name, NULL);
+    AXIS2_PARAM_CHECK(env->error, attr_value, NULL);
 
     child = axiom_node_get_last_child(ele_node, env);
     while(child)
@@ -898,7 +943,13 @@ axiom_util_get_next_siblng_element_with_localname_attr(
     axutil_hash_t *attr_ht = NULL;
     axutil_hash_index_t *hi = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
+    AXIS2_PARAM_CHECK(env->error, localname, NULL);
+    AXIS2_PARAM_CHECK(env->error, child_node, NULL);
+    AXIS2_PARAM_CHECK(env->error, attr_name, NULL);
+    AXIS2_PARAM_CHECK(env->error, attr_value, NULL);
 
     next_sibling = axiom_node_get_next_sibling(ele_node, env);
     while(next_sibling)
@@ -1005,6 +1056,8 @@ axiom_util_get_node_namespace_uri(
 {
     axiom_element_t *om_ele = NULL;
     axiom_namespace_t *om_ns = NULL;
+    
+    AXIS2_ENV_CHECK(env, NULL);
     if(!om_node)
     {
         return NULL;
@@ -1033,6 +1086,7 @@ axiom_util_get_child_elements(
 {
     axiom_element_t *first_ele = NULL;
     axiom_node_t *first_node = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, om_node, NULL);
     AXIS2_PARAM_CHECK(env->error, om_ele, NULL);
     first_ele = axiom_element_get_first_element(om_ele, env, om_node, &first_node);
@@ -1053,6 +1107,7 @@ axiom_util_new_document(
     axiom_stax_builder_t *om_builder = NULL;
     axiom_document_t *doc = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, uri, NULL);
     /* This is temporary code. Later complete the code to read from uri and build
      * the document
@@ -1110,6 +1165,7 @@ axiom_util_get_node_by_local_name(
 {
     axis2_char_t *temp_name = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
     if(!node)
     {
         return NULL;
@@ -1163,6 +1219,7 @@ axiom_util_clone_node(
     axis2_char_t* node_string = NULL;
     axiom_node_t *clone = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
     if(!node)
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
