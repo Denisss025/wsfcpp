@@ -139,6 +139,10 @@ axutil_hash_next(
     const axutil_env_t *env,
     axutil_hash_index_t *hi)
 {
+    if (!hi)
+    {
+        return NULL;
+    }
     hi->this = hi->next;
     while(!hi->this)
     {
@@ -185,6 +189,8 @@ axutil_hash_this(
     axis2_ssize_t *klen,
     void **val)
 {
+    if (!hi) return;
+
     if(key)
         *key = hi->this->key;
     if(klen)
@@ -339,22 +345,40 @@ axutil_hash_copy(
     const axutil_hash_t *orig,
     const axutil_env_t *env)
 {
+    if (!orig)
+    {
+        return (NULL);
+    }
+
+    if (orig->count == 0)
+    {
+        return (axutil_hash_make_custom(env, orig->hash_func));
+    }
+
     axutil_hash_t *ht;
     axutil_hash_entry_t *new_vals;
     unsigned int i, j;
 
-    ht = AXIS2_MALLOC(env->allocator, sizeof(axutil_hash_t) + sizeof(*ht->array) * (orig->max + 1)
-        + sizeof(axutil_hash_entry_t) * orig->count);
-    ht->env = env;
+    ht = AXIS2_MALLOC(env->allocator, sizeof(axutil_hash_t));
     axutil_env_increment_ref((axutil_env_t*)env);
+    if (!ht)
+    {
+        return (NULL);
+    }
+
+    ht->env = env;
     ht->free = NULL;
     ht->count = orig->count;
     ht->max = orig->max;
     ht->hash_func = orig->hash_func;
-    ht->array = (axutil_hash_entry_t **)((char *)ht + sizeof(axutil_hash_t));
+    ht->array = AXIS2_MALLOC(env->allocator, sizeof(*ht->array) * (ht->max + 1));
 
-    new_vals = (axutil_hash_entry_t *)((char *)(ht) + sizeof(axutil_hash_t) + sizeof(*ht->array)
-        * (orig->max + 1));
+    if (!ht->array)
+    {
+        AXIS2_FREE(env->allocator, ht);
+        return (NULL);
+    }
+
     j = 0;
     for(i = 0; i <= ht->max; i++)
     {
@@ -362,7 +386,7 @@ axutil_hash_copy(
         axutil_hash_entry_t *orig_entry = orig->array[i];
         while(orig_entry)
         {
-            *new_entry = &new_vals[j++];
+            *new_entry = AXIS2_MALLOC(env->allocator, sizeof(axutil_hash_entry_t));
             (*new_entry)->hash = orig_entry->hash;
             (*new_entry)->key = orig_entry->key;
             (*new_entry)->klen = orig_entry->klen;
@@ -381,6 +405,16 @@ axutil_hash_get(
     const void *key,
     axis2_ssize_t klen)
 {
+    if (!ht)
+    {
+        return (NULL);
+    }
+
+    if (ht->count == 0)
+    {
+        return (NULL);
+    }
+
     axutil_hash_entry_t *he;
     he = *axutil_hash_find_entry(ht, key, klen, NULL);
     if(he)
@@ -396,6 +430,11 @@ axutil_hash_set(
     axis2_ssize_t klen,
     const void *val)
 {
+    if (!ht)
+    {
+        return;
+    }
+
     axutil_hash_entry_t **hep;
     hep = axutil_hash_find_entry(ht, key, klen, val);
     if(*hep)
@@ -427,6 +466,11 @@ AXIS2_EXTERN unsigned int AXIS2_CALL
 axutil_hash_count(
     axutil_hash_t *ht)
 {
+    if (!ht)
+    {
+        return (0);
+    }
+
     return ht->count;
 }
 
@@ -587,7 +631,11 @@ axutil_hash_free(
     const axutil_env_t *env)
 {
     unsigned int i = 0;
-    if(ht)
+    if(!ht)
+    {
+        return;
+    }
+    if (ht->count != 0)
     {
         for(i = 0; i <= ht->max; i++)
         {
@@ -601,34 +649,34 @@ axutil_hash_free(
                 current = next;
             }
         }
-        if(ht->free)
-        {
-            axutil_hash_entry_t *next = NULL;
-            axutil_hash_entry_t *current = ht->free;
-            while(current)
-            {
-                next = current->next;
-                AXIS2_FREE(env->allocator, current);
-                current = NULL;
-                current = next;
-            }
-        }
-
-        if(ht->env)
-        {
-            /*since we now keep a ref count in env and incrementing it
-             *inside hash_make we need to free the env.Depending on the
-             situation the env struct is freed or ref count will be
-             decremented.*/
-
-            axutil_free_thread_env((axutil_env_t*)(ht->env));
-            ht->env = NULL;
-        }
-
-        AXIS2_FREE(env->allocator, (ht->array));
-        AXIS2_FREE(env->allocator, ht);
     }
-    return;
+
+    if(ht->free)
+    {
+        axutil_hash_entry_t *next = NULL;
+        axutil_hash_entry_t *current = ht->free;
+        while(current)
+        {
+            next = current->next;
+            AXIS2_FREE(env->allocator, current);
+            current = NULL;
+            current = next;
+        }
+    }
+
+    if(ht->env)
+    {
+        /*since we now keep a ref count in env and incrementing it
+         *inside hash_make we need to free the env.Depending on the
+         situation the env struct is freed or ref count will be
+         decremented.*/
+
+        axutil_free_thread_env((axutil_env_t*)(ht->env));
+        ht->env = NULL;
+    }
+
+    AXIS2_FREE(env->allocator, (ht->array));
+    AXIS2_FREE(env->allocator, ht);
 }
 
 AXIS2_EXTERN void AXIS2_CALL
@@ -638,7 +686,11 @@ axutil_hash_free_void_arg(
 {
     unsigned int i = 0;
     axutil_hash_t *ht = (axutil_hash_t *)ht_void;
-    if(ht)
+    if(!ht)
+    {
+        return;
+    }
+    if (ht->count != 0)
     {
         for(i = 0; i < ht->max; i++)
         {
@@ -651,10 +703,9 @@ axutil_hash_free_void_arg(
                 current = next;
             }
         }
-        AXIS2_FREE(env->allocator, (ht->array));
-        AXIS2_FREE(env->allocator, ht);
     }
-    return;
+    AXIS2_FREE(env->allocator, (ht->array));
+    AXIS2_FREE(env->allocator, ht);
 }
 
 AXIS2_EXTERN void AXIS2_CALL
@@ -665,6 +716,7 @@ axutil_hash_set_env(
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     if(ht)
     {
+        axutil_env_increment_ref((axutil_env_t*)env);
         if(ht->env)
         {
             /*since we now keep a ref count in env and incrementing it
@@ -673,10 +725,7 @@ axutil_hash_set_env(
              decremented.*/
 
             axutil_free_thread_env((axutil_env_t*)(ht->env));
-            ht->env = NULL;
         }
         ht->env = env;
-        axutil_env_increment_ref((axutil_env_t*)env);
     }
 }
-
