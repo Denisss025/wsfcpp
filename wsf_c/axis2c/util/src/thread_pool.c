@@ -132,7 +132,7 @@ axutil_free_thread_env(
         return;
     }
 
-    if(--(thread_env->ref) > 0)
+    if(--(thread_env->ref) != 0)
     {
         return;
     }

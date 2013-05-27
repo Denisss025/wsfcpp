@@ -1128,7 +1128,21 @@ axis2_msg_ctx_get_op_ctx(
     const axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    struct axis2_svc_ctx *svc_ctx = NULL;
+
     AXIS2_PARAM_CHECK(env->error, msg_ctx, NULL);
+
+    if (!msg_ctx->op_ctx)
+    {
+        return (NULL);
+    }
+
+    svc_ctx = axis2_op_ctx_get_parent(msg_ctx->op_ctx, env);
+    if ((svc_ctx != msg_ctx->svc_ctx) && msg_ctx->svc_ctx)
+    {
+        axis2_op_ctx_set_parent(msg_ctx->op_ctx, env, msg_ctx->svc_ctx);
+    }
+
     return msg_ctx->op_ctx;
 }
 
@@ -1145,7 +1159,7 @@ axis2_msg_ctx_set_op_ctx(
 
         if(msg_ctx->svc_ctx)
         {
-            if(!(axis2_op_ctx_get_parent(msg_ctx->op_ctx, env)))
+            /* if(!(axis2_op_ctx_get_parent(msg_ctx->op_ctx, env))) */
             {
                 axis2_op_ctx_set_parent(msg_ctx->op_ctx, env, msg_ctx->svc_ctx);
             }

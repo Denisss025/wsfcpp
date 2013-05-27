@@ -215,7 +215,7 @@ axutil_env_free(
     if(!env)
         return;
 
-    if(--(env->ref) > 0)
+    if(--(env->ref) != 0)
     {
         return;
     }
@@ -258,7 +258,7 @@ axutil_env_free_masked(
     if(!env)
         return;
 
-    if(--(env->ref) > 0)
+    if(--(env->ref) != 0)
     {
         return;
     }
