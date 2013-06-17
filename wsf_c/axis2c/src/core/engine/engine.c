@@ -221,6 +221,10 @@ axis2_engine_receive(
         if(op_ctx)
         {
             op = axis2_op_ctx_get_op(op_ctx, env);
+        }
+
+        if (op)
+        {
             op_specific_phases = axis2_op_get_in_flow(op, env);
             axis2_engine_resume_invocation_phases(engine, env, op_specific_phases, msg_ctx);
             if(axis2_msg_ctx_is_paused(msg_ctx, env))
@@ -253,6 +257,10 @@ axis2_engine_receive(
         if(op_ctx)
         {
             op = axis2_op_ctx_get_op(op_ctx, env);
+        }
+
+        if (op)
+        {
             op_specific_phases = axis2_op_get_in_flow(op, env);
             status = axis2_engine_invoke_phases(engine, env, op_specific_phases, msg_ctx);
             if(status != AXIS2_SUCCESS)
@@ -416,6 +424,7 @@ axis2_engine_receive_fault(
     axis2_msg_ctx_t * msg_ctx)
 {
     axis2_op_ctx_t *op_ctx = NULL;
+    axis2_op_t *op = NULL;
 
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Start:axis2_engine_receive_fault");
     AXIS2_PARAM_CHECK(env->error, msg_ctx, AXIS2_FAILURE);
@@ -453,13 +462,17 @@ axis2_engine_receive_fault(
     /* Find and execute the fault in flow handlers */
     if(op_ctx)
     {
-        axis2_op_t *op = axis2_op_ctx_get_op(op_ctx, env);
+        op = axis2_op_ctx_get_op(op_ctx, env);
+    }
+
+    if (op)
+    {
         axutil_array_list_t *phases = axis2_op_get_fault_in_flow(op, env);
-        if(axis2_msg_ctx_is_paused(msg_ctx, env))
+        if(axis2_msg_ctx_is_paused(msg_ctx, env) && phases)
         {
             axis2_engine_resume_invocation_phases(engine, env, phases, msg_ctx);
         }
-        else
+        else if (phases)
         {
             axis2_engine_invoke_phases(engine, env, phases, msg_ctx);
         }

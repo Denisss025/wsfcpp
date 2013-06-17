@@ -120,7 +120,11 @@ axis2_op_ctx_create(
         op_ctx->op_mep = axis2_op_get_axis_specific_mep_const(op_ctx->op, env);
     }
 
-    axis2_op_ctx_set_parent(op_ctx, env, svc_ctx);
+    if (svc_ctx)
+    {
+        axis2_op_ctx_set_parent(op_ctx, env, svc_ctx);
+    }
+    
     op_ctx->ref = 1;
 
     return op_ctx;

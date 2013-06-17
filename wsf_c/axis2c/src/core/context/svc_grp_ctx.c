@@ -19,6 +19,7 @@
 #include <axis2_svc_grp.h>
 #include <axis2_const.h>
 #include <axutil_hash.h>
+#include <axutil_utils.h>
 
 struct axis2_svc_grp_ctx
 {
@@ -101,6 +102,9 @@ axis2_svc_grp_ctx_get_base(
     const axis2_svc_grp_ctx_t * svc_grp_ctx,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, svc_grp_ctx, NULL);
+
     return svc_grp_ctx->base;
 }
 
@@ -109,6 +113,9 @@ axis2_svc_grp_ctx_get_parent(
     const axis2_svc_grp_ctx_t * svc_grp_ctx,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, svc_grp_ctx, NULL);
+
     return svc_grp_ctx->parent;
 }
 
@@ -117,6 +124,11 @@ axis2_svc_grp_ctx_free(
     struct axis2_svc_grp_ctx *svc_grp_ctx,
     const axutil_env_t * env)
 {
+    if (!svc_grp_ctx)
+    {
+        return;
+    }
+
     if(svc_grp_ctx->id)
     {
         AXIS2_FREE(env->allocator, svc_grp_ctx->id);
@@ -158,6 +170,9 @@ axis2_svc_grp_ctx_init(
     const axutil_env_t * env,
     axis2_conf_t * conf)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, svc_grp_ctx, AXIS2_FAILURE);
+
     if(svc_grp_ctx->svc_grp_name)
     {
         svc_grp_ctx->svc_grp = axis2_conf_get_svc_grp(conf, env, svc_grp_ctx->svc_grp_name);
@@ -171,6 +186,9 @@ axis2_svc_grp_ctx_get_id(
     const axis2_svc_grp_ctx_t * svc_grp_ctx,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, svc_grp_ctx, NULL);
+
     return svc_grp_ctx->id;
 }
 
@@ -180,6 +198,9 @@ axis2_svc_grp_ctx_set_id(
     const axutil_env_t * env,
     const axis2_char_t * id)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, svc_grp_ctx, AXIS2_FAILURE);
+
     if(svc_grp_ctx->id)
     {
         AXIS2_FREE(env->allocator, svc_grp_ctx->id);
@@ -200,6 +221,10 @@ axis2_svc_grp_ctx_get_svc_ctx(
     const axutil_env_t * env,
     const axis2_char_t * svc_name)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, svc_grp_ctx, NULL);
+    AXIS2_PARAM_CHECK(env->error, svc_name, NULL);
+
     return (axis2_svc_ctx_t *)axutil_hash_get(svc_grp_ctx->svc_ctx_map, svc_name,
         AXIS2_HASH_KEY_STRING);
 }
@@ -211,6 +236,9 @@ axis2_svc_grp_ctx_fill_svc_ctx_map(
 {
     axutil_hash_index_t *hi = NULL;
     void *next_svc = NULL;
+
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, svc_grp_ctx, AXIS2_FAILURE);
 
     if(svc_grp_ctx->svc_grp)
     {
@@ -243,6 +271,9 @@ axis2_svc_grp_ctx_get_svc_grp(
     const axis2_svc_grp_ctx_t * svc_grp_ctx,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, svc_grp_ctx, NULL);
+
     return svc_grp_ctx->svc_grp;
 }
 
@@ -251,6 +282,9 @@ axis2_svc_grp_ctx_get_svc_ctx_map(
     const axis2_svc_grp_ctx_t * svc_grp_ctx,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, svc_grp_ctx, NULL);
+    
     return svc_grp_ctx->svc_ctx_map;
 }
 

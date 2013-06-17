@@ -106,7 +106,7 @@ extern "C"
 
     /** Free. */
 #define AXIS2_OUT_TRANSPORT_INFO_FREE(out_transport_info, env)\
-                    ((out_transport_info->ops)->free(out_transport_info, env))
+                    if (out_transport_info->ops) ((out_transport_info->ops)->free(out_transport_info, env))
 
     /** @} */
 #ifdef __cplusplus
