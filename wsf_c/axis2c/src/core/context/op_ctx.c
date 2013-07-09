@@ -182,12 +182,13 @@ axis2_op_ctx_destroy_mutex(
     struct axis2_op_ctx *op_ctx,
     const axutil_env_t * env)
 {
-
-    if(op_ctx->mutex)
+    if (!op_ctx || !op_ctx->mutex)
     {
-        axutil_thread_mutex_destroy(op_ctx->mutex);
-        op_ctx->mutex = NULL;
+        return;
     }
+
+    axutil_thread_mutex_destroy(op_ctx->mutex);
+    op_ctx->mutex = NULL;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

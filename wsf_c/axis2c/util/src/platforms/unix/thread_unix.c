@@ -22,6 +22,13 @@ AXIS2_EXTERN axutil_threadattr_t *AXIS2_CALL
 axutil_threadattr_create(
     axutil_allocator_t * allocator)
 {
+    if (!allocator 
+            || !allocator->free_fn
+            || !allocator->malloc_fn)
+    {
+        return NULL;
+    }
+
     int stat = 0;
     axutil_threadattr_t *new = NULL;
 
@@ -98,6 +105,13 @@ axutil_thread_create(
     axutil_thread_start_t func,
     void *data)
 {
+    if (!allocator 
+            || !allocator->free_fn
+            || !allocator->malloc_fn)
+    {
+        return NULL;
+    }
+
     axis2_status_t stat;
     pthread_attr_t *temp = NULL;
     axutil_thread_t *new = NULL;
@@ -315,6 +329,13 @@ axutil_thread_mutex_create(
 {
     axutil_thread_mutex_t *new_mutex = NULL;
 
+    if (!allocator 
+            || !allocator->free_fn
+            || !allocator->malloc_fn)
+    {
+        return NULL;
+    }
+
     new_mutex = AXIS2_MALLOC(allocator, sizeof(axutil_thread_mutex_t));
     new_mutex->allocator = allocator;
 
@@ -348,10 +369,24 @@ AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axutil_thread_mutex_destroy(
     axutil_thread_mutex_t * mutex)
 {
+    axutil_allocator_t *allocator = NULL;
+
+    if (!mutex)
+    {
+        return AXIS2_SUCCESS;
+    }
+
     if(0 != pthread_mutex_destroy(&(mutex->mutex)))
     {
         return AXIS2_FAILURE;
     }
+
+    allocator = mutex->allocator;
+    if (!allocator || !allocator->free_fn)
+    {
+        return AXIS2_FAILURE;
+    }
+    
     AXIS2_FREE(mutex->allocator, mutex);
     return AXIS2_SUCCESS;
 }
