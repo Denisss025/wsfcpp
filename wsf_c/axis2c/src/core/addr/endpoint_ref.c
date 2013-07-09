@@ -167,7 +167,7 @@ axis2_endpoint_ref_free(
     axis2_endpoint_ref_t * endpoint_ref,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(endpoint_ref->address)
     {

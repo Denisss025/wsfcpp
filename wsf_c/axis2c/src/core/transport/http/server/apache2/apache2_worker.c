@@ -165,7 +165,7 @@ axis2_apache2_worker_free(
     axis2_apache2_worker_t * apache2_worker,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(apache2_worker->conf_ctx)
     {

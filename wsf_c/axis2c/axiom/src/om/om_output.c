@@ -106,7 +106,7 @@ axiom_output_free(
     axiom_output_t * om_output,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(om_output->xml_version)
     {

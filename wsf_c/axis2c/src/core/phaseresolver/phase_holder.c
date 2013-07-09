@@ -69,7 +69,7 @@ axis2_phase_holder_free(
     axis2_phase_holder_t * phase_holder,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(phase_holder)
     {

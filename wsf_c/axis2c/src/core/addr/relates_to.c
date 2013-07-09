@@ -146,7 +146,7 @@ axis2_relates_to_free(
     struct axis2_relates_to *relates_to,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(relates_to->value)
     {

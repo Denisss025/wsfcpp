@@ -377,7 +377,7 @@ axis2_dep_engine_free(
     axis2_dep_engine_t * dep_engine,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
     if(!dep_engine)
     {
         return;

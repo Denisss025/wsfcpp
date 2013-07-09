@@ -106,7 +106,7 @@ axis2_tcp_svr_thread_free(
     axis2_tcp_svr_thread_t * svr_thread,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(svr_thread->worker)
     {

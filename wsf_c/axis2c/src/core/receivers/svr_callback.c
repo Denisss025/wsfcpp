@@ -48,7 +48,7 @@ axis2_svr_callback_free(
     axis2_svr_callback_t * svr_callback,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(svr_callback)
     {

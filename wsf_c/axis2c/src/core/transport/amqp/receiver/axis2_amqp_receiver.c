@@ -213,7 +213,7 @@ axis2_amqp_receiver_free(
     axis2_transport_receiver_t* receiver,
     const axutil_env_t* env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     axis2_amqp_receiver_resource_pack_t* receiver_resource_pack = NULL;
     receiver_resource_pack = AXIS2_AMQP_RECEIVER_TO_RESOURCE_PACK(receiver);

@@ -80,7 +80,7 @@ axis2_tcp_worker_free(
     axis2_tcp_worker_t * tcp_worker,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     tcp_worker->conf_ctx = NULL;
 

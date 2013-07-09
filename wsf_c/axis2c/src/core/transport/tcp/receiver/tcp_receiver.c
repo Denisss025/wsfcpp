@@ -169,7 +169,7 @@ axis2_tcp_server_free(
     const axutil_env_t * env)
 {
     axis2_tcp_server_impl_t *server_impl = NULL;
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
     server_impl = AXIS2_INTF_TO_IMPL(server);
     if(server_impl->svr_thread)
     {

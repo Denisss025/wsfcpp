@@ -101,7 +101,7 @@ axis2_msg_free(
     axis2_msg_t * msg,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(--(msg->ref) > 0)
     {

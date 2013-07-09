@@ -107,7 +107,7 @@ axis2_any_content_type_free(
     axis2_any_content_type_t * any_content_type,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(any_content_type->value_map)
     {

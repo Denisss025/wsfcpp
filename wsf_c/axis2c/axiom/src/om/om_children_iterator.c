@@ -61,7 +61,7 @@ axiom_children_iterator_free(
     axiom_children_iterator_t * iterator,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     AXIS2_FREE(env->allocator, iterator);
     return;

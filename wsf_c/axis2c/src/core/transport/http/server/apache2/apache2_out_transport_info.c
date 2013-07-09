@@ -38,7 +38,7 @@ axis2_apache2_out_transport_info_free_void_arg(
 {
     axis2_http_out_transport_info_t *transport_info_l = NULL;
 
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
     transport_info_l = (axis2_http_out_transport_info_t *)transport_info;
     axis2_http_out_transport_info_free(transport_info_l, env);
     return;

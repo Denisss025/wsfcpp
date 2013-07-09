@@ -119,7 +119,7 @@ axis2_module_desc_free(
     axis2_module_desc_t * module_desc,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(module_desc->module)
     {
@@ -176,7 +176,7 @@ axis2_module_desc_free_void_arg(
 {
     axis2_module_desc_t *module_desc_l = NULL;
 
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
     module_desc_l = (axis2_module_desc_t *)module_desc;
     axis2_module_desc_free(module_desc_l, env);
     return;

@@ -88,7 +88,7 @@ axiom_data_source_free(
     axiom_data_source_t * data_source,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(data_source->stream)
     {

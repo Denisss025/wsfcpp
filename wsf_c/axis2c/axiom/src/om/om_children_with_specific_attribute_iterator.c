@@ -70,7 +70,7 @@ axiom_children_with_specific_attribute_iterator_free(
     axiom_children_with_specific_attribute_iterator_t * iterator,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
     if(iterator->attr_qname)
     {
         axutil_qname_free(iterator->attr_qname, env);

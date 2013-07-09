@@ -107,7 +107,7 @@ axiom_processing_instruction_free(
     axiom_processing_instruction_t * om_pi,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(om_pi->value)
     {

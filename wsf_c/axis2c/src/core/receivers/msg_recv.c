@@ -187,7 +187,7 @@ axis2_msg_recv_free(
     axis2_msg_recv_t * msg_recv,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(msg_recv->scope)
     {

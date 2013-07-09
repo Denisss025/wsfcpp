@@ -295,7 +295,7 @@ axis2_amqp_sender_free(
     axis2_transport_sender_t* sender,
     const axutil_env_t* env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     axis2_amqp_sender_resource_pack_t* sender_resource_pack = NULL;
     sender_resource_pack = AXIS2_AMQP_SENDER_TO_RESOURCE_PACK(sender);

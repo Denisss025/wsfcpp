@@ -209,7 +209,7 @@ axiom_node_free_tree(
     axiom_node_t * om_node,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
     if(!om_node)
     {
         return;

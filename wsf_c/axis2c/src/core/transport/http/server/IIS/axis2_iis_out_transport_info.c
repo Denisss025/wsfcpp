@@ -43,7 +43,7 @@ axis2_iis_out_transport_info_free(
     const axutil_env_t * env)
 {
     axis2_iis_out_transport_info_t *info = NULL;
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     info = AXIS2_INTF_TO_IMPL(out_transport_info);
 
@@ -64,7 +64,7 @@ axis2_iis_out_transport_info_free_void_arg(
 {
     axis2_http_out_transport_info_t *transport_info_l = NULL;
 
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
     transport_info_l = (axis2_http_out_transport_info_t *)transport_info;
     axis2_http_out_transport_info_free(transport_info_l, env);
     return;

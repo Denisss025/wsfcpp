@@ -130,7 +130,7 @@ axis2_ctx_free(
     struct axis2_ctx *ctx,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(ctx->property_map && ctx->property_map_deep_copy)
     {

@@ -796,7 +796,7 @@ axis2_libxml2_reader_wrapper_xml_free(
     const axutil_env_t * env,
     void *data)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
     if(data)
         xmlFree(data);
     return;

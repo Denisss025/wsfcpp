@@ -101,7 +101,7 @@ axiom_soap12_builder_helper_free(
     axiom_soap12_builder_helper_t * builder_helper,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(builder_helper->detail_element_names)
     {

@@ -129,7 +129,7 @@ axis2_policy_include_free(
     axis2_policy_include_t * policy_include,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, void);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(policy_include->registry)
     {
