@@ -298,7 +298,7 @@ axutil_stream_write_basic(
 {
     int new_len = 0;
 
-    if(!buffer)
+    if(!buffer || !stream || !stream->buffer)
         return -1;
 
     new_len = (int)(stream->len + count);
