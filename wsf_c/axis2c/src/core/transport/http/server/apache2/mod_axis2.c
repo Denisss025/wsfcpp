@@ -745,6 +745,12 @@ axis2_get_session(
     request = (request_rec *) req;
 
     authn_dbd_acquire_fn = APR_RETRIEVE_OPTIONAL_FN(ap_dbd_acquire);
+
+    if (!authn_dbd_acquire_fn)
+    {
+        return NULL;
+    }
+
     dbd = authn_dbd_acquire_fn(request);
     if (!dbd) 
     {
@@ -809,6 +815,12 @@ axis2_set_session(
     request = (request_rec *) req;
 
     authn_dbd_acquire_fn = APR_RETRIEVE_OPTIONAL_FN(ap_dbd_acquire);
+
+    if (!authn_dbd_acquire_fn)
+    {
+        return AXIS2_FAILURE;
+    }
+
     if(authn_dbd_acquire_fn)
     {
         dbd = authn_dbd_acquire_fn(request);

@@ -35,10 +35,10 @@ typedef enum thread_mutex_type
  */
 struct axutil_thread_mutex_t
 {
+	axutil_allocator_t *allocator;
     thread_mutex_type type;
     HANDLE handle;
     CRITICAL_SECTION section;
-    axutil_allocator_t *allocator;
 };
 
 #endif                          /* AXIS2_THREAD_MUTEX_WINDOWS_H */

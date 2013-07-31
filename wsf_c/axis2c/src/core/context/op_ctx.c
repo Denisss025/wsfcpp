@@ -177,17 +177,33 @@ axis2_op_ctx_free(
     return;
 }
 
+typedef struct
+{
+    axutil_allocator_t *allocator;
+}  axutil_thread_mutex_allocator_t;
+
 AXIS2_EXTERN void AXIS2_CALL
 axis2_op_ctx_destroy_mutex(
     struct axis2_op_ctx *op_ctx,
     const axutil_env_t * env)
 {
+    axutil_allocator_t *mutex_allocator = NULL;
+
     if (!op_ctx || !op_ctx->mutex)
     {
         return;
     }
 
-    axutil_thread_mutex_destroy(op_ctx->mutex);
+    mutex_allocator = ((axutil_thread_mutex_allocator_t*)op_ctx->mutex)->allocator;
+    if (mutex_allocator == env->allocator)
+    {
+        axutil_thread_mutex_destroy(op_ctx->mutex);
+    }
+    else
+    {
+        /* Some error happened =( */
+        AXIS2_FREE(env->allocator, op_ctx->mutex);
+    }
     op_ctx->mutex = NULL;
 }
 

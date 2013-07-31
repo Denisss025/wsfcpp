@@ -218,7 +218,7 @@ extern "C"
    But it was used to be defined as: */
 #define AXIS2_ENV_CHECK(env, error_return) \
    if(!(env) \
-            || !((env)->allocator) \ 
+            || !((env)->allocator) \
             || !((env)->allocator->free_fn) \
             || !((env)->allocator->malloc_fn)) \
    {  return error_return; }
