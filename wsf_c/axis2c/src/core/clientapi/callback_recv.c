@@ -46,7 +46,7 @@ axis2_callback_recv_create(
 
     callback_recv = AXIS2_MALLOC(env->allocator, sizeof(axis2_callback_recv_t));
 
-    if(!callback_recv)
+    if(!callback_recv) 
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "No memory. Cannot create callback receive.");
@@ -75,6 +75,11 @@ axis2_callback_recv_create(
     }
 
     callback_recv->mutex = axutil_thread_mutex_create(env->allocator, AXIS2_THREAD_MUTEX_DEFAULT);
+    if (!callback_recv->mutex)
+    {
+        axis2_callback_recv_free(callback_recv, env);
+        return NULL;   
+    }
     return callback_recv;
 }
 

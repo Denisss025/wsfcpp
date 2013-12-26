@@ -105,6 +105,13 @@ axis2_callback_create(
     callback->on_error = axis2_callback_on_error;
 
     callback->mutex = axutil_thread_mutex_create(env->allocator, AXIS2_THREAD_MUTEX_DEFAULT);
+    if (!callback->mutex)
+    {
+        AXIS2_FREE(env->allocator, callback);
+        AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+        AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "No memory. Cannot create mutext for callback.");
+        return NULL;
+    }
     return callback;
 }
 

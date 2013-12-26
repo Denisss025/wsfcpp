@@ -337,6 +337,10 @@ axutil_thread_mutex_create(
     }
 
     new_mutex = AXIS2_MALLOC(allocator, sizeof(axutil_thread_mutex_t));
+    if (!new_mutex)
+    {
+        return NULL;
+    }
     new_mutex->allocator = allocator;
 
     if(pthread_mutex_init(&(new_mutex->mutex), NULL) != 0)
@@ -351,6 +355,17 @@ AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axutil_thread_mutex_lock(
     axutil_thread_mutex_t * mutex)
 {
+    if (!mutex)
+    {
+        return AXIS2_FAILURE;
+    }
+
+    if (!mutex->allocator->free_fn ||
+        !mutex->allocator->malloc_fn)
+    {
+        return AXIS2_FAILURE;
+    }
+
     return pthread_mutex_lock(&(mutex->mutex));
 }
 
