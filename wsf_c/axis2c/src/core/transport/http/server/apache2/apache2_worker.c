@@ -93,6 +93,7 @@ axis2_apache2_worker_create(
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
         return NULL;
     }
+
     apache2_worker->conf_ctx = axis2_build_conf_ctx(env, repo_path);
 
     if(!apache2_worker->conf_ctx)

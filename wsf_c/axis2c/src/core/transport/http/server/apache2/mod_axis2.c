@@ -388,11 +388,11 @@ axis2_module_malloc(
     axutil_allocator_t * allocator,
     size_t size)
 {
+    void* ptr = NULL;
+
 #if APR_HAS_SHARED_MEMORY
     if (rmm == allocator->current_pool)
     {
-
-        void* ptr = NULL;
         apr_rmm_off_t offset;
         apr_global_mutex_lock(global_mutex);
         offset = apr_rmm_malloc(rmm, size);
@@ -402,7 +402,11 @@ axis2_module_malloc(
         return ptr;
     }
 #endif
-    return apr_palloc((apr_pool_t *)(allocator->current_pool), size);
+
+    /*apr_global_mutex_lock(global_mutex);*/
+    ptr = apr_palloc((apr_pool_t *)(allocator->current_pool), size);
+    /*apr_global_mutex_unlock(global_mutex);*/
+    return ptr;
 }
 
 void *AXIS2_CALL
@@ -476,6 +480,15 @@ axis2_post_config(
         return OK;
     }
 
+    status = apr_global_mutex_create(&global_mutex, NULL,
+        APR_LOCK_DEFAULT, pconf);
+    if (status != APR_SUCCESS)
+    {
+        ap_log_error(APLOG_MARK, APLOG_EMERG, status, svr_rec,
+            "[Axis2] Error creating global mutex");
+        exit(APEXIT_INIT);
+    }
+
 #if APR_HAS_SHARED_MEMORY
     if (conf->axis2_global_pool_size > 0)
     {
@@ -499,15 +512,6 @@ axis2_post_config(
             exit(APEXIT_INIT);
         }
 
-        status = apr_global_mutex_create(&global_mutex, NULL,
-            APR_LOCK_DEFAULT, pconf);
-        if (status != APR_SUCCESS)
-        {
-            ap_log_error(APLOG_MARK, APLOG_EMERG, status, svr_rec,
-                "[Axis2] Error creating global mutex");
-            exit(APEXIT_INIT);
-        }
-
         /*status = unixd_set_global_mutex_perms(global_mutex);
          if (status != APR_SUCCESS)
          {
@@ -524,6 +528,7 @@ axis2_post_config(
                 "[Axis2] Error in creating allocator in global pool");
             exit(APEXIT_INIT);
         }
+
         allocator = apr_rmm_addr_get(rmm, offset);
         allocator->malloc_fn = axis2_module_malloc;
         allocator->realloc = axis2_module_realloc;
@@ -553,6 +558,7 @@ axis2_post_config(
                 "[Axis2] Error creating mod_axis2 log structure");
             exit(APEXIT_CHILDFATAL);
         }
+
         thread_pool = axutil_thread_pool_init(allocator);
         if (!thread_pool)
         {
@@ -560,6 +566,7 @@ axis2_post_config(
                 "[Axis2] Error initializing mod_axis2 thread pool");
             exit(APEXIT_CHILDFATAL);
         }
+
         axutil_env = axutil_env_create_with_error_log_thread_pool(allocator, error,
             axutil_logger,
             thread_pool);

@@ -644,6 +644,8 @@ axutil_hash_free(
     const axutil_env_t *env)
 {
     unsigned int i = 0;
+    
+    AXIS2_ENV_CHECK_VOID(env);
     if(!ht)
     {
         return;

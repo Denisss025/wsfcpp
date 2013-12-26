@@ -188,6 +188,12 @@ axis2_udp_receiver_create(
 	}
 	receiver->mutex = axutil_thread_mutex_create(env->allocator,
                                                  AXIS2_THREAD_MUTEX_DEFAULT);
+	if (!receiver->mutex) 
+	{
+		AXIS2_FREE(env->allocator, receiver);
+		AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+		return NULL;
+	}
 	/* 
 	 * We are creating the receiver in two instances. When we create the receiver from the server 
 	 * we create the conf context. If we are creating the receiver while creating the conf we are 
@@ -235,6 +241,12 @@ axis2_udp_receiver_create_with_file(
 	receiver->owns_socket = AXIS2_TRUE;
 	receiver->mutex = axutil_thread_mutex_create(env->allocator,
                                                  AXIS2_THREAD_MUTEX_DEFAULT);
+	if (!receiver->mutex)
+	{
+		AXIS2_FREE(enc->allocator, receiver);
+		AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+		return NULL;
+	}
 	receiver->max_packet_size = AXIS2_UDP_PACKET_MAX_SIZE;
 	/* 
 	 * We are creating the receiver in two instances. When we create the receiver from the server 

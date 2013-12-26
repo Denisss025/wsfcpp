@@ -71,6 +71,16 @@ axis2_engine_free(
     axis2_engine_t * engine,
     const axutil_env_t * env)
 {
+    if (!env->allocator) 
+    {
+        return;
+    }
+
+    if (!env->allocator->free_fn)
+    {
+        return;
+    }
+
     AXIS2_FREE(env->allocator, engine);
     return;
 }

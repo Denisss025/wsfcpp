@@ -772,6 +772,7 @@ axis2_dep_engine_load(
 
     dep_engine->repos_listener = axis2_repos_listener_create_with_folder_name_and_dep_engine(env,
         dep_engine->folder_name, dep_engine);
+
     if(!dep_engine->repos_listener)
     {
         axis2_conf_free(dep_engine->conf, env);
