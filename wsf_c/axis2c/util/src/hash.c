@@ -105,13 +105,19 @@ axutil_hash_make(
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
         return NULL;
     }
-    axutil_env_increment_ref((axutil_env_t*)env);
     ht->env = env;
     ht->free = NULL;
     ht->count = 0;
     ht->max = INITIAL_MAX;
     ht->array = axutil_hash_alloc_array(ht, ht->max);
+    if (!ht->array) 
+    {
+        AXIS2_FREE(env->allocator, ht);
+        return NULL;
+    }
     ht->hash_func = axutil_hashfunc_default;
+
+    axutil_env_increment_ref((axutil_env_t*)env);
     return ht;
 }
 
@@ -650,6 +656,12 @@ axutil_hash_free(
     {
         return;
     }
+
+    if (ht->env != env) 
+    {
+        return;
+    }
+
     if (ht->count != 0)
     {
         for(i = 0; i <= ht->max; i++)
@@ -693,7 +705,7 @@ axutil_hash_free(
     AXIS2_FREE(env->allocator, (ht->array));
     AXIS2_FREE(env->allocator, ht);
 }
-
+ 
 AXIS2_EXTERN void AXIS2_CALL
 axutil_hash_free_void_arg(
     void *ht_void,
@@ -728,7 +740,7 @@ axutil_hash_set_env(
     axutil_hash_t * ht,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
     if (!ht)
     {
         return;
