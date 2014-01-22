@@ -464,6 +464,17 @@ axis2_apache2_worker_process_request(
     }
     if(M_GET == request->method_number || M_DELETE == request->method_number)
     {
+        axis2_char_t *wsdl = NULL;
+        wsdl = strstr(url_external_form, AXIS2_REQUEST_WSDL);
+        if (wsdl)
+        {
+            wsdl += 5;
+            if (*wsdl)
+            {
+                wsdl = NULL;
+            }
+        }
+
         if(M_DELETE == request->method_number)
         {
             processed = axis2_http_transport_utils_process_http_delete_request(env, msg_ctx,
@@ -478,7 +489,7 @@ axis2_apache2_worker_process_request(
                 axis2_http_transport_utils_get_request_params(env,
                     (axis2_char_t *)url_external_form));
         }
-        else
+        else if (!wsdl)
         {
             processed = axis2_http_transport_utils_process_http_get_request(env, msg_ctx,
                 request_body, out_stream, content_type, soap_action, url_external_form, conf_ctx,
@@ -487,7 +498,6 @@ axis2_apache2_worker_process_request(
         }
         if(AXIS2_FALSE == processed)
         {
-            axis2_char_t *wsdl = NULL;
             axis2_bool_t is_services_path = AXIS2_FALSE;
             if(M_DELETE != request->method_number)
             {
@@ -506,7 +516,6 @@ axis2_apache2_worker_process_request(
                     }
                 }
             }
-            wsdl = strstr(url_external_form, AXIS2_REQUEST_WSDL);
             if(is_services_path)
             {
                 body_string = axis2_http_transport_utils_get_services_html(env, conf_ctx);
