@@ -360,6 +360,11 @@ axutil_thread_mutex_lock(
         return AXIS2_FAILURE;
     }
 
+    if (!mutex->allocator)
+    {
+        return AXIS2_FAILURE;
+    }
+
     if (!mutex->allocator->free_fn ||
         !mutex->allocator->malloc_fn)
     {
@@ -373,6 +378,16 @@ AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axutil_thread_mutex_unlock(
     axutil_thread_mutex_t * mutex)
 {
+    if (!mutex)
+    {
+        return AXIS2_FAILURE;
+    }
+
+    if (!mutex->allocator) 
+    {
+        return AXIS2_FAILURE;
+    }
+
     if(pthread_mutex_unlock(&(mutex->mutex)) != 0)
     {
         return AXIS2_FAILURE;
