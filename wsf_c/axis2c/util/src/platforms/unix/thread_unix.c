@@ -16,34 +16,35 @@
  */
 
 #include <config.h>
+#include "axutil_env.h"
 #include "axutil_thread_unix.h"
 
 AXIS2_EXTERN axutil_threadattr_t *AXIS2_CALL
 axutil_threadattr_create(
     axutil_allocator_t * allocator)
 {
-    if (!allocator 
-            || !allocator->free_fn
-            || !allocator->malloc_fn)
+    if (!AXIS2_ALLOCATOR_CHECK(allocator))
     {
         return NULL;
     }
 
     int stat = 0;
-    axutil_threadattr_t *new = NULL;
+    axutil_threadattr_t *new_attr = NULL;
 
-    new = AXIS2_MALLOC(allocator, sizeof(axutil_threadattr_t));
-    if(!new)
+    new_attr = AXIS2_MALLOC(allocator, sizeof(axutil_threadattr_t));
+    if(!new_attr)
+    {
         return NULL;
+    }
 
-    stat = pthread_attr_init(&(new->attr));
+    stat = pthread_attr_init(&(new_attr->attr));
 
     if(stat != 0)
     {
-        AXIS2_FREE(allocator, new);
+        AXIS2_FREE(allocator, new_attr);
         return NULL;
     }
-    return new;
+    return new_attr;
 }
 
 /* Destroy the threadattr object */
@@ -105,9 +106,7 @@ axutil_thread_create(
     axutil_thread_start_t func,
     void *data)
 {
-    if (!allocator 
-            || !allocator->free_fn
-            || !allocator->malloc_fn)
+    if (!AXIS2_ALLOCATOR_CHECK(allocator))
     {
         return NULL;
     }
@@ -164,6 +163,11 @@ axutil_thread_exit(
     axutil_thread_t * thd,
     axutil_allocator_t * allocator)
 {
+    if (!AXIS2_ALLOCATOR_CHECK(allocator))
+    {
+        return AXIS2_FAILURE;
+    }
+
     axis2_bool_t same_thread = AXIS2_TRUE;
     if(thd)
     {
@@ -329,9 +333,7 @@ axutil_thread_mutex_create(
 {
     axutil_thread_mutex_t *new_mutex = NULL;
 
-    if (!allocator 
-            || !allocator->free_fn
-            || !allocator->malloc_fn)
+    if (!AXIS2_ALLOCATOR_CHECK(allocator))
     {
         return NULL;
     }
@@ -360,13 +362,7 @@ axutil_thread_mutex_lock(
         return AXIS2_FAILURE;
     }
 
-    if (!mutex->allocator)
-    {
-        return AXIS2_FAILURE;
-    }
-
-    if (!mutex->allocator->free_fn ||
-        !mutex->allocator->malloc_fn)
+    if (!AXIS2_ALLOCATOR_CHECK(mutex->allocator))
     {
         return AXIS2_FAILURE;
     }
@@ -383,7 +379,7 @@ axutil_thread_mutex_unlock(
         return AXIS2_FAILURE;
     }
 
-    if (!mutex->allocator) 
+    if (!AXIS2_ALLOCATOR_CHECK(mutex->allocator))
     {
         return AXIS2_FAILURE;
     }
@@ -399,20 +395,17 @@ AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axutil_thread_mutex_destroy(
     axutil_thread_mutex_t * mutex)
 {
-    axutil_allocator_t *allocator = NULL;
-
     if (!mutex)
     {
         return AXIS2_SUCCESS;
     }
 
-    if(0 != pthread_mutex_destroy(&(mutex->mutex)))
+    if (!AXIS2_ALLOCATOR_CHECK(mutex->allocator))
     {
         return AXIS2_FAILURE;
     }
 
-    allocator = mutex->allocator;
-    if (!allocator || !allocator->free_fn)
+    if(0 != pthread_mutex_destroy(&(mutex->mutex)))
     {
         return AXIS2_FAILURE;
     }

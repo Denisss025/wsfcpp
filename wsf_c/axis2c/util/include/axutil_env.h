@@ -213,14 +213,14 @@ extern "C"
     
 
 
+#define AXIS2_ALLOCATOR_CHECK(allocator) ((allocator) ? \
+    ((allocator)->free_fn && (allocator)->malloc_fn) : 0)
+
 /* AXIS2_ENV_CHECK is a macro to check environment pointer.
    Currently this is set to an empty value.
    But it was used to be defined as: */
 #define AXIS2_ENV_CHECK(env, error_return) \
-   if(!(env) \
-            || !((env)->allocator) \
-            || !((env)->allocator->free_fn) \
-            || !((env)->allocator->malloc_fn)) \
+   if(!(env) || !AXIS2_ALLOCATOR_CHECK((env)->allocator)) \
    {  return error_return; }
 
 #define AXIS2_ENV_CHECK_VOID(env) AXIS2_ENV_CHECK(env, )
