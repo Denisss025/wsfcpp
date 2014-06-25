@@ -97,7 +97,7 @@ axiom_attribute_free(
         return;
     }
 
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(attribute->localname)
     {
@@ -124,7 +124,7 @@ axiom_attribute_free_void_arg(
 {
     axiom_attribute_t *om_attribute_l = NULL;
 
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
     om_attribute_l = (axiom_attribute_t *)attribute;
     axiom_attribute_free(om_attribute_l, env);
     return;

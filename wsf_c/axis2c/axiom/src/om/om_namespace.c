@@ -86,7 +86,7 @@ axiom_namespace_free(
     axiom_namespace_t * om_namespace,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(--om_namespace->ref > 0)
     {

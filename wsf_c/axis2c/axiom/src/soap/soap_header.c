@@ -313,6 +313,7 @@ axiom_soap_header_extract_header_blocks(
     {
         first_ele = axiom_element_get_first_element(header_om_ele, env, soap_header->om_ele_node,
             &first_node);
+	if (!first_ele) first_ele = NULL;
         if(first_node)
         {
             return axiom_children_with_specific_attribute_iterator_create(env, first_node, qn,
@@ -561,16 +562,9 @@ axiom_soap_header_remove_header_block(
     const axutil_env_t * env,
     axutil_qname_t * qname)
 {
-    axis2_char_t *qn_localname = NULL;
-    axis2_char_t *qname_ns = NULL;
-    axis2_char_t *qname_prefix = NULL;
     axutil_hash_index_t *hi = NULL;
 
     AXIS2_PARAM_CHECK(env->error, qname, AXIS2_FAILURE);
-
-    qn_localname = axutil_qname_get_localpart(qname, env);
-    qname_ns = axutil_qname_get_uri(qname, env);
-    qname_prefix = axutil_qname_get_prefix(qname, env);
 
     if(!soap_header->header_blocks)
     {

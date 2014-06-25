@@ -216,13 +216,13 @@ axiom_data_handler_read_from(
     }
     else if(data_handler->data_handler_type == AXIOM_DATA_HANDLER_TYPE_FILE)
     {
-        FILE *f = NULL;
+        FILE *f;
         axis2_byte_t *byte_stream = NULL;
-        axis2_byte_t *temp_byte_stream = NULL;
+        axis2_byte_t *temp_byte_stream;
         axis2_byte_t *read_stream = NULL;
         int byte_stream_size = 0;
-        int temp_byte_stream_size = 0;
-        int read_stream_size = 0;
+        int temp_byte_stream_size;
+        int read_stream_size;
         int count = 0;
         struct stat stat_p;
 
@@ -318,21 +318,16 @@ axiom_data_handler_read_from(
                     if(read_stream)
                     {
                         AXIS2_FREE(env->allocator, read_stream);
-                        read_stream_size = 0;
                     }
                     if(temp_byte_stream)
                     {
                         AXIS2_FREE(env->allocator, temp_byte_stream);
-                        temp_byte_stream = NULL;
-                        temp_byte_stream_size = 0;
                     }
                 }
                 else
                 {
                     byte_stream = read_stream;
                     byte_stream_size = read_stream_size;
-                    read_stream = NULL;
-                    read_stream_size = 0;
                 }
             }
             else if(read_stream)
@@ -451,8 +446,8 @@ axiom_data_handler_write_to(
 {
     if(data_handler->file_name)
     {
-        FILE *f = NULL;
-        int count = 0;
+        FILE *f;
+        int count;
 
         f = fopen(data_handler->file_name, "wb");
         if(!f)
@@ -465,7 +460,7 @@ axiom_data_handler_write_to(
         count = (int)fwrite(data_handler->buffer, 1, data_handler->buffer_len, f);
         /* The count lies within the int range */
 
-        if(ferror(f))
+        if(count < 1 || ferror(f))
         {
             fclose(f);
             return AXIS2_FAILURE;

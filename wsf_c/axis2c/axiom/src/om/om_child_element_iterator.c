@@ -55,7 +55,7 @@ AXIS2_EXTERN void AXIS2_CALL axiom_child_element_iterator_free(
     void *iterator,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
     AXIS2_FREE(env->allocator, iterator);
     return;
 }

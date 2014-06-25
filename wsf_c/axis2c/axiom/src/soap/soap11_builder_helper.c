@@ -173,7 +173,6 @@ axiom_soap11_builder_helper_handle_event(
             {
                 return AXIS2_FAILURE;
             }
-            fault_value_ele = (axiom_element_t *)axiom_node_get_data_element(fault_value_node, env);
 
             axiom_stax_builder_set_lastnode(builder_helper->om_builder, env, fault_value_node);
 

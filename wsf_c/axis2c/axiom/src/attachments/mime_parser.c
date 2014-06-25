@@ -263,7 +263,12 @@ axiom_mime_parser_free(
     axiom_mime_parser_t * mime_parser,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
+    
+    if (!mime_parser)
+    {
+	    return;
+    }
 
     /* The map is passed on to SOAP builder, and SOAP builder take over the
      ownership of the map */
@@ -513,8 +518,6 @@ axiom_mime_parser_parse_for_soap(
      for the next search */
 
     part_start = buf_num;
-    pos = NULL;
-    malloc_len = 0;
 
     search_info->match_len1 = 0;
     search_info->match_len2 = 0;
@@ -749,8 +752,6 @@ axiom_mime_parser_parse_for_attachments(
         pos = NULL;
         part_start = buf_num;
 
-        malloc_len = 0;
-
         count++;
 
         pos = axiom_mime_parser_search_for_crlf(env, callback, callback_ctx, &buf_num, len_array,
@@ -789,7 +790,6 @@ axiom_mime_parser_parse_for_attachments(
                     AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Error in parsing for mime headers");
                     return NULL;
                 }
-
                 else
                 {
                     buffer = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * (size + 1));
@@ -883,7 +883,6 @@ axiom_mime_parser_parse_for_attachments(
         search_info->match_len2 = 0;
 
         part_start = buf_num;
-        malloc_len = 0;
 
         mime_type
             = axiom_mime_parser_process_mime_headers(env, mime_parser, &mime_id, mime_headers);
@@ -1719,8 +1718,8 @@ axiom_mime_parser_search_string(
     axis2_char_t *pos = NULL;
     axis2_char_t *old_pos = NULL;
     axis2_char_t *found = NULL;
-    size_t str_length = 0;
-    size_t search_length = 0;
+    size_t str_length;
+    size_t search_length;
 
     str_length = strlen(search_info->search_str);
 
@@ -1784,7 +1783,6 @@ axiom_mime_parser_search_string(
         pos = NULL;
         old_pos = NULL;
         found = NULL;
-        search_length = 0;
 
         if(search_info->buffer2)
         {
@@ -2109,9 +2107,15 @@ axiom_mime_parser_cache_to_buffer(
     axiom_search_info_t *search_info,
     axiom_mime_parser_t *mime_parser)
 {
-    axis2_char_t *data_buffer = NULL;
-    axis2_char_t *temp_buf = NULL;
-    size_t mime_binary_len = 0;
+    axis2_char_t *data_buffer;
+    axis2_char_t *temp_buf;
+    size_t mime_binary_len;
+
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    if (!buf || !buf_len)
+    {
+        return AXIS2_FAILURE;
+    }
 
     temp_buf = (axis2_char_t *)search_info->handler;
     mime_binary_len = search_info->binary_size + buf_len;

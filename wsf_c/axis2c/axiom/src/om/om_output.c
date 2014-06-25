@@ -486,7 +486,9 @@ axiom_output_write(
     }
     else if(type == AXIOM_DATA_SOURCE)
     {
-        status = axiom_xml_writer_write_raw(om_output->xml_writer, env, args_list[0]);
+        if (no_of_args > 0) {
+		status = axiom_xml_writer_write_raw(om_output->xml_writer, env, args_list[0]);
+	}
     }
     else if(type == AXIOM_ATTRIBUTE)
     {
@@ -512,7 +514,7 @@ axiom_output_write(
          namespace.  Although the XML spec allows it to be declared
          explicitly, this is superfluous and not accepted by all xml
          parsers. */
-        if((!args_list[0]) || (strcmp(args_list[0], "xml") != 0))
+        if((no_of_args > 1) && ((!args_list[0]) || (strcmp(args_list[0], "xml") != 0)))
         {
             status = axiom_xml_writer_write_namespace(
                 om_output->xml_writer, env, args_list[0], args_list[1]);
@@ -520,11 +522,15 @@ axiom_output_write(
     }
     else if(type == AXIOM_TEXT)
     {
-        status = axiom_xml_writer_write_characters(om_output->xml_writer, env, args_list[0]);
+        if (no_of_args > 0) {
+		status = axiom_xml_writer_write_characters(om_output->xml_writer, env, args_list[0]);
+	}
     }
     else if(type == AXIOM_COMMENT)
     {
-        status = axiom_xml_writer_write_comment(om_output->xml_writer, env, args_list[0]);
+        if (no_of_args > 0) {
+		status = axiom_xml_writer_write_comment(om_output->xml_writer, env, args_list[0]);
+	}
     }
     else if(type == AXIOM_PROCESSING_INSTRUCTION)
     {
@@ -541,7 +547,9 @@ axiom_output_write(
     }
     else if(type == AXIOM_DOCTYPE)
     {
-        status = axiom_xml_writer_write_dtd(om_output->xml_writer, env, args_list[0]);
+        if (no_of_args > 0) {
+		status = axiom_xml_writer_write_dtd(om_output->xml_writer, env, args_list[0]);
+	}
     }
 
     if(status == AXIS2_SUCCESS)
@@ -608,6 +616,10 @@ axiom_output_flush(
 
         /* This is also created for attachments*/
         root_content_id = axiom_output_get_root_content_id(om_output, env);
+	if (!root_content_id) 
+	{
+		return AXIS2_FAILURE;
+	}
 
         /* different parts of the message is added according to their order
          * to an arraylist */

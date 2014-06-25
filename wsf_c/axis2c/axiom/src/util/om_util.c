@@ -540,13 +540,13 @@ axiom_util_get_first_child_element_with_localnames(
     axutil_array_list_t * names,
     axiom_node_t ** child_node)
 {
-    axiom_node_t *child = NULL;
-    axiom_node_t *next_sibling = NULL;
-    axis2_char_t *child_localname = NULL;
-    axis2_char_t *given_localname = NULL;
-    axiom_element_t *om_ele = NULL;
-    int size = 0;
-    int i = 0;
+    axiom_node_t *child;
+    axiom_node_t *next_sibling;
+    axis2_char_t *child_localname;
+    axis2_char_t *given_localname;
+    axiom_element_t *om_ele;
+    int size;
+    int i;
     AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, ele, NULL);
     AXIS2_PARAM_CHECK(env->error, ele_node, NULL);
@@ -574,14 +574,9 @@ axiom_util_get_first_child_element_with_localnames(
                         *child_node = child;
                         return om_ele;
                     }
-                    given_localname = NULL;
                 }
             }
         }
-        om_ele = NULL;
-        child_localname = NULL;
-        given_localname = NULL;
-        size = 0;
     }
 
     next_sibling = axiom_node_get_next_sibling(child, env);
@@ -606,7 +601,6 @@ axiom_util_get_first_child_element_with_localnames(
                     given_localname = NULL;
                 }
             }
-            om_ele = NULL;
             child_localname = NULL;
             given_localname = NULL;
         }
@@ -624,12 +618,12 @@ axiom_util_get_last_child_element_with_localnames(
     axutil_array_list_t * names,
     axiom_node_t ** child_node)
 {
-    axiom_node_t *child = NULL;
-    axiom_element_t *om_ele = NULL;
-    axis2_char_t *child_localname = NULL;
-    axis2_char_t *given_localname = NULL;
-    int size = 0;
-    int i = 0;
+    axiom_node_t *child;
+    axiom_element_t *om_ele;
+    axis2_char_t *child_localname;
+    axis2_char_t *given_localname;
+    int size;
+    int i;
 
     AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, ele, NULL);
@@ -658,9 +652,6 @@ axiom_util_get_last_child_element_with_localnames(
                     }
                 }
             }
-            om_ele = NULL;
-            child_localname = NULL;
-            given_localname = NULL;
         }
         child = axiom_node_get_previous_sibling(child, env);
     }
@@ -675,12 +666,12 @@ axiom_util_get_next_siblng_element_with_localnames(
     axutil_array_list_t * names,
     axiom_node_t ** next_node)
 {
-    axiom_node_t *next_sibling = NULL;
-    axiom_element_t *om_ele = NULL;
-    axis2_char_t *ele_localname = NULL;
-    axis2_char_t *given_localname = NULL;
-    int size = 0;
-    int i = 0;
+    axiom_node_t *next_sibling;
+    axiom_element_t *om_ele;
+    axis2_char_t *ele_localname;
+    axis2_char_t *given_localname;
+    int size;
+    int i;
 
     AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, ele, NULL);
@@ -710,8 +701,6 @@ axiom_util_get_next_siblng_element_with_localnames(
 
                 }
             }
-            om_ele = NULL;
-            ele_localname = NULL;
         }
         next_sibling = axiom_node_get_next_sibling(next_sibling, env);
     }

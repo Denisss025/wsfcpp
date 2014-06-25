@@ -701,7 +701,6 @@ axiom_soap12_builder_helper_handle_event(
                     builder_helper->detail_element_names, env, i)) == 0)
                 {
                     local_name_exists = AXIS2_TRUE;
-                    detail_element_level = i + 1;
                 }
             }
             if(local_name_exists)

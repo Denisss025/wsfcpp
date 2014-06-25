@@ -269,6 +269,7 @@ axiom_soap_body_build(
             {
                 is_replaced = axiom_soap_builder_replace_xop(soap_body->soap_builder, env,
                     xop_node, xop_element);
+		(void)is_replaced;
             }
         }
 

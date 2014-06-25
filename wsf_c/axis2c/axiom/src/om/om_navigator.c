@@ -75,7 +75,7 @@ axiom_navigator_free(
     axiom_navigator_t * om_navigator,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
     AXIS2_FREE(env->allocator, om_navigator);
     return;
 }

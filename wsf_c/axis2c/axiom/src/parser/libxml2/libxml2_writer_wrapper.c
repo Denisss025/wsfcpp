@@ -517,7 +517,7 @@ axis2_libxml2_writer_wrapper_free(
     const axutil_env_t * env)
 {
     axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
     writer_impl = AXIS2_INTF_TO_IMPL(writer);
 
     if(writer_impl->xml_writer)
@@ -930,23 +930,30 @@ axis2_libxml2_writer_wrapper_write_default_namespace(
     const axutil_env_t * env,
     axis2_char_t * namespace_uri)
 {
-    axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
-    int status = 0;
-    axis2_char_t *xmlns = NULL;
+    axis2_libxml2_writer_wrapper_impl_t *writer_impl;
+    int status;
+    axis2_char_t *xmlns;
+
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
-    AXIS2_PARAM_CHECK(env->error, namespace_uri, AXIS2_FAILURE)
+    AXIS2_PARAM_CHECK(env->error, namespace_uri, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, writer, AXIS2_FAILURE);
+
     xmlns = AXIS2_MALLOC(env->allocator,
         sizeof(axis2_char_t) * (strlen("xmlns") + 1));
+    if (!xmlns) 
+    {
+	    AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+	    return AXIS2_FAILURE;
+    }
     sprintf(xmlns, "xmlns");
+
+    writer_impl = AXIS2_INTF_TO_IMPL(writer);
     status = xmlTextWriterWriteAttribute(writer_impl->xml_writer,
         (const xmlChar *) xmlns,
         BAD_CAST namespace_uri);
 
-    if(xmlns)
-    {
-        AXIS2_FREE(env->allocator, xmlns);
-        xmlns = NULL;
-    }
+    AXIS2_FREE(env->allocator, xmlns);
+
     if(status < 0)
     {
         AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_WRITING_DEFAULT_NAMESPACE, AXIS2_FAILURE);
@@ -1049,11 +1056,13 @@ axis2_libxml2_writer_wrapper_write_dtd(
     const axutil_env_t * env,
     axis2_char_t * dtd)
 {
-    axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
+    axis2_libxml2_writer_wrapper_impl_t *writer_impl;
     int status = 0;
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, dtd, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, writer, AXIS2_FAILURE);
 
+    writer_impl = AXIS2_INTF_TO_IMPL(writer);
     status = xmlTextWriterStartDTD(writer_impl->xml_writer,
         BAD_CAST dtd, NULL, NULL);
     if(status < 0)
@@ -1165,9 +1174,7 @@ axis2_libxml2_writer_wrapper_get_prefix(
     const axutil_env_t * env,
     axis2_char_t * uri)
 {
-    axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
     AXIS2_PARAM_CHECK(env->error, uri, NULL);
-    writer_impl = AXIS2_INTF_TO_IMPL(writer);
     if(!uri || axutil_strcmp(uri, "") == 0)
     {
         return NULL;
@@ -1182,15 +1189,12 @@ axis2_libxml2_writer_wrapper_set_prefix(
     axis2_char_t * prefix,
     axis2_char_t * uri)
 {
-    axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
-
     axis2_bool_t is_declared = AXIS2_FALSE;
     axis2_char_t key[1024];
 
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, prefix, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, uri, AXIS2_FAILURE);
-    writer_impl = AXIS2_INTF_TO_IMPL(writer);
     if(axutil_strcmp(uri, "") == 0)
     {
         return AXIS2_FAILURE;
@@ -1235,10 +1239,11 @@ axis2_libxml2_writer_wrapper_write_encoded(
     axis2_char_t * text,
     int in_attr)
 {
-    axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
+    /*axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;*/
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, text, AXIS2_FAILURE);
-    writer_impl = AXIS2_INTF_TO_IMPL(writer);
+    /*writer_impl = AXIS2_INTF_TO_IMPL(writer);*/
+    /* ??? */
     return AXIS2_FAILURE;
 }
 
@@ -1251,8 +1256,12 @@ axis2_libxml2_writer_wrapper_get_xml(
     writer_impl = AXIS2_INTF_TO_IMPL(writer);
     if(writer_impl->writer_type == AXIS2_XML_PARSER_TYPE_BUFFER)
     {
-        int output_bytes = 0;
+        int output_bytes;
         output_bytes = xmlTextWriterFlush(writer_impl->xml_writer);
+	if (output_bytes < 0) 
+	{
+		return NULL;
+	}
         return writer_impl->buffer->content;
     }
     else if(writer_impl->writer_type == AXIS2_XML_PARSER_TYPE_DOC)

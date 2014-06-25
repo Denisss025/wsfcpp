@@ -296,6 +296,7 @@ axiom_xpath_orexpr_operator(
     {
         if(op12[i] == AXIOM_XPATH_PARSE_END)
         {
+	    n_nodes[i] = 0;
             continue;
         }
 
@@ -370,6 +371,7 @@ axiom_xpath_andexpr_operator(
     {
         if(op12[i] == AXIOM_XPATH_PARSE_END)
         {
+	    n_nodes[i] = 0;
             continue;
         }
 
@@ -444,6 +446,7 @@ axiom_xpath_equalexpr_operator(
     {
         if(op12[i] == AXIOM_XPATH_PARSE_END)
         {
+	    n_nodes[i] = 0;
             continue;
         }
 

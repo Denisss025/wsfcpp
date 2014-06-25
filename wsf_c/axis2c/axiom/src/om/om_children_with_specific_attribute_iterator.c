@@ -125,12 +125,13 @@ axiom_children_with_specific_attribute_iterator_has_next(
     {
         if(axiom_node_get_node_type(iterator->current_child, env) == AXIOM_ELEMENT)
         {
-            axiom_attribute_t *om_attr = NULL;
-            axiom_element_t *om_ele = NULL;
-            om_ele = (axiom_element_t *)axiom_node_get_data_element(iterator-> current_child, env);
-            om_attr = axiom_element_get_attribute(om_ele, env, iterator->attr_qname);
             break;
-            /*if (om_attr &&
+            /*
+             axiom_attribute_t *om_attr = NULL;
+             axiom_element_t *om_ele = NULL;
+             om_ele = (axiom_element_t *)axiom_node_get_data_element(iterator-> current_child, env);
+             om_attr = axiom_element_get_attribute(om_ele, env, iterator->attr_qname);
+	     if (om_attr &&
              (axutil_strcmp(axiom_attribute_get_value(om_attr, env),
              iterator->attr_value) == 0))
              {
