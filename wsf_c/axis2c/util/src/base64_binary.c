@@ -122,7 +122,7 @@ axutil_base64_binary_free(
     axutil_base64_binary_t *base64_binary,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(!base64_binary)
     {

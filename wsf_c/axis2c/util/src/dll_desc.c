@@ -67,7 +67,8 @@ axutil_dll_desc_free(
     axutil_dll_desc_t *dll_desc,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, dll_desc);
 
     if(dll_desc->dl_handler)
     {
@@ -100,7 +101,8 @@ axutil_dll_desc_free_void_arg(
 {
     axutil_dll_desc_t *dll_desc_l = NULL;
 
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, dll_desc);
     dll_desc_l = (axutil_dll_desc_t *)dll_desc;
     axutil_dll_desc_free(dll_desc_l, env);
     return;

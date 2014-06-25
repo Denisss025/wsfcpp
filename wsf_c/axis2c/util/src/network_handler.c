@@ -187,7 +187,6 @@ axutil_network_handler_close_socket(
     const axutil_env_t *env,
     axis2_socket_t socket)
 {
-    int i = 0;
     char buf[32];
     if(socket < 0)
     {
@@ -196,7 +195,7 @@ axutil_network_handler_close_socket(
     }
     shutdown(socket, AXIS2_SHUT_WR);
     axutil_network_handler_set_sock_option(env, socket, SO_RCVTIMEO, 1);
-    i = recv(socket, buf, 32, 0);
+    recv(socket, buf, 32, 0);
     AXIS2_CLOSE_SOCKET(socket);
     return AXIS2_SUCCESS;
 }

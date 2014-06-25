@@ -30,8 +30,6 @@ axutil_stomp_frame_free(
     void *headers;
     int i;
     int size;
-    i = 0;
-    size = 0;
 
     if (!frame)
     {
@@ -138,7 +136,11 @@ axutil_stomp_frame_write(
         AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "%s stomp command length %d", frame->command, len);
     }
 
-    total += axutil_stream_write(stream, env, frame->command, len);
+    if (len) 
+    {
+	    total += axutil_stream_write(stream, env, frame->command, len);
+    }
+
     total += axutil_stream_write(stream, env, "\n", 1);
 
     size = axutil_array_list_size(frame->headers, env);
@@ -150,7 +152,6 @@ axutil_stomp_frame_write(
                 (axis2_char_t *) axutil_array_list_get(frame->headers, env, i);
             if (header)
             {
-                len = 0;
                 len = strlen (header);
             }
 
@@ -163,7 +164,6 @@ axutil_stomp_frame_write(
     /* body */
     if (frame->body)
     {
-        len = 0;
         len = strlen (frame->body);
         total +=
             axutil_stream_write(stream, env, frame->body, len);
@@ -217,7 +217,7 @@ read_stomp_buffer(
 
             if (tmp_buffer[i - 1] == 0)
             {
-                len = axutil_stream_read(stream, env, &end, 1);
+                axutil_stream_read(stream, env, &end, 1);
                 if (end[0] != '\n')
                 {
                     return NULL;

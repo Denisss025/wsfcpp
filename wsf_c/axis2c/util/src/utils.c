@@ -37,15 +37,13 @@ axutil_parse_rest_url_for_params(
     axis2_char_t ***tmp3 = NULL;
     axis2_char_t *tmp4 = NULL;
     axis2_char_t *resource = NULL;
-    axis2_char_t *query = NULL;
     axis2_char_t *url_tmp = NULL;
     axis2_char_t *url_resource = NULL;
-    axis2_char_t *url_query = NULL;
     axis2_bool_t finished = AXIS2_FALSE;
     axis2_status_t status = AXIS2_FAILURE;
     int ret_count = 0;
-    int i = 0;
-    int j = 0;
+    int i;
+    int j;
     axis2_bool_t in_tok = AXIS2_FALSE;
 
     tmp2 = AXIS2_MALLOC(env->allocator, 2 * (sizeof(axis2_char_t *)));
@@ -75,15 +73,6 @@ axutil_parse_rest_url_for_params(
         tmp4 = tmp1;
         tmp1++;
         resource[tmp4 - resource] = '\0';
-        if(*tmp1 && ((tmp1 - resource) < (int)strlen(resource) - 1))
-        /* We are sure that the difference lies within the int range */
-        {
-            query = tmp1;
-            /* 
-             * Query String based matching is not implemented. This is
-             * reserved for future implementations.
-             */
-        }
     }
 
     /* Validation of Template */
@@ -166,7 +155,6 @@ axutil_parse_rest_url_for_params(
     {
         url_resource[i] = '\0';
     }
-    i = 0;
     url_tmp = url_resource;
     tmp1 = strchr(url_resource, '?');
     if(tmp1)
@@ -176,11 +164,6 @@ axutil_parse_rest_url_for_params(
         tmp4 = tmp1;
         tmp1++;
         url_resource[tmp4 - url_resource] = '\0';
-        if(*tmp1 && ((tmp1 - url_resource) < (int)strlen(url_resource) - 1))
-        /* We are sure that the difference lies within the int range */
-        {
-            url_query = tmp1;
-        }
     }
     tmp1 = resource;
 
@@ -400,10 +383,10 @@ axutil_parse_request_url_for_svc_and_op(
     const axutil_env_t *env,
     const axis2_char_t *request)
 {
-    axis2_char_t **ret = NULL;
+    axis2_char_t **ret;
     axis2_char_t *service_str = NULL;
-    axis2_char_t *tmp = NULL;
-    int i = 0;
+    axis2_char_t *tmp;
+    int i;
     ret = AXIS2_MALLOC(env->allocator, 2 * (sizeof(axis2_char_t *)));
     memset(ret, 0, 2 * sizeof(axis2_char_t *));
     tmp = (axis2_char_t *)request;
@@ -412,7 +395,6 @@ axutil_parse_request_url_for_svc_and_op(
     if(tmp)
     {
         service_str = tmp;
-        tmp += axutil_strlen(axis2_request_url_prefix);
         /*break stop on first prefix as user may have prefix in service name */
     }
     if(service_str)

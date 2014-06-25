@@ -166,13 +166,13 @@ axutil_http_chunked_stream_start_chunk(
 {
     axis2_char_t tmp_buf[3] = "";
     axis2_char_t str_chunk_len[512] = "";
-    axis2_char_t *tmp = NULL;
-    int read = -1;
+    axis2_char_t *tmp;
+    int read;
 
     /* remove the last CRLF of the previous chunk if any */
     if(AXIS2_TRUE == chunked_stream->chunk_started)
     {
-        read = axutil_stream_read(chunked_stream->stream, env, tmp_buf, 2);
+        axutil_stream_read(chunked_stream->stream, env, tmp_buf, 2);
         chunked_stream->chunk_started = AXIS2_FALSE;
     }
     /* read the len and chunk extension */
@@ -196,7 +196,7 @@ axutil_http_chunked_stream_start_chunk(
     if(0 == chunked_stream->current_chunk_size)
     {
         /* Read the last CRLF */
-        read = axutil_stream_read(chunked_stream->stream, env, tmp_buf, 2);
+        axutil_stream_read(chunked_stream->stream, env, tmp_buf, 2);
         chunked_stream->end_of_chunks = AXIS2_TRUE;
     }
     else

@@ -118,7 +118,7 @@ axutil_md5_ctx_free(
     axutil_md5_ctx_t *md5_ctx,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
     if(md5_ctx)
     {
         AXIS2_FREE(env->allocator, md5_ctx);

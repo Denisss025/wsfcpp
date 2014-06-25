@@ -90,7 +90,7 @@ axutil_first_token(
     axis2_char_t *rest = NULL;
     axis2_char_t *index = NULL;
 
-    if(!in && !*in)
+    if(!in || !*in)
     {
         return NULL;
     }
@@ -129,7 +129,7 @@ axutil_last_token(
     axis2_char_t *rest = NULL;
     axis2_char_t *index = NULL;
 
-    if(!in && !*in)
+    if(!in || !*in)
     {
         return NULL;
     }

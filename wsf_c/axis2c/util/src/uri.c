@@ -223,7 +223,8 @@ axutil_uri_free(
     axutil_uri_t *uri,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, uri);
 
     if(uri->scheme)
     {

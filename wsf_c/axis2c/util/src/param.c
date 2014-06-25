@@ -203,10 +203,10 @@ axutil_param_set_value_list(
         size = axutil_array_list_size(param->value_list, env);
         for(i = 0; i < size; i++)
         {
-            axutil_param_t *param = NULL;
+            axutil_param_t *vlist = NULL;
 
-            param = (axutil_param_t *)axutil_array_list_get(param->value_list, env, i);
-            axutil_param_free(param, env);
+            vlist = (axutil_param_t *)axutil_array_list_get(param->value_list, env, i);
+            axutil_param_free(vlist, env);
         }
         axutil_array_list_free(param->value_list, env);
     }

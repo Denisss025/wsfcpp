@@ -86,7 +86,7 @@ axutil_date_time_free(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(date_time)
     {
@@ -1052,12 +1052,14 @@ axutil_date_time_utc_to_local(
     int hour,
     int min)
 {
-    axutil_date_time_t *date_time = NULL;
-    axutil_date_time_t *ret = NULL;
+    axutil_date_time_t *date_time;
+    axutil_date_time_t *ret;
     if(date_time_in->tz_hour && date_time_in->tz_min)
     {
         return NULL;
     }
+
+    date_time = axutil_date_time_create(env);
     date_time->year = date_time_in->year;
     date_time->mon = date_time_in->mon;
     date_time->day = date_time_in->day;

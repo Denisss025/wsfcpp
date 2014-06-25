@@ -363,7 +363,7 @@ axutil_hash_copy(
 
     axutil_hash_t *ht;
     axutil_hash_entry_t *new_vals;
-    unsigned int i, j;
+    unsigned int i;
 
     ht = AXIS2_MALLOC(env->allocator, sizeof(axutil_hash_t));
     if (!ht)
@@ -384,7 +384,6 @@ axutil_hash_copy(
         return (NULL);
     }
 
-    j = 0;
     for(i = 0; i <= ht->max; i++)
     {
         axutil_hash_entry_t **new_entry = &(ht->array[i]);

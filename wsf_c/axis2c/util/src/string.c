@@ -356,6 +356,7 @@ axutil_strcat(
 {
     axis2_char_t *cp, *argp, *str;
     size_t saved_lengths[MAX_SAVED_LENGTHS];
+    int sl_size;
     int nargs = 0;
     int str_len = 0;
 
@@ -375,10 +376,16 @@ axutil_strcat(
             saved_lengths[nargs++] = cplen;
         }
         len += cplen;
-        cp    = va_arg(adummy, axis2_char_t *);
+        cp = va_arg(adummy, axis2_char_t *);
     }
 
     va_end(adummy);
+    if (!nargs)
+    {
+	    return NULL;
+    }
+
+    sl_size = nargs;
 
     /* Allocate the required string */
     str_len = (int)(sizeof(axis2_char_t) * (len + 1));
@@ -400,7 +407,7 @@ axutil_strcat(
     argp = va_arg(adummy, axis2_char_t *);
     while (argp)
     {
-        if (nargs < MAX_SAVED_LENGTHS)
+        if (nargs < sl_size)
         {
             len = saved_lengths[nargs++];
         }
@@ -409,8 +416,7 @@ axutil_strcat(
             len = strlen(argp);
         }
 
-        memcpy(cp, argp, len);
-        cp += len;
+        cp = (axis2_char_t*)memcpy(cp, argp, len) + len;
         argp = va_arg(adummy, axis2_char_t *);
     }
 

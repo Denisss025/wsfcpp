@@ -62,7 +62,11 @@ axutil_param_container_free(
     axutil_param_container_t *param_container,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
+    if (!param_container)
+    {
+	    return;
+    }
 
     if(param_container->params)
     {
@@ -104,9 +108,12 @@ axutil_param_container_free_void_arg(
 {
     axutil_param_container_t *param_container_l = NULL;
 
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
-    param_container_l = (axutil_param_container_t *)param_container;
-    axutil_param_container_free(param_container_l, env);
+    AXIS2_ENV_CHECK_VOID(env);
+    if (param_container_l = (axutil_param_container_t *)param_container)
+    {
+        axutil_param_container_free(param_container_l, env);
+    }
+
     return;
 }
 

@@ -243,7 +243,7 @@ int
 aar_extract(
     axis2_char_t * d_name)
 {
-    const axis2_char_t *zipfilename = NULL;
+    const axis2_char_t *zipfilename;
     const axis2_char_t *filename_to_extract = NULL;
     const axis2_char_t *password = NULL;
     axis2_char_t filename_try[MAXFILENAME + 16] = "";
@@ -254,10 +254,7 @@ aar_extract(
     int ret = 0;
     unzFile uf = NULL;
 
-    if (zipfilename == NULL)
-        zipfilename = d_name;
-
-    filename_to_extract = d_name;
+    zipfilename = d_name;
 
     if (zipfilename)
     {
