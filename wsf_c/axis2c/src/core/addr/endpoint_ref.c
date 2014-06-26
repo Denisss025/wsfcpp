@@ -155,7 +155,7 @@ axis2_endpoint_ref_free_void_arg(
 {
     axis2_endpoint_ref_t *endpoint_ref_l = NULL;
 
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     endpoint_ref_l = (axis2_endpoint_ref_t *)endpoint_ref;
     axis2_endpoint_ref_free(endpoint_ref_l, env);

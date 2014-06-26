@@ -428,6 +428,11 @@ axis2_init_transports(
                 {
                     status = axis2_transport_receiver_init(listener, env, conf_ctx,
                         transport_in_map[i]);
+		    if (AXIS2_SUCCESS != status)
+		    {
+			    AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
+					    "Transport receiver initialization failed.");
+		    }
                 }
             }
         }
@@ -443,6 +448,11 @@ axis2_init_transports(
                 {
                     status = AXIS2_TRANSPORT_SENDER_INIT(sender, env, conf_ctx,
                         transport_out_map[i]);
+		    if (AXIS2_SUCCESS != status)
+		    {
+			    AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
+					    "Axis2 transport sender initialization failed.");
+		    }
                 }
             }
         }

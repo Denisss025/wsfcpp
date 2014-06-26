@@ -281,12 +281,12 @@ axis2_svc_grp_remove_svc(
     const axutil_env_t * env,
     const axutil_qname_t * svc_qname)
 {
-    axis2_svc_t *svc = NULL;
+    /* axis2_svc_t *svc = NULL; */
     axis2_char_t *svc_name = NULL;
 
     AXIS2_PARAM_CHECK(env->error, svc_name, AXIS2_FAILURE);
 
-    svc = axis2_svc_grp_get_svc(svc_grp, env, svc_qname);
+    /* svc = axis2_svc_grp_get_svc(svc_grp, env, svc_qname); */
 
     svc_name = axutil_qname_to_string((axutil_qname_t *)svc_qname, env);
     axutil_hash_set(svc_grp->svcs, svc_name, AXIS2_HASH_KEY_STRING, NULL);
@@ -355,15 +355,16 @@ axis2_svc_grp_is_param_locked(
     const axutil_env_t * env,
     const axis2_char_t * param_name)
 {
-    axis2_bool_t locked = AXIS2_FALSE;
-    axis2_conf_t *parent = NULL;
+    /* axis2_bool_t locked = AXIS2_FALSE; */
+    /* axis2_conf_t *parent = NULL; */
     axutil_param_t *param = NULL;
     axis2_bool_t ret = AXIS2_FALSE;
 
     AXIS2_PARAM_CHECK(env->error, param_name, AXIS2_FALSE);
 
-    parent = axis2_svc_grp_get_parent(svc_grp, env);
+    /* parent = axis2_svc_grp_get_parent(svc_grp, env); */
     /* Checking the locked value of parent */
+    /*
     if(parent)
     {
         locked = axis2_conf_is_param_locked(parent, env, param_name);
@@ -372,6 +373,7 @@ axis2_svc_grp_is_param_locked(
     {
         ret = AXIS2_TRUE;
     }
+    */
     param = axis2_svc_grp_get_param(svc_grp, env, param_name);
     if(param && axutil_param_is_locked(param, env))
     {

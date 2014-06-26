@@ -58,7 +58,7 @@ axis2_svc_grp_builder_create_with_svc_and_dep_engine(
     if(!svc_grp_builder)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
-        svc_grp_builder = NULL;
+	return NULL;
     }
     svc_grp_builder->desc_builder = axis2_desc_builder_create_with_dep_engine(env, dep_engine);
     if(!svc_grp_builder->desc_builder)

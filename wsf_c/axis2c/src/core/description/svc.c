@@ -688,7 +688,7 @@ axis2_svc_get_op_with_qname(
                     AXIS2_FREE(env->allocator, search_tmp);
                     search_tmp = NULL;
                 }
-                if(is_matched || !*search)
+                if(is_matched || !search || !*search)
                 {
                     nc_tmp = (axis2_char_t *)key;
                     is_matched = AXIS2_TRUE;

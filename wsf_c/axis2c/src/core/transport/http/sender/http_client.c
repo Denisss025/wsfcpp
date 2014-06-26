@@ -428,14 +428,13 @@ axis2_http_client_send(
     str_header = NULL;
     AXIS2_FREE(env->allocator, str_request_line);
     str_request_line = NULL;
-    written
-        = axutil_stream_write(client->data_stream, env, wire_format, axutil_strlen(wire_format));
+    axutil_stream_write(client->data_stream, env, wire_format, axutil_strlen(wire_format));
     AXIS2_FREE(env->allocator, wire_format);
     wire_format = NULL;
 
     /* Then we write the two new line charaters before the http body*/
 
-    written = axutil_stream_write(client->data_stream, env, AXIS2_HTTP_CRLF, 2);
+    axutil_stream_write(client->data_stream, env, AXIS2_HTTP_CRLF, 2);
 
     /* When sending MTOM it is bit different. We keep the attachment + other
      mime headers in an array_list and send them one by one */
@@ -465,6 +464,11 @@ axis2_http_client_send(
 
         status = axis2_http_transport_utils_send_mtom_message(chunked_stream, env,
             client->mime_parts, client->mtom_sending_callback_name);
+	if (AXIS2_SUCCESS != status) 
+	{
+		AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "MTOM message sending failed");
+		return status;
+	}
 
         axutil_http_chunked_stream_free(chunked_stream, env);
         chunked_stream = NULL;
@@ -484,7 +488,6 @@ axis2_http_client_send(
             status = AXIS2_SUCCESS;
             while(written < client->req_body_size)
             {
-                len = 0;
                 len = axutil_stream_write(client->data_stream, env, client->req_body + written,
                     client->req_body_size - written);
                 if(-1 == len)
@@ -586,7 +589,6 @@ axis2_http_client_receive_header(
             strcat(str_status_line, tmp_buf);
             if(0 != strstr(str_status_line, AXIS2_HTTP_CRLF))
             {
-                end_of_line = AXIS2_TRUE;
                 break;
             }
         }

@@ -830,18 +830,10 @@ axis2_msg_ctx_set_response_soap_envelope(
     const axutil_env_t * env,
     axiom_soap_envelope_t * soap_envelope)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, msg_ctx, AXIS2_FAILURE);
 
-    if(soap_envelope)
-    {
-        int soap_v = AXIOM_SOAP12;
-        soap_v = axiom_soap_envelope_get_soap_version(soap_envelope, env);
-        msg_ctx->response_soap_envelope = soap_envelope;
-    }
-    else
-    {
-        msg_ctx->response_soap_envelope = NULL;
-    }
+    msg_ctx->response_soap_envelope = soap_envelope;
     return AXIS2_SUCCESS;
 }
 

@@ -95,7 +95,7 @@ libntlm_wrapper_free(
     libntlm_wrapper_impl_t *ntlm_impl = NULL;
     ntlm_impl = AXIS2_INTF_TO_IMPL(ntlm);
 
-    AXIS2_FREE(env->allocator, AXIS2_INTF_TO_IMPL(ntlm));
+    AXIS2_FREE(env->allocator, ntlm_impl);
     return;
 }
 

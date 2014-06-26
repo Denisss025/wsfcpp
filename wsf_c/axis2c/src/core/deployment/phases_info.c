@@ -514,7 +514,7 @@ axis2_phases_info_set_op_phases(
     op_in_faultphases = axis2_phases_info_get_op_in_faultphases(phases_info, env);
     op_out_faultphases = axis2_phases_info_get_op_out_faultphases(phases_info, env);
 
-    status = axis2_op_set_in_flow(op_desc, env, op_in_phases);
+    axis2_op_set_in_flow(op_desc, env, op_in_phases);
     status = axis2_op_set_out_flow(op_desc, env, op_out_phases);
     if(op_in_faultphases)
     {

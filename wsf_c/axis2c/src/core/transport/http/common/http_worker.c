@@ -593,6 +593,7 @@ axis2_http_worker_process_request(
                     if(!method_list_str)
                     {
                         AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FALSE);
+			return AXIS2_FALSE;
                     }
 
                     temp = method_list_str;
@@ -825,6 +826,7 @@ axis2_http_worker_process_request(
                     if(!method_list_str)
                     {
                         AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FALSE);
+			return AXIS2_FALSE;
                     }
 
                     temp = method_list_str;

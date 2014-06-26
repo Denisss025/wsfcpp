@@ -1436,6 +1436,10 @@ axis2_apache2_worker_get_bytes(
             break;
         }
         write = axutil_stream_write(tmp_stream, env, buf, read);
+	if (write < 0)
+	{
+	    break;
+	}
         if(read < (READ_SIZE - 1))
         {
             break;
@@ -1473,7 +1477,6 @@ apache2_worker_send_mtom_message(
             mime_part = (axiom_mime_part_t *)axutil_array_list_get(mime_parts, env, i);
             if((mime_part->type) == AXIOM_MIME_PART_BUFFER)
             {
-                len = 0;
                 len = ap_rwrite(mime_part->part, (int)mime_part->part_size, request);
                 ap_rflush(request);
                 if(len == -1)
@@ -1602,7 +1605,6 @@ apache2_worker_send_attachment_using_file(
 
         if(count > 0)
         {
-            len = 0;
             len = ap_rwrite(buffer, count, request);
             ap_rflush(request);
             if(len == -1)
@@ -1638,7 +1640,7 @@ apache2_worker_send_attachment_using_file(
     fclose(fp);
     AXIS2_FREE(env->allocator, buffer);
     buffer = NULL;
-    return AXIS2_SUCCESS;
+    return status;
 }
 
 static axis2_status_t
@@ -1659,7 +1661,6 @@ apache2_worker_send_attachment_using_callback(
 
     while((count = AXIOM_MTOM_SENDING_CALLBACK_LOAD_DATA(callback, env, handler, &buffer)) > 0)
     {
-        len = 0;
         len = ap_rwrite(buffer, count, request);
         ap_rflush(request);
         if(len == -1)

@@ -1450,7 +1450,6 @@ axis2_conf_engage_module(
             /**
              * This case is to obtain module path from the axis2.xml
              */
-            axis2_xml = (axis2_char_t *)axis2_conf_get_axis2_xml(conf, env);
             module_dir_param = axis2_conf_get_param(conf, env, AXIS2_MODULE_DIR);
 
             if(module_dir_param)
@@ -1876,14 +1875,12 @@ axis2_conf_disengage_module(
 	}
 	for(index = axutil_hash_first(conf->all_svcs, env); index; index = axutil_hash_next(env, index))
 	{
-		axis2_svc_t *svc = NULL;
+		axis2_svc_t *svc;
 		void *v = NULL;
-		const axis2_char_t *svc_name = NULL;
 		axutil_hash_this(index, NULL, NULL, &v);
 		svc = (axis2_svc_t *)v;
 		if(svc)
 		{
-			svc_name = axis2_svc_get_name(svc, env);
 			axis2_svc_disengage_module(svc, env, module_desc,(axis2_conf_t*) conf);				
 		}
 	}
