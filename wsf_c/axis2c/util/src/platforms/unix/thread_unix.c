@@ -23,13 +23,14 @@ AXIS2_EXTERN axutil_threadattr_t *AXIS2_CALL
 axutil_threadattr_create(
     axutil_allocator_t * allocator)
 {
+    int stat;
+    axutil_threadattr_t *new_attr;
+
     if (!AXIS2_ALLOCATOR_CHECK(allocator))
     {
         return NULL;
     }
 
-    int stat = 0;
-    axutil_threadattr_t *new_attr = NULL;
 
     new_attr = AXIS2_MALLOC(allocator, sizeof(axutil_threadattr_t));
     if(!new_attr)
@@ -106,14 +107,14 @@ axutil_thread_create(
     axutil_thread_start_t func,
     void *data)
 {
+    axis2_status_t stat;
+    pthread_attr_t *temp = NULL;
+    axutil_thread_t *new;
+
     if (!AXIS2_ALLOCATOR_CHECK(allocator))
     {
         return NULL;
     }
-
-    axis2_status_t stat;
-    pthread_attr_t *temp = NULL;
-    axutil_thread_t *new = NULL;
 
     new = (axutil_thread_t *)AXIS2_MALLOC(allocator, sizeof(axutil_thread_t));
     if(!new)
@@ -163,12 +164,13 @@ axutil_thread_exit(
     axutil_thread_t * thd,
     axutil_allocator_t * allocator)
 {
+    axis2_bool_t same_thread = AXIS2_TRUE;
+
     if (!AXIS2_ALLOCATOR_CHECK(allocator))
     {
         return AXIS2_FAILURE;
     }
 
-    axis2_bool_t same_thread = AXIS2_TRUE;
     if(thd)
     {
         while(!thd->try_exit)
@@ -331,7 +333,8 @@ axutil_thread_mutex_create(
     axutil_allocator_t * allocator,
     unsigned int flags)
 {
-    axutil_thread_mutex_t *new_mutex = NULL;
+    axutil_thread_mutex_t *new_mutex;
+    (void)flags;
 
     if (!AXIS2_ALLOCATOR_CHECK(allocator))
     {

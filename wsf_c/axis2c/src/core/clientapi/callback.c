@@ -149,6 +149,7 @@ axis2_callback_get_complete(
     const axutil_env_t * env)
 {
     return callback->complete;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -159,6 +160,7 @@ axis2_callback_set_complete(
 {
     callback->complete = complete;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axiom_soap_envelope_t *AXIS2_CALL
@@ -167,6 +169,7 @@ axis2_callback_get_envelope(
     const axutil_env_t * env)
 {
     return callback->envelope;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -177,6 +180,7 @@ axis2_callback_set_envelope(
 {
     callback->envelope = envelope;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_msg_ctx_t *AXIS2_CALL
@@ -185,6 +189,7 @@ axis2_callback_get_msg_ctx(
     const axutil_env_t * env)
 {
     return callback->msg_ctx;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -195,6 +200,7 @@ axis2_callback_set_msg_ctx(
 {
     callback->msg_ctx = msg_ctx;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN int AXIS2_CALL
@@ -203,6 +209,7 @@ axis2_callback_get_error(
     const axutil_env_t * env)
 {
     return callback->error;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -213,6 +220,7 @@ axis2_callback_set_error(
 {
     callback->error = error;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN void AXIS2_CALL
@@ -267,6 +275,8 @@ axis2_callback_on_complete(
     const axutil_env_t * env)
 {
     return AXIS2_SUCCESS;
+    (void)env;
+    (void)callback;
 }
 
 static axis2_status_t AXIS2_CALL
@@ -276,4 +286,7 @@ axis2_callback_on_error(
     int exception)
 {
     return AXIS2_SUCCESS;
+    (void)env;
+    (void)callback;
+    (void)exception;
 }

@@ -293,7 +293,7 @@ axutil_qname_create_from_string(
     axis2_char_t *localpart = NULL;
     axis2_char_t *namespace_uri = NULL;
     axis2_char_t *prefix = NULL;
-    axis2_char_t *index = NULL;
+    axis2_char_t *idx = NULL;
     axis2_char_t *next = NULL;
     axis2_char_t *temp_string = NULL;
     axutil_qname_t *qname = NULL;
@@ -302,18 +302,18 @@ axutil_qname_create_from_string(
 
     temp_string = axutil_strdup(env, qstring);
 
-    index = strchr(temp_string, '|');
-    if(index)
+    idx = strchr(temp_string, '|');
+    if(idx)
     {
-        next = index + 1;
-        temp_string[index - temp_string] = '\0';
+        next = idx + 1;
+        temp_string[idx - temp_string] = '\0';
         localpart = temp_string;
 
-        index = strchr(next, '|');
-        if(index)
+        idx = strchr(next, '|');
+        if(idx)
         {
-            prefix = index + 1;
-            next[index - next] = '\0';
+            prefix = idx + 1;
+            next[idx - next] = '\0';
             namespace_uri = next;
             qname = axutil_qname_create(env, localpart, namespace_uri, prefix);
         }

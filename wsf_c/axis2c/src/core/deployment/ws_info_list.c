@@ -342,11 +342,11 @@ axis2_ws_info_list_check_for_undeploy(
         /* Get each ws_info item from the temp list created and remove that
          * item from the ws_info_list */
         axis2_ws_info_t *file_item = NULL;
-        int index = 0;
+        int list_idx;
 
         file_item = (axis2_ws_info_t *)axutil_array_list_get(temp_list, env, i);
-        index = axutil_array_list_index_of(ws_info_list->ws_info_list, env, file_item);
-        axutil_array_list_remove(ws_info_list->ws_info_list, env, index);
+        list_idx = axutil_array_list_index_of(ws_info_list->ws_info_list, env, file_item);
+        axutil_array_list_remove(ws_info_list->ws_info_list, env, list_idx);
     }
     axutil_array_list_free(temp_list, env);
     return AXIS2_SUCCESS;

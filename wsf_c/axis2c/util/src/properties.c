@@ -135,6 +135,8 @@ axutil_properties_get_all(
     axutil_properties_t *properties,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, properties, NULL);
     return properties->prop_hash;
 }
 

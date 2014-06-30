@@ -79,7 +79,7 @@ static schemes_t schemes[] = {
 #define T_HASH            0x08  /* '#' */
 #define T_NUL             0x80  /* '\0' */
 
-#if AXIS2_CHARSET_EBCDIC
+#if defined(AXIS2_CHARSET_EBCDIC) && AXIS2_CHARSET_EBCDIC
 
 /* Delimiter table for the EBCDIC character set */
 static const unsigned char uri_delims[256] = {
@@ -304,8 +304,7 @@ axutil_uri_parse_string(
     const axis2_char_t *s1;
     const axis2_char_t *hostinfo;
     axis2_char_t *endstr;
-    int port;
-    int v6_offset1 = 0, v6_offset2 = 0;
+    size_t v6_offset1 = 0, v6_offset2 = 0;
 
     AXIS2_PARAM_CHECK(env->error, uri_str, NULL);
 
@@ -358,7 +357,7 @@ axutil_uri_parse_string(
         }
         if(s != uri_str)
         {
-            uri->path = axutil_strmemdup(uri_str, s - uri_str, env);
+            uri->path = axutil_strmemdup(uri_str, (size_t)(s - uri_str), env);
         }
         if(*s == 0)
         {
@@ -371,7 +370,7 @@ axutil_uri_parse_string(
             if(s1)
             {
                 uri->fragment = axutil_strdup(env, s1 + 1);
-                uri->query = axutil_strmemdup(s, s1 - s, env);
+                uri->query = axutil_strmemdup(s, (size_t)(s1 - s), env);
             }
             else
             {
@@ -405,7 +404,7 @@ axutil_uri_parse_string(
         /* backwards predicted taken! */
     }
 
-    uri->scheme = axutil_strmemdup(uri_str, s - uri_str, env);
+    uri->scheme = axutil_strmemdup(uri_str, (size_t)(s - uri_str), env);
     s += 3;
 
     deal_with_authority: hostinfo = s;
@@ -414,7 +413,7 @@ axutil_uri_parse_string(
         ++s;
     }
     uri_str = s; /* whatever follows hostinfo is start of uri */
-    uri->hostinfo = axutil_strmemdup(hostinfo, uri_str - hostinfo, env);
+    uri->hostinfo = axutil_strmemdup(hostinfo, (size_t)(uri_str - hostinfo), env);
 
     /* If there's a username:password@host:port, the @ we want is the last @...
      * too bad there's no memrchr()... For the C purists, note that hostinfo
@@ -462,7 +461,7 @@ axutil_uri_parse_string(
             }
             v6_offset1 = 1;
             v6_offset2 = 2;
-            s = axutil_memchr(hostinfo, ']', uri_str - hostinfo);
+            s = axutil_memchr(hostinfo, ']', (size_t)(uri_str - hostinfo));
             if(!s)
             {
                 if(uri)
@@ -481,7 +480,7 @@ axutil_uri_parse_string(
             && *hostinfo <= 'z') || (*hostinfo >= 'A' && *hostinfo <= 'Z') || *hostinfo == '?'
             || *hostinfo == '/' || *hostinfo == '#')
         {
-            s = axutil_memchr(hostinfo, ':', uri_str - hostinfo);
+            s = axutil_memchr(hostinfo, ':', (size_t)(uri_str - hostinfo));
         }
         else
         {
@@ -496,16 +495,15 @@ axutil_uri_parse_string(
         {
             /* we expect the common case to have no port */
             uri->hostname = axutil_strmemdup(hostinfo + v6_offset1,
-                uri_str - hostinfo - v6_offset2, env);
+                (size_t)(uri_str - hostinfo) + v6_offset2, env);
             goto deal_with_path;
         }
-        uri->hostname = axutil_strmemdup(hostinfo + v6_offset1, s - hostinfo - v6_offset2, env);
+        uri->hostname = axutil_strmemdup(hostinfo + v6_offset1, (size_t)(s - hostinfo) - v6_offset2, env);
         ++s;
-        uri->port_str = axutil_strmemdup(s, uri_str - s, env);
+        uri->port_str = axutil_strmemdup(s, (size_t)(uri_str - s), env);
         if(uri_str != s)
         {
-            port = strtol(uri->port_str, &endstr, 10);
-            uri->port = (axis2_port_t)port;
+            uri->port = (axis2_port_t)strtol(uri->port_str, &endstr, 10);
             /* We are sure that the conversion is safe */
             if(*endstr == '\0')
             {
@@ -524,16 +522,16 @@ axutil_uri_parse_string(
     }
 
     /* first colon delimits username:password */
-    s1 = axutil_memchr(hostinfo, ':', s - hostinfo);
+    s1 = axutil_memchr(hostinfo, ':', (size_t)(s - hostinfo));
     if(s1)
     {
-        uri->user = axutil_strmemdup(hostinfo, s1 - hostinfo, env);
+        uri->user = axutil_strmemdup(hostinfo, (size_t)(s1 - hostinfo), env);
         ++s1;
-        uri->password = axutil_strmemdup(s1, s - s1, env);
+        uri->password = axutil_strmemdup(s1, (size_t)(s - s1), env);
     }
     else
     {
-        uri->user = axutil_strmemdup(hostinfo, s - hostinfo, env);
+        uri->user = axutil_strmemdup(hostinfo, (size_t)(s - hostinfo), env);
     }
     hostinfo = s + 1;
     goto deal_with_host;
@@ -702,7 +700,7 @@ axutil_uri_resolve_relative(
         {
             path += 2;
         }
-        baselen = base_end - basepath + 1;
+        baselen = (size_t)(base_end - basepath) + 1;
         uri->path = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * baselen + strlen(path) + 1);
         memcpy(uri->path, basepath, baselen);
         strcpy(uri->path + baselen, path);
@@ -919,6 +917,8 @@ axutil_uri_get_protocol(
     axutil_uri_t *uri,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, uri, NULL);
     return uri->scheme;
 }
 
@@ -927,6 +927,8 @@ axutil_uri_get_server(
     axutil_uri_t *uri,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, uri, NULL);
     return uri->hostinfo;
 }
 
@@ -935,6 +937,8 @@ axutil_uri_get_port(
     axutil_uri_t *uri,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, (axis2_port_t)-1);
+    AXIS2_PARAM_CHECK(env->error, uri, (axis2_port_t)-1);
     return uri->port;
 }
 
@@ -943,6 +947,8 @@ axutil_uri_get_host(
     axutil_uri_t *uri,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, uri, NULL);
     return uri->hostname;
 }
 
@@ -951,6 +957,8 @@ axutil_uri_get_query(
     axutil_uri_t *uri,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, uri, NULL);
     return uri->query;
 }
 
@@ -959,6 +967,8 @@ axutil_uri_get_fragment(
     axutil_uri_t *uri,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, uri, NULL);
     return uri->fragment;
 }
 
@@ -967,5 +977,7 @@ axutil_uri_get_path(
     axutil_uri_t *uri,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, uri, NULL);
     return uri->path;
 }

@@ -267,6 +267,7 @@ axis2_module_desc_get_qname(
     const axis2_module_desc_t * module_desc,
     const axutil_env_t * env)
 {
+    (void)env;
     return module_desc->qname;
 }
 
@@ -325,6 +326,7 @@ axis2_module_desc_get_all_ops(
     const axis2_module_desc_t * module_desc,
     const axutil_env_t * env)
 {
+    (void)env;
     return module_desc->ops;
 }
 
@@ -333,6 +335,7 @@ axis2_module_desc_get_parent(
     const axis2_module_desc_t * module_desc,
     const axutil_env_t * env)
 {
+    (void)env;
     return module_desc->parent;
 }
 
@@ -438,6 +441,7 @@ axis2_module_desc_get_module(
     const axis2_module_desc_t * module_desc,
     const axutil_env_t * env)
 {
+    (void)env;
     return module_desc->module;
 }
 
@@ -458,6 +462,7 @@ axis2_module_desc_get_param_container(
     const axis2_module_desc_t * module_desc,
     const axutil_env_t * env)
 {
+    (void)env;
     return module_desc->params;
 }
 
@@ -466,5 +471,6 @@ axis2_module_desc_get_flow_container(
     const axis2_module_desc_t * module_desc,
     const axutil_env_t * env)
 {
+    (void)env;
     return module_desc->flow_container;
 }

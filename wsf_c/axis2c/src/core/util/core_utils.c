@@ -753,7 +753,7 @@ axis2_core_utils_get_rest_op_with_method_and_location(
 
     axis2_op_t *op = NULL;
 
-    int key_len = 0;
+    size_t key_len = 0;
 
     AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "Checking for operation using "
         "REST HTTP Location fragment : %s", location);
@@ -1231,14 +1231,14 @@ axis2_core_utils_internal_infer_op_from_rest_map_recursively(
                     /* the operation is found */
                     /* but before leaving should merge the param arrays */
 
-                    int i = 0;
+                    int j = 0;
                     void *param_key = NULL;
                     void *param_value = NULL;
-                    for(i = 0; i < axutil_array_list_size(tmp_param_keys, env); i++)
+                    for(j = 0; j < axutil_array_list_size(tmp_param_keys, env); j++)
                     {
                         /* size(tmp_param_keys) == size(tmp_param_values) */
-                        param_key = axutil_array_list_get(tmp_param_keys, env, i);
-                        param_value = axutil_array_list_get(tmp_param_values, env, i);
+                        param_key = axutil_array_list_get(tmp_param_keys, env, j);
+                        param_value = axutil_array_list_get(tmp_param_values, env, j);
 
                         /* add it to original array */
                         axutil_array_list_add(param_keys, env, param_key);

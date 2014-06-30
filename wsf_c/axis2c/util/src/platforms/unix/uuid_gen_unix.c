@@ -64,10 +64,9 @@ axutil_uuid_t *AXIS2_CALL
 axutil_uuid_gen_v1()
 {
     struct timeval time_now;
-    struct timeval tv;
-    unsigned long long time_val;
-    unsigned long long time_val2;
-    unsigned short int clck = 0;
+    unsigned long time_val;
+    unsigned long time_val2;
+    short int clck = 0;
     axutil_uuid_t *ret_uuid = NULL;
     unsigned short int time_high_version = 0;
 
@@ -112,15 +111,15 @@ axutil_uuid_gen_v1()
         axutil_uuid_static.time_seq++;
     }
     /* sleep for 1000ns (1us) */
-    tv.tv_sec = 0;
-    tv.tv_usec = 1;
+    /*tv.tv_sec = 0;
+    tv.tv_usec = 1;*/
     /*
      The following select causes severe performance problems.
      Hence commenting out. I am not sure why this is required. - Samisa.
      select(0, NULL, NULL, NULL, &tv); */
 
-    time_val = (unsigned long long)time_now.tv_sec * 10000000ull;
-    time_val += (unsigned long long)time_now.tv_usec * 10ull;
+    time_val = (unsigned long)time_now.tv_sec * 10000000ul;
+    time_val += (unsigned long)time_now.tv_usec * 10ul;
 
     ret_uuid = malloc(sizeof(axutil_uuid_t));
 
@@ -128,17 +127,17 @@ axutil_uuid_gen_v1()
     /* compensate for low resolution system clock by adding
      the time/tick sequence counter */
     if(axutil_uuid_static.time_seq > 0)
-        time_val += (unsigned long long)axutil_uuid_static.time_seq;
+        time_val += (unsigned long)axutil_uuid_static.time_seq;
 
     time_val2 = time_val;
-    ret_uuid->time_low = (unsigned long)time_val2;
+    ret_uuid->time_low = (unsigned)time_val2;
     time_val2 >>= 32;
     ret_uuid->time_mid = (unsigned short int)time_val2;
     time_val2 >>= 16;
     time_high_version = (unsigned short int)time_val2;
 
     /* store the 60 LSB of the time in the UUID and make version 1 */
-    time_high_version <<= 4;
+    time_high_version = (unsigned short)(time_high_version << 4);
     time_high_version &= 0xFFF0;
     time_high_version |= 0x0001;
     ret_uuid->time_high_version = time_high_version;
@@ -156,14 +155,14 @@ axutil_uuid_gen_v1()
         == axutil_uuid_static.time_last.tv_sec && time_now.tv_usec
         < axutil_uuid_static.time_last.tv_usec)))
     {
-        srand(time_now.tv_usec);
-        clck = rand();
+        srand((unsigned)time_now.tv_usec);
+        clck = (short int)rand();
     }
     else
     {
         clck++;
     }
-    clck %= (2 << 14);
+    clck %= (short int)(2 << 14);
 
     /* store back new clock sequence */
     axutil_uuid_static.clock = clck;
@@ -230,7 +229,7 @@ axutil_uuid_get_mac_addr(
     struct ifconf ifc;
     struct sockaddr *sa;
     int s = 0;
-    int i = 0;
+    size_t i;
     char *buffer = NULL;
     char buf[1024];
     int ok = AXIS2_FALSE;
@@ -243,7 +242,7 @@ axutil_uuid_get_mac_addr(
     ioctl(s, SIOCGIFCONF, &ifc);
     IFR = ifc.ifc_req;
 
-    for (i = ifc.ifc_len / sizeof(struct ifreq); --i >= 0; IFR++)
+    for (i = (unsigned long)ifc.ifc_len / sizeof(struct ifreq); --i; IFR++)
     {
         strcpy(ifr.ifr_name, IFR->ifr_name);
         /*sprintf(ifr.ifr_name, "eth0"); */
@@ -263,13 +262,13 @@ axutil_uuid_get_mac_addr(
     if (ok)
     {
         sa = (struct sockaddr *) &ifr.ifr_addr;
-        for (i = 0; i < 6; i++)
-        buffer[i] = (unsigned char) (sa->sa_data[i] & 0xff);
+        for (i = 0u; i < 6u; i++)
+        buffer[i] = (char) (sa->sa_data[i] & 0xff);
     }
     else
     {
-        for (i = 0; i < 6; i++)
-        buffer[i] = (unsigned char) ((AXIS2_LOCAL_MAC_ADDR[i]) - '0');
+        for (i = 0u; i < 6u; i++)
+        buffer[i] = (char) ((AXIS2_LOCAL_MAC_ADDR[i]) - '0');
     }
     close(s);
     return buffer;

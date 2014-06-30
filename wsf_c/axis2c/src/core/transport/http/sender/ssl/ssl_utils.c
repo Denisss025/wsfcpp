@@ -27,7 +27,11 @@ password_cb(
     int rwflag,
     void *passwd)
 {
-    strncpy(buf, (char *) passwd, size);
+    if (size <= 0)
+    {
+	    return 0;
+    }
+    strncpy(buf, (char *) passwd, (size_t)size);
     buf[size - 1] = '\0';
     return (int)(strlen(buf));
     /* We are sure that the difference lies within the int range */
@@ -42,7 +46,7 @@ axis2_ssl_utils_initialize_ctx(
 {
     SSL_CTX *ctx = NULL;
     axis2_char_t *ca_file = server_cert;
-	SSL_METHOD *meth;
+	const SSL_METHOD *meth;
     if (!ca_file)
     {
         AXIS2_LOG_INFO(env->log, "[ssl client] CA certificate not specified");
@@ -129,7 +133,7 @@ AXIS2_EXTERN SSL *AXIS2_CALL
 axis2_ssl_utils_initialize_ssl(
     const axutil_env_t * env,
     SSL_CTX * ctx,
-    axis2_socket_t socket)
+    axis2_socket_t sockt)
 {
     SSL *ssl = NULL;
     BIO *sbio = NULL;
@@ -144,12 +148,12 @@ axis2_ssl_utils_initialize_ssl(
         return NULL;
     }
 
-    sbio = BIO_new_socket((int)socket, BIO_NOCLOSE);
+    sbio = BIO_new_socket((int)sockt, BIO_NOCLOSE);
     if (!sbio)
     {
         AXIS2_LOG_ERROR (env->log, AXIS2_LOG_SI,
             "[ssl]unable to create BIO new socket for socket %d",
-            (int)socket);
+            (int)sockt);
         return NULL;
     }
 
@@ -202,7 +206,7 @@ axis2_ssl_utils_initialize_ssl(
         {
             X509_free(peer_cert);
         }
-        ERR_error_string(SSL_get_verify_result(ssl), sslerror);
+        ERR_error_string_n((unsigned long)SSL_get_verify_result(ssl), sslerror, sizeof(sslerror));
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
             "[ssl client] SSL certificate verification failed (%s)",
             sslerror);

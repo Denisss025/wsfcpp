@@ -55,7 +55,7 @@ axis2_http_simple_response_create(
     if(http_hdr_count > 0 && http_headers)
     {
         int i = 0;
-        ret->header_group = axutil_array_list_create(env, http_hdr_count);
+        ret->header_group = axutil_array_list_create(env, (int)http_hdr_count);
 
         for(i = 0; i < (int)http_hdr_count; i++)
         /* We are sure that the difference lies within the int range */
@@ -424,9 +424,9 @@ axis2_http_simple_response_get_content_length(
         AXIS2_HTTP_HEADER_CONTENT_LENGTH);
     if(tmp_header)
     {
-        return AXIS2_ATOI(axis2_http_header_get_value(tmp_header, env));
+        return (axis2_ssize_t)AXIS2_ATOI(axis2_http_header_get_value(tmp_header, env));
     }
-    return error_return;
+    return (axis2_ssize_t)error_return;
 }
 
 const axis2_char_t *AXIS2_CALL
@@ -510,7 +510,7 @@ axis2_http_simple_response_get_body_bytes(
 {
     axutil_stream_t *tmp_stream = NULL;
     axis2_bool_t loop_state = AXIS2_TRUE;
-    int return_size = -1;
+    axis2_ssize_t return_size = (axis2_ssize_t)-1;
 
     if(!simple_response->stream)
     {
@@ -520,12 +520,12 @@ axis2_http_simple_response_get_body_bytes(
     tmp_stream = axutil_stream_create_basic(env);
     while(loop_state)
     {
-        int read = 0;
+        size_t read = 0;
         char buf[AXIS2_HTTP_SIMPLE_RESPONSE_READ_SIZE];
 
-        read = axutil_stream_read(simple_response->stream, env, buf,
+        read = (size_t)axutil_stream_read(simple_response->stream, env, buf,
             AXIS2_HTTP_SIMPLE_RESPONSE_READ_SIZE);
-        if(read < 0)
+        if((int)read < 0)
         {
             break;
         }
@@ -535,9 +535,9 @@ axis2_http_simple_response_get_body_bytes(
             break;
         }
     }
-    return_size = axutil_stream_get_len(tmp_stream, env);
+    return_size = (axis2_ssize_t)axutil_stream_get_len(tmp_stream, env);
 
-    if(return_size > 0)
+    if((int)return_size > 0)
     {
         *buffer = (char *)AXIS2_MALLOC(env->allocator, sizeof(char) * (return_size + 1));
 
@@ -545,10 +545,10 @@ axis2_http_simple_response_get_body_bytes(
         {
             axutil_stream_free(tmp_stream, env);
             AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
-            return -1;
+            return (axis2_ssize_t)-1;
         }
 
-        return_size = axutil_stream_read(tmp_stream, env, *buffer, return_size + 1);
+        return_size = (axis2_ssize_t)axutil_stream_read(tmp_stream, env, *buffer, return_size + 1);
     }
     axutil_stream_free(tmp_stream, env);
     return return_size;

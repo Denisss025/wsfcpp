@@ -166,6 +166,7 @@ axis2_arch_file_data_get_msg_recv(
     const axutil_env_t * env)
 {
     return arch_file_data->msg_recv;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -218,6 +219,7 @@ axis2_arch_file_data_get_type(
     const axutil_env_t * env)
 {
     return arch_file_data->type;
+    (void)env;
 }
 
 AXIS2_EXTERN axutil_file_t *AXIS2_CALL
@@ -226,6 +228,7 @@ axis2_arch_file_data_get_file(
     const axutil_env_t * env)
 {
     return arch_file_data->file;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -269,6 +272,7 @@ axis2_arch_file_data_get_module_dll_name(
     const axutil_env_t * env)
 {
     return arch_file_data->module_dll_name;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -341,6 +345,7 @@ axis2_arch_file_data_get_svc_map(
     const axutil_env_t * env)
 {
     return arch_file_data->svc_map;
+    (void)env;
 }
 
 AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -349,6 +354,7 @@ axis2_arch_file_data_get_deployable_svcs(
     const axutil_env_t * env)
 {
     return arch_file_data->deployable_svcs;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

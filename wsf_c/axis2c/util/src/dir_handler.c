@@ -54,8 +54,8 @@ axutil_dir_handler_list_services_or_modules_in_dir(
 {
     axutil_array_list_t *file_list = NULL;
     struct stat *buf = NULL;
-    int count = 1;
-    int i = 0;
+    size_t count;
+    size_t i;
     struct dirent **files = NULL;
     /*int file_select(
      );*/
@@ -68,9 +68,9 @@ axutil_dir_handler_list_services_or_modules_in_dir(
 
     AXIS2_ENV_CHECK(env, NULL);
     file_list = axutil_array_list_create(env, 100);
-    count = AXIS2_SCANDIR(pathname, &files, file_select, AXIS2_ALPHASORT);
+    count = (size_t)AXIS2_SCANDIR(pathname, &files, file_select, AXIS2_ALPHASORT);
     /* If no files found, make a non-selectable menu item */
-    if(count <= 0)
+    if((int)count <= 0)
     {
         axutil_array_list_free(file_list, env);
         AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "No files in the path %s.", pathname);
@@ -184,8 +184,8 @@ axutil_dir_handler_list_service_or_module_dirs(
 {
     axutil_array_list_t *file_list = NULL;
     struct stat *buf = NULL;
-    int count = 1;
-    int i = 0;
+    size_t count = 1;
+    size_t i = 0;
     struct dirent **files = NULL;
     char cwd[500];
     int chdir_result = 0;
@@ -219,7 +219,7 @@ axutil_dir_handler_list_service_or_module_dirs(
     axis2_archive_extract();
 #endif
 
-    count = AXIS2_SCANDIR(pathname, &files, dir_select, AXIS2_ALPHASORT);
+    count = (size_t)AXIS2_SCANDIR(pathname, &files, dir_select, AXIS2_ALPHASORT);
     chdir_result = AXIS2_CHDIR(cwd);
     if(chdir_result == -1)
     {
@@ -229,7 +229,7 @@ axutil_dir_handler_list_service_or_module_dirs(
     }
 
     /* If no files found, make a non-selectable menu item */
-    if(count <= 0)
+    if((int)count <= 0)
     {
         AXIS2_LOG_INFO(env->log, "No files in the path %s.", pathname);
         return NULL;

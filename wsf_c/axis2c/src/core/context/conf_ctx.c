@@ -121,6 +121,7 @@ axis2_conf_ctx_set_conf(
     const axutil_env_t * env,
     axis2_conf_t * conf)
 {
+    (void)env;
     conf_ctx->conf = conf; /* We just maintain a shallow copy here */
     return AXIS2_SUCCESS;
 }
@@ -130,6 +131,7 @@ axis2_conf_ctx_get_base(
     const axis2_conf_ctx_t * conf_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return conf_ctx->base;
 }
 
@@ -138,6 +140,7 @@ axis2_conf_ctx_get_conf(
     const axis2_conf_ctx_t * conf_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return conf_ctx->conf;
 }
 
@@ -146,6 +149,7 @@ axis2_conf_ctx_get_op_ctx_map(
     const axis2_conf_ctx_t * conf_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return conf_ctx->op_ctx_map;
 }
 
@@ -154,6 +158,7 @@ axis2_conf_ctx_get_svc_ctx_map(
     const axis2_conf_ctx_t * conf_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return conf_ctx->svc_ctx_map;
 }
 
@@ -162,6 +167,7 @@ axis2_conf_ctx_get_svc_grp_ctx_map(
     const axis2_conf_ctx_t * conf_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return conf_ctx->svc_grp_ctx_map;
 }
 
@@ -172,6 +178,7 @@ axis2_conf_ctx_register_op_ctx(
     const axis2_char_t * message_id,
     axis2_op_ctx_t * op_ctx)
 {
+    (void)env;
     axutil_thread_mutex_lock(conf_ctx->mutex);
     if(conf_ctx->op_ctx_map)
     {
@@ -208,6 +215,7 @@ axis2_conf_ctx_register_svc_ctx(
     const axis2_char_t * svc_id,
     axis2_svc_ctx_t * svc_ctx)
 {
+    (void)env;
     axutil_thread_mutex_lock(conf_ctx->mutex);
     if(conf_ctx->svc_ctx_map)
     {
@@ -223,6 +231,7 @@ axis2_conf_ctx_get_svc_ctx(
     const axutil_env_t * env,
     const axis2_char_t * svc_id)
 {
+    (void)env;
     axis2_svc_ctx_t *rv = NULL;
 
     axutil_thread_mutex_lock(conf_ctx->mutex);
@@ -242,6 +251,7 @@ axis2_conf_ctx_register_svc_grp_ctx(
     const axis2_char_t * svc_grp_id,
     axis2_svc_grp_ctx_t * svc_grp_ctx)
 {
+    (void)env;
     axutil_thread_mutex_lock(conf_ctx->mutex);
     if(conf_ctx->svc_grp_ctx_map)
     {
@@ -257,6 +267,7 @@ axis2_conf_ctx_get_svc_grp_ctx(
     const axutil_env_t * env,
     const axis2_char_t * svc_grp_id)
 {
+    (void)env;
     axis2_svc_grp_ctx_t *rv = NULL;
     axutil_thread_mutex_lock(conf_ctx->mutex);
     if(conf_ctx->svc_grp_ctx_map)
@@ -274,6 +285,7 @@ axis2_conf_ctx_get_root_dir(
     const axutil_env_t * env)
 {
     axis2_char_t *rv = NULL;
+    (void)env;
     /* Do we need to lock here? - damitha */
     axutil_thread_mutex_lock(conf_ctx->mutex);
     rv = conf_ctx->root_dir;
@@ -529,9 +541,9 @@ axis2_conf_ctx_fill_ctxs(
 
     if(!svc_grp_ctx)
     {
-        axis2_svc_grp_t *svc_grp = NULL;
-        svc_grp = axis2_svc_get_parent(svc, env);
-        svc_grp_ctx = axis2_svc_grp_get_svc_grp_ctx(svc_grp, env, conf_ctx);
+        axis2_svc_grp_t *svc_group;
+        svc_group = axis2_svc_get_parent(svc, env);
+        svc_grp_ctx = axis2_svc_grp_get_svc_grp_ctx(svc_group, env, conf_ctx);
         svc_ctx = axis2_svc_grp_ctx_get_svc_ctx(svc_grp_ctx, env, svc_id);
         if(!svc_ctx)
         {

@@ -397,7 +397,7 @@ sandesha2_permanent_storage_mgr_retrieve_msg_ctx(
     {
         axutil_array_list_add(storage_mgr_impl->envelope_buffer_list, env, soap_env_str); 
 
-        reader = axiom_xml_reader_create_for_memory(env, soap_env_str, axutil_strlen(soap_env_str), 
+        reader = axiom_xml_reader_create_for_memory(env, soap_env_str, (int)axutil_strlen(soap_env_str), 
             NULL, AXIS2_XML_PARSER_TYPE_BUFFER);
 
         om_builder = axiom_stax_builder_create(env, reader);
@@ -474,29 +474,29 @@ sandesha2_permanent_storage_mgr_retrieve_msg_ctx(
     if(persistent_prop_str && axutil_strcmp("", persistent_prop_str))
     {
         axutil_hash_t *map = NULL;
-        axutil_hash_index_t *index = NULL;
+        axutil_hash_index_t *idx = NULL;
 
         map = sandesha2_permanent_storage_mgr_get_property_map_from_string(env, persistent_prop_str);
         if(map)
         {
-            for (index = axutil_hash_first(map, env); index; index = axutil_hash_next(env, index))
+            for (idx = axutil_hash_first(map, env); idx; idx = axutil_hash_next(env, idx))
             {
                 axutil_property_t *property = NULL;
                 axutil_property_t *temp_property = NULL;
                 void *v = NULL;
                 const void *k = NULL;
-                axis2_char_t *key = NULL;
+                axis2_char_t *pkey = NULL;
 
-                axutil_hash_this(index, &k, NULL, &v);
-                key = (axis2_char_t *) k;
+                axutil_hash_this(idx, &k, NULL, &v);
+                pkey = (axis2_char_t *) k;
                 property = (axutil_property_t *) v;
-                temp_property = axis2_msg_ctx_get_property(msg_ctx, env, key);
+                temp_property = axis2_msg_ctx_get_property(msg_ctx, env, pkey);
                 if(temp_property)
                 {
                     axutil_property_free(temp_property, env);
                 }
 
-                axis2_msg_ctx_set_property(msg_ctx, env, key, property);
+                axis2_msg_ctx_set_property(msg_ctx, env, pkey, property);
             }
 
             axutil_hash_free(map, env);
@@ -700,7 +700,6 @@ sandesha2_permanent_storage_mgr_get_msg_store_bean (
         if(in_msg_ctx)
         {
             axis2_char_t *in_msg_store_key = NULL;
-            axis2_bool_t insert = AXIS2_FALSE;
 
             property = axis2_msg_ctx_get_property(msg_ctx, env, SANDESHA2_IN_MESSAGE_STORAGE_KEY);
             if(property)
@@ -710,7 +709,6 @@ sandesha2_permanent_storage_mgr_get_msg_store_bean (
             if(!in_msg_store_key)
             {
                 in_msg_store_key = (axis2_char_t *) axutil_uuid_gen(env);
-                insert = AXIS2_TRUE;
             }
 
             /*if(insert)
@@ -735,7 +733,7 @@ sandesha2_permanent_storage_mgr_get_property_string(
 {
     axis2_char_t *prop_str = "";
     axutil_property_t *property = NULL;
-    axutil_hash_index_t *index = NULL;
+    axutil_hash_index_t *idx;
 	axutil_hash_t *properties = NULL;
 
     prop_str = axutil_strcat(env, "temp_key", SANDESHA2_PERSISTANT_PROPERTY_SEPERATOR, "temp_value", 
@@ -769,14 +767,14 @@ sandesha2_permanent_storage_mgr_get_property_string(
         }
     }
 
-    for (index = axutil_hash_first(properties, env); index; index = axutil_hash_next(env, index))
+    for (idx = axutil_hash_first(properties, env); idx; idx = axutil_hash_next(env, idx))
     {
         axis2_char_t *temp_str = NULL;
         void *v = NULL;
         const void *k = NULL;
         axis2_char_t *key = NULL;
         axis2_char_t *value = NULL;
-        axutil_hash_this(index, &k, NULL, &v);
+        axutil_hash_this(idx, &k, NULL, &v);
         key = (axis2_char_t *) k;
 
         if(!axutil_strcmp(AXIS2_HTTP_OUT_TRANSPORT_INFO, key))
@@ -864,12 +862,12 @@ sandesha2_permanent_storage_mgr_get_property_map_from_string(
 
         if(values)
         {
-            int i = 0, size = 0;
+            int j = 0, list_size = 0;
 
-            size = axutil_array_list_size(values, env);
-            for(i = 0; i < size; i++)
+            list_size = axutil_array_list_size(values, env);
+            for(i = 0; j < list_size; j++)
             {
-                axis2_char_t *value = axutil_array_list_get(values, env, i);
+                value = axutil_array_list_get(values, env, j);
                 AXIS2_FREE(env->allocator, value);
             }
 
@@ -882,7 +880,7 @@ sandesha2_permanent_storage_mgr_get_property_map_from_string(
     {
         axutil_property_t *property = NULL;
         axis2_char_t *key = axutil_array_list_get(values, env, i);
-        axis2_char_t *value = axutil_array_list_get(values, env, i+1);
+        value = axutil_array_list_get(values, env, i+1);
 
         property = axutil_hash_get(map, key, AXIS2_HASH_KEY_STRING);
         if(property)
@@ -974,7 +972,7 @@ sandesha2_permanent_storage_mgr_retrieve_response(
         return NULL;
     }
     reader = axiom_xml_reader_create_for_memory(env, response->response_str, 
-        axutil_strlen(response->response_str), NULL, AXIS2_XML_PARSER_TYPE_BUFFER);
+        (int)axutil_strlen(response->response_str), NULL, AXIS2_XML_PARSER_TYPE_BUFFER);
     om_builder = axiom_stax_builder_create(env, reader);
     soap_version = response->soap_version;
     if(SANDESHA2_SOAP_VERSION_1_1 == soap_version)
@@ -1041,11 +1039,16 @@ sandesha2_permanent_storage_mgr_create_db(
 
     #if !defined(WIN32)
     {
-        int ret = -1;
+        int ret;
 
         axis2_char_t permission_str[256];
         sprintf(permission_str, "chmod 777 %s", dbname); 
         ret = system(permission_str);
+	if (ret == -1)
+	{
+		AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "[sandesha2] Cannot change state for dbname: %s", dbname);
+		return AXIS2_FAILURE;
+	}
     }
     #endif
 

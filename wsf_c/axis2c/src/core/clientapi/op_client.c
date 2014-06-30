@@ -166,6 +166,7 @@ axis2_op_client_get_options(
     const axutil_env_t * env)
 {
     return op_client->options;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -348,6 +349,7 @@ axis2_op_client_get_callback(
     const axutil_env_t * env)
 {
     return op_client->callback;
+    (void)env;
 }
 
 /* This function is called from service client irrespective of the message exchange pattern 
@@ -432,11 +434,11 @@ axis2_op_client_execute(
     transport_in = axis2_options_get_transport_in(op_client->options, env);
     if(!transport_in)
     {
-        axis2_conf_ctx_t *conf_ctx = axis2_svc_ctx_get_conf_ctx(op_client->svc_ctx, env);
+        axis2_conf_ctx_t *cfg_ctx = axis2_svc_ctx_get_conf_ctx(op_client->svc_ctx, env);
 
-        if(conf_ctx)
+        if(cfg_ctx)
         {
-            axis2_conf_t *conf = axis2_conf_ctx_get_conf(conf_ctx, env);
+            axis2_conf_t *conf = axis2_conf_ctx_get_conf(cfg_ctx, env);
             if(conf)
             {
                 transport_in = axis2_conf_get_transport_in(conf, env,
@@ -602,6 +604,7 @@ axis2_op_client_reset(
     op_client->op_ctx = NULL;
 
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -623,6 +626,7 @@ axis2_op_client_complete(
         return AXIS2_FAILURE;
 
     return axis2_listener_manager_stop(listener_manager, env, transport);
+    (void)op_client;
 }
 
 AXIS2_EXTERN axis2_op_ctx_t *AXIS2_CALL
@@ -631,6 +635,7 @@ axis2_op_client_get_operation_context(
     const axutil_env_t * env)
 {
     return op_client->op_ctx;
+    (void)env;
 }
 
 AXIS2_EXTERN void AXIS2_CALL
@@ -744,6 +749,7 @@ axis2_op_client_set_callback_recv(
 {
     op_client->callback_recv = callback_recv;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axutil_string_t *AXIS2_CALL
@@ -752,6 +758,7 @@ axis2_op_client_get_soap_action(
     const axutil_env_t * env)
 {
     return op_client->soap_action;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1093,7 +1100,7 @@ axis2_op_client_get_transport_from_url(
     if((*end) == ':')
     {
         const axis2_char_t *c = NULL;
-        transport = AXIS2_MALLOC(env->allocator, (end - start + 1) * sizeof(char));
+        transport = AXIS2_MALLOC(env->allocator, (size_t)(end - start + 1) * sizeof(char));
         if(!transport)
         {
             AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
@@ -1120,6 +1127,7 @@ axis2_op_client_get_svc_ctx(
     const axutil_env_t * env)
 {
     return op_client->svc_ctx;
+    (void)env;
 }
 
 /* This function is called only for single channel invocations */
@@ -1135,7 +1143,7 @@ axis2_op_client_two_way_send(
     axis2_op_t *op = NULL;
     axiom_soap_envelope_t *response_envelope = NULL;
     axutil_property_t *property = NULL;
-    long index = -1;
+    long idx = -1;
     axis2_bool_t wait_indefinitely = AXIS2_FALSE;
     axis2_char_t *mep = NULL;
 
@@ -1148,11 +1156,11 @@ axis2_op_client_two_way_send(
     {
         axis2_char_t *value = axutil_property_get_value(property, env);
         if(value)
-            index = AXIS2_ATOI(value);
-        if(index == -1)
+            idx = AXIS2_ATOI(value);
+        if(idx == -1)
         {
             wait_indefinitely = AXIS2_TRUE;
-            index = 1;
+            idx = 1;
         }
     }
 
@@ -1254,12 +1262,12 @@ axis2_op_client_two_way_send(
     }
     else
     {
-        while(!response_envelope && index > 0)
+        while(!response_envelope && idx > 0)
         {
             /*wait till the response arrives */
             AXIS2_SLEEP(1);
             if(!wait_indefinitely)
-                index--;
+                idx--;
             response_envelope = axis2_msg_ctx_get_response_soap_envelope(msg_ctx, env);
         }
         /* if it is a two way message, then the status should be in error,
@@ -1450,4 +1458,5 @@ axis2_op_client_set_reuse(
     axis2_bool_t reuse)
 {
     op_client->reuse = reuse;
+    (void)env;
 }

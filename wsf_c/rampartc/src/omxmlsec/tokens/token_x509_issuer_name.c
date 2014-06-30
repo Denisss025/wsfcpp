@@ -40,7 +40,6 @@ oxs_token_build_issuer_name_element(
 {
     axiom_node_t *issuer_name_node = NULL;
     axiom_element_t *issuer_name_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_DSIG_NS, OXS_DS);
@@ -56,7 +55,7 @@ oxs_token_build_issuer_name_element(
 
     if (value)
     {
-        ret  = axiom_element_set_text(issuer_name_ele, env, value, issuer_name_node);
+         axiom_element_set_text(issuer_name_ele, env, value, issuer_name_node);
     }
 
     return issuer_name_node;

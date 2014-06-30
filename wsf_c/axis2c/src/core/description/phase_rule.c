@@ -73,6 +73,7 @@ axis2_phase_rule_get_before(
     const axis2_phase_rule_t * phase_rule,
     const axutil_env_t * env)
 {
+    (void)env;
     return phase_rule->before;
 }
 
@@ -106,6 +107,7 @@ axis2_phase_rule_get_after(
     const axis2_phase_rule_t * phase_rule,
     const axutil_env_t * env)
 {
+    (void)env;
     return phase_rule->after;
 }
 
@@ -139,6 +141,7 @@ axis2_phase_rule_get_name(
     const axis2_phase_rule_t * phase_rule,
     const axutil_env_t * env)
 {
+    (void)env;
     return phase_rule->name;
 }
 
@@ -172,6 +175,7 @@ axis2_phase_rule_is_first(
     const axis2_phase_rule_t * phase_rule,
     const axutil_env_t * env)
 {
+    (void)env;
     return phase_rule->first;
 }
 
@@ -181,6 +185,7 @@ axis2_phase_rule_set_first(
     const axutil_env_t * env,
     axis2_bool_t first)
 {
+    (void)env;
     phase_rule->first = first;
     return AXIS2_SUCCESS;
 }
@@ -190,6 +195,7 @@ axis2_phase_rule_is_last(
     const axis2_phase_rule_t * phase_rule,
     const axutil_env_t * env)
 {
+    (void)env;
     return phase_rule->last;
 }
 
@@ -201,6 +207,7 @@ axis2_phase_rule_set_last(
 {
     phase_rule->last = last;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 void AXIS2_CALL

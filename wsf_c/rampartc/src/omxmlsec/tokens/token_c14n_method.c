@@ -30,7 +30,6 @@ oxs_token_build_c14n_method_element(
     axiom_node_t *c14n_method_node = NULL;
     axiom_element_t *c14n_method_ele = NULL;
     axiom_attribute_t *algo_attr = NULL;
-    int ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_DSIG_NS, OXS_DS);
@@ -52,7 +51,7 @@ oxs_token_build_c14n_method_element(
     }
 
     algo_attr =  axiom_attribute_create(env, OXS_ATTR_ALGORITHM, algorithm, NULL);
-    ret = axiom_element_add_attribute(c14n_method_ele, env, algo_attr, c14n_method_node);
+    axiom_element_add_attribute(c14n_method_ele, env, algo_attr, c14n_method_node);
     return c14n_method_node;
 }
 

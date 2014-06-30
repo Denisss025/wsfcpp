@@ -50,7 +50,7 @@ rp_header_free(
     rp_header_t * header,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(header)
     {

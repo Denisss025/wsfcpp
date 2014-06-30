@@ -136,6 +136,8 @@ axutil_dll_desc_get_name(
     axutil_dll_desc_t *dll_desc,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, NULL);
     return dll_desc->path_qualified_dll_name;
 }
 
@@ -146,6 +148,7 @@ axutil_dll_desc_set_load_options(
     int options)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, AXIS2_FAILURE);
 
     dll_desc->load_options = options;
     return AXIS2_SUCCESS;
@@ -158,6 +161,7 @@ axutil_dll_desc_set_type(
     axis2_dll_type_t type)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, AXIS2_FAILURE);
 
     dll_desc->dll_type = type;
     return AXIS2_SUCCESS;
@@ -168,6 +172,7 @@ axutil_dll_desc_get_type(
     axutil_dll_desc_t *dll_desc,
     const axutil_env_t *env)
 {
+    (void)env;
     return dll_desc->dll_type;
 }
 
@@ -176,6 +181,8 @@ axutil_dll_desc_get_load_options(
     axutil_dll_desc_t *dll_desc,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, -1);
     return dll_desc->load_options;
 }
 
@@ -201,6 +208,8 @@ axutil_dll_desc_get_dl_handler(
     axutil_dll_desc_t *dll_desc,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, (AXIS2_DLHANDLER)-1);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, (AXIS2_DLHANDLER)-1);
     return dll_desc->dl_handler;
 }
 
@@ -220,6 +229,8 @@ axutil_dll_desc_get_create_funct(
     axutil_dll_desc_t *dll_desc,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, NULL);
     return dll_desc->create_funct;
 }
 
@@ -240,6 +251,8 @@ axutil_dll_desc_get_delete_funct(
     axutil_dll_desc_t *dll_desc,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, NULL);
     return dll_desc->delete_funct;
 }
 
@@ -250,6 +263,7 @@ axutil_dll_desc_set_timestamp(
     AXIS2_TIME_T timestamp)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, AXIS2_FAILURE);
     dll_desc->timestamp = timestamp;
     return AXIS2_SUCCESS;
 }
@@ -259,6 +273,8 @@ axutil_dll_desc_get_timestamp(
     axutil_dll_desc_t *dll_desc,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, -1);
     return dll_desc->timestamp;
 }
 
@@ -280,6 +296,8 @@ axutil_dll_desc_get_error_code(
     axutil_dll_desc_t *dll_desc,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, dll_desc, -1);
     return dll_desc->error_code;
 }
 

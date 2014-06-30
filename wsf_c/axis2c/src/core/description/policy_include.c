@@ -185,6 +185,7 @@ axis2_policy_include_get_registry(
     axis2_policy_include_t * policy_include,
     const axutil_env_t * env)
 {
+    (void)env;
     return policy_include->registry;
 }
 
@@ -272,6 +273,7 @@ axis2_policy_include_set_effective_policy(
     const axutil_env_t * env,
     neethi_policy_t * effective_policy)
 {
+    (void)env;
     policy_include->effective_policy = effective_policy;
     return AXIS2_SUCCESS;
 }
@@ -282,6 +284,7 @@ axis2_policy_include_set_desc(
     const axutil_env_t * env,
     axis2_desc_t * desc)
 {
+    (void)env;
     policy_include->desc = desc;
     return AXIS2_SUCCESS;
 }
@@ -291,6 +294,7 @@ axis2_policy_include_get_desc(
     axis2_policy_include_t * policy_include,
     const axutil_env_t * env)
 {
+    (void)env;
     return policy_include->desc;
 }
 
@@ -299,6 +303,7 @@ axis2_policy_include_get_parent(
     axis2_policy_include_t * policy_include,
     const axutil_env_t * env)
 {
+    (void)env;
     if(policy_include->desc)
     {
         axis2_desc_t *parent = NULL;

@@ -64,6 +64,7 @@ neethi_reference_get_uri(
     neethi_reference_t *neethi_reference,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_reference->uri;
 }
 
@@ -73,6 +74,7 @@ neethi_reference_set_uri(
     const axutil_env_t *env,
     axis2_char_t *uri)
 {
+    (void)env;
     neethi_reference->uri = uri;
     return AXIS2_SUCCESS;
 }

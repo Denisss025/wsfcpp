@@ -54,7 +54,7 @@ rp_https_token_free(
     rp_https_token_t * https_token,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(https_token)
     {

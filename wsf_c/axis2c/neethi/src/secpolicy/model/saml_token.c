@@ -73,6 +73,7 @@ rp_saml_token_get_inclusion(
     rp_saml_token_t *saml_token,
     const axutil_env_t *env)
 {
+    (void)env;
     return saml_token->inclusion;
 }
 
@@ -93,6 +94,7 @@ rp_saml_token_get_derivedkeys(
     rp_saml_token_t *saml_token,
     const axutil_env_t *env)
 {
+    (void)env;
     return saml_token->derivedkeys;
 }
 
@@ -113,6 +115,7 @@ rp_saml_token_get_require_key_identifier_reference(
     rp_saml_token_t * saml_token,
     const axutil_env_t * env)
 {
+    (void)env;
     return saml_token->require_key_identifier_reference;
 }
 
@@ -133,6 +136,7 @@ rp_saml_token_get_token_version_and_type(
     rp_saml_token_t * saml_token,
     const axutil_env_t * env)
 {
+    (void)env;
     return saml_token->token_version_and_type;
 }
 

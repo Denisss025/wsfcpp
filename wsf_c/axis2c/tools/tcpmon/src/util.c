@@ -55,7 +55,6 @@ tcpmon_util_format_as_xml(
         int c;
         int tab_pos = 0;
         int has_value = 0;
-        int has_space = 0;
         int start_ele = 0;
         int prev_case = 0;
         int buffer_size = 0;
@@ -66,7 +65,7 @@ tcpmon_util_format_as_xml(
 
         buffer_size = 2 * ((int)strlen(data));
         /* We are sure that the difference lies within the int range */
-        out = AXIS2_MALLOC(env->allocator, buffer_size * sizeof(axis2_char_t));
+        out = AXIS2_MALLOC(env->allocator, (size_t)buffer_size * sizeof(axis2_char_t));
 
         if (data)
         {
@@ -145,7 +144,6 @@ tcpmon_util_format_as_xml(
                     prev_case = START_ELEMENT;
 
                     has_value = 0;
-                    has_space = 0;
 
                     if (start_ele != 0)
                         tcpmon_util_strcat(out, "\n", &buffer_size, env);
@@ -257,7 +255,6 @@ tcpmon_util_format_as_xml(
                     prev_case = EMPTY_ELEMENT;
 
                     has_value = 0;
-                    has_space = 0;
 
                     if (start_ele != 0)
                         tcpmon_util_strcat(out, "\n", &buffer_size, env);
@@ -472,7 +469,7 @@ tcpmon_util_strcat(
         *buff_size = *buff_size + (*buff_size * 2);
         tmp =
             (axis2_char_t *) AXIS2_REALLOC(env->allocator, dest,
-                                           *buff_size * sizeof(axis2_char_t));
+                                           (size_t)*buff_size * sizeof(axis2_char_t));
         dest = tmp;
         strcat((char *) dest, (char *) source);
     }
@@ -494,10 +491,10 @@ tcpmon_util_str_replace(
     char *str_return = NULL;
     char *str_tmp = NULL;
     char *str_relic = NULL;
-    int size = ((int)strlen(str)) * 2;
+    size_t size = strlen(str) * 2;
     /* We are sure that the difference lies within the int range */
-    int addmem = size;
-    int diff = (int)(strlen(replace) - strlen(search));
+    size_t addmem = size;
+    int diff = (int)strlen(replace) - (int)strlen(search);
     /* We are sure that the difference lies within the int range */
 
     str_return = (char *) AXIS2_MALLOC(env->allocator, ((size + 1) * sizeof(char)));
@@ -525,7 +522,7 @@ tcpmon_util_str_replace(
 
     while ((str_relic = strstr(str_return, search)) != NULL)
     {
-        if ((int)strlen(str_return) + diff >= addmem)
+        if ((size_t)((int)strlen(str_return) + diff) >= addmem)
             /* We are sure that the difference lies within the int range */
         {
             str_return = (char *) realloc(str_return, addmem += size);
@@ -564,15 +561,14 @@ tcpmon_util_read_current_stream(
     axis2_char_t ** header,
     axis2_char_t ** data)
 {
-    int read_size = 0;
+    size_t read_size = 0;
     axis2_char_t *buffer = NULL;
     axis2_char_t *header_ptr = NULL;
     axis2_char_t *body_ptr = NULL;
-    int header_found = 0;
+    unsigned header_found = 0;
     int header_just_finished = 0;
-    int read = 0;
-    int header_width = 0;
-    int current_line_offset = 0;
+    size_t header_width = 0;
+    size_t current_line_offset = 0;
     int mtom_optimized = 0;
     axis2_char_t *current_line = NULL;
     int line_just_ended = 1;
@@ -590,7 +586,7 @@ tcpmon_util_read_current_stream(
         buffer = AXIS2_REALLOC(env->allocator, buffer,
                                sizeof(axis2_char_t) * (read_size + 1));
         *(buffer + read_size) = '\0';
-        read = axutil_stream_read(stream, env, buffer + read_size, 1);
+        axutil_stream_read(stream, env, buffer + read_size, 1);
 
         if (header_just_finished)
         {
@@ -727,16 +723,18 @@ tcpmon_util_read_current_stream(
         {
             if (mtom_optimized)
             {
-                int count = read_size - (int)strlen(header_ptr) - 4;
-                int copied = 0;
-                int plen = 0;
+                size_t count = strlen(header_ptr) + 4;
+		if (count >= read_size) return NULL;
+		count = read_size - count;
+                size_t copied = 0;
+                size_t plen = 0;
                 axis2_char_t *temp = NULL;
                 temp = AXIS2_MALLOC(env->allocator,
                               sizeof(axis2_char_t) * count + 1);
                 while(count > copied)
                 {
                     plen = 0;
-                    plen = ((int)strlen(body_ptr) + 1);
+                    plen = strlen(body_ptr) + 1;
                     if (plen != 1)
                     {
                         sprintf(temp, "%s", body_ptr);
@@ -783,7 +781,7 @@ tcpmon_util_read_current_stream(
     }
 
     *header = header_ptr;
-    *stream_size = read_size;
+    *stream_size = (int)read_size;
     return buffer;
 }
 

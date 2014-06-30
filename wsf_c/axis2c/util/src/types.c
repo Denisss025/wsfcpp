@@ -54,11 +54,12 @@ axutil_strtoul(
 {
     int i;
     uint64_t n;
+    (void)base;
 
     n = 0;
     for(i = 0; s[i] >= '0' && s[i] <= '9'; ++i)
     {
-        n = 10 * n + (s[i] - '0');
+        n = 10 * n + (uint64_t)(s[i] - '0');
     }
     if(endptr != NULL)
     {
@@ -75,6 +76,7 @@ axutil_strtol(
 {
     int i;
     int64_t n;
+    (void)base;
 
     n = 0;
     for(i = 0; s[i] >= '0' && s[i] <= '9'; ++i)

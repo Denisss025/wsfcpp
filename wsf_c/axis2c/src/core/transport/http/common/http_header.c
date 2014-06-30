@@ -62,7 +62,7 @@ axis2_http_header_create_by_str(
     axis2_char_t *ch = NULL;
     axis2_char_t *ch2 = NULL;
     axis2_http_header_t *ret = NULL;
-    int tmp_str_len = 0;
+    axis2_ssize_t tmp_str_len = 0;
     AXIS2_PARAM_CHECK(env->error, str, NULL);
 
     /*

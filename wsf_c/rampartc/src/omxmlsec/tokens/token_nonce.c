@@ -39,7 +39,6 @@ oxs_token_build_nonce_element(
 {
     axiom_node_t *nonce_node = NULL;
     axiom_element_t *nonce_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     if(!wsc_ns_uri)
@@ -62,7 +61,7 @@ oxs_token_build_nonce_element(
 
     if (nonce_val)
     {
-        ret  = axiom_element_set_text(nonce_ele, env, nonce_val, nonce_node);
+        axiom_element_set_text(nonce_ele, env, nonce_val, nonce_node);
     }
 
     return nonce_node;

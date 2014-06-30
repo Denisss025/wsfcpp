@@ -114,18 +114,18 @@ axis2_http_svr_thread_run(
 {
     while(AXIS2_FALSE == svr_thread->stopped)
     {
-        int socket = -1;
+        int sockt = -1;
         axis2_http_svr_thd_args_t *arg_list = NULL;
 #ifdef AXIS2_SVR_MULTI_THREADED
         axutil_thread_t *worker_thread = NULL;
 #endif
 
-        socket = (int)axutil_network_handler_svr_socket_accept(env, svr_thread-> listen_socket);
+        sockt = axutil_network_handler_svr_socket_accept(env, svr_thread-> listen_socket);
         if(!svr_thread->worker)
         {
             AXIS2_LOG_WARNING(env->log, AXIS2_LOG_SI,
                 "Worker not ready yet. Cannot serve the request");
-            axutil_network_handler_close_socket(env, socket);
+            axutil_network_handler_close_socket(env, sockt);
             continue;
         }
 
@@ -138,7 +138,7 @@ axis2_http_svr_thread_run(
         }
 
         arg_list->env = (axutil_env_t *)env;
-        arg_list->socket = socket;
+        arg_list->socket = sockt;
         arg_list->worker = svr_thread->worker;
 #ifdef AXIS2_SVR_MULTI_THREADED
         worker_thread = axutil_thread_pool_get_thread(env->thread_pool,
@@ -219,7 +219,7 @@ axis2_svr_thread_worker_func(
     axis2_http_worker_t *tmp = NULL;
     axis2_status_t status = AXIS2_FAILURE;
     axutil_env_t *env = NULL;
-    axis2_socket_t socket;
+    axis2_socket_t sockt;
     axutil_env_t *thread_env = NULL;
     axis2_http_svr_thd_args_t *arg_list = NULL;
 
@@ -243,8 +243,8 @@ axis2_svr_thread_worker_func(
         AXIS2_PLATFORM_GET_TIME_IN_MILLIS(&t1);
     }
 
-    socket = arg_list->socket;
-    svr_conn = axis2_simple_http_svr_conn_create(thread_env, (int)socket);
+    sockt = arg_list->socket;
+    svr_conn = axis2_simple_http_svr_conn_create(thread_env, sockt);
     if(!svr_conn)
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "creating simple_http_svr_connection failed");

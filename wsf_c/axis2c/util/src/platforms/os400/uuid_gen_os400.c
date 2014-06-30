@@ -42,8 +42,8 @@ axutil_uuid_gen_v1()
 {
     struct timeval time_now;
     struct timeval tv;
-    unsigned long long time_val;
-    unsigned long long time_val2;
+    unsigned long time_val;
+    unsigned long time_val2;
     unsigned short int clck = 0;
     axutil_uuid_t *ret_uuid = NULL;
     unsigned short int time_high_version = 0;
@@ -87,8 +87,8 @@ axutil_uuid_gen_v1()
        Hence commenting out. I am not sure why this is required. - Samisa.    
        select(0, NULL, NULL, NULL, &tv); */
 
-    time_val = (unsigned long long) time_now.tv_sec * 10000000ull;
-    time_val += (unsigned long long) time_now.tv_usec * 10ull;
+    time_val = (unsigned long) time_now.tv_sec * 10000000ull;
+    time_val += (unsigned long) time_now.tv_usec * 10ull;
 
     ret_uuid = malloc(sizeof(axutil_uuid_t));
 
@@ -96,7 +96,7 @@ axutil_uuid_gen_v1()
     /* compensate for low resolution system clock by adding
        the time/tick sequence counter */
     if (axutil_uuid_static.time_seq > 0)
-        time_val += (unsigned long long) axutil_uuid_static.time_seq;
+        time_val += (unsigned long) axutil_uuid_static.time_seq;
 
     time_val2 = time_val;
     ret_uuid->time_low = (unsigned long) time_val2;

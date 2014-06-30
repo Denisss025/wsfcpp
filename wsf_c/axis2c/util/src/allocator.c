@@ -96,6 +96,7 @@ axutil_allocator_malloc_impl(
     axutil_allocator_t * allocator,
     size_t size)
 {
+    (void)allocator;
     return malloc(size);
 }
 
@@ -105,6 +106,7 @@ axutil_allocator_realloc_impl(
     void *ptr,
     size_t size)
 {
+    (void)allocator;
     return realloc(ptr, size);
 }
 
@@ -113,6 +115,7 @@ axutil_allocator_free_impl(
     axutil_allocator_t * allocator,
     void *ptr)
 {
+    (void)allocator;
     free(ptr);
 }
 

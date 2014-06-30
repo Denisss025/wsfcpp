@@ -72,6 +72,7 @@ axis2_async_result_get_result(
     const axutil_env_t * env)
 {
     return async_result->result;
+    (void)env;
 }
 
 AXIS2_EXTERN void AXIS2_CALL

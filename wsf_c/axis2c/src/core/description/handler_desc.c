@@ -96,6 +96,7 @@ axis2_handler_desc_get_name(
     const axutil_env_t * env)
 {
     return handler_desc->name;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -124,6 +125,7 @@ axis2_handler_desc_get_rules(
     const axutil_env_t * env)
 {
     return handler_desc->rules;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -160,6 +162,7 @@ axis2_handler_desc_get_param(
     const axis2_char_t * name)
 {
     return axutil_param_container_get_param(handler_desc->param_container, env, name);
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -211,6 +214,7 @@ axis2_handler_desc_get_handler(
     const axutil_env_t * env)
 {
     return handler_desc->handler;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -240,6 +244,7 @@ axis2_handler_desc_get_class_name(
     const axutil_env_t * env)
 {
     return handler_desc->class_name;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -273,6 +278,7 @@ axis2_handler_desc_get_parent(
     const axutil_env_t * env)
 {
     return handler_desc->parent;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -284,6 +290,7 @@ axis2_handler_desc_set_parent(
     handler_desc->parent = parent; /* Shallow copy, because
      the parent lives somewhere else */
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN void AXIS2_CALL
@@ -329,5 +336,6 @@ axis2_handler_desc_get_param_container(
     const axutil_env_t * env)
 {
     return handler_desc->param_container;
+    (void)env;
 }
 

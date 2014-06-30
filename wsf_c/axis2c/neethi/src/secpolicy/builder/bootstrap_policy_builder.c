@@ -32,6 +32,7 @@ rp_bootstrap_policy_builder_build(
     axiom_node_t *child_node = NULL;
     axiom_element_t *child_element = NULL;
     neethi_assertion_t *assertion = NULL;
+    (void)element;
 
     child_node = axiom_node_get_first_element(node, env);
     if(!child_node)

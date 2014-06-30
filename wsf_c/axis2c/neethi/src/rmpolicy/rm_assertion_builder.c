@@ -118,7 +118,7 @@ axis2_rm_assertion_builder_build(
             axiom_node_t *node = NULL;
             axiom_element_t *ele = NULL;
             axis2_char_t *local_name = NULL;
-            axutil_qname_t *node_qname = NULL;
+            axutil_qname_t *node_qn = NULL;
 
             node = axiom_children_iterator_next(children_iter, env);
             if(node)
@@ -126,14 +126,14 @@ axis2_rm_assertion_builder_build(
                 if(axiom_node_get_node_type(node, env) == AXIOM_ELEMENT)
                 {
                     ele = (axiom_element_t *)axiom_node_get_data_element(node, env);
-                    node_qname = axiom_element_get_qname(ele, env, node);
-                    if(!node_qname)
+                    node_qn = axiom_element_get_qname(ele, env, node);
+                    if(!node_qn)
                     {
                         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
                             "[neethi] Cannot get qname from element %s.", local_name);
                         return NULL;
                     }
-                    ns = axutil_qname_get_uri(node_qname, env);
+                    ns = axutil_qname_get_uri(node_qn, env);
                     if(!ns)
                     {
                         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
@@ -303,6 +303,7 @@ axis2_rm_assertion_builder_populate_for_11(
     axis2_status_t status = AXIS2_FAILURE;
     axiom_node_t *child_node = NULL;
     axiom_element_t *child_element = NULL;
+    (void)rm_assertion_element;
     
     status = axis2_rm_assertion_set_spec_version(rm_assertion, env, RM_SPEC_VERSION_1_1);
 
@@ -400,6 +401,7 @@ axis2_rm_assertion_builder_process_delivery_assuarance(
     axis2_status_t status = AXIS2_FAILURE;
     axiom_node_t *child_node = NULL;
     axiom_element_t *child_element = NULL;
+    (void)da_element;
 
     child_node = axiom_node_get_first_element(da_node, env);
     if(child_node)

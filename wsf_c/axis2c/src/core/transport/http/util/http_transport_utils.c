@@ -444,7 +444,7 @@ axis2_http_transport_utils_process_http_post_request(
         if(mime_boundary)
         {
             /*axiom_mime_parser_t *mime_parser = NULL;*/
-            int soap_body_len = 0;
+            size_t soap_body_len;
             axutil_param_t *buffer_size_param = NULL;
             axutil_param_t *max_buffers_param = NULL;
             axutil_param_t *attachment_dir_param = NULL;
@@ -544,7 +544,7 @@ axis2_http_transport_utils_process_http_post_request(
                     return AXIS2_FAILURE;
                 }
             }
-            soap_body_len = (int)axiom_mime_parser_get_soap_body_len(mime_parser, env);
+            soap_body_len = axiom_mime_parser_get_soap_body_len(mime_parser, env);
             soap_body_str = axiom_mime_parser_get_soap_body_str(mime_parser, env);
 
             if(!is_svc_callback)
@@ -574,8 +574,8 @@ axis2_http_transport_utils_process_http_post_request(
                 axutil_stream_write(stream, env, soap_body_str, soap_body_len);
                 callback_ctx->in_stream = stream;
                 callback_ctx->chunked_stream = NULL;
-                callback_ctx->content_length = soap_body_len;
-                callback_ctx->unread_len = soap_body_len;
+                callback_ctx->content_length = (int)soap_body_len;
+                callback_ctx->unread_len = (int)soap_body_len;
             }
             /*axiom_mime_parser_free(mime_parser, env);
              mime_parser = NULL;*/
@@ -730,7 +730,7 @@ axis2_http_transport_utils_process_http_post_request(
 		root_node = axiom_document_get_root_element(om_doc, env);
 		if (!root_node)
 		{
-			axiom_soap_envelope_free(env, soap_envelope);
+			axiom_soap_envelope_free(soap_envelope, env);
 			return AXIS2_FAILURE;
 		}
                 root_node = axiom_document_build_all(om_doc, env);
@@ -754,15 +754,15 @@ axis2_http_transport_utils_process_http_post_request(
     {
         axis2_char_t *buffer = NULL;
         axis2_char_t *new_url = NULL;
-        buffer = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * (content_length + 1));
+        buffer = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * ((size_t)content_length + 1));
         if(!buffer)
         {
             return AXIS2_FAILURE;
         }
         axis2_http_transport_utils_on_data_request(buffer, content_length, (void *)callback_ctx);
 
-        new_url = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * ((int)(strlen(request_uri)
-            + strlen(buffer)) + 2));
+        new_url = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * (strlen(request_uri)
+            + strlen(buffer) + 2));
         if(!new_url)
         {
             return AXIS2_FAILURE;
@@ -1046,7 +1046,7 @@ axis2_http_transport_utils_process_http_put_request(
             stream = axutil_stream_create_basic(env);
             if(stream)
             {
-                axutil_stream_write(stream, env, soap_body_str, soap_body_len);
+                axutil_stream_write(stream, env, soap_body_str, (size_t)soap_body_len);
                 callback_ctx->in_stream = stream;
                 callback_ctx->chunked_stream = NULL;
                 callback_ctx->content_length = soap_body_len;
@@ -1147,7 +1147,7 @@ axis2_http_transport_utils_process_http_put_request(
 		root_node = axiom_document_get_root_element(om_doc, env);
 		if (!root_node)
 		{
-			axiom_soap_envelope_free(env, soap_envelope);
+			axiom_soap_envelope_free(soap_envelope, env);
 			return AXIS2_FAILURE;
 		}
                 root_node = axiom_document_build_all(om_doc, env);
@@ -1171,15 +1171,15 @@ axis2_http_transport_utils_process_http_put_request(
     {
         axis2_char_t *buffer = NULL;
         axis2_char_t *new_url = NULL;
-        buffer = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * (content_length + 1));
+        buffer = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * ((size_t)content_length + 1));
         if(!buffer)
         {
             return AXIS2_FAILURE;
         }
         axis2_http_transport_utils_on_data_request(buffer, content_length, (void *)callback_ctx);
 
-        new_url = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * ((int)(strlen(request_uri)
-            + strlen(buffer)) + 2));
+        new_url = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * (strlen(request_uri)
+            + strlen(buffer) + 2));
         if(!new_url)
         {
             return AXIS2_FAILURE;
@@ -1812,7 +1812,7 @@ axis2_http_transport_utils_get_services_static_wsdl(
     axis2_char_t *wsdl_string = NULL;
     axis2_char_t *wsdl_path = NULL;
     axis2_char_t **url_tok = NULL;
-    unsigned int len = 0;
+    size_t len = 0;
     axis2_char_t *svc_name = NULL;
     axis2_conf_t *conf = NULL;
     axutil_hash_t *services_map = NULL;
@@ -1824,7 +1824,7 @@ axis2_http_transport_utils_get_services_static_wsdl(
     url_tok = axutil_parse_request_url_for_svc_and_op(env, request_url);
     if(url_tok[0])
     {
-        len = (int)strlen(url_tok[0]);
+        len = strlen(url_tok[0]);
         /* We are sure that the difference lies within the int range */
         url_tok[0][len - 5] = 0;
         svc_name = url_tok[0];
@@ -1867,9 +1867,9 @@ axis2_http_transport_utils_get_services_static_wsdl(
         FILE *wsdl_file = NULL;
         axis2_char_t *content = NULL;
         int c;
-        int size = AXIS2_FILE_READ_SIZE;
+        size_t size = AXIS2_FILE_READ_SIZE;
         axis2_char_t *tmp;
-        int i = 0;
+        size_t i = 0;
 
         content = (axis2_char_t *)AXIS2_MALLOC(env->allocator, size);
         wsdl_file = fopen(wsdl_path, "r");
@@ -2015,7 +2015,7 @@ axis2_http_transport_utils_on_data_request(
     {
         --size;
         /* reserve space to insert trailing null */
-        len = axutil_http_chunked_stream_read(cb_ctx->chunked_stream, env, buffer, size);
+        len = axutil_http_chunked_stream_read(cb_ctx->chunked_stream, env, buffer, (size_t)size);
         if(len >= 0)
         {
             buffer[len] = AXIS2_ESC_NULL;
@@ -2026,7 +2026,7 @@ axis2_http_transport_utils_on_data_request(
         axutil_stream_t *in_stream = NULL;
         in_stream = (axutil_stream_t *)((axis2_callback_info_t *)ctx)->in_stream;
         --size; /* reserve space to insert trailing null */
-        len = axutil_stream_read(in_stream, env, buffer, size);
+        len = axutil_stream_read(in_stream, env, buffer, (size_t)size);
         if(len > 0)
         {
             buffer[len] = AXIS2_ESC_NULL;
@@ -2149,7 +2149,7 @@ axis2_http_transport_utils_create_soap_msg(
         if(mime_boundary)
         {
             axiom_mime_parser_t *mime_parser = NULL;
-            int soap_body_len = 0;
+            size_t soap_body_len = 0;
             axis2_char_t *soap_body_str = NULL;
             axutil_param_t *buffer_size_param = NULL;
             axutil_param_t *max_buffers_param = NULL;
@@ -2232,7 +2232,7 @@ axis2_http_transport_utils_create_soap_msg(
                     return NULL;
                 }
 
-                soap_body_len = (int)axiom_mime_parser_get_soap_body_len(mime_parser, env);
+                soap_body_len = axiom_mime_parser_get_soap_body_len(mime_parser, env);
                 soap_body_str = axiom_mime_parser_get_soap_body_str(mime_parser, env);
             }
 
@@ -2248,8 +2248,8 @@ axis2_http_transport_utils_create_soap_msg(
                 axutil_stream_write(stream, env, soap_body_str, soap_body_len);
                 callback_ctx->in_stream = stream;
                 callback_ctx->chunked_stream = NULL;
-                callback_ctx->content_length = soap_body_len;
-                callback_ctx->unread_len = soap_body_len;
+                callback_ctx->content_length = (int)soap_body_len;
+                callback_ctx->unread_len = (int)soap_body_len;
             }
 
             axiom_mime_parser_free(mime_parser, env);
@@ -2343,7 +2343,7 @@ axis2_http_transport_utils_create_soap_msg(
 	root_node = axiom_document_get_root_element(om_doc, env);
 	if (!root_node)
 	{
-		axiom_soap_envelope_free(env, soap_envelope);
+		axiom_soap_envelope_free(soap_envelope, env);
 		return NULL;
 	}
 	root_node = axiom_document_build_all(om_doc, env);
@@ -2867,7 +2867,7 @@ axis2_http_transport_utils_process_request(
             if(body_string)
             {
                 response->response_data = body_string;
-                response->response_data_length = axutil_strlen(body_string);
+                response->response_data_length = (int)axutil_strlen(body_string);
             }
             status = AXIS2_SUCCESS;
         }
@@ -2927,7 +2927,7 @@ axis2_http_transport_utils_process_request(
             if(body_string)
             {
                 response->response_data = body_string;
-                response->response_data_length = axutil_strlen(body_string);
+                response->response_data_length = (int)axutil_strlen(body_string);
             }
             status = AXIS2_SUCCESS;
         }
@@ -2973,7 +2973,7 @@ axis2_http_transport_utils_process_request(
 
         if (response->response_data)
         {
-            response->response_data_length = axutil_strlen(response->response_data);
+            response->response_data_length = (int)axutil_strlen(response->response_data);
         }
         response->http_status_code = AXIS2_HTTP_RESPONSE_NOT_IMPLEMENTED_CODE_VAL;
         response->http_status_code_name = AXIS2_HTTP_RESPONSE_NOT_IMPLEMENTED_CODE_NAME;
@@ -3050,7 +3050,7 @@ axis2_http_transport_utils_process_request(
                     {
                         *temp2 = '\0';
                         temp = AXIS2_MALLOC(env->allocator,
-                            sizeof(axis2_char_t) * ((int)strlen(content_type) + 3));
+                            sizeof(axis2_char_t) * (strlen(content_type) + 3));
                         if (!temp)
                         {
                             AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
@@ -3065,7 +3065,7 @@ axis2_http_transport_utils_process_request(
                             response->content_type = AXIS2_HTTP_HEADER_ACCEPT_TEXT_HTML;
                             if (response->response_data)
                             {
-                                response->response_data_length = axutil_strlen(response->response_data);
+                                response->response_data_length = (int)axutil_strlen(response->response_data);
                             }
                             response->http_status_code = AXIS2_HTTP_RESPONSE_NOT_ACCEPTABLE_CODE_VAL;
                             response->http_status_code_name = AXIS2_HTTP_RESPONSE_NOT_IMPLEMENTED_CODE_NAME;
@@ -3087,7 +3087,7 @@ axis2_http_transport_utils_process_request(
 
                     if (response->response_data)
                     {
-                        response->response_data_length= axutil_strlen(response->response_data);
+                        response->response_data_length = (int)axutil_strlen(response->response_data);
                     }
                     status = AXIS2_SUCCESS;
                     response->http_status_code = AXIS2_HTTP_RESPONSE_NOT_ACCEPTABLE_CODE_VAL;
@@ -3108,7 +3108,7 @@ axis2_http_transport_utils_process_request(
                     response->content_type = AXIS2_HTTP_HEADER_ACCEPT_TEXT_HTML;
                     if (response->response_data)
                     {
-                        response->response_data_length = axutil_strlen(response->response_data);
+                        response->response_data_length = (int)axutil_strlen(response->response_data);
                     }
                     response->http_status_code = AXIS2_HTTP_RESPONSE_NOT_ACCEPTABLE_CODE_VAL;
                     response->http_status_code_name = AXIS2_HTTP_RESPONSE_NOT_ACCEPTABLE_CODE_NAME;
@@ -3248,10 +3248,10 @@ axis2_http_transport_utils_send_mtom_message(
             size_t written = 0;
             while(written < mime_part->part_size)
             {
-                int len = 0;
-                len = axutil_http_chunked_stream_write(chunked_stream, env,
+                size_t len;
+                len = (size_t)axutil_http_chunked_stream_write(chunked_stream, env,
                     mime_part->part + written, mime_part->part_size - written);
-                if(len == -1)
+                if((int)len < 0)
                 {
                     status = AXIS2_FAILURE;
                     break;
@@ -3269,7 +3269,7 @@ axis2_http_transport_utils_send_mtom_message(
         {
             FILE *f = NULL;
             axis2_byte_t *output_buffer = NULL;
-            int output_buffer_size = 0;
+            size_t output_buffer_size = 0;
 
             f = fopen(mime_part->file_name, "rb");
             if(!f)
@@ -3287,14 +3287,14 @@ axis2_http_transport_utils_send_mtom_message(
             }
             else
             {
-                output_buffer_size = (int)mime_part->part_size;
+                output_buffer_size = mime_part->part_size;
             }
 
             output_buffer = AXIS2_MALLOC(env->allocator, output_buffer_size * sizeof(axis2_char_t));
 
             /*This is the method responsible for writing to the wire */
             status = axis2_http_transport_utils_send_attachment_using_file(env, chunked_stream,
-                f, output_buffer, output_buffer_size);
+                f, output_buffer, (int)output_buffer_size);
             AXIS2_FREE(env->allocator, output_buffer);
             fclose(f);
         }
@@ -3390,11 +3390,16 @@ axis2_http_transport_utils_send_attachment_using_file(
 {
     /*We do not load the whole file to memory. Just load a buffer_size portion
      *and send it. Keep on doing this until the end of file */
+    if (buffer_size <= 0)
+    {
+	    return AXIS2_FAILURE;
+    }
+
     do
     {
-        int written = 0;
-        int count = (int)fread(buffer, 1, buffer_size, fp);
-        if(ferror(fp) || (count < 0))
+        size_t written = 0;
+        size_t count = fread(buffer, 1, (size_t)buffer_size, fp);
+        if(ferror(fp))
         {
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
                 "Error in reading file containing the attachment");
@@ -3408,9 +3413,9 @@ axis2_http_transport_utils_send_attachment_using_file(
         /*Writing the part we loaded to memory to the wire*/
         while(written < count)
         {
-            int len = axutil_http_chunked_stream_write(chunked_stream, env,
+            size_t len = (size_t)axutil_http_chunked_stream_write(chunked_stream, env,
                 buffer + written, count - written);
-            if(len == -1)
+            if((int)len == -1)
             {
                 AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "error in writing file to stream");
                 return AXIS2_FAILURE;
@@ -3491,20 +3496,20 @@ axis2_http_transport_utils_send_attachment_using_callback(
     void *handler,
     void *user_param)
 {
-    int count = 0;
+    size_t count = 0;
     axis2_status_t status = AXIS2_SUCCESS;
     axis2_char_t *buffer = NULL;
 
     /* Keep on loading the data in a loop until all the data is sent */
-    while((count = AXIOM_MTOM_SENDING_CALLBACK_LOAD_DATA(callback, env, handler, &buffer)) > 0)
+    while((count = (size_t)AXIOM_MTOM_SENDING_CALLBACK_LOAD_DATA(callback, env, handler, &buffer)) > 0)
     {
-        int written = 0;
+        size_t written = 0;
         while(written < count)
         {
-            int len = 0;
-            len = axutil_http_chunked_stream_write(chunked_stream, env,
+            size_t len;
+            len = (size_t)axutil_http_chunked_stream_write(chunked_stream, env,
                 buffer + written, count - written);
-            if(len == -1)
+            if((int)len < 0)
             {
                 status = AXIS2_FAILURE;
                 break;
@@ -3632,7 +3637,7 @@ axis2_http_transport_utils_get_session(
         {
             axis2_char_t *name = NULL;
             axis2_char_t *value = NULL;
-            int len = -1;
+            axis2_ssize_t len;
 
             axutil_hash_this(hi, &key, NULL, &val);
             name = (axis2_char_t *) key;
@@ -3920,7 +3925,7 @@ axis2_http_transport_utils_copy_key(
     if (p)
     {
         axis2_char_t c;
-        size_t len = p - pair;
+        size_t len = (size_t)(p - pair);
         c = pair[len];
         pair[len] = '\0';
         ret = axutil_strdup(env, pair);
@@ -3943,7 +3948,7 @@ axis2_http_transport_utils_copy_value(
     if (pair)
     {
         pair++;
-        len = axutil_strchr(pair, ';') - pair;
+        len = (size_t)(axutil_strchr(pair, ';') - pair);
         c = pair[len];
         pair[len] = '\0';
         ret = axutil_strdup(env, pair);

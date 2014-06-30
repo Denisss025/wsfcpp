@@ -185,28 +185,29 @@ axutil_network_handler_create_server_socket(
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axutil_network_handler_close_socket(
     const axutil_env_t *env,
-    axis2_socket_t socket)
+    axis2_socket_t sockt)
 {
     char buf[32];
-    if(socket < 0)
+    if(sockt < 0)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_INVALID_SOCKET, AXIS2_FAILURE);
         return AXIS2_FAILURE;
     }
-    shutdown(socket, AXIS2_SHUT_WR);
-    axutil_network_handler_set_sock_option(env, socket, SO_RCVTIMEO, 1);
-    recv(socket, buf, 32, 0);
-    AXIS2_CLOSE_SOCKET(socket);
+    shutdown(sockt, AXIS2_SHUT_WR);
+    axutil_network_handler_set_sock_option(env, sockt, SO_RCVTIMEO, 1);
+    recv(sockt, buf, 32, 0);
+    AXIS2_CLOSE_SOCKET(sockt);
     return AXIS2_SUCCESS;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axutil_network_handler_set_sock_option(
     const axutil_env_t *env,
-    axis2_socket_t socket,
+    axis2_socket_t sockt,
     int option,
     int value)
 {
+    (void)env;
     if(option == SO_RCVTIMEO || option == SO_SNDTIMEO)
     {
 #if defined(WIN32)
@@ -217,12 +218,12 @@ axutil_network_handler_set_sock_option(
         tv.tv_sec = value / 1000;
         tv.tv_usec = (value % 1000) * 1000;
 #endif
-        setsockopt(socket, SOL_SOCKET, option, (char *)&tv, sizeof(tv));
+        setsockopt(sockt, SOL_SOCKET, option, (char *)&tv, sizeof(tv));
         return AXIS2_SUCCESS;
     }
     else if(option == SO_REUSEADDR)
     {
-        if((setsockopt(socket, SOL_SOCKET, SO_REUSEADDR, (char *)&value, sizeof(value))) < 0)
+        if((setsockopt(sockt, SOL_SOCKET, SO_REUSEADDR, (char *)&value, sizeof(value))) < 0)
         {
             return AXIS2_FAILURE;
         }
@@ -249,7 +250,7 @@ axutil_network_handler_svr_socket_accept(
     if(cli_socket < 0)
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
-            "[Axis2][network_handler] Socket accept \
+            "[Axis2][network_handler] sockt accept \
                 failed");
     }
 #else
@@ -304,13 +305,14 @@ axis2_init_socket(
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL
 axutil_network_handler_get_svr_ip(
     const axutil_env_t *env,
-    axis2_socket_t socket)
+    axis2_socket_t sockt)
 {
     struct sockaddr_in addr;
     axis2_socket_len_t len = sizeof(addr);
     char *ret = NULL;
+    (void)env;
     memset(&addr, 0, sizeof(addr));
-    if(getsockname(socket, (struct sockaddr *)&addr, &len) < 0)
+    if(getsockname(sockt, (struct sockaddr *)&addr, &len) < 0)
     {
         return NULL;
     }
@@ -321,13 +323,14 @@ axutil_network_handler_get_svr_ip(
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL
 axutil_network_handler_get_peer_ip(
     const axutil_env_t *env,
-    axis2_socket_t socket)
+    axis2_socket_t sockt)
 {
     struct sockaddr_in addr;
     axis2_socket_len_t len = sizeof(addr);
     char *ret = NULL;
+    (void)env;
     memset(&addr, 0, sizeof(addr));
-    if(getpeername(socket, (struct sockaddr *)&addr, &len) < 0)
+    if(getpeername(sockt, (struct sockaddr *)&addr, &len) < 0)
     {
         return NULL;
     }
@@ -377,7 +380,7 @@ axutil_network_handler_create_dgram_svr_socket(
     sock_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     sock_addr.sin_port = htons((axis2_unsigned_short_t)port);
 
-    /* Bind the socket to our port number */
+    /* Bind the sockt to our port number */
     if(bind(sock, (struct sockaddr *)&sock_addr, sizeof(sock_addr)) < 0)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_SOCKET_BIND_FAILED, AXIS2_FAILURE);
@@ -401,14 +404,14 @@ axutil_network_handler_open_dgram_socket(
 
 #ifndef WIN32
     if((sock = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
-    /*AF_INET is not defined in sys/socket.h but PF_INET */
+    /*AF_INET is not defined in sys/sockt.h but PF_INET */
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_SOCKET_ERROR, AXIS2_FAILURE);
         return AXIS2_INVALID_SOCKET;
     }
 #else
     if ((sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == INVALID_SOCKET)
-    /* In Win 32 if the socket creation failed it return 0 not a negative value */
+    /* In Win 32 if the sockt creation failed it return 0 not a negative value */
     {
         char buf[AXUTIL_WIN32_ERROR_BUFSIZE];
         /* Get the detailed error message */
@@ -422,8 +425,8 @@ axutil_network_handler_open_dgram_socket(
 }
 
 /* 
- * This function blocks until data is available to read from the socket 
- * and read all the data in the socket. If the buffer size specified is 
+ * This function blocks until data is available to read from the sockt 
+ * and read all the data in the sockt. If the buffer size specified is 
  * lesser than the actual data a failure will be returned.
  */
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -436,11 +439,13 @@ axutil_network_handler_read_dgram(
     int *port)
 {
     struct sockaddr_in sender_address;
-    int received = 0;
+    ssize_t received;
     socklen_t sender_address_size;
     
     sender_address_size = sizeof(sender_address);
-    received = recvfrom(sock, buffer, *buf_len, 0, (struct sockaddr *)&sender_address, &sender_address_size);
+    received = recvfrom(sock, buffer, (size_t)(*buf_len), 0, 
+		    (struct sockaddr*)&sender_address, 
+		    (socklen_t*)&sender_address_size);
 #ifdef WIN32
     if (SOCKET_ERROR == received)
     {
@@ -462,7 +467,7 @@ axutil_network_handler_read_dgram(
         *port = ntohs(sender_address.sin_port);
         *addr = inet_ntoa(sender_address.sin_addr);
     }
-    *buf_len = received;
+    *buf_len = (int)received;
     return AXIS2_SUCCESS;
 }
 
@@ -480,7 +485,7 @@ axutil_network_handler_send_dgram(
     int *source_port)
 {
     struct sockaddr_in recv_addr, source_addr;
-    int send_bytes = 0;
+    ssize_t send_bytes;
     unsigned int recv_addr_size = 0;
     socklen_t source_addr_size = sizeof(source_addr);
     recv_addr_size = sizeof(recv_addr);
@@ -511,7 +516,7 @@ axutil_network_handler_send_dgram(
     recv_addr.sin_family = AF_INET;
     recv_addr.sin_port = htons((axis2_unsigned_short_t)dest_port);
 
-    send_bytes = sendto(sock, buff, *buf_len, 0, (struct sockaddr *)&recv_addr, recv_addr_size);
+    send_bytes = sendto(sock, buff, (size_t)*buf_len, 0, (struct sockaddr *)&recv_addr, recv_addr_size);
 
     getsockname(sock, (struct sockaddr *)&source_addr, &source_addr_size);
 
@@ -525,7 +530,7 @@ axutil_network_handler_send_dgram(
         return AXIS2_FAILURE;
     }
 #else
-    if(send_bytes < 0)
+    if((int)send_bytes < 0)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_SOCKET_ERROR, AXIS2_FAILURE);
         return AXIS2_FAILURE;
@@ -535,7 +540,7 @@ axutil_network_handler_send_dgram(
     {
         *source_port = ntohs(source_addr.sin_port);
     }
-    *buf_len = send_bytes;
+    *buf_len = (int)send_bytes;
     return AXIS2_SUCCESS;
 }
 
@@ -615,7 +620,7 @@ axutil_network_hadler_create_multicast_svr_socket(
     sock_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     sock_addr.sin_port = htons((axis2_unsigned_short_t)port);
 
-    /* Bind the socket to our port number */
+    /* Bind the sockt to our port number */
     if(bind(sock, (struct sockaddr *)&sock_addr, sizeof(sock_addr)) < 0)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_SOCKET_BIND_FAILED, AXIS2_FAILURE);

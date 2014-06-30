@@ -156,17 +156,23 @@ apache2_stream_skip(
 {
     apache2_stream_impl_t *stream_impl = NULL;
     axis2_char_t *tmp_buffer = NULL;
-    apr_size_t len = -1;
+    apr_size_t len;
     AXIS2_ENV_CHECK(env, AXIS2_CRITICAL_FAILURE);
+
+    if (count <= 0)
+    {
+	    return -1;
+    }
+
     stream_impl = AXIS2_INTF_TO_IMPL(stream);
 
-    tmp_buffer = AXIS2_MALLOC(env->allocator, count * sizeof(axis2_char_t));
+    tmp_buffer = AXIS2_MALLOC(env->allocator, (size_t)count * sizeof(axis2_char_t));
     if(tmp_buffer == NULL)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
         return -1;
     }
-    len = apache2_ap_get_client_block(stream_impl->request, tmp_buffer, count);
+    len = apache2_ap_get_client_block(stream_impl->request, tmp_buffer, (apr_size_t)count);
     AXIS2_FREE(env->allocator, tmp_buffer);
     return (int)len;
 
@@ -225,13 +231,13 @@ apache2_ap_get_client_block(
     bb = apr_brigade_create(r->pool, r->connection->bucket_alloc);
     if (bb == NULL) {
         r->connection->keepalive = AP_CONN_CLOSE;
-        return -1;
+        return 0;
     }
 
     /* we need to loop until the input filters (if any) give us data */
     while (loop) {
         rv = ap_get_brigade(r->input_filters, bb, AP_MODE_READBYTES,
-                APR_BLOCK_READ, bufsiz);
+                APR_BLOCK_READ, (apr_off_t)bufsiz);
 
         /* We lose the failure code here.  This is why ap_get_client_block should
          * not be used.
@@ -242,7 +248,7 @@ apache2_ap_get_client_block(
              */
             r->connection->keepalive = AP_CONN_CLOSE;
             apr_brigade_destroy(bb);
-            return -1;
+            return 0;
         }
 
         /* If this fails, it means that a filter is written incorrectly and that
@@ -267,11 +273,11 @@ apache2_ap_get_client_block(
         rv = apr_brigade_flatten(bb, buffer, &bufsiz);
         if (rv != APR_SUCCESS) {
             apr_brigade_destroy(bb);
-            return -1;
+            return 0;
         }
 
         /* XXX yank me? */
-        r->read_length += bufsiz;
+        r->read_length += (apr_off_t)bufsiz;
 
         /* it is possible that the entire bucket brigade is exhausted, but no data
          * has been produced by the input filter (mod_deflate, for example)....
@@ -288,5 +294,5 @@ apache2_ap_get_client_block(
 
     }
 
-    return (long)bufsiz;
+    return bufsiz;
 }

@@ -50,7 +50,7 @@ rp_element_free(
     rp_element_t * element,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(element)
     {

@@ -179,9 +179,9 @@ axis2_disp_checker_invoke(
         op_ctx = axis2_msg_ctx_get_op_ctx(msg_ctx, env);
         if(op_ctx)
         {
-            axis2_op_t *op = axis2_op_ctx_get_op(op_ctx, env);
-            if(op)
-                axis2_msg_ctx_set_op(msg_ctx, env, op);
+            axis2_op_t *opop = axis2_op_ctx_get_op(op_ctx, env);
+            if(opop)
+                axis2_msg_ctx_set_op(msg_ctx, env, opop);
         }
     }
 

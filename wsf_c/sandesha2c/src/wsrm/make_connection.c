@@ -282,7 +282,6 @@ sandesha2_make_connection_to_soap_envelope(
     axiom_node_t *body_node = NULL;
     axiom_element_t *body_element = NULL;
     axiom_node_t *node = NULL;
-    axiom_element_t *element = NULL;
     axutil_qname_t *make_conn_qname = NULL;
     
     AXIS2_PARAM_CHECK(env->error, envelope, AXIS2_FAILURE);
@@ -300,7 +299,7 @@ sandesha2_make_connection_to_soap_envelope(
         return AXIS2_FAILURE;
     }
     if(body_element)
-        element = axiom_element_get_first_child_with_qname(body_element, env,
+        axiom_element_get_first_child_with_qname(body_element, env,
             make_conn_qname, body_node, &node);
     if(make_conn_qname)
         axutil_qname_free(make_conn_qname, env);

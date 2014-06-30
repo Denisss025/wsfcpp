@@ -136,10 +136,11 @@ guththila_reader_read(
     const axutil_env_t * env)
 {
     int rt = r->type;
+    (void)env;
     switch(rt)
     {
         case GUTHTHILA_FILE_READER:
-            return (int)fread(buffer + offset, 1, length, r->fp);
+            return (int)fread(buffer + offset, 1, (size_t)length, r->fp);
         case GUTHTHILA_IO_READER:
             return r->input_read_callback((buffer + offset), length, r->context);
         default:

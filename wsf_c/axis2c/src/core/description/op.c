@@ -659,7 +659,7 @@ axis2_op_engage_module(
     axis2_module_desc_t * moduleref,
     axis2_conf_t * conf)
 {
-    int index = 0;
+    int idx = 0;
     int size = 0;
     axutil_array_list_t *collection_module = NULL;
     axis2_module_desc_t *module_desc = NULL;
@@ -677,12 +677,12 @@ axis2_op_engage_module(
     {
         size = axutil_array_list_size(collection_module, env);
     }
-    for(index = 0; index < size; index++)
+    for(idx = 0; idx < size; idx++)
     {
         const axutil_qname_t *qname1 = NULL;
         const axutil_qname_t *qname2 = NULL;
 
-        module_desc = (axis2_module_desc_t *)axutil_array_list_get(collection_module, env, index);
+        module_desc = (axis2_module_desc_t *)axutil_array_list_get(collection_module, env, idx);
         if(!module_desc)
         {
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
@@ -735,7 +735,7 @@ axis2_op_add_to_engaged_module_list(
 {
     axis2_module_desc_t *module_desc_l = NULL;
     int size = 0;
-    int index = 0;
+    int idx = 0;
     const axutil_qname_t *module_qname = NULL;
 
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
@@ -749,12 +749,12 @@ axis2_op_add_to_engaged_module_list(
     size = axutil_array_list_size(op->engaged_module_list, env);
 
     module_qname = axis2_module_desc_get_qname(module_desc, env);
-    for(index = 0; index < size; index++)
+    for(idx = 0; idx < size; idx++)
     {
         const axutil_qname_t *module_qname_l = NULL;
 
         module_desc_l = (axis2_module_desc_t *)axutil_array_list_get(op-> engaged_module_list, env,
-            index);
+            idx);
         module_qname_l = axis2_module_desc_get_qname(module_desc_l, env);
 
         if(axutil_qname_equals(module_qname, env, module_qname_l))
@@ -775,7 +775,7 @@ axis2_op_remove_from_engaged_module_list(
 {
     axis2_module_desc_t *module_desc_l = NULL;
     int size = 0;
-    int index = 0;
+    int idx = 0;
     const axutil_qname_t *module_qname = NULL;
 
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
@@ -786,17 +786,17 @@ axis2_op_remove_from_engaged_module_list(
     size = axutil_array_list_size(op->engaged_module_list, env);
 
     module_qname = axis2_module_desc_get_qname(module_desc, env);
-    for(index = 0; index < size; index++)
+    for(idx = 0; idx < size; idx++)
     {
         const axutil_qname_t *module_qname_l = NULL;
 
         module_desc_l = (axis2_module_desc_t *)axutil_array_list_get(op-> engaged_module_list, env,
-            index);
+            idx);
         module_qname_l = axis2_module_desc_get_qname(module_desc_l, env);
 
         if(axutil_qname_equals(module_qname, env, module_qname_l))
         {
-            axutil_array_list_remove(op->engaged_module_list, env, index);
+            axutil_array_list_remove(op->engaged_module_list, env, idx);
             return AXIS2_SUCCESS;
         }
 
@@ -1078,6 +1078,7 @@ axis2_op_get_all_module_qnames(
     const axis2_op_t * op,
     const axutil_env_t * env)
 {
+    (void)env;
     return op->module_qnames;
 }
 
@@ -1491,7 +1492,7 @@ axis2_op_is_module_engaged(
 	const axutil_env_t *env,
 	const axutil_qname_t *mod_qname)
 {
-	int index = 0;
+	int idx = 0;
     int size = 0;
     axutil_array_list_t *collection_module = NULL;
     axis2_module_desc_t *module_desc = NULL;
@@ -1506,11 +1507,11 @@ axis2_op_is_module_engaged(
     {
         size = axutil_array_list_size(collection_module, env);
     }
-    for(index = 0; index < size; index++)
+    for(idx = 0; idx < size; idx++)
     {
         const axutil_qname_t *qname1 = NULL;
 
-        module_desc = (axis2_module_desc_t *)axutil_array_list_get(collection_module, env, index);
+        module_desc = (axis2_module_desc_t *)axutil_array_list_get(collection_module, env, idx);
         if(!module_desc)
         {
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,

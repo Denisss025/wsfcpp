@@ -579,23 +579,23 @@ set_attrs_and_value(
         {
             axiom_node_t *node = NULL;
             axiom_element_t *element = NULL;
-            axutil_param_t *param = NULL;
+            axutil_param_t *parm = NULL;
             axis2_char_t *pname = NULL;
 
             node = AXIOM_CHILD_ELEMENT_ITERATOR_NEXT(childs, env);
             element = axiom_node_get_data_element(node, env);
-            param = axutil_param_create(env, NULL, NULL);
+            parm = axutil_param_create(env, NULL, NULL);
             pname = axiom_element_get_localname(element, env);
-            status = axutil_param_set_name(param, env, pname);
+            status = axutil_param_set_name(parm, env, pname);
             if(!status)
             {
                 AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Setting name to parameter failed");
-                axutil_param_free(param, env);
+                axutil_param_free(parm, env);
                 return status;
             }
-            axutil_param_set_param_type(param, env, AXIS2_DOM_PARAM);
-            set_attrs_and_value(param, env, element, node);
-            axutil_array_list_add(value_list, env, param);
+            axutil_param_set_param_type(parm, env, AXIS2_DOM_PARAM);
+            set_attrs_and_value(parm, env, element, node);
+            axutil_array_list_add(value_list, env, parm);
         }
     }
     else
@@ -672,6 +672,7 @@ axis2_desc_builder_process_rest_params(
     axutil_qname_free(qname, env);
     axutil_qname_free(param_qname, env);
     return AXIS2_SUCCESS;
+    (void)desc_builder;
 }
 
 /**
@@ -741,6 +742,7 @@ axis2_desc_builder_process_action_mappings(
     }
     axis2_op_set_wsamapping_list(op_desc, env, mapping_list);
     return AXIS2_SUCCESS;
+    (void)desc_builder;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -870,6 +872,7 @@ axis2_desc_builder_process_params(
         }
     }
     return AXIS2_SUCCESS;
+    (void)desc_builder;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1054,6 +1057,7 @@ axis2_desc_builder_get_short_file_name(
     short_name = file_name_l;
 
     return short_name;
+    (void)desc_builder;
 }
 
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -1064,7 +1068,7 @@ axis2_desc_builder_get_file_name_without_prefix(
 {
     axis2_char_t *file_name_l = NULL;
     axis2_char_t *short_name = NULL;
-    int len = 0;
+    axis2_ssize_t len = 0;
     AXIS2_PARAM_CHECK(env->error, short_file_name, NULL);
     file_name_l = axutil_strdup(env, short_file_name);
     if(!file_name_l)
@@ -1076,6 +1080,7 @@ axis2_desc_builder_get_file_name_without_prefix(
     len = axutil_strlen(AXIS2_LIB_PREFIX);
     short_name = &file_name_l[len];
     return short_name;
+    (void)desc_builder;
 
 }
 
@@ -1102,6 +1107,7 @@ axis2_desc_builder_get_value(
     value = value + 1;
 
     return value;
+    (void)desc_builder;
 }
 
 AXIS2_EXTERN struct axis2_dep_engine *AXIS2_CALL
@@ -1110,6 +1116,7 @@ axis2_desc_builder_get_dep_engine(
     const axutil_env_t * env)
 {
     return desc_builder->engine;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

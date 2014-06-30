@@ -154,7 +154,7 @@ typedef struct sqlite3 sqlite3;
 /*
 ** CAPI3REF: 64-Bit Integer Types
 **
-** Some compilers do not support the "long long" datatype.  So we have
+** Some compilers do not support the "long" datatype.  So we have
 ** to do compiler-specific typedefs for 64-bit signed and unsigned integers.
 **
 ** Many SQLite interface functions require a 64-bit integer arguments.
@@ -167,8 +167,8 @@ typedef struct sqlite3 sqlite3;
   typedef __int64 sqlite_int64;
   typedef unsigned __int64 sqlite_uint64;
 #else
-  typedef long long int sqlite_int64;
-  typedef unsigned long long int sqlite_uint64;
+  typedef long int sqlite_int64;
+  typedef unsigned long int sqlite_uint64;
 #endif
 typedef sqlite_int64 sqlite3_int64;
 typedef sqlite_uint64 sqlite3_uint64;

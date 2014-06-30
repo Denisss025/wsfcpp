@@ -171,10 +171,10 @@ axis2_module_builder_populate_module(
                 module_builder->desc_builder, env);
             if(dep_engine)
             {
-                axis2_arch_file_data_t *file_data = NULL;
+                axis2_arch_file_data_t *f_data;
 
-                file_data = axis2_dep_engine_get_current_file_item(dep_engine, env);
-                axis2_arch_file_data_set_module_dll_name(file_data, env, class_name);
+                f_data = axis2_dep_engine_get_current_file_item(dep_engine, env);
+                axis2_arch_file_data_set_module_dll_name(f_data, env, class_name);
             }
         }
     }

@@ -186,6 +186,7 @@ axis2_desc_get_all_children(
     const axis2_desc_t * desc,
     const axutil_env_t * env)
 {
+    (void)env;
     return desc->children;
 }
 
@@ -195,6 +196,7 @@ axis2_desc_get_child(
     const axutil_env_t * env,
     const axis2_char_t * key)
 {
+    (void)env;
     return axutil_hash_get(desc->children, key, AXIS2_HASH_KEY_STRING);
 }
 
@@ -204,6 +206,7 @@ axis2_desc_remove_child(
     const axutil_env_t * env,
     const axis2_char_t * key)
 {
+    (void)env;
     if(desc->children)
     {
         axutil_hash_set(desc->children, key, AXIS2_HASH_KEY_STRING, NULL);
@@ -217,6 +220,7 @@ axis2_desc_get_parent(
     const axis2_desc_t * desc,
     const axutil_env_t * env)
 {
+    (void)env;
     return desc->parent;
 }
 
@@ -226,6 +230,7 @@ axis2_desc_set_parent(
     const axutil_env_t * env,
     axis2_desc_t * parent)
 {
+    (void)env;
     desc->parent = parent;
     return AXIS2_SUCCESS;
 }

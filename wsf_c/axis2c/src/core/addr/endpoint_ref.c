@@ -91,6 +91,7 @@ axis2_endpoint_ref_get_address(
     const axis2_endpoint_ref_t * endpoint_ref,
     const axutil_env_t * env)
 {
+    (void)env;
     return endpoint_ref->address;
 }
 
@@ -115,6 +116,7 @@ axis2_endpoint_ref_get_interface_qname(
     const axis2_endpoint_ref_t * endpoint_ref,
     const axutil_env_t * env)
 {
+    (void)env;
     return endpoint_ref->interface_qname;
 }
 
@@ -134,6 +136,7 @@ axis2_endpoint_ref_get_svc_name(
     const axis2_endpoint_ref_t * endpoint_ref,
     const axutil_env_t * env)
 {
+    (void)env;
     return endpoint_ref->svc_name;
 }
 
@@ -209,6 +212,7 @@ axis2_endpoint_ref_get_ref_param_list(
     const axis2_endpoint_ref_t * endpoint_ref,
     const axutil_env_t * env)
 {
+    (void)env;
     return endpoint_ref->ref_param_list;
 }
 
@@ -217,6 +221,7 @@ axis2_endpoint_ref_get_metadata_list(
     const axis2_endpoint_ref_t * endpoint_ref,
     const axutil_env_t * env)
 {
+    (void)env;
     return endpoint_ref->metadata_list;
 }
 
@@ -277,6 +282,7 @@ axis2_endpoint_ref_get_ref_attribute_list(
     const axis2_endpoint_ref_t * endpoint_ref,
     const axutil_env_t * env)
 {
+    (void)env;
     return endpoint_ref->ref_attribute_list;
 }
 
@@ -285,6 +291,7 @@ axis2_endpoint_ref_get_metadata_attribute_list(
     const axis2_endpoint_ref_t * endpoint_ref,
     const axutil_env_t * env)
 {
+    (void)env;
     return endpoint_ref->meta_attribute_list;
 }
 
@@ -293,6 +300,7 @@ axis2_endpoint_ref_get_extension_list(
     const axis2_endpoint_ref_t * endpoint_ref,
     const axutil_env_t * env)
 {
+    (void)env;
     return endpoint_ref->extension_list;
 }
 

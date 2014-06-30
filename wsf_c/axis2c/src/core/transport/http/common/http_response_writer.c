@@ -124,7 +124,7 @@ axis2_http_response_writer_print_str(
     const char *str)
 {
     int write = -1;
-    int len = -1;
+    axis2_ssize_t len;
 
     len = axutil_strlen(str);
     if(!response_writer->stream)

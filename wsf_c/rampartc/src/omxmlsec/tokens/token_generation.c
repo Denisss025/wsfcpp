@@ -39,7 +39,6 @@ oxs_token_build_generation_element(
 {
     axiom_node_t *generation_node = NULL;
     axiom_element_t *generation_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     if(!wsc_ns_uri)
@@ -63,7 +62,7 @@ oxs_token_build_generation_element(
 
     if (generation_val)
     {
-        ret  = axiom_element_set_text(generation_ele, env, generation_val, generation_node);
+        axiom_element_set_text(generation_ele, env, generation_val, generation_node);
     }
     return generation_node;
 }

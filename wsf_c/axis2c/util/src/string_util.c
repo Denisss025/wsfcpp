@@ -31,7 +31,7 @@ axutil_tokenize(
     axis2_char_t *temp = NULL;
     axis2_bool_t loop_state = AXIS2_TRUE;
 
-    axis2_char_t *index = NULL;
+    axis2_char_t *idx = NULL;
 
     if(!in || !*in)
     {
@@ -48,15 +48,15 @@ axutil_tokenize(
 
     do
     {
-        index = strchr(str, delim);
-        if((!index) && str && *str)
+        idx = strchr(str, delim);
+        if((!idx) && str && *str)
         {
             axutil_array_list_add(list, env, axutil_strdup(env, str));
             break;
         }
 
-        rest = index + 1;
-        str[index - str] = '\0';
+        rest = idx + 1;
+        str[idx - str] = '\0';
         if(str && *str)
         {
             axutil_array_list_add(list, env, axutil_strdup(env, str));
@@ -68,7 +68,7 @@ axutil_tokenize(
         }
         str = rest;
         rest = NULL;
-        index = NULL;
+        idx = NULL;
 
     }
     while(loop_state);
@@ -88,7 +88,7 @@ axutil_first_token(
     axutil_array_list_t *list = NULL;
     axis2_char_t *str = NULL;
     axis2_char_t *rest = NULL;
-    axis2_char_t *index = NULL;
+    axis2_char_t *idx = NULL;
 
     if(!in || !*in)
     {
@@ -102,16 +102,16 @@ axutil_first_token(
     }
     str = axutil_strdup(env, in);
 
-    index = strchr(str, delim);
-    if(!index)
+    idx = strchr(str, delim);
+    if(!idx)
     {
         axutil_array_list_add(list, env, str);
         axutil_array_list_add(list, env, axutil_strdup(env, ""));
         return list;
     }
 
-    rest = index + 1;
-    str[index - str] = '\0';
+    rest = idx + 1;
+    str[idx - str] = '\0';
 
     axutil_array_list_add(list, env, str);
     axutil_array_list_add(list, env, axutil_strdup(env, rest));
@@ -127,7 +127,7 @@ axutil_last_token(
     axutil_array_list_t *list = NULL;
     axis2_char_t *str = NULL;
     axis2_char_t *rest = NULL;
-    axis2_char_t *index = NULL;
+    axis2_char_t *idx = NULL;
 
     if(!in || !*in)
     {
@@ -141,17 +141,17 @@ axutil_last_token(
     }
 
     str = axutil_strdup(env, in);
-    index = axutil_rindex(str, (axis2_char_t)delim);
+    idx = axutil_rindex(str, (axis2_char_t)delim);
     /* We are sure that the conversion is safe */
-    if(!index)
+    if(!idx)
     {
         axutil_array_list_add(list, env, axutil_strdup(env, ""));
         axutil_array_list_add(list, env, str);
         return list;
     }
 
-    rest = index + 1;
-    str[index - str] = '\0';
+    rest = idx + 1;
+    str[idx - str] = '\0';
 
     axutil_array_list_add(list, env, str);
     axutil_array_list_add(list, env, axutil_strdup(env, rest));

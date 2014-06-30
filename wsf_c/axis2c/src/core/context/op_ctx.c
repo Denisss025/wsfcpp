@@ -135,6 +135,7 @@ axis2_op_ctx_get_base(
     const axis2_op_ctx_t * op_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return op_ctx->base;
 }
 
@@ -249,6 +250,7 @@ axis2_op_ctx_get_op(
     const axis2_op_ctx_t * op_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return op_ctx->op;
 }
 
@@ -257,6 +259,7 @@ axis2_op_ctx_get_parent(
     const axis2_op_ctx_t * op_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return op_ctx->parent;
 }
 
@@ -268,6 +271,7 @@ axis2_op_ctx_add_msg_ctx(
 {
     axis2_msg_ctx_t *out_msg_ctx = NULL;
     axis2_msg_ctx_t *in_msg_ctx = NULL;
+    (void)env;
 
     axutil_thread_mutex_lock(op_ctx->mutex);
 
@@ -299,6 +303,7 @@ axis2_op_ctx_get_msg_ctx(
     const axutil_env_t * env,
     const axis2_wsdl_msg_labels_t message_id)
 {
+    (void)env;
     axutil_thread_mutex_lock(op_ctx->mutex);
     if(op_ctx->msg_ctx_array)
     {
@@ -316,6 +321,7 @@ axis2_op_ctx_get_is_complete(
     const axis2_op_ctx_t * op_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return op_ctx->is_complete;
 }
 
@@ -325,6 +331,7 @@ axis2_op_ctx_set_complete(
     const axutil_env_t * env,
     axis2_bool_t is_complete)
 {
+    (void)env;
     op_ctx->is_complete = is_complete;
     return AXIS2_SUCCESS;
 }
@@ -334,6 +341,7 @@ axis2_op_ctx_is_in_use(
     const axis2_op_ctx_t * op_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return op_ctx->is_in_use;
 }
 
@@ -343,6 +351,7 @@ axis2_op_ctx_set_in_use(
     const axutil_env_t * env,
     axis2_bool_t is_in_use)
 {
+    (void)env;
     op_ctx->is_in_use = is_in_use;
     return AXIS2_SUCCESS;
 }
@@ -397,6 +406,7 @@ axis2_op_ctx_get_msg_ctx_map(
     const axis2_op_ctx_t * op_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return (axis2_msg_ctx_t **)(op_ctx->msg_ctx_array);
 }
 
@@ -405,6 +415,7 @@ axis2_op_ctx_get_response_written(
     const axis2_op_ctx_t * op_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(op_ctx)
         return op_ctx->response_written;
     else
@@ -418,6 +429,7 @@ axis2_op_ctx_set_response_written(
     const axutil_env_t * env,
     const axis2_bool_t written)
 {
+    (void)env;
     if(op_ctx)
     {
         op_ctx->response_written = written;
@@ -435,6 +447,7 @@ axis2_op_ctx_increment_ref(
     axis2_op_ctx_t * op_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     op_ctx->ref++;
     return AXIS2_SUCCESS;
 }

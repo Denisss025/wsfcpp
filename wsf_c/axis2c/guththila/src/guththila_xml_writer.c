@@ -520,31 +520,31 @@ guththila_write_start_document(
 
     tmp1 = strchr(tmp2, '\"');
     tmp1++;
-    guththila_write(wr, tmp2, (int)(tmp1 - tmp2), env);
+    guththila_write(wr, tmp2, (size_t)(tmp1 - tmp2), env);
     tmp2 = strchr(tmp1, '\"');
     if(version)
     {
-        guththila_write(wr, version, (int)strlen(version), env);
+        guththila_write(wr, version, (size_t)strlen(version), env);
     }
     else
     {
-        guththila_write(wr, tmp1, (int)(tmp2 - tmp1), env);
+        guththila_write(wr, tmp1, (size_t)(tmp2 - tmp1), env);
     }
     tmp2++;
     tmp1 = strchr(tmp2, '\"');
     tmp2--;
     tmp1++;
-    guththila_write(wr, tmp2, (int)(tmp1 - tmp2), env);
+    guththila_write(wr, tmp2, (size_t)(tmp1 - tmp2), env);
     tmp2 = strchr(tmp1, '\"');
     if(encoding)
     {
-        guththila_write(wr, encoding, (int)strlen(encoding), env);
+        guththila_write(wr, encoding, (size_t)strlen(encoding), env);
     }
     else
     {
-        guththila_write(wr, tmp1, (int)(tmp2 - tmp1), env);
+        guththila_write(wr, tmp1, (size_t)(tmp2 - tmp1), env);
     }
-    guththila_write(wr, tmp2, (int)strlen(tmp2), env);
+    guththila_write(wr, tmp2, (size_t)strlen(tmp2), env);
 
     return GUTHTHILA_SUCCESS;
 }
@@ -716,6 +716,8 @@ guththila_close(
     guththila_xml_writer_t * wr,
     const axutil_env_t * env)
 {
+    (void)env;
+    (void)wr;
     return GUTHTHILA_FAILURE;
 }
 
@@ -749,7 +751,7 @@ guththila_write_characters(
         guththila_char_t *pos = (guththila_char_t*)strpbrk(buff, "&<>'\"");
         if(pos)
         {
-            i = pos - buff;
+            i = (size_t)(pos - buff);
         }
         else
         {
@@ -761,7 +763,7 @@ guththila_write_characters(
         {
             guththila_write(wr, buff, i, env);
             buff += i;
-            len -= i;
+            len = (i > len) ? 0 : len - i;
         }
         /* replace the character with the appropriate sequence */
         if(len > 0)
@@ -1037,15 +1039,15 @@ guththila_write_namespace(
 
 #else               
                 tok_name =
-                (guththila_token_t **) AXIS2_MALLOC(env->allocator,
+                (guththila_token_t **)AXIS2_MALLOC(env->allocator,
                     sizeof(guththila_token_t *) *
                     (GUTHTHILA_XML_WRITER_NAMESP_DEF_SIZE
-                        + namesp->size));
+                        + (size_t)namesp->size));
                 tok_uri =
                 (guththila_token_t **) AXIS2_MALLOC(env->allocator,
                     sizeof(guththila_token_t *) *
                     (GUTHTHILA_XML_WRITER_NAMESP_DEF_SIZE
-                        + namesp->size));
+                        + (size_t)namesp->size));
                 for (i = 0; i < namesp->no; i++)
                 {
                     tok_name[i] = namesp->name[i];
@@ -2029,6 +2031,8 @@ guththila_get_memory_buffer_size(
     guththila_xml_writer_t * wr,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, (unsigned)-1);
+    AXIS2_PARAM_CHECK(env->error, wr, (unsigned)-1);
     if(wr->type == GUTHTHILA_WRITER_MEMORY)
     {
         return (unsigned int)(wr->buffer.pre_tot_data + wr->buffer.data_size[wr->buffer.cur_buff]);
@@ -2071,6 +2075,15 @@ guththila_write_to_buffer(
     int size,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, wr, -1);
+    AXIS2_PARAM_CHECK(env->error, buff, -1);
+
+    if (size < 1)
+    {
+	    return 0;
+    }
+
     /* Just write what ever given. But need to close things before */
     if(wr->status == START)
     {
@@ -2080,7 +2093,7 @@ guththila_write_to_buffer(
     {
         guththila_write(wr, "/>", 2u, env);
     }
-    guththila_write(wr, buff, size, env);
+    guththila_write(wr, buff, (size_t)size, env);
     wr->status = BEGINING;
     return GUTHTHILA_SUCCESS;
 }

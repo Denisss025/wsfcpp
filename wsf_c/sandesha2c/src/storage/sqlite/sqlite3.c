@@ -183,7 +183,7 @@ typedef struct sqlite3 sqlite3;
 /*
 ** CAPI3REF: 64-Bit Integer Types
 **
-** Some compilers do not support the "long long" datatype.  So we have
+** Some compilers do not support the "long" datatype.  So we have
 ** to do compiler-specific typedefs for 64-bit signed and unsigned integers.
 **
 ** Many SQLite interface functions require a 64-bit integer arguments.
@@ -196,8 +196,8 @@ typedef struct sqlite3 sqlite3;
   typedef __int64 sqlite_int64;
   typedef unsigned __int64 sqlite_uint64;
 #else
-  typedef long long int sqlite_int64;
-  typedef unsigned long long int sqlite_uint64;
+  typedef long int sqlite_int64;
+  typedef unsigned long int sqlite_uint64;
 #endif
 typedef sqlite_int64 sqlite3_int64;
 typedef sqlite_uint64 sqlite3_uint64;
@@ -4244,7 +4244,7 @@ SQLITE_PRIVATE void sqlite3HashClear(Hash*);
 ** where the sizes very.  Preprocessor macros are available so that the
 ** types can be conveniently redefined at compile-type.  Like this:
 **
-**         cc '-DUINTPTR_TYPE=long long int' ...
+**         cc '-DUINTPTR_TYPE=long int' ...
 */
 #ifndef UINT32_TYPE
 # define UINT32_TYPE unsigned int
@@ -4562,7 +4562,7 @@ struct VdbeOp {
   int p3type;         /* One of the P3_xxx constants defined below */
 #ifdef VDBE_PROFILE
   int cnt;            /* Number of times this instruction was executed */
-  long long cycles;   /* Total time spend executing this instruction */
+  long cycles;   /* Total time spend executing this instruction */
 #endif
 };
 typedef struct VdbeOp VdbeOp;
@@ -7196,8 +7196,8 @@ static void computeJD(DateTime *p){
   }
   A = Y/100;
   B = 2 - A + (A/4);
-  X1 = 365.25*(Y+4716);
-  X2 = 30.6001*(M+1);
+  X1 = (int)(365.25*(Y+4716));
+  X2 = (int)(30.6001*(M+1));
   p->rJD = X1 + X2 + D + B - 1524.5;
   p->validJD = 1;
   if( p->validHMS ){
@@ -7306,14 +7306,14 @@ static void computeYMD(DateTime *p){
     p->M = 1;
     p->D = 1;
   }else{
-    Z = p->rJD + 0.5;
-    A = (Z - 1867216.25)/36524.25;
+    Z = (int)(p->rJD + 0.5);
+    A = (int)((Z - 1867216.25)/36524.25);
     A = Z + 1 + A - (A/4);
     B = A + 1524;
-    C = (B - 122.1)/365.25;
-    D = 365.25*C;
-    E = (B-D)/30.6001;
-    X1 = 30.6001*E;
+    C = (int)((B - 122.1)/365.25);
+    D = (int)(365.25*C);
+    E = (int)((B-D)/30.6001);
+    X1 = (int)(30.6001*E);
     p->D = B - D - X1;
     p->M = E<14 ? E-1 : E-13;
     p->Y = p->M>2 ? C - 4716 : C - 4715;
@@ -7328,10 +7328,10 @@ static void computeHMS(DateTime *p){
   int Z, s;
   if( p->validHMS ) return;
   computeJD(p);
-  Z = p->rJD + 0.5;
-  s = (p->rJD + 0.5 - Z)*86400000.0 + 0.5;
+  Z = (int)(p->rJD + 0.5);
+  s = (int)((p->rJD + 0.5 - Z)*86400000.0 + 0.5);
   p->s = 0.001*s;
-  s = p->s;
+  s = (int)(p->s);
   p->s -= s;
   p->h = s/3600;
   s -= p->h*3600;
@@ -7374,13 +7374,13 @@ static double localtimeOffset(DateTime *p){
     x.m = 0;
     x.s = 0.0;
   } else {
-    int s = x.s + 0.5;
+    int s = (int)(x.s + 0.5);
     x.s = s;
   }
   x.tz = 0;
   x.validJD = 0;
   computeJD(&x);
-  t = (x.rJD-2440587.5)*86400.0 + 0.5;
+  t = (int)((x.rJD-2440587.5)*86400.0 + 0.5);
 #ifdef HAVE_LOCALTIME_R
   {
     struct tm sLocal;
@@ -7437,11 +7437,11 @@ static double localtimeOffset(DateTime *p){
 */
 static int parseModifier(const char *zMod, DateTime *p){
   int rc = 1;
-  int n;
+  size_t n;
   double r;
   char *z, zBuf[30];
   z = zBuf;
-  for(n=0; n<sizeof(zBuf)-1 && zMod[n]; n++){
+  for(n = 0; n < sizeof(zBuf) - 1 && zMod[n]; n++){
     z[n] = tolower(zMod[n]);
   }
   z[n] = 0;
@@ -7491,16 +7491,16 @@ static int parseModifier(const char *zMod, DateTime *p){
       ** date is already on the appropriate weekday, this is a no-op.
       */
       if( strncmp(z, "weekday ", 8)==0 && getValue(&z[8],&r)>0
-                 && (n=r)==r && n>=0 && r<7 ){
+                 && (n=(size_t)r)==(size_t)r && r<7 ){
         int Z;
         computeYMD_HMS(p);
         p->validTZ = 0;
         p->validJD = 0;
         computeJD(p);
-        Z = p->rJD + 1.5;
+        Z = (int)(p->rJD + 1.5);
         Z %= 7;
-        if( Z>n ) Z -= 7;
-        p->rJD += n - Z;
+        if( (size_t)Z > n ) Z -= 7;
+        p->rJD += (int)n - Z;
         clearYMD_HMS_TZ(p);
         rc = 0;
       }
@@ -7546,7 +7546,7 @@ static int parseModifier(const char *zMod, DateTime *p){
     case '7':
     case '8':
     case '9': {
-      n = getValue(z, &r);
+      n = (size_t)getValue(z, &r);
       assert( n>=1 );
       if( z[n]==':' ){
         /* A modifier of the form (+|-)HH:MM:SS.FFF adds (or subtracts) the
@@ -7589,19 +7589,19 @@ static int parseModifier(const char *zMod, DateTime *p){
       }else if( n==5 && strcmp(z,"month")==0 ){
         int x, y;
         computeYMD_HMS(p);
-        p->M += r;
+        p->M += (int)(r);
         x = p->M>0 ? (p->M-1)/12 : (p->M-12)/12;
         p->Y += x;
         p->M -= x*12;
         p->validJD = 0;
         computeJD(p);
-        y = r;
+        y = (int)r;
         if( y!=r ){
           p->rJD += (r - y)*30.0;
         }
       }else if( n==4 && strcmp(z,"year")==0 ){
         computeYMD_HMS(p);
-        p->Y += r;
+        p->Y += (int)r;
         p->validJD = 0;
         computeJD(p);
       }else{
@@ -7795,7 +7795,7 @@ static void strftimeFunc(
     sqlite3_result_error_toobig(context);
     return;
   }else{
-    z = sqlite3_malloc( n );
+    z = sqlite3_malloc( (int)n );
     if( z==0 ) return;
   }
   computeJD(&x);
@@ -7811,7 +7811,7 @@ static void strftimeFunc(
           double s = x.s;
           if( s>59.999 ) s = 59.999;
           sqlite3_snprintf(7, &z[j],"%06.3f", s);
-          j += strlen(&z[j]);
+          j += (int)strlen(&z[j]);
           break;
         }
         case 'H':  sqlite3_snprintf(3, &z[j],"%02d",x.h); j+=2; break;
@@ -7823,7 +7823,7 @@ static void strftimeFunc(
           y.M = 1;
           y.D = 1;
           computeJD(&y);
-          nDay = x.rJD - y.rJD + 0.5;
+          nDay = (int)(x.rJD - y.rJD + 0.5);
           if( zFmt[i]=='W' ){
             int wd;   /* 0=Monday, 1=Tuesday, ... 6=Sunday */
             wd = ((int)(x.rJD+0.5)) % 7;
@@ -7837,7 +7837,7 @@ static void strftimeFunc(
         }
         case 'J': {
           sqlite3_snprintf(20, &z[j],"%.16g",x.rJD);
-          j+=strlen(&z[j]);
+          j+=(int)strlen(&z[j]);
           break;
         }
         case 'm':  sqlite3_snprintf(3, &z[j],"%02d",x.M); j+=2; break;
@@ -7845,12 +7845,12 @@ static void strftimeFunc(
         case 's': {
           sqlite3_snprintf(30,&z[j],"%d",
                            (int)((x.rJD-2440587.5)*86400.0 + 0.5));
-          j += strlen(&z[j]);
+          j += (int)strlen(&z[j]);
           break;
         }
         case 'S':  sqlite3_snprintf(3,&z[j],"%02d",(int)x.s); j+=2; break;
-        case 'w':  z[j++] = (((int)(x.rJD+1.5)) % 7) + '0'; break;
-        case 'Y':  sqlite3_snprintf(5,&z[j],"%04d",x.Y); j+=strlen(&z[j]);break;
+        case 'w':  z[j++] = (char)((((int)(x.rJD+1.5)) % 7) + '0'); break;
+        case 'Y':  sqlite3_snprintf(5,&z[j],"%04d",x.Y); j+=(int)strlen(&z[j]);break;
         case '%':  z[j++] = '%'; break;
       }
     }
@@ -7989,7 +7989,7 @@ SQLITE_PRIVATE void sqlite3RegisterDateTimeFunctions(sqlite3 *db){
     { "current_timestamp",  0, ctimestampFunc },
     { "current_date",       0, cdateFunc      },
   };
-  int i;
+  size_t i;
 
   for(i=0; i<sizeof(aFuncs)/sizeof(aFuncs[0]); i++){
     sqlite3CreateFunc(db, aFuncs[i].zName, aFuncs[i].nArg,
@@ -8414,10 +8414,10 @@ SQLITE_API void *sqlite3_malloc(int nBytes){
     if( mem.alarmCallback!=0 && mem.nowUsed+nBytes>=mem.alarmThreshold ){
       sqlite3MemsysAlarm(nBytes);
     }
-    p = malloc(nBytes+8);
+    p = malloc((size_t)nBytes+8);
     if( p==0 ){
       sqlite3MemsysAlarm(nBytes);
-      p = malloc(nBytes+8);
+      p = malloc((size_t)nBytes+8);
     }
     if( p ){
       p[0] = nBytes;
@@ -8472,10 +8472,10 @@ SQLITE_API void *sqlite3_realloc(void *pPrior, int nBytes){
   if( mem.nowUsed+nBytes-nOld>=mem.alarmThreshold ){
     sqlite3MemsysAlarm(nBytes-nOld);
   }
-  p = realloc(p, nBytes+8);
+  p = realloc(p, (size_t)nBytes+8);
   if( p==0 ){
     sqlite3MemsysAlarm(nBytes);
-    p = realloc(p, nBytes+8);
+    p = realloc(p, (size_t)nBytes+8);
   }
   if( p ){
     p[0] = nBytes;
@@ -9353,12 +9353,19 @@ struct sqlite3_mutex {
 ** the same type number.
 */
 SQLITE_API sqlite3_mutex *sqlite3_mutex_alloc(int iType){
+/*  static sqlite3_mutex staticMutexes[] = {
+    { PTHREAD_MUTEX_INITIALIZER, },
+    { PTHREAD_MUTEX_INITIALIZER, },
+    { PTHREAD_MUTEX_INITIALIZER, },
+    { PTHREAD_MUTEX_INITIALIZER, },
+    { PTHREAD_MUTEX_INITIALIZER, },
+  };*/
   static sqlite3_mutex staticMutexes[] = {
-    { PTHREAD_MUTEX_INITIALIZER, },
-    { PTHREAD_MUTEX_INITIALIZER, },
-    { PTHREAD_MUTEX_INITIALIZER, },
-    { PTHREAD_MUTEX_INITIALIZER, },
-    { PTHREAD_MUTEX_INITIALIZER, },
+    { PTHREAD_MUTEX_INITIALIZER, 0, 0, (pthread_t)0 },
+    { PTHREAD_MUTEX_INITIALIZER, 0, 0, (pthread_t)0 },
+    { PTHREAD_MUTEX_INITIALIZER, 0, 0, (pthread_t)0 },
+    { PTHREAD_MUTEX_INITIALIZER, 0, 0, (pthread_t)0 },
+    { PTHREAD_MUTEX_INITIALIZER, 0, 0, (pthread_t)0 }
   };
   sqlite3_mutex *p;
   switch( iType ){
@@ -9714,19 +9721,19 @@ static void softHeapLimitEnforcer(
 ** zero or negative value indicates no limit.
 */
 SQLITE_API void sqlite3_soft_heap_limit(int n){
-  sqlite3_uint64 iLimit;
+  sqlite3_int64 iLimit;
   int overage;
   if( n<0 ){
     iLimit = 0;
   }else{
-    iLimit = n;
+    iLimit = (sqlite3_int64)n;
   }
   if( iLimit>0 ){
     sqlite3_memory_alarm(softHeapLimitEnforcer, 0, iLimit);
   }else{
     sqlite3_memory_alarm(0, 0, 0);
   }
-  overage = sqlite3_memory_used() - n;
+  overage = (int)sqlite3_memory_used() - n;
   if( overage>0 ){
     sqlite3_release_memory(overage);
   }
@@ -9748,7 +9755,7 @@ SQLITE_API int sqlite3_release_memory(int n){
 ** Allocate and zero memory.
 */ 
 SQLITE_PRIVATE void *sqlite3MallocZero(unsigned n){
-  void *p = sqlite3_malloc(n);
+  void *p = sqlite3_malloc((int)n);
   if( p ){
     memset(p, 0, n);
   }
@@ -9774,7 +9781,7 @@ SQLITE_PRIVATE void *sqlite3DbMallocZero(sqlite3 *db, unsigned n){
 SQLITE_PRIVATE void *sqlite3DbMallocRaw(sqlite3 *db, unsigned n){
   void *p = 0;
   if( !db || db->mallocFailed==0 ){
-    p = sqlite3_malloc(n);
+    p = sqlite3_malloc((int)n);
     if( !p && db ){
       db->mallocFailed = 1;
     }
@@ -9819,10 +9826,10 @@ SQLITE_PRIVATE void *sqlite3DbReallocOrFree(sqlite3 *db, void *p, int n){
 */
 SQLITE_PRIVATE char *sqlite3StrDup(const char *z){
   char *zNew;
-  int n;
+  size_t n;
   if( z==0 ) return 0;
   n = strlen(z)+1;
-  zNew = sqlite3_malloc(n);
+  zNew = sqlite3_malloc((int)n);
   if( zNew ) memcpy(zNew, z, n);
   return zNew;
 }
@@ -9831,7 +9838,7 @@ SQLITE_PRIVATE char *sqlite3StrNDup(const char *z, int n){
   if( z==0 ) return 0;
   zNew = sqlite3_malloc(n+1);
   if( zNew ){
-    memcpy(zNew, z, n);
+    memcpy(zNew, z, (size_t)n);
     zNew[n] = 0;
   }
   return zNew;
@@ -9861,7 +9868,7 @@ SQLITE_PRIVATE char *sqlite3DbStrNDup(sqlite3 *db, const char *z, int n){
 */
 SQLITE_PRIVATE void sqlite3SetString(char **pz, ...){
   va_list ap;
-  int nByte;
+  size_t nByte;
   const char *z;
   char *zResult;
 
@@ -9873,14 +9880,14 @@ SQLITE_PRIVATE void sqlite3SetString(char **pz, ...){
   }
   va_end(ap);
   sqlite3_free(*pz);
-  *pz = zResult = sqlite3_malloc(nByte);
+  *pz = zResult = sqlite3_malloc((int)nByte);
   if( zResult==0 ){
     return;
   }
   *zResult = 0;
   va_start(ap, pz);
   while( (z = va_arg(ap, const char*))!=0 ){
-    int n = strlen(z);
+    size_t n = strlen(z);
     memcpy(zResult, z, n);
     zResult += n;
   }
@@ -10134,9 +10141,9 @@ static int vxprintf(
   int c;                     /* Next character in the format string */
   char *bufpt;               /* Pointer to the conversion buffer */
   int precision;             /* Precision of the current field */
-  int length;                /* Length of the field */
-  int idx;                   /* A general purpose loop counter */
-  int count;                 /* Total number of characters output */
+  size_t length;                /* Length of the field */
+  size_t idx;                   /* A general purpose loop counter */
+  size_t count;                 /* Total number of characters output */
   int width;                 /* Width of the current field */
   etByte flag_leftjustify;   /* True if "-" flag is present */
   etByte flag_plussign;      /* True if "+" flag is present */
@@ -10159,7 +10166,7 @@ static int vxprintf(
    "                                                                         ";
 #define etSPACESIZE (sizeof(spaces)-1)
 #ifndef SQLITE_OMIT_FLOATING_POINT
-  int  exp, e2;              /* exponent of real numbers */
+  int  ex_, e2;              /* exponent of real numbers */
   double rounder;            /* Used for rounding floating point values */
   etByte flag_dp;            /* True if decimal point should be shown */
   etByte flag_rtz;           /* True if trailing zeros should be removed */
@@ -10177,7 +10184,7 @@ static int vxprintf(
       amt = 1;
       while( (c=(*++fmt))!='%' && c!=0 ) amt++;
       (*func)(arg,bufpt,amt);
-      count += amt;
+      count += (size_t)amt;
       if( c==0 ) break;
     }
     if( (c=(*++fmt))==0 ){
@@ -10306,10 +10313,10 @@ static int vxprintf(
           else if( flag_long )  v = va_arg(ap,long int);
           else                  v = va_arg(ap,int);
           if( v<0 ){
-            longvalue = -v;
+            longvalue = (sqlite3_uint64)-v;
             prefix = '-';
           }else{
-            longvalue = v;
+            longvalue = (sqlite3_uint64)v;
             if( flag_plussign )        prefix = '+';
             else if( flag_blanksign )  prefix = ' ';
             else                       prefix = 0;
@@ -10331,12 +10338,12 @@ static int vxprintf(
           cset = &aDigits[infop->charset];
           base = infop->base;
           do{                                           /* Convert to ascii */
-            *(--bufpt) = cset[longvalue%base];
-            longvalue = longvalue/base;
+            *(--bufpt) = cset[(int)longvalue%base];
+            longvalue = (sqlite3_uint64)((int)longvalue/base);
           }while( longvalue>0 );
         }
-        length = &buf[etBUFSIZE-1]-bufpt;
-        for(idx=precision-length; idx>0; idx--){
+        length = (size_t)(&buf[etBUFSIZE-1]-bufpt);
+        for(idx=(size_t)precision-length; idx>0; idx--){
           *(--bufpt) = '0';                             /* Zero pad */
         }
         if( prefix ) *(--bufpt) = prefix;               /* Add sign */
@@ -10348,7 +10355,7 @@ static int vxprintf(
             for(; (x=(*pre))!=0; pre++) *(--bufpt) = x;
           }
         }
-        length = &buf[etBUFSIZE-1]-bufpt;
+        length = (size_t)(&buf[etBUFSIZE-1]-bufpt);
         break;
       case etFLOAT:
       case etEXP:
@@ -10371,23 +10378,23 @@ static int vxprintf(
         for(idx=precision, rounder=0.4999; idx>0; idx--, rounder*=0.1);
 #else
         /* It makes more sense to use 0.5 */
-        for(idx=precision, rounder=0.5; idx>0; idx--, rounder*=0.1){}
+        for(idx=(size_t)precision, rounder=0.5; idx>0; idx--, rounder*=0.1){}
 #endif
         if( xtype==etFLOAT ) realvalue += rounder;
         /* Normalize realvalue to within 10.0 > realvalue >= 1.0 */
-        exp = 0;
+        ex_ = 0;
         if( sqlite3_isnan(realvalue) ){
           bufpt = "NaN";
           length = 3;
           break;
         }
         if( realvalue>0.0 ){
-          while( realvalue>=1e32 && exp<=350 ){ realvalue *= 1e-32; exp+=32; }
-          while( realvalue>=1e8 && exp<=350 ){ realvalue *= 1e-8; exp+=8; }
-          while( realvalue>=10.0 && exp<=350 ){ realvalue *= 0.1; exp++; }
-          while( realvalue<1e-8 && exp>=-350 ){ realvalue *= 1e8; exp-=8; }
-          while( realvalue<1.0 && exp>=-350 ){ realvalue *= 10.0; exp--; }
-          if( exp>350 || exp<-350 ){
+          while( realvalue>=1e32 && ex_<=350 ){ realvalue *= 1e-32; ex_+=32; }
+          while( realvalue>=1e8 && ex_<=350 ){ realvalue *= 1e-8; ex_+=8; }
+          while( realvalue>=10.0 && ex_<=350 ){ realvalue *= 0.1; ex_++; }
+          while( realvalue<1e-8 && ex_>=-350 ){ realvalue *= 1e8; ex_-=8; }
+          while( realvalue<1.0 && ex_>=-350 ){ realvalue *= 10.0; ex_--; }
+          if( ex_>350 || ex_<-350 ){
             if( prefix=='-' ){
               bufpt = "-Inf";
             }else if( prefix=='+' ){
@@ -10407,14 +10414,14 @@ static int vxprintf(
         flag_exp = xtype==etEXP;
         if( xtype!=etFLOAT ){
           realvalue += rounder;
-          if( realvalue>=10.0 ){ realvalue *= 0.1; exp++; }
+          if( realvalue>=10.0 ){ realvalue *= 0.1; ex_++; }
         }
         if( xtype==etGENERIC ){
           flag_rtz = !flag_alternateform;
-          if( exp<-4 || exp>precision ){
+          if( ex_<-4 || ex_>precision ){
             xtype = etEXP;
           }else{
-            precision = precision - exp;
+            precision = precision - ex_;
             xtype = etFLOAT;
           }
         }else{
@@ -10423,10 +10430,10 @@ static int vxprintf(
         if( xtype==etEXP ){
           e2 = 0;
         }else{
-          e2 = exp;
+          e2 = ex_;
         }
         nsd = 0;
-        flag_dp = (precision>0) | flag_alternateform | flag_altform2;
+        flag_dp = (etByte)((precision>0) | flag_alternateform | flag_altform2);
         /* The sign in front of the number */
         if( prefix ){
           *(bufpt++) = prefix;
@@ -10436,7 +10443,7 @@ static int vxprintf(
           *(bufpt++) = '0';
         }else{
           for(; e2>=0; e2--){
-            *(bufpt++) = et_getdigit(&realvalue,&nsd);
+            *(bufpt++) = (char)et_getdigit(&realvalue,&nsd);
           }
         }
         /* The decimal point */
@@ -10450,7 +10457,7 @@ static int vxprintf(
         }
         /* Significant digits after the decimal point */
         while( (precision--)>0 ){
-          *(bufpt++) = et_getdigit(&realvalue,&nsd);
+          *(bufpt++) = (char)et_getdigit(&realvalue,&nsd);
         }
         /* Remove trailing zeros and the "." if no digits follow the "." */
         if( flag_rtz && flag_dp ){
@@ -10465,45 +10472,46 @@ static int vxprintf(
           }
         }
         /* Add the "eNNN" suffix */
-        if( flag_exp || (xtype==etEXP && exp) ){
+        if( flag_exp || (xtype==etEXP && ex_) ){
           *(bufpt++) = aDigits[infop->charset];
-          if( exp<0 ){
-            *(bufpt++) = '-'; exp = -exp;
+          if( ex_<0 ){
+            *(bufpt++) = '-'; ex_ = -ex_;
           }else{
             *(bufpt++) = '+';
           }
-          if( exp>=100 ){
-            *(bufpt++) = (exp/100)+'0';                /* 100's digit */
-            exp %= 100;
+          if( ex_>=100 ){
+            *(bufpt++) = (char)((ex_/100)+'0');                /* 100's digit */
+            ex_ %= 100;
           }
-          *(bufpt++) = exp/10+'0';                     /* 10's digit */
-          *(bufpt++) = exp%10+'0';                     /* 1's digit */
+          *(bufpt++) = (char)(ex_/10+'0');                     /* 10's digit */
+          *(bufpt++) = (char)(ex_%10+'0');                     /* 1's digit */
         }
         *bufpt = 0;
 
         /* The converted number is in buf[] and zero terminated. Output it.
         ** Note that the number is in the usual order, not reversed as with
         ** integer conversions. */
-        length = bufpt-buf;
+        length = (size_t)(bufpt-buf);
         bufpt = buf;
 
         /* Special case:  Add leading zeros if the flag_zeropad flag is
         ** set and we are not left justified */
-        if( flag_zeropad && !flag_leftjustify && length < width){
+        if( flag_zeropad && !flag_leftjustify && length < (size_t)width){
           int i;
-          int nPad = width - length;
+          int nPad = width - (int)length;
           for(i=width; i>=nPad; i--){
             bufpt[i] = bufpt[i-nPad];
           }
           i = prefix!=0;
           while( nPad-- ) bufpt[i++] = '0';
-          length = width;
+          length = (size_t)width;
         }
 #endif
         break;
       case etSIZE:
-        *(va_arg(ap,int*)) = count;
-        length = width = 0;
+        *(va_arg(ap,int*)) = (int)count;
+        length = 0u;
+	width = 0;
         break;
       case etPERCENT:
         buf[0] = '%';
@@ -10512,10 +10520,10 @@ static int vxprintf(
         break;
       case etCHARLIT:
       case etCHARX:
-        c = buf[0] = (xtype==etCHARX ? va_arg(ap,int) : *++fmt);
+        c = buf[0] = (char)(xtype==etCHARX ? va_arg(ap,int) : *++fmt);
         if( precision>=0 ){
-          for(idx=1; idx<precision; idx++) buf[idx] = c;
-          length = precision;
+          for(idx=1; idx<(size_t)precision; idx++) buf[idx] = (char)c;
+          length = (size_t)precision;
         }else{
           length =1;
         }
@@ -10530,12 +10538,13 @@ static int vxprintf(
           zExtra = bufpt;
         }
         length = strlen(bufpt);
-        if( precision>=0 && precision<length ) length = precision;
+        if( precision>=0 && precision<(int)length ) length = (size_t)precision;
         break;
       case etSQLESCAPE:
       case etSQLESCAPE2:
       case etSQLESCAPE3: {
-        int i, j, n, ch, isnull;
+        int i, n, ch, isnull;
+	size_t j;
         int needQuote;
         char q = ((xtype==etSQLESCAPE3)?'"':'\'');   /* Quote character */
         char *escarg = va_arg(ap,char*);
@@ -10555,8 +10564,8 @@ static int vxprintf(
         j = 0;
         if( needQuote ) bufpt[j++] = q;
         for(i=0; (ch=escarg[i])!=0; i++){
-          bufpt[j++] = ch;
-          if( ch==q ) bufpt[j++] = ch;
+          bufpt[j++] = (char)ch;
+          if( ch==q ) bufpt[j++] = (char)ch;
         }
         if( needQuote ) bufpt[j++] = q;
         bufpt[j] = 0;
@@ -10570,7 +10579,8 @@ static int vxprintf(
         if( pToken && pToken->z ){
           (*func)(arg, (char*)pToken->z, pToken->n);
         }
-        length = width = 0;
+        length = 0u;
+	width = 0;
         break;
       }
       case etSRCLIST: {
@@ -10579,11 +10589,12 @@ static int vxprintf(
         struct SrcList_item *pItem = &pSrc->a[k];
         assert( k>=0 && k<pSrc->nSrc );
         if( pItem->zDatabase && pItem->zDatabase[0] ){
-          (*func)(arg, pItem->zDatabase, strlen(pItem->zDatabase));
+          (*func)(arg, pItem->zDatabase, (int)strlen(pItem->zDatabase));
           (*func)(arg, ".", 1);
         }
-        (*func)(arg, pItem->zName, strlen(pItem->zName));
-        length = width = 0;
+        (*func)(arg, pItem->zName, (int)strlen(pItem->zName));
+        length = 0u;
+	width = 0;
         break;
       }
     }/* End switch over the format type */
@@ -10594,28 +10605,28 @@ static int vxprintf(
     */
     if( !flag_leftjustify ){
       register int nspace;
-      nspace = width-length;
+      nspace = width-(int)length;
       if( nspace>0 ){
-        count += nspace;
-        while( nspace>=etSPACESIZE ){
+        count += (size_t)nspace;
+        while( nspace>=(int)etSPACESIZE ){
           (*func)(arg,spaces,etSPACESIZE);
-          nspace -= etSPACESIZE;
+          nspace -= (int)etSPACESIZE;
         }
         if( nspace>0 ) (*func)(arg,spaces,nspace);
       }
     }
     if( length>0 ){
-      (*func)(arg,bufpt,length);
+      (*func)(arg,bufpt,(int)length);
       count += length;
     }
     if( flag_leftjustify ){
       register int nspace;
-      nspace = width-length;
+      nspace = width-(int)length;
       if( nspace>0 ){
-        count += nspace;
-        while( nspace>=etSPACESIZE ){
-          (*func)(arg,spaces,etSPACESIZE);
-          nspace -= etSPACESIZE;
+        count += (size_t)nspace;
+        while( nspace>=(int)etSPACESIZE ){
+          (*func)(arg,spaces,(int)etSPACESIZE);
+          nspace -= (int)etSPACESIZE;
         }
         if( nspace>0 ) (*func)(arg,spaces,nspace);
       }
@@ -10624,7 +10635,7 @@ static int vxprintf(
       sqlite3_free(zExtra);
     }
   }/* End for loop over the format string */
-  return errorflag ? -1 : count;
+  return errorflag ? -1 : (int)count;
 } /* End of function */
 
 
@@ -10652,7 +10663,7 @@ static void mout(void *arg, const char *zNewText, int nNewChar){
   if( pM->iMallocFailed ) return;
   pM->nTotal += nNewChar;
   if( pM->zText ){
-    if( pM->nChar + nNewChar + 1 > pM->nAlloc ){
+    if( (size_t)pM->nChar + (size_t)nNewChar + 1 > (size_t)pM->nAlloc ){
       if( pM->xRealloc==0 ){
         nNewChar =  pM->nAlloc - pM->nChar - 1;
       }else{
@@ -10664,7 +10675,7 @@ static void mout(void *arg, const char *zNewText, int nNewChar){
             pM->iMallocFailed = 1;
             return;
           }else if( pM->nChar ){
-            memcpy(pM->zText, pM->zBase, pM->nChar);
+            memcpy(pM->zText, pM->zBase, (size_t)pM->nChar);
           }
         }else{
           char *zNew;
@@ -10683,7 +10694,7 @@ static void mout(void *arg, const char *zNewText, int nNewChar){
       }
     }
     if( nNewChar>0 ){
-      memcpy(&pM->zText[pM->nChar], zNewText, nNewChar);
+      memcpy(&pM->zText[pM->nChar], zNewText, (size_t)nNewChar);
       pM->nChar += nNewChar;
     }
     pM->zText[pM->nChar] = 0;
@@ -10714,7 +10725,7 @@ static char *base_vprintf(
     if( sM.zText==sM.zBase ){
       sM.zText = xRealloc(0, sM.nChar+1);
       if( sM.zText ){
-        memcpy(sM.zText, sM.zBase, sM.nChar+1);
+        memcpy(sM.zText, sM.zBase, (size_t)sM.nChar+1);
       }
     }else if( sM.nAlloc>sM.nChar+10 ){
       char *zNew;
@@ -10812,7 +10823,7 @@ SQLITE_API char *sqlite3_snprintf(int n, char *zBuf, const char *zFormat, ...){
 /*
 ** A version of printf() that understands %lld.  Used for debugging.
 ** The printf() built into some versions of windows does not understand %lld
-** and segfaults if you give it a long long int.
+** and segfaults if you give it a long int.
 */
 SQLITE_PRIVATE void sqlite3DebugPrintf(const char *zFormat, ...){
   extern int getpid(void);
@@ -10845,7 +10856,7 @@ SQLITE_PRIVATE void sqlite3DebugPrintf(const char *zFormat, ...){
 ** Random numbers are used by some of the database backends in order
 ** to generate random integer keys for tables or random filenames.
 **
-** $Id: random.c,v 1.20 2007/08/21 13:51:23 drh Exp $
+** $Id: random.c,v 1.20 2007/08/21 13:51:23 drh ex_ $
 */
 
 
@@ -10893,10 +10904,10 @@ static int randomByte(void){
     prng.i = 0;
     sqlite3OsRandomness(sqlite3_vfs_find(0), 256, k);
     for(i=0; i<256; i++){
-      prng.s[i] = i;
+      prng.s[i] = (unsigned char)i;
     }
     for(i=0; i<256; i++){
-      prng.j += prng.s[i] + k[i];
+      prng.j = (unsigned char)((int)prng.j + (int)prng.s[i] + (int)k[i]);
       t = prng.s[prng.j];
       prng.s[prng.j] = prng.s[i];
       prng.s[i] = t;
@@ -10908,10 +10919,10 @@ static int randomByte(void){
   */
   prng.i++;
   t = prng.s[prng.i];
-  prng.j += t;
+  prng.j = (unsigned char)(prng.j + t);
   prng.s[prng.i] = prng.s[prng.j];
   prng.s[prng.j] = t;
-  t += prng.s[prng.i];
+  t = (unsigned char)(t + prng.s[prng.i]);
   return prng.s[t];
 }
 
@@ -10926,7 +10937,7 @@ SQLITE_PRIVATE void sqlite3Randomness(int N, void *pBuf){
   }
   sqlite3_mutex_enter(mutex);
   while( N-- ){
-    *(zBuf++) = randomByte();
+    *(zBuf++) = (unsigned char)randomByte();
   }
   sqlite3_mutex_leave(mutex);
 }
@@ -10947,7 +10958,7 @@ SQLITE_PRIVATE void sqlite3Randomness(int N, void *pBuf){
 ** This file contains routines used to translate between UTF-8, 
 ** UTF-16, UTF-16BE, and UTF-16LE.
 **
-** $Id: utf.c,v 1.57 2007/09/01 11:04:27 danielk1977 Exp $
+** $Id: utf.c,v 1.57 2007/09/01 11:04:27 danielk1977 ex_ $
 **
 ** Notes on UTF-8:
 **
@@ -11530,8 +11541,10 @@ SQLITE_PRIVATE int sqlite3Utf8Read(
       c = (c<<6) + (0x3f & *(z++));
     }
     if( c<0x80
-        || (c&0xFFFFF800)==0xD800
-        || (c&0xFFFFFFFE)==0xFFFE ){  c = 0xFFFD; }
+        || ((unsigned)c & 0xFFFFF800u) == 0xD800u 
+        || ((unsigned)c & 0xFFFFFFFEu) == 0xFFFEu ){  
+	    c = 0xFFFD; 
+    }
   }
   *pzNext = z;
   return c;
@@ -11625,7 +11638,7 @@ SQLITE_PRIVATE int sqlite3VdbeMemTranslate(Mem *pMem, u8 desiredEnc){
   zIn = (u8*)pMem->z;
   zTerm = &zIn[pMem->n];
   if( len>NBFS ){
-    zOut = sqlite3DbMallocRaw(pMem->db, len);
+    zOut = sqlite3DbMallocRaw(pMem->db, (unsigned)len);
     if( !zOut ){
       return SQLITE_NOMEM;
     }
@@ -11638,14 +11651,14 @@ SQLITE_PRIVATE int sqlite3VdbeMemTranslate(Mem *pMem, u8 desiredEnc){
     if( desiredEnc==SQLITE_UTF16LE ){
       /* UTF-8 -> UTF-16 Little-endian */
       while( zIn<zTerm ){
-        c = sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
+        c = (unsigned)sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
         WRITE_UTF16LE(z, c);
       }
     }else{
       assert( desiredEnc==SQLITE_UTF16BE );
       /* UTF-8 -> UTF-16 Big-endian */
       while( zIn<zTerm ){
-        c = sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
+        c = (unsigned)sqlite3Utf8Read(zIn, zTerm, (const u8**)&zIn);
         WRITE_UTF16BE(z, c);
       }
     }
@@ -11922,7 +11935,7 @@ SQLITE_PRIVATE void sqlite3UtfSelfTest(){
 ** This file contains functions for allocating memory, comparing
 ** strings, and stuff like that.
 **
-** $Id: util.c,v 1.212 2007/09/01 10:01:13 danielk1977 Exp $
+** $Id: util.c,v 1.212 2007/09/01 10:01:13 danielk1977 ex_ $
 */
 
 
@@ -12626,7 +12639,7 @@ SQLITE_PRIVATE int sqlite3SafetyOff(sqlite3 *db){
 ** This is the implementation of generic hash-tables
 ** used in SQLite.
 **
-** $Id: hash.c,v 1.23 2007/09/03 15:03:21 danielk1977 Exp $
+** $Id: hash.c,v 1.23 2007/09/03 15:03:21 danielk1977 ex_ $
 */
 
 /* Turn bulk memory into a hash table object by initializing the
@@ -13268,14 +13281,14 @@ SQLITE_API int sqlite3_os_trace = 0;
 ** on i486 hardware.
 */
 #ifdef SQLITE_PERFORMANCE_TRACE
-__inline__ unsigned long long int hwtime(void){
-  unsigned long long int x;
+__inline__ unsigned long int hwtime(void){
+  unsigned long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
           :"=A" (x));
   return x;
 }
-static unsigned long long int g_start;
+static unsigned long int g_start;
 static unsigned int elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
@@ -14503,14 +14516,14 @@ SQLITE_API int sqlite3_os_trace = 0;
 ** on i486 hardware.
 */
 #ifdef SQLITE_PERFORMANCE_TRACE
-__inline__ unsigned long long int hwtime(void){
-  unsigned long long int x;
+__inline__ unsigned long int hwtime(void){
+  unsigned long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
           :"=A" (x));
   return x;
 }
-static unsigned long long int g_start;
+static unsigned long int g_start;
 static unsigned int elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
@@ -15912,15 +15925,15 @@ static int unixClose(sqlite3_file *id){
  */
 typedef struct afpLockingContext afpLockingContext;
 struct afpLockingContext {
-  unsigned long long sharedLockByte;
+  unsigned long sharedLockByte;
   char *filePath;
 };
 
 struct ByteRangeLockPB2
 {
-  unsigned long long offset;        /* offset to first byte to lock */
-  unsigned long long length;        /* nbr of bytes to lock */
-  unsigned long long retRangeStart; /* nbr of 1st byte locked if successful */
+  unsigned long offset;        /* offset to first byte to lock */
+  unsigned long length;        /* nbr of bytes to lock */
+  unsigned long retRangeStart; /* nbr of 1st byte locked if successful */
   unsigned char unLockFlag;         /* 1 = unlock, 0 = lock */
   unsigned char startEndFlag;       /* 1=rel to end of fork, 0=rel to start */
   int fd;                           /* file desc to assoc this lock with */
@@ -15937,8 +15950,8 @@ struct ByteRangeLockPB2
 static int _AFPFSSetLock(
   const char *path, 
   int fd, 
-  unsigned long long offset, 
-  unsigned long long length, 
+  unsigned long offset, 
+  unsigned long length, 
   int setLockFlag
 ){
   struct ByteRangeLockPB2       pb;
@@ -17117,8 +17130,7 @@ static int unixRandomness(sqlite3_vfs *pVfs, int nBuf, char *zBuf){
       pid = getpid();
       memcpy(&zBuf[sizeof(t)], &pid, sizeof(pid));
     }else{
-      int ret = -1;
-      ret = read(fd, zBuf, nBuf);
+      read(fd, zBuf, nBuf);
       close(fd);
     }
   }
@@ -17338,14 +17350,14 @@ SQLITE_API int sqlite3_os_trace = 0;
 ** on i486 hardware.
 */
 #ifdef SQLITE_PERFORMANCE_TRACE
-__inline__ unsigned long long int hwtime(void){
-  unsigned long long int x;
+__inline__ unsigned long int hwtime(void){
+  unsigned long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
           :"=A" (x));
   return x;
 }
-static unsigned long long int g_start;
+static unsigned long int g_start;
 static unsigned int elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
@@ -18909,7 +18921,7 @@ SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(void){
 ** file simultaneously, or one process from reading the database while
 ** another is writing.
 **
-** @(#) $Id: pager.c,v 1.385 2007/09/03 15:19:35 drh Exp $
+** @(#) $Id: pager.c,v 1.385 2007/09/03 15:19:35 drh ex_ $
 */
 #ifndef SQLITE_OMIT_DISKIO
 
@@ -23925,7 +23937,7 @@ SQLITE_PRIVATE void sqlite3PagerRefdump(Pager *pPager){
 **
 *************************************************************************
 **
-** $Id: btmutex.c,v 1.7 2007/08/30 01:19:59 drh Exp $
+** $Id: btmutex.c,v 1.7 2007/08/30 01:19:59 drh ex_ $
 **
 ** This file contains code used to implement mutexes on Btree objects.
 ** This code really belongs in btree.c.  But btree.c is getting too
@@ -23945,7 +23957,7 @@ SQLITE_PRIVATE void sqlite3PagerRefdump(Pager *pPager){
 **    May you share freely, never taking more than you give.
 **
 *************************************************************************
-** $Id: btreeInt.h,v 1.13 2007/08/30 01:19:59 drh Exp $
+** $Id: btreeInt.h,v 1.13 2007/08/30 01:19:59 drh ex_ $
 **
 ** This file implements a external (disk-based) database using BTrees.
 ** For a detailed discussion of BTrees, refer to
@@ -24889,7 +24901,7 @@ SQLITE_PRIVATE void sqlite3BtreeMutexArrayLeave(BtreeMutexArray *pArray){
 **    May you share freely, never taking more than you give.
 **
 *************************************************************************
-** $Id: btree.c,v 1.422 2007/09/03 22:00:39 drh Exp $
+** $Id: btree.c,v 1.422 2007/09/03 22:00:39 drh ex_ $
 **
 ** This file implements a external (disk-based) database using BTrees.
 ** See the header comment on "btreeInt.h" for additional information.
@@ -36273,7 +36285,7 @@ SQLITE_API sqlite3 *sqlite3_db_handle(sqlite3_stmt *pStmt){
 ** in this file for details.  If in doubt, do not deviate from existing
 ** commenting and indentation practices when changing or adding code.
 **
-** $Id: vdbe.c,v 1.650 2007/09/03 15:19:36 drh Exp $
+** $Id: vdbe.c,v 1.650 2007/09/03 15:19:36 drh ex_ $
 */
 
 /*
@@ -36614,8 +36626,8 @@ SQLITE_PRIVATE void sqlite3VdbeMemPrettyPrint(Mem *pMem, char *zBuf){
 ** processor and returns that value.  This can be used for high-res
 ** profiling.
 */
-__inline__ unsigned long long int hwtime(void){
-  unsigned long long int x;
+__inline__ unsigned long int hwtime(void){
+  unsigned long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
           :"=A" (x));
@@ -36678,7 +36690,7 @@ SQLITE_PRIVATE int sqlite3VdbeExec(
   u8 encoding = ENC(db);     /* The database encoding */
   Mem *pTos;                 /* Top entry in the operand stack */
 #ifdef VDBE_PROFILE
-  unsigned long long start;  /* CPU clock count at start of opcode */
+  unsigned long start;  /* CPU clock count at start of opcode */
   int origPc;                /* Program counter at start of opcode */
 #endif
 #ifndef SQLITE_OMIT_PROGRESS_CALLBACK
@@ -41372,7 +41384,7 @@ default: {
 
 #ifdef VDBE_PROFILE
     {
-      long long elapse = hwtime() - start;
+      long elapse = hwtime() - start;
       pOp->cycles += elapse;
       pOp->cnt++;
 #if 0
@@ -41520,7 +41532,7 @@ abort_due_to_interrupt:
 **
 ** This file contains code used to implement incremental BLOB I/O.
 **
-** $Id: vdbeblob.c,v 1.16 2007/08/30 01:19:59 drh Exp $
+** $Id: vdbeblob.c,v 1.16 2007/08/30 01:19:59 drh ex_ $
 */
 
 
@@ -41859,7 +41871,7 @@ SQLITE_API int sqlite3_blob_bytes(sqlite3_blob *pBlob){
 **
 *************************************************************************
 **
-** @(#) $Id: journal.c,v 1.6 2007/09/03 15:19:35 drh Exp $
+** @(#) $Id: journal.c,v 1.6 2007/09/03 15:19:35 drh ex_ $
 */
 
 #ifdef SQLITE_ENABLE_ATOMIC_WRITE
@@ -42098,7 +42110,7 @@ SQLITE_PRIVATE int sqlite3JournalSize(sqlite3_vfs *pVfs){
 ** This file contains routines used for analyzing expressions and
 ** for generating VDBE code that evaluates expressions in SQLite.
 **
-** $Id: expr.c,v 1.312 2007/09/01 18:24:55 danielk1977 Exp $
+** $Id: expr.c,v 1.312 2007/09/01 18:24:55 danielk1977 ex_ $
 */
 
 /*
@@ -44715,7 +44727,7 @@ SQLITE_PRIVATE int sqlite3ExprAnalyzeAggList(NameContext *pNC, ExprList *pList){
 ** This file contains C code routines that used to generate VDBE code
 ** that implements the ALTER TABLE command.
 **
-** $Id: alter.c,v 1.32 2007/08/29 14:06:23 danielk1977 Exp $
+** $Id: alter.c,v 1.32 2007/08/29 14:06:23 danielk1977 ex_ $
 */
 
 /*
@@ -45337,7 +45349,7 @@ exit_begin_add_column:
 *************************************************************************
 ** This file contains code associated with the ANALYZE command.
 **
-** @(#) $Id: analyze.c,v 1.23 2007/08/29 17:43:20 drh Exp $
+** @(#) $Id: analyze.c,v 1.23 2007/08/29 17:43:20 drh ex_ $
 */
 #ifndef SQLITE_OMIT_ANALYZE
 
@@ -45757,7 +45769,7 @@ SQLITE_PRIVATE int sqlite3AnalysisLoad(sqlite3 *db, int iDb){
 *************************************************************************
 ** This file contains code used to implement the ATTACH and DETACH commands.
 **
-** $Id: attach.c,v 1.62 2007/09/03 15:19:35 drh Exp $
+** $Id: attach.c,v 1.62 2007/09/03 15:19:35 drh ex_ $
 */
 
 #ifndef SQLITE_OMIT_ATTACH
@@ -46283,7 +46295,7 @@ SQLITE_PRIVATE int sqlite3FixTriggerStep(
 ** systems that do not need this facility may omit it by recompiling
 ** the library with -DSQLITE_OMIT_AUTHORIZATION=1
 **
-** $Id: auth.c,v 1.28 2007/09/01 18:24:55 danielk1977 Exp $
+** $Id: auth.c,v 1.28 2007/09/01 18:24:55 danielk1977 ex_ $
 */
 
 /*
@@ -46526,7 +46538,7 @@ SQLITE_PRIVATE void sqlite3AuthContextPop(AuthContext *pContext){
 **     COMMIT
 **     ROLLBACK
 **
-** $Id: build.c,v 1.444 2007/09/03 15:19:35 drh Exp $
+** $Id: build.c,v 1.444 2007/09/03 15:19:35 drh ex_ $
 */
 
 /*
@@ -49927,7 +49939,7 @@ SQLITE_PRIVATE KeyInfo *sqlite3IndexKeyinfo(Parse *pParse, Index *pIdx){
 ** This file contains functions used to access the internal hash tables
 ** of user defined functions and collation sequences.
 **
-** $Id: callback.c,v 1.23 2007/08/29 12:31:26 danielk1977 Exp $
+** $Id: callback.c,v 1.23 2007/08/29 12:31:26 danielk1977 ex_ $
 */
 
 
@@ -50306,7 +50318,7 @@ SQLITE_PRIVATE Schema *sqlite3SchemaGet(sqlite3 *db, Btree *pBt){
 ** This file contains C code routines that are called by the parser
 ** in order to generate code for DELETE FROM statements.
 **
-** $Id: delete.c,v 1.130 2007/08/16 04:30:40 drh Exp $
+** $Id: delete.c,v 1.130 2007/08/16 04:30:40 drh ex_ $
 */
 
 /*
@@ -50780,7 +50792,7 @@ SQLITE_PRIVATE void sqlite3GenerateIndexKey(
 ** sqliteRegisterBuildinFunctions() found at the bottom of the file.
 ** All other code has file scope.
 **
-** $Id: func.c,v 1.174 2007/09/03 11:04:22 danielk1977 Exp $
+** $Id: func.c,v 1.174 2007/09/03 11:04:22 danielk1977 ex_ $
 */
 
 
@@ -52283,7 +52295,7 @@ SQLITE_PRIVATE int sqlite3IsLikeFunction(sqlite3 *db, Expr *pExpr, int *pIsNocas
 ** This file contains C code routines that are called by the parser
 ** to handle INSERT statements in SQLite.
 **
-** $Id: insert.c,v 1.192 2007/09/03 17:30:07 danielk1977 Exp $
+** $Id: insert.c,v 1.192 2007/09/03 17:30:07 danielk1977 ex_ $
 */
 
 /*
@@ -53892,7 +53904,7 @@ static int xferOptimization(
 ** other files are for internal use by SQLite and should not be
 ** accessed by users of the library.
 **
-** $Id: legacy.c,v 1.22 2007/08/29 12:31:26 danielk1977 Exp $
+** $Id: legacy.c,v 1.22 2007/08/29 12:31:26 danielk1977 ex_ $
 */
 
 
@@ -54047,7 +54059,7 @@ exec_out:
 ** as extensions by SQLite should #include this file instead of 
 ** sqlite3.h.
 **
-** @(#) $Id: sqlite3ext.h,v 1.17 2007/08/31 16:11:36 drh Exp $
+** @(#) $Id: sqlite3ext.h,v 1.17 2007/08/31 16:11:36 drh ex_ $
 */
 #ifndef _SQLITE3EXT_H_
 #define _SQLITE3EXT_H_
@@ -54884,7 +54896,7 @@ SQLITE_PRIVATE int sqlite3AutoLoadExtensions(sqlite3 *db){
 *************************************************************************
 ** This file contains code used to implement the PRAGMA command.
 **
-** $Id: pragma.c,v 1.149 2007/08/31 18:34:59 drh Exp $
+** $Id: pragma.c,v 1.149 2007/08/31 18:34:59 drh ex_ $
 */
 
 /* Ignore this whole file if pragmas are disabled
@@ -56073,7 +56085,7 @@ pragma_out:
 ** interface, and routines that contribute to loading the database schema
 ** from disk.
 **
-** $Id: prepare.c,v 1.60 2007/08/29 12:31:27 danielk1977 Exp $
+** $Id: prepare.c,v 1.60 2007/08/29 12:31:27 danielk1977 ex_ $
 */
 
 /*
@@ -56815,7 +56827,7 @@ SQLITE_API int sqlite3_prepare16_v2(
 ** This file contains C code routines that are called by the parser
 ** to handle SELECT statements in SQLite.
 **
-** $Id: select.c,v 1.359 2007/08/31 17:42:48 danielk1977 Exp $
+** $Id: select.c,v 1.359 2007/08/31 17:42:48 danielk1977 ex_ $
 */
 
 
@@ -61403,7 +61415,7 @@ SQLITE_PRIVATE int sqlite3CodeRowTrigger(
 ** This file contains C code routines that are called by the parser
 ** to handle UPDATE statements.
 **
-** $Id: update.c,v 1.140 2007/08/16 10:09:03 danielk1977 Exp $
+** $Id: update.c,v 1.140 2007/08/16 10:09:03 danielk1977 ex_ $
 */
 
 #ifndef SQLITE_OMIT_VIRTUALTABLE
@@ -62038,7 +62050,7 @@ static void updateVirtualTable(
 ** Most of the code in this file may be omitted by defining the
 ** SQLITE_OMIT_VACUUM macro.
 **
-** $Id: vacuum.c,v 1.73 2007/08/29 12:31:28 danielk1977 Exp $
+** $Id: vacuum.c,v 1.73 2007/08/29 12:31:28 danielk1977 ex_ $
 */
 
 #if !defined(SQLITE_OMIT_VACUUM) && !defined(SQLITE_OMIT_ATTACH)
@@ -62298,7 +62310,7 @@ end_of_vacuum:
 *************************************************************************
 ** This file contains code used to help implement virtual tables.
 **
-** $Id: vtab.c,v 1.56 2007/08/29 14:06:23 danielk1977 Exp $
+** $Id: vtab.c,v 1.56 2007/08/29 14:06:23 danielk1977 ex_ $
 */
 #ifndef SQLITE_OMIT_VIRTUALTABLE
 
@@ -63102,7 +63114,7 @@ SQLITE_PRIVATE FuncDef *sqlite3VtabOverloadFunction(
 ** so is applicable.  Because this module is responsible for selecting
 ** indices, you might also think of this module as the "query optimizer".
 **
-** $Id: where.c,v 1.259 2007/08/29 14:06:23 danielk1977 Exp $
+** $Id: where.c,v 1.259 2007/08/29 14:06:23 danielk1977 ex_ $
 */
 
 /*
@@ -68987,7 +68999,7 @@ SQLITE_PRIVATE void sqlite3Parser(
 ** individual tokens and sends those tokens one-by-one over to the
 ** parser for analysis.
 **
-** $Id: tokenize.c,v 1.136 2007/08/27 23:26:59 drh Exp $
+** $Id: tokenize.c,v 1.136 2007/08/27 23:26:59 drh ex_ $
 */
 
 /*
@@ -69040,7 +69052,7 @@ const unsigned char ebcdicToAscii[] = {
 **
 ** The code in this file has been automatically generated by
 **
-**     $Header: /sqlite/sqlite/tool/mkkeywordhash.c,v 1.31 2007/07/30 18:26:20 rse Exp $
+**     $Header: /sqlite/sqlite/tool/mkkeywordhash.c,v 1.31 2007/07/30 18:26:20 rse ex_ $
 **
 ** The code in this file implements a function that determines whether
 ** or not a given identifier is really an SQL keyword.  The same thing
@@ -69612,7 +69624,7 @@ abort_parse:
 ** separating it out, the code will be automatically omitted from
 ** static links that do not use it.
 **
-** $Id: complete.c,v 1.6 2007/08/27 23:26:59 drh Exp $
+** $Id: complete.c,v 1.6 2007/08/27 23:26:59 drh ex_ $
 */
 #ifndef SQLITE_OMIT_COMPLETE
 
@@ -69883,7 +69895,7 @@ SQLITE_API int sqlite3_complete16(const void *zSql){
 ** other files are for internal use by SQLite and should not be
 ** accessed by users of the library.
 **
-** $Id: main.c,v 1.404 2007/09/03 15:19:35 drh Exp $
+** $Id: main.c,v 1.404 2007/09/03 15:19:35 drh ex_ $
 */
 
 /*

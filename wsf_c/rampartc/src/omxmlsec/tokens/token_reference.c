@@ -31,7 +31,6 @@ oxs_token_build_reference_element(
     axiom_element_t *reference_ele = NULL;
     axiom_attribute_t *ref_attr = NULL;
     axiom_attribute_t *value_type_attr = NULL;
-    int ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_WSSE_NS, OXS_WSSE);
@@ -49,12 +48,12 @@ oxs_token_build_reference_element(
     }
 
     ref_attr =  axiom_attribute_create(env, OXS_ATTR_URI , ref, NULL);
-    ret = axiom_element_add_attribute(reference_ele, env, ref_attr, reference_node);
+    axiom_element_add_attribute(reference_ele, env, ref_attr, reference_node);
 
     if(value_type)
     {
         value_type_attr =  axiom_attribute_create(env, OXS_ATTR_VALUE_TYPE , value_type, NULL);
-        ret = axiom_element_add_attribute(reference_ele, env, value_type_attr, reference_node);
+        axiom_element_add_attribute(reference_ele, env, value_type_attr, reference_node);
     }
     return reference_node;
 }

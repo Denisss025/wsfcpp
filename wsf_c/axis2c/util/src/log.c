@@ -552,6 +552,10 @@ axutil_log_impl_log_trace(
     const axis2_char_t *format,
     ...)
 {
+	(void)log;
+	(void)filename;
+	(void)linenumber;
+	(void)format;
 }
 #endif
 

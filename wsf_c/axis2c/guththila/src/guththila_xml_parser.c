@@ -67,15 +67,15 @@ guththila_next_char(
 \
     if(!result_found)\
     {\
-        size_t index = m->next++ - previous_size;\
-        if(index < data_size)\
+        size_t idx = m->next++ - previous_size;\
+        if(idx < data_size)\
         {\
-            c = buffer[index];\
+            c = buffer[idx];\
         }\
         else\
         {\
             buffer = NULL;\
-            data_size = -1;\
+            data_size = (size_t)-1;\
             --(m->next);\
             if(m->reader->type == GUTHTHILA_MEMORY_READER)\
             {\
@@ -432,7 +432,7 @@ guththila_utf8_bytes(
 
     if(c <           0x80)
     {
-        *start = c;
+        *start = (guththila_char_t)c;
         return start + 1;
     }
     if(c <          0x800)
@@ -464,10 +464,10 @@ guththila_utf8_bytes(
     p = end;
     while(--p > start)
     {
-        *p = (c & 0x3f) | 0x80;
+        *p = (char)((c & 0x3f) | 0x80);
         c >>= 6;
     }
-    *start = c | first;
+    *start = (guththila_char_t)((int)c | first);
     return end;
 }
 
@@ -509,7 +509,7 @@ guththila_token_evaluate_references(
         {
             break; /* Drop unterminated entity */
         }
-        entity_len = p - entity;
+        entity_len = (size_t)(p - entity);
         if(entity_len == 2 && entity[1] == 't')
         {
             if(entity[0] == 'g')
@@ -569,12 +569,12 @@ guththila_token_evaluate_references(
             if(digit == p && c != 0)
             { /* drop null char or unparsable entity */
                 /* Replace the entity with the UTF-8 representation */
-                q = guththila_utf8_bytes(c, q);
+                q = guththila_utf8_bytes((unsigned)c, q);
             }
         } /* else drop unknown entity */
         p++; /* go over ';' */
     }
-    tok->size = q - start;
+    tok->size = (size_t)(q - start);
 }
 
 /*
@@ -588,6 +588,7 @@ guththila_token_close(
     int referer,
     const axutil_env_t * env)
 {
+    (void)tok;
     guththila_attr_t * attr = NULL;
     guththila_element_t * elem = NULL;
     guththila_elem_namesp_t * e_namesp = NULL;
@@ -595,7 +596,7 @@ guththila_token_close(
     int i = 0;
     /* We are sure that the difference lies within the short range */
     m->temp_tok->type = (short)tok_type;
-    m->temp_tok->size = m->next - m->temp_tok->_start;
+    m->temp_tok->size = (size_t)(m->next - (size_t)m->temp_tok->_start);
     m->temp_tok->start = GUTHTHILA_BUF_POS(m->buffer, m->next - 1) - m->temp_tok->size;
     m->temp_tok->ref = referer;
     m->last_start = -1;
@@ -669,7 +670,7 @@ guththila_token_close(
                     else
                     {
                         namesp = (guththila_namespace_t *)AXIS2_MALLOC(env->allocator,
-                            sizeof(guththila_namespace_t) * e_namesp->size * 2);
+                            sizeof(guththila_namespace_t) * (size_t)e_namesp->size * 2);
                         if(namesp)
                         {
                             for(i = 0; i < e_namesp->no; i++)
@@ -790,8 +791,8 @@ guththila_next(
     int c = -1;
     guththila_attr_t * attr = NULL;
     int size = 0, i = 0, nmsp_counter, loop = 0, white_space = 0;
-    size_t data_size = -1;
-    size_t previous_size = -1;
+    size_t data_size = (size_t)-1;
+    size_t previous_size = (size_t)-1;
     guththila_char_t *buffer = NULL;
 
     /* Need to release the resources for attributes */
@@ -1146,11 +1147,11 @@ guththila_next(
                         if(buffer)
                         {
                             guththila_char_t *pos = NULL;
-                            size_t index = m->next - previous_size;
-                            pos = (guththila_char_t*)memchr(buffer + index, '<', data_size - index);
+                            size_t idx1 = m->next - previous_size;
+                            pos = (guththila_char_t*)memchr(buffer + idx1, '<', data_size - idx1);
                             if(pos)
                             {
-                                m->next += pos - (buffer + index);
+                                m->next += (size_t)pos - (size_t)(buffer + idx1);
                             }
                             else
                             {
@@ -1204,8 +1205,8 @@ guththila_process_xml_dec(
     int c = -1;
     int quote = -1;
     int nc = -1;
-    size_t data_size = -1;
-    size_t previous_size = -1;
+    size_t data_size = (size_t)-1;
+    size_t previous_size = (size_t)-1;
     guththila_char_t *buffer = NULL;
     if(3 == guththila_next_no_char(m, GUTHTHILA_EOF, c_arra, 3, env) && 'x' == c_arra[0] && 'm'
         == c_arra[1] && 'l' == c_arra[2])
@@ -1281,9 +1282,9 @@ guththila_process_xml_dec(
         }
         if(c == '?')
         {
-            int nc;
-            GUTHTHILA_NEXT_CHAR(m, buffer, data_size, previous_size, env, nc);
-            if('>' == nc)
+            int nc1;
+            GUTHTHILA_NEXT_CHAR(m, buffer, data_size, previous_size, env, nc1);
+            if('>' == nc1)
             {
                 m->guththila_event = GUTHTHILA_START_DOCUMENT;
             }
@@ -1301,6 +1302,7 @@ guththila_get_attribute_count(
     guththila_t * m,
     const axutil_env_t * env)
 {
+    (void)env;
     return GUTHTHILA_STACK_SIZE(m->attrib);
 }
 
@@ -1311,6 +1313,7 @@ guththila_get_attribute_name(
     const axutil_env_t * env)
 {
     guththila_char_t *str = NULL;
+    (void)m;
     if(att->name)
     {
         GUTHTHILA_TOKEN_TO_STRING(att->name, str, env);
@@ -1326,6 +1329,7 @@ guththila_get_attribute_value(
     const axutil_env_t * env)
 {
     guththila_char_t *str = NULL;
+    (void)m;
     if(att->val)
     {
         GUTHTHILA_TOKEN_TO_STRING(att->val, str, env);
@@ -1341,6 +1345,7 @@ guththila_get_attribute_prefix(
     const axutil_env_t * env)
 {
     guththila_char_t *str = NULL;
+    (void)m;
     if(att->pref)
     {
         GUTHTHILA_TOKEN_TO_STRING(att->pref, str, env);
@@ -1455,6 +1460,8 @@ guththila_get_namespace(
     guththila_t * m,
     const axutil_env_t * env)
 {
+	(void)m;
+	(void)env;
 
 #ifndef GUTHTHILA_VALIDATION_PARSER
     return (guththila_namespace_t *) guththila_stack_pop(&m->namesp, env);
@@ -1490,6 +1497,7 @@ guththila_get_namespace_uri(
     const axutil_env_t * env)
 {
     guththila_char_t *str = NULL;
+    (void)m;
     if(ns->uri)
     {
         GUTHTHILA_TOKEN_TO_STRING(ns->uri, str, env);
@@ -1505,6 +1513,7 @@ guththila_get_namespace_prefix(
     const axutil_env_t * env)
 {
     guththila_char_t *str = NULL;
+    (void)m;
     if(ns->name)
     {
         GUTHTHILA_TOKEN_TO_STRING(ns->name, str, env);
@@ -1624,6 +1633,7 @@ guththila_get_encoding(
     guththila_t * m,
     const axutil_env_t * env)
 {
+    (void)m;(void)env;
     return "UTF-8";
 }
 
@@ -1635,7 +1645,7 @@ guththila_next_char(
 {
     int c;
     size_t data_move, i;
-    int temp;
+    size_t temp;
     guththila_char_t **temp1;
     size_t * temp2, *temp3;
 
@@ -1644,10 +1654,10 @@ guththila_next_char(
      * */
     if(m->reader->type == GUTHTHILA_MEMORY_READER)
     {
-        size_t index = m->next++;
-        if(index < m->buffer.data_size[0])
+        size_t idx = m->next++;
+        if(idx < m->buffer.data_size[0])
         {
-            return m->buffer.buff[0][index];
+            return m->buffer.buff[0][idx];
         }
     }
     else
@@ -1707,7 +1717,7 @@ guththila_next_char(
                 if(m->last_start != -1)
                 {
                     data_move = m->buffer.data_size[m->buffer.cur_buff - 1] -
-                        (m->last_start - m->buffer.pre_tot_data);
+                        ((size_t)m->last_start - m->buffer.pre_tot_data);
                     memcpy(m->buffer.buff[m->buffer.cur_buff], m->buffer.buff[m->buffer.cur_buff - 1]
                         + m->buffer.data_size[m->buffer.cur_buff - 1] - data_move, data_move);
                     m->buffer.data_size[m->buffer.cur_buff - 1] -= data_move;
@@ -1715,9 +1725,9 @@ guththila_next_char(
                 }
                 m->buffer.pre_tot_data += m->buffer.data_size[m->buffer.cur_buff - 1];
             }
-            temp = guththila_reader_read(m->reader, GUTHTHILA_BUFFER_CURRENT_BUFF(m->buffer), 0,
+            temp = (size_t)guththila_reader_read(m->reader, GUTHTHILA_BUFFER_CURRENT_BUFF(m->buffer), 0,
                 (int)GUTHTHILA_BUFFER_CURRENT_BUFF_SIZE(m->buffer), env);
-            if(temp > 0)
+            if((int)temp > 0)
             {
                 m->buffer.data_size[m->buffer.cur_buff] += temp;
             }
@@ -1736,7 +1746,7 @@ guththila_next_char(
                 sizeof(guththila_char_t) * GUTHTHILA_BUFFER_DEF_SIZE);
             m->buffer.buffs_size[0] = GUTHTHILA_BUFFER_DEF_SIZE;
             m->buffer.cur_buff = 0;
-            temp = guththila_reader_read(m->reader, m->buffer.buff[0], 0,
+            temp = (size_t)guththila_reader_read(m->reader, m->buffer.buff[0], 0,
                 GUTHTHILA_BUFFER_DEF_SIZE, env);
             m->buffer.data_size[0] = temp;
             c = m->buffer.buff[0][m->next++];
@@ -1757,10 +1767,11 @@ guththila_next_no_char(
     size_t no,
     const axutil_env_t * env)
 {
-    int temp, data_move;
+    size_t temp, data_move;
     size_t i;
     guththila_char_t **temp1;
     size_t * temp2, *temp3;
+    (void)eof;
     if(m->reader->type == GUTHTHILA_MEMORY_READER && m->next + no - 1
         < GUTHTHILA_BUFFER_CURRENT_DATA_SIZE(m->buffer) && m->buffer.cur_buff != -1)
     {
@@ -1820,12 +1831,12 @@ guththila_next_no_char(
             m->buffer.buffs_size[m->buffer.cur_buff] = m->buffer.buffs_size[m->buffer.cur_buff - 1]
                 * 2;
             m->buffer.data_size[m->buffer.cur_buff] = 0;
-            data_move = (int)m->next;
+            data_move = m->next;
             /* We are sure that the difference lies within the int range */
-            if((m->last_start != -1) && (m->last_start < data_move))
-                data_move = m->last_start;
-            data_move = (int)m->buffer.data_size[m->buffer.cur_buff - 1] - (data_move
-                - (int)m->buffer.pre_tot_data);
+            if((m->last_start >= 0)&& ((size_t)m->last_start < data_move))
+                data_move = (size_t)m->last_start;
+            data_move = m->buffer.data_size[m->buffer.cur_buff - 1] - (data_move
+                - m->buffer.pre_tot_data);
             /* We are sure that the difference lies within the int range */
             if(data_move)
             {
@@ -1835,7 +1846,7 @@ guththila_next_no_char(
                 m->buffer.data_size[m->buffer.cur_buff] += data_move;
             }
             m->buffer.pre_tot_data += m->buffer.data_size[m->buffer.cur_buff - 1];
-            temp = guththila_reader_read(m->reader, GUTHTHILA_BUFFER_CURRENT_BUFF(m->buffer), 0,
+            temp = (size_t)guththila_reader_read(m->reader, GUTHTHILA_BUFFER_CURRENT_BUFF(m->buffer), 0,
                 (int)GUTHTHILA_BUFFER_CURRENT_BUFF_SIZE(m-> buffer), env);
             /* We are sure that the difference lies within the int range */
             if(temp > 0)
@@ -1860,7 +1871,7 @@ guththila_next_no_char(
                 sizeof(guththila_char_t) * GUTHTHILA_BUFFER_DEF_SIZE);
             m->buffer.buffs_size[0] = GUTHTHILA_BUFFER_DEF_SIZE;
             m->buffer.cur_buff = 0;
-            temp = guththila_reader_read(m->reader, m->buffer.buff[0], 0,
+            temp = (size_t)guththila_reader_read(m->reader, m->buffer.buff[0], 0,
                 GUTHTHILA_BUFFER_DEF_SIZE, env);
             m->buffer.data_size[0] = temp;
             for(i = 0; i < no; i++)

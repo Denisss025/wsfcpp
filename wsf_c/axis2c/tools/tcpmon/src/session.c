@@ -493,16 +493,16 @@ server_funct(
     axutil_thread_t * thd,
     void *data)
 {
-    tcpmon_session_server_thread_data_t *thread_data = (tcpmon_session_server_thread_data_t *)data;
+    tcpmon_session_server_thread_data_t *thrd_data = (tcpmon_session_server_thread_data_t *)data;
     tcpmon_session_impl_t *session_impl = NULL;
     const axutil_env_t *env = NULL;
     int listen_socket = -1;
-    int socket = -1;
+    int sockt = -1;
     axutil_thread_t *request_thread = NULL;
     tcpmon_entry_request_data_t *request_thread_data = NULL;
 
-    session_impl = thread_data->session_impl;
-    env = thread_data->env;
+    session_impl = thrd_data->session_impl;
+    env = thrd_data->env;
 
     listen_socket = (int)axutil_network_handler_create_server_socket
         (env, session_impl->listen_port);
@@ -525,14 +525,14 @@ server_funct(
         if (data)
         {
             AXIS2_FREE(env->allocator, (tcpmon_session_server_thread_data_t *)data);
-            thread_data = NULL;
+            thrd_data = NULL;
         }
         return NULL;
     }
     while (session_impl->is_running)
     {
-        socket = (int)axutil_network_handler_svr_socket_accept(env, listen_socket);
-        if (socket == -1)
+        sockt = axutil_network_handler_svr_socket_accept(env, listen_socket);
+        if (sockt == -1)
         {
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
                             "error in creating the socket" "create socket");
@@ -549,7 +549,7 @@ server_funct(
                                                          sizeof
                                                          (tcpmon_entry_request_data_t));
         request_thread_data->env = env;
-        request_thread_data->socket = socket;
+        request_thread_data->socket = sockt;
         request_thread_data->session = (tcpmon_session_t *) session_impl;
 
         request_thread = axutil_thread_pool_get_thread(env->thread_pool,
@@ -579,7 +579,7 @@ server_funct(
     if (data)
     {
         AXIS2_FREE(env->allocator, (tcpmon_session_server_thread_data_t *)data);
-        thread_data = NULL;
+        thrd_data = NULL;
     }
     return NULL;
 }

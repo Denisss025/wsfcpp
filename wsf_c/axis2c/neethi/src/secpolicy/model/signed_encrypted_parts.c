@@ -98,6 +98,8 @@ rp_signed_encrypted_parts_get_body(
     rp_signed_encrypted_parts_t * signed_encrypted_parts,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, signed_encrypted_parts, -1);
     return signed_encrypted_parts->body;
 }
 
@@ -117,6 +119,8 @@ rp_signed_encrypted_parts_get_signedparts(
     rp_signed_encrypted_parts_t * signed_encrypted_parts,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, signed_encrypted_parts, -1);
     return signed_encrypted_parts->signedparts;
 }
 
@@ -126,6 +130,7 @@ rp_signed_encrypted_parts_set_signedparts(
     const axutil_env_t * env,
     axis2_bool_t signedparts)
 {
+    (void)env;
     signed_encrypted_parts->signedparts = signedparts;
     return AXIS2_SUCCESS;
 }
@@ -135,6 +140,7 @@ rp_signed_encrypted_parts_get_headers(
     rp_signed_encrypted_parts_t * signed_encrypted_parts,
     const axutil_env_t * env)
 {
+    (void)env;
     return signed_encrypted_parts->headers;
 }
 
@@ -154,6 +160,7 @@ rp_signed_encrypted_parts_increment_ref(
     rp_signed_encrypted_parts_t * signed_encrypted_parts,
     const axutil_env_t * env)
 {
+    (void)env;
     signed_encrypted_parts->ref++;
     return AXIS2_SUCCESS;
 }
@@ -162,6 +169,7 @@ rp_signed_encrypted_parts_get_attachments(
     rp_signed_encrypted_parts_t * signed_encrypted_parts,
     const axutil_env_t * env)
 {
+    (void)env;
     return signed_encrypted_parts->attachments;
 }
 
@@ -171,6 +179,7 @@ rp_signed_encrypted_parts_set_attachments(
     const axutil_env_t * env,
     axis2_bool_t attachments)
 {
+    (void)env;
     signed_encrypted_parts->attachments = attachments;
     return AXIS2_SUCCESS;
 }

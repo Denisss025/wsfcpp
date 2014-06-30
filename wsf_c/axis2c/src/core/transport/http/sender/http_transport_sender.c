@@ -179,7 +179,7 @@ axis2_http_transport_sender_invoke(
     axis2_bool_t do_mtom;
     axutil_property_t *property = NULL;
     axiom_node_t *data_out = NULL;
-    int buffer_size = 0;
+    axis2_ssize_t buffer_size = 0;
     axis2_status_t status = AXIS2_SUCCESS;
     axis2_conf_ctx_t *conf_ctx = NULL;
     axis2_conf_t *conf = NULL;

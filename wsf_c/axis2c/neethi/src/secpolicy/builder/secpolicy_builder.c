@@ -137,22 +137,22 @@ secpolicy_process_alternatives(
                     env);
                 if(supporting_tokens)
                 {
-                    rp_property_type_t type;
-                    type = rp_supporting_tokens_get_type(supporting_tokens, env);
-                    if(type == RP_PROPERTY_SIGNED_SUPPORTING_TOKEN)
+                    rp_property_type_t rp_prtype;
+                    rp_prtype = rp_supporting_tokens_get_type(supporting_tokens, env);
+                    if(rp_prtype == RP_PROPERTY_SIGNED_SUPPORTING_TOKEN)
                     {
                         rp_secpolicy_set_signed_supporting_tokens(secpolicy, env, supporting_tokens);
                     }
-                    else if(type == RP_PROPERTY_SIGNED_ENDORSING_SUPPORTING_TOKEN)
+                    else if(rp_prtype == RP_PROPERTY_SIGNED_ENDORSING_SUPPORTING_TOKEN)
                     {
                         rp_secpolicy_set_signed_endorsing_supporting_tokens(secpolicy, env,
                             supporting_tokens);
                     }
-                    else if(type == RP_PROPERTY_SUPPORTING_SUPPORTING_TOKEN)
+                    else if(rp_prtype == RP_PROPERTY_SUPPORTING_SUPPORTING_TOKEN)
                     {
                         rp_secpolicy_set_supporting_tokens(secpolicy, env, supporting_tokens);
                     }
-                    else if(type == RP_PROPERTY_ENDORSING_SUPPORTING_TOKEN)
+                    else if(rp_prtype == RP_PROPERTY_ENDORSING_SUPPORTING_TOKEN)
                     {
                         rp_secpolicy_set_endorsing_supporting_tokens(secpolicy, env,
                             supporting_tokens);

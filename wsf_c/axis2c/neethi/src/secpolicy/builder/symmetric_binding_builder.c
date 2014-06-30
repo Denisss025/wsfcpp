@@ -47,6 +47,7 @@ rp_symmetric_binding_builder_build(
     neethi_all_t *all = NULL;
     neethi_assertion_t *assertion = NULL;
     neethi_policy_t *normalized_policy = NULL;
+    (void)element;
 
     symmetric_binding = rp_symmetric_binding_create(env);
 
@@ -100,7 +101,6 @@ symmetric_binding_process_alternatives(
     axutil_array_list_t *arraylist = NULL;
     neethi_assertion_t *assertion = NULL;
     neethi_assertion_type_t type;
-    void *value = NULL;
     rp_binding_commons_t *commons = NULL;
     rp_symmetric_asymmetric_binding_commons_t *as_commons = NULL;
 
@@ -114,7 +114,6 @@ symmetric_binding_process_alternatives(
     {
         operator = (neethi_operator_t *)axutil_array_list_get(arraylist, env, i);
         assertion = (neethi_assertion_t *)neethi_operator_get_value(operator, env);
-        value = neethi_assertion_get_value(assertion, env);
         type = neethi_assertion_get_type(assertion, env);
 
         if(type == ASSERTION_TYPE_PROTECTION_TOKEN)
@@ -208,22 +207,22 @@ symmetric_binding_process_alternatives(
                 = (rp_supporting_tokens_t *)neethi_assertion_get_value(assertion, env);
             if(supporting_tokens)
             {
-                rp_property_type_t type;
-                type = rp_supporting_tokens_get_type(supporting_tokens, env);
-                if(type == RP_PROPERTY_SIGNED_SUPPORTING_TOKEN)
+                rp_property_type_t rp_prtype;
+                rp_prtype = rp_supporting_tokens_get_type(supporting_tokens, env);
+                if(rp_prtype == RP_PROPERTY_SIGNED_SUPPORTING_TOKEN)
                 {
                     rp_binding_commons_set_signed_supporting_tokens(commons, env, supporting_tokens);
                 }
-                else if(type == RP_PROPERTY_SIGNED_ENDORSING_SUPPORTING_TOKEN)
+                else if(rp_prtype == RP_PROPERTY_SIGNED_ENDORSING_SUPPORTING_TOKEN)
                 {
                     rp_binding_commons_set_signed_endorsing_supporting_tokens(commons, env,
                         supporting_tokens);
                 }
-                else if(type == RP_PROPERTY_SUPPORTING_SUPPORTING_TOKEN)
+                else if(rp_prtype == RP_PROPERTY_SUPPORTING_SUPPORTING_TOKEN)
                 {
                     rp_binding_commons_set_supporting_tokens(commons, env, supporting_tokens);
                 }
-                else if(type == RP_PROPERTY_ENDORSING_SUPPORTING_TOKEN)
+                else if(rp_prtype == RP_PROPERTY_ENDORSING_SUPPORTING_TOKEN)
                 {
                     rp_binding_commons_set_endorsing_supporting_tokens(commons, env,
                         supporting_tokens);

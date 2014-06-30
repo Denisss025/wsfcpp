@@ -1095,8 +1095,7 @@ axis2_conf_builder_process_transport_recvs(
                 axis2_char_t *dll_name = NULL;
                 axutil_dll_desc_t *dll_desc = NULL;
                 axutil_param_t *impl_info_param = NULL;
-                axis2_transport_receiver_t *recv = NULL;
-                axis2_status_t stat = AXIS2_FAILURE;
+                axis2_transport_receiver_t *rxecv = NULL;
                 axis2_char_t *path_qualified_dll_name = NULL;
                 axis2_char_t *repos_name = NULL;
                 axis2_char_t *temp_path = NULL;
@@ -1147,11 +1146,11 @@ axis2_conf_builder_process_transport_recvs(
                 axutil_param_set_value(impl_info_param, env, dll_desc);
                 axutil_param_set_value_free(impl_info_param, env, axutil_dll_desc_free_void_arg);
                 axutil_class_loader_init(env);
-                recv = (axis2_transport_receiver_t *)axutil_class_loader_create_dll(env,
+                rxecv = (axis2_transport_receiver_t *)axutil_class_loader_create_dll(env,
                     impl_info_param);
                 axis2_transport_in_desc_add_param(transport_in, env, impl_info_param);
 
-                if(!recv)
+                if(!rxecv)
                 {
                     AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
                         "Transport receiver loading failed for %s, "
@@ -1159,16 +1158,16 @@ axis2_conf_builder_process_transport_recvs(
                     axis2_transport_in_desc_free(transport_in, env);
                     return status;
                 }
-                axis2_transport_receiver_set_is_application_client_side(recv, env, AXIS2_TRUE);
-                stat = axis2_transport_in_desc_set_recv(transport_in, env, recv);
+                axis2_transport_receiver_set_is_application_client_side(rxecv, env, AXIS2_TRUE);
+                status = axis2_transport_in_desc_set_recv(transport_in, env, rxecv);
 
-                if(!stat)
+                if(!status)
                 {
                     AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
                         "Setting transport receiver for transport %s into "
                             "transport in description failed, unable to continue", name);
                     axis2_transport_in_desc_free(transport_in, env);
-                    return stat;
+                    return status;
                 }
 
             }

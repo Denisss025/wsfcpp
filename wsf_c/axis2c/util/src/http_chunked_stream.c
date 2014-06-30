@@ -104,7 +104,7 @@ axutil_http_chunked_stream_read(
         if(chunked_stream->unread_len < yet_to_read)
         {
             len = axutil_stream_read(chunked_stream->stream, env, (axis2_char_t *)buffer + count
-                - yet_to_read, chunked_stream->unread_len);
+                - yet_to_read, (size_t)chunked_stream->unread_len);
             yet_to_read -= len;
             chunked_stream->unread_len -= len;
             if(chunked_stream->unread_len <= 0)
@@ -115,7 +115,7 @@ axutil_http_chunked_stream_read(
         else
         {
             len = axutil_stream_read(chunked_stream->stream, env, (axis2_char_t *)buffer + count
-                - yet_to_read, yet_to_read);
+                - (size_t)yet_to_read, (size_t)yet_to_read);
             yet_to_read -= len;
             chunked_stream->unread_len -= len;
         }
@@ -156,6 +156,8 @@ axutil_http_chunked_stream_get_current_chunk_size(
     const axutil_http_chunked_stream_t *chunked_stream,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, chunked_stream, -1);
     return chunked_stream->current_chunk_size;
 }
 
@@ -192,7 +194,7 @@ axutil_http_chunked_stream_start_chunk(
         /* we don't use extensions right now */
         *tmp = '\0';
     }
-    chunked_stream->current_chunk_size = strtol(str_chunk_len, NULL, 16);
+    chunked_stream->current_chunk_size = (int)strtol(str_chunk_len, NULL, 16);
     if(0 == chunked_stream->current_chunk_size)
     {
         /* Read the last CRLF */
@@ -227,6 +229,8 @@ axutil_http_chunked_stream_get_end_of_chunks(
     axutil_http_chunked_stream_t *chunked_stream,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, chunked_stream, -1);
     return chunked_stream->end_of_chunks;
 }
 

@@ -100,7 +100,7 @@ axis2_msg_recv_load_and_init_svc_impl(
     axutil_param_t *impl_info_param = NULL;
     void *impl_class = NULL;
 
-    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
 
     if(!svc)
     {
@@ -266,6 +266,7 @@ axis2_msg_recv_make_new_svc_obj(
         axutil_allocator_switch_to_local_pool(env->allocator);
         axutil_thread_mutex_unlock(axis2_svc_get_mutex(svc, env));
         return impl_class;
+	(void)msg_recv;
     }
 }
 
@@ -320,6 +321,7 @@ axis2_msg_recv_get_scope(
     const axutil_env_t * env)
 {
     return msg_recv->scope;
+    (void)env;
 }
 
 AXIS2_EXPORT axis2_status_t AXIS2_CALL
@@ -365,6 +367,7 @@ axis2_msg_recv_delete_svc_obj(
     }
     dll_desc = axutil_param_get_value(impl_info_param, env);
     return axutil_class_loader_delete_dll(env, dll_desc);
+    (void)msg_recv;
 }
 
 static axis2_status_t AXIS2_CALL
@@ -463,6 +466,7 @@ axis2_msg_recv_receive_impl(
     }
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "[axis2]Exit:axis2_msg_recv_receive_impl");
     return status;
+    (void)callback_recv_param;
 }
 
 AXIS2_EXPORT axis2_status_t AXIS2_CALL
@@ -473,6 +477,7 @@ axis2_msg_recv_set_invoke_business_logic(
 {
     msg_recv->invoke_business_logic = func;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXPORT axis2_status_t AXIS2_CALL
@@ -493,6 +498,7 @@ axis2_msg_recv_set_derived(
 {
     msg_recv->derived = derived;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXPORT void *AXIS2_CALL
@@ -501,6 +507,7 @@ axis2_msg_recv_get_derived(
     const axutil_env_t * env)
 {
     return msg_recv->derived;
+    (void)env;
 }
 
 AXIS2_EXPORT axis2_status_t AXIS2_CALL
@@ -511,6 +518,7 @@ axis2_msg_recv_set_receive(
 {
     msg_recv->receive = func;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXPORT axis2_status_t AXIS2_CALL
@@ -531,6 +539,7 @@ axis2_msg_recv_set_load_and_init_svc(
 {
     msg_recv->load_and_init_svc = func;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXPORT axis2_status_t AXIS2_CALL
@@ -555,14 +564,16 @@ AXIS2_EXPORT void AXIS2_CALL
 	struct axis2_conf_ctx *conf_ctx)
 {
 	msg_recv->conf_ctx = conf_ctx;
+    (void)env;
 }
 
 AXIS2_EXPORT struct axis2_conf_ctx* AXIS2_CALL
 axis2_msg_recv_get_conf_ctx(
-						   axis2_msg_recv_t *msg_recv,
-						   const axutil_env_t *env)
+    axis2_msg_recv_t *msg_recv,
+    const axutil_env_t *env)
 {
 	if(msg_recv)
 		return msg_recv->conf_ctx;
 	return NULL;
+    (void)env;
 }

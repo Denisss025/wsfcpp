@@ -93,6 +93,7 @@ neethi_all_get_policy_components(
     neethi_all_t *neethi_all,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_all->policy_components;
 }
 
@@ -145,12 +146,11 @@ neethi_all_serialize(
     const axutil_env_t *env)
 {
     axiom_node_t *all_node = NULL;
-    axiom_element_t *all_ele = NULL;
     axiom_namespace_t *policy_ns = NULL;
     axutil_array_list_t *components = NULL;
 
     policy_ns = axiom_namespace_create(env, NEETHI_NAMESPACE, NEETHI_PREFIX);
-    all_ele = axiom_element_create(env, parent, NEETHI_ALL, policy_ns, &all_node);
+    axiom_element_create(env, parent, NEETHI_ALL, policy_ns, &all_node);
     if(!all_node)
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,

@@ -144,7 +144,7 @@ static const command_rec axis2_cmds[] = { AP_INIT_TAKE1("Axis2RepoPath", axis2_s
     AP_INIT_TAKE1("Axis2GlobalPoolSize", axis2_set_global_pool_size, NULL, RSRC_CONF,
         "Axis2/C global pool size"), AP_INIT_TAKE1("Axis2ServiceURLPrefix",
         axis2_set_svc_url_prefix, NULL, RSRC_CONF, "Axis2/C service URL prifix"), 
-        { NULL } };
+	{ NULL, { .no_args=NULL }, NULL, 0, NO_ARGS, NULL } };
 
 /* Dispatch list for API hooks */
 module AP_MODULE_DECLARE_DATA axis2_module = { STANDARD20_MODULE_STUFF, NULL, /* create per-dir    config structures */
@@ -418,7 +418,6 @@ axis2_module_realloc(
 #if APR_HAS_SHARED_MEMORY
     if (rmm == allocator->current_pool)
     {
-        void* ptr = NULL;
         apr_rmm_off_t offset;
         apr_global_mutex_lock(global_mutex);
         offset = apr_rmm_realloc(rmm, ptr, size);
@@ -495,7 +494,7 @@ axis2_post_config(
         apr_shm_t *shm;
         apr_rmm_off_t offset;
 
-        status = apr_shm_create(&shm, conf->axis2_global_pool_size, NULL, pconf);
+        status = apr_shm_create(&shm, (apr_size_t)conf->axis2_global_pool_size, NULL, pconf);
         if (status != APR_SUCCESS)
         {
             ap_log_error(APLOG_MARK, APLOG_EMERG, status, svr_rec,
@@ -503,7 +502,7 @@ axis2_post_config(
             exit(APEXIT_INIT);
         }
 
-        status = apr_rmm_init(&rmm, NULL, apr_shm_baseaddr_get(shm), conf->axis2_global_pool_size,
+        status = apr_rmm_init(&rmm, NULL, apr_shm_baseaddr_get(shm), (apr_size_t)conf->axis2_global_pool_size,
             pconf);
         if (status != APR_SUCCESS)
         {

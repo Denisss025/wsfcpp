@@ -115,14 +115,14 @@ AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axis2_phase_add_handler_at(
     axis2_phase_t * phase,
     const axutil_env_t * env,
-    const int index,
+    const int idx,
     axis2_handler_t * handler)
 {
     AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI,
         "axis2_handler_t *%s added to the index %d of the phase %s", axutil_string_get_buffer(
-            axis2_handler_get_name(handler, env), env), index, phase->name);
+            axis2_handler_get_name(handler, env), env), idx, phase->name);
 
-    return axutil_array_list_add_at(phase->handlers, env, index, handler);
+    return axutil_array_list_add_at(phase->handlers, env, idx, handler);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -155,7 +155,7 @@ axis2_phase_invoke(
     const axutil_env_t * env,
     axis2_msg_ctx_t * msg_ctx)
 {
-    int index = 0, size = 0;
+    int idx = 0, size = 0;
     axis2_status_t status = AXIS2_SUCCESS;
 
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Entry:axis2_phase_invoke");
@@ -185,7 +185,7 @@ axis2_phase_invoke(
     }
     /* Invoking the rest of handlers except first_handler and last_handler */
     size = axutil_array_list_size(phase->handlers, env);
-    while(index < size)
+    while(idx < size)
     {
         if(axis2_msg_ctx_is_paused(msg_ctx, env))
         {
@@ -194,7 +194,7 @@ axis2_phase_invoke(
         else
         {
             axis2_handler_t *handler = (axis2_handler_t *)axutil_array_list_get(phase->handlers,
-                env, index);
+                env, idx);
             if(handler)
             {
                 const axis2_char_t *handler_name = axutil_string_get_buffer(axis2_handler_get_name(
@@ -225,10 +225,10 @@ axis2_phase_invoke(
                         "Handler %s invoke failed within phase %s", handler_name, phase->name);
                     return status;
                 }
-                /* index increment should be done after the invoke function. If the invocation
+                /* idx increment should be done after the invoke function. If the invocation
                  failed this handler is taken care of and no need to revoke again */
-                index++;
-                axis2_msg_ctx_set_current_handler_index(msg_ctx, env, index);
+                idx++;
+                axis2_msg_ctx_set_current_handler_index(msg_ctx, env, idx);
             }
         }
     }
@@ -1128,7 +1128,7 @@ axis2_phase_invoke_start_from_handler(
         {
             const axis2_char_t *handler_name = axutil_string_get_buffer(axis2_handler_get_name(
                 handler, env), env);
-            int index = -1;
+            int idx = -1;
 
             axis2_handler_desc_t *handler_desc = axis2_handler_get_handler_desc(handler, env);
             if(!handler_desc)
@@ -1141,8 +1141,8 @@ axis2_phase_invoke_start_from_handler(
             }
 
             axis2_handler_invoke(handler, env, msg_ctx);
-            index = axis2_msg_ctx_get_current_handler_index(msg_ctx, env);
-            axis2_msg_ctx_set_current_handler_index(msg_ctx, env, (index + 1));
+            idx = axis2_msg_ctx_get_current_handler_index(msg_ctx, env);
+            axis2_msg_ctx_set_current_handler_index(msg_ctx, env, (idx + 1));
         }
     }
     return status;

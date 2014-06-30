@@ -33,6 +33,7 @@ rp_layout_builder_build(
     axiom_node_t *layout_node = NULL;
     axiom_element_t *layout_element = NULL;
     neethi_assertion_t *assertion = NULL;
+    (void)element;
 
     layout = rp_layout_create(env);
 

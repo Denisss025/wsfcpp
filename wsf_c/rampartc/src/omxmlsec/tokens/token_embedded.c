@@ -29,7 +29,6 @@ oxs_token_build_embedded_element(
     axiom_node_t *embedded_node = NULL;
     axiom_element_t *embedded_ele = NULL;
     axiom_attribute_t *id_attr = NULL;
-    int ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_WSSE_NS, OXS_WSSE);
@@ -48,7 +47,7 @@ oxs_token_build_embedded_element(
     }
 
     id_attr =  axiom_attribute_create(env, OXS_ATTR_ID, id, NULL);
-    ret = axiom_element_add_attribute(embedded_ele, env, id_attr, embedded_node);
+    axiom_element_add_attribute(embedded_ele, env, id_attr, embedded_node);
     return embedded_node;
 }
 

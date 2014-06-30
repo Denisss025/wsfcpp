@@ -784,7 +784,7 @@ axis2_apache2_worker_process_request(
             if (out_stream)
             {
                 body_string = axutil_stream_get_buffer(out_stream, env);
-                body_string_len = axutil_stream_get_len(out_stream, env);
+                body_string_len = (unsigned)axutil_stream_get_len(out_stream, env);
             }
 
             /* In case of a SOAP Fault, we have to set the status to 500,
@@ -846,7 +846,6 @@ axis2_apache2_worker_process_request(
             }
             if (temp)
             {
-                axis2_char_t *content_type = NULL;
                 axis2_char_t *char_set = NULL;
                 axis2_char_t *temp2 = NULL;
 
@@ -884,7 +883,7 @@ axis2_apache2_worker_process_request(
                     {
                         *temp2 = '\0';
                         temp = AXIS2_MALLOC(env->allocator,
-                            sizeof(axis2_char_t) * ((int)strlen(content_type) + 3));
+                            sizeof(axis2_char_t) * (strlen(content_type) + 3));
                         if (!temp)
                         {
                             AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
@@ -1061,7 +1060,7 @@ axis2_apache2_worker_process_request(
                 if (out_stream)
                 {
                     body_string = axutil_stream_get_buffer(out_stream, env);
-                    body_string_len = axutil_stream_get_len(out_stream, env);
+                    body_string_len = (unsigned)axutil_stream_get_len(out_stream, env);
                 }
             }
         }
@@ -1261,7 +1260,7 @@ axis2_apache2_worker_process_request(
 					if (out_stream)
 					{
 						body_string = axutil_stream_get_buffer(out_stream, env);
-						body_string_len = axutil_stream_get_len(out_stream, env);
+						body_string_len = (unsigned)axutil_stream_get_len(out_stream, env);
 					}
 					send_status = DONE;
 				}
@@ -1291,7 +1290,6 @@ axis2_apache2_worker_process_request(
             *in_msg_ctx = NULL;
         axis2_msg_ctx_t **msg_ctx_map = NULL;
         axis2_char_t *msg_id = NULL;
-        axis2_conf_ctx_t *conf_ctx = NULL;
         msg_ctx_map = axis2_op_ctx_get_msg_ctx_map(op_ctx, env);
 
         out_msg_ctx = msg_ctx_map[AXIS2_WSDL_MESSAGE_LABEL_OUT];
@@ -1393,7 +1391,7 @@ axis2_apache2_worker_process_request(
 
     else if (body_string)
     {
-        ap_rwrite(body_string, body_string_len, request);
+        ap_rwrite(body_string, (int)body_string_len, request);
         body_string = NULL;
     }
 
@@ -1426,21 +1424,21 @@ axis2_apache2_worker_get_bytes(
     tmp_stream = axutil_stream_create_basic(env);
     while(loop_status)
     {
-        int read = 0;
-        int write = 0;
+        int data_read = 0;
+        int written = 0;
 
         char buf[READ_SIZE];
-        read = axutil_stream_read(stream, env, buf, READ_SIZE);
-        if(read < 0)
+        data_read = axutil_stream_read(stream, env, buf, READ_SIZE);
+        if(data_read < 0)
         {
             break;
         }
-        write = axutil_stream_write(tmp_stream, env, buf, read);
-	if (write < 0)
+        written = (int)axutil_stream_write(tmp_stream, env, buf, (size_t)data_read);
+	if (written < 0)
 	{
 	    break;
 	}
-        if(read < (READ_SIZE - 1))
+        if(data_read < (READ_SIZE - 1))
         {
             break;
         }
@@ -1449,8 +1447,8 @@ axis2_apache2_worker_get_bytes(
 
     if(return_size > 0)
     {
-        buffer = (char *)AXIS2_MALLOC(env->allocator, sizeof(char) * (return_size + 2));
-        return_size = axutil_stream_read(tmp_stream, env, buffer, return_size + 1);
+        buffer = (char *)AXIS2_MALLOC(env->allocator, sizeof(char) * ((size_t)return_size + 2));
+        return_size = axutil_stream_read(tmp_stream, env, buffer, (size_t)return_size + 1);
         buffer[return_size + 1] = '\0';
     }
     axutil_stream_free(tmp_stream, env);
@@ -1507,7 +1505,7 @@ apache2_worker_send_mtom_message(
                     output_buffer_size = (int)mime_part->part_size;
                 }
 
-                output_buffer = AXIS2_MALLOC(env->allocator, (output_buffer_size + 1)
+                output_buffer = AXIS2_MALLOC(env->allocator, ((size_t)output_buffer_size + 1)
                     * sizeof(axis2_char_t));
 
                 status = apache2_worker_send_attachment_using_file(env, request, f, output_buffer,
@@ -1588,9 +1586,14 @@ apache2_worker_send_attachment_using_file(
     /*int written = 0;*/
     axis2_status_t status = AXIS2_SUCCESS;
 
+    if (buffer_size <= 0)
+    {
+	    return AXIS2_FAILURE;
+    }
+
     do
     {
-        count = (int)fread(buffer, 1, buffer_size + 1, fp);
+        count = (int)fread(buffer, 1, (size_t)buffer_size + 1, fp);
         if(ferror(fp))
         {
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Error in reading file containg the attachment");
@@ -1623,7 +1626,6 @@ apache2_worker_send_attachment_using_file(
             fclose(fp);
             return AXIS2_FAILURE;
         }
-        memset(buffer, 0, buffer_size);
         if(status == AXIS2_FAILURE)
         {
             if(buffer)
@@ -1634,6 +1636,7 @@ apache2_worker_send_attachment_using_file(
             fclose(fp);
             return AXIS2_FAILURE;
         }
+        memset(buffer, 0, (size_t)buffer_size);
     }
     while(!feof(fp));
 

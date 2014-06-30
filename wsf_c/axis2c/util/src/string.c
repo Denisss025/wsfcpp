@@ -61,7 +61,7 @@ axutil_string_create(
 
     string->length = axutil_strlen(str);
 
-    if(string->length < 0)
+    if((int)string->length < 0)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_INVALID_NULL_PARAM, AXIS2_FAILURE);
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
@@ -114,7 +114,7 @@ axutil_string_create_assume_ownership(
     string->ref_count = 1;
     string->owns_buffer = AXIS2_TRUE;
 
-    if(string->length < 0)
+    if((int)string->length < 0)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_INVALID_NULL_PARAM, AXIS2_FAILURE);
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
@@ -157,7 +157,7 @@ axutil_string_create_const(
     string->ref_count = 1;
     string->owns_buffer = AXIS2_FALSE;
 
-    if(string->length < 0)
+    if((int)string->length < 0)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_INVALID_NULL_PARAM, AXIS2_FAILURE);
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
@@ -201,6 +201,7 @@ axutil_string_equals(
     const axutil_env_t * env,
     const struct axutil_string *string1)
 {
+    (void)env;
     if(!string || !string1)
     {
         return AXIS2_FALSE;
@@ -214,6 +215,7 @@ axutil_string_clone(
     struct axutil_string *string,
     const axutil_env_t *env)
 {
+    (void)env;
     if(!string)
     {
         return NULL;
@@ -229,6 +231,7 @@ axutil_string_get_buffer(
     const struct axutil_string *string,
     const axutil_env_t *env)
 {
+    (void)env;
     if(!string)
     {
         return NULL;
@@ -243,9 +246,10 @@ axutil_string_get_length(
     const axutil_env_t *env)
 {
     int error_return = -1;
+    (void)env;
     if(!string)
     {
-        return error_return;
+        return (unsigned)error_return;
     }
 
     return string->length;
@@ -263,7 +267,7 @@ axutil_strdup(
 {
     if(ptr)
     {
-        int len = axutil_strlen(ptr);
+        axis2_ssize_t len = axutil_strlen(ptr);
         axis2_char_t *str = (axis2_char_t *)AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
             * (len + 1));
         if(!str)
@@ -329,22 +333,30 @@ axutil_strndup(
 {
     const axis2_char_t *end;
     axis2_char_t *str;
+    size_t nn;
 
+    AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, ptr, NULL);
 
-    end = axutil_memchr(ptr, '\0', n);
+    if (n < 0)
+    {
+	    return NULL;
+    }
+    nn = (size_t)n;
+
+    end = axutil_memchr(ptr, '\0', nn);
     if(end)
         n = (int)(end - (axis2_char_t *)ptr);
     /* We are sure that the difference lies within the int range */
-    str = (axis2_char_t *)AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * (n + 1));
+    str = (axis2_char_t *)AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * (nn + 1));
     if(!str)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Out of memory");
         return NULL;
     }
-    memcpy(str, ptr, n);
-    str[n] = '\0';
+    memcpy(str, ptr, nn);
+    str[nn] = '\0';
 
     return (void *)str;
 }
@@ -358,7 +370,7 @@ axutil_strcat(
     size_t saved_lengths[MAX_SAVED_LENGTHS];
     int sl_size;
     int nargs = 0;
-    int str_len = 0;
+    size_t str_len;
 
     /* Pass one --- find length of required string */
 
@@ -388,7 +400,7 @@ axutil_strcat(
     sl_size = nargs;
 
     /* Allocate the required string */
-    str_len = (int)(sizeof(axis2_char_t) * (len + 1));
+    str_len = sizeof(axis2_char_t) * (len + 1);
     /* We are sure that the difference lies within the int range */
     str = (axis2_char_t *) AXIS2_MALLOC(env->allocator, str_len);
     if (!str)
@@ -434,10 +446,10 @@ axutil_stracat(
     const axis2_char_t *s1,
     const axis2_char_t *s2)
 {
-    axis2_char_t *ret = NULL;
-    int alloc_len = -1;
-    int len1 = 0;
-    int len2 = 0;
+    axis2_char_t *ret;
+    axis2_ssize_t alloc_len;
+    axis2_ssize_t len1;
+    axis2_ssize_t len2;
 
     if(!s1 && !s2)
     {
@@ -454,6 +466,7 @@ axutil_stracat(
 
     len1 = axutil_strlen(s1);
     len2 = axutil_strlen(s2);
+    if ((int)len1 < 0 || (int)len2 < 0) return NULL;
     alloc_len = len1 + len2 + 1;
     ret = (axis2_char_t *)AXIS2_MALLOC(env->allocator, alloc_len * sizeof(axis2_char_t));
     memcpy(ret, s1, len1 * sizeof(axis2_char_t));
@@ -485,7 +498,7 @@ axutil_strncmp(
 {
     if(s1 && s2)
     {
-        return strncmp(s1, s2, n);
+        return strncmp(s1, s2, (size_t)n);
     }
     else
     {
@@ -503,7 +516,7 @@ axutil_strlen(
         return (axis2_ssize_t)strlen(s);
         /* We are sure that the difference lies within the axis2_ssize_t range */
     }
-    return error_return;
+    return (axis2_ssize_t)error_return;
 }
 
 AXIS2_EXTERN int AXIS2_CALL
@@ -582,7 +595,7 @@ axutil_rindex(
     const axis2_char_t *_s,
     axis2_char_t _ch)
 {
-    int i, ilen = axutil_strlen(_s);
+    int i, ilen = (int)axutil_strlen(_s);
     if(ilen < 1)
     {
         return NULL;
@@ -604,20 +617,20 @@ axutil_replace(
     int s1,
     int s2)
 {
-    axis2_char_t *newstr = NULL;
-    axis2_char_t *index = NULL;
+    axis2_char_t *newstr;
+    axis2_char_t *idx;
     if(!str)
     {
         return NULL;
     }
 
     newstr = axutil_strdup(env, str);
-    index = strchr(newstr, s1);
-    while(index)
+    idx = strchr(newstr, s1);
+    while(idx)
     {
-        newstr[index - newstr] = (axis2_char_t)s2;
+        newstr[idx - newstr] = (axis2_char_t)s2;
         /* We are sure that the conversion is safe */
-        index = strchr(newstr, s1);
+        idx = strchr(newstr, s1);
     }
     return newstr;
 }
@@ -732,18 +745,18 @@ axutil_string_substring_starting_at(
     axis2_char_t *str,
     int s)
 {
-    int len;
-    int pos_to_shift;
+    size_t len;
+    size_t pos_to_shift;
 
-    len = (int)strlen(str);
+    len = strlen(str);
     /* We are sure that the difference lies within the int range */
-    pos_to_shift = len - s + 1;
 
-    if(len <= s)
+    if(s < 0 || len <= (size_t)s)
     {
         return NULL;
     }
-    memmove(str, str + s, pos_to_shift);
+    pos_to_shift = len - (size_t)s + 1;
+    memmove(str, str + (size_t)s, pos_to_shift);
     return str;
 }
 

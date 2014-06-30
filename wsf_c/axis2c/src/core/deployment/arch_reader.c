@@ -69,6 +69,7 @@ axis2_arch_reader_create_svc(
     axis2_svc_t *svc = NULL;
     svc = axis2_svc_create(env);
     return svc;
+    (void)file;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

@@ -195,8 +195,8 @@ axis2_http_client_send(
     int written = 0;
     axis2_status_t status = AXIS2_FAILURE;
     axis2_bool_t chunking_enabled = AXIS2_FALSE;
-    axis2_char_t *host = NULL;
-    unsigned int port = 0;
+    axis2_char_t *host;
+    int port = 0;
 
     /* In the MTOM case request body is not set. Instead mime_parts
      array_list is there */
@@ -208,7 +208,7 @@ axis2_http_client_send(
     }*/
     if(!client->req_body && !(client->doing_mtom))
     {
-        client->req_body_size = axis2_http_simple_request_get_body_bytes(request, env,
+        client->req_body_size = (int)axis2_http_simple_request_get_body_bytes(request, env,
             &client->req_body);
     }
 
@@ -247,7 +247,7 @@ axis2_http_client_send(
 
         if(client->sockfd < 0)
         {
-            client->sockfd = (int)axutil_network_handler_open_socket(env, host, port);
+            client->sockfd = axutil_network_handler_open_socket(env, host, port);
         }
     }
 
@@ -378,7 +378,7 @@ axis2_http_client_send(
          * POST http://host:port/path HTTP/1.x if we have enabled proxies
          */
         axis2_char_t *host_port_str = NULL;
-        axis2_char_t *host = axutil_url_get_host(client->url, env);
+        host = axutil_url_get_host(client->url, env);
         axis2_http_request_line_t *request_line = axis2_http_simple_request_get_request_line(
             request, env);
         axis2_char_t *path = axis2_http_request_line_get_uri(request_line, env);
@@ -441,7 +441,6 @@ axis2_http_client_send(
 
     if(client->doing_mtom)
     {
-        axis2_status_t status = AXIS2_SUCCESS;
         axutil_http_chunked_stream_t *chunked_stream = NULL;
 
         /* If the callback name is not there, then we will check whether there 
@@ -489,7 +488,7 @@ axis2_http_client_send(
             while(written < client->req_body_size)
             {
                 len = axutil_stream_write(client->data_stream, env, client->req_body + written,
-                    client->req_body_size - written);
+                    (size_t)(client->req_body_size - written));
                 if(-1 == len)
                 {
                     status = AXIS2_FAILURE;
@@ -518,7 +517,7 @@ axis2_http_client_send(
             while(written < client->req_body_size)
             {
                 written = axutil_http_chunked_stream_write(chunked_stream, env, client->req_body,
-                    client->req_body_size);
+                    (size_t)client->req_body_size);
 
                 if(-1 == written)
                 {
@@ -560,7 +559,7 @@ axis2_http_client_receive_header(
     axis2_char_t str_status_line[AXIS2_HTTP_STATUS_LINE_LENGTH];
     axis2_char_t tmp_buf[3];
     axis2_char_t str_header[AXIS2_HTTP_HEADER_LENGTH];
-    int read = 0;
+    int data_read = 0;
     int http_status = 0;
     axis2_bool_t end_of_line = AXIS2_FALSE;
     axis2_bool_t end_of_headers = AXIS2_FALSE;
@@ -568,7 +567,7 @@ axis2_http_client_receive_header(
     if(-1 == client->sockfd || !client->data_stream || AXIS2_FALSE == client->request_sent)
     {
         axis2_char_t *host;
-        unsigned int port;
+        int port;
         host = axutil_url_get_host(client->url, env);
         port = axutil_url_get_port(client->url, env);
 
@@ -578,14 +577,14 @@ axis2_http_client_receive_header(
         return -1;
     }
 
-    /* read the status line */
+    /* data_read the status line */
     do
     {
         memset(str_status_line, 0, AXIS2_HTTP_STATUS_LINE_LENGTH);
-        while((read = axutil_stream_read(client->data_stream, env, tmp_buf, 1)) > 0)
+        while((data_read = axutil_stream_read(client->data_stream, env, tmp_buf, 1)) > 0)
         {
-            /* "read" variable is number of characters read by stream */
-            tmp_buf[read] = '\0';
+            /* "data_read" variable is number of characters data_read by stream */
+            tmp_buf[data_read] = '\0';
             strcat(str_status_line, tmp_buf);
             if(0 != strstr(str_status_line, AXIS2_HTTP_CRLF))
             {
@@ -593,13 +592,13 @@ axis2_http_client_receive_header(
             }
         }
 
-        if(read < 0)
+        if(data_read < 0)
         {
             AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "http client , response timed out");
             AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_RESPONSE_TIMED_OUT, AXIS2_FAILURE);
             return -1;
         }
-        else if(read == 0)
+        else if(data_read == 0)
         {
             AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_RESPONSE_SERVER_SHUTDOWN, AXIS2_FAILURE);
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Response error, Server Shutdown");
@@ -630,14 +629,14 @@ str_status_line %s", str_status_line);
         axis2_http_status_line_get_status_code(status_line, env),
         axis2_http_status_line_get_reason_phrase(status_line, env));
 
-    /* now read the headers */
+    /* now data_read the headers */
     memset(str_header, 0, AXIS2_HTTP_HEADER_LENGTH);
     end_of_line = AXIS2_FALSE;
     while(AXIS2_FALSE == end_of_headers)
     {
-        while((read = axutil_stream_read(client->data_stream, env, tmp_buf, 1)) > 0)
+        while((data_read = axutil_stream_read(client->data_stream, env, tmp_buf, 1)) > 0)
         {
-            tmp_buf[read] = '\0';
+            tmp_buf[data_read] = '\0';
             strcat(str_header, tmp_buf);
             if(0 != strstr(str_header, AXIS2_HTTP_CRLF))
             {
@@ -799,7 +798,7 @@ axis2_http_client_connect_ssl_host(
     axis2_char_t *connect_string = NULL;
     axis2_char_t str_status_line[AXIS2_HTTP_STATUS_LINE_LENGTH];
     axis2_char_t tmp_buf[3];
-    int read = 0;
+    int data_read = 0;
     axis2_bool_t end_of_line = AXIS2_FALSE;
     axis2_bool_t end_of_response = AXIS2_FALSE;
     axis2_http_status_line_t *status_line = NULL;
@@ -830,9 +829,9 @@ axis2_http_client_connect_ssl_host(
         * sizeof(axis2_char_t));
 
     memset(str_status_line, 0, AXIS2_HTTP_STATUS_LINE_LENGTH);
-    while((read = axutil_stream_read(tmp_stream, env, tmp_buf, 1)) > 0)
+    while((data_read = axutil_stream_read(tmp_stream, env, tmp_buf, 1)) > 0)
     {
-        tmp_buf[read] = '\0';
+        tmp_buf[data_read] = '\0';
         strcat(str_status_line, tmp_buf);
         if(0 != strstr(str_status_line, AXIS2_HTTP_CRLF))
         {
@@ -840,7 +839,7 @@ axis2_http_client_connect_ssl_host(
             break;
         }
     }
-    if(read < 0)
+    if(data_read < 0)
     {
         AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_RESPONSE_TIMED_OUT, AXIS2_FAILURE);
         AXIS2_FREE(env->allocator, connect_string);
@@ -866,9 +865,9 @@ axis2_http_client_connect_ssl_host(
     memset(str_status_line, 0, AXIS2_HTTP_STATUS_LINE_LENGTH);
     while(AXIS2_FALSE == end_of_response)
     {
-        while((read = axutil_stream_read(tmp_stream, env, tmp_buf, 1)) > 0)
+        while((data_read = axutil_stream_read(tmp_stream, env, tmp_buf, 1)) > 0)
         {
-            tmp_buf[read] = '\0';
+            tmp_buf[data_read] = '\0';
             strcat(str_status_line, tmp_buf);
             if(0 != strstr(str_status_line, AXIS2_HTTP_CRLF))
             {
@@ -992,9 +991,9 @@ axis2_http_client_consume_stream(
 {
     /*axutil_stream_close(client->data_stream, env);*/
     axis2_char_t tmp_buffer[512];
-    int read;
+    int data_read;
     
-    while((read = axutil_stream_read(client->data_stream, env, tmp_buffer, 511)) == 511)
+    while((data_read = axutil_stream_read(client->data_stream, env, tmp_buffer, 511)) == 511)
     {
     }
 

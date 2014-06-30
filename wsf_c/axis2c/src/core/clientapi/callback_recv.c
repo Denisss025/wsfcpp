@@ -90,6 +90,7 @@ axis2_callback_recv_get_base(
 {
     callback_recv->base_deep_copy = AXIS2_FALSE;
     return callback_recv->base;
+    (void)env;
 }
 
 AXIS2_EXTERN void AXIS2_CALL
@@ -200,5 +201,6 @@ axis2_callback_recv_receive(
     }
 
     return AXIS2_FAILURE;
+    (void)callback_recv_param;
 }
 

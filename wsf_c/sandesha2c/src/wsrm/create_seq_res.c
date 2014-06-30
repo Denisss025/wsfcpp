@@ -292,7 +292,7 @@ sandesha2_create_seq_res_get_identifier(
 axis2_status_t AXIS2_CALL
 sandesha2_create_seq_res_set_accept(
     sandesha2_create_seq_res_t *create_seq_res,
-    const axutil_env_t *env, sandesha2_accept_t *accept)
+    const axutil_env_t *env, sandesha2_accept_t *acc)
 {
     if(create_seq_res->accept)
     {
@@ -300,7 +300,7 @@ sandesha2_create_seq_res_set_accept(
         create_seq_res->accept = NULL;
     }
     
-    create_seq_res->accept = accept;
+    create_seq_res->accept = acc;
     return AXIS2_SUCCESS;
 }
 

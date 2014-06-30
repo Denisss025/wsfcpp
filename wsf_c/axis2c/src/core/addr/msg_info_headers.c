@@ -118,6 +118,7 @@ axis2_msg_info_headers_get_to(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->to;
 }
 
@@ -143,6 +144,7 @@ axis2_msg_info_headers_get_from(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->from;
 }
 
@@ -152,6 +154,7 @@ axis2_msg_info_headers_set_from(
     const axutil_env_t * env,
     axis2_endpoint_ref_t * from)
 {
+    (void)env;
     msg_info_headers->from = from;
     return AXIS2_SUCCESS;
 }
@@ -161,6 +164,7 @@ axis2_msg_info_headers_get_reply_to(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->reply_to;
 }
 
@@ -170,6 +174,7 @@ axis2_msg_info_headers_set_reply_to(
     const axutil_env_t * env,
     axis2_endpoint_ref_t * reply_to)
 {
+    (void)env;
     msg_info_headers->reply_to = reply_to;
     return AXIS2_SUCCESS;
 }
@@ -179,6 +184,7 @@ axis2_msg_info_headers_get_fault_to(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->fault_to;
 }
 
@@ -188,6 +194,7 @@ axis2_msg_info_headers_set_fault_to(
     const axutil_env_t * env,
     axis2_endpoint_ref_t * fault_to)
 {
+    (void)env;
     msg_info_headers->fault_to = fault_to;
     return AXIS2_SUCCESS;
 }
@@ -197,6 +204,7 @@ axis2_msg_info_headers_get_action(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->action;
 }
 
@@ -206,6 +214,7 @@ axis2_msg_info_headers_set_action(
     const axutil_env_t * env,
     const axis2_char_t * action)
 {
+    (void)env;
     if(msg_info_headers->action)
     {
         AXIS2_FREE(env->allocator, msg_info_headers->action);
@@ -223,6 +232,7 @@ axis2_msg_info_headers_get_message_id(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->message_id;
 }
 
@@ -232,6 +242,7 @@ axis2_msg_info_headers_set_message_id(
     const axutil_env_t * env,
     const axis2_char_t * message_id)
 {
+    (void)env;
     if(msg_info_headers->message_id)
     {
         AXIS2_FREE(env->allocator, msg_info_headers->message_id);
@@ -282,6 +293,7 @@ axis2_msg_info_headers_get_relates_to(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->relates_to;
 }
 
@@ -304,6 +316,7 @@ axis2_msg_info_headers_get_all_ref_params(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->ref_params;
 }
 
@@ -379,6 +392,7 @@ axis2_msg_info_headers_set_reply_to_none(
     const axutil_env_t * env,
     const axis2_bool_t none)
 {
+    (void)env;
     msg_info_headers->reply_to_none = none;
     return AXIS2_SUCCESS;
 }
@@ -388,6 +402,7 @@ axis2_msg_info_headers_get_reply_to_none(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->reply_to_none;
 }
 
@@ -397,6 +412,7 @@ axis2_msg_info_headers_set_reply_to_anonymous(
     const axutil_env_t * env,
     const axis2_bool_t anonymous)
 {
+    (void)env;
     msg_info_headers->reply_to_anonymous = anonymous;
     return AXIS2_SUCCESS;
 }
@@ -406,6 +422,7 @@ axis2_msg_info_headers_get_reply_to_anonymous(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->reply_to_anonymous;
 }
 
@@ -425,6 +442,7 @@ axis2_msg_info_headers_get_fault_to_none(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->fault_to_none;
 }
 
@@ -434,6 +452,7 @@ axis2_msg_info_headers_set_fault_to_anonymous(
     const axutil_env_t * env,
     const axis2_bool_t anonymous)
 {
+    (void)env;
     msg_info_headers->fault_to_anonymous = anonymous;
     return AXIS2_SUCCESS;
 }
@@ -443,6 +462,7 @@ axis2_msg_info_headers_get_fault_to_anonymous(
     const axis2_msg_info_headers_t * msg_info_headers,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_info_headers->fault_to_anonymous;
 }
 

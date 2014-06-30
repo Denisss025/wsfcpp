@@ -39,7 +39,7 @@ axis2_http_status_line_create(
     axis2_char_t *reason_phrase = NULL;
     axis2_char_t *status_code = NULL;
     axis2_char_t *http_version = NULL;
-    int i = 0;
+    size_t i = 0;
     axis2_char_t *tmp = NULL;
     axis2_http_status_line_t *status_line = NULL;
 
@@ -63,7 +63,7 @@ axis2_http_status_line_create(
         return NULL;
     }
 
-    i = (int)(tmp - str); /* We are sure that the difference lies within the int range */
+    i = (size_t)(tmp - str); /* We are sure that the difference lies within the int range */
 
     tmp_status_line = AXIS2_MALLOC(env->allocator, i * sizeof(axis2_char_t) + 1);
     if(!tmp_status_line)

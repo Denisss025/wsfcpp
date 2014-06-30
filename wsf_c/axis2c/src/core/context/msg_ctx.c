@@ -344,6 +344,7 @@ axis2_msg_ctx_get_base(
     const axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_ctx->base;
 }
 
@@ -567,6 +568,7 @@ axis2_msg_ctx_increment_ref(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     msg_ctx->ref++;
     return AXIS2_SUCCESS;
 }
@@ -797,6 +799,7 @@ axis2_msg_ctx_set_in_fault_flow(
     const axutil_env_t * env,
     const axis2_bool_t in_fault_flow)
 {
+    (void)env;
     msg_ctx->in_fault_flow = in_fault_flow;
     return AXIS2_SUCCESS;
 }
@@ -2041,14 +2044,14 @@ axis2_status_t AXIS2_CALL
 axis2_msg_ctx_set_current_handler_index(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env,
-    const int index)
+    const int handler_idx)
 {
     AXIS2_PARAM_CHECK(env->error, msg_ctx, AXIS2_FAILURE);
-    msg_ctx->current_handler_index = index;
+    msg_ctx->current_handler_index = handler_idx;
     if(msg_ctx->execution_chain)
     {
         axis2_handler_t *handler = (axis2_handler_t *)axutil_array_list_get(
-            msg_ctx->execution_chain, env, index);
+            msg_ctx->execution_chain, env, handler_idx);
         if(handler)
         {
             msg_ctx->paused_handler_name = (axutil_string_t *)axis2_handler_get_name(handler, env);
@@ -2079,10 +2082,10 @@ axis2_status_t AXIS2_CALL
 axis2_msg_ctx_set_current_phase_index(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env,
-    const int index)
+    const int phase_idx)
 {
     AXIS2_PARAM_CHECK(env->error, msg_ctx, AXIS2_FAILURE);
-    msg_ctx->current_phase_index = index;
+    msg_ctx->current_phase_index = phase_idx;
     return AXIS2_SUCCESS;
 
 }
@@ -2284,6 +2287,7 @@ axis2_msg_ctx_get_transport_headers(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(msg_ctx)
     {
         return msg_ctx->transport_headers;
@@ -2299,6 +2303,7 @@ axis2_msg_ctx_extract_transport_headers(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     axutil_hash_t *temp = NULL;
     if(msg_ctx)
     {
@@ -2340,6 +2345,7 @@ axis2_msg_ctx_get_http_accept_record_list(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(msg_ctx)
     {
         return msg_ctx->accept_record_list;
@@ -2355,6 +2361,7 @@ axis2_msg_ctx_extract_http_accept_record_list(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     axutil_array_list_t *temp = NULL;
     if(msg_ctx)
     {
@@ -2374,6 +2381,7 @@ axis2_msg_ctx_set_http_accept_record_list(
     const axutil_env_t * env,
     axutil_array_list_t * accept_record_list)
 {
+    (void)env;
     if(msg_ctx)
     {
         if(msg_ctx->accept_record_list && msg_ctx->accept_record_list != accept_record_list)
@@ -2405,6 +2413,7 @@ axis2_msg_ctx_get_http_accept_charset_record_list(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(msg_ctx)
     {
         return msg_ctx->accept_charset_record_list;
@@ -2420,6 +2429,7 @@ axis2_msg_ctx_extract_http_accept_charset_record_list(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     axutil_array_list_t *temp = NULL;
     if(msg_ctx)
     {
@@ -2471,6 +2481,7 @@ axis2_msg_ctx_get_http_output_headers(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(msg_ctx)
     {
         return msg_ctx->output_headers;
@@ -2486,6 +2497,7 @@ axis2_msg_ctx_extract_http_output_headers(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(msg_ctx)
     {
         axutil_array_list_t *temp = NULL;
@@ -2536,6 +2548,7 @@ axis2_msg_ctx_get_http_accept_language_record_list(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(msg_ctx)
     {
         return msg_ctx->accept_language_record_list;
@@ -2551,6 +2564,7 @@ axis2_msg_ctx_extract_http_accept_language_record_list(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     axutil_array_list_t *temp = NULL;
     if(msg_ctx)
     {
@@ -2602,6 +2616,7 @@ axis2_msg_ctx_get_transfer_encoding(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(msg_ctx)
         return msg_ctx->transfer_encoding;
     else
@@ -2614,6 +2629,7 @@ axis2_msg_ctx_set_transfer_encoding(
     const axutil_env_t * env,
     axis2_char_t * str)
 {
+    (void)env;
     if(msg_ctx)
     {
         if(msg_ctx->transfer_encoding)
@@ -2639,6 +2655,7 @@ axis2_msg_ctx_get_content_language(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(msg_ctx)
         return msg_ctx->content_language;
     else
@@ -2651,6 +2668,7 @@ axis2_msg_ctx_set_content_language(
     const axutil_env_t * env,
     axis2_char_t * str)
 {
+    (void)env;
     if(msg_ctx)
     {
         if(msg_ctx->content_language)
@@ -2676,6 +2694,7 @@ axis2_msg_ctx_get_transport_url(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(msg_ctx)
         return msg_ctx->transport_url;
     else
@@ -2688,6 +2707,7 @@ axis2_msg_ctx_set_transport_url(
     const axutil_env_t * env,
     axis2_char_t * str)
 {
+    (void)env;
     if(msg_ctx)
     {
         /* this is a shallow copy, no need to free */
@@ -2804,6 +2824,7 @@ axis2_msg_ctx_get_auth_type(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_ctx->auth_type;
 }
 
@@ -2812,6 +2833,7 @@ axis2_msg_ctx_get_mime_parts(
     axis2_msg_ctx_t * msg_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return msg_ctx->mime_parts;
 }
 
@@ -2821,6 +2843,7 @@ axis2_msg_ctx_set_mime_parts(
     const axutil_env_t * env,
     axutil_array_list_t *mime_parts)
 {
+    (void)env;
     if(msg_ctx->mime_parts)
     {
         axutil_array_list_free(mime_parts, env);

@@ -99,6 +99,7 @@ axis2_any_content_type_get_value_map(
     const axis2_any_content_type_t * any_content_type,
     const axutil_env_t * env)
 {
+    (void)env;
     return any_content_type->value_map;
 }
 

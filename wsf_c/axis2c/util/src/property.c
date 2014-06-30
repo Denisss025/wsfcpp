@@ -167,10 +167,9 @@ axutil_property_get_value(
     axutil_property_t * property,
     const axutil_env_t * env)
 {
-    if (!property)
-    {
-        return (NULL);
-    }
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, property, NULL);
+
     return property->value;
 }
 

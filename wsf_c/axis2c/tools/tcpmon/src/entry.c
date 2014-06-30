@@ -584,7 +584,7 @@ tcpmon_entry_new_entry_funct(
         return NULL;
     }
 
-    axutil_stream_write(host_stream, env, buffer, buffer_size);
+    axutil_stream_write(host_stream, env, buffer, (size_t)buffer_size);
     AXIS2_FREE(env->allocator, buffer);
 
     buffer = tcpmon_util_read_current_stream(env, host_stream, &buffer_size,
@@ -630,7 +630,7 @@ tcpmon_entry_new_entry_funct(
         (on_new_entry) (env, entry, 1);
     }
 
-    axutil_stream_write(client_stream, env, buffer, buffer_size);
+    axutil_stream_write(client_stream, env, buffer, (size_t)buffer_size);
     AXIS2_FREE(env->allocator, buffer);
 
     axutil_stream_free(client_stream, env);

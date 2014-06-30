@@ -107,7 +107,6 @@ sandesha2_msg_pending_from_om_node(
     axutil_qname_t *pending_qname = NULL; 
     axis2_char_t *value = NULL;
     axiom_attribute_t *pending_attr = NULL;
-    axis2_bool_t pending = AXIS2_FALSE;
     
     AXIS2_PARAM_CHECK(env->error, msg_pending_node, NULL);
     
@@ -137,11 +136,7 @@ sandesha2_msg_pending_from_om_node(
             AXIS2_FAILURE);
     }
     value = axiom_attribute_get_value(pending_attr, env);
-    if(0 == axutil_strcmp(value, AXIS2_VALUE_TRUE))
-        pending = AXIS2_TRUE;
-    if(0 == axutil_strcmp(value, AXIS2_VALUE_FALSE))
-        pending = AXIS2_FALSE;
-    else
+    if(0 != axutil_strcmp(value, AXIS2_VALUE_FALSE))
     {
         AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, 
             "Attribute 'pending' must have value 'true' or 'false'");

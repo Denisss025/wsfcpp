@@ -58,6 +58,8 @@ guththila_stack_pop(
     guththila_stack_t * stack,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, stack, NULL);
     if(stack->top > 0)
     {
         return stack->data[--(stack->top)];
@@ -76,7 +78,7 @@ guththila_stack_push(
     {
         void **temp = NULL;
         int i = 0;
-        temp = (void **)AXIS2_MALLOC(env->allocator, sizeof(void **) * (stack->max *= 2));
+        temp = (void **)AXIS2_MALLOC(env->allocator, sizeof(void **) * (size_t)(stack->max *= 2));
         for(i = 0; i < top; ++i)
         {
             temp[i] = stack->data[i];
@@ -93,6 +95,8 @@ guththila_stack_peek(
     guththila_stack_t * stack,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, stack, NULL);
     if(stack->top > 0)
     {
         return stack->data[stack->top - 1];
@@ -121,15 +125,19 @@ guththila_stack_is_empty(
     guththila_stack_t * stack,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, stack, -1);
     return stack->top == 0 ? 1 : 0;
 }
 
 void *GUTHTHILA_CALL
 guththila_stack_get_by_index(
     guththila_stack_t * stack,
-    int index,
+    int s_idx,
     const axutil_env_t * env)
 {
-    return index < stack->top ? stack->data[index] : NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, stack, NULL);
+    return s_idx < stack->top ? stack->data[s_idx] : NULL;
 }
 

@@ -76,6 +76,7 @@ rp_issued_token_get_inclusion(
     rp_issued_token_t *issued_token,
     const axutil_env_t *env)
 {
+    (void)env;
     return issued_token->inclusion;
 }
 
@@ -85,6 +86,7 @@ rp_issued_token_set_inclusion(
     const axutil_env_t *env,
     axis2_char_t *inclusion)
 {
+    (void)env;
     if(inclusion)
     {
         issued_token->inclusion = inclusion;
@@ -99,6 +101,7 @@ rp_issued_token_get_issuer_epr(
     rp_issued_token_t *issued_token,
     const axutil_env_t *env)
 {
+    (void)env;
     return issued_token->issuer_epr;
 }
 
@@ -108,6 +111,7 @@ rp_issued_token_set_issuer_epr(
     const axutil_env_t *env,
     axiom_node_t *issuer_epr)
 {
+    (void)env;
     if(issuer_epr)
     {
         issued_token->issuer_epr = issuer_epr;
@@ -122,6 +126,7 @@ rp_issued_token_get_requested_sec_token_template(
     rp_issued_token_t *issued_token,
     const axutil_env_t *env)
 {
+    (void)env;
     return issued_token->requested_sec_token_template;
 }
 
@@ -131,6 +136,7 @@ rp_issued_token_set_requested_sec_token_template(
     const axutil_env_t *env,
     axiom_node_t *req_sec_token_template)
 {
+    (void)env;
     if(req_sec_token_template)
     {
         issued_token->requested_sec_token_template = req_sec_token_template;
@@ -145,6 +151,7 @@ rp_issued_token_get_derivedkeys(
     rp_issued_token_t *issued_token,
     const axutil_env_t *env)
 {
+    (void)env;
     return issued_token->derivedkeys;
 }
 
@@ -165,6 +172,7 @@ rp_issued_token_get_require_external_reference(
     rp_issued_token_t *issued_token,
     const axutil_env_t *env)
 {
+    (void)env;
     return issued_token->require_external_reference;
 }
 
@@ -185,6 +193,7 @@ rp_issued_token_get_require_internal_reference(
     rp_issued_token_t *issued_token,
     const axutil_env_t *env)
 {
+    (void)env;
     return issued_token->require_internal_reference;
 }
 
@@ -205,6 +214,7 @@ rp_issued_token_increment_ref(
     rp_issued_token_t *issued_token,
     const axutil_env_t *env)
 {
+    (void)env;
     issued_token->ref++;
     return AXIS2_SUCCESS;
 }

@@ -199,7 +199,7 @@ axis2_http_request_line_to_string(
     axis2_http_request_line_t * request_line,
     const axutil_env_t * env)
 {
-    int alloc_len = 0;
+    axis2_ssize_t alloc_len;
     axis2_char_t *ret = NULL;
 
     alloc_len = axutil_strlen(request_line->method) + axutil_strlen(request_line->uri)

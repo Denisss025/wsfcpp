@@ -155,6 +155,7 @@ neethi_policy_get_policy_components(
     neethi_policy_t *neethi_policy,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_policy->policy_components;
 }
 
@@ -388,6 +389,7 @@ neethi_policy_get_attributes(
     neethi_policy_t *neethi_policy,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_policy->attributes;
 }
 
@@ -441,6 +443,7 @@ neethi_policy_set_root_node(
     const axutil_env_t *env,
     axiom_node_t *root_node)
 {
+    (void)env;
     policy->root_node = root_node;
     return AXIS2_SUCCESS;
 }

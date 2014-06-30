@@ -127,7 +127,7 @@ axutil_stack_push(
     {
         void **new_data = NULL;
 
-        int new_capacity = stack->capacity + AXIS2_STACK_DEFAULT_CAPACITY;
+        size_t new_capacity = (size_t)stack->capacity + AXIS2_STACK_DEFAULT_CAPACITY;
 
         new_data = AXIS2_MALLOC(env->allocator, sizeof(void *) * new_capacity);
         if(!new_data)
@@ -137,8 +137,8 @@ axutil_stack_push(
             return AXIS2_FAILURE;
         }
         memset(new_data, 0, sizeof(void *) * new_capacity);
-        memcpy(new_data, stack->data, sizeof(void *) * (stack->capacity));
-        stack->capacity = new_capacity;
+        memcpy(new_data, stack->data, sizeof(void *) * ((size_t)stack->capacity));
+        stack->capacity = (int)new_capacity;
 
         AXIS2_FREE(env->allocator, stack->data);
         stack->data = new_data;
@@ -154,6 +154,8 @@ axutil_stack_size(
     axutil_stack_t *stack,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, stack, -1);
     return stack->size;
 }
 
@@ -162,6 +164,8 @@ axutil_stack_get(
     axutil_stack_t *stack,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, stack, NULL);
     if(stack->size > 0)
     {
         return stack->data[stack->size - 1];
@@ -175,6 +179,8 @@ axutil_stack_get_at(
     const axutil_env_t *env,
     int i)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, stack, NULL);
     if((stack->size == 0) || (i < 0) || (i >= stack->size))
     {
         return NULL;

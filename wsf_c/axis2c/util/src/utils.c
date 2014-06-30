@@ -41,9 +41,9 @@ axutil_parse_rest_url_for_params(
     axis2_char_t *url_resource = NULL;
     axis2_bool_t finished = AXIS2_FALSE;
     axis2_status_t status = AXIS2_FAILURE;
-    int ret_count = 0;
-    int i;
-    int j;
+    size_t ret_count = 0;
+    size_t i;
+    size_t j;
     axis2_bool_t in_tok = AXIS2_FALSE;
 
     tmp2 = AXIS2_MALLOC(env->allocator, 2 * (sizeof(axis2_char_t *)));
@@ -59,7 +59,7 @@ axutil_parse_rest_url_for_params(
     {
         resource = axutil_strdup(env, tmpl);
     }
-    i = (int)strlen(resource);
+    i = strlen(resource);
     /* We are sure that the difference lies within the int range */
     if(resource[i] == '/')
     {
@@ -68,15 +68,15 @@ axutil_parse_rest_url_for_params(
     tmp1 = strchr(resource, '?');
     if(tmp1)
     {
-        axis2_char_t *tmp4 = NULL;
+        axis2_char_t *tmp5;
 
-        tmp4 = tmp1;
+        tmp5 = tmp1;
         tmp1++;
-        resource[tmp4 - resource] = '\0';
+        resource[tmp5 - resource] = '\0';
     }
 
     /* Validation of Template */
-    i = (int)strlen(resource);
+    i = strlen(resource);
     /* We are sure that the difference lies within the int range */
 
     if(!strchr(resource, '{') && !strchr(resource, '}'))
@@ -147,7 +147,7 @@ axutil_parse_rest_url_for_params(
     {
         url_resource = axutil_strdup(env, url);
     }
-    i = (int)strlen(url_resource);
+    i = strlen(url_resource);
 
     /* We are sure that the difference lies within the int range */
 
@@ -159,11 +159,11 @@ axutil_parse_rest_url_for_params(
     tmp1 = strchr(url_resource, '?');
     if(tmp1)
     {
-        axis2_char_t *tmp4 = NULL;
+        axis2_char_t *tmp5;
 
-        tmp4 = tmp1;
+        tmp5 = tmp1;
         tmp1++;
-        url_resource[tmp4 - url_resource] = '\0';
+        url_resource[tmp5 - url_resource] = '\0';
     }
     tmp1 = resource;
 
@@ -191,7 +191,7 @@ axutil_parse_rest_url_for_params(
                 axis2_char_t *tmp9 = NULL;
 
                 /* Logic for finding out constant portion to match */
-                i = (int)(tmp4 - tmp1);
+                i = (size_t)(tmp4 - tmp1);
                 tmp2[0] = AXIS2_MALLOC(env->allocator, (i + 1) * sizeof(char));
                 strncpy(tmp2[0], tmp1, i);
                 tmp2[0][i] = '\0';
@@ -249,7 +249,7 @@ axutil_parse_rest_url_for_params(
                             }
                             if(!finished_tmp)
                             {
-                                i = (int)(tmp7 - tmp8);
+                                i = (size_t)(tmp7 - tmp8);
                                 tmp9 = AXIS2_MALLOC(env->allocator, (i + 1) * sizeof(char));
                                 strncpy(tmp9, tmp8, i);
                                 tmp9[i] = '\0';
@@ -268,7 +268,7 @@ axutil_parse_rest_url_for_params(
                         /* Logic for saving the match */
                         if(tmp6 && tmp6 != tmp5)
                         {
-                            i = (int)(tmp6 - tmp5);
+                            i = (size_t)(tmp6 - tmp5);
                             url_tmp = tmp6;
                             tmp2[1] = AXIS2_MALLOC(env->allocator, (i + 1) * sizeof(char));
                             strncpy(tmp2[1], tmp5, i);
@@ -276,7 +276,7 @@ axutil_parse_rest_url_for_params(
                         }
                         else
                         {
-                            i = (int)strlen(tmp5);
+                            i = strlen(tmp5);
                             /* We are sure that the difference lies within the int range */
                             tmp2[1] = AXIS2_MALLOC(env->allocator, (i + 1) * sizeof(char));
                             strncpy(tmp2[1], tmp5, i);
@@ -298,7 +298,7 @@ axutil_parse_rest_url_for_params(
                         if(tmp4[1] != '}')
                         {
                             /* Logic for saving the key for the match */
-                            i = (int)(tmp4 - tmp1);
+                            i = (size_t)(tmp4 - tmp1);
                             if(tmp2[0])
                             {
                                 AXIS2_FREE(env->allocator, tmp2[0]);
@@ -308,10 +308,10 @@ axutil_parse_rest_url_for_params(
                             tmp2[0][i] = '\0';
                             tmp3 = ret;
                             ret_count++;
-                            ret = AXIS2_MALLOC(env->allocator, ret_count * 2
+                            ret = AXIS2_MALLOC(env->allocator, (size_t)ret_count * 2
                                 * (sizeof(axis2_char_t *)));
                             memset(ret, 0, ret_count * 2 * sizeof(axis2_char_t *));
-                            for(i = 0; i < ret_count - 1; i++)
+                            for(i = 0; i < (size_t)ret_count - 1; i++)
                             {
                                 ret[i] = tmp3[i];
                             }
@@ -373,7 +373,7 @@ axutil_parse_rest_url_for_params(
     {
         status = AXIS2_SUCCESS;
     }
-    *match_count = ret_count;
+    *match_count = (int)ret_count;
     *matches = ret;
     return status;
 }
@@ -386,7 +386,7 @@ axutil_parse_request_url_for_svc_and_op(
     axis2_char_t **ret;
     axis2_char_t *service_str = NULL;
     axis2_char_t *tmp;
-    int i;
+    size_t i;
     ret = AXIS2_MALLOC(env->allocator, 2 * (sizeof(axis2_char_t *)));
     memset(ret, 0, 2 * sizeof(axis2_char_t *));
     tmp = (axis2_char_t *)request;
@@ -407,7 +407,7 @@ axutil_parse_request_url_for_svc_and_op(
             tmp = strchr(service_str, '/');
             if(tmp)
             {
-                i = (int)(tmp - service_str);
+                i = (size_t)(tmp - service_str);
                 ret[0] = AXIS2_MALLOC(env->allocator, i * sizeof(char) + 1);
                 strncpy(ret[0], service_str, i);
                 ret[0][i] = '\0';
@@ -420,7 +420,7 @@ axutil_parse_request_url_for_svc_and_op(
                     tmp = strchr(service_str, '?');
                     if(tmp)
                     {
-                        i = (int)(tmp - service_str);
+                        i = (size_t)(tmp - service_str);
                         ret[1] = AXIS2_MALLOC(env->allocator, i * sizeof(char) + 1);
                         strncpy(ret[1], service_str, i);
                         ret[1][i] = '\0';
@@ -564,11 +564,13 @@ axis2_char_2_byte(
     axis2_byte_t **byte_buffer,
     int *byte_buffer_size)
 {
-    int length = 0;
-    int i = 0;
-    axis2_byte_t *bytes = NULL;
+    axis2_ssize_t length;
+    size_t i;
+    axis2_byte_t *bytes;
 
-    length = (int)axutil_strlen(char_buffer);
+    length = axutil_strlen(char_buffer);
+    if ((int)length <= 0) return AXIS2_FAILURE;
+
     bytes = (axis2_byte_t *)AXIS2_MALLOC(env->allocator, length * sizeof(axis2_byte_t));
 
     if(!bytes)
@@ -583,7 +585,7 @@ axis2_char_2_byte(
         bytes[i] = (axis2_byte_t)char_buffer[i];
     }
     *byte_buffer = bytes;
-    *byte_buffer_size = length;
+    *byte_buffer_size = (int)length;
     return AXIS2_SUCCESS;
 }
 

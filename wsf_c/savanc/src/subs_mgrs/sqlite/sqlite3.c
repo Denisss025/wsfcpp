@@ -183,7 +183,7 @@ typedef struct sqlite3 sqlite3;
 /*
 ** CAPI3REF: 64-Bit Integer Types
 **
-** Some compilers do not support the "long long" datatype.  So we have
+** Some compilers do not support the "long" datatype.  So we have
 ** to do compiler-specific typedefs for 64-bit signed and unsigned integers.
 **
 ** Many SQLite interface functions require a 64-bit integer arguments.
@@ -196,8 +196,8 @@ typedef struct sqlite3 sqlite3;
   typedef __int64 sqlite_int64;
   typedef unsigned __int64 sqlite_uint64;
 #else
-  typedef long long int sqlite_int64;
-  typedef unsigned long long int sqlite_uint64;
+  typedef long int sqlite_int64;
+  typedef unsigned long int sqlite_uint64;
 #endif
 typedef sqlite_int64 sqlite3_int64;
 typedef sqlite_uint64 sqlite3_uint64;
@@ -4244,7 +4244,7 @@ SQLITE_PRIVATE void sqlite3HashClear(Hash*);
 ** where the sizes very.  Preprocessor macros are available so that the
 ** types can be conveniently redefined at compile-type.  Like this:
 **
-**         cc '-DUINTPTR_TYPE=long long int' ...
+**         cc '-DUINTPTR_TYPE=long int' ...
 */
 #ifndef UINT32_TYPE
 # define UINT32_TYPE unsigned int
@@ -4562,7 +4562,7 @@ struct VdbeOp {
   int p3type;         /* One of the P3_xxx constants defined below */
 #ifdef VDBE_PROFILE
   int cnt;            /* Number of times this instruction was executed */
-  long long cycles;   /* Total time spend executing this instruction */
+  long cycles;   /* Total time spend executing this instruction */
 #endif
 };
 typedef struct VdbeOp VdbeOp;
@@ -10812,7 +10812,7 @@ SQLITE_API char *sqlite3_snprintf(int n, char *zBuf, const char *zFormat, ...){
 /*
 ** A version of printf() that understands %lld.  Used for debugging.
 ** The printf() built into some versions of windows does not understand %lld
-** and segfaults if you give it a long long int.
+** and segfaults if you give it a long int.
 */
 SQLITE_PRIVATE void sqlite3DebugPrintf(const char *zFormat, ...){
   extern int getpid(void);
@@ -13268,14 +13268,14 @@ SQLITE_API int sqlite3_os_trace = 0;
 ** on i486 hardware.
 */
 #ifdef SQLITE_PERFORMANCE_TRACE
-__inline__ unsigned long long int hwtime(void){
-  unsigned long long int x;
+__inline__ unsigned long int hwtime(void){
+  unsigned long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
           :"=A" (x));
   return x;
 }
-static unsigned long long int g_start;
+static unsigned long int g_start;
 static unsigned int elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
@@ -14503,14 +14503,14 @@ SQLITE_API int sqlite3_os_trace = 0;
 ** on i486 hardware.
 */
 #ifdef SQLITE_PERFORMANCE_TRACE
-__inline__ unsigned long long int hwtime(void){
-  unsigned long long int x;
+__inline__ unsigned long int hwtime(void){
+  unsigned long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
           :"=A" (x));
   return x;
 }
-static unsigned long long int g_start;
+static unsigned long int g_start;
 static unsigned int elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
@@ -15912,15 +15912,15 @@ static int unixClose(sqlite3_file *id){
  */
 typedef struct afpLockingContext afpLockingContext;
 struct afpLockingContext {
-  unsigned long long sharedLockByte;
+  unsigned long sharedLockByte;
   char *filePath;
 };
 
 struct ByteRangeLockPB2
 {
-  unsigned long long offset;        /* offset to first byte to lock */
-  unsigned long long length;        /* nbr of bytes to lock */
-  unsigned long long retRangeStart; /* nbr of 1st byte locked if successful */
+  unsigned long offset;        /* offset to first byte to lock */
+  unsigned long length;        /* nbr of bytes to lock */
+  unsigned long retRangeStart; /* nbr of 1st byte locked if successful */
   unsigned char unLockFlag;         /* 1 = unlock, 0 = lock */
   unsigned char startEndFlag;       /* 1=rel to end of fork, 0=rel to start */
   int fd;                           /* file desc to assoc this lock with */
@@ -15937,8 +15937,8 @@ struct ByteRangeLockPB2
 static int _AFPFSSetLock(
   const char *path, 
   int fd, 
-  unsigned long long offset, 
-  unsigned long long length, 
+  unsigned long offset, 
+  unsigned long length, 
   int setLockFlag
 ){
   struct ByteRangeLockPB2       pb;
@@ -17342,14 +17342,14 @@ SQLITE_API int sqlite3_os_trace = 0;
 ** on i486 hardware.
 */
 #ifdef SQLITE_PERFORMANCE_TRACE
-__inline__ unsigned long long int hwtime(void){
-  unsigned long long int x;
+__inline__ unsigned long int hwtime(void){
+  unsigned long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
           :"=A" (x));
   return x;
 }
-static unsigned long long int g_start;
+static unsigned long int g_start;
 static unsigned int elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
@@ -36618,8 +36618,8 @@ SQLITE_PRIVATE void sqlite3VdbeMemPrettyPrint(Mem *pMem, char *zBuf){
 ** processor and returns that value.  This can be used for high-res
 ** profiling.
 */
-__inline__ unsigned long long int hwtime(void){
-  unsigned long long int x;
+__inline__ unsigned long int hwtime(void){
+  unsigned long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
           :"=A" (x));
@@ -36682,7 +36682,7 @@ SQLITE_PRIVATE int sqlite3VdbeExec(
   u8 encoding = ENC(db);     /* The database encoding */
   Mem *pTos;                 /* Top entry in the operand stack */
 #ifdef VDBE_PROFILE
-  unsigned long long start;  /* CPU clock count at start of opcode */
+  unsigned long start;  /* CPU clock count at start of opcode */
   int origPc;                /* Program counter at start of opcode */
 #endif
 #ifndef SQLITE_OMIT_PROGRESS_CALLBACK
@@ -41376,7 +41376,7 @@ default: {
 
 #ifdef VDBE_PROFILE
     {
-      long long elapse = hwtime() - start;
+      long elapse = hwtime() - start;
       pOp->cycles += elapse;
       pOp->cnt++;
 #if 0

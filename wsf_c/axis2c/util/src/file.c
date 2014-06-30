@@ -152,6 +152,8 @@ axutil_file_set_timestamp(
     const axutil_env_t *env,
     AXIS2_TIME_T timestamp)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, file, AXIS2_FAILURE);
     file->timestamp = timestamp;
     return AXIS2_SUCCESS;
 }
@@ -161,6 +163,8 @@ axutil_file_get_timestamp(
     axutil_file_t *file,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, file, -1);
     return file->timestamp;
 }
 

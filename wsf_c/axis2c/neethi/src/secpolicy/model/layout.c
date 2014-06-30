@@ -49,7 +49,7 @@ rp_layout_free(
     rp_layout_t * layout,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(layout)
     {

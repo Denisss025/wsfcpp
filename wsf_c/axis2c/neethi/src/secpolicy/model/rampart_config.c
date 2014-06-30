@@ -78,7 +78,7 @@ rp_rampart_config_free(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(rampart_config)
     {
@@ -100,7 +100,7 @@ rp_rampart_config_get_user(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->user;
 }
@@ -123,7 +123,7 @@ rp_rampart_config_get_encryption_user(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->encryption_user;
 }
@@ -146,7 +146,7 @@ rp_rampart_config_get_password_callback_class(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->password_callback_class;
 }
@@ -169,7 +169,7 @@ rp_rampart_config_get_authenticate_module(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->authenticate_module;
 }
@@ -192,7 +192,7 @@ rp_rampart_config_get_replay_detector(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->replay_detector;
 }
@@ -215,7 +215,7 @@ rp_rampart_config_get_sct_provider(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->sct_provider;
 }
@@ -238,7 +238,7 @@ rp_rampart_config_get_password_type(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->password_type;
 }
@@ -261,7 +261,7 @@ rp_rampart_config_get_private_key_file(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->private_key_file;
 }
@@ -284,7 +284,7 @@ rp_rampart_config_get_receiver_certificate_file(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->receiver_certificate_file;
 }
@@ -307,7 +307,7 @@ rp_rampart_config_get_certificate_file(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->certificate_file;
 }
@@ -330,7 +330,7 @@ rp_rampart_config_get_time_to_live(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return rampart_config->time_to_live;
 }
@@ -353,6 +353,8 @@ rp_rampart_config_get_clock_skew_buffer(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, rampart_config, NULL);
     return rampart_config->clock_skew_buffer;
 }
 
@@ -362,6 +364,8 @@ rp_rampart_config_set_clock_skew_buffer(
     const axutil_env_t * env,
     axis2_char_t * clock_skew_buffer)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, rampart_config, AXIS2_FAILURE);
     rampart_config->clock_skew_buffer = clock_skew_buffer;
     return AXIS2_SUCCESS;
 }
@@ -371,6 +375,8 @@ rp_rampart_config_get_need_millisecond_precision(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, rampart_config, NULL);
     return rampart_config->need_millisecond_precision;
 }
 
@@ -380,6 +386,8 @@ rp_rampart_config_set_need_millisecond_precision(
     const axutil_env_t * env,
     axis2_char_t * need_millisecond_precision)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, rampart_config, AXIS2_FAILURE);
     rampart_config->need_millisecond_precision = need_millisecond_precision;
     return AXIS2_SUCCESS;
 }
@@ -389,6 +397,8 @@ rp_rampart_config_get_pkcs12_file(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, rampart_config, NULL);
     return rampart_config->pkcs12_file;
 }
 
@@ -398,6 +408,8 @@ rp_rampart_config_set_pkcs12_file(
     const axutil_env_t *env,
     axis2_char_t * pkcs12_file)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, rampart_config, AXIS2_FAILURE);
     if(rampart_config)
     {
         if(pkcs12_file)
@@ -417,7 +429,8 @@ rp_rampart_config_get_rd_val(
     rp_rampart_config_t * rampart_config,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, rampart_config, NULL);
 
     return rampart_config->rd_val;
 }
@@ -441,6 +454,7 @@ rp_rampart_config_increment_ref(
     const axutil_env_t * env)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, rampart_config, AXIS2_FAILURE);
     rampart_config->ref++;
     return AXIS2_SUCCESS;
 }

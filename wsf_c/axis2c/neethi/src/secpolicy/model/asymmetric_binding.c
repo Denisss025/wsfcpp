@@ -93,6 +93,8 @@ rp_asymmetric_binding_get_symmetric_asymmetric_binding_commons(
     rp_asymmetric_binding_t *asymmetric_binding,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, asymmetric_binding, NULL);
     return asymmetric_binding->symmetric_asymmetric_binding_commons;
 }
 
@@ -102,6 +104,8 @@ rp_asymmetric_binding_set_symmetric_asymmetric_binding_commons(
     const axutil_env_t *env,
     rp_symmetric_asymmetric_binding_commons_t * symmetric_asymmetric_binding_commons)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, asymmetric_binding, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, symmetric_asymmetric_binding_commons, AXIS2_FAILURE);
 
     asymmetric_binding->symmetric_asymmetric_binding_commons = symmetric_asymmetric_binding_commons;
@@ -113,6 +117,8 @@ rp_asymmetric_binding_get_initiator_token(
     rp_asymmetric_binding_t *asymmetric_binding,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, asymmetric_binding, NULL);
     return asymmetric_binding->initiator_token;
 }
 
@@ -122,6 +128,8 @@ rp_asymmetric_binding_set_initiator_token(
     const axutil_env_t *env,
     rp_property_t *initiator_token)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, asymmetric_binding, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, initiator_token, AXIS2_FAILURE);
 
     rp_property_increment_ref(initiator_token, env);
@@ -135,6 +143,8 @@ rp_asymmetric_binding_set_recipient_token(
     const axutil_env_t *env,
     rp_property_t *recipient_token)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, asymmetric_binding, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, recipient_token, AXIS2_FAILURE);
 
     rp_property_increment_ref(recipient_token, env);
@@ -147,6 +157,8 @@ rp_asymmetric_binding_get_recipient_token(
     rp_asymmetric_binding_t *asymmetric_binding,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, asymmetric_binding, NULL);
     return asymmetric_binding->recipient_token;
 }
 
@@ -155,6 +167,8 @@ rp_asymmetric_binding_increment_ref(
     rp_asymmetric_binding_t *asymmetric_binding,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, asymmetric_binding, AXIS2_FAILURE);
     asymmetric_binding->ref++;
     return AXIS2_SUCCESS;
 }

@@ -54,7 +54,7 @@ axutil_array_list_create(
     /* Check capacity, and set the default if error */
     if(capacity <= 0)
         capacity = AXIS2_ARRAY_LIST_DEFAULT_CAPACITY;
-    array_list->data = AXIS2_MALLOC(env->allocator, sizeof(void *) * capacity);
+    array_list->data = AXIS2_MALLOC(env->allocator, sizeof(void *) * (size_t)capacity);
     if(!array_list->data)
     {
         axutil_array_list_free(array_list, env);
@@ -78,14 +78,14 @@ axutil_array_list_ensure_capacity(
     {
         int new_capacity = (array_list->capacity * 2 > min_capacity) ? (array_list->capacity * 2)
             : min_capacity;
-        void **data = (void **)AXIS2_MALLOC(env->allocator, sizeof(void *) * new_capacity);
+        void **data = (void **)AXIS2_MALLOC(env->allocator, sizeof(void *) * (size_t)new_capacity);
         if(!data)
         {
             AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Out of memory");
             return AXIS2_FAILURE;
         }
-        memcpy(data, array_list->data, sizeof(void *) * array_list->capacity);
+        memcpy(data, array_list->data, sizeof(void *) * (size_t)array_list->capacity);
 
         AXIS2_FREE(env->allocator, array_list->data);
 
@@ -103,6 +103,7 @@ axutil_array_list_size(
     /* Don't use AXIS2_PARAM_CHECK to verify array_list, as it clobbers 
      env->error->status_code on no error destroying the information
      therein that an error has already occurred. */
+    (void)env;
     if(!array_list)
         return 0;
     return array_list->size;
@@ -146,13 +147,13 @@ AXIS2_EXTERN void *AXIS2_CALL
 axutil_array_list_get(
     struct axutil_array_list *array_list,
     const axutil_env_t * env,
-    int index)
+    int idx)
 {
     /* Don't use AXIS2_PARAM_CHECK to verify array_list, as it clobbers 
      env->error->status_code on no error destroying the information
      therein that an error has already occurred. */
-    if(axutil_array_list_check_bound_exclusive(array_list, env, index))
-        return array_list->data[index];
+    if(axutil_array_list_check_bound_exclusive(array_list, env, idx))
+        return array_list->data[idx];
     else
         return NULL;
 }
@@ -161,16 +162,16 @@ AXIS2_EXTERN void *AXIS2_CALL
 axutil_array_list_set(
     struct axutil_array_list *array_list,
     const axutil_env_t * env,
-    int index,
+    int idx,
     void *e)
 {
     void *result = NULL;
 
     AXIS2_PARAM_CHECK(env->error, array_list, NULL);
-    if(axutil_array_list_check_bound_exclusive(array_list, env, index))
+    if(axutil_array_list_check_bound_exclusive(array_list, env, idx))
     {
-        result = array_list->data[index];
-        array_list->data[index] = e;
+        result = array_list->data[idx];
+        array_list->data[idx] = e;
     }
     return result;
 }
@@ -194,13 +195,13 @@ AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axutil_array_list_add_at(
     struct axutil_array_list * array_list,
     const axutil_env_t * env,
-    const int index,
+    const int idx,
     const void *e)
 {
     int i = 0;
     AXIS2_PARAM_CHECK(env->error, array_list, AXIS2_FAILURE);
 
-    if(!axutil_array_list_check_bound_inclusive(array_list, env, index))
+    if(!axutil_array_list_check_bound_inclusive(array_list, env, idx))
         return AXIS2_FAILURE;
     if(array_list->size == array_list->capacity)
     {
@@ -208,12 +209,12 @@ axutil_array_list_add_at(
             != AXIS2_SUCCESS)
             return AXIS2_FAILURE;
     }
-    if(index != array_list->size)
+    if(idx != array_list->size)
     {
-        for(i = array_list->size; i > index; i--)
+        for(i = array_list->size; i > idx; i--)
             array_list->data[i] = array_list->data[i - 1];
     }
-    array_list->data[index] = (void *)e;
+    array_list->data[idx] = (void *)e;
     array_list->size++;
     return AXIS2_SUCCESS;
 }
@@ -222,16 +223,16 @@ AXIS2_EXTERN void *AXIS2_CALL
 axutil_array_list_remove(
     struct axutil_array_list *array_list,
     const axutil_env_t * env,
-    int index)
+    int idx)
 {
     void *result = NULL;
     int i = 0;
     AXIS2_PARAM_CHECK(env->error, array_list, NULL);
 
-    if(axutil_array_list_check_bound_exclusive(array_list, env, index))
+    if(axutil_array_list_check_bound_exclusive(array_list, env, idx))
     {
-        result = array_list->data[index];
-        for(i = index; i < array_list->size - 1; i++)
+        result = array_list->data[idx];
+        for(i = idx; i < array_list->size - 1; i++)
             array_list->data[i] = array_list->data[i + 1];
         array_list->size--;
     }
@@ -243,12 +244,12 @@ AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 axutil_array_list_check_bound_inclusive(
     struct axutil_array_list * array_list,
     const axutil_env_t * env,
-    int index)
+    int idx)
 {
     /* Don't use AXIS2_PARAM_CHECK to verify array_list, as it clobbers 
      env->error->status_code on no error destroying the information
      therein that an error has already occurred. */
-    if(!array_list || index < 0 || index > array_list->size)
+    if(!array_list || idx < 0 || idx > array_list->size)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_INDEX_OUT_OF_BOUNDS, AXIS2_FAILURE);
         return AXIS2_FALSE;
@@ -260,12 +261,12 @@ AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 axutil_array_list_check_bound_exclusive(
     struct axutil_array_list * array_list,
     const axutil_env_t * env,
-    int index)
+    int idx)
 {
     /* Don't use AXIS2_PARAM_CHECK to verify array_list, as it clobbers 
      env->error->status_code on no error destroying the information
      therein that an error has already occurred. */
-    if(!array_list || index < 0 || index >= array_list->size)
+    if(!array_list || idx < 0 || idx >= array_list->size)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_INDEX_OUT_OF_BOUNDS, AXIS2_FAILURE);
         return AXIS2_FALSE;

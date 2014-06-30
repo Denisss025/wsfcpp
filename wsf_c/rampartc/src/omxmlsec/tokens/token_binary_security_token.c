@@ -35,7 +35,6 @@ oxs_token_build_binary_security_token_element(
     axiom_attribute_t *encoding_type_att = NULL;
     axiom_attribute_t *value_type_att = NULL;
     axiom_attribute_t *id_attr = NULL;
-    int ret;
     axiom_namespace_t *ns_obj = NULL;
     axiom_namespace_t *ns = NULL;
 
@@ -76,16 +75,16 @@ oxs_token_build_binary_security_token_element(
     encoding_type_att = axiom_attribute_create(env, OXS_ATTR_ENCODING_TYPE, encoding_type, NULL);
     value_type_att = axiom_attribute_create(env, OXS_ATTR_VALUE_TYPE, value_type, NULL);
 
-    ret = axiom_element_add_attribute(binary_security_token_ele, env, id_attr,
+    axiom_element_add_attribute(binary_security_token_ele, env, id_attr,
         binary_sec_token_node);
-    ret = axiom_element_add_attribute(binary_security_token_ele, env, encoding_type_att,
+    axiom_element_add_attribute(binary_security_token_ele, env, encoding_type_att,
         binary_sec_token_node);
-    ret = axiom_element_add_attribute(binary_security_token_ele, env, value_type_att,
+    axiom_element_add_attribute(binary_security_token_ele, env, value_type_att,
         binary_sec_token_node);
 
     if(data)
     {
-        ret = axiom_element_set_text(binary_security_token_ele, env, data,
+        axiom_element_set_text(binary_security_token_ele, env, data,
             binary_sec_token_node);
     }
 

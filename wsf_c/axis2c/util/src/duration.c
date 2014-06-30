@@ -362,6 +362,7 @@ axutil_duration_set_duration(
     double seconds)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    (void)negative;
 
     if(years > -1)
         duration->years = years;

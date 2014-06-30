@@ -41,7 +41,6 @@ oxs_token_build_cipher_value_element(
 {
     axiom_node_t *cipher_value_node = NULL;
     axiom_element_t *cipher_value_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_ENC_NS, OXS_XENC);
@@ -57,7 +56,7 @@ oxs_token_build_cipher_value_element(
 
     if (cipher_val)
     {
-        ret  = axiom_element_set_text(cipher_value_ele, env, cipher_val, cipher_value_node);
+        axiom_element_set_text(cipher_value_ele, env, cipher_val, cipher_value_node);
     }
 
     return cipher_value_node;

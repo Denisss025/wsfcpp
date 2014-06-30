@@ -48,6 +48,7 @@ rp_transport_token_builder_build(
     neethi_all_t *all = NULL;
     neethi_assertion_t *assertion = NULL;
     neethi_policy_t *normalized_policy = NULL;
+    (void)element;
 
     transport_token = rp_property_create(env);
 

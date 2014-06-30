@@ -225,4 +225,5 @@ axis2_stub_get_options(
     const axutil_env_t * env)
 {
     return stub->options;
+    (void)env;
 }

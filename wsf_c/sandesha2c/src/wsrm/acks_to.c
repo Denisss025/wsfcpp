@@ -221,11 +221,9 @@ sandesha2_acks_to_from_om_node(
         {
             while (AXIOM_CHILD_ELEMENT_ITERATOR_HAS_NEXT(ref_param_iter, env))
             {
-                axiom_node_t *om_node = NULL;
-                axiom_element_t *om_ele = NULL;
-                om_node = AXIOM_CHILD_ELEMENT_ITERATOR_NEXT(ref_param_iter, env);
-                om_ele = (axiom_element_t *) axiom_node_get_data_element(om_node, env);
-                sandesha2_acks_to_add_ref_param(acks_to, env, om_node);                    
+                axiom_node_t *new_node = NULL;
+                new_node = AXIOM_CHILD_ELEMENT_ITERATOR_NEXT(ref_param_iter, env);
+                sandesha2_acks_to_add_ref_param(acks_to, env, new_node);                    
             }
         }
     }

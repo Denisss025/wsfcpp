@@ -141,7 +141,6 @@ sandesha2_ack_final_to_om_node(
     void *om_node)
 {
 	axiom_namespace_t *rm_ns = NULL;
-	axiom_element_t *af_element = NULL;
 	axiom_node_t *af_node = NULL;
     
     AXIS2_PARAM_CHECK(env->error, om_node, NULL);
@@ -152,7 +151,7 @@ sandesha2_ack_final_to_om_node(
         return NULL;
     }
 
-    af_element = axiom_element_create(env, NULL, SANDESHA2_WSRM_COMMON_FINAL, rm_ns, &af_node);
+    axiom_element_create(env, NULL, SANDESHA2_WSRM_COMMON_FINAL, rm_ns, &af_node);
     axiom_node_add_child((axiom_node_t*)om_node, env, af_node);
 
     return (axiom_node_t*)om_node;

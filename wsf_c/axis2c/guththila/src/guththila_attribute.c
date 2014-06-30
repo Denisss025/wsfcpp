@@ -32,7 +32,7 @@ guththila_attr_list_grow(
         + addition >= at_list->size))
     {
         at_list->list = (guththila_attr_t *)realloc(at_list->list, sizeof(guththila_attr_t)
-            * (at_list->capacity + addition));
+            * (size_t)(at_list->capacity + addition));
 
         if(at_list->list)
         {

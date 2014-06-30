@@ -402,6 +402,7 @@ axis2_options_get_parent(
     const axutil_env_t * env)
 {
     return options->parent;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -412,6 +413,7 @@ axis2_options_set_parent(
 {
     options->parent = (axis2_options_t *)parent;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -462,6 +464,7 @@ axis2_options_set_transport_receiver(
 {
     options->receiver = receiver;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -472,6 +475,7 @@ axis2_options_set_transport_in(
 {
     options->transport_in = transport_in;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -482,6 +486,7 @@ axis2_options_set_transport_in_protocol(
 {
     options->transport_in_protocol = transport_in_protocol;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -517,6 +522,7 @@ axis2_options_set_property(
 {
     axutil_hash_set(options->properties, property_key, AXIS2_HASH_KEY_STRING, property);
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -547,6 +553,7 @@ axis2_options_set_transport_out(
 {
     options->transport_out = transport_out;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -682,6 +689,7 @@ axis2_options_set_manage_session(
 {
     options->manage_session = manage_session;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -725,6 +733,7 @@ axis2_options_get_msg_info_headers(
     const axutil_env_t * env)
 {
     return options->msg_info_headers;
+    (void)env;
 }
 
 AXIS2_EXTERN void AXIS2_CALL
@@ -776,6 +785,7 @@ axis2_options_get_soap_version(
     const axutil_env_t * env)
 {
     return options->soap_version;
+    (void)env;
 
 }
 
@@ -825,6 +835,7 @@ axis2_options_get_enable_mtom(
     const axutil_env_t * env)
 {
     return options->enable_mtom;
+    (void)env;
 }
 
 AXIS2_EXTERN axutil_string_t *AXIS2_CALL
@@ -833,6 +844,7 @@ axis2_options_get_soap_action(
     const axutil_env_t * env)
 {
     return options->soap_action;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -860,6 +872,7 @@ axis2_options_get_xml_parser_reset(
     const axutil_env_t * env)
 {
     return options->xml_parser_reset;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -870,6 +883,7 @@ axis2_options_set_xml_parser_reset(
 {
     options->xml_parser_reset = xml_parser_reset;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

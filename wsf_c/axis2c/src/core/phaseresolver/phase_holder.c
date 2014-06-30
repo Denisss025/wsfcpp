@@ -240,4 +240,5 @@ axis2_phase_holder_build_transport_handler_chain(
         status = axis2_phase_add_handler(phase, env, handler);
     }
     return status;
+    (void)phase_holder;
 }

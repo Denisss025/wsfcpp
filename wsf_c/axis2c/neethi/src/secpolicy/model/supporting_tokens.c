@@ -69,7 +69,7 @@ rp_supporting_tokens_free(
     rp_supporting_tokens_t * supporting_tokens,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(supporting_tokens)
     {

@@ -106,10 +106,10 @@ axutil_param_container_free_void_arg(
     void *param_container,
     const axutil_env_t *env)
 {
-    axutil_param_container_t *param_container_l = NULL;
+    axutil_param_container_t *param_container_l;
 
     AXIS2_ENV_CHECK_VOID(env);
-    if (param_container_l = (axutil_param_container_t *)param_container)
+    if ((param_container_l = (axutil_param_container_t *)param_container) != NULL)
     {
         axutil_param_container_free(param_container_l, env);
     }
@@ -155,6 +155,8 @@ axutil_param_container_get_param(
     const axutil_env_t *env,
     const axis2_char_t *name)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, name, NULL);
     return (axutil_param_t *)(axutil_hash_get(param_container->params, name, AXIS2_HASH_KEY_STRING));
 }
 

@@ -125,7 +125,7 @@ axutil_stomp_frame_write(
     int size = 0;
     int i = 0;
     axis2_char_t *header = NULL;
-    int len = 0;
+    size_t len = 0;
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, frame, AXIS2_FAILURE);
 
@@ -240,7 +240,7 @@ axutil_stomp_frame_read(
     axutil_stomp_frame_t *frame = NULL;
     axis2_char_t *buffer = NULL;
     axis2_char_t *p = NULL;
-    int h;
+    long int h;
 
     frame = axutil_stomp_frame_create(env);
     buffer = read_stomp_buffer(env, stream);

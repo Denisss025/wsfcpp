@@ -226,7 +226,6 @@ axis2_svc_builder_populate_svc(
     qdesc = NULL;
     if(desc_element)
     {
-        axiom_element_t *desc_value_element = NULL;
         axiom_node_t *desc_value_node = NULL;
         axis2_char_t *description_text = NULL;
 

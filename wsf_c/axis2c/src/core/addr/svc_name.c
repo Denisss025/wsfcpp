@@ -76,6 +76,7 @@ axis2_svc_name_get_qname(
     const axis2_svc_name_t * svc_name,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc_name->qname;
 }
 
@@ -105,6 +106,7 @@ axis2_svc_name_get_endpoint_name(
     const axis2_svc_name_t * svc_name,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc_name->endpoint_name;
 }
 

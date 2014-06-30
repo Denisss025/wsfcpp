@@ -131,14 +131,14 @@ void AXIS2_CALL convert_to_hex(
     {
         j = (bin[i] >> 4) & 0xf;
         if (j <= 9)
-        hex[i*2] = (j + '0');
+        hex[i*2] = (unsigned char)(j + (unsigned char)'0');
         else
-        hex[i*2] = (j + 'a' - 10);
+        hex[i*2] = (unsigned char)(j + (unsigned char)('a' - 10));
         j = bin[i] & 0xf;
         if (j <= 9)
-        hex[i*2+1] = (j + '0');
+        hex[i*2+1] = (unsigned char)(j + (unsigned char)'0');
         else
-        hex[i*2+1] = (j + 'a' - 10);
+        hex[i*2+1] = (unsigned char)(j + (unsigned char)('a' - 10));
     }
     hex[AXIS2_DIGEST_HASH_HEX_LEN] = '\0';
 }

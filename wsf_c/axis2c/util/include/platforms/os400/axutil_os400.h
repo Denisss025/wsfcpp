@@ -152,10 +152,10 @@ extern char AXIS2_PLATFORM_XML_ENTITY_REFERENCE_CHARS_S[];
 #include <pthread.h>
 #define AXIS2_PLATFORM_GET_THREAD_ID() os400_getThreadID()
 
-static long long os400_getThreadID()
+static long os400_getThreadID()
 {
 	pthread_id_np_t tid = pthread_getthreadid_np();
-	return *((long long *)&tid);
+	return *((long *)&tid);
 }
 
     /**
@@ -181,17 +181,17 @@ static int os400_ftime(struct os400_timeb * tp)
     /**
      * type to be used for 64bit integers
      */
-#define AXIS2_LONGLONG long long
-#define AXIS2_LONGLONGVALUE(value) value##LL
-#define AXIS2_UNSIGNED_LONGLONGVALUE(value) value##ULL
+#define AXIS2_LONGLONG long
+#define AXIS2_LONGLONGVALUE(value) value##L
+#define AXIS2_UNSIGNED_LONGLONGVALUE(value) value##UL
 
     /**
      * Format string to be used in printf for 64bit integers
      */
-#define AXIS2_PRINTF_LONGLONG_FORMAT_SPECIFIER "%lld"
-#define AXIS2_PRINTF_LONGLONG_FORMAT_SPECIFIER_CHARS "lld"
-#define AXIS2_PRINTF_UNSIGNED_LONGLONG_FORMAT_SPECIFIER "%llu"
-#define AXIS2_PRINTF_UNSIGNED_LONGLONG_FORMAT_SPECIFIER_CHARS "llu"
+#define AXIS2_PRINTF_LONGLONG_FORMAT_SPECIFIER "%ld"
+#define AXIS2_PRINTF_LONGLONG_FORMAT_SPECIFIER_CHARS "ld"
+#define AXIS2_PRINTF_UNSIGNED_LONGLONG_FORMAT_SPECIFIER "%lu"
+#define AXIS2_PRINTF_UNSIGNED_LONGLONG_FORMAT_SPECIFIER_CHARS "lu"
 
     /**
      * Platform specific path separator char

@@ -439,8 +439,6 @@ sandesha2_permanent_seq_property_mgr_retrieve_all(
     sandesha2_seq_property_mgr_t *seq_prop_mgr,
     const axutil_env_t *env)
 {
-    sandesha2_permanent_seq_property_mgr_t *seq_prop_mgr_impl = NULL;
-    seq_prop_mgr_impl = SANDESHA2_INTF_TO_IMPL(seq_prop_mgr);
     return sandesha2_seq_property_mgr_find(seq_prop_mgr, env, NULL);
 }
 

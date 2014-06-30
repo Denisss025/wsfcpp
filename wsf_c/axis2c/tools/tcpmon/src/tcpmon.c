@@ -564,7 +564,7 @@ resend_request(
     }
     buffer[SIZE - 1] = '\0';
 
-    read_len = (int)fread(buffer, sizeof(char), SIZE - 1, file);
+    read_len = fread(buffer, sizeof(char), SIZE - 1, file);
 
     while(read_len)
     {
@@ -616,7 +616,7 @@ resend_request(
             }
             else
             {
-                rounds = tmp1 - tmp3 + offset + 36;
+                rounds = (size_t)(tmp1 - tmp3) + offset + 36;
                 tmp3 = tmp1 + offset + 36;
             }
             if (read_len - offset - 36 < (size_t)(tmp1 - buffer))
@@ -656,7 +656,7 @@ resend_request(
                 offset = strlen(header_str);
                 if (read_len - offset < (size_t)(tmp2 - buffer))
                 {
-                    seek_len = tmp2 - buffer + offset - read_len;
+                    seek_len = (size_t)(tmp2 - buffer) + offset - read_len;
                     if (seek_len > 0)
                     {
                         read_len = fread(buffer, sizeof(char), seek_len, file);
@@ -678,12 +678,12 @@ resend_request(
                 {
                     memcpy(request_buffer, buffer + (read_len - seek_len), seek_len);
                 }
-                read_len = (int)fread(request_buffer + seek_len,
+                read_len = fread(request_buffer + seek_len,
                                  sizeof(char), 48 * 1024 - seek_len, file) + seek_len;
                 tmp1 = NULL;
                 tmp3 = request_buffer;
                 tmp1 = strstr(tmp3, footer_str);
-                temp_len = (int)strlen(tmp3) + 1;
+                temp_len = strlen(tmp3) + 1;
                 /* loop below is for mtom cases */
                 while (!tmp1 && (read_len > temp_len))
                 {
@@ -693,14 +693,14 @@ resend_request(
                     }
                     tmp3 += (int)strlen(tmp3) + 1;
                     tmp1 = strstr(tmp3, footer_str);
-                    temp_len += (int)strlen(tmp3) + 1;
+                    temp_len += strlen(tmp3) + 1;
                 }
                 if (tmp1)
                 {
                     axis2_char_t *req_header = NULL;
                     axis2_char_t *req_payload = NULL;
-                    int req_content_len = 0;
-                    req_content_len = (int)(tmp1 - request_buffer) - 4;
+                    size_t req_content_len = 0;
+                    req_content_len = (size_t)(tmp1 - request_buffer) - 4;
                     *tmp1 = '\0';
                     tmp1 = NULL;
                     tmp1 = strstr(request_buffer, "\r\n\r\n");
@@ -713,7 +713,7 @@ resend_request(
                         *tmp1 = '\0';
                         req_payload = tmp1 + 2;
                         tmp1 = axutil_strdup(env, request_buffer);
-                        req_content_len -= (int)strlen(tmp1);
+                        req_content_len -= strlen(tmp1);
                         tmp1 = tcpmon_util_str_replace(env, tmp1, ";\n\t", "; ");
                         req_header = tmp1;
                         tmp2 = strstr(req_header, AXIS2_HTTP_HEADER_USER_AGENT ":");
@@ -722,15 +722,15 @@ resend_request(
                             tmp3 = strstr(tmp2, "\r\n");
                             if (tmp3)
                             {
-                                int header_len = 0;
+                                size_t header_len = 0;
                                 axis2_char_t *user_agent = AXIS2_HTTP_HEADER_USER_AGENT 
                                     ": " AXIS2_HTTP_HEADER_SERVER_AXIS2C " TCPMon";
-                                header_len = (int)(tmp3 - tmp2) + 2;
+                                header_len = (size_t)(tmp3 - tmp2) + 2;
                                 tmp1 = AXIS2_MALLOC(env->allocator,
                                                     sizeof(axis2_char_t) * header_len + 1);
                                 memcpy(tmp1, tmp2, header_len);
                                 tmp1[header_len] = '\0';
-                                header_len = 2 + (int)strlen(user_agent);
+                                header_len = 2 + strlen(user_agent);
                                 tmp2 = AXIS2_MALLOC(env->allocator,
                                                     sizeof(axis2_char_t) * (header_len + 1));
                                 sprintf(tmp2, "%s\r\n", user_agent);
@@ -749,16 +749,16 @@ resend_request(
                                 tmp3 = strstr(tmp2, "\r\n");
                                 if (tmp3)
                                 {
-                                    int header_len = 0;
-                                    header_len = (int)(tmp3 - tmp2) + 2;
+                                    size_t header_len = 0;
+                                    header_len = (size_t)(tmp3 - tmp2) + 2;
                                     tmp1 = AXIS2_MALLOC(env->allocator,
                                                         sizeof(axis2_char_t) * header_len + 1);
                                     memcpy(tmp1, tmp2, header_len);
                                     tmp1[header_len] = '\0';
                                     tmp2 = AXIS2_MALLOC(env->allocator,
                                                         sizeof(axis2_char_t) * (header_len + 2));
-                                    req_content_len = (int)strlen(req_payload);
-                                    sprintf(tmp2, "%s%d\r\n", AXIS2_HTTP_HEADER_CONTENT_LENGTH 
+                                    req_content_len = strlen(req_payload);
+                                    sprintf(tmp2, "%s%zu\r\n", AXIS2_HTTP_HEADER_CONTENT_LENGTH 
                                         ": ", req_content_len);
                                     req_header = tcpmon_util_str_replace(env, req_header, tmp1, tmp2);
                                     AXIS2_FREE(env->allocator, tmp1);
@@ -774,13 +774,13 @@ resend_request(
                             tmp3 = strstr(tmp2, "\r\n");
                             if (tmp3)
                             {
-                                int header_len = 0;
-                                header_len = (int)(tmp3 - tmp2) + 2;
+                                size_t header_len = 0;
+                                header_len = (size_t)(tmp3 - tmp2) + 2;
                                 tmp1 = AXIS2_MALLOC(env->allocator,
                                                     sizeof(axis2_char_t) * header_len + 1);
                                 memcpy(tmp1, tmp2, header_len);
                                 tmp1[header_len] = '\0';
-                                header_len = 16 + (int)strlen(target_host);
+                                header_len = 16 + strlen(target_host);
                                 tmp2 = AXIS2_MALLOC(env->allocator,
                                                     sizeof(axis2_char_t) * (header_len + 1));
                                 sprintf(tmp2, "%s%s:%d\r\n", AXIS2_HTTP_HEADER_HOST ": ", target_host,
@@ -992,22 +992,22 @@ on_error_func(
  */
 void
 sig_handler(
-    int signal)
+    int signum)
 {
 
     if (!system_env)
     {
         AXIS2_LOG_ERROR(system_env->log, AXIS2_LOG_SI,
-                        "Received signal %d, unable to proceed system_env is NULL,\
-                         system exit with -1", signal);
+                        "Received signum %d, unable to proceed system_env is NULL,\
+                         system exit with -1", signum);
         _exit (-1);
     }
 
-    switch (signal)
+    switch (signum)
     {
     case SIGINT:
         {
-            AXIS2_LOG_INFO(system_env->log, "Received signal SIGINT. Utility "
+            AXIS2_LOG_INFO(system_env->log, "Received signum SIGINT. Utility "
                            "shutting down");
             printf("\n\n");
             TCPMON_SESSION_STOP(session, system_env);
@@ -1022,14 +1022,14 @@ sig_handler(
 #ifndef WIN32
     case SIGPIPE:
         {
-            AXIS2_LOG_INFO(system_env->log, "Received signal SIGPIPE. Operation "
+            AXIS2_LOG_INFO(system_env->log, "Received signum SIGPIPE. Operation "
                            "aborted");
             return;
         }
 #endif
     case SIGSEGV:
         {
-            fprintf(stderr, "Received deadly signal SIGSEGV. Terminating\n");
+            fprintf(stderr, "Received deadly signum SIGSEGV. Terminating\n");
             _exit(-1);
         }
     }

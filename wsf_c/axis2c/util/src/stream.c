@@ -154,6 +154,7 @@ axutil_stream_flush(
     axutil_stream_t *stream,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     if(stream->fp)
     {
         if(fflush(stream->fp))
@@ -258,6 +259,7 @@ axutil_stream_read_basic(
 {
     int len = 0;
     char *buf = NULL;
+    (void)env;
 
     buf = stream->buffer;
     if(!buf)
@@ -278,7 +280,7 @@ axutil_stream_read_basic(
         len = (int)(count - 1);
         /* We are sure that the difference lies within the int range */
     }
-    memcpy(buffer, buf, len);
+    memcpy(buffer, buf, (size_t)len);
     /*
      * Finally we need to remove the read bytes from the stream
      * adjust the length of the stream.
@@ -296,14 +298,19 @@ axutil_stream_write_basic(
     const void *buffer,
     size_t count)
 {
-    int new_len = 0;
+    size_t new_len;
 
     if(!buffer || !stream || !stream->buffer)
         return -1;
 
-    new_len = (int)(stream->len + count);
+    if (stream->len < 0 || stream->max_len < 0)
+    {
+	    return -1;
+    }
+
+    new_len = (size_t)stream->len + count;
     /* We are sure that the difference lies within the int range */
-    if(new_len > stream->max_len)
+    if(new_len > (size_t)stream->max_len)
     {
         axis2_char_t *tmp = (axis2_char_t *)AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
             * (new_len + AXIS2_STREAM_DEFAULT_BUF_SIZE));
@@ -316,13 +323,13 @@ axutil_stream_write_basic(
          * pre allocation: extra AXIS2_STREAM_DEFAULT_BUF_SIZE more bytes 
          * allocated 
          */
-        stream->max_len = new_len + AXIS2_STREAM_DEFAULT_BUF_SIZE;
-        memcpy(tmp, stream->buffer, sizeof(axis2_char_t) * stream->len);
+        stream->max_len = (int)new_len + AXIS2_STREAM_DEFAULT_BUF_SIZE;
+        memcpy(tmp, stream->buffer, sizeof(axis2_char_t) * (size_t)stream->len);
         AXIS2_FREE(env->allocator, stream->buffer_head);
         stream->buffer = tmp;
         stream->buffer_head = tmp;
     }
-    memcpy(stream->buffer + (stream->len * sizeof(axis2_char_t)), buffer, count);
+    memcpy(stream->buffer + ((size_t)stream->len * sizeof(axis2_char_t)), buffer, count);
     stream->len += (int)count;
     /* We are sure that the difference lies within the int range */
     return (int)count;
@@ -333,6 +340,8 @@ axutil_stream_get_len(
     axutil_stream_t *stream,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, stream, -1);
     return stream->len;
 }
 
@@ -342,10 +351,12 @@ axutil_stream_skip_basic(
     const axutil_env_t *env,
     int count)
 {
-    int del_len = 0;
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, stream, -1);
 
     if(count > 0)
     {
+        int del_len;
         if(count <= stream->len)
         {
             del_len = count;
@@ -366,6 +377,8 @@ axutil_stream_get_buffer(
     const axutil_stream_t *stream,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, stream, NULL);
     return stream->buffer;
 }
 
@@ -374,6 +387,8 @@ axutil_stream_flush_buffer(
     axutil_stream_t *stream,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, stream, AXIS2_FAILURE);
     stream->len = 0;
     return AXIS2_SUCCESS;
 }
@@ -485,9 +500,12 @@ axutil_stream_skip_file(
 AXIS2_EXTERN axutil_stream_t *AXIS2_CALL
 axutil_stream_create_socket(
     const axutil_env_t *env,
-    int socket)
+    int sock)
 {
     axutil_stream_t *stream = NULL;
+    
+    AXIS2_ENV_CHECK(env, NULL);
+
     stream = axutil_stream_create_internal(env);
     if(!stream)
     {
@@ -503,7 +521,7 @@ axutil_stream_create_socket(
     stream->skip = axutil_stream_skip_socket;
     stream->peek = axutil_stream_peek_socket;
     stream->stream_type = AXIS2_STREAM_SOCKET;
-    stream->socket = socket;
+    stream->socket = sock;
     stream->fp = NULL;
 
     return stream;
@@ -530,7 +548,7 @@ axutil_stream_read_socket(
         return -1;
     }
 
-    len = (int)recv(stream->socket, buffer, (int)count, 0);
+    len = (int)recv(stream->socket, buffer, count, 0);
     /* We are sure that the difference lies within the int range */
 #ifdef AXIS2_TCPMON
     if (len > 1)
@@ -570,7 +588,7 @@ axutil_stream_write_socket(
     }
     if(!buffer)
         return -1;
-    len = (int)send(stream->socket, buffer, (int)count, 0);
+    len = (int)send(stream->socket, buffer, count, 0);
     /* We are sure that the difference lies within the int range */
 #ifdef AXIS2_TCPMON
     if (len > 0)
@@ -610,7 +628,7 @@ axutil_stream_skip_socket(
     }
     while(len < count)
     {
-        received = recv(stream->socket, buffer, 1, 0);
+        received = (int)recv(stream->socket, buffer, 1, 0);
         if(received == 0)
         {
             AXIS2_ERROR_SET(env->error, AXIS2_ERROR_SOCKET_ERROR, AXIS2_FAILURE);
@@ -652,7 +670,7 @@ axutil_stream_peek_socket(
         return -1;
     }
 
-    len = (int)recv(stream->socket, buffer, (int)count, MSG_PEEK);
+    len = (int)recv(stream->socket, buffer, count, MSG_PEEK);
     /* We are sure that the difference lies within the int range */
 
     return len;
@@ -666,6 +684,8 @@ axutil_stream_set_read(
     const axutil_env_t *env,
     AXUTIL_STREAM_READ func)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, stream, AXIS2_FAILURE);
     stream->read = func;
     return AXIS2_SUCCESS;
 }
@@ -676,6 +696,8 @@ axutil_stream_set_write(
     const axutil_env_t *env,
     AXUTIL_STREAM_WRITE func)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, stream, AXIS2_FAILURE);
     stream->write = func;
     return AXIS2_SUCCESS;
 }
@@ -686,6 +708,8 @@ axutil_stream_set_skip(
     const axutil_env_t *env,
     AXUTIL_STREAM_SKIP func)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, stream, AXIS2_FAILURE);
     stream->skip = func;
     return AXIS2_SUCCESS;
 }
@@ -696,6 +720,8 @@ axutil_stream_set_peek(
     const axutil_env_t *env,
     AXUTIL_STREAM_PEEK func)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, stream, AXIS2_FAILURE);
     stream->peek = func;
     return AXIS2_SUCCESS;
 }
@@ -736,6 +762,6 @@ axutil_stream_peek(
     void *buffer,
     int count)
 {
-    return stream->peek(stream, env, buffer, count);
+    return stream->peek(stream, env, buffer, (size_t)count);
 }
 

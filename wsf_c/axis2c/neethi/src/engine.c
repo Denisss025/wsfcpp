@@ -205,6 +205,7 @@ neethi_engine_get_operator_reference(
     neethi_reference_t *reference = NULL;
     axutil_qname_t *qname = NULL;
     axis2_char_t *attribute_value = NULL;
+    (void)node;
 
     reference = neethi_reference_create(env);
 

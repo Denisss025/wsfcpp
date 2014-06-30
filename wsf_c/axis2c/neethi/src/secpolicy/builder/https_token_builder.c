@@ -31,6 +31,7 @@ rp_https_token_builder_build(
     rp_https_token_t *https_token = NULL;
     neethi_assertion_t *assertion = NULL;
     axis2_char_t *value = NULL;
+    (void)node;
 
     https_token = rp_https_token_create(env);
 

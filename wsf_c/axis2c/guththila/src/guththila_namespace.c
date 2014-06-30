@@ -31,7 +31,7 @@ guththila_namespace_list_grow(
         && namesp_list->capacity + addition >= namesp_list->size))
     {
         namesp_list->list = (guththila_namespace_t *)realloc(namesp_list->list,
-            sizeof(guththila_namespace_t) * (namesp_list->capacity + addition));
+            sizeof(guththila_namespace_t) * (size_t)(namesp_list->capacity + addition));
         if(namesp_list->list)
         {
             for(i = namesp_list->capacity; i < namesp_list->capacity + addition; i++)

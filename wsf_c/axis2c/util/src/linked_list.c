@@ -143,7 +143,8 @@ axutil_linked_list_get_entry(
     const axutil_env_t *env,
     int n)
 {
-    entry_t *e = NULL;
+    entry_t *e;
+    (void)env;
     if(n < linked_list->size / 2)
     {
         e = linked_list->first;
@@ -383,6 +384,8 @@ axutil_linked_list_size(
     axutil_linked_list_t *linked_list,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, linked_list, -1);
     return linked_list->size;
 }
 
@@ -424,6 +427,8 @@ axutil_linked_list_clear(
     axutil_linked_list_t *linked_list,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, linked_list, AXIS2_FAILURE);
     if(linked_list->size > 0)
     {
         linked_list->mod_count++;
@@ -439,24 +444,24 @@ AXIS2_EXTERN void *AXIS2_CALL
 axutil_linked_list_get(
     axutil_linked_list_t *linked_list,
     const axutil_env_t *env,
-    int index)
+    int idx)
 {
-    axutil_linked_list_check_bounds_exclusive(linked_list, env, index);
-    return axutil_linked_list_get_entry(linked_list, env, index)->data;
+    axutil_linked_list_check_bounds_exclusive(linked_list, env, idx);
+    return axutil_linked_list_get_entry(linked_list, env, idx)->data;
 }
 
 AXIS2_EXTERN void *AXIS2_CALL
 axutil_linked_list_set(
     axutil_linked_list_t *linked_list,
     const axutil_env_t *env,
-    int index,
+    int idx,
     void *o)
 {
     entry_t *e;
     void *old;
     AXIS2_PARAM_CHECK(env->error, o, NULL);
-    axutil_linked_list_check_bounds_exclusive(linked_list, env, index);
-    e = axutil_linked_list_get_entry(linked_list, env, index);
+    axutil_linked_list_check_bounds_exclusive(linked_list, env, idx);
+    e = axutil_linked_list_get_entry(linked_list, env, idx);
     old = e->data;
     e->data = o;
     return old;
@@ -466,20 +471,20 @@ AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axutil_linked_list_add_at_index(
     axutil_linked_list_t *linked_list,
     const axutil_env_t *env,
-    int index,
+    int idx,
     void *o)
 {
     entry_t *after = NULL;
     entry_t *e;
     AXIS2_PARAM_CHECK(env->error, o, AXIS2_FAILURE);
 
-    axutil_linked_list_check_bounds_inclusive(linked_list, env, index);
+    axutil_linked_list_check_bounds_inclusive(linked_list, env, idx);
     e = axutil_linked_list_create_entry(env, o);
 
-    if(index < linked_list->size)
+    if(idx < linked_list->size)
     {
         linked_list->mod_count++;
-        after = axutil_linked_list_get_entry(linked_list, env, index);
+        after = axutil_linked_list_get_entry(linked_list, env, idx);
         e->next = after;
         e->previous = after->previous;
         if(after->previous == NULL)
@@ -501,11 +506,11 @@ AXIS2_EXTERN void *AXIS2_CALL
 axutil_linked_list_remove_at_index(
     axutil_linked_list_t *linked_list,
     const axutil_env_t *env,
-    int index)
+    int idx)
 {
     entry_t *e;
-    axutil_linked_list_check_bounds_exclusive(linked_list, env, index);
-    e = axutil_linked_list_get_entry(linked_list, env, index);
+    axutil_linked_list_check_bounds_exclusive(linked_list, env, idx);
+    e = axutil_linked_list_get_entry(linked_list, env, idx);
     axutil_linked_list_remove_entry(linked_list, env, e);
     return e->data;
 }
@@ -516,7 +521,7 @@ axutil_linked_list_index_of(
     const axutil_env_t *env,
     void *o)
 {
-    int index = 0;
+    int idx = 0;
     entry_t *e;
     AXIS2_PARAM_CHECK(env->error, o, AXIS2_FAILURE);
 
@@ -524,8 +529,8 @@ axutil_linked_list_index_of(
     while(e)
     {
         if(o == e->data)
-            return index;
-        index++;
+            return idx;
+        idx++;
         e = e->next;
     }
     return -1;
@@ -537,17 +542,17 @@ axutil_linked_list_last_index_of(
     const axutil_env_t *env,
     void *o)
 {
-    int index;
+    int idx;
     entry_t *e;
     AXIS2_PARAM_CHECK(env->error, o, AXIS2_FAILURE);
 
-    index = linked_list->size - 1;
+    idx = linked_list->size - 1;
     e = linked_list->last;
     while(e)
     {
         if(o == e->data)
-            return index;
-        index--;
+            return idx;
+        idx--;
         e = e->previous;
     }
     return -1;
@@ -561,7 +566,7 @@ axutil_linked_list_to_array(
     int i = 0;
     void **array;
     entry_t *e;
-    array = (void **)AXIS2_MALLOC(env->allocator, linked_list->size * sizeof(void *));
+    array = (void **)AXIS2_MALLOC(env->allocator, (size_t)linked_list->size * sizeof(void *));
     e = linked_list->first;
     for(i = 0; i < linked_list->size; i++)
     {

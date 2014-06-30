@@ -32,7 +32,6 @@ oxs_token_build_derived_key_token_element(
     axiom_element_t *derived_key_token_ele = NULL;
     axiom_attribute_t *algo_att = NULL;
     axiom_attribute_t *id_attr = NULL;
-    int ret;
     axiom_namespace_t *ns_obj = NULL;
     axiom_namespace_t *ns = NULL;
 
@@ -61,7 +60,7 @@ oxs_token_build_derived_key_token_element(
     if(algo)
     {
         algo_att =  axiom_attribute_create(env, OXS_ATTR_ALGORITHM, algo, NULL);
-        ret = axiom_element_add_attribute(
+        axiom_element_add_attribute(
             derived_key_token_ele, env, algo_att, derived_key_token_node);
     }
 
@@ -71,7 +70,7 @@ oxs_token_build_derived_key_token_element(
     }
 
     id_attr = axiom_attribute_create(env, OXS_ATTR_ID, id,ns);
-    ret = axiom_element_add_attribute(derived_key_token_ele, env, id_attr, derived_key_token_node);
+    axiom_element_add_attribute(derived_key_token_ele, env, id_attr, derived_key_token_node);
     return derived_key_token_node;
 }
 

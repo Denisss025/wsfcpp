@@ -29,7 +29,6 @@ oxs_token_build_signature_method_element(
     axiom_node_t *signature_method_node = NULL;
     axiom_element_t *signature_method_ele = NULL;
     axiom_attribute_t *algo_attr = NULL;
-    int ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_DSIG_NS, OXS_DS);
@@ -48,7 +47,7 @@ oxs_token_build_signature_method_element(
     }
 
     algo_attr =  axiom_attribute_create(env, OXS_ATTR_ALGORITHM, algorithm, NULL);
-    ret = axiom_element_add_attribute(signature_method_ele, env, algo_attr, signature_method_node);
+    axiom_element_add_attribute(signature_method_ele, env, algo_attr, signature_method_node);
     return signature_method_node;
 }
 

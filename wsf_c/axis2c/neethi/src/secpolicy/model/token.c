@@ -77,6 +77,7 @@ rp_token_get_issuer(
     rp_token_t * token,
     const axutil_env_t * env)
 {
+    (void)env;
     return token->issuer;
 }
 
@@ -86,6 +87,7 @@ rp_token_set_issuer(
     const axutil_env_t * env,
     axis2_char_t * issuer)
 {
+    (void)env;
     token->issuer = issuer;
     return AXIS2_SUCCESS;
 }
@@ -96,6 +98,7 @@ rp_token_set_derive_key_version(
     const axutil_env_t *env,
     derive_key_version_t version)
 {
+    (void)env;
     token->derive_key_version = version;
     return AXIS2_SUCCESS;
 }
@@ -105,6 +108,7 @@ rp_token_get_derive_key_version(
     rp_token_t *token,
     const axutil_env_t *env)
 {
+    (void)env;
     return token->derive_key_version;
 }
 
@@ -114,6 +118,7 @@ rp_token_set_inclusion(
     const axutil_env_t *env,
     axis2_char_t *inclusion)
 {
+    (void)env;
     token->inclusion = inclusion;
     return AXIS2_SUCCESS;
 }
@@ -123,6 +128,7 @@ rp_token_get_inclusion(
     rp_token_t *token,
     const axutil_env_t *env)
 {
+    (void)env;
     return token->inclusion;
 }
 
@@ -131,6 +137,7 @@ rp_token_get_derivedkey_type(
     rp_token_t * token,
     const axutil_env_t * env)
 {
+    (void)env;
     return token->derive_key;
 }
 
@@ -140,6 +147,7 @@ rp_token_set_derivedkey_type(
     const axutil_env_t * env,
     derive_key_type_t derivedkey)
 {
+    (void)env;
     token->derive_key = derivedkey;
     return AXIS2_SUCCESS;
 }
@@ -149,6 +157,7 @@ rp_token_get_is_issuer_name(
     rp_token_t * token,
     const axutil_env_t * env)
 {
+    (void)env;
     return token->is_issuer_name;
 }
 
@@ -158,6 +167,7 @@ rp_token_set_is_issuer_name(
     const axutil_env_t * env,
     axis2_bool_t is_issuer_name)
 {
+    (void)env;
     token->is_issuer_name = is_issuer_name;
     return AXIS2_SUCCESS;
 }
@@ -167,6 +177,7 @@ rp_token_get_claim(
     rp_token_t * token,
     const axutil_env_t * env)
 {
+    (void)env;
     return token->claim;
 }
 
@@ -176,6 +187,7 @@ rp_token_set_claim(
     const axutil_env_t * env,
     axiom_node_t *claim)
 {
+    (void)env;
     token->claim = claim;
     return AXIS2_SUCCESS;
 }
@@ -185,6 +197,7 @@ rp_token_increment_ref(
     rp_token_t * token,
     const axutil_env_t * env)
 {
+    (void)env;
     token->ref++;
     return AXIS2_SUCCESS;
 }

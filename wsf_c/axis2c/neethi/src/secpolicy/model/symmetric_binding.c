@@ -56,7 +56,7 @@ rp_symmetric_binding_free(
     rp_symmetric_binding_t * symmetric_binding,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(symmetric_binding)
     {

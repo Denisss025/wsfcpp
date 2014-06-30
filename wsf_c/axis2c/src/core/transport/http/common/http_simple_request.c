@@ -65,10 +65,10 @@ axis2_http_simple_request_create(
 
     if((http_hdr_count > 0) && http_headers)
     {
-        int i = 0;
-        simple_request->header_group = axutil_array_list_create(env, http_hdr_count);
+        axis2_ssize_t i;
+        simple_request->header_group = axutil_array_list_create(env, (int)http_hdr_count);
 
-        for(i = 0; i < (int)http_hdr_count; i++)
+        for(i = 0; i < http_hdr_count; i++)
         /* We are sure that the difference lies within the int range */
         {
             axutil_array_list_add(simple_request->header_group, env, (void *)http_headers[i]);
@@ -330,9 +330,9 @@ axis2_http_simple_request_get_content_length(
         AXIS2_HTTP_HEADER_CONTENT_LENGTH);
     if(tmp_header)
     {
-        return AXIS2_ATOI(axis2_http_header_get_value(tmp_header, env));
+        return (axis2_ssize_t)AXIS2_ATOI(axis2_http_header_get_value(tmp_header, env));
     }
-    return error_return;
+    return (axis2_ssize_t)error_return;
 }
 
 AXIS2_EXTERN axutil_stream_t *AXIS2_CALL
@@ -349,12 +349,12 @@ axis2_http_simple_request_get_body_bytes(
     const axutil_env_t * env,
     char **buf)
 {
-    axutil_stream_t *body = NULL;
+    axutil_stream_t *body;
     char *tmp_buf = NULL;
     char *tmp_buf2 = NULL;
     char *tmp_buf3 = NULL;
-    int length = 0;
-    int read_len = 0;
+    axis2_ssize_t length;
+    axis2_ssize_t read_len = 0;
 
     body = simple_request->stream;
     if(!body)
@@ -368,7 +368,7 @@ axis2_http_simple_request_get_body_bytes(
     if(length > 0)
     {
         *buf = (char *)AXIS2_MALLOC(env->allocator, length + 1);
-        read_len = axutil_stream_read(body, env, *buf, length + 1);
+        read_len = (axis2_ssize_t)axutil_stream_read(body, env, *buf, length + 1);
         return read_len;
     }
 

@@ -66,7 +66,7 @@ int AXIS2_CALL axis2_ssl_stream_get_char(
 AXIS2_EXTERN axutil_stream_t *AXIS2_CALL
 axutil_stream_create_ssl(
     const axutil_env_t * env,
-    axis2_socket_t socket,
+    axis2_socket_t sockt,
     axis2_char_t * server_cert,
     axis2_char_t * key_file,
     axis2_char_t * ssl_pp)
@@ -83,7 +83,7 @@ axutil_stream_create_ssl(
         return NULL;
     }
     memset ((void *)stream_impl, 0, sizeof (ssl_stream_impl_t));
-    stream_impl->socket = socket;
+    stream_impl->socket = sockt;
     stream_impl->ctx = NULL;
     stream_impl->ssl = NULL;
 
@@ -134,19 +134,19 @@ axis2_ssl_stream_read(
     size_t count)
 {
     ssl_stream_impl_t *stream_impl = NULL;
-    int read = -1;
+    int data_read = -1;
     int len = -1;
 
     stream_impl = AXIS2_INTF_TO_IMPL(stream);
 
     SSL_set_mode(stream_impl->ssl, SSL_MODE_AUTO_RETRY);
 
-    read = SSL_read(stream_impl->ssl, buffer, (int)count);
+    data_read = SSL_read(stream_impl->ssl, buffer, (int)count);
     /* We are sure that the difference lies within the int range */
-    switch (SSL_get_error(stream_impl->ssl, read))
+    switch (SSL_get_error(stream_impl->ssl, data_read))
     {
         case SSL_ERROR_NONE:
-        len = read;
+        len = data_read;
         break;
         case SSL_ERROR_ZERO_RETURN:
         len = -1;
@@ -170,24 +170,24 @@ axis2_ssl_stream_write(
     size_t count)
 {
     ssl_stream_impl_t *stream_impl = NULL;
-    int write = -1;
+    int written = -1;
 
     AXIS2_PARAM_CHECK(env->error, buf, AXIS2_FAILURE);
     stream_impl = AXIS2_INTF_TO_IMPL(stream);
-    write = SSL_write(stream_impl->ssl, buf, (int)count);
+    written = SSL_write(stream_impl->ssl, buf, (int)count);
     /* We are sure that the difference lies within the int range */
 
-    switch (SSL_get_error(stream_impl->ssl, write))
+    switch (SSL_get_error(stream_impl->ssl, written))
     {
         case SSL_ERROR_NONE:
-        if ((int)count != write)
+        if ((int)count != written)
         /* We are sure that the difference lies within the int range */
-        AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Incomplete SSL write!");
+        AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Incomplete SSL written!");
         break;
         default:
         return -1;
     }
-    return write;
+    return written;
 }
 
 int AXIS2_CALL
@@ -199,9 +199,13 @@ axis2_ssl_stream_skip(
     ssl_stream_impl_t *stream_impl = NULL;
     axis2_char_t *tmp_buffer = NULL;
     int len = -1;
+    if (count < 0)
+    {
+	    return -1;
+    }
     stream_impl = AXIS2_INTF_TO_IMPL(stream);
 
-    tmp_buffer = AXIS2_MALLOC(env->allocator, count * sizeof(axis2_char_t));
+    tmp_buffer = AXIS2_MALLOC(env->allocator, (size_t)count * sizeof(axis2_char_t));
     if (tmp_buffer == NULL)
     {
         AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);

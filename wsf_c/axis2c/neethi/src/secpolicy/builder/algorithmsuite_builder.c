@@ -33,6 +33,7 @@ rp_algorithmsuite_builder_build(
     axiom_node_t *algo_node = NULL;
     axiom_element_t *algo_element = NULL;
     neethi_assertion_t *assertion = NULL;
+    (void)element;
 
     algorithmsuite = rp_algorithmsuite_create(env);
 

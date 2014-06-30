@@ -165,7 +165,8 @@ axutil_env_create_all(
     env = axutil_env_create_with_error_log_thread_pool(allocator, error, log, thread_pool);
     if(env->log)
     {
-        if(AXIS2_LOG_LEVEL_CRITICAL <= log_level && log_level <= AXIS2_LOG_LEVEL_TRACE)
+        /*if(AXIS2_LOG_LEVEL_CRITICAL <= log_level && log_level <= AXIS2_LOG_LEVEL_TRACE)*/
+	if (log_level <= AXIS2_LOG_LEVEL_TRACE)
         {
             env->log->level = log_level;
         }

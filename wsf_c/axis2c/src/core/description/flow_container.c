@@ -88,6 +88,7 @@ axis2_flow_container_get_in_flow(
     const axutil_env_t * env)
 {
     return flow_container->in;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -110,6 +111,7 @@ axis2_flow_container_get_out_flow(
     const axutil_env_t * env)
 {
     return flow_container->out;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -132,6 +134,7 @@ axis2_flow_container_get_fault_in_flow(
     const axutil_env_t * env)
 {
     return flow_container->in_fault;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -154,6 +157,7 @@ axis2_flow_container_get_fault_out_flow(
     const axutil_env_t * env)
 {
     return flow_container->out_fault;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

@@ -37,7 +37,7 @@ guththila_tok_list_grow(
         int cur = ++tok_list->cur_list;
         int cur_cap = tok_list->capacity[cur - 1] * 2;
         guththila_token_t *list = (guththila_token_t *)AXIS2_MALLOC(env->allocator,
-            sizeof(guththila_token_t) * cur_cap);
+            sizeof(guththila_token_t) * (size_t)cur_cap);
         for(i = 0; i < cur_cap; ++i)
         {
             guththila_stack_push(&tok_list->fr_stack, &list[i], env);
@@ -51,8 +51,8 @@ guththila_tok_list_grow(
         guththila_token_t ** list = NULL;
         int *capacity = NULL;
         list = (guththila_token_t **)AXIS2_MALLOC(env->allocator, sizeof(guththila_token_t *)
-            * tok_list->no_list * 2);
-        capacity = (int *)AXIS2_MALLOC(env->allocator, sizeof(int) * tok_list->no_list * 2);
+            * (size_t)tok_list->no_list * 2);
+        capacity = (int *)AXIS2_MALLOC(env->allocator, sizeof(int) * (size_t)tok_list->no_list * 2);
         if(list)
         {
             int cur_list = tok_list->cur_list;
@@ -162,8 +162,13 @@ guththila_tok_str_cmp(
     const axutil_env_t * env)
 {
     unsigned int i = 0;
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, tok, -1);
     if(tok->size != str_len)
         return -1;
+
+    AXIS2_PARAM_CHECK(env->error, str, -1);
+
     for(; i < tok->size; i++)
     {
         if(tok->start[i] != str[i])
@@ -181,6 +186,7 @@ guththila_tok_tok_cmp(
     const axutil_env_t * env)
 {
     unsigned int i = 0;
+    AXIS2_ENV_CHECK(env, -1);
 
     if(tok1 && tok2)
     {
@@ -209,12 +215,13 @@ guththila_set_token(
     int ref,
     const axutil_env_t* env)
 {
-    if(start)
+    (void)env;
+    if(start && size >= 0)
     {
         tok->start = start;
         tok->type = type;
         tok->_start = _start;
-        tok->size = size;
+        tok->size = (size_t)size;
         tok->last = last;
         tok->ref = ref;
     }

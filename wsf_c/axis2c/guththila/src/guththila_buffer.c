@@ -40,9 +40,9 @@ guththila_buffer_init(
     if(size > 0)
     {
         buffer->buff[0] = (guththila_char_t *)AXIS2_MALLOC(env->allocator, sizeof(guththila_char_t)
-            * size);
+            * (size_t)size);
         buffer->data_size[0] = 0;
-        buffer->buffs_size[0] = size;
+        buffer->buffs_size[0] = (size_t)size;
         buffer->cur_buff = 0;
     }
     return GUTHTHILA_SUCCESS;
@@ -99,11 +99,11 @@ guththila_buffer_init_for_buffer(
     buffer->cur_buff = 0;
     buffer->buffs_size = (size_t *)AXIS2_MALLOC(env->allocator, sizeof(size_t)
         * GUTHTHILA_BUFFER_DEF_SIZE);
-    buffer->buffs_size[0] = size;
+    buffer->buffs_size[0] = (size_t)size;
     buffer->pre_tot_data = 0;
     buffer->data_size = (size_t *)AXIS2_MALLOC(env->allocator, sizeof(size_t)
         * GUTHTHILA_BUFFER_DEF_SIZE);
-    buffer->data_size[0] = size;
+    buffer->data_size[0] = (size_t)size;
     buffer->no_buffers = 1;
     buffer->xml = NULL;
     return GUTHTHILA_SUCCESS;

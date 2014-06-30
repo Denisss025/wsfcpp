@@ -110,6 +110,7 @@ rp_algorithmsuite_get_algosuite_string(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
     if(!algorithmsuite)
         return NULL;
     else
@@ -123,6 +124,8 @@ rp_algorithmsuite_set_algosuite(
     const axutil_env_t *env,
     axis2_char_t *algosuite_string)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, algosuite_string, AXIS2_FAILURE);
 
     algorithmsuite->algosuite_string = algosuite_string;
@@ -360,6 +363,8 @@ rp_algorithmsuite_get_symmetric_signature(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->symmetric_signature;
 }
 
@@ -369,6 +374,8 @@ rp_algorithmsuite_set_symmetric_signature(
     const axutil_env_t *env,
     axis2_char_t *symmetric_signature)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, symmetric_signature, AXIS2_FAILURE);
 
     algorithmsuite->symmetric_signature = symmetric_signature;
@@ -380,6 +387,8 @@ rp_algorithmsuite_get_asymmetric_signature(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->asymmetric_signature;
 }
 
@@ -389,6 +398,8 @@ rp_algorithmsuite_set_asymmetric_signature(
     const axutil_env_t *env,
     axis2_char_t *asymmetric_signature)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, asymmetric_signature, AXIS2_FAILURE);
 
     algorithmsuite->asymmetric_signature = asymmetric_signature;
@@ -400,6 +411,8 @@ rp_algorithmsuite_get_computed_key(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->computed_key;
 }
 
@@ -409,6 +422,8 @@ rp_algorithmsuite_set_computed_key(
     const axutil_env_t *env,
     axis2_char_t *computed_key)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, computed_key, AXIS2_FAILURE);
 
     algorithmsuite->computed_key = computed_key;
@@ -420,6 +435,8 @@ rp_algorithmsuite_get_digest(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->digest;
 }
 
@@ -428,6 +445,8 @@ rp_algorithmsuite_get_encryption(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->encryption;
 }
 
@@ -436,6 +455,8 @@ rp_algorithmsuite_get_max_symmetric_keylength(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, -1);
     return algorithmsuite->max_symmetric_keylength;
 }
 
@@ -445,6 +466,8 @@ rp_algorithmsuite_set_max_symmetric_keylength(
     const axutil_env_t *env,
     int max_symmetric_keylength)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     algorithmsuite->max_symmetric_keylength = max_symmetric_keylength;
     return AXIS2_SUCCESS;
 }
@@ -454,6 +477,8 @@ rp_algorithmsuite_get_min_symmetric_keylength(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, -1);
     return algorithmsuite->min_symmetric_keylength;
 }
 
@@ -462,6 +487,8 @@ rp_algorithmsuite_get_encryption_derivation_keylength(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, -1);
     return algorithmsuite->encryption_key_derivation_keylength;
 }
 
@@ -470,6 +497,8 @@ rp_algorithmsuite_get_signature_derivation_keylength(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, -1);
     return algorithmsuite->signature_key_derivation_keylength;
 }
 
@@ -478,6 +507,8 @@ rp_algorithmsuite_get_max_asymmetric_keylength(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, -1);
     return algorithmsuite->max_asymmetric_keylength;
 }
 
@@ -487,6 +518,8 @@ rp_algorithmsuite_set_max_asymmetric_keylength(
     const axutil_env_t *env,
     int max_asymmetric_keylength)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     algorithmsuite->max_asymmetric_keylength = max_asymmetric_keylength;
     return AXIS2_SUCCESS;
 }
@@ -496,6 +529,8 @@ rp_algorithmsuite_get_min_asymmetric_keylength(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, -1);
     return algorithmsuite->min_asymmetric_keylength;
 }
 
@@ -505,6 +540,8 @@ rp_algorithmsuite_set_min_asymmetric_keylength(
     const axutil_env_t *env,
     int min_asymmetric_keylength)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     algorithmsuite->min_asymmetric_keylength = min_asymmetric_keylength;
     return AXIS2_SUCCESS;
 }
@@ -514,6 +551,8 @@ rp_algorithmsuite_get_symmetrickeywrap(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->symmetrickeywrap;
 }
 
@@ -522,6 +561,8 @@ rp_algorithmsuite_get_asymmetrickeywrap(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->asymmetrickeywrap;
 }
 
@@ -530,6 +571,8 @@ rp_algorithmsuite_get_signature_key_derivation(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->signature_key_derivation;
 }
 
@@ -538,6 +581,8 @@ rp_algorithmsuite_get_encryption_key_derivation(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->encryption_key_derivation;
 }
 
@@ -546,6 +591,8 @@ rp_algorithmsuite_get_soap_normalization(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->soap_normalization;
 }
 
@@ -555,6 +602,8 @@ rp_algorithmsuite_set_soap_normalization(
     const axutil_env_t *env,
     axis2_char_t *soap_normalization)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, soap_normalization, AXIS2_FAILURE);
     algorithmsuite->soap_normalization = soap_normalization;
     return AXIS2_SUCCESS;
@@ -565,6 +614,8 @@ rp_algorithmsuite_get_str_transformation(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->str_transformation;
 }
 
@@ -574,6 +625,8 @@ rp_algorithmsuite_set_str_transformation(
     const axutil_env_t *env,
     axis2_char_t *str_transformation)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, str_transformation, AXIS2_FAILURE);
     algorithmsuite->str_transformation = str_transformation;
     return AXIS2_SUCCESS;
@@ -584,6 +637,8 @@ rp_algorithmsuite_get_c14n(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->c14n;
 }
 
@@ -593,6 +648,8 @@ rp_algorithmsuite_set_c14n(
     const axutil_env_t *env,
     axis2_char_t *c14n)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, c14n, AXIS2_FAILURE);
     algorithmsuite->c14n = c14n;
     return AXIS2_SUCCESS;
@@ -603,6 +660,8 @@ rp_algorithmsuite_get_xpath(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, NULL);
     return algorithmsuite->xpath;
 }
 
@@ -612,6 +671,8 @@ rp_algorithmsuite_set_xpath(
     const axutil_env_t *env,
     axis2_char_t *xpath)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, xpath, AXIS2_FAILURE);
     algorithmsuite->xpath = xpath;
     return AXIS2_SUCCESS;
@@ -622,6 +683,8 @@ rp_algorithmsuite_increment_ref(
     rp_algorithmsuite_t *algorithmsuite,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, algorithmsuite, AXIS2_FAILURE);
     algorithmsuite->ref++;
     return AXIS2_SUCCESS;
 }

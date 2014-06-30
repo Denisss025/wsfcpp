@@ -262,6 +262,7 @@ neethi_assertion_get_type(
     neethi_assertion_t *neethi_assertion,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_assertion->type;
 }
 
@@ -270,6 +271,7 @@ neethi_assertion_get_value(
     neethi_assertion_t *neethi_assertion,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_assertion->value;
 }
 
@@ -306,6 +308,7 @@ neethi_assertion_set_element(
     const axutil_env_t *env,
     axiom_element_t *element)
 {
+    (void)env;
     neethi_assertion->element = element;
     return AXIS2_SUCCESS;
 }
@@ -315,6 +318,7 @@ neethi_assertion_get_node(
     neethi_assertion_t *neethi_assertion,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_assertion->node;
 }
 
@@ -342,6 +346,7 @@ neethi_assertion_get_is_optional(
     neethi_assertion_t *neethi_assertion,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_assertion->is_optional;
 }
 
@@ -351,6 +356,7 @@ neethi_assertion_set_is_optional(
     const axutil_env_t *env,
     axis2_bool_t is_optional)
 {
+    (void)env;
     neethi_assertion->is_optional = is_optional;
     return AXIS2_SUCCESS;
 }
@@ -360,6 +366,7 @@ neethi_assertion_get_policy_components(
     neethi_assertion_t *neethi_assertion,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_assertion->policy_components;
 }
 

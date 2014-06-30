@@ -29,7 +29,6 @@ oxs_token_build_data_reference_element(
     axiom_node_t *data_reference_node = NULL;
     axiom_element_t *data_reference_ele = NULL;
     axiom_attribute_t *data_ref_attr = NULL;
-    int ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_ENC_NS, OXS_XENC);
@@ -49,7 +48,7 @@ oxs_token_build_data_reference_element(
     }
 
     data_ref_attr =  axiom_attribute_create(env, OXS_ATTR_URI , data_ref, NULL);
-    ret = axiom_element_add_attribute(data_reference_ele, env, data_ref_attr, data_reference_node);
+    axiom_element_add_attribute(data_reference_ele, env, data_ref_attr, data_reference_node);
     return data_reference_node;
 }
 

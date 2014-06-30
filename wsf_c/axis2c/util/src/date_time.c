@@ -765,6 +765,8 @@ axutil_date_time_get_month(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     return (date_time->mon + 1);
 }
 
@@ -774,6 +776,8 @@ axutil_date_time_get_date(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     return (date_time->day);
 }
 AXIS2_EXTERN int AXIS2_CALL
@@ -781,6 +785,8 @@ axutil_date_time_get_day(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     return (date_time->day);
 }
 
@@ -789,6 +795,8 @@ axutil_date_time_get_hour(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     return (date_time->hour);
 }
 
@@ -797,6 +805,8 @@ axutil_date_time_get_minute(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     return (date_time->min);
 }
 
@@ -805,6 +815,8 @@ axutil_date_time_get_second(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     return (int)(date_time->sec);
 }
 
@@ -813,8 +825,11 @@ axutil_date_time_get_msec(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    float ret;
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     /* Precision is 1/100 of a millisecond */
-    float ret = (float)((date_time->sec - (float)((int)date_time->sec)) * 1000.0);
+    ret = (float)((date_time->sec - (float)((int)date_time->sec)) * 1000.0);
     return (int)((ret * 100.0 + 0.5) / 100.0);
 }
 
@@ -823,6 +838,8 @@ axutil_date_time_get_time_zone_hour(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     return (date_time->tz_hour);
 }
 
@@ -831,6 +848,8 @@ axutil_date_time_get_time_zone_minute(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     return (date_time->tz_min);
 }
 
@@ -839,6 +858,8 @@ axutil_date_time_is_time_zone_positive(
     axutil_date_time_t *date_time,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     return (date_time->tz_pos);
 }
 
@@ -848,6 +869,8 @@ axutil_date_time_is_utc(
     const axutil_env_t *env)
 {
     axis2_bool_t is_utc = AXIS2_TRUE;
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, date_time, -1);
     if(date_time->tz_hour || date_time->tz_min)
     {
         is_utc = AXIS2_FALSE;
@@ -871,6 +894,8 @@ axutil_date_time_local_to_utc(
     axis2_bool_t tz_pos = AXIS2_FALSE;
 
     axutil_date_time_t *ret = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, date_time, NULL);
 
     year = date_time->year;
     mon = date_time->mon;

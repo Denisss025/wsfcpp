@@ -39,7 +39,6 @@ oxs_token_build_signature_value_element(
 {
     axiom_node_t *signature_value_node = NULL;
     axiom_element_t *signature_value_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_DSIG_NS, OXS_DS);
@@ -54,7 +53,7 @@ oxs_token_build_signature_value_element(
 
     if (signature_val)
     {
-        ret  = axiom_element_set_text(signature_value_ele, env, signature_val, signature_value_node);
+         axiom_element_set_text(signature_value_ele, env, signature_val, signature_value_node);
     }
 
     return signature_value_node;

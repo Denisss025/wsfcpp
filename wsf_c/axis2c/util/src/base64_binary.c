@@ -56,6 +56,7 @@ axutil_base64_binary_create_with_plain_binary(
 
     AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, plain_binary, NULL);
+    if (plain_binary_len <= 0) return NULL;
 
     base64_binary = (axutil_base64_binary_t *)axutil_base64_binary_create(env);
     if(!base64_binary)
@@ -66,7 +67,7 @@ axutil_base64_binary_create_with_plain_binary(
     }
 
     base64_binary->plain_binary = AXIS2_MALLOC(env->allocator, sizeof(unsigned char)
-        * plain_binary_len);
+        * (size_t)plain_binary_len);
 
     if(!base64_binary->plain_binary)
     {
@@ -75,7 +76,7 @@ axutil_base64_binary_create_with_plain_binary(
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Out of memory");
         return NULL;
     }
-    memcpy(base64_binary->plain_binary, plain_binary, plain_binary_len);
+    memcpy(base64_binary->plain_binary, plain_binary, (size_t)plain_binary_len);
     base64_binary->plain_binary_len = plain_binary_len;
 
     return base64_binary;
@@ -87,7 +88,7 @@ axutil_base64_binary_create_with_encoded_binary(
     const char *encoded_binary)
 {
     axutil_base64_binary_t *base64_binary = NULL;
-    int plain_binary_len = 0;
+    size_t plain_binary_len = 0;
 
     AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, encoded_binary, NULL);
@@ -100,7 +101,12 @@ axutil_base64_binary_create_with_encoded_binary(
         return NULL;
     }
 
-    plain_binary_len = axutil_base64_decode_len(encoded_binary);
+    plain_binary_len = (size_t)axutil_base64_decode_len(encoded_binary);
+    if ((int)plain_binary_len <= 0) 
+    {
+	    axutil_base64_binary_free(base64_binary, env);
+	    return NULL;
+    }
     base64_binary->plain_binary = AXIS2_MALLOC(env->allocator, sizeof(unsigned char)
         * plain_binary_len);
 
@@ -112,7 +118,7 @@ axutil_base64_binary_create_with_encoded_binary(
         return NULL;
     }
     axutil_base64_decode_binary(base64_binary->plain_binary, encoded_binary);
-    base64_binary->plain_binary_len = plain_binary_len;
+    base64_binary->plain_binary_len = (int)plain_binary_len;
 
     return base64_binary;
 }
@@ -151,9 +157,10 @@ axutil_base64_binary_set_plain_binary(
 {
 
     AXIS2_PARAM_CHECK(env->error, plain_binary, AXIS2_FAILURE);
+    if (plain_binary_len <= 0) return AXIS2_FAILURE;
 
     base64_binary->plain_binary = AXIS2_MALLOC(env->allocator, sizeof(unsigned char)
-        * plain_binary_len);
+        * (size_t)plain_binary_len);
     if(!base64_binary->plain_binary)
     {
         axutil_base64_binary_free(base64_binary, env);
@@ -161,7 +168,7 @@ axutil_base64_binary_set_plain_binary(
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Out of memory");
         return AXIS2_FAILURE;
     }
-    memcpy(base64_binary->plain_binary, plain_binary, plain_binary_len);
+    memcpy(base64_binary->plain_binary, plain_binary, (size_t)plain_binary_len);
     base64_binary->plain_binary_len = plain_binary_len;
 
     return AXIS2_SUCCESS;
@@ -184,12 +191,16 @@ axutil_base64_binary_set_encoded_binary(
     const axutil_env_t *env,
     const char *encoded_binary)
 {
-    int plain_binary_len = 0;
+    size_t plain_binary_len = 0;
 
     AXIS2_PARAM_CHECK(env->error, base64_binary, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, encoded_binary, AXIS2_FAILURE);
 
-    plain_binary_len = axutil_base64_decode_len(encoded_binary);
+    plain_binary_len = (size_t)axutil_base64_decode_len(encoded_binary);
+    if ((int)plain_binary_len <= 0)
+    {
+	    return AXIS2_FAILURE;
+    }
     base64_binary->plain_binary = AXIS2_MALLOC(env->allocator, sizeof(unsigned char)
         * plain_binary_len);
 
@@ -201,7 +212,7 @@ axutil_base64_binary_set_encoded_binary(
         return AXIS2_FAILURE;
     }
     axutil_base64_decode_binary(base64_binary->plain_binary, encoded_binary);
-    base64_binary->plain_binary_len = plain_binary_len;
+    base64_binary->plain_binary_len = (int)plain_binary_len;
 
     return AXIS2_SUCCESS;
 }
@@ -212,10 +223,11 @@ axutil_base64_binary_get_encoded_binary(
     const axutil_env_t *env)
 {
     char *encoded_binary = NULL;
-    int encoded_binary_len = 0;
+    size_t encoded_binary_len = 0;
     AXIS2_PARAM_CHECK(env->error, base64_binary, NULL);
 
-    encoded_binary_len = axutil_base64_encode_len(base64_binary->plain_binary_len);
+    encoded_binary_len = (size_t)axutil_base64_encode_len(base64_binary->plain_binary_len);
+    if ((int)encoded_binary_len <= 0) return NULL;
     encoded_binary = AXIS2_MALLOC(env->allocator, sizeof(char) * encoded_binary_len);
 
     if(!encoded_binary)
@@ -235,6 +247,8 @@ axutil_base64_binary_get_encoded_binary_len(
     axutil_base64_binary_t *base64_binary,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, base64_binary, -1);
     int encoded_binary_len = 0;
     if(!base64_binary)
     {
@@ -250,6 +264,8 @@ axutil_base64_binary_get_decoded_binary_len(
     axutil_base64_binary_t *base64_binary,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, base64_binary, -1);
     if(!base64_binary)
     {
         return 0;

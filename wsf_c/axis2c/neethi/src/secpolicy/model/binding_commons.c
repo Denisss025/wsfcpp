@@ -108,6 +108,8 @@ rp_binding_commons_get_include_timestamp(
     rp_binding_commons_t *binding_commons,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, binding_commons, -1);
     return binding_commons->include_timestamp;
 }
 
@@ -131,6 +133,8 @@ rp_binding_commons_get_algorithmsuite(
     rp_binding_commons_t *binding_commons,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, binding_commons, NULL);
     return binding_commons->algorithmsuite;
 }
 
@@ -152,6 +156,8 @@ rp_binding_commons_get_layout(
     rp_binding_commons_t *binding_commons,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, binding_commons, NULL);
     return binding_commons->layout;
 }
 
@@ -172,6 +178,8 @@ rp_binding_commons_get_signed_supporting_tokens(
     rp_binding_commons_t *binding_commons,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, binding_commons, NULL);
     return binding_commons->signed_supporting_tokens;
 }
 
@@ -191,6 +199,8 @@ rp_binding_commons_get_signed_endorsing_supporting_tokens(
     rp_binding_commons_t *binding_commons,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, binding_commons, NULL);
     return binding_commons->signed_endorsing_supporting_tokens;
 }
 
@@ -211,6 +221,8 @@ rp_binding_commons_get_endorsing_supporting_tokens(
     rp_binding_commons_t *binding_commons,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, binding_commons, NULL);
     return binding_commons->endorsing_supporting_tokens;
 }
 
@@ -230,6 +242,8 @@ rp_binding_commons_get_supporting_tokens(
     rp_binding_commons_t *binding_commons,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, binding_commons, NULL);
     return binding_commons->supporting_tokens;
 }
 

@@ -39,7 +39,6 @@ oxs_token_build_label_element(
 {
     axiom_node_t *label_node = NULL;
     axiom_element_t *label_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     if(!wsc_ns_uri)
@@ -62,7 +61,7 @@ oxs_token_build_label_element(
 
     if(label_val)
     {
-        ret  = axiom_element_set_text(label_ele, env, label_val, label_node);
+        axiom_element_set_text(label_ele, env, label_val, label_node);
     }
 
     return label_node;

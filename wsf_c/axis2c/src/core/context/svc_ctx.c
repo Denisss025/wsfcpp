@@ -90,6 +90,7 @@ axis2_svc_ctx_get_base(
     const axis2_svc_ctx_t * svc_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc_ctx->base;
 }
 
@@ -98,6 +99,7 @@ axis2_svc_ctx_get_parent(
     const axis2_svc_ctx_t * svc_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc_ctx->parent;
 }
 
@@ -107,6 +109,7 @@ axis2_svc_ctx_set_parent(
     const axutil_env_t * env,
     axis2_svc_grp_ctx_t * parent)
 {
+    (void)env;
     svc_ctx->parent = parent;
     return AXIS2_SUCCESS;
 }
@@ -116,6 +119,7 @@ axis2_svc_ctx_free(
     struct axis2_svc_ctx *svc_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     if(svc_ctx->base)
     {
         axis2_ctx_free(svc_ctx->base, env);
@@ -145,6 +149,7 @@ axis2_svc_ctx_get_svc_id(
     const axis2_svc_ctx_t * svc_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc_ctx->svc_id;
 }
 
@@ -153,6 +158,7 @@ axis2_svc_ctx_get_svc(
     const axis2_svc_ctx_t * svc_ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc_ctx->svc;
 }
 

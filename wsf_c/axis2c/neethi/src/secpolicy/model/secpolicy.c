@@ -74,7 +74,7 @@ rp_secpolicy_free(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(secpolicy)
     {
@@ -160,7 +160,7 @@ rp_secpolicy_get_binding(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->binding;
 }
@@ -197,7 +197,7 @@ rp_secpolicy_get_supporting_tokens(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->supporting_tokens;
 }
@@ -221,7 +221,7 @@ rp_secpolicy_get_signed_supporting_tokens(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->signed_supporting_tokens;
 }
@@ -245,7 +245,7 @@ rp_secpolicy_get_endorsing_supporting_tokens(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->endorsing_supporting_tokens;
 }
@@ -269,7 +269,7 @@ rp_secpolicy_get_signed_endorsing_supporting_tokens(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->signed_endorsing_supporting_tokens;
 }
@@ -294,7 +294,7 @@ rp_secpolicy_get_signed_parts(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->signed_parts;
 }
@@ -319,7 +319,7 @@ rp_secpolicy_get_encrypted_parts(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->encrypted_parts;
 }
@@ -344,7 +344,7 @@ rp_secpolicy_get_signed_elements(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->signed_elements;
 }
@@ -368,7 +368,7 @@ rp_secpolicy_get_encrypted_elements(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->encrypted_elements;
 }
@@ -392,7 +392,7 @@ rp_secpolicy_get_signed_items(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->signed_items;
 }
@@ -415,7 +415,7 @@ rp_secpolicy_get_encrypted_items(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->encrypted_items;
 }
@@ -439,7 +439,7 @@ rp_secpolicy_get_wss(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->wss;
 }
@@ -463,7 +463,7 @@ rp_secpolicy_get_trust10(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->trust10;
 }
@@ -487,7 +487,7 @@ rp_secpolicy_get_rampart_config(
     rp_secpolicy_t * secpolicy,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return secpolicy->rampart_config;
 }

@@ -1340,6 +1340,7 @@ axis2_dep_engine_add_module_flow_handlers(
     }
 
     return AXIS2_SUCCESS;
+    (void)dep_engine;
 }
 
 AXIS2_EXTERN void *AXIS2_CALL
@@ -1630,6 +1631,7 @@ axis2_dep_engine_is_hot_update(
     const axutil_env_t * env)
 {
     return dep_engine->hot_update;
+    (void)env;
 }
 
 static axis2_char_t *
@@ -1643,7 +1645,7 @@ axis2_dep_engine_get_axis_svc_name(
     axis2_char_t *ptr = NULL;
     axis2_char_t *file_name_l = NULL;
     axis2_char_t *svc_name = NULL;
-    int len = 0;
+    size_t len = 0;
 
     file_name_l = axutil_strdup(env, file_name);
     ptr = AXIS2_STRRCHR(file_name_l, AXIS2_PATH_SEP_CHAR);
@@ -1651,13 +1653,14 @@ axis2_dep_engine_get_axis_svc_name(
     temp_name = ptr + 1;
     ptr = AXIS2_STRRCHR(temp_name, name_sep);
     ptr[0] = '\0';
-    len = (int)strlen(temp_name);
+    len = strlen(temp_name);
     /* We are sure that the difference lies within the int range */
     svc_name = AXIS2_MALLOC(env->allocator, len + 1);
     sscanf(temp_name, "%s", svc_name);
     AXIS2_FREE(env->allocator, file_name_l);
 
     return svc_name;
+    (void)dep_engine;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

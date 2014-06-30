@@ -108,6 +108,7 @@ neethi_registry_register(
     axis2_char_t *key,
     neethi_policy_t *value)
 {
+    (void)env;
     axutil_hash_set(neethi_registry->registry, key, AXIS2_HASH_KEY_STRING, value);
     return AXIS2_SUCCESS;
 }

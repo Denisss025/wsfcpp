@@ -123,6 +123,7 @@ axis2_transport_out_desc_get_enum(
     const axutil_env_t * env)
 {
     return transport_out->trans_enum;
+    (void)env;
 }
 
 axis2_status_t AXIS2_CALL
@@ -133,6 +134,7 @@ axis2_transport_out_desc_set_enum(
 {
     transport_out->trans_enum = trans_enum;
     return AXIS2_SUCCESS;
+    (void)env;
 }
 
 axis2_flow_t *AXIS2_CALL
@@ -141,6 +143,7 @@ axis2_transport_out_desc_get_out_flow(
     const axutil_env_t * env)
 {
     return transport_out->out_flow;
+    (void)env;
 }
 
 axis2_status_t AXIS2_CALL
@@ -165,6 +168,7 @@ axis2_transport_out_desc_get_fault_out_flow(
     const axutil_env_t * env)
 {
     return transport_out->fault_out_flow;
+    (void)env;
 }
 
 axis2_status_t AXIS2_CALL
@@ -189,6 +193,7 @@ axis2_transport_out_desc_get_sender(
     const axutil_env_t * env)
 {
     return transport_out->sender;
+    (void)env;
 }
 
 axis2_status_t AXIS2_CALL
@@ -214,6 +219,7 @@ axis2_transport_out_desc_get_out_phase(
     const axutil_env_t * env)
 {
     return transport_out->out_phase;
+    (void)env;
 }
 
 axis2_status_t AXIS2_CALL
@@ -238,6 +244,7 @@ axis2_transport_out_desc_get_fault_phase(
     const axutil_env_t * env)
 {
     return transport_out->fault_phase;
+    (void)env;
 }
 
 axis2_status_t AXIS2_CALL
@@ -295,5 +302,6 @@ axis2_transport_out_desc_param_container(
     const axutil_env_t * env)
 {
     return transport_out_desc->param_container;
+    (void)env;
 }
 

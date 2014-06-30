@@ -31,6 +31,7 @@ AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axutil_class_loader_init(
     const axutil_env_t *env)
 {
+    (void)env;
     AXIS2_PLATFORM_LOADLIBINIT();
     return AXIS2_SUCCESS;
 }

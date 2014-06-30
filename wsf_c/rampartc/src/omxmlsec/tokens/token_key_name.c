@@ -28,7 +28,6 @@ oxs_token_build_key_name_element(
 {
     axiom_node_t *key_name_node = NULL;
     axiom_element_t *key_name_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_DSIG_NS, OXS_DS);
@@ -40,7 +39,7 @@ oxs_token_build_key_name_element(
         return NULL;
     }
 
-    ret  = axiom_element_set_text(key_name_ele, env, key_name_val, key_name_node);
+    axiom_element_set_text(key_name_ele, env, key_name_val, key_name_node);
     return key_name_node;
 }
 

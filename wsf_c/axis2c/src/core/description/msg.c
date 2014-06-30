@@ -219,6 +219,7 @@ axis2_msg_get_parent(
     const axutil_env_t * env)
 {
     return msg->parent;
+    (void)env;
 }
 
 AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -227,6 +228,7 @@ axis2_msg_get_flow(
     const axutil_env_t * env)
 {
     return msg->flow;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -284,6 +286,7 @@ axis2_msg_get_direction(
     const axutil_env_t * env)
 {
     return msg->direction;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -318,6 +321,7 @@ axis2_msg_get_element_qname(
     const axutil_env_t * env)
 {
     return msg->element_qname;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -352,6 +356,7 @@ axis2_msg_get_name(
     const axutil_env_t * env)
 {
     return msg->name;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -386,6 +391,7 @@ axis2_msg_get_base(
     const axutil_env_t * env)
 {
     return msg->base;
+    (void)env;
 }
 
 AXIS2_EXTERN axutil_param_container_t *AXIS2_CALL
@@ -394,6 +400,7 @@ axis2_msg_get_param_container(
     const axutil_env_t * env)
 {
     return msg->param_container;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

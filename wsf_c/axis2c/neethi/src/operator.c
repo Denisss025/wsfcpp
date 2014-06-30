@@ -114,6 +114,7 @@ neethi_operator_get_type(
     neethi_operator_t *neethi_operator,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_operator->type;
 }
 
@@ -122,6 +123,7 @@ neethi_operator_get_value(
     neethi_operator_t *neethi_operator,
     const axutil_env_t *env)
 {
+    (void)env;
     return neethi_operator->value;
 }
 
@@ -132,6 +134,7 @@ neethi_operator_set_value(
     void *value,
     neethi_operator_type_t type)
 {
+    (void)env;
     neethi_operator->type = type;
     neethi_operator->value = (void *)value;
     return AXIS2_SUCCESS;
@@ -148,6 +151,7 @@ neethi_operator_serialize(
     neethi_exactlyone_t *exactlyone = NULL;
     neethi_reference_t *reference = NULL;
     neethi_assertion_t *assertion = NULL;
+    (void)env;
 
     if(neethi_operator->value)
     {
@@ -202,6 +206,7 @@ neethi_operator_set_value_null(
     neethi_operator_t *neethi_operator,
     const axutil_env_t *env)
 {
+    (void)env;
     neethi_operator->value = NULL;
     return AXIS2_SUCCESS;
 }
@@ -211,6 +216,7 @@ neethi_operator_increment_ref(
     neethi_operator_t *operator,
     const axutil_env_t *env)
 {
+    (void)env;
     operator-> ref++;
     return AXIS2_SUCCESS;
 }

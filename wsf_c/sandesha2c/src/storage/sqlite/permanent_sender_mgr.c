@@ -279,7 +279,7 @@ sandesha2_permanent_sender_mgr_insert(
 	axis2_char_t *internal_seq_id  = NULL;
 	int sent_count =0;
 	long msg_no = 0;
-	axis2_bool_t send = AXIS2_FALSE;
+	axis2_bool_t is_sent = AXIS2_FALSE;
 	axis2_bool_t resend = AXIS2_FALSE;
 	long time_to_send = 0;
 	int msg_type = 0;
@@ -294,7 +294,7 @@ sandesha2_permanent_sender_mgr_insert(
 	internal_seq_id = sandesha2_sender_bean_get_internal_seq_id(bean, env);
 	sent_count = sandesha2_sender_bean_get_sent_count(bean, env);
 	msg_no = sandesha2_sender_bean_get_msg_no(bean, env);
-	send = sandesha2_sender_bean_is_send(bean, env);
+	is_sent = sandesha2_sender_bean_is_send(bean, env);
 	resend = sandesha2_sender_bean_is_resend(bean, env);
 	time_to_send = sandesha2_sender_bean_get_time_to_send(bean, env);
 	msg_type = sandesha2_sender_bean_get_msg_type(bean, env);
@@ -308,7 +308,7 @@ sandesha2_permanent_sender_mgr_insert(
         "internal_seq_id, sent_count, msg_no, send, resend, time_to_send,"\
         "msg_type, seq_id, wsrm_anon_uri, to_address) values('%s', '%s', '%s',"\
         "%d, %ld, %d, %d, %ld, %d, '%s', '%s', '%s');", msg_id, msg_ctx_ref_key, 
-        internal_seq_id, sent_count, msg_no, send, resend, time_to_send, 
+        internal_seq_id, sent_count, msg_no, is_sent, resend, time_to_send, 
         msg_type, seq_id, wsrm_anon_uri, to_address);
 
     ret = sandesha2_permanent_bean_mgr_insert(sender_mgr_impl->bean_mgr, env, sql_insert);
@@ -377,7 +377,7 @@ sandesha2_permanent_sender_mgr_update(
 	int sent_count = 0;
 	long msg_no = 0;
 	axis2_bool_t resend = AXIS2_FALSE;
-	axis2_bool_t send = AXIS2_FALSE;
+	axis2_bool_t is_sent = AXIS2_FALSE;
 	long time_to_send = 0;
 	int msg_type = 0;
 	axis2_char_t *seq_id = NULL;
@@ -391,7 +391,7 @@ sandesha2_permanent_sender_mgr_update(
     internal_seq_id = sandesha2_sender_bean_get_internal_seq_id(bean, env);
 	sent_count= sandesha2_sender_bean_get_sent_count(bean, env);
 	msg_no = sandesha2_sender_bean_get_msg_no(bean, env);
-	send = sandesha2_sender_bean_is_send(bean, env);
+	is_sent = sandesha2_sender_bean_is_send(bean, env);
 	resend = sandesha2_sender_bean_is_resend(bean, env);
 	time_to_send = sandesha2_sender_bean_get_time_to_send(bean, env);
 	msg_type = sandesha2_sender_bean_get_msg_type(bean, env);
@@ -405,7 +405,7 @@ sandesha2_permanent_sender_mgr_update(
         ", internal_seq_id='%s', sent_count=%d, msg_no=%ld, send=%d"\
         ", resend=%d, time_to_send=%ld, msg_type=%d, seq_id='%s'"\
         ", wsrm_anon_uri='%s', to_address='%s' where msg_id='%s';",
-        msg_ctx_ref_key, internal_seq_id, sent_count, msg_no, send, resend,
+        msg_ctx_ref_key, internal_seq_id, sent_count, msg_no, is_sent, resend,
         time_to_send, msg_type, seq_id, wsrm_anon_uri, to_address, msg_id);
 
     ret = sandesha2_permanent_bean_mgr_update(sender_mgr_impl->bean_mgr, env, 
@@ -449,7 +449,7 @@ sandesha2_permanent_sender_mgr_find_by_sender_bean(
 	axis2_char_t *internal_seq_id = NULL;
 	axis2_char_t *seq_id = NULL;
 	long msg_no = 0;
-	axis2_bool_t send = AXIS2_FALSE;
+	axis2_bool_t is_sent = AXIS2_FALSE;
 	long time_to_send = 0;
 	int msg_type = 0;
     axutil_array_list_t *find_list = NULL;
@@ -466,7 +466,7 @@ sandesha2_permanent_sender_mgr_find_by_sender_bean(
         internal_seq_id = sandesha2_sender_bean_get_internal_seq_id(bean, env);
         seq_id = sandesha2_sender_bean_get_seq_id(bean, env);
         msg_no = sandesha2_sender_bean_get_msg_no(bean, env);
-        send = sandesha2_sender_bean_is_send(bean, env);
+        is_sent = sandesha2_sender_bean_is_send(bean, env);
         time_to_send = sandesha2_sender_bean_get_time_to_send(bean, env);
         msg_type = sandesha2_sender_bean_get_msg_type(bean, env);
     }
@@ -561,11 +561,11 @@ sandesha2_permanent_sender_mgr_find_by_sender_bean(
         {
             add_where = AXIS2_TRUE;
             sprintf(sql_find + axutil_strlen(sql_find), 
-                " where send = %d", send);
+                " where send = %d", is_sent);
         }
         else
             sprintf(sql_find + axutil_strlen(sql_find),
-                " and  send = %d", send);
+                " and  send = %d", is_sent);
     }
 
     sprintf(sql_find + axutil_strlen(sql_find), ";");
@@ -606,7 +606,7 @@ sandesha2_permanent_sender_mgr_get_application_msg_to_send(
     const axis2_char_t *msg_id)
 {
     int i = 0;
-    int index = 0;
+    int idx = 0;
     int match_list_size = 0;
     axutil_array_list_t *match_list = NULL;
     axis2_char_t sql_find[1024];
@@ -669,11 +669,11 @@ sandesha2_permanent_sender_mgr_get_application_msg_to_send(
         if(!result || result_msg_no > msg_no)
         {
             result = bean;
-            index = i;
+            idx = i;
         }
     }
 
-    result = axutil_array_list_remove(match_list, env, index);
+    result = axutil_array_list_remove(match_list, env, idx);
     if(match_list)
     {
         int j = 0, sizej = 0;
@@ -699,7 +699,7 @@ sandesha2_permanent_sender_mgr_get_next_msg_to_send(
     const axis2_char_t *seq_id)
 {
     int i = 0;
-    int index = 0;
+    int idx = 0;
     int match_list_size = 0;
     axutil_array_list_t *match_list = NULL;
     axis2_char_t sql_find[1024];
@@ -760,19 +760,19 @@ sandesha2_permanent_sender_mgr_get_next_msg_to_send(
             if(send_make_connection)
             {
                 result = bean;
-                index = i;
+                idx = i;
                 send_make_connection = AXIS2_TRUE;
             }
         }
         else if(!result || send_make_connection)
         {
             result = bean;
-            index = i;
+            idx = i;
             send_make_connection = AXIS2_FALSE;
         }
     }
 
-    result = axutil_array_list_remove(match_list, env, index);
+    result = axutil_array_list_remove(match_list, env, idx);
     if(match_list)
     {
         int j = 0, sizej = 0;

@@ -461,7 +461,7 @@ sandesha2_permanent_bean_mgr_update_msg_store_bean(
     axis2_char_t *sql_stmt_update = NULL;
     axis2_char_t *error_msg = NULL;
     int rc = -1;
-    int sql_size = -1;
+    size_t sql_size;
 	axis2_char_t *msg_id = NULL;
 	axis2_char_t *stored_key = NULL;
 	axis2_char_t *soap_env_str = NULL;
@@ -556,7 +556,7 @@ sandesha2_permanent_bean_mgr_insert_msg_store_bean(
     axis2_char_t *sql_stmt_insert = NULL;
     axis2_char_t *error_msg = NULL;
     int rc = -1;
-    int sql_size = -1;
+    size_t sql_size;
 	axis2_char_t *msg_id = NULL;
 	axis2_char_t *stored_key = NULL;
 	axis2_char_t *soap_env_str = NULL;
@@ -688,7 +688,7 @@ sandesha2_permanent_bean_mgr_store_response(
     axis2_char_t *sql_stmt_insert;
     axis2_char_t *error_msg = NULL;
     int rc = -1;
-    int sql_size = -1;
+    size_t sql_size;
     sqlite3 *dbconn = NULL;
 
     sql_size = axutil_strlen(seq_id) + axutil_strlen(response) + 
@@ -813,7 +813,7 @@ sandesha2_permanent_bean_mgr_busy_handler(
     char **error_msg,
     int rc)
 {
-    int counter = 0;
+    unsigned counter = 0;
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, 
         "[sandesha2]Entry:sandesha2_permanent_bean_mgr_busy_handler");
     while(rc == SQLITE_BUSY && counter < 10)

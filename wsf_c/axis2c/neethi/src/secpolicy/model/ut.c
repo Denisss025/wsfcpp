@@ -86,6 +86,7 @@ rp_username_token_get_inclusion(
     rp_username_token_t * username_token,
     const axutil_env_t * env)
 {
+    (void)env;
     return username_token->inclusion;
 }
 
@@ -105,6 +106,7 @@ rp_username_token_get_useUTprofile10(
     rp_username_token_t * username_token,
     const axutil_env_t * env)
 {
+    (void)env;
     return username_token->useUTprofile10;
 }
 
@@ -114,6 +116,7 @@ rp_username_token_set_useUTprofile10(
     const axutil_env_t * env,
     axis2_bool_t useUTprofile10)
 {
+    (void)env;
     username_token->useUTprofile10 = useUTprofile10;
     return AXIS2_SUCCESS;
 }
@@ -123,6 +126,7 @@ rp_username_token_get_useUTprofile11(
     rp_username_token_t * username_token,
     const axutil_env_t * env)
 {
+    (void)env;
     return username_token->useUTprofile10;
 }
 
@@ -132,6 +136,7 @@ rp_username_token_set_useUTprofile11(
     const axutil_env_t * env,
     axis2_bool_t useUTprofile11)
 {
+    (void)env;
     username_token->useUTprofile11 = useUTprofile11;
     return AXIS2_SUCCESS;
 }
@@ -141,6 +146,7 @@ rp_username_token_increment_ref(
     rp_username_token_t * username_token,
     const axutil_env_t * env)
 {
+    (void)env;
     username_token->ref++;
     return AXIS2_SUCCESS;
 }

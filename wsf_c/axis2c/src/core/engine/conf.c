@@ -514,11 +514,11 @@ axis2_conf_free(
 
     if(conf->handlers)
     {
-        int i = 0;
-        for(i = 0; i < axutil_array_list_size(conf->handlers, env); i++)
+        int j = 0;
+        for(j = 0; j < axutil_array_list_size(conf->handlers, env); j++)
         {
             axis2_handler_desc_t *handler_desc = NULL;
-            handler_desc = (axis2_handler_desc_t *)axutil_array_list_get(conf->handlers, env, i);
+            handler_desc = (axis2_handler_desc_t *)axutil_array_list_get(conf->handlers, env, j);
             if(handler_desc)
             {
                 axis2_handler_desc_free(handler_desc, env);
@@ -1426,7 +1426,6 @@ axis2_conf_engage_module(
         axutil_param_t *module_dir_param = NULL;
         axis2_char_t *module_dir = NULL;
         axis2_bool_t flag;
-        axis2_char_t *axis2_xml = NULL;
 
         file_name = axutil_qname_get_localpart(module_ref, env);
         file = (axutil_file_t *)axis2_arch_reader_create_module_arch(env, file_name);
@@ -1848,7 +1847,7 @@ axis2_conf_disengage_module(
 	const axutil_qname_t *module_ref)
 {
 	axis2_module_desc_t *module_desc = NULL;
-	axutil_hash_index_t *index = NULL;
+	axutil_hash_index_t *hash_idx = NULL;
 	axis2_char_t *mod_name  =  NULL;
 	int size = 0, i = 0;
 	if(!module_ref)
@@ -1873,11 +1872,11 @@ axis2_conf_disengage_module(
 		return AXIS2_FAILURE;
 	
 	}
-	for(index = axutil_hash_first(conf->all_svcs, env); index; index = axutil_hash_next(env, index))
+	for(hash_idx = axutil_hash_first(conf->all_svcs, env); hash_idx; hash_idx = axutil_hash_next(env, hash_idx))
 	{
 		axis2_svc_t *svc;
 		void *v = NULL;
-		axutil_hash_this(index, NULL, NULL, &v);
+		axutil_hash_this(hash_idx, NULL, NULL, &v);
 		svc = (axis2_svc_t *)v;
 		if(svc)
 		{

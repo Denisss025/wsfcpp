@@ -182,6 +182,7 @@ is_token_assertion(
     const axutil_env_t *env,
     neethi_assertion_type_t type)
 {
+    (void)env;
     if(type == ASSERTION_TYPE_USERNAME_TOKEN)
     {
         return AXIS2_TRUE;

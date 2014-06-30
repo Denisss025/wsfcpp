@@ -78,6 +78,7 @@ axis2_relates_to_get_value(
     const axis2_relates_to_t * relates_to,
     const axutil_env_t * env)
 {
+    (void)env;
     return relates_to->value;
 }
 
@@ -112,6 +113,7 @@ axis2_relates_to_get_relationship_type(
     const axis2_relates_to_t * relates_to,
     const axutil_env_t * env)
 {
+    (void)env;
     return relates_to->relationship_type;
 }
 

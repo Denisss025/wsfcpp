@@ -77,6 +77,8 @@ axutil_generic_obj_set_free_func(
     const axutil_env_t *env,
     AXIS2_FREE_VOID_ARG free_func)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, generic_obj, AXIS2_FAILURE);
     generic_obj->free_func = free_func;
     return AXIS2_SUCCESS;
 }
@@ -87,6 +89,8 @@ axutil_generic_obj_set_value(
     const axutil_env_t *env,
     void *value)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, generic_obj, AXIS2_FAILURE);
     generic_obj->value = value;
     return AXIS2_SUCCESS;
 }
@@ -96,6 +100,8 @@ axutil_generic_obj_get_value(
     axutil_generic_obj_t *generic_obj,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, generic_obj, NULL);
     return generic_obj->value;
 }
 
@@ -105,6 +111,8 @@ axutil_generic_obj_set_type(
     const axutil_env_t *env,
     int type)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, generic_obj, AXIS2_FAILURE);
     generic_obj->type = type;
     return AXIS2_SUCCESS;
 }
@@ -114,6 +122,8 @@ axutil_generic_obj_get_type(
     axutil_generic_obj_t *generic_obj,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, generic_obj, -1);
     return generic_obj->type;
 }
 

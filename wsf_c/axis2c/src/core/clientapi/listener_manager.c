@@ -280,6 +280,7 @@ axis2_listener_manager_get_conf_ctx(
     const axutil_env_t * env)
 {
     return listener_manager->conf_ctx;
+    (void)env;
 }
 
 void *AXIS2_THREAD_FUNC
@@ -303,4 +304,5 @@ axis2_listener_manager_worker_func(
         axis2_transport_receiver_start(args_list->listener, th_env);
     }
     return NULL;
+    (void)thd;
 }

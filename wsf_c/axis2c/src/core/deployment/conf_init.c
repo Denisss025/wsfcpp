@@ -123,26 +123,26 @@ axis2_build_conf_ctx_with_file(
     axis2_dep_engine_t *dep_engine = NULL;
 	axis2_char_t *repos_path = NULL;
 	axis2_char_t *temp_path = NULL;
-	axis2_char_t *index = NULL;
+	axis2_char_t *r_idx = NULL;
 	axis2_char_t *xmlfile = NULL;
 	
 	AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Entry:axis2_build_conf_ctx_with_file");
 	temp_path = axutil_strdup(env, file);
-	index = axutil_rindex(temp_path, AXIS2_PATH_SEP_CHAR);
-	if(!index)
+	r_idx = axutil_rindex(temp_path, AXIS2_PATH_SEP_CHAR);
+	if(!r_idx)
 	{/* searching from windows specific path seperator */
-		index = axutil_rindex(temp_path, '\\');
+		r_idx = axutil_rindex(temp_path, '\\');
 	}
 
-	if(!index)
+	if(!r_idx)
 	{
 		/** only the xml file name is provided. Assume the default repo path */
 		repos_path = AXIS2_GETENV("AXIS2C_HOME");
 		xmlfile = (axis2_char_t*)file;
 	}else
 	{
-		xmlfile = index+1;
-		temp_path[index-temp_path] = '\0';
+		xmlfile = r_idx+1;
+		temp_path[r_idx-temp_path] = '\0';
 		repos_path = temp_path;
 	}
 	
@@ -179,7 +179,7 @@ axis2_build_client_conf_ctx(
     axis2_ctx_t *conf_ctx_base = NULL;
 
     axis2_status_t status;
-    unsigned int len = 0;
+    size_t len = 0;
 
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Entry:axis2_build_client_conf_ctx");
     /* Building conf using axis2.xml, in that case we check whether
@@ -190,7 +190,7 @@ axis2_build_client_conf_ctx(
     status = axutil_file_handler_access (axis2_home, AXIS2_R_OK);
     if (status == AXIS2_SUCCESS)
     {
-        len = (int)strlen (axis2_home);
+        len = strlen(axis2_home);
         /* We are sure that the difference lies within the int range */
         if ((len >= 9) &&
             !strcmp ((axis2_home + (len - 9)), "axis2.xml"))

@@ -59,7 +59,7 @@ rp_signed_encrypted_items_free(
     rp_signed_encrypted_items_t * signed_encrypted_items,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(signed_encrypted_items)
     {

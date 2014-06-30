@@ -58,7 +58,7 @@ rp_trust10_free(
     rp_trust10_t * trust10,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(trust10)
     {

@@ -589,6 +589,8 @@ axis2_phase_resolver_engage_module_to_op(
                     AXIS2_PHASE_POST_DISPATCH, phase_name)) || (!axutil_strcmp(
                     AXIS2_PHASE_PRE_DISPATCH, phase_name)))
                 {
+		    /* this code is too buggy */
+		/*
                     axutil_array_list_t *phase_list = NULL;
                     axis2_phase_holder_t *phase_holder = NULL;
 
@@ -615,6 +617,8 @@ axis2_phase_resolver_engage_module_to_op(
 
                         return status;
                     }
+		    */
+			return AXIS2_FAILURE;
                 }
             }
         }
@@ -629,6 +633,7 @@ axis2_phase_resolver_engage_module_to_op(
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Exit:axis2_phase_resolver_engage_module_to_op");
 
     return AXIS2_SUCCESS;
+    (void)phase_resolver;
 }
 
 /**
@@ -1279,6 +1284,7 @@ axis2_phase_resolver_add_module_handlers_to_user_defined_phases(
         "Exit:axis2_phase_resolver_add_module_handlers_to_user_defined_phases");
 
     return AXIS2_SUCCESS;
+    (void)phase_resolver;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1478,6 +1484,8 @@ axis2_phase_resolver_disengage_module_from_op(
                     AXIS2_PHASE_POST_DISPATCH, phase_name)) || (!axutil_strcmp(
                     AXIS2_PHASE_PRE_DISPATCH, phase_name)))
                 {
+		    /* This code is too buggy */
+		/*
                     axutil_array_list_t *phase_list = NULL;
                     axis2_phase_holder_t *phase_holder = NULL;
 
@@ -1500,6 +1508,8 @@ axis2_phase_resolver_disengage_module_from_op(
                             phase_name, flowname);
                         return status;
                     }
+		*/
+			return AXIS2_FAILURE;
                 }
             }
         }
@@ -1512,6 +1522,7 @@ axis2_phase_resolver_disengage_module_from_op(
     }
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Exit:axis2_phase_resolver_disengage_module_from_op");
     return AXIS2_SUCCESS;
+    (void)phase_resolver;
 }
 
 /* This function is deprecated and no longer used */
@@ -1626,11 +1637,11 @@ axis2_phase_resolver_build_in_transport_chains(
         if(flow)
         {
             axis2_phase_holder_t *phase_holder = NULL;
-            int size = 0;
+            int hdlsr_size = 0;
 
-            size = axis2_flow_get_handler_count(flow, env);
+            hdlsr_size = axis2_flow_get_handler_count(flow, env);
             handlers = axutil_array_list_create(env, 0);
-            for(j = 0; j < size; j++)
+            for(j = 0; j < hdlsr_size; j++)
             {
                 axis2_handler_desc_t *metadata = NULL;
                 axis2_phase_rule_t *rule = NULL;
@@ -1651,10 +1662,10 @@ axis2_phase_resolver_build_in_transport_chains(
                     {
                         axis2_handler_desc_t *handler_d = NULL;
                         int i = 0;
-                        int size = 0;
+                        int hdlsr_size1 = 0;
 
-                        size = axutil_array_list_size(handlers, env);
-                        for(i = 0; i < size; i++)
+                        hdlsr_size1 = axutil_array_list_size(handlers, env);
+                        for(i = 0; i < hdlsr_size1; i++)
                         {
                             handler_d = axutil_array_list_get(handlers, env, i);
                             axis2_handler_desc_free(handler_d, env);
@@ -1674,10 +1685,10 @@ axis2_phase_resolver_build_in_transport_chains(
                     {
                         axis2_handler_desc_t *handler_d = NULL;
                         int i = 0;
-                        int size = 0;
+                        int hdlsr_size1 = 0;
 
-                        size = axutil_array_list_size(handlers, env);
-                        for(i = 0; i < size; i++)
+                        hdlsr_size1 = axutil_array_list_size(handlers, env);
+                        for(i = 0; i < hdlsr_size1; i++)
                         {
                             handler_d = axutil_array_list_get(handlers, env, i);
                             axis2_handler_desc_free(handler_d, env);
@@ -1697,10 +1708,10 @@ axis2_phase_resolver_build_in_transport_chains(
                 {
                     axis2_handler_desc_t *handler_d = NULL;
                     int i = 0;
-                    int size = 0;
+                    int hdlsr_size1 = 0;
 
-                    size = axutil_array_list_size(handlers, env);
-                    for(i = 0; i < size; i++)
+                    hdlsr_size1 = axutil_array_list_size(handlers, env);
+                    for(i = 0; i < hdlsr_size1; i++)
                     {
                         handler_d = axutil_array_list_get(handlers, env, i);
                         axis2_handler_desc_free(handler_d, env);
@@ -1730,6 +1741,7 @@ axis2_phase_resolver_build_in_transport_chains(
     }
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Exit:axis2_phase_resolver_build_in_transport_chains");
     return status;
+    (void)phase_resolver;
 }
 
 /**
@@ -1890,6 +1902,7 @@ axis2_phase_resolver_build_out_transport_chains(
     }
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Exit:axis2_phase_resolver_build_out_transport_chains");
     return status;
+    (void)phase_resolver;
 }
 
 /**
@@ -1904,7 +1917,7 @@ axis2_phase_resolver_add_to_handler_list(
     int type)
 {
     axis2_flow_t *flow = NULL;
-    axis2_char_t *flowname;
+    axis2_char_t *flowname = NULL;
     axis2_status_t status = AXIS2_SUCCESS;
 
     switch(type)
@@ -1935,7 +1948,7 @@ axis2_phase_resolver_add_to_handler_list(
         }
     }
 
-    if(flow)
+    if(flow && flowname)
     {
         int j = 0;
         int count = 0;
@@ -2002,5 +2015,6 @@ axis2_phase_resolver_add_to_handler_list(
     }
 
     return status;
+    (void)op;
 }
 

@@ -36,12 +36,22 @@ oxs_token_build_x509_issuer_serial_with_data(
     {
         x509_issuer_name_node = oxs_token_build_issuer_name_element(
             env, x509_issuer_serial_node, issuer_name);
+	if (!x509_issuer_name_node) 
+	{
+	    /* TODO(ndv): free? */
+		return NULL;
+	}
     }
 
     if(serial_number)
     {
         x509_serial_number_node = oxs_token_build_serial_number_element(
             env, x509_issuer_serial_node, serial_number);
+	if (!x509_serial_number_node)
+	{
+	    /* TODO(ndv): free? */
+	    return NULL;
+	}
     }
     return x509_issuer_serial_node;
 }

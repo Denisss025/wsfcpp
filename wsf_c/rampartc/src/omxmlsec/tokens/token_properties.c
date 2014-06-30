@@ -39,7 +39,6 @@ oxs_token_build_properties_element(
 {
     axiom_node_t *properties_node = NULL;
     axiom_element_t *properties_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     if(!wsc_ns_uri)
@@ -63,7 +62,7 @@ oxs_token_build_properties_element(
 
     if (properties_val)
     {
-        ret  = axiom_element_set_text(properties_ele, env, properties_val, properties_node);
+        axiom_element_set_text(properties_ele, env, properties_val, properties_node);
     }
 
     return properties_node;

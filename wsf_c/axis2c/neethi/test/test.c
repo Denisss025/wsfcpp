@@ -46,6 +46,7 @@ main(
 
     env = axutil_env_create_all("test.log", AXIS2_LOG_LEVEL_TRACE);
 
+    if (argc < 2) return 1;
     reader = axiom_xml_reader_create_for_file(env, argv[1], NULL);
 
     if (!reader)
@@ -154,7 +155,6 @@ om_node_serialize(
 
     axiom_output_t *om_output = NULL;
     axiom_xml_writer_t *writer = NULL;
-    axis2_char_t *output_buffer = NULL;
     axis2_status_t status = AXIS2_FAILURE;
 
     writer = axiom_xml_writer_create_for_memory(env, NULL, AXIS2_TRUE, 0,
@@ -172,7 +172,7 @@ om_node_serialize(
     /* end serializing stuff */
 
     /*axiom_node_free_tree(node1, environment); */
-    output_buffer = (axis2_char_t *) axiom_xml_writer_get_xml(writer, env);
+    axiom_xml_writer_get_xml(writer, env);
 
     printf("\nend test_om_serialize\n");
 

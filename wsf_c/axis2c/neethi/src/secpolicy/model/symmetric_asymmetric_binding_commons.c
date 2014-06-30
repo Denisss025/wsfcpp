@@ -58,7 +58,7 @@ rp_symmetric_asymmetric_binding_commons_free(
     rp_symmetric_asymmetric_binding_commons_t * symmetric_asymmetric_binding_commons,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(symmetric_asymmetric_binding_commons)
     {

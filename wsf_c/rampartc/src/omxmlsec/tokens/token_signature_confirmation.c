@@ -94,7 +94,6 @@ oxs_token_build_signature_confirmation_element(
 {
     axiom_node_t *signature_confirmation_node = NULL;
     axiom_element_t *signature_confirmation_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
     axiom_attribute_t *id_attr = NULL;
     axiom_attribute_t *val_attr = NULL;
@@ -113,14 +112,14 @@ oxs_token_build_signature_confirmation_element(
     if (id)
     {
         id_attr =  axiom_attribute_create(env, OXS_ATTR_ID, id, NULL);
-        ret = axiom_element_add_attribute(
+        axiom_element_add_attribute(
             signature_confirmation_ele, env, id_attr, signature_confirmation_node);
     }
     
     if (val)
     {
         val_attr =  axiom_attribute_create(env, OXS_ATTR_VALUE, val, NULL);
-        ret = axiom_element_add_attribute(
+        axiom_element_add_attribute(
             signature_confirmation_ele, env, val_attr, signature_confirmation_node);
     }
 

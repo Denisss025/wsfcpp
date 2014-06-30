@@ -115,9 +115,9 @@ AXIS2_EXTERN axis2_handler_desc_t *AXIS2_CALL
 axis2_flow_get_handler(
     const axis2_flow_t * flow,
     const axutil_env_t * env,
-    const int index)
+    const int idx)
 {
-    return axutil_array_list_get(flow->list, env, index);
+    return axutil_array_list_get(flow->list, env, idx);
 }
 
 AXIS2_EXTERN int AXIS2_CALL

@@ -80,14 +80,12 @@ system_exit(
     axutil_env_t * env,
     int status)
 {
-    axutil_allocator_t *allocator = NULL;
     if(server)
     {
         axis2_transport_receiver_free(server, system_env);
     }
     if(env)
     {
-        allocator = env->allocator;
         axutil_env_free(env);
     }
     /*axutil_allocator_free(allocator); */
@@ -139,8 +137,6 @@ main(
                 break;
             case 'l':
                 log_level = AXIS2_ATOI(optarg);
-                if(log_level < AXIS2_LOG_LEVEL_CRITICAL)
-                    log_level = AXIS2_LOG_LEVEL_CRITICAL;
                 if(log_level > AXIS2_LOG_LEVEL_TRACE)
                     log_level = AXIS2_LOG_LEVEL_TRACE;
                 break;
@@ -267,7 +263,7 @@ usage(
  */
 void
 sig_handler(
-    int signal)
+    int signum)
 {
 
     if(!system_env)
@@ -275,20 +271,20 @@ sig_handler(
         AXIS2_LOG_ERROR(
             system_env->log,
             AXIS2_LOG_SI,
-            "Received signal %d, unable to proceed system_env is NULL ,\
+            "Received signum %d, unable to proceed system_env is NULL ,\
                          system exit with -1",
-            signal);
+            signum);
         _exit(-1);
     }
 
-    switch(signal)
+    switch(signum)
     {
         case SIGINT:
         {
             /* Use of SIGINT in Windows is valid, since we have a console application
              * Thus, eventhough this may a single threaded application, it does work.
              */
-            AXIS2_LOG_INFO(system_env->log, "Received signal SIGINT. Server "
+            AXIS2_LOG_INFO(system_env->log, "Received signum SIGINT. Server "
                 "shutting down");
             if(server)
             {
@@ -301,14 +297,14 @@ sig_handler(
 #ifndef WIN32
         case SIGPIPE:
         {
-            AXIS2_LOG_INFO(system_env->log, "Received signal SIGPIPE.  Client "
+            AXIS2_LOG_INFO(system_env->log, "Received signum SIGPIPE.  Client "
                 "request serve aborted");
             return;
         }
 #endif
         case SIGSEGV:
         {
-            fprintf(stderr, "Received deadly signal SIGSEGV. Terminating\n");
+            fprintf(stderr, "Received deadly signum SIGSEGV. Terminating\n");
             _exit(-1);
         }
     }

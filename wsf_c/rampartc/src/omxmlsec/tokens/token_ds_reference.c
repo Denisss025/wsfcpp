@@ -30,7 +30,6 @@ oxs_token_build_ds_reference_element(
 {
     axiom_node_t *ds_reference_node = NULL;
     axiom_element_t *ds_reference_ele = NULL;
-    int ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_DSIG_NS, OXS_DS);
@@ -48,21 +47,21 @@ oxs_token_build_ds_reference_element(
     {
         axiom_attribute_t *id_attr = NULL;
         id_attr =  axiom_attribute_create(env, OXS_ATTR_ID , id, NULL);
-        ret = axiom_element_add_attribute(ds_reference_ele, env, id_attr, ds_reference_node);
+        axiom_element_add_attribute(ds_reference_ele, env, id_attr, ds_reference_node);
     }
 
     if(uri)
     {
         axiom_attribute_t *uri_attr = NULL;
         uri_attr =  axiom_attribute_create(env, OXS_ATTR_URI , uri, NULL);
-        ret = axiom_element_add_attribute(ds_reference_ele, env, uri_attr, ds_reference_node);
+        axiom_element_add_attribute(ds_reference_ele, env, uri_attr, ds_reference_node);
     }
 
     if(type)
     {
         axiom_attribute_t *type_attr = NULL;
         type_attr =  axiom_attribute_create(env, OXS_ATTR_TYPE , type, NULL);
-        ret = axiom_element_add_attribute(ds_reference_ele, env, type_attr, ds_reference_node);
+        axiom_element_add_attribute(ds_reference_ele, env, type_attr, ds_reference_node);
     }
 
     return ds_reference_node;

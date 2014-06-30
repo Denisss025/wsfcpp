@@ -1111,7 +1111,7 @@ axis2_libcurl_set_connection_options(
     axis2_msg_ctx_t * msg_ctx)
 {
     axutil_property_t *property = NULL;
-    long long_property_value = 0;
+    long_property_value = 0;
 
     /* check if timeout has been set by user using options
      * with axis2_options_set_timeout_in_milli_seconds

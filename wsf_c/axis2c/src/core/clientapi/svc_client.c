@@ -627,8 +627,7 @@ axis2_svc_client_send_receive_with_op_qname(
     if(axis2_options_get_use_separate_listener(svc_client->options, env))
     {
         axis2_callback_t *callback = NULL;
-        axis2_msg_ctx_t *msg_ctx = NULL;
-        long index = 0;
+        long idx = 0;
 
         /* This means doing a Request-Response invocation using two channels.
          If the transport is a two way transport (e.g. http), only one channel is used
@@ -647,11 +646,11 @@ axis2_svc_client_send_receive_with_op_qname(
         axis2_svc_client_send_receive_non_blocking_with_op_qname(svc_client, env, op_qname,
             payload, callback);
 
-        index = axis2_options_get_timeout_in_milli_seconds(svc_client->options, env) / 10;
+        idx = axis2_options_get_timeout_in_milli_seconds(svc_client->options, env) / 10;
 
         while(!axis2_callback_get_complete(callback, env))
         {
-            if(index-- >= 0)
+            if(idx-- >= 0)
             {
                 AXIS2_USLEEP(10000);
             }
@@ -982,6 +981,9 @@ axis2_svc_client_get_own_endpoint_ref(
     const axis2_char_t * transport)
 {
     return NULL;
+    (void)env;
+    (void)transport;
+    (void)svc_client;
 }
 
 AXIS2_EXTERN const axis2_endpoint_ref_t *AXIS2_CALL
@@ -990,6 +992,8 @@ axis2_svc_client_get_target_endpoint_ref(
     const axutil_env_t * env)
 {
     return NULL;
+    (void)env;
+    (void)svc_client;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -999,6 +1003,9 @@ axis2_svc_client_set_target_endpoint_ref(
     axis2_endpoint_ref_t * target_endpoint_ref)
 {
     return AXIS2_FAILURE;
+    (void)env;
+    (void)svc_client;
+    (void)target_endpoint_ref;
 }
 
 AXIS2_EXTERN axis2_svc_ctx_t *AXIS2_CALL
@@ -1381,6 +1388,7 @@ axis2_svc_client_get_auth_type(
     const axutil_env_t * env)
 {
     return svc_client->auth_type;
+    (void)env;
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1539,6 +1547,7 @@ axis2_svc_client_get_http_headers(
     const axutil_env_t * env)
 {
     return svc_client->http_headers;
+    (void)env;
 }
 
 AXIS2_EXTERN int AXIS2_CALL
@@ -1547,6 +1556,7 @@ axis2_svc_client_get_http_status_code(
     const axutil_env_t * env)
 {
     return svc_client->http_status_code;
+    (void)env;
 }
 
 void

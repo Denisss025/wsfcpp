@@ -39,7 +39,6 @@ oxs_token_build_length_element(
 {
     axiom_node_t *length_node = NULL;
     axiom_element_t *length_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
     axis2_char_t *length_val = NULL;
 
@@ -69,7 +68,7 @@ oxs_token_build_length_element(
  
     if(length_val)
     {
-        ret  = axiom_element_set_text(length_ele, env, length_val, length_node);
+        axiom_element_set_text(length_ele, env, length_val, length_node);
 		AXIS2_FREE(env->allocator, length_val);
     }
 

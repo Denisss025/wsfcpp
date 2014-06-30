@@ -82,7 +82,7 @@ axutil_hash_alloc_array(
     axutil_hash_t *ht,
     unsigned int max)
 {
-    axutil_hash_entry_t **array = (axutil_hash_entry_t*)AXIS2_MALLOC(ht->env->allocator, 
+    axutil_hash_entry_t **array = (axutil_hash_entry_t**)AXIS2_MALLOC(ht->env->allocator, 
         sizeof(*array) * (max + 1));
     if (!array)
     {
@@ -351,6 +351,9 @@ axutil_hash_copy(
     const axutil_hash_t *orig,
     const axutil_env_t *env)
 {
+    axutil_hash_t *ht;
+    unsigned int i;
+
     if (!orig)
     {
         return (NULL);
@@ -360,10 +363,6 @@ axutil_hash_copy(
     {
         return (axutil_hash_make_custom(env, orig->hash_func));
     }
-
-    axutil_hash_t *ht;
-    axutil_hash_entry_t *new_vals;
-    unsigned int i;
 
     ht = AXIS2_MALLOC(env->allocator, sizeof(axutil_hash_t));
     if (!ht)
@@ -411,6 +410,9 @@ axutil_hash_get(
     const void *key,
     axis2_ssize_t klen)
 {
+    axutil_hash_entry_t *he;
+    he = *axutil_hash_find_entry(ht, key, klen, NULL);
+
     if (!ht)
     {
         return (NULL);
@@ -421,8 +423,6 @@ axutil_hash_get(
         return (NULL);
     }
 
-    axutil_hash_entry_t *he;
-    he = *axutil_hash_find_entry(ht, key, klen, NULL);
     if(he)
         return (void *)he->val;
     else
@@ -436,13 +436,14 @@ axutil_hash_set(
     axis2_ssize_t klen,
     const void *val)
 {
+    axutil_hash_entry_t **hep;
+    hep = axutil_hash_find_entry(ht, key, klen, val);
+
     if (!ht)
     {
         return;
     }
 
-    axutil_hash_entry_t **hep;
-    hep = axutil_hash_find_entry(ht, key, klen, val);
     if(*hep)
     {
         if(!val)
@@ -510,7 +511,7 @@ axutil_hash_merge(
     axutil_hash_entry_t *ent;
     unsigned int i, k;
 
-#if AXIS2_POOL_DEBUG
+#if defined(AXIS2_POOL_DEBUG) && AXIS2_POOL_DEBUG
     /* we don't copy keys and values, so it's necessary that
      * overlay->a.env and base->a.env have a life span at least
      * as long as p
@@ -648,7 +649,7 @@ axutil_hash_free(
     axutil_hash_t *ht,
     const axutil_env_t *env)
 {
-    unsigned int i = 0;
+    unsigned int i;
     
     AXIS2_ENV_CHECK_VOID(env);
     if(!ht)

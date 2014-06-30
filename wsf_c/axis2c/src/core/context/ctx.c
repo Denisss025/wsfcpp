@@ -94,6 +94,7 @@ axis2_ctx_get_property(
     const axutil_env_t * env,
     const axis2_char_t * key)
 {
+    (void)env;
     axutil_property_t *ret = NULL;
 
     if(ctx->property_map)
@@ -114,6 +115,7 @@ axis2_ctx_get_all_properties(
     const axis2_ctx_t * ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return ctx->property_map;
 }
 
@@ -122,6 +124,7 @@ axis2_ctx_get_property_map(
     const axis2_ctx_t * ctx,
     const axutil_env_t * env)
 {
+    (void)env;
     return ctx->property_map;
 }
 

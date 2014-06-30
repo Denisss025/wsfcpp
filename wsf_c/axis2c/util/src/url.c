@@ -371,6 +371,8 @@ axutil_url_get_protocol(
     axutil_url_t *url,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, url, NULL);
     return url->protocol;
 }
 
@@ -424,6 +426,8 @@ axutil_url_get_host(
     axutil_url_t *url,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, url, NULL);
     return url->host;
 }
 
@@ -477,6 +481,8 @@ axutil_url_get_server(
     axis2_ssize_t len = 0;
     axis2_char_t port_str[11];
     axis2_bool_t print_port = AXIS2_FALSE;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, url, NULL);
 
     if(!url->server && !url->host)
         return NULL;
@@ -553,6 +559,8 @@ axutil_url_get_port(
     axutil_url_t *url,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, url, -1);
     if(!url->port)
     {
         return axutil_uri_port_of_scheme(url->protocol);
@@ -582,6 +590,8 @@ axutil_url_get_path(
     axutil_url_t *url,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, url, NULL);
     return url->path;
 }
 
@@ -592,6 +602,8 @@ axutil_url_clone(
 {
     axis2_char_t *temp = NULL;
     axutil_url_t *ret = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, url, NULL);
 
     if(url->path && url->query)
     {
@@ -621,6 +633,8 @@ axutil_url_to_uri(
 {
     axis2_char_t *url_str = NULL;
     axutil_uri_t *uri = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, url, NULL);
     url_str = axutil_url_to_external_form(url, env);
     uri = axutil_uri_parse_string(env, url_str);
     return uri;
@@ -649,10 +663,10 @@ axutil_url_encode(
             sprintf(string, "%%%x", buff[i]);
         }
 
-        if(((int)strlen(dest) + 4) > len)
+        if((int)(strlen(dest) + 4) > len)
         {
-            expand_buffer = (axis2_char_t *)AXIS2_MALLOC(env->allocator, len * 2);
-            memset(expand_buffer, 0, len * 2);
+            expand_buffer = (axis2_char_t *)AXIS2_MALLOC(env->allocator, (size_t)len * 2);
+            memset(expand_buffer, 0, (size_t)len * 2);
             len *= 2;
             temp = memmove(expand_buffer, dest, strlen(dest));
             if(dest)
@@ -672,6 +686,8 @@ axutil_url_get_query(
     axutil_url_t *url,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, url, NULL);
     return url->query;
 }
 

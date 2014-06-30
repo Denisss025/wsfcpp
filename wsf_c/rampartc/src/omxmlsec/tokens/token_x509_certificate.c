@@ -40,7 +40,6 @@ oxs_token_build_x509_certificate_element(
 {
     axiom_node_t *x509_certificate_node = NULL;
     axiom_element_t *x509_certificate_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_DSIG_NS, OXS_DS);
@@ -56,7 +55,7 @@ oxs_token_build_x509_certificate_element(
 
     if (cert_data)
     {
-        ret  = axiom_element_set_text(x509_certificate_ele, env, cert_data, x509_certificate_node);
+        axiom_element_set_text(x509_certificate_ele, env, cert_data, x509_certificate_node);
     }
 
     return x509_certificate_node;

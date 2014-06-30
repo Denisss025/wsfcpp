@@ -625,7 +625,7 @@ axis2_svc_get_op_with_qname(
                 }
                 while(search && *search)
                 {
-                    int length = 0;
+                    size_t length = 0;
                     axis2_char_t *loc_tmp = NULL;
 
                     if(search_tmp)
@@ -641,7 +641,7 @@ axis2_svc_get_op_with_qname(
                             is_matched = AXIS2_TRUE;
                             break;
                         }
-                        length = (int)(loc_tmp - search);
+                        length = (size_t)(loc_tmp - search);
                         /* We are sure that the difference lies within the int range */
                         search_tmp = (axis2_char_t *)(AXIS2_MALLOC(env->allocator,
                             sizeof(axis2_char_t) * (length + 1)));
@@ -667,7 +667,7 @@ axis2_svc_get_op_with_qname(
                     }
                     if(search_tmp && axutil_strstr(nc_tmp, search_tmp))
                     {
-                        if(match_start && !(axutil_strncmp(nc_tmp, search, length) == 0))
+                        if(match_start && !(axutil_strncmp(nc_tmp, search, (int)length) == 0))
                         {
                             break;
                         }
@@ -721,8 +721,8 @@ axis2_svc_get_rest_op_list_with_method_and_location(
     axis2_char_t *key = NULL;
     axis2_char_t *loc_str = NULL;
     axis2_char_t *loc_str_tmp = NULL;
-    axis2_char_t *rindex = NULL;
-    int plen;
+    axis2_char_t *r_idx = NULL;
+    size_t plen;
 
     AXIS2_PARAM_CHECK(env->error, method, NULL);
     AXIS2_PARAM_CHECK(env->error, location, NULL);
@@ -755,12 +755,12 @@ axis2_svc_get_rest_op_list_with_method_and_location(
     }
     while(loc_str_tmp[1] && loc_str_tmp[1] == '{');
 
-    loc_str = (axis2_char_t *)axutil_strmemdup(location, (loc_str_tmp - location), env);
+    loc_str = (axis2_char_t *)axutil_strmemdup(location, (size_t)(loc_str_tmp - location), env);
 
-    rindex = axutil_rindex(loc_str, '/');
-    if(rindex && *rindex)
+    r_idx = axutil_rindex(loc_str, '/');
+    if(r_idx && *r_idx)
     {
-        loc_str_tmp = axutil_string_substring_ending_at(loc_str, (int)(rindex - loc_str));
+        loc_str_tmp = axutil_string_substring_ending_at(loc_str, (int)(r_idx - loc_str));
         /* We are sure that the difference lies within the int range */
     }
     else
@@ -793,6 +793,7 @@ axis2_svc_get_all_ops(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->op_alias_map;
 }
 
@@ -818,6 +819,7 @@ axis2_svc_get_parent(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->parent;
 }
 
@@ -845,6 +847,7 @@ axis2_svc_get_qname(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->qname;
 }
 
@@ -1013,6 +1016,7 @@ axis2_svc_get_engaged_module_list(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->engaged_module_list;
 }
 
@@ -1084,7 +1088,7 @@ axis2_svc_add_module_ops(
     axis2_conf_t * conf)
 {
     axutil_hash_t *map = NULL;
-    axutil_hash_index_t *index = NULL;
+    axutil_hash_index_t *hash_idx = NULL;
     axis2_phase_resolver_t *phase_resolver = NULL;
     axis2_op_t *op_desc = NULL;
     axis2_status_t status = AXIS2_FAILURE;
@@ -1105,10 +1109,10 @@ axis2_svc_add_module_ops(
             svcname);
         return AXIS2_FAILURE;
     }
-    for(index = axutil_hash_first(map, env); index; index = axutil_hash_next(env, index))
+    for(hash_idx = axutil_hash_first(map, env); hash_idx; hash_idx = axutil_hash_next(env, hash_idx))
     {
         void *v = NULL;
-        axutil_hash_this(index, NULL, NULL, &v);
+        axutil_hash_this(hash_idx, NULL, NULL, &v);
         op_desc = (axis2_op_t *)v;
         opname = axutil_qname_get_localpart(axis2_op_get_qname(op_desc, env), env);
         status = axis2_phase_resolver_build_execution_chains_for_module_op(phase_resolver, env,
@@ -1188,6 +1192,8 @@ axis2_svc_set_last_update(
     axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
+    (void)svc;
     return AXIS2_SUCCESS;
 }
 
@@ -1196,6 +1202,7 @@ axis2_svc_get_last_update(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->last_update;
 }
 
@@ -1204,6 +1211,7 @@ axis2_svc_get_file_name(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->filename;
 }
 
@@ -1235,6 +1243,7 @@ axis2_svc_get_svc_desc(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->svc_desc;
 }
 
@@ -1286,7 +1295,7 @@ axis2_svc_add_rest_mapping(
 {
 
     axis2_char_t *mapping_url = NULL;
-    int key_len = 0;
+    size_t key_len;
     axis2_char_t* question_char = NULL;
     axis2_char_t* local_location_str = NULL;
     axis2_status_t status = AXIS2_SUCCESS;
@@ -1351,6 +1360,7 @@ axis2_svc_get_all_module_qnames(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->module_list;
 }
 
@@ -1359,6 +1369,7 @@ axis2_svc_get_target_ns(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->target_ns;
 }
 
@@ -1384,6 +1395,7 @@ axis2_svc_get_target_ns_prefix(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->target_ns_prefix;
 }
 
@@ -1409,6 +1421,7 @@ axis2_svc_get_ns_map(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->ns_map;
 }
 
@@ -1454,6 +1467,7 @@ axis2_svc_swap_mapping_table(
 {
     axutil_hash_t *new_table = NULL;
     axutil_hash_index_t *hi = NULL;
+    (void)svc;
 
     AXIS2_PARAM_CHECK(env->error, orig_table, NULL);
 
@@ -1475,6 +1489,7 @@ axis2_svc_get_impl_class(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->impl_class;
 }
 
@@ -1484,6 +1499,7 @@ axis2_svc_set_impl_class(
     const axutil_env_t * env,
     void *impl_class)
 {
+    (void)env;
     svc->impl_class = impl_class;
     return AXIS2_SUCCESS;
 }
@@ -1493,6 +1509,7 @@ axis2_svc_get_param_container(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->param_container;
 }
 
@@ -1501,6 +1518,7 @@ axis2_svc_get_flow_container(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->flow_container;
 }
 
@@ -1509,6 +1527,7 @@ axis2_svc_get_svc_wsdl_path(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->wsdl_path;
 }
 
@@ -1528,6 +1547,7 @@ axis2_svc_get_svc_folder_path(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->folder_path;
 }
 
@@ -1547,6 +1567,7 @@ axis2_svc_get_base(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->base;
 }
 
@@ -1555,6 +1576,7 @@ axis2_svc_get_mutex(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->mutex;
 }
 
@@ -1563,6 +1585,7 @@ axis2_svc_get_rest_map(
     const axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    (void)env;
     return svc->op_rest_map;
 }
 

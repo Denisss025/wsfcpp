@@ -40,7 +40,6 @@ oxs_token_build_serial_number_element(
 {
     axiom_node_t *serial_number_node = NULL;
     axiom_element_t *serial_number_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
 
     ns_obj = axiom_namespace_create(env, OXS_DSIG_NS, OXS_DS);
@@ -55,7 +54,7 @@ oxs_token_build_serial_number_element(
 
     if (value)
     {
-        ret  = axiom_element_set_text(serial_number_ele, env, value, serial_number_node);
+         axiom_element_set_text(serial_number_ele, env, value, serial_number_node);
     }
 
     return serial_number_node;

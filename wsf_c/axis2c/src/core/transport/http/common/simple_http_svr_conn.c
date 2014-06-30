@@ -311,12 +311,12 @@ axis2_simple_http_svr_conn_write_response(
     {
         /* Sending a normal SOAP response enabling http chunking */
         axutil_http_chunked_stream_t *chunked_stream = NULL;
-        int left = body_size;
+        size_t left = (size_t)body_size;
         chunked_stream = axutil_http_chunked_stream_create(env, svr_conn->stream);
         while(left > 0)
         {
-            int len = -1;
-            len = axutil_http_chunked_stream_write(chunked_stream, env, response_body, body_size);
+            int len;
+            len = axutil_http_chunked_stream_write(chunked_stream, env, response_body + ((size_t)body_size - left), left);
             if(len <= 0)
             {
                 AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "cannot write data to chunked stream");
@@ -324,7 +324,7 @@ axis2_simple_http_svr_conn_write_response(
                 axis2_http_response_writer_free(response_writer, env);
                 return AXIS2_FAILURE;
             }
-            left -= len;
+            left -= (size_t)len;
         }
         axutil_http_chunked_stream_write_last_chunk(chunked_stream, env);
         axutil_http_chunked_stream_free(chunked_stream, env);
@@ -418,14 +418,14 @@ axis2_simple_http_svr_conn_read_line(
 {
     axis2_char_t* str_line = NULL;
     axis2_char_t tmp_buf[2048];
-    int read = -1;
+    int data_read = -1;
 
     /* peek for 2047 characters to verify whether it contains CRLF character */
-    while((read = axutil_stream_peek(svr_conn->stream, env, tmp_buf, 2048 - 1)) > 0)
+    while((data_read = axutil_stream_peek(svr_conn->stream, env, tmp_buf, 2048 - 1)) > 0)
     {
         axis2_char_t *start = tmp_buf;
         axis2_char_t *end = NULL;
-        tmp_buf[read] = AXIS2_ESC_NULL;
+        tmp_buf[data_read] = AXIS2_ESC_NULL;
         end = strstr(tmp_buf, AXIS2_HTTP_CRLF);
         if(end)
         {
@@ -439,15 +439,15 @@ axis2_simple_http_svr_conn_read_line(
             else
             {
                 /* header is less than 2048 characters, this is the common case. So to improve
-                 * the performance, the buffer is malloc and then used to read the stream. */
-                buffer = (axis2_char_t *)AXIS2_MALLOC(env->allocator, end - start + 3);
+                 * the performance, the buffer is malloc and then used to data_read the stream. */
+                buffer = (axis2_char_t *)AXIS2_MALLOC(env->allocator, (size_t)(end - start) + 3);
             }
 
-            /* read the data including CRLF (hence the size = end - start + 2) */
-            read = axutil_stream_read(svr_conn->stream, env, buffer, end - start + 2);
-            if(read > 0)
+            /* data_read the data including CRLF (hence the size = end - start + 2) */
+            data_read = axutil_stream_read(svr_conn->stream, env, buffer, (size_t)(end - start) + 2);
+            if(data_read > 0)
             {
-                buffer[read] = AXIS2_ESC_NULL;
+                buffer[data_read] = AXIS2_ESC_NULL;
 
                 if(str_line)
                 {
@@ -466,7 +466,7 @@ axis2_simple_http_svr_conn_read_line(
             }
             else
             {
-                /* read returns 0 or negative value, this could be an error */
+                /* data_read returns 0 or negative value, this could be an error */
                 if(str_line)
                 {
                     AXIS2_FREE(env->allocator, str_line);
@@ -482,11 +482,11 @@ axis2_simple_http_svr_conn_read_line(
         else
         {
             /* not reached end yet */
-            read = axutil_stream_read(svr_conn->stream, env, tmp_buf, 2048 - 1);
-            if(read > 0)
+            data_read = axutil_stream_read(svr_conn->stream, env, tmp_buf, 2048 - 1);
+            if(data_read > 0)
             {
                 axis2_char_t* tmp_str_line = NULL;
-                tmp_buf[read] = AXIS2_ESC_NULL;
+                tmp_buf[data_read] = AXIS2_ESC_NULL;
                 tmp_str_line = axutil_stracat(env, str_line, tmp_buf);
                 if(tmp_str_line)
                 {

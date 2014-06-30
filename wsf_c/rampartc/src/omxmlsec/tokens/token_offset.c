@@ -41,7 +41,6 @@ oxs_token_build_offset_element(
 {
     axiom_node_t *offset_node = NULL;
     axiom_element_t *offset_ele = NULL;
-    axis2_status_t ret;
     axiom_namespace_t *ns_obj = NULL;
     axis2_char_t* offset_val = NULL;
 
@@ -71,7 +70,7 @@ oxs_token_build_offset_element(
 
     if (offset_val)
     {
-        ret  = axiom_element_set_text(offset_ele, env, offset_val, offset_node);
+        axiom_element_set_text(offset_ele, env, offset_val, offset_node);
 		AXIS2_FREE(env->allocator, offset_val);
     }
 

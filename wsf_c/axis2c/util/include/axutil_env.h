@@ -223,7 +223,9 @@ extern "C"
    if(!(env) || !AXIS2_ALLOCATOR_CHECK((env)->allocator)) \
    {  return error_return; }
 
-#define AXIS2_ENV_CHECK_VOID(env) AXIS2_ENV_CHECK(env, )
+#define AXIS2_ENV_CHECK_VOID(env) if (!(env) || \
+        !AXIS2_ALLOCATOR_CHECK(env->allocator)) \
+    { return; }
 
 /* #define AXIS2_ENV_CHECK(env, error_return) */
 

@@ -442,11 +442,6 @@ sandesha2_permanent_next_msg_mgr_retrieve_all(
     sandesha2_next_msg_mgr_t *next_msg_mgr,
     const axutil_env_t *env)
 {
-    axis2_char_t *sql_find = NULL;
-    sandesha2_permanent_next_msg_mgr_t *next_msg_mgr_impl = NULL;
-    next_msg_mgr_impl = SANDESHA2_INTF_TO_IMPL(next_msg_mgr);
-    sql_find = "select seq_id,internal_seq_id,ref_msg_key,polling_mode,"\
-        "msg_no from next_msg";
     return (axutil_array_list_t *) sandesha2_next_msg_mgr_find(
         next_msg_mgr, env, NULL);
 }
