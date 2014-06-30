@@ -335,7 +335,7 @@ axiom_mime_parser_parse_for_soap(
     axiom_search_info_t *search_info = NULL;
     int part_start = 0;
     axis2_bool_t end_of_mime = AXIS2_FALSE;
-    size_t len = 0;
+    int len = 0;
     axis2_char_t *buffer = NULL;
     size_t malloc_len = 0;
     axis2_callback_info_t *callback_info = NULL;
@@ -348,7 +348,7 @@ axiom_mime_parser_parse_for_soap(
 
     /*An array to keep the set of buffers*/
 
-    buf_array = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t *) * (mime_parser->max_buffers));
+    buf_array = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t *) * ((size_t)mime_parser->max_buffers));
 
     if(!buf_array)
     {
@@ -358,7 +358,7 @@ axiom_mime_parser_parse_for_soap(
 
     /*Keeps the corresponding lengths of buffers in buf_array*/
 
-    len_array = AXIS2_MALLOC(env->allocator, sizeof(size_t) * (mime_parser->max_buffers));
+    len_array = AXIS2_MALLOC(env->allocator, sizeof(size_t) * ((size_t)mime_parser->max_buffers));
 
     if(!len_array)
     {
@@ -386,7 +386,7 @@ axiom_mime_parser_parse_for_soap(
     }
     if(len > 0)
     {
-        len_array[buf_num] = len;
+        len_array[buf_num] = (size_t)len;
     }
     else
     {
@@ -420,8 +420,8 @@ axiom_mime_parser_parse_for_soap(
 
         /* We need the remaining part in the buffer after the \r\n\r\n*/
 
-        malloc_len = buf_array[buf_num] + len_array[buf_num] - pos - 4;
-        if(malloc_len < 0)
+        malloc_len = len_array[buf_num]  + (size_t)(buf_array[buf_num] - pos - 4);
+        if((int)malloc_len < 0)
         {
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Error in parsing.");
             return AXIS2_FAILURE;
@@ -466,7 +466,7 @@ axiom_mime_parser_parse_for_soap(
             if(len >= 0)
             {
                 buf_array[buf_num] = buffer;
-                len_array[buf_num] = malloc_len + len;
+                len_array[buf_num] = malloc_len + (size_t)len;
             }
         }
     }
@@ -476,7 +476,7 @@ axiom_mime_parser_parse_for_soap(
     else if(search_info->match_len2 > 0)
     {
         malloc_len = len_array[buf_num] - search_info->match_len2;
-        if(malloc_len < 0)
+        if((int)malloc_len < 0)
         {
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Error in parsing.");
             return AXIS2_FAILURE;
@@ -504,7 +504,7 @@ axiom_mime_parser_parse_for_soap(
             if(len >= 0)
             {
                 buf_array[buf_num] = buffer;
-                len_array[buf_num] = malloc_len + len;
+                len_array[buf_num] = malloc_len + (size_t)len;
             }
         }
     }
@@ -555,7 +555,7 @@ axiom_mime_parser_parse_for_soap(
             }
 
             malloc_len = len_array[buf_num] - search_info->match_len1 - temp_mime_boundary_size;
-            if(malloc_len < 0)
+            if((int)malloc_len < 0)
             {
                 AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Error in parsing for mime.");
                 return AXIS2_FAILURE;
@@ -584,7 +584,7 @@ axiom_mime_parser_parse_for_soap(
                 if(len >= 0)
                 {
                     buf_array[buf_num] = buffer;
-                    len_array[buf_num] = malloc_len + len;
+                    len_array[buf_num] = malloc_len + (size_t)len;
                 }
             }
         }
@@ -615,7 +615,7 @@ axiom_mime_parser_parse_for_soap(
             }
 
             malloc_len = len_array[buf_num] - search_info->match_len2;
-            if(malloc_len < 0)
+            if((int)malloc_len < 0)
             {
                 return AXIS2_FAILURE;
             }
@@ -640,7 +640,7 @@ axiom_mime_parser_parse_for_soap(
                 if(len >= 0)
                 {
                     buf_array[buf_num] = buffer;
-                    len_array[buf_num] = malloc_len + len;
+                    len_array[buf_num] = malloc_len + (size_t)len;
                 }
             }
         }
@@ -781,11 +781,11 @@ axiom_mime_parser_parse_for_attachments(
                     AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Error in parsing for mime headers.");
                     return NULL;
                 }
-                malloc_len = buf_array[buf_num] + len_array[buf_num] - pos - 4;
+                malloc_len = len_array[buf_num] + (size_t)(buf_array[buf_num] - pos - 4);
 
                 /*This should be > 0 , > 0 means there is some part to copy = 0 means
                  there is nothing to copy*/
-                if(malloc_len < 0)
+                if((int)malloc_len < 0)
                 {
                     AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Error in parsing for mime headers");
                     return NULL;
@@ -811,7 +811,7 @@ axiom_mime_parser_parse_for_attachments(
                     if(len >= 0)
                     {
                         buf_array[buf_num] = buffer;
-                        len_array[buf_num] = malloc_len + len;
+                        len_array[buf_num] = malloc_len + (size_t)len;
                     }
                 }
             }
@@ -839,7 +839,7 @@ axiom_mime_parser_parse_for_attachments(
                 }
 
                 malloc_len = len_array[buf_num] - search_info->match_len2;
-                if(malloc_len < 0)
+                if((int)malloc_len < 0)
                 {
                     return NULL;
                 }
@@ -863,7 +863,7 @@ axiom_mime_parser_parse_for_attachments(
                     if(len >= 0)
                     {
                         buf_array[buf_num] = buffer;
-                        len_array[buf_num] = malloc_len + len;
+                        len_array[buf_num] = malloc_len + (size_t)len;
                     }
                 }
             }
@@ -962,7 +962,7 @@ axiom_mime_parser_parse_for_attachments(
             if(search_info->match_len2 == 0)
             {
                 malloc_len = len_array[buf_num] - search_info->match_len1 - temp_mime_boundary_size;
-                if(malloc_len < 0)
+                if((int)malloc_len < 0)
                 {
                     return NULL;
                 }
@@ -990,7 +990,7 @@ axiom_mime_parser_parse_for_attachments(
                         }
                         if(len >= 0)
                         {
-                            len_array[buf_num] = malloc_len + len;
+                            len_array[buf_num] = malloc_len + (size_t)len;
                         }
                     }
 
@@ -1007,7 +1007,7 @@ axiom_mime_parser_parse_for_attachments(
             {
                 malloc_len = len_array[buf_num] - search_info->match_len2;
 
-                if(malloc_len < 0)
+                if((int)malloc_len < 0)
                 {
                     return NULL;
                 }
@@ -1031,7 +1031,7 @@ axiom_mime_parser_parse_for_attachments(
                         }
                         if(len >= 0)
                         {
-                            len_array[buf_num] = malloc_len + len;
+                            len_array[buf_num] = malloc_len + (size_t)len;
                         }
                     }
                     else
@@ -1153,6 +1153,8 @@ axiom_mime_parser_search_for_crlf(
     search_info->handler = NULL;
     search_info->binary_size = 0;
 
+    (void)mime_parser;
+
     /*First do a search in the first buffer*/
 
     if(buf_array[*buf_num])
@@ -1175,9 +1177,9 @@ axiom_mime_parser_search_for_crlf(
         }
         if(len > 0)
         {
-            len_array[*buf_num] = len;
+            len_array[*buf_num] = (size_t)len;
             search_info->buffer2 = buf_array[*buf_num];
-            search_info->len2 = len;
+            search_info->len2 = (size_t)len;
             found = axiom_mime_parser_search_string(search_info, env);
         }
         else
@@ -1229,6 +1231,7 @@ axiom_mime_parser_search_for_soap(
     search_info->match_len1 = 0;
     search_info->match_len2 = 0;
     search_info->primary_search = AXIS2_FALSE;
+    (void)mime_parser;
 
     if(buf_array[*buf_num])
     {
@@ -1255,9 +1258,9 @@ axiom_mime_parser_search_for_soap(
         {
             /* In this search we are matching end part of the first
              * buffer and starting part of the previous buffer */
-            len_array[*buf_num] = len;
+            len_array[*buf_num] = (size_t)len;
             search_info->buffer2 = buf_array[*buf_num];
-            search_info->len2 = len;
+            search_info->len2 = (size_t)len;
             found = axiom_mime_parser_search_string(search_info, env);
         }
         else
@@ -1453,9 +1456,9 @@ axiom_mime_parser_search_for_attachment(
 
         if(len > 0)
         {
-            len_array[*buf_num] = len;
+            len_array[*buf_num] = (size_t)len;
             search_info->buffer2 = buf_array[*buf_num];
-            search_info->len2 = len;
+            search_info->len2 = (size_t)len;
             found = axiom_mime_parser_search_string(search_info, env);
         }
         else
@@ -1519,8 +1522,8 @@ axiom_mime_parser_search_for_attachment(
                     len_array[*buf_num - 1], search_info->handler);
                 if(status == AXIS2_SUCCESS)
                 {
-                    status = axiom_mime_parser_cache_to_file(env, buf_array[*buf_num], found
-                        - buf_array[*buf_num] - 2, search_info->handler);
+                    status = axiom_mime_parser_cache_to_file(env, buf_array[*buf_num], (size_t)(found
+                        - buf_array[*buf_num] - 2), search_info->handler);
                 }
             }
 
@@ -1532,8 +1535,8 @@ axiom_mime_parser_search_for_attachment(
                     len_array[*buf_num - 1], search_info, mime_parser);
                 if(status == AXIS2_SUCCESS)
                 {
-                    status = axiom_mime_parser_cache_to_buffer(env, buf_array[*buf_num], found
-                        - buf_array[*buf_num], search_info, mime_parser);
+                    status = axiom_mime_parser_cache_to_buffer(env, buf_array[*buf_num], (size_t)(found
+                        - buf_array[*buf_num]), search_info, mime_parser);
                 }
             }
         }
@@ -1622,6 +1625,8 @@ axiom_mime_parser_calculate_part_len(
     axis2_char_t *pos,
     axis2_char_t *buf)
 {
+    (void)env;
+    (void)buf;
     size_t part_len = 0;
     int i = 0;
 
@@ -1630,7 +1635,7 @@ axiom_mime_parser_calculate_part_len(
         part_len += len_list[i];
     }
 
-    part_len = part_len + (pos - buf);
+    part_len += (size_t)(pos - buf);
 
     return part_len;
 }
@@ -1653,6 +1658,7 @@ axiom_mime_parser_create_part(
     axis2_char_t *part_str = NULL;
     int i = 0;
     size_t temp = 0;
+    (void)mime_parser;
 
     part_str = AXIS2_MALLOC(env->allocator, sizeof(char) * (part_len + 1));
 
@@ -1675,7 +1681,7 @@ axiom_mime_parser_create_part(
     }
     /* Finally we are copying from the final portion */
 
-    memcpy(part_str + temp, buf_list[i], pos - buf_list[i]);
+    memcpy(part_str + temp, buf_list[i], (size_t)(pos - buf_list[i]));
 
     part_str[part_len] = '\0';
 
@@ -1687,6 +1693,8 @@ axiom_mime_parser_get_mime_parts_map(
     axiom_mime_parser_t * mime_parser,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, mime_parser, NULL);
     return mime_parser->mime_parts_map;
 }
 
@@ -1695,6 +1703,8 @@ axiom_mime_parser_get_soap_body_len(
     axiom_mime_parser_t * mime_parser,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, 0);
+    AXIS2_PARAM_CHECK(env->error, mime_parser, 0);
     return mime_parser->soap_body_len;
 }
 
@@ -1703,6 +1713,8 @@ axiom_mime_parser_get_soap_body_str(
     axiom_mime_parser_t * mime_parser,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, mime_parser, NULL);
     return mime_parser->soap_body_str;
 }
 
@@ -1720,6 +1732,8 @@ axiom_mime_parser_search_string(
     axis2_char_t *found = NULL;
     size_t str_length;
     size_t search_length;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, search_info, NULL);
 
     str_length = strlen(search_info->search_str);
 
@@ -1736,9 +1750,9 @@ axiom_mime_parser_search_string(
 
             pos = NULL;
 
-            search_length = search_info->buffer1 + search_info->len1 - old_pos - str_length + 1;
+            search_length = (size_t)(search_info->buffer1 - old_pos) + search_info->len1 - str_length + 1;
 
-            if(search_length < 0)
+            if((int)search_length < 0)
             {
                 break;
             }
@@ -1755,7 +1769,7 @@ axiom_mime_parser_search_string(
                 found = axutil_strstr(pos, search_info->search_str);
                 if(found)
                 {
-                    search_info->match_len1 = found - search_info->buffer1;
+                    search_info->match_len1 = (size_t)(found - search_info->buffer1);
                     break;
                 }
                 else
@@ -1793,9 +1807,9 @@ axiom_mime_parser_search_string(
                 pos = NULL;
                 found = NULL;
 
-                search_length = search_info->buffer1 + search_info->len1 - old_pos;
+                search_length = (size_t)(search_info->buffer1 - old_pos) + search_info->len1;
 
-                if(search_length < 0)
+                if((int)search_length < 0)
                 {
                     break;
                 }
@@ -1804,7 +1818,7 @@ axiom_mime_parser_search_string(
 
                 if(pos)
                 {
-                    offset = search_info->buffer1 + search_info->len1 - pos;
+                    offset = (size_t)(search_info->buffer1 - pos) + search_info->len1;
 
                     /*First match the beginng to offset in buffer1*/
 
@@ -1824,7 +1838,7 @@ axiom_mime_parser_search_string(
                                 str_length - offset) == 0)
                             {
                                 search_info->match_len2 = str_length - offset;
-                                search_info->match_len1 = found - search_info->buffer1;
+                                search_info->match_len1 = (size_t)(found - search_info->buffer1);
                                 break;
                             }
                             else
@@ -1980,6 +1994,8 @@ axiom_mime_parser_process_mime_headers(
     axis2_char_t *id = NULL;
     axis2_char_t *type = NULL;
     axis2_char_t *pos = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, mime_parser, NULL);
 
     /* Get the MIME ID */
     if(mime_headers)
@@ -2007,14 +2023,14 @@ axiom_mime_parser_process_mime_headers(
             }
             if((end - type) > 0)
             {
-                temp_type = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * ((end - type) + 1));
+                temp_type = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * ((size_t)(end - type) + 1));
                 if(!temp_type)
                 {
                     AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
                         "No memory. Failed in creating Content-Type");
                     return NULL;
                 }
-                memcpy(temp_type, type, (end - type));
+                memcpy(temp_type, type, (size_t)(end - type));
                 temp_type[end - type] = '\0';
                 type = temp_type;
             }
@@ -2036,8 +2052,8 @@ axiom_mime_parser_process_mime_headers(
                 pos = axutil_strstr(id, ">");
                 if(pos)
                 {
-                    int mime_id_len = 0;
-                    mime_id_len = (int)(pos - id);
+                    size_t mime_id_len = 0;
+                    mime_id_len = (size_t)(pos - id);
                     *mime_id = AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * mime_id_len + 1);
                     /* The MIME ID will be freed by the SOAP builder */
                     if(*mime_id)
@@ -2112,6 +2128,7 @@ axiom_mime_parser_cache_to_buffer(
     size_t mime_binary_len;
 
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    (void)mime_parser;
     if (!buf || !buf_len)
     {
         return AXIS2_FAILURE;
@@ -2155,7 +2172,9 @@ axiom_mime_parser_set_buffer_size(
     const axutil_env_t *env,
     int size)
 {
-    mime_parser->buffer_size = size;
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, mime_parser);
+    mime_parser->buffer_size = size < 0 ? 0 : (size_t)size;
 }
 
 AXIS2_EXTERN void AXIS2_CALL
@@ -2164,6 +2183,8 @@ axiom_mime_parser_set_max_buffers(
     const axutil_env_t *env,
     int num)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, mime_parser);
     mime_parser->max_buffers = num;
 }
 
@@ -2173,6 +2194,8 @@ axiom_mime_parser_set_attachment_dir(
     const axutil_env_t *env,
     axis2_char_t *attachment_dir)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, mime_parser);
     mime_parser->attachment_dir = attachment_dir;
 }
 
@@ -2184,6 +2207,8 @@ axiom_mime_parser_set_caching_callback_name(
     const axutil_env_t *env,
     axis2_char_t *callback_name)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, mime_parser);
     mime_parser->callback_name = callback_name;
 }
 
@@ -2193,6 +2218,8 @@ axiom_mime_parser_set_mime_boundary(
     const axutil_env_t *env,
     axis2_char_t *mime_boundary)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, mime_parser);
     mime_parser->mime_boundary = mime_boundary;
 }
 
@@ -2201,6 +2228,8 @@ axiom_mime_parser_get_mime_boundary(
     axiom_mime_parser_t *mime_parser,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, mime_parser, NULL);
     return mime_parser->mime_boundary;
 }
 
@@ -2216,6 +2245,8 @@ axiom_mime_parser_initiate_callback(
     axutil_dll_desc_t *dll_desc = NULL;
     axutil_param_t *impl_info_param = NULL;
     void *ptr = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, mime_parser, NULL);
 
     if(mime_parser->callback_name)
     {
@@ -2262,6 +2293,8 @@ axiom_mime_parser_is_more_data(
 {
     /* In the case of axutil_http_chunked stream it is the 
      * end of chunk */
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, mime_parser, AXIS2_FALSE);
 
     if(callback_info->chunked_stream)
     {
@@ -2297,11 +2330,13 @@ axiom_mime_parser_cache_to_file(
 {
     size_t len = 0;
     FILE *fp = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, buf, AXIS2_FAILURE);
 
     fp = (FILE *)handler;
 
     len = fwrite(buf, 1, buf_len, fp);
-    if(len < 0)
+    if(len < buf_len)
     {
         return AXIS2_FAILURE;
     }

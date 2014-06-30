@@ -174,6 +174,8 @@ axiom_mime_body_part_set_data_handler(
     const axutil_env_t *env,
     axiom_data_handler_t *data_handler)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, data_handler, AXIS2_FAILURE);
     mime_body_part->data_handler = data_handler;
     return AXIS2_SUCCESS;
 }
@@ -196,9 +198,12 @@ axiom_mime_body_part_write_to_list(
     void *value = NULL;
     axis2_char_t *header_str = NULL;
     axis2_char_t *temp_header_str = NULL;
-    int header_str_size = 0;
+    size_t header_str_size = 0;
     axis2_status_t status = AXIS2_FAILURE;
     axiom_mime_part_t *mime_header_part = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, list, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, mime_body_part, AXIS2_FAILURE);
 
     /* We have the mime headers in the hash with thier keys
      * So first concatenate them to a one string */
@@ -247,6 +252,11 @@ axiom_mime_body_part_write_to_list(
     if(header_str)
     {
         header_str_size = axutil_strlen(header_str);
+	if ((int)header_str_size < 0)
+	{
+		AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Cannot read header string size.");
+		return AXIS2_FAILURE;
+	}
     }
 
     /* Now we have the complete mime_headers string for a particular mime part.

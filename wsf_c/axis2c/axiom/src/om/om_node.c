@@ -95,8 +95,10 @@ axiom_node_create_from_buffer(
     axiom_stax_builder_t *builder = NULL;
     axiom_document_t *document = NULL;
     axiom_node_t *om_node = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, buffer, NULL);
 
-    reader = axiom_xml_reader_create_for_memory(env, buffer, axutil_strlen(buffer), "UTF-8",
+    reader = axiom_xml_reader_create_for_memory(env, buffer, (int)axutil_strlen(buffer), "UTF-8",
         AXIS2_XML_PARSER_TYPE_BUFFER);
 
     if(!reader)
@@ -477,10 +479,10 @@ axiom_node_insert_sibling_before(
     }
     else
     {
-        axiom_node_t *prev_sibling = om_node->prev_sibling;
-        if(prev_sibling)
+        axiom_node_t *prev_sibling1 = om_node->prev_sibling;
+        if(prev_sibling1)
         {
-            prev_sibling->next_sibling = node_to_insert;
+            prev_sibling1->next_sibling = node_to_insert;
         }
     }
     om_node->prev_sibling = node_to_insert;
@@ -497,7 +499,7 @@ axiom_node_serialize(
     int status = AXIS2_SUCCESS;
     axiom_node_t *temp_node = NULL;
     axiom_node_t *nodes[256];
-    int count = 0;
+    size_t count = 0;
 
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
 
@@ -665,7 +667,7 @@ axiom_node_serialize_sub_tree(
     int status = AXIS2_SUCCESS;
     axiom_node_t *temp_node = NULL;
     axiom_node_t *nodes[256];
-    int count = 0;
+    size_t count = 0;
     axutil_hash_t *namespaces = NULL;
     axutil_hash_t *namespaces_from_parents = NULL;
 
@@ -1275,6 +1277,7 @@ axiom_node_set_previous_sibling(
     const axutil_env_t * env,
     axiom_node_t * prev_sibling)
 {
+    AXIS2_ENV_CHECK_VOID(env);
     if (!om_node) return;
     om_node->prev_sibling = prev_sibling;
 }
@@ -1289,6 +1292,7 @@ axiom_node_set_next_sibling(
     const axutil_env_t * env,
     axiom_node_t * next_sibling)
 {
+    AXIS2_ENV_CHECK_VOID(env);
     if (!om_node) return;
     om_node->next_sibling = next_sibling;
 }
@@ -1320,6 +1324,7 @@ axiom_node_set_data_element(
     const axutil_env_t * env,
     void *data_element)
 {
+    AXIS2_ENV_CHECK_VOID(env);
     if (!om_node) return;
     om_node->data_element = data_element;
 }
@@ -1335,6 +1340,7 @@ axiom_node_set_complete(
     const axutil_env_t * env,
     axis2_bool_t done)
 {
+    AXIS2_ENV_CHECK_VOID(env);
     if (!om_node) return;
     om_node->done = done;
 }
@@ -1349,6 +1355,7 @@ axiom_node_set_builder(
     const axutil_env_t * env,
     axiom_stax_builder_t * builder)
 {
+    AXIS2_ENV_CHECK_VOID(env);
     if (!om_node) return;
     /* builder == NULL is a valid case */
     om_node->builder = builder;
@@ -1359,6 +1366,7 @@ axiom_node_assume_builder_ownership(
     axiom_node_t *om_node,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK_VOID(env);
     if (!om_node) return;
     om_node->own_builder = AXIS2_TRUE;
 }

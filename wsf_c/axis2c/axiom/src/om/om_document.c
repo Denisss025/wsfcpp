@@ -36,6 +36,7 @@ axiom_document_create(
     axiom_stax_builder_t * builder)
 {
     axiom_document_t *document = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
     document = (axiom_document_t *)AXIS2_MALLOC(env->allocator, sizeof(axiom_document_t));
     if(!document)
     {
@@ -89,6 +90,8 @@ axiom_document_get_root_element(
     axiom_document_t * document,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, document, NULL);
     if(!document->root_element)
     {
         /* force to build the root node */
@@ -113,6 +116,8 @@ axiom_document_build_all(
     axiom_document_t *document,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, document, NULL);
     do
     {
         int token = axiom_stax_builder_next_with_token(document->builder, env);
@@ -135,6 +140,8 @@ axiom_document_build_next(
     axiom_document_t * document,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, document, NULL);
     axiom_node_t *return_node = NULL;
     axiom_node_t *last_node = axiom_stax_builder_get_lastnode(document->builder, env);
     while(document->root_element && !axiom_node_is_complete(document->root_element, env))
@@ -162,6 +169,8 @@ axiom_document_get_builder(
     axiom_document_t * document,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, document, NULL);
     return document->builder;
 }
 

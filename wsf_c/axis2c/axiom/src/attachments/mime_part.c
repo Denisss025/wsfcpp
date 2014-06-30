@@ -115,13 +115,20 @@ axiom_mime_part_write_mime_boundary(
 {
     axis2_byte_t *byte_buffer = NULL;
     axis2_byte_t *byte_stream = NULL;
-    int size = 0;
+    size_t size = 0;
     axiom_mime_part_t *boundary_part = NULL;
+
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
 
     boundary_part = axiom_mime_part_create(env);
 
     byte_buffer = (axis2_byte_t *)boundary;
     size = axutil_strlen(boundary);
+    if ((int)size < 0)
+    {
+	   AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Cannot get boundary length");
+	   return AXIS2_FAILURE;
+    }
 
     byte_stream = AXIS2_MALLOC(env->allocator, (size + 2) * sizeof(axis2_byte_t));
     if(!byte_stream)
@@ -217,10 +224,15 @@ axiom_mime_part_finish_adding_parts(
 {
     axis2_byte_t *byte_buffer = NULL;
     axis2_byte_t *byte_stream = NULL;
-    int size = 0;
+    size_t size = 0;
     axiom_mime_part_t *final_part = NULL;
 
     size = axutil_strlen(boundary);
+    if ((int)size < 0)
+    {
+	    AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Cannot get boundary length");
+	    return AXIS2_FAILURE;
+    }
     byte_buffer = (axis2_byte_t *)boundary;
 
     /* There is -- before and after so the length of the
@@ -478,7 +490,7 @@ axiom_mime_part_create_part_list(
     soap_body_buffer = axutil_stracat(env, soap_body, AXIS2_CRLF);
 
     soap_part->part = (axis2_byte_t *)soap_body_buffer;
-    soap_part->part_size = (int)axutil_strlen(soap_body_buffer);
+    soap_part->part_size = axutil_strlen(soap_body_buffer);
     soap_part->type = AXIOM_MIME_PART_BUFFER;
 
     axutil_array_list_add(part_list, env, soap_part);

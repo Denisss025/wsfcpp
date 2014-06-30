@@ -203,6 +203,8 @@ axiom_attribute_get_localname(
 {
     AXIS2_ASSERT(attribute);
     AXIS2_ASSERT(attribute->localname);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, attribute, NULL);
     return (axis2_char_t *)axutil_string_get_buffer(attribute->localname, env);
 }
 
@@ -211,6 +213,8 @@ axiom_attribute_get_value(
     axiom_attribute_t * attribute,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, attribute, NULL);
     if(attribute->value)
     {
         return (axis2_char_t *)axutil_string_get_buffer(attribute->value, env);
@@ -224,6 +228,7 @@ axiom_attribute_get_namespace(
     const axutil_env_t * env)
 {
     AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, attribute, NULL);
     return attribute->ns;
 }
 
@@ -295,6 +300,8 @@ axiom_attribute_clone(
     const axutil_env_t * env)
 {
     axiom_attribute_t *cloned_attr = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, attribute, NULL);
     if(!attribute)
         return NULL;
     AXIS2_ENV_CHECK(env, NULL);
@@ -375,6 +382,8 @@ axiom_attribute_get_localname_str(
     axiom_attribute_t * attribute,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, attribute, NULL);
     return attribute->localname;
 }
 
@@ -383,6 +392,8 @@ axiom_attribute_get_value_str(
     axiom_attribute_t * attribute,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, attribute, NULL);
     return attribute->value;
 }
 

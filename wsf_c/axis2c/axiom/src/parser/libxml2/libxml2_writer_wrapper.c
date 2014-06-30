@@ -367,6 +367,7 @@ axiom_xml_writer_create(
 {
     axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
     AXIS2_ENV_CHECK(env, NULL);
+    (void)is_prefix_default;
     writer_impl = (axis2_libxml2_writer_wrapper_impl_t *)AXIS2_MALLOC(env->allocator,
         sizeof(axis2_libxml2_writer_wrapper_impl_t));
     if(!writer_impl)
@@ -426,6 +427,7 @@ axiom_xml_writer_create_for_memory(
 {
     axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
     AXIS2_ENV_CHECK(env, NULL);
+    (void)is_prefix_default;
     writer_impl = (axis2_libxml2_writer_wrapper_impl_t *)AXIS2_MALLOC(env->allocator,
         sizeof(axis2_libxml2_writer_wrapper_impl_t));
     if(!writer_impl)
@@ -585,6 +587,7 @@ axis2_libxml2_writer_wrapper_end_start_element(
     const axutil_env_t * env)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    (void)writer;
     /* nothing to do ,
      it is automatically taken care by the libxml2 writer */
     return AXIS2_SUCCESS;
@@ -1081,6 +1084,7 @@ axis2_libxml2_writer_wrapper_write_entity_ref(
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, name, AXIS2_FAILURE);
+    (void)writer;
     return AXIS2_FAILURE;
 }
 
@@ -1242,6 +1246,8 @@ axis2_libxml2_writer_wrapper_write_encoded(
     /*axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;*/
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, text, AXIS2_FAILURE);
+    (void)writer;
+    (void)in_attr;
     /*writer_impl = AXIS2_INTF_TO_IMPL(writer);*/
     /* ??? */
     return AXIS2_FAILURE;
@@ -1253,6 +1259,8 @@ axis2_libxml2_writer_wrapper_get_xml(
     const axutil_env_t * env)
 {
     axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, writer, NULL);
     writer_impl = AXIS2_INTF_TO_IMPL(writer);
     if(writer_impl->writer_type == AXIS2_XML_PARSER_TYPE_BUFFER)
     {
@@ -1282,6 +1290,8 @@ axis2_libxml2_writer_wrapper_get_xml_size(
     const axutil_env_t * env)
 {
     axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
+    AXIS2_ENV_CHECK(env, (unsigned)-1);
+    AXIS2_PARAM_CHECK(env->error, writer, (unsigned)-1);
     writer_impl = AXIS2_INTF_TO_IMPL(writer);
 
     if(writer_impl->writer_type == AXIS2_XML_PARSER_TYPE_BUFFER)
@@ -1300,6 +1310,8 @@ axis2_libxml2_writer_wrapper_flush(
     const axutil_env_t * env)
 {
     axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, writer, AXIS2_FAILURE);
     writer_impl = AXIS2_INTF_TO_IMPL(writer);
     if(writer_impl->xml_writer)
     {
@@ -1318,6 +1330,8 @@ axis2_libxml2_writer_wrapper_get_type(
     const axutil_env_t * env)
 {
     axis2_libxml2_writer_wrapper_impl_t *writer_impl = NULL;
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, writer, -1);
     writer_impl = AXIS2_INTF_TO_IMPL(writer);
 
     return writer_impl->writer_type;
@@ -1334,6 +1348,8 @@ axis2_libxml2_writer_wrapper_push(
     axutil_array_list_t *current_list = NULL;
     axis2_char_t key[1024];
     const axis2_char_t *temp_prefix = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, writer, AXIS2_FAILURE);
     writer_impl = AXIS2_INTF_TO_IMPL(writer);
     if(!prefix || axutil_strcmp(prefix, "") == 0)
     {
@@ -1480,6 +1496,7 @@ create_key_from_uri_prefix(
     const axis2_char_t * prefix,
     axis2_char_t * array)
 {
+    (void)env;
     if(!prefix)
     {
         prefix = "";

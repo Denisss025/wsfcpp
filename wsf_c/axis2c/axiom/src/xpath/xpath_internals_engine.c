@@ -1056,6 +1056,7 @@ axiom_xpath_collect_operator(
     axiom_xpath_operation_t * op)
 {
     axiom_xpath_result_node_t *node;
+    (void)op;
 
     node = AXIS2_MALLOC(context->env->allocator, sizeof(axiom_xpath_result_node_t));
 

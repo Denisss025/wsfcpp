@@ -687,7 +687,6 @@ axiom_soap12_builder_helper_handle_event(
         else if(axiom_soap_builder_is_processing_detail_elements(builder_helper->soap_builder, env))
         {
 
-            int detail_element_level = 0;
             axis2_bool_t local_name_exists = AXIS2_FALSE;
             int i = 0;
             if(!(builder_helper->detail_element_names))

@@ -249,6 +249,8 @@ axiom_soap_fault_text_get_base_node(
     axiom_soap_fault_text_t * fault_text,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, fault_text, NULL);
     return fault_text->om_ele_node;
 }
 

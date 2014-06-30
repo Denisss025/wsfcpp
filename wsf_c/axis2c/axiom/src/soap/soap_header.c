@@ -410,6 +410,8 @@ axiom_soap_header_get_soap_version(
     axiom_soap_header_t * soap_header,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_header, AXIS2_FAILURE);
     return soap_header->soap_version;
 }
 
@@ -419,6 +421,8 @@ axiom_soap_header_set_soap_version(
     const axutil_env_t * env,
     int soap_version)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_header, AXIS2_FAILURE);
     soap_header->soap_version = soap_version;
     return AXIS2_SUCCESS;
 
@@ -431,6 +435,7 @@ axiom_soap_header_set_header_block(
     struct axiom_soap_header_block * header_block)
 {
     axis2_char_t *key = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, header_block, AXIS2_FAILURE);
 
     key = (axis2_char_t *)AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * 10);
@@ -463,6 +468,8 @@ axiom_soap_header_set_builder(
     const axutil_env_t * env,
     struct axiom_soap_builder * builder)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_header, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, builder, AXIS2_FAILURE);
 
     soap_header->soap_builder = builder;
@@ -489,6 +496,8 @@ axiom_soap_header_get_header_blocks_with_namespace_uri(
     int found = 0;
     void *hb = NULL;
 
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_header, NULL);
     AXIS2_PARAM_CHECK(env->error, ns_uri, NULL);
 
     if(!(soap_header->header_blocks))
@@ -553,6 +562,8 @@ axiom_soap_header_get_all_header_blocks(
     axiom_soap_header_t * soap_header,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_header, NULL);
     return soap_header->header_blocks;
 }
 

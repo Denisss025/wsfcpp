@@ -148,6 +148,8 @@ axiom_data_handler_get_content_type(
     axiom_data_handler_t *data_handler,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, data_handler, NULL);
     return data_handler->mime_type;
 }
 
@@ -170,6 +172,8 @@ axiom_data_handler_get_cached(
     axiom_data_handler_t *data_handler,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, data_handler, AXIS2_FALSE);
     return data_handler->cached;
 }
 
@@ -179,6 +183,8 @@ axiom_data_handler_set_cached(
     const axutil_env_t *env,
     axis2_bool_t cached)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, data_handler);
     data_handler->cached = cached;
 }
 
@@ -187,6 +193,8 @@ axiom_data_handler_get_input_stream(
     axiom_data_handler_t *data_handler,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, data_handler, NULL);
     return data_handler->buffer;
 }
 
@@ -195,6 +203,8 @@ axiom_data_handler_get_input_stream_len(
     axiom_data_handler_t *data_handler,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, 0);
+    AXIS2_PARAM_CHECK(env->error, data_handler, 0);
     return data_handler->buffer_len;
 }
 
@@ -220,10 +230,10 @@ axiom_data_handler_read_from(
         axis2_byte_t *byte_stream = NULL;
         axis2_byte_t *temp_byte_stream;
         axis2_byte_t *read_stream = NULL;
-        int byte_stream_size = 0;
-        int temp_byte_stream_size;
-        int read_stream_size;
-        int count = 0;
+        size_t byte_stream_size = 0;
+        size_t temp_byte_stream_size;
+        size_t read_stream_size;
+        size_t count = 0;
         struct stat stat_p;
 
         if (!data_handler->file_name)
@@ -254,7 +264,7 @@ axiom_data_handler_read_from(
 
         do
         {
-            read_stream_size = stat_p.st_size;
+            read_stream_size = (size_t)stat_p.st_size;
             read_stream = AXIS2_MALLOC(env->allocator, (read_stream_size) * sizeof(axis2_byte_t));
             if(!read_stream)
             {
@@ -267,7 +277,7 @@ axiom_data_handler_read_from(
                 fclose(f);
                 return AXIS2_FAILURE;
             }
-            count = (int)fread(read_stream, 1, read_stream_size, f);
+            count = fread(read_stream, 1, read_stream_size, f);
             /* The count lies within the int range */
             if(ferror(f))
             {
@@ -348,9 +358,9 @@ axiom_data_handler_read_from(
         axis2_byte_t *byte_stream = NULL;
         axis2_byte_t *buffer_ptr = NULL;
         axis2_byte_t *temp_buffer = NULL;
-        int byte_stream_size = 0;
-        int temp_buffer_size = 1;
-        int total_byte_size = 0;
+        size_t byte_stream_size = 0;
+        size_t temp_buffer_size = 1;
+        size_t total_byte_size = 0;
         axiom_mtom_sending_callback_t *callback = NULL;
         void *handler_data = NULL;
         axis2_status_t status = AXIS2_FAILURE;
@@ -365,7 +375,7 @@ axiom_data_handler_read_from(
 
         if (handler_data)
         {
-            total_byte_size = AXIOM_MTOM_SENDING_CALLBACK_DATA_SIZE(callback,
+            total_byte_size = (size_t)AXIOM_MTOM_SENDING_CALLBACK_DATA_SIZE(callback,
                 env, handler_data);
 
             byte_stream = (axis2_byte_t *)AXIS2_MALLOC(env->allocator,
@@ -375,7 +385,7 @@ axiom_data_handler_read_from(
             while ((temp_buffer_size > 0) &&
                    (byte_stream_size < total_byte_size))
             {
-                temp_buffer_size = AXIOM_MTOM_SENDING_CALLBACK_LOAD_DATA(
+                temp_buffer_size = (size_t)AXIOM_MTOM_SENDING_CALLBACK_LOAD_DATA(
                     callback, env, handler_data, &temp_buffer);
 
                 if (temp_buffer_size > 0)
@@ -429,6 +439,8 @@ axiom_data_handler_set_binary_data(
     axis2_byte_t *input_stream,
     size_t input_stream_len)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, data_handler, AXIS2_FAILURE);
     data_handler->buffer = input_stream;
     data_handler->buffer_len = input_stream_len;
     return AXIS2_SUCCESS;
@@ -501,6 +513,8 @@ axiom_data_handler_get_file_name(
     axiom_data_handler_t *data_handler,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, data_handler, NULL);
     if(data_handler->file_name)
     {
         return data_handler->file_name;
@@ -562,7 +576,7 @@ axiom_data_handler_add_binary_data(
         else
         {
             binary_part->file_name = (axis2_char_t *)axutil_strdup(env, data_handler->file_name);
-            binary_part->part_size = stat_p.st_size;
+            binary_part->part_size = (size_t)stat_p.st_size;
             binary_part->type = AXIOM_MIME_PART_FILE;
         }
     }
@@ -604,6 +618,8 @@ axiom_data_handler_get_mime_id(
     axiom_data_handler_t *data_handler,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, data_handler, NULL);
     return data_handler->mime_id;
 }
 
@@ -613,6 +629,8 @@ axiom_data_handler_set_mime_id(
     const axutil_env_t *env,
     const axis2_char_t *mime_id)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, data_handler, AXIS2_FAILURE);
     if(data_handler->mime_id)
     {
         AXIS2_FREE(env->allocator, data_handler->mime_id);
@@ -626,6 +644,8 @@ axiom_data_handler_get_data_handler_type(
     axiom_data_handler_t *data_handler,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, data_handler, -1);
     return data_handler->data_handler_type;
 }
 
@@ -635,6 +655,8 @@ axiom_data_handler_set_data_handler_type(
     const axutil_env_t *env,
     axiom_data_handler_type_t data_handler_type)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, data_handler);
     data_handler->data_handler_type = data_handler_type;
     return;
 }
@@ -646,6 +668,8 @@ axiom_data_handler_set_read_handler(
     int (* handler_create)(axiom_mtom_sending_callback_t **, const axutil_env_t *),
     int (* handler_remove)(axiom_mtom_sending_callback_t *, const axutil_env_t *))
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, data_handler);
     data_handler->read_handler_create = handler_create;
     data_handler->read_handler_remove = handler_remove;
 }
@@ -655,6 +679,8 @@ axiom_data_handler_get_user_param(
     axiom_data_handler_t *data_handler,
     const axutil_env_t *env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, data_handler, NULL);
     return data_handler->user_param;
 }
 
@@ -664,6 +690,8 @@ axiom_data_handler_set_user_param(
     const axutil_env_t *env,
     void *user_param)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, data_handler);
     data_handler->user_param = user_param;
     return;
 }

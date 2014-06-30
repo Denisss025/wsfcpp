@@ -265,6 +265,8 @@ AXIS2_EXTERN axiom_node_t *AXIS2_CALL axiom_soap_fault_sub_code_get_base_node(
     axiom_soap_fault_sub_code_t * fault_sub_code,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, fault_sub_code, NULL);
     return fault_sub_code->om_ele_node;
 }
 
@@ -286,6 +288,8 @@ axiom_soap_fault_sub_code_set_soap_version(
     const axutil_env_t * env,
     int soap_version)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, fault_sub_code, AXIS2_FAILURE);
     fault_sub_code->soap_version = soap_version;
     return AXIS2_SUCCESS;
 }
@@ -294,5 +298,7 @@ AXIS2_EXTERN int AXIS2_CALL axiom_soap_fault_sub_code_get_soap_version(
     axiom_soap_fault_sub_code_t * fault_sub_code,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, fault_sub_code, -1);
     return fault_sub_code->soap_version;
 }

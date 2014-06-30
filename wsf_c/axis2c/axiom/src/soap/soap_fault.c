@@ -428,6 +428,8 @@ axiom_soap_fault_get_base_node(
     axiom_soap_fault_t * soap_fault,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_fault, NULL);
     return soap_fault->om_ele_node;
 }
 
@@ -443,6 +445,8 @@ axiom_soap_fault_get_exception(
     axiom_element_t *exception_ele = NULL;
     axutil_qname_t *qn = NULL;
     axis2_char_t *excep = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_fault, NULL);
 
     detail = axiom_soap_fault_get_detail(soap_fault, env);
     if(!detail)
@@ -528,6 +532,7 @@ axiom_soap_fault_create_default_fault(
     const axis2_char_t * reason_text,
     const int soap_version)
 {
+    (void)soap_version;
     axiom_soap_fault_t *soap_fault = NULL;
     axiom_node_t *fault_node = NULL;
 
@@ -617,6 +622,8 @@ axiom_soap_fault_set_soap_version(
     const axutil_env_t * env,
     int soap_version)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_fault, AXIS2_FAILURE);
     soap_fault->soap_version = soap_version;
     return AXIS2_SUCCESS;
 }
@@ -626,5 +633,7 @@ axiom_soap_fault_get_soap_version(
     axiom_soap_fault_t * soap_fault,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, soap_fault, -1);
     return soap_fault->soap_version;
 }

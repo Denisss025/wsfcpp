@@ -1025,7 +1025,7 @@ axiom_xpath_compile_literal(
 
     while(AXIOM_XPATH_HAS_MORE && AXIOM_XPATH_CURRENT != del)
     {
-        lit[i] = AXIOM_XPATH_CURRENT;
+        lit[i] = (axis2_char_t)AXIOM_XPATH_CURRENT;
         AXIOM_XPATH_READ(1);
         ++i;
     }
@@ -1047,6 +1047,7 @@ axiom_xpath_get_axis(
     const axutil_env_t *env,
     axis2_char_t* name)
 {
+    (void)env;
     if(axutil_strcmp(name, "child") == 0)
     {
         return AXIOM_XPATH_AXIS_CHILD;
@@ -1195,7 +1196,7 @@ axiom_xpath_compile_ncname(
     while(AXIOM_XPATH_HAS_MORE && (isalnum(AXIOM_XPATH_CURRENT) || AXIOM_XPATH_CURRENT == '_'
         || AXIOM_XPATH_CURRENT == '.' || AXIOM_XPATH_CURRENT == '-'))
     {
-        name[i] = AXIOM_XPATH_CURRENT;
+        name[i] = (axis2_char_t)AXIOM_XPATH_CURRENT;
         AXIOM_XPATH_READ(1);
         ++i;
     }

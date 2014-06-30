@@ -98,6 +98,8 @@ axiom_comment_get_value(
     axiom_comment_t * comment,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, comment, NULL);
     return comment->value;
 }
 

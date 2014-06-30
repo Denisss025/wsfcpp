@@ -138,7 +138,6 @@ axiom_soap11_builder_helper_handle_event(
         axiom_soap_fault_code_t *fault_code = NULL;
         axiom_soap_fault_value_t *fault_value = NULL;
         axiom_node_t *fault_value_node = NULL;
-        axiom_element_t *fault_value_ele = NULL;
 
         if(axutil_strcmp(ele_localname, AXIOM_SOAP11_SOAP_FAULT_CODE_LOCAL_NAME) == 0)
         {

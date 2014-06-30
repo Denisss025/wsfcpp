@@ -55,6 +55,7 @@ axiom_soap_envelope_create_null(
     const axutil_env_t * env)
 {
     axiom_soap_envelope_t *soap_envelope = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
 
     soap_envelope = (axiom_soap_envelope_t *)AXIS2_MALLOC(env->allocator,
         sizeof(axiom_soap_envelope_t));
@@ -83,6 +84,7 @@ axiom_soap_envelope_create(
     axiom_element_t *ele = NULL;
     int status = AXIS2_SUCCESS;
 
+    AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, ns, NULL);
 
     soap_envelope = axiom_soap_envelope_create_null(env);
@@ -118,6 +120,7 @@ axiom_soap_envelope_create_with_soap_version_prefix(
     axiom_namespace_t *ns = NULL;
     const axis2_char_t *ns_prefix = NULL;
     const axis2_char_t *ns_uri = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
 
     if(soap_version == AXIOM_SOAP11)
     {
@@ -187,6 +190,8 @@ axiom_soap_envelope_get_base_node(
     axiom_soap_envelope_t * soap_envelope,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, NULL);
     return soap_envelope->om_ele_node;
 }
 
@@ -196,6 +201,8 @@ axiom_soap_envelope_set_base_node(
     const axutil_env_t * env,
     axiom_node_t * node)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, node, AXIS2_FAILURE);
 
     if(axiom_node_get_node_type(node, env) != AXIOM_ELEMENT)
@@ -212,6 +219,8 @@ axiom_soap_envelope_get_soap_version(
     axiom_soap_envelope_t * soap_envelope,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, -1);
     return soap_envelope->soap_version;
 }
 
@@ -222,6 +231,8 @@ axiom_soap_envelope_set_soap_version_internal(
     const axutil_env_t * env,
     int soap_version)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, AXIS2_FAILURE);
     soap_envelope->soap_version = soap_version;
 
     return AXIS2_SUCCESS;
@@ -233,6 +244,8 @@ axiom_soap_envelope_get_header(
     const axutil_env_t * env)
 {
     int status = AXIS2_SUCCESS;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, NULL);
 
     if(soap_envelope->header)
     {
@@ -262,6 +275,8 @@ axiom_soap_envelope_add_header(
     axis2_char_t * name)
 {
     axiom_namespace_t *ns = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, NULL);
 
     if(!soap_envelope->header)
     {
@@ -281,6 +296,8 @@ axiom_soap_envelope_get_body(
     const axutil_env_t * env)
 {
     int status = AXIS2_SUCCESS;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, NULL);
 
     if(soap_envelope->body)
     {
@@ -307,8 +324,10 @@ axiom_soap_envelope_serialize(
     axiom_output_t * om_output,
     axis2_bool_t cache)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, soap_envelope, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, om_output, AXIS2_FAILURE);
+    (void)cache;
 
     /*
      if soap version is soap11 we modify the soap fault part.
@@ -336,6 +355,8 @@ axiom_soap_envelope_set_body(
     const axutil_env_t * env,
     axiom_soap_body_t * body)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, AXIS2_FAILURE);
 
     if(!(soap_envelope->body))
     {
@@ -356,6 +377,8 @@ axiom_soap_envelope_set_header(
     const axutil_env_t * env,
     axiom_soap_header_t * header)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, AXIS2_FAILURE);
 
     if(!(soap_envelope->header))
     {
@@ -375,6 +398,8 @@ axiom_soap_envelope_get_namespace(
     axiom_soap_envelope_t * soap_envelope,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, NULL);
 
     if(soap_envelope->om_ele_node)
     {
@@ -397,6 +422,8 @@ axiom_soap_envelope_set_builder(
     const axutil_env_t * env,
     axiom_soap_builder_t * soap_builder)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, soap_builder, AXIS2_FAILURE);
     soap_envelope->soap_builder = soap_builder;
     return AXIS2_SUCCESS;
@@ -407,6 +434,8 @@ axiom_soap_envelope_get_builder(
     axiom_soap_envelope_t * soap_envelope,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, NULL);
     if(!soap_envelope)
     {
         return NULL;
@@ -423,6 +452,8 @@ axiom_soap_envelope_create_default_soap_envelope(
     axiom_soap_header_t *soap_header = NULL;
     axiom_soap_body_t *soap_body = NULL;
     axiom_namespace_t *om_ns = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, NULL);
 
     if(soap_version == AXIOM_SOAP11)
     {
@@ -475,6 +506,7 @@ axiom_soap_envelope_create_default_soap_fault_envelope(
     axiom_soap_envelope_t *soap_envelope = NULL;
     axiom_soap_body_t *soap_body = NULL;
     axiom_soap_fault_t *fault = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
 
     if(AXIOM_SOAP11 != soap_version && AXIOM_SOAP12 != soap_version)
     {
@@ -540,6 +572,8 @@ check_and_set_soap_version(
     axiom_namespace_t * ns)
 {
     axis2_char_t *uri = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, AXIS2_FAILURE);
     if(!soap_envelope)
     {
         return AXIS2_FAILURE;
@@ -580,6 +614,8 @@ axiom_soap_envelope_set_soap_version(
     axiom_namespace_t *env_ns = NULL;
     const axis2_char_t *ns_uri = NULL;
     int status = AXIS2_SUCCESS;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_envelope, AXIS2_FAILURE);
 
     if(soap_version == AXIOM_SOAP11)
     {
@@ -619,6 +655,8 @@ axiom_soap_envelope_increment_ref(
     axiom_soap_envelope_t * envelope,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, envelope, AXIS2_FAILURE);
     envelope->ref++;
     return AXIS2_SUCCESS;
 }
@@ -628,6 +666,8 @@ axiom_soap_envelope_get_soap_builder(
     axiom_soap_envelope_t * envelope,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, envelope, NULL);
     return envelope->soap_builder;
 }
 

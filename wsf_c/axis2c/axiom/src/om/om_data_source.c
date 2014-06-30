@@ -114,7 +114,7 @@ axiom_data_source_serialize(
     AXIS2_PARAM_CHECK(env->error, om_output, AXIS2_FAILURE);
 
     data = axutil_stream_get_buffer(data_source->stream, env);
-    data_len = axutil_stream_get_len(data_source->stream, env);
+    data_len = (unsigned)axutil_stream_get_len(data_source->stream, env);
     if(data)
     {
         data[data_len] = '\0';

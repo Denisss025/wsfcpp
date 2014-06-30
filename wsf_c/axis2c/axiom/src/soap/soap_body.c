@@ -204,6 +204,8 @@ axiom_soap_body_get_base_node(
     axiom_soap_body_t * soap_body,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_body, NULL);
     return soap_body->om_ele_node;
 }
 
@@ -240,6 +242,8 @@ axiom_soap_body_get_builder(
     axiom_soap_body_t * soap_body,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_body, NULL);
     if(!soap_body)
     {
         return NULL;
@@ -256,6 +260,8 @@ axiom_soap_body_build(
     axiom_node_t *xop_node = NULL;
     axis2_bool_t is_replaced = AXIS2_FALSE;
     axiom_element_t *xop_element = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_body, AXIS2_FAILURE);
 
     if(soap_body->om_ele_node && soap_body->soap_builder)
     {
@@ -295,6 +301,8 @@ axiom_soap_body_set_fault(
     const axutil_env_t * env,
     axiom_soap_fault_t * soap_fault)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_body, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, soap_fault, AXIS2_FAILURE);
     if(soap_body->soap_fault)
     {
@@ -314,6 +322,8 @@ axiom_soap_body_remove_fault(
     axiom_soap_body_t * soap_body,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_body, AXIS2_FAILURE);
     if(soap_body->soap_fault)
     {
         soap_body->soap_fault = NULL;
@@ -329,6 +339,8 @@ axiom_soap_body_add_child(
     const axutil_env_t * env,
     axiom_node_t * child)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_body, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, child, AXIS2_FAILURE);
 
     if(soap_body->om_ele_node)
@@ -346,6 +358,8 @@ axiom_soap_body_get_soap_version(
     axiom_element_t *body_ele = NULL;
     axiom_namespace_t *om_ns = NULL;
     axis2_char_t *uri = NULL;
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, soap_body, -1);
 
     if(!soap_body->om_ele_node)
     {

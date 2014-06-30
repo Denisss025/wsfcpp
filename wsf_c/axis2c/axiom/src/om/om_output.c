@@ -213,6 +213,8 @@ axiom_output_get_xml_version(
     axiom_output_t * om_output,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_output, NULL);
     return om_output->xml_version;
 }
 
@@ -232,6 +234,8 @@ axiom_output_get_char_set_encoding(
     axiom_output_t * om_output,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_output, NULL);
     return om_output->char_set_encoding;
 }
 
@@ -251,6 +255,8 @@ axiom_output_get_xml_writer(
     axiom_output_t * om_output,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_output, NULL);
     return om_output->xml_writer;
 }
 
@@ -259,6 +265,8 @@ axiom_output_is_optimized(
     axiom_output_t * om_output,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, om_output, AXIS2_FALSE);
     return om_output->do_optimize;
 }
 
@@ -268,6 +276,8 @@ axiom_output_get_content_type(
     const axutil_env_t * env)
 {
     const axis2_char_t *soap_content_type = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_output, NULL);
     if(AXIS2_TRUE == om_output->do_optimize)
     {
         if(AXIS2_TRUE == om_output->is_soap11)
@@ -327,6 +337,8 @@ axiom_output_get_next_content_id(
     axis2_char_t *uuid = NULL;
     axis2_char_t *temp_str = NULL;
     axis2_char_t *temp_str1 = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_output, NULL);
     axis2_char_t id[256];
     om_output->next_id++;
 
@@ -373,6 +385,8 @@ axiom_output_get_root_content_id(
 {
     axis2_char_t *temp_str = NULL;
     axis2_char_t *uuid = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_output, NULL);
 
     if(!om_output->root_content_id)
     {
@@ -403,6 +417,8 @@ axiom_output_get_mime_boundry(
     const axutil_env_t * env)
 {
     axis2_char_t *uuid = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_output, NULL);
     if(!om_output->mime_boundary)
     {
         uuid = axutil_uuid_gen(env);
@@ -591,7 +607,8 @@ axiom_output_flush(
 {
     const axis2_char_t *soap_content_type = NULL;
 
-    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, om_output, AXIS2_FAILURE);
 
     if(om_output->do_optimize)
     {
@@ -644,7 +661,8 @@ axiom_output_get_mime_parts(
     axiom_output_t * om_output,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_output, NULL);
     return om_output->mime_parts;
 }
 

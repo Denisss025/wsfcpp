@@ -154,6 +154,8 @@ axiom_processing_instruction_get_value(
     axiom_processing_instruction_t * om_pi,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_pi, NULL);
     return om_pi->value;
 }
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -161,6 +163,8 @@ axiom_processing_instruction_get_target(
     axiom_processing_instruction_t * om_pi,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_pi, NULL);
     return om_pi->target;
 }
 

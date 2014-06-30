@@ -369,6 +369,8 @@ axiom_namespace_get_uri_str(
     axiom_namespace_t * om_namespace,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_namespace, NULL);
     return om_namespace->uri;
 }
 
@@ -377,5 +379,7 @@ axiom_namespace_get_prefix_str(
     axiom_namespace_t * om_namespace,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_namespace, NULL);
     return om_namespace->prefix;
 }

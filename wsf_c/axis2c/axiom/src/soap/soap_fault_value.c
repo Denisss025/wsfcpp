@@ -193,6 +193,8 @@ axiom_soap_fault_value_get_base_node(
     axiom_soap_fault_value_t * fault_value,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, fault_value, NULL);
     return fault_value->om_ele_node;
 }
 
@@ -203,6 +205,8 @@ axiom_soap_fault_value_get_text(
 {
     axiom_node_t *value_node = NULL;
     axiom_element_t *value_element = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, fault_value, NULL);
 
     value_node = axiom_soap_fault_value_get_base_node(fault_value, env);
 

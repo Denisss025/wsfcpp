@@ -219,6 +219,8 @@ axiom_xpath_cast_node_to_boolean(
     const axutil_env_t *env,
     axiom_xpath_result_node_t * node)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, node, AXIS2_FALSE);
     if(node->type == AXIOM_XPATH_TYPE_BOOLEAN)
     {
         return *(axis2_bool_t *)node->value;
@@ -252,6 +254,8 @@ axiom_xpath_cast_node_to_number(
     const axutil_env_t *env,
     axiom_xpath_result_node_t * node)
 {
+    AXIS2_ENV_CHECK(env, -1.0);
+    AXIS2_PARAM_CHECK(env->error, node, -1.0);
     if (node->type == AXIOM_XPATH_TYPE_BOOLEAN)
     {
         if (*(axis2_bool_t *)(node->value) == AXIS2_TRUE)
@@ -350,6 +354,8 @@ axiom_xpath_cast_node2axiom_node(
     const axutil_env_t *env,
     axiom_xpath_result_node_t * node)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, node, NULL);
     if (node->type == AXIOM_XPATH_TYPE_NODE && node->value)
     {
         return (axiom_node_t *)node->value;

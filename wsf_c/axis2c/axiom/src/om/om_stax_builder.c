@@ -69,6 +69,7 @@ axiom_stax_builder_create(
     axiom_xml_reader_t * parser)
 {
     axiom_stax_builder_t *om_builder = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
 
     if(!parser)
     {
@@ -178,6 +179,8 @@ axiom_stax_builder_get_document(
     axiom_stax_builder_t * om_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_builder, NULL);
     return om_builder->document;
 }
 
@@ -328,6 +331,7 @@ axiom_stax_builder_process_namespaces(
     int namespace_count = 0;
     axiom_namespace_t *om_ns = NULL;
     axiom_element_t *om_ele = NULL;
+    (void)is_soap_element;
 
     /* temp values */
     axis2_char_t *tmp_prefix = NULL;
@@ -775,6 +779,8 @@ axiom_stax_builder_get_current_event(
     axiom_stax_builder_t * om_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, om_builder, -1);
     return om_builder->current_event;
 }
 
@@ -786,6 +792,8 @@ axiom_stax_builder_get_lastnode(
     axiom_stax_builder_t * om_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_builder, NULL);
     return om_builder->lastnode;
 }
 
@@ -797,6 +805,8 @@ axiom_stax_builder_is_complete(
     axiom_stax_builder_t * om_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, om_builder, -1);
     return om_builder->done;
 }
 
@@ -809,6 +819,8 @@ axiom_stax_builder_set_lastnode(
     const axutil_env_t * env,
     axiom_node_t * om_node)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, om_builder);
     om_builder->lastnode = om_node;
 }
 
@@ -820,6 +832,8 @@ axiom_stax_builder_get_element_level(
     axiom_stax_builder_t * om_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, om_builder, -1);
     return om_builder->element_level;
 }
 
@@ -832,6 +846,8 @@ axiom_stax_builder_set_element_level(
     const axutil_env_t * env,
     int element_level)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, om_builder);
     om_builder->element_level = element_level;
 }
 
@@ -841,6 +857,8 @@ axiom_stax_builder_set_soap_builder(
     const axutil_env_t *env,
     axiom_soap_builder_t *soap_builder)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, om_builder);
     om_builder->soap_builder = soap_builder;
 }
 
@@ -849,6 +867,8 @@ axiom_stax_builder_get_root_node(
     axiom_stax_builder_t *om_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_builder, NULL);
     return om_builder->root_node;
 }
 #if 0

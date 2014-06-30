@@ -404,6 +404,8 @@ axiom_soap_header_block_is_processed(
     axiom_soap_header_block_t * header_block,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, header_block, AXIS2_FALSE);
     return header_block->processed;
 }
 
@@ -412,6 +414,8 @@ axiom_soap_header_block_set_processed(
     axiom_soap_header_block_t * header_block,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, header_block, AXIS2_FAILURE);
     header_block->processed = AXIS2_TRUE;
     return AXIS2_SUCCESS;
 }
@@ -438,6 +442,8 @@ AXIS2_EXTERN axiom_node_t *AXIS2_CALL axiom_soap_header_block_get_base_node(
     axiom_soap_header_block_t * header_block,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, header_block, NULL);
     return header_block->om_ele_node;
 }
 
@@ -445,6 +451,8 @@ AXIS2_EXTERN int AXIS2_CALL axiom_soap_header_block_get_soap_version(
     axiom_soap_header_block_t * header_block,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, header_block, -1);
     return header_block->soap_version;
 }
 
@@ -454,6 +462,8 @@ axiom_soap_header_block_set_soap_version(
     const axutil_env_t * env,
     int soap_version)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, header_block, AXIS2_FAILURE);
 
     header_block->soap_version = soap_version;
     return AXIS2_SUCCESS;

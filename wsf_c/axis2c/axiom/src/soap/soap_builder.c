@@ -127,6 +127,7 @@ axiom_soap_builder_create(
 {
     axiom_soap_builder_t *soap_builder = NULL;
     axis2_status_t status = AXIS2_SUCCESS;
+    AXIS2_ENV_CHECK(env, NULL);
 
     if(!stax_builder)
     {
@@ -258,6 +259,8 @@ axiom_soap_builder_get_soap_envelope(
     const axutil_env_t * env)
 {
     int status = AXIS2_SUCCESS;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, NULL);
 
     if(!soap_builder)
     {
@@ -285,6 +288,8 @@ axiom_soap_builder_get_document(
     axiom_soap_builder_t * soap_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, NULL);
     if (!soap_builder)
     {
         return NULL;
@@ -340,6 +345,8 @@ axiom_soap_builder_get_document_element(
     const axutil_env_t * env)
 {
     axiom_node_t *document_node = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, NULL);
     if(soap_builder->soap_envelope)
     {
         document_node = axiom_soap_envelope_get_base_node(soap_builder->soap_envelope, env);
@@ -804,6 +811,8 @@ axiom_soap_builder_process_namespace_data(
 {
     axiom_element_t *om_ele = NULL;
     axiom_namespace_t *om_ns = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, AXIS2_FAILURE);
 
     om_ele = (axiom_element_t *)axiom_node_get_data_element(om_node, env);
     om_ns = axiom_element_get_namespace(om_ele, env, om_node);
@@ -836,6 +845,8 @@ axiom_soap_builder_identify_soap_version(
     axiom_node_t *envelope_node = NULL;
     axiom_element_t *om_ele = NULL;
     axis2_char_t *ns_uri = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, AXIS2_FAILURE);
 
     soap_builder->soap_envelope = axiom_soap_builder_get_soap_envelope(soap_builder, env);
     if(soap_builder->soap_envelope == NULL)
@@ -910,6 +921,8 @@ axiom_soap_builder_parse_headers(
     axiom_node_t *om_node = NULL;
     axiom_soap_header_t *soap_header = NULL;
     int status = AXIS2_SUCCESS;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, AXIS2_FAILURE);
     if(!soap_builder)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_INVALID_NULL_PARAM, AXIS2_FAILURE);
@@ -949,6 +962,8 @@ axiom_soap_builder_set_bool_processing_mandatory_fault_elements(
     const axutil_env_t * env,
     axis2_bool_t value)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, AXIS2_FAILURE);
     soap_builder->processing_mandatory_fault_elements = value;
     return AXIS2_SUCCESS;
 }
@@ -959,6 +974,8 @@ axiom_soap_builder_set_processing_detail_elements(
     const axutil_env_t * env,
     axis2_bool_t value)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, AXIS2_FAILURE);
     soap_builder->processing_detail_elements = value;
     return AXIS2_SUCCESS;
 }
@@ -968,6 +985,8 @@ axiom_soap_builder_is_processing_detail_elements(
     axiom_soap_builder_t * soap_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, AXIS2_FALSE);
     return soap_builder->processing_detail_elements;
 }
 
@@ -976,6 +995,8 @@ axiom_soap_builder_get_soap_version(
     axiom_soap_builder_t * soap_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, -1);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, -1);
     return soap_builder->soap_version;
 }
 
@@ -985,6 +1006,8 @@ axiom_soap_builder_set_mime_body_parts(
     const axutil_env_t * env,
     axutil_hash_t * map)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, AXIS2_FAILURE);
     soap_builder->mime_body_parts = map;
     return AXIS2_SUCCESS;
 }
@@ -994,6 +1017,8 @@ axiom_soap_builder_get_mime_body_parts(
     axiom_soap_builder_t * builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, builder, NULL);
     return builder->mime_body_parts;
 }
 
@@ -1003,6 +1028,8 @@ axiom_soap_builder_set_mime_parser(
     const axutil_env_t * env,
     axiom_mime_parser_t *mime_parser)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, builder);
     builder->mime_parser = mime_parser;
 }
 
@@ -1012,6 +1039,8 @@ axiom_soap_builder_set_callback_function(
     const axutil_env_t * env,
     AXIS2_READ_INPUT_CALLBACK callback)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, builder);
     builder->callback = callback;
 }
 
@@ -1021,6 +1050,8 @@ axiom_soap_builder_set_callback_ctx(
     const axutil_env_t * env,
     void *callback_ctx)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, builder);
     builder->callback_ctx = callback_ctx;
 }
 
@@ -1033,6 +1064,8 @@ axiom_soap_builder_create_attachments(
 {
     axutil_hash_t *attachments_map = NULL;
     axis2_char_t *mime_boundary = NULL;
+    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_PARAM_CHECK(env->error, builder, AXIS2_FAILURE);
 
     if(builder->mime_parser)
     {
@@ -1162,6 +1195,8 @@ axiom_soap_builder_get_om_builder(
     axiom_soap_builder_t * soap_builder,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, soap_builder, NULL);
     if(!soap_builder)
     {
         return NULL;

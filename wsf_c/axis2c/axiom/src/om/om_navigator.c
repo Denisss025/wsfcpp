@@ -85,6 +85,8 @@ axiom_navigator_is_navigable(
     axiom_navigator_t * om_navigator,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, om_navigator, AXIS2_FALSE);
     if(AXIS2_TRUE == om_navigator->end)
     {
         return AXIS2_FALSE;
@@ -104,6 +106,8 @@ axiom_navigator_is_completed(
     axiom_navigator_t * om_navigator,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, om_navigator, AXIS2_FALSE);
     return om_navigator->end;
 }
 
@@ -112,6 +116,8 @@ axiom_navigator_visited(
     axiom_navigator_t * om_navigator,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, om_navigator, AXIS2_FALSE);
     return om_navigator->visited;
 }
 
@@ -121,6 +127,7 @@ axiom_navigator_next(
     const axutil_env_t * env)
 {
     AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_navigator, NULL);
 
     if(!om_navigator->next)
     {

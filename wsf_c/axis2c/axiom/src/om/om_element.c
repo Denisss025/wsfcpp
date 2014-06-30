@@ -380,12 +380,12 @@ axiom_element_find_namespace(
     parent = axiom_node_get_parent(element_node, env);
     if((parent) && (axiom_node_get_node_type(parent, env) == AXIOM_ELEMENT))
     {
-        axiom_element_t *om_element;
-        om_element = (axiom_element_t *)axiom_node_get_data_element(parent, env);
-        if(om_element)
+        axiom_element_t *om_ele;
+        om_ele = (axiom_element_t *)axiom_node_get_data_element(parent, env);
+        if(om_ele)
         {
             /** parent exist, parent is om element so find in parent*/
-            return axiom_element_find_namespace(om_element, env, parent, uri, prefix);
+            return axiom_element_find_namespace(om_ele, env, parent, uri, prefix);
         }
     }
     return NULL;
@@ -595,6 +595,8 @@ axiom_element_get_namespaces(
     axiom_element_t * om_element,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
     return om_element->namespaces;
 }
 
@@ -680,6 +682,8 @@ axiom_element_get_attribute(
     AXIS2_ASSERT(env != NULL);
     AXIS2_ASSERT(qname != NULL);
     AXIS2_ASSERT(om_element != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     /* if there are no attributes, then return NULL */
     if(!om_element->attributes)
@@ -710,6 +714,8 @@ axiom_element_get_all_attributes(
     axiom_element_t * om_element,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     return om_element->attributes;
 }
@@ -729,6 +735,8 @@ axiom_element_get_attribute_value(
     axutil_qname_t * qname)
 {
     axiom_attribute_t *attr = axiom_element_get_attribute(om_element, env, qname);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
     if(!attr)
     {
         /* cannot find the attribute with given name. But this might not be an error, and a valid
@@ -757,6 +765,8 @@ axiom_element_extract_attributes(
     AXIS2_ASSERT(om_element != NULL);
     AXIS2_ASSERT(env != NULL);
     AXIS2_ASSERT(ele_node != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     if(!om_element->attributes)
     {
@@ -821,6 +831,8 @@ axiom_element_get_attribute_value_by_name(
     AXIS2_ASSERT(attr_name != NULL);
     AXIS2_ASSERT(om_element != NULL);
     AXIS2_ASSERT(env != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     if(!om_element->attributes)
     {
@@ -895,6 +907,8 @@ axiom_element_get_text(
     AXIS2_ASSERT(env != NULL);
     AXIS2_ASSERT(element_node != NULL);
     AXIS2_ASSERT(om_element != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     if(om_element->text_value)
     {
@@ -988,6 +1002,8 @@ axiom_element_get_localname(
 {
     AXIS2_ASSERT(om_element != NULL);
     AXIS2_ASSERT(om_element->localname != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     return (axis2_char_t *)axutil_string_get_buffer(om_element->localname, env);
 }
@@ -1041,6 +1057,8 @@ axiom_element_get_qname(
     AXIS2_ASSERT(om_element != NULL);
     AXIS2_ASSERT(env != NULL);
     AXIS2_ASSERT(ele_node != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     if(!om_element->qname)
     {
@@ -1076,6 +1094,8 @@ axiom_element_get_children(
     AXIS2_ASSERT(element_node != NULL);
     AXIS2_ASSERT(om_element != NULL);
     AXIS2_ASSERT(env != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     if(!om_element->children_iter)
     {
@@ -1107,6 +1127,8 @@ axiom_element_get_children_with_qname(
     AXIS2_ASSERT(element_node != NULL);
     AXIS2_ASSERT(element_qname != NULL);
     AXIS2_ASSERT(om_element != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     if(om_element->children_qname_iter)
     {
@@ -1136,6 +1158,8 @@ axiom_element_get_first_child_with_qname(
     axiom_node_t ** child_node)
 {
     axiom_children_qname_iterator_t *children_iterator;
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
     children_iterator = axiom_element_get_children_with_qname(om_element, env, qname, element_node);
     if(!children_iterator)
     {
@@ -1177,6 +1201,8 @@ axiom_element_get_first_element(
 
     AXIS2_ASSERT(env != NULL);
     AXIS2_ASSERT(element_node != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     temp_node = axiom_node_get_first_child(element_node, env);
     while(temp_node)
@@ -1214,6 +1240,8 @@ axiom_element_get_child_elements(
     AXIS2_ASSERT(env != NULL);
     AXIS2_ASSERT(om_element != NULL);
     AXIS2_ASSERT(element_node != NULL);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
 
     if(om_element->child_ele_iter)
     {
@@ -1563,6 +1591,8 @@ axiom_element_set_is_empty(
     const axutil_env_t * env,
     axis2_bool_t is_empty)
 {
+    AXIS2_ENV_CHECK_VOID(env);
+    AXIS2_PARAM_CHECK_VOID(env->error, om_element);
     om_element->is_empty = is_empty;
 }
 
@@ -1571,6 +1601,8 @@ axiom_element_get_is_empty(
     axiom_element_t * om_element,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, om_element, AXIS2_FALSE);
     return om_element->is_empty;
 }
 
@@ -1899,6 +1931,9 @@ axiom_element_to_string(
     const axutil_env_t * env,
     axiom_node_t * element_node)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_element, NULL);
+    AXIS2_PARAM_CHECK(env->error, element_node, NULL);
     return axiom_node_to_string(element_node, env);
 }
 #endif

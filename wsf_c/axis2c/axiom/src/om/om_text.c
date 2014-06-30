@@ -242,6 +242,8 @@ axiom_text_get_value(
     axiom_text_t * om_text,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_text, NULL);
     if(om_text->value)
     {
         return axutil_string_get_buffer(om_text->value, env);
@@ -280,6 +282,8 @@ axiom_text_get_mime_type(
     axiom_text_t * om_text,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_text, NULL);
     return om_text->mime_type;
 }
 
@@ -304,6 +308,8 @@ axiom_text_get_optimize(
     axiom_text_t * om_text,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, om_text, AXIS2_FALSE);
     return om_text->optimize;
 }
 
@@ -324,6 +330,8 @@ axiom_text_get_is_binary(
     axiom_text_t * om_text,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, AXIS2_FALSE);
+    AXIS2_PARAM_CHECK(env->error, om_text, AXIS2_FALSE);
     return om_text->is_binary;
 }
 
@@ -344,6 +352,8 @@ axiom_text_get_content_id(
     axiom_text_t * om_text,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_text, NULL);
     return om_text->content_id;
 }
 
@@ -433,6 +443,7 @@ axiom_text_serialize_attribute(
     axis2_char_t *attribute_value = NULL;
 
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    (void)om_output;
 
     xml_writer = axiom_xml_writer_create_for_memory(env, NULL, AXIS2_TRUE, 0,
         AXIS2_XML_PARSER_TYPE_BUFFER);
@@ -475,6 +486,7 @@ axiom_text_serialize_namespace(
     axis2_char_t *namespace_prefix = NULL;
 
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    (void)om_output;
 
     xml_writer = axiom_xml_writer_create_for_memory(env, NULL, AXIS2_TRUE, 0,
         AXIS2_XML_PARSER_TYPE_BUFFER);
@@ -495,6 +507,8 @@ axiom_text_get_text(
     axiom_text_t * om_text,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_text, NULL);
     if(om_text->value)
     {
         return axutil_string_get_buffer(om_text->value, env);
@@ -505,17 +519,17 @@ axiom_text_get_text(
         size_t data_handler_stream_size = 0;
         if(om_text->data_handler)
         {
-            int encoded_len = 0;
+            size_t encoded_len = 0;
             axis2_char_t *encoded_str = NULL;
             axiom_data_handler_read_from(om_text->data_handler, env, &data_handler_stream,
                 &data_handler_stream_size);
             if(data_handler_stream)
             {
-                encoded_len = axutil_base64_encode_len((int)data_handler_stream_size);
+                encoded_len = (size_t)axutil_base64_encode_len((int)data_handler_stream_size);
                 encoded_str = AXIS2_MALLOC(env->allocator, encoded_len + 2);
                 if(encoded_str)
                 {
-                    encoded_len = axutil_base64_encode(encoded_str, data_handler_stream,
+                    encoded_len = (size_t)axutil_base64_encode(encoded_str, data_handler_stream,
                         (int)data_handler_stream_size);
                     encoded_str[encoded_len] = '\0';
                     return encoded_str;
@@ -531,6 +545,8 @@ axiom_text_get_data_handler(
     axiom_text_t * om_text,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_text, NULL);
     return om_text->data_handler;
 }
 
@@ -542,6 +558,7 @@ axiom_text_create_str(
     axiom_node_t ** node)
 {
     axiom_text_t *om_text = NULL;
+    AXIS2_ENV_CHECK(env, NULL);
     AXIS2_PARAM_CHECK(env->error, node, NULL);
 
     *node = axiom_node_create(env);
@@ -601,6 +618,8 @@ axiom_text_get_value_str(
     struct axiom_text * om_text,
     const axutil_env_t * env)
 {
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, om_text, NULL);
     return om_text->value;
 }
 
