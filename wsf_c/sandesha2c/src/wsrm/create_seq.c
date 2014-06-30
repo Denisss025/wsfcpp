@@ -51,8 +51,8 @@ sandesha2_create_seq_create(
     {
         AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, 
             "[sandesha2]Unsupported namespace :%s", rm_ns_val);
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS,  */
+            /* AXIS2_FAILURE); */
         return NULL;
     }    
     create_seq =  (sandesha2_create_seq_t *)AXIS2_MALLOC 
@@ -146,8 +146,8 @@ sandesha2_create_seq_from_om_node(
     seq_part = axiom_node_get_data_element(seq_node, env);
     if(!seq_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, */
+            /* AXIS2_FAILURE); */
         return NULL;
     }
     create_seq->acks_to = sandesha2_acks_to_create(env, NULL, 
@@ -224,8 +224,8 @@ sandesha2_create_seq_to_om_node(
     
     if(!create_seq->acks_to)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT,  */
+            /* AXIS2_FAILURE); */
         return NULL;
     }
     rm_ns = axiom_namespace_create(env, create_seq->rm_ns_val,

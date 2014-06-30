@@ -48,8 +48,8 @@ sandesha2_ack_range_create(
     
     if(AXIS2_FAILURE == sandesha2_ack_range_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
+            AXIS2_FAILURE); */
         return NULL;
     }        
     ack_range =  (sandesha2_ack_range_t *)AXIS2_MALLOC 
@@ -132,8 +132,8 @@ sandesha2_ack_range_from_om_node(
     om_element = axiom_node_get_data_element(om_node, env);
     if(!om_element)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-                        AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+                        AXIS2_FAILURE); */
         return NULL;
     }
     /*lower_str = axiom_element_get_attribute_value(om_element, env,
@@ -147,8 +147,8 @@ sandesha2_ack_range_from_om_node(
     
     if(!lower_str || !upper_str)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ATTRIBUTE,
-                        AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ATTRIBUTE,
+                        AXIS2_FAILURE); */
         return NULL; 
     }
     ack_range->lower_val = AXIS2_ATOI(lower_str);

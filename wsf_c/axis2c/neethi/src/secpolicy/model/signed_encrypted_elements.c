@@ -127,7 +127,7 @@ rp_signed_encrypted_elements_get_xpath_expressions(
     rp_signed_encrypted_elements_t * signed_encrypted_elements,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return signed_encrypted_elements->xpath_expressions;
 }
@@ -150,7 +150,7 @@ rp_signed_encrypted_elements_get_xpath_version(
     rp_signed_encrypted_elements_t * signed_encrypted_elements,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return signed_encrypted_elements->xpath_version;
 }

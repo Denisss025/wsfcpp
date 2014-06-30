@@ -132,7 +132,7 @@ neethi_options_get_binding(
     neethi_options_t *options,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
     
     return options->binding;
 }
@@ -338,7 +338,7 @@ neethi_options_get_algorithmsuite(
     neethi_options_t *options,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
     
     return options->algorithmsuite;
 }
@@ -360,7 +360,7 @@ neethi_options_get_keyidentifier(
     neethi_options_t *options,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
     
     return options->keyidentifier;
 }

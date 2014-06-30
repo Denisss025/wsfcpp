@@ -580,7 +580,7 @@ sandesha2_permanent_storage_mgr_get_msg_store_bean (
     if (!xml_writer)
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "%s", AXIS2_ERROR_GET_MESSAGE(env->error));
-        return AXIS2_FAILURE;
+        return NULL;
     }
 
     om_output = axiom_output_create(env, xml_writer);
@@ -588,7 +588,7 @@ sandesha2_permanent_storage_mgr_get_msg_store_bean (
     {
         axiom_xml_writer_free(xml_writer, env);
         xml_writer = NULL;
-        return AXIS2_FAILURE;
+        return NULL;
     }
 
     axiom_output_set_soap11(om_output, env, axis2_msg_ctx_get_is_soap_11(msg_ctx, env));
@@ -857,8 +857,8 @@ sandesha2_permanent_storage_mgr_get_property_map_from_string(
     if((size % 2 != 0) || (size == 1 && !axutil_strcmp("", value)))
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "[sandesha2] Invalid persistence property string");
-        AXIS2_ERROR_SET(env->error, 
-            SANDESHA2_ERROR_INVALID_PERSISTENCE_PROPERTY_STRING, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error,  */
+            /* SANDESHA2_ERROR_INVALID_PERSISTENCE_PROPERTY_STRING, AXIS2_FAILURE); */
 
         if(values)
         {

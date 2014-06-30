@@ -44,8 +44,8 @@ sandesha2_fault_code_create(
 
     if(AXIS2_FALSE == sandesha2_fault_code_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
+            AXIS2_FAILURE); */
         return NULL;
     }        
     fault_code =  (sandesha2_fault_code_t *)AXIS2_MALLOC 
@@ -109,8 +109,8 @@ sandesha2_fault_code_from_om_node(
     om_element = axiom_node_get_data_element(om_node, env);
     if(NULL == om_element)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-             AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+             AXIS2_FAILURE); */
         return NULL;
     }
     fault_qname = axutil_qname_create(env, SANDESHA2_WSRM_COMMON_FAULT_CODE, 
@@ -125,15 +125,15 @@ sandesha2_fault_code_from_om_node(
         axutil_qname_free(fault_qname, env);
     if(NULL == fault_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+            AXIS2_FAILURE); */
         return NULL;
     } 
     fault_text = axiom_element_get_text(fault_part, env, fault_node);
     if(NULL == fault_text)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_EMPTY_OM_ELEMENT, 
-            AXIS2_FAILURE)
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_EMPTY_OM_ELEMENT, 
+            AXIS2_FAILURE) */
         return NULL;
     }
     fault_code->str_fault_code = axutil_strdup(env, fault_text);
@@ -158,8 +158,8 @@ sandesha2_fault_code_to_om_node(
     if(NULL == fault_code->str_fault_code || 0 == axutil_strlen(
         fault_code->str_fault_code))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, 
+            AXIS2_FAILURE); */
         return NULL;
     }
     rm_ns = axiom_namespace_create(env, fault_code->ns_val,

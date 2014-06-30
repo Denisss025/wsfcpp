@@ -233,7 +233,7 @@ AXIS2_EXTERN void AXIS2_CALL
 rampart_context_free(rampart_context_t *rampart_context,
                      const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(rampart_context)
     {

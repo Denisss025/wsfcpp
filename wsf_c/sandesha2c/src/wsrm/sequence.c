@@ -48,8 +48,8 @@ sandesha2_seq_create(
     
     if(AXIS2_FALSE == sandesha2_seq_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS,  */
+            /* AXIS2_FAILURE); */
         return NULL;
     }    
     seq =  (sandesha2_seq_t *)AXIS2_MALLOC 
@@ -164,7 +164,7 @@ sandesha2_seq_from_om_node(
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
                 "[sandesha2] Sequence element not found in the sequence node");
 
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -230,8 +230,8 @@ sandesha2_seq_to_om_node(
     soap_header = (axiom_soap_header_t*)om_node;
     if(!seq->identifier || !seq->msg_num)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT,  */
+            /* AXIS2_FAILURE); */
         return NULL;
     }
     rm_ns = axiom_namespace_create(env, seq->ns_val, SANDESHA2_WSRM_COMMON_NS_PREFIX_RM);

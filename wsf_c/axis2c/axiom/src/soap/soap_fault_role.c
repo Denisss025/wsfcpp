@@ -176,7 +176,7 @@ AXIS2_EXTERN axiom_node_t *AXIS2_CALL axiom_soap_fault_role_get_base_node(
     axiom_soap_fault_role_t * fault_role,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
-    AXIS2_PARAM_CHECK(env->error, fault_role, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, fault_role, NULL);
     return fault_role->om_ele_node;
 }

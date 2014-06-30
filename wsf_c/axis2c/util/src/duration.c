@@ -335,7 +335,7 @@ axutil_duration_serialize_duration(
 {
     axis2_char_t *duration_str = NULL;
 
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     duration_str = (axis2_char_t *)AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t) * 64);
 

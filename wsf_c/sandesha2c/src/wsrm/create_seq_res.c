@@ -48,7 +48,7 @@ sandesha2_create_seq_res_create(
     
     if(!sandesha2_create_seq_res_is_namespace_supported(env, rm_ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -151,7 +151,7 @@ sandesha2_create_seq_res_from_om_node(
     csr_part =axiom_node_get_data_element(csr_node, env);
     if(!csr_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
     create_seq_res->identifier = sandesha2_identifier_create(env, create_seq_res->rm_ns_val);
@@ -234,8 +234,8 @@ sandesha2_create_seq_res_to_om_node(
     
     if(!create_seq_res->identifier)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT,  */
+            /* AXIS2_FAILURE); */
         return NULL;
     }
     rm_ns = axiom_namespace_create(env, create_seq_res->rm_ns_val,

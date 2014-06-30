@@ -41,7 +41,7 @@ sandesha2_ack_final_create(
     
     if(!sandesha2_ack_final_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -112,7 +112,7 @@ sandesha2_ack_final_from_om_node(
             axutil_qname_free(final_qname, env);
         }
 
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE); 
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE);  */
         return NULL;
     }
 
@@ -126,7 +126,7 @@ sandesha2_ack_final_from_om_node(
 
     if(!final_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
 

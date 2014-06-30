@@ -102,8 +102,8 @@ sandesha2_mc_address_from_om_node(
     om_element = axiom_node_get_data_element(om_node, env);
     if(!om_element)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-           AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+           AXIS2_FAILURE); */
         return NULL;
     }
     addr_qname = axutil_qname_create(env, SANDESHA2_WSA_ADDRESS, 
@@ -118,15 +118,15 @@ sandesha2_mc_address_from_om_node(
         axutil_qname_free(addr_qname, env);
     if(!addr_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+            AXIS2_FAILURE); */
         return NULL;
     }
     str_mc_address = axiom_element_get_text(addr_part, env, addr_node);
     if(!str_mc_address || 0 == axutil_strlen(str_mc_address))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_EMPTY_OM_ELEMENT,
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_EMPTY_OM_ELEMENT,
+            AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -161,7 +161,7 @@ sandesha2_mc_address_to_om_node(
     if(!mc_address->epr || !axis2_endpoint_ref_get_address(mc_address->epr, env) || 0 == axutil_strlen(
             axis2_endpoint_ref_get_address(mc_address->epr, env)))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
 

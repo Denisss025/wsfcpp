@@ -51,8 +51,8 @@ sandesha2_seq_ack_create(
     
     if(AXIS2_FALSE == sandesha2_seq_ack_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
+            AXIS2_FAILURE); */
         return NULL;
     }    
     seq_ack =  (sandesha2_seq_ack_t *)AXIS2_MALLOC 
@@ -187,8 +187,8 @@ sandesha2_seq_ack_from_om_node(
     sa_part = axiom_node_get_data_element(sa_node, env);
     if(!sa_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+            AXIS2_FAILURE); */
         return NULL;
     }
     rm_ns = axiom_element_get_namespace(sa_part, env, sa_node);
@@ -358,7 +358,7 @@ sandesha2_seq_ack_to_om_node(
 
     if(!seq_ack->identifier)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -397,7 +397,7 @@ sandesha2_seq_ack_to_om_node(
                 0 != axutil_array_list_size(seq_ack->ack_range_list, env) || 0 != 
             axutil_array_list_size(seq_ack->nack_list, env))
         {
-            AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_ACK_NONE_NOT_ALLOWED, AXIS2_FAILURE);
+            /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_ACK_NONE_NOT_ALLOWED, AXIS2_FAILURE); */
             return NULL;
         }
         else
@@ -410,7 +410,7 @@ sandesha2_seq_ack_to_om_node(
         if(!sandesha2_spec_specific_consts_is_ack_final_allowed(env, rm_spec_ver) ||  
                 0 != axutil_array_list_size(seq_ack->nack_list, env))
         {
-            AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_ACK_FINAL_NOT_ALLOWED, AXIS2_FAILURE);
+            /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_ACK_FINAL_NOT_ALLOWED, AXIS2_FAILURE); */
             return NULL;
         }
         else

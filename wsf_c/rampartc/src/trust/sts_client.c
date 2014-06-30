@@ -97,7 +97,7 @@ trust_sts_client_free(
     trust_sts_client_t * sts_client,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK_VOID(env);
 
     if(sts_client->sec_policy)
 	{
@@ -331,7 +331,7 @@ trust_sts_client_get_issuer_address(
     trust_sts_client_t * sts_client,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return sts_client->issuer_address;
 }
@@ -355,7 +355,7 @@ trust_sts_client_get_home_dir(
     trust_sts_client_t * sts_client,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return sts_client->home_dir;
 }
@@ -379,7 +379,7 @@ trust_sts_client_get_issuer_policy_location(
     trust_sts_client_t * sts_client,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return sts_client->issuer_policy_location;
 }
@@ -403,7 +403,7 @@ trust_sts_client_get_service_policy_location(
     trust_sts_client_t * sts_client,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return sts_client->service_policy_location;
 }

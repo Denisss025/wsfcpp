@@ -145,7 +145,7 @@ savan_subs_mgr_create(
     subs_mgr_impl = AXIS2_MALLOC(env->allocator, sizeof(savan_sqlite_subs_mgr_t));
     if (!subs_mgr_impl)
     {
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_STORAGE_MANAGER_CREATION_FAILED, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_STORAGE_MANAGER_CREATION_FAILED, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -586,7 +586,7 @@ savan_sqlite_subs_mgr_insert_subscriber(
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
             "[savan] Sql insert error: %s", sqlite3_errmsg(dbconn));
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_INSERT_ERROR, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_INSERT_ERROR, AXIS2_FAILURE); */
         sqlite3_reset(insertqry);
         sqlite3_finalize(insertqry);
         sqlite3_close(dbconn);
@@ -629,7 +629,7 @@ savan_sqlite_subs_mgr_update_subscriber(
     sql_update = AXIS2_MALLOC(env->allocator, 1028);
     if(!sql_update)
     {
-        AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE); */
         return AXIS2_FAILURE;
     }
 
@@ -797,7 +797,7 @@ savan_sqlite_subs_mgr_update_subscriber(
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
             "[savan] Sql update error: %s", sqlite3_errmsg(dbconn));
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_UPDATE_ERROR, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_UPDATE_ERROR, AXIS2_FAILURE); */
 
         AXIS2_FREE(env->allocator, sql_update);
         sqlite3_reset(updateqry);
@@ -859,7 +859,7 @@ savan_sqlite_subs_mgr_remove_subscriber(
         }
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
             "[savan] Error sql statement:%s. Sql remove error:%s", sql_remove, error_msg);
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_REMOVE_ERROR, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_REMOVE_ERROR, AXIS2_FAILURE); */
         sqlite3_free(error_msg);
         sqlite3_close(dbconn);
         return AXIS2_FAILURE;
@@ -900,7 +900,7 @@ savan_sqlite_subs_mgr_retrieve_subscriber(
     args = AXIS2_MALLOC(env->allocator, sizeof(savan_sqlite_subs_mgr_args_t));
     if(!args)
     {
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_STORAGE_MANAGER_CREATION_FAILED, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_STORAGE_MANAGER_CREATION_FAILED, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -942,7 +942,7 @@ savan_sqlite_subs_mgr_retrieve_subscriber(
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
             "[savan] Sql error statement:%s. Sql retrieve error:%s", sql_retrieve, error_msg);
         
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_RETRIEVE_ERROR, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_RETRIEVE_ERROR, AXIS2_FAILURE); */
         
         AXIS2_FREE(env->allocator, args);
         sqlite3_free(error_msg);
@@ -994,14 +994,14 @@ savan_sqlite_subs_mgr_retrieve_all_subscribers(
     data_list = axutil_array_list_create(env, 0);
     if(!data_list)
     {
-        AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE); */
         return NULL;
     }
 
     args = AXIS2_MALLOC(env->allocator, sizeof(savan_sqlite_subs_mgr_args_t));
     if(!args)
     {
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_STORAGE_MANAGER_CREATION_FAILED, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_STORAGE_MANAGER_CREATION_FAILED, AXIS2_FAILURE); */
         axutil_array_list_free(data_list, env);
         return NULL;
     }
@@ -1069,7 +1069,7 @@ savan_sqlite_subs_mgr_retrieve_all_subscribers(
 
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "[savan] Sql retrieve error:%s", error_msg);
         
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_RETRIEVE_ERROR, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_RETRIEVE_ERROR, AXIS2_FAILURE); */
         
         sqlite3_free(error_msg);
         sqlite3_close(dbconn);
@@ -1145,7 +1145,7 @@ savan_sqlite_subs_mgr_insert_topic(
     }
     else
     {
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_TOPIC_INSERT_ERROR, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_TOPIC_INSERT_ERROR, AXIS2_FAILURE); */
         sqlite3_reset(insertqry);
         sqlite3_finalize(insertqry);
         sqlite3_close(dbconn);
@@ -1204,7 +1204,7 @@ savan_sqlite_subs_mgr_create_db(
         {
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
                     "[savan] Error creating database table subscriber; sql error: %s", error_msg);
-            AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_DATABASE_TABLE_CREATION_ERROR, AXIS2_FAILURE);
+            /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_DATABASE_TABLE_CREATION_ERROR, AXIS2_FAILURE); */
 
             sqlite3_free(error_msg);
             sqlite3_close(dbconn);
@@ -1216,7 +1216,7 @@ savan_sqlite_subs_mgr_create_db(
     else
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "[savan] Database %s creation failed", dbname);
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_DATABASE_CREATION_ERROR, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_DATABASE_CREATION_ERROR, AXIS2_FAILURE); */
         return AXIS2_FAILURE;
     }
 

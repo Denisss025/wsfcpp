@@ -44,8 +44,8 @@ sandesha2_expires_create(
     
     if(AXIS2_FALSE == sandesha2_expires_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
+            AXIS2_FAILURE); */
         return NULL;
     }    
     expires =  (sandesha2_expires_t *)AXIS2_MALLOC 
@@ -109,8 +109,8 @@ sandesha2_expires_from_om_node(
     om_element = axiom_node_get_data_element(om_node, env);
     if(NULL == om_element)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+            AXIS2_FAILURE); */
         return NULL;
     }
     exp_qname = axutil_qname_create(env, SANDESHA2_WSRM_COMMON_EXPIRES, 
@@ -125,15 +125,15 @@ sandesha2_expires_from_om_node(
         axutil_qname_free(exp_qname, env);
     if(NULL == exp_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-                        AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+                        AXIS2_FAILURE); */
         return NULL;
     }
     text = axiom_element_get_text(exp_part, env, exp_node);
     if(NULL == text)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_EMPTY_OM_ELEMENT, 
-                        AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_EMPTY_OM_ELEMENT, 
+                        AXIS2_FAILURE); */
         return NULL;
     }
     expires->duration = axutil_strdup(env, text); 
@@ -160,8 +160,8 @@ sandesha2_expires_to_om_node(
     if(NULL == expires->duration || 0 == axutil_strlen(
                         expires->duration))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, 
-                        AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, 
+                        AXIS2_FAILURE); */
         return NULL;
     }
     rm_ns = axiom_namespace_create(env, expires->ns_val,

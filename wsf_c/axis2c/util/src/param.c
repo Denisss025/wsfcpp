@@ -201,8 +201,8 @@ axutil_param_get_attributes(
     axutil_param_t *param,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
-    AXIS2_PARAM_CHECK(env->error, param, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, param, NULL);
     return param->attrs;
 }
 
@@ -240,8 +240,8 @@ axutil_param_get_value_list(
     axutil_param_t *param,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
-    AXIS2_PARAM_CHECK(env->error, param, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
+    AXIS2_PARAM_CHECK(env->error, param, NULL);
     return param->value_list;
 }
 

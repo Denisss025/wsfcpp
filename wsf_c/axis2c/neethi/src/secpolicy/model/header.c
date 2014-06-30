@@ -78,7 +78,7 @@ rp_header_get_name(
     rp_header_t * header,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return header->name;
 }
@@ -101,7 +101,7 @@ rp_header_get_namespace(
     rp_header_t * header,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return header->nspace;
 

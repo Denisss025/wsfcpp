@@ -117,7 +117,7 @@ rp_signed_encrypted_items_get_elements(
     rp_signed_encrypted_items_t * signed_encrypted_items,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return signed_encrypted_items->elements;
 }

@@ -46,7 +46,7 @@ sandesha2_last_msg_number_create(
     
     if(!sandesha2_last_msg_number_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -121,7 +121,7 @@ sandesha2_last_msg_number_from_om_node(
     om_element = axiom_node_get_data_element(om_node, env);
     if(!om_element)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -141,14 +141,14 @@ sandesha2_last_msg_number_from_om_node(
 
     if(!mn_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
 
     mn_str = axiom_element_get_text(mn_part, env, mn_node);
     if(!mn_str)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_EMPTY_OM_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_EMPTY_OM_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -175,7 +175,7 @@ sandesha2_last_msg_number_to_om_node(
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
                 "[sandesha2] Message number provided as last message number is invalid");
 
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_INVALID_NUMBER, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_INVALID_NUMBER, AXIS2_FAILURE); */
         return NULL;
     }
 

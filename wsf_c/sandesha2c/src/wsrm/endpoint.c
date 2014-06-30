@@ -48,8 +48,8 @@ sandesha2_endpoint_create(
     
     if(AXIS2_FALSE == sandesha2_endpoint_is_namespace_supported(env, rm_ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
+            AXIS2_FAILURE); */
         return NULL;
     }    
     endpoint =  (sandesha2_endpoint_t *)AXIS2_MALLOC 
@@ -57,7 +57,7 @@ sandesha2_endpoint_create(
 	
     if(NULL == endpoint)
 	{
-		AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+		/* AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE); */
         return NULL;
 	}
     endpoint->rm_ns_val = (axis2_char_t *)axutil_strdup(env, rm_ns_val);
@@ -118,7 +118,7 @@ sandesha2_endpoint_from_om_node(
     om_element = axiom_node_get_data_element(om_node, env);
     if(!om_element)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
     endpoint_qname = axutil_qname_create(env, SANDESHA2_WSRM_COMMON_ENDPOINT,
@@ -176,7 +176,7 @@ sandesha2_endpoint_to_om_node(
     
     if(!endpoint->address)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
     rm_ns = axiom_namespace_create(env, endpoint->rm_ns_val, SANDESHA2_WSRM_COMMON_NS_PREFIX_RM);

@@ -155,7 +155,7 @@ savan_subs_mgr_get_subscriber_from_renew_msg(
    
     if(!subscriber)
     {
-        AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_RETRIEVE_ERROR, AXIS2_FAILURE);
+        /* AXIS2_HANDLE_ERROR(env, SAVAN_ERROR_SUBSCRIBER_RETRIEVE_ERROR, AXIS2_FAILURE); */
         return NULL;
     }
     /* Get soap envelop and extract the subscription id */

@@ -44,7 +44,7 @@ sandesha2_close_seq_create(
     
     if(!sandesha2_close_seq_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -114,7 +114,7 @@ sandesha2_close_seq_from_om_node(
     close_seq_part = axiom_node_get_data_element(close_seq_node, env);
     if(!close_seq_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -159,7 +159,7 @@ sandesha2_close_seq_to_om_node(
     /* identifier is a MUST element within close sequence. So we need to check it's presense */
     if(!close_seq->identifier)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
 

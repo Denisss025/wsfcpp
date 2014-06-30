@@ -48,8 +48,8 @@ sandesha2_make_connection_create(
     
     if(!sandesha2_make_connection_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS,  */
+            /* AXIS2_FAILURE); */
         return NULL;
     }    
     make_conn =  (sandesha2_make_connection_t *)AXIS2_MALLOC 
@@ -124,8 +124,8 @@ sandesha2_make_connection_from_om_node(
     om_element = axiom_node_get_data_element(om_node, env);
     if(!om_element)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, */
+            /* AXIS2_FAILURE); */
         return NULL;
     }
     identifier_qname = axutil_qname_create(env, SANDESHA2_WSRM_COMMON_IDENTIFIER,
@@ -150,9 +150,9 @@ sandesha2_make_connection_from_om_node(
         axutil_qname_free(address_qname, env);
     if(!identifier_element && !address_element)
     {
-        AXIS2_ERROR_SET(env->error, 
-            SANDESHA2_ERROR_MAKE_CONNECTION_ELEMENT_SHOULD_HAVE_AT_LEAST_ADDRESS_OR_IDENTIFIER, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error,  */
+            /* SANDESHA2_ERROR_MAKE_CONNECTION_ELEMENT_SHOULD_HAVE_AT_LEAST_ADDRESS_OR_IDENTIFIER,  */
+            /* AXIS2_FAILURE); */
         AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "MakeConnection element " \
             "should have at lease one of Address and Identifier subelements");
         return NULL;
@@ -197,8 +197,8 @@ sandesha2_make_connection_to_om_node(
 
     if(!make_conn->identifier && !make_conn->address)
     {
-        AXIS2_ERROR_SET(env->error, 
-            SANDESHA2_ERROR_INVALID_MAKE_CONNECTION_BOTH_IDENTIFER_AND_ADDRESS_NULL, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error,  */
+            /* SANDESHA2_ERROR_INVALID_MAKE_CONNECTION_BOTH_IDENTIFER_AND_ADDRESS_NULL, AXIS2_FAILURE); */
 
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
                 "Invalid MakeConnection object. Both Identifier and Address are null");

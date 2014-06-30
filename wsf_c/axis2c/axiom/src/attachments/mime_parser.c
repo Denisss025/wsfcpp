@@ -413,7 +413,7 @@ axiom_mime_parser_parse_for_soap(
 
     /* The patteren contains in one buffer */
 
-    if((search_info->match_len2 == 0))
+    if(search_info->match_len2 == 0)
     {
         /*Readjusting the buffers for the next search and discarding the prevoius 
          buffers*/

@@ -136,7 +136,7 @@ savan_util_get_message_type(
     if( ! action)
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "[savan] Cannot extract soap action"); 
-        AXIS2_ERROR_SET(env->error, SAVAN_ERROR_SOAP_ACTION_NULL, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SAVAN_ERROR_SOAP_ACTION_NULL, AXIS2_FAILURE); */
         return SAVAN_MSG_TYPE_UNKNOWN;
     }
     
@@ -596,7 +596,7 @@ savan_util_create_subscriber_node(
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "[savan] Entry:savan_util_create_subscriber_node");
     if(!subscriber)
     {
-        AXIS2_ERROR_SET(env->error, SAVAN_ERROR_SUBSCRIBER_NOT_FOUND, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SAVAN_ERROR_SUBSCRIBER_NOT_FOUND, AXIS2_FAILURE); */
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "[savan] Subscriber structure passed is NULL");
         return NULL;
     }
@@ -678,7 +678,7 @@ savan_util_create_savan_specific_subscriber_node(
     if(!subscriber)
     {
         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "[savan] Subscriber structure must be present");
-        AXIS2_ERROR_SET(env->error, SAVAN_ERROR_SUBSCRIBER_NOT_FOUND, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SAVAN_ERROR_SUBSCRIBER_NOT_FOUND, AXIS2_FAILURE); */
         return NULL;
     }
 

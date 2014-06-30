@@ -297,7 +297,7 @@ neethi_assertion_get_element(
     neethi_assertion_t *neethi_assertion,
     const axutil_env_t *env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return neethi_assertion->element;
 }

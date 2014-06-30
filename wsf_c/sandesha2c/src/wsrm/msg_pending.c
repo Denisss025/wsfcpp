@@ -45,8 +45,8 @@ sandesha2_msg_pending_create(
     
     if(AXIS2_FALSE == sandesha2_msg_pending_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS,  */
+            /* AXIS2_FAILURE); */
         return NULL;
     }    
     msg_pending =  (sandesha2_msg_pending_t *)AXIS2_MALLOC 
@@ -113,8 +113,8 @@ sandesha2_msg_pending_from_om_node(
     msg_pending_element = axiom_node_get_data_element(msg_pending_node, env);
     if(!msg_pending_element)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-             AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT, */
+             /* AXIS2_FAILURE); */
         return NULL;
     }
     pending_qname = axutil_qname_create(env, SANDESHA2_WSRM_COMMON_PENDING,
@@ -131,18 +131,18 @@ sandesha2_msg_pending_from_om_node(
     {
         AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "MessagePending header must" \
                 "have an attribute named 'pending'");
-        AXIS2_ERROR_SET(env->error, 
-            SANDESHA2_ERROR_PENDING_HEADER_MUST_HAVE_ATTRIBUTE_PENDING, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error,  */
+            /* SANDESHA2_ERROR_PENDING_HEADER_MUST_HAVE_ATTRIBUTE_PENDING,  */
+            /* AXIS2_FAILURE); */
     }
     value = axiom_attribute_get_value(pending_attr, env);
     if(0 != axutil_strcmp(value, AXIS2_VALUE_FALSE))
     {
         AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, 
             "Attribute 'pending' must have value 'true' or 'false'");
-        AXIS2_ERROR_SET(env->error, 
-            SANDESHA2_ERROR_ATTRIBUTE_PENDING_MUST_HAVE_VALUE_TRUE_OR_FALSE, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error,  */
+            /* SANDESHA2_ERROR_ATTRIBUTE_PENDING_MUST_HAVE_VALUE_TRUE_OR_FALSE,  */
+            /* AXIS2_FAILURE); */
         
     }
     return msg_pending_node;

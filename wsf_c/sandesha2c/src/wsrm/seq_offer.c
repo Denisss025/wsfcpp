@@ -47,8 +47,8 @@ sandesha2_seq_offer_create(
     
     if(AXIS2_FALSE == sandesha2_seq_offer_is_namespace_supported(env, ns_val))
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_UNSUPPORTED_NS, 
+            AXIS2_FAILURE); */
         return NULL;
     }    
     seq_offer =  (sandesha2_seq_offer_t *)AXIS2_MALLOC 
@@ -131,8 +131,8 @@ sandesha2_seq_offer_from_om_node(
     om_element = axiom_node_get_data_element(om_node, env);
     if(NULL == om_element)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+            AXIS2_FAILURE); */
         return NULL;
     }
     so_qname = axutil_qname_create(env, SANDESHA2_WSRM_COMMON_SEQ_OFFER,
@@ -147,8 +147,8 @@ sandesha2_seq_offer_from_om_node(
         axutil_qname_free(so_qname, env);
     if(NULL == so_part)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
-            AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_NULL_OM_ELEMENT,
+            AXIS2_FAILURE); */
         return NULL;
     }
 
@@ -207,7 +207,7 @@ sandesha2_seq_offer_to_om_node(
     
     if(!seq_offer->identifier)
     {
-        AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE);
+        /* AXIS2_ERROR_SET(env->error, SANDESHA2_ERROR_TO_OM_NULL_ELEMENT, AXIS2_FAILURE); */
         return NULL;
     }
     

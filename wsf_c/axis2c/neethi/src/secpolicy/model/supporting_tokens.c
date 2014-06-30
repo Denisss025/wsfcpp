@@ -133,7 +133,7 @@ rp_supporting_tokens_get_tokens(
     rp_supporting_tokens_t * supporting_tokens,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return supporting_tokens->tokens;
 }
@@ -250,7 +250,7 @@ rp_supporting_tokens_get_encrypted_elements(
     rp_supporting_tokens_t * supporting_tokens,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return supporting_tokens->encrypted_elements;
 }

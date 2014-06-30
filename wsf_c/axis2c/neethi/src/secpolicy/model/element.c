@@ -67,7 +67,7 @@ rp_element_get_name(
     rp_element_t * element,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return element->name;
 }
@@ -90,7 +90,7 @@ rp_element_get_namespace(
     rp_element_t * element,
     const axutil_env_t * env)
 {
-    AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
+    AXIS2_ENV_CHECK(env, NULL);
 
     return element->nspace;
 
