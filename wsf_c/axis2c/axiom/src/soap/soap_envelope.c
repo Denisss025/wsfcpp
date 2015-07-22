@@ -453,7 +453,6 @@ axiom_soap_envelope_create_default_soap_envelope(
     axiom_soap_body_t *soap_body = NULL;
     axiom_namespace_t *om_ns = NULL;
     AXIS2_ENV_CHECK(env, NULL);
-    AXIS2_PARAM_CHECK(env->error, soap_envelope, NULL);
 
     if(soap_version == AXIOM_SOAP11)
     {
