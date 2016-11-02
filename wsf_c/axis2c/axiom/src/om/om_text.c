@@ -490,9 +490,12 @@ axiom_text_serialize_namespace(
 
     xml_writer = axiom_xml_writer_create_for_memory(env, NULL, AXIS2_TRUE, 0,
         AXIS2_XML_PARSER_TYPE_BUFFER);
+    /* What does this code do? */
+    /*
     om_namespace = axiom_namespace_create(env, "", "");
 
     if(om_namespace)
+    */
     {
         namespace_uri = axiom_namespace_get_uri(om_text->ns, env);
         namespace_prefix = axiom_namespace_get_prefix(om_text->ns, env);
