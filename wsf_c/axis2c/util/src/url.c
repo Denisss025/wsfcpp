@@ -651,6 +651,12 @@ axutil_url_encode(
     axis2_char_t *expand_buffer = NULL;
     axis2_char_t *temp = NULL;
     int i;
+
+    if (!dest)
+    {
+        return NULL;
+    }
+
     for(i = 0; i < len && buff[i]; i++)
     {
         if(isalnum(buff[i]) || is_safe_or_unreserve(buff[i]))
@@ -669,12 +675,13 @@ axutil_url_encode(
             memset(expand_buffer, 0, (size_t)len * 2);
             len *= 2;
             temp = memmove(expand_buffer, dest, strlen(dest));
-            if(dest)
-            {
-                AXIS2_FREE(env->allocator, dest);
-                dest = NULL;
-            }
+            AXIS2_FREE(env->allocator, dest);
             dest = temp;
+
+	    if (!dest)
+            {
+                return NULL;
+	    }
         }
         strcat(dest, string);
     }
