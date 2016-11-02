@@ -500,10 +500,7 @@ axis2_svc_grp_engage_module(
 
             if(!status)
             {
-                if(phase_resolver)
-                {
-                    axis2_phase_resolver_free(phase_resolver, env);
-                }
+                axis2_phase_resolver_free(phase_resolver, env);
 
                 AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Engaging module %s to service %s failed",
                     module_name_local, svc_name);
@@ -515,10 +512,7 @@ axis2_svc_grp_engage_module(
         }
     }
 
-    if(phase_resolver)
-    {
-        axis2_phase_resolver_free(phase_resolver, env);
-    }
+    axis2_phase_resolver_free(phase_resolver, env);
 
     return axis2_svc_grp_add_module_qname(svc_grp, env, module_name);
 }
@@ -703,10 +697,7 @@ axis2_svc_grp_is_module_engaged(
         hash_idx = axutil_hash_next(env, hash_idx);
     }
 
-    if(phase_resolver)
-    {
-        axis2_phase_resolver_free(phase_resolver, env);
-    }
+    axis2_phase_resolver_free(phase_resolver, env);
 	/** Remove module qname from the engaged module qname list */
 	size = axutil_array_list_size(svc_grp->module_qname_list, env);
     for(i = 0; i < size ; i++)

@@ -108,24 +108,21 @@ axis2_soap_action_disp_find_op(
         AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, "Checking for operation using SOAPAction : %s",
             action);
 
-        if(!op)
+        const axis2_char_t *op_name = NULL;
+        op_name = axutil_rindex(action, '/');
+
+        if(op_name)
         {
-            const axis2_char_t *op_name = NULL;
-            op_name = axutil_rindex(action, '/');
+            op_name += 1;
+        }
+        else
+        {
+            op_name = action;
+        }
 
-            if(op_name)
-            {
-                op_name += 1;
-            }
-            else
-            {
-                op_name = action;
-            }
-
-            if(op_name)
-            {
-                op = axis2_svc_get_op_with_name(svc, env, op_name);
-            }
+        if(op_name)
+        {
+            op = axis2_svc_get_op_with_name(svc, env, op_name);
         }
 
         if(!op)

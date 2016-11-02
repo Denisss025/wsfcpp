@@ -1232,11 +1232,8 @@ axis2_http_worker_process_request(
 
                 c_type = axutil_strtrim(env, temp, NULL);
 
-                if (temp)
-                {
-                    AXIS2_FREE(env->allocator, temp);
-                    temp = NULL;
-                }
+                AXIS2_FREE(env->allocator, temp);
+                temp = NULL;
 
                 if (c_type && accept_header_value &&
                     !axutil_strcasestr(accept_header_value, c_type))
@@ -1797,11 +1794,8 @@ axis2_http_worker_process_request(
         }
     }
 
-    if (url_external_form)
-    {
-        AXIS2_FREE(env->allocator, url_external_form);
-        url_external_form = NULL;
-    }
+    AXIS2_FREE(env->allocator, url_external_form);
+    url_external_form = NULL;
     if (op_ctx)
     {
         axis2_char_t *msg_id = NULL;

@@ -565,10 +565,7 @@ axis2_dep_engine_free(
         axis2_repos_listener_free(dep_engine->repos_listener, env);
     }
 
-    if(dep_engine)
-    {
-        AXIS2_FREE(env->allocator, dep_engine);
-    }
+    AXIS2_FREE(env->allocator, dep_engine);
 
     return;
 }

@@ -732,10 +732,7 @@ axis2_phase_resolver_build_execution_chains_for_op(
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
                 "Module description not found in axis2 configuration for name %s", modulename);
 
-            if(handler_list)
-            {
-                axutil_array_list_free(handler_list, env);
-            }
+            axutil_array_list_free(handler_list, env);
 
             return AXIS2_FAILURE;
         }
@@ -743,10 +740,7 @@ axis2_phase_resolver_build_execution_chains_for_op(
         status = axis2_phase_resolver_add_to_handler_list(env, handler_list, op, module_desc, type);
         if(AXIS2_SUCCESS != status)
         {
-            if(handler_list)
-            {
-                axutil_array_list_free(handler_list, env);
-            }
+            axutil_array_list_free(handler_list, env);
             return AXIS2_FAILURE;
         }
 
@@ -771,10 +765,7 @@ axis2_phase_resolver_build_execution_chains_for_op(
                 "Module description not found in engaged module list for service %s",
                 axis2_svc_get_name(phase_resolver->svc, env));
 
-            if(handler_list)
-            {
-                axutil_array_list_free(handler_list, env);
-            }
+            axutil_array_list_free(handler_list, env);
 
             return AXIS2_FAILURE;
         }
@@ -786,10 +777,7 @@ axis2_phase_resolver_build_execution_chains_for_op(
         status = axis2_phase_resolver_add_to_handler_list(env, handler_list, op, module_desc, type);
         if(AXIS2_SUCCESS != status)
         {
-            if(handler_list)
-            {
-                axutil_array_list_free(handler_list, env);
-            }
+            axutil_array_list_free(handler_list, env);
             return AXIS2_FAILURE;
         }
 
@@ -799,10 +787,7 @@ axis2_phase_resolver_build_execution_chains_for_op(
     if(0 == axutil_array_list_size(handler_list, env))
     {
         /* No flows configured */
-        if(handler_list)
-        {
-            axutil_array_list_free(handler_list, env);
-        }
+        axutil_array_list_free(handler_list, env);
 
         return AXIS2_SUCCESS;
     }
@@ -860,10 +845,7 @@ axis2_phase_resolver_build_execution_chains_for_op(
     }
 
     /* Free the locally created handler_list*/
-    if(handler_list)
-    {
-        axutil_array_list_free(handler_list, env);
-    }
+    axutil_array_list_free(handler_list, env);
 
     if(phase_holder)
     {
@@ -1886,10 +1868,7 @@ axis2_phase_resolver_build_out_transport_chains(
 
             status = axis2_phase_holder_build_transport_handler_chain(phase_holder, env, phase,
                 handlers);
-            if(phase_holder)
-            {
-                axis2_phase_holder_free(phase_holder, env);
-            }
+            axis2_phase_holder_free(phase_holder, env);
         }
         else
         {

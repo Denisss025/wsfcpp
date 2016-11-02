@@ -277,10 +277,7 @@ axis2_op_free(
         AXIS2_FREE(env->allocator, op->rest_http_location);
     }
 
-    if(op)
-    {
-        AXIS2_FREE(env->allocator, op);
-    }
+    AXIS2_FREE(env->allocator, op);
 
     return;
 }

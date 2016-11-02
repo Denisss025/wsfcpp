@@ -1035,6 +1035,7 @@ axis2_http_transport_utils_process_http_put_request(
                  axis2_http_transport_utils_on_data_request,
                  (void *) callback_ctx,
                  mime_boundary);*/
+		/* binary_data_map is always NULL */
                 if(!binary_data_map)
                 {
                     return AXIS2_FAILURE;
@@ -1191,6 +1192,7 @@ axis2_http_transport_utils_process_http_put_request(
             axis2_http_transport_utils_get_request_params(env, new_url), AXIS2_HTTP_POST);
     }
 
+    /* binary_data_map is always NULL */
     if(binary_data_map)
     {
         axiom_soap_builder_set_mime_body_parts(soap_builder, env, binary_data_map);
@@ -2227,11 +2229,6 @@ axis2_http_transport_utils_create_soap_msg(
                     return NULL;
                 }
 
-                if(!binary_data_map)
-                {
-                    return NULL;
-                }
-
                 soap_body_len = axiom_mime_parser_get_soap_body_len(mime_parser, env);
                 soap_body_str = axiom_mime_parser_get_soap_body_str(mime_parser, env);
             }
@@ -2254,10 +2251,7 @@ axis2_http_transport_utils_create_soap_msg(
 
             axiom_mime_parser_free(mime_parser, env);
             mime_parser = NULL;
-            if(mime_boundary)
-            {
-                AXIS2_FREE(env->allocator, mime_boundary);
-            }
+            AXIS2_FREE(env->allocator, mime_boundary);
 
             if(soap_body_str)
             {
@@ -2380,16 +2374,16 @@ axis2_http_transport_utils_get_value_from_content_type(
     }
 
     tmp = strchr(tmp, AXIS2_EQ);
-    tmp2 = strchr(tmp, AXIS2_SEMI_COLON);
-
-    if(tmp2)
-    {
-        *tmp2 = AXIS2_ESC_NULL;
-    }
     if(!tmp)
     {
         AXIS2_FREE(env->allocator, tmp_content_type);
         return NULL;
+    }
+
+    tmp2 = strchr(tmp, AXIS2_SEMI_COLON);
+    if(tmp2)
+    {
+        *tmp2 = AXIS2_ESC_NULL;
     }
 
     tmp2 = axutil_strdup(env, tmp + 1);
@@ -3036,12 +3030,8 @@ axis2_http_transport_utils_process_request(
                     *temp2 = '\0';
                 }
                 content_type = axutil_strtrim(env, temp, NULL);
+                AXIS2_FREE(env->allocator, temp);
 
-                if (temp)
-                {
-                    AXIS2_FREE(env->allocator, temp);
-                    temp = NULL;
-                }
                 if (content_type && request->accept_header &&
                     !axutil_strcasestr(request->accept_header, content_type))
                 {

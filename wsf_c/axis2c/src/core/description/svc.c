@@ -974,10 +974,7 @@ axis2_svc_engage_module(
         axis2_svc_add_module_qname(svc, env, qname);
     }
 
-    if(phase_resolver)
-    {
-        axis2_phase_resolver_free(phase_resolver, env);
-    }
+    axis2_phase_resolver_free(phase_resolver, env);
 
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Exit:axis2_svc_engage_module");
 
@@ -1120,10 +1117,7 @@ axis2_svc_add_module_ops(
 
         if(AXIS2_SUCCESS != status)
         {
-            if(phase_resolver)
-            {
-                axis2_phase_resolver_free(phase_resolver, env);
-            }
+            axis2_phase_resolver_free(phase_resolver, env);
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
                 "Builidng module operation %s failed for module %s", opname, modname);
             return status;
@@ -1132,10 +1126,7 @@ axis2_svc_add_module_ops(
         status = axis2_svc_add_op(svc, env, op_desc);
         if(AXIS2_SUCCESS != status)
         {
-            if(phase_resolver)
-            {
-                axis2_phase_resolver_free(phase_resolver, env);
-            }
+            axis2_phase_resolver_free(phase_resolver, env);
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Adding operation %s to service %s failed",
                 opname, svcname);
             return status;
@@ -1143,10 +1134,7 @@ axis2_svc_add_module_ops(
 
     }
 
-    if(phase_resolver)
-    {
-        axis2_phase_resolver_free(phase_resolver, env);
-    }
+    axis2_phase_resolver_free(phase_resolver, env);
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "Exit:axis2_svc_add_module_ops");
     return AXIS2_SUCCESS;
 }
@@ -1327,10 +1315,7 @@ axis2_svc_add_rest_mapping(
 
     status = axis2_core_utils_prepare_rest_mapping(env, mapping_url, svc->op_rest_map, op_desc);
 
-    if(mapping_url)
-    {
-        AXIS2_FREE(env->allocator, mapping_url);
-    }
+    AXIS2_FREE(env->allocator, mapping_url);
 
     /* restore the question character */
     if(question_char)

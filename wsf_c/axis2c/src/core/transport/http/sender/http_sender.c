@@ -263,7 +263,6 @@ axis2_http_sender_send(
     axis2_http_simple_response_t *response = NULL;
     axis2_char_t *content_type = NULL;
     axis2_bool_t content_type_deepl_copy = AXIS2_TRUE;
-    axis2_byte_t *output_stream = NULL;
     axis2_ssize_t output_stream_size = 0;
     axis2_bool_t doing_mtom = AXIS2_FALSE;
     axutil_property_t *dump_property = NULL;
@@ -1433,12 +1432,6 @@ axis2_http_sender_send(
 
     axis2_http_simple_request_free(request, env);
     request = NULL;
-
-    if(output_stream)
-    {
-        AXIS2_FREE(env->allocator, output_stream);
-        output_stream = NULL;
-    }
 
     if(status_code < 0)
     {

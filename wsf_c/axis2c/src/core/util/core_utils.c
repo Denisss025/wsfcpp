@@ -349,10 +349,7 @@ axis2_core_utils_calculate_default_module_version(
                         }
                         else
                         {
-                            if(module_name_str)
-                            {
-                                AXIS2_FREE(env->allocator, module_name_str);
-                            }
+                            AXIS2_FREE(env->allocator, module_name_str);
                             if(module_ver_str)
                             {
                                 AXIS2_FREE(env->allocator, module_ver_str);
@@ -365,10 +362,7 @@ axis2_core_utils_calculate_default_module_version(
                             module_ver_str);
                     }
 
-                    if(module_name_str)
-                    {
-                        AXIS2_FREE(env->allocator, module_name_str);
-                    }
+                    AXIS2_FREE(env->allocator, module_name_str);
                 }
             }
         }
@@ -390,11 +384,8 @@ axis2_core_utils_calculate_default_module_version(
         }
     }
 
-    if(default_modules)
-    {
-        axutil_hash_free(default_modules, env);
-        default_modules = NULL;
-    }
+    axutil_hash_free(default_modules, env);
+    default_modules = NULL;
 
     return AXIS2_SUCCESS;
 }
@@ -845,11 +836,8 @@ axis2_core_utils_get_rest_op_with_method_and_location(
                 /* there is no '=' symbol, that mean only the key exist */
                 key = params_str;
             }
-            if(key)
-            {
-                key = axutil_strdup(env, key);
-                axutil_array_list_add(param_keys, env, key);
-            }
+            key = axutil_strdup(env, key);
+            axutil_array_list_add(param_keys, env, key);
             if(value)
             {
                 value = axutil_strdup(env, value);
@@ -868,14 +856,8 @@ axis2_core_utils_get_rest_op_with_method_and_location(
         }
     }
 
-    if(live_mapping_url)
-    {
-        AXIS2_FREE(env->allocator, live_mapping_url);
-    }
-    if(local_url)
-    {
-        AXIS2_FREE(env->allocator, local_url);
-    }
+    AXIS2_FREE(env->allocator, live_mapping_url);
+    AXIS2_FREE(env->allocator, local_url);
     return op;
 }
 

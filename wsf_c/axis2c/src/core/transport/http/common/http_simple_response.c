@@ -532,7 +532,7 @@ axis2_http_simple_response_get_body_bytes(
         axutil_stream_write(tmp_stream, env, buf, read);
         if(read < (AXIS2_HTTP_SIMPLE_RESPONSE_READ_SIZE - 1))
         {
-            break;
+		loop_state = AXIS2_FALSE;
         }
     }
     return_size = (axis2_ssize_t)axutil_stream_get_len(tmp_stream, env);
