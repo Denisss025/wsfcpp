@@ -72,6 +72,11 @@ axutil_properties_free(
     axis2_char_t *value = NULL;
     axutil_hash_index_t *hi = NULL;
 
+    if(!properties)
+    {
+        return;
+    }
+
     if(properties->prop_hash)
     {
         for(hi = axutil_hash_first(properties->prop_hash, env); hi; hi = axutil_hash_next(env, hi))
@@ -89,10 +94,7 @@ axutil_properties_free(
         axutil_hash_free(properties->prop_hash, env);
     }
 
-    if(properties)
-    {
-        AXIS2_FREE(env->allocator, properties);
-    }
+    AXIS2_FREE(env->allocator, properties);
     return;
 }
 
