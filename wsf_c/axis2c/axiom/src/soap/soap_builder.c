@@ -244,11 +244,7 @@ axiom_soap_builder_free(
         }
     }
 
-    if(soap_builder)
-    {
-        AXIS2_FREE(env->allocator, soap_builder);
-        soap_builder = NULL;
-    }
+    AXIS2_FREE(env->allocator, soap_builder);
 
     return;
 }
