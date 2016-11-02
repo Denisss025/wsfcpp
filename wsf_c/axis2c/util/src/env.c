@@ -279,8 +279,7 @@ axutil_env_free_masked(
         axutil_thread_pool_free(env->thread_pool);
     }
 
-    if(env)
-        AXIS2_FREE(env->allocator, env);
+    AXIS2_FREE(env->allocator, env);
 
     return;
 }
