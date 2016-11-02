@@ -47,6 +47,11 @@ axutil_parse_rest_url_for_params(
     axis2_bool_t in_tok = AXIS2_FALSE;
 
     tmp2 = AXIS2_MALLOC(env->allocator, 2 * (sizeof(axis2_char_t *)));
+    if (!tmp2)
+    {
+        return AXIS2_FAILURE;
+    }
+
     memset(tmp2, 0, 2 * sizeof(axis2_char_t *));
 
     if(tmpl[0] == '/')
@@ -59,6 +64,13 @@ axutil_parse_rest_url_for_params(
     {
         resource = axutil_strdup(env, tmpl);
     }
+
+    if (!resource)
+    {
+        AXIS2_FREE(env->allocator, tmp2);
+        return AXIS2_FAILURE;
+    }
+
     i = strlen(resource);
     /* We are sure that the difference lies within the int range */
     if(resource[i] == '/')
@@ -96,6 +108,7 @@ axutil_parse_rest_url_for_params(
             {
                 if(j + 1 == i || resource[j + 1] == '}')
                 {
+                    AXIS2_FREE(env->allocator, tmp2);
                     AXIS2_FREE(env->allocator, resource);
                     return AXIS2_FAILURE;
                 }
@@ -113,6 +126,7 @@ axutil_parse_rest_url_for_params(
         {
             if(resource[j] == '{')
             {
+                AXIS2_FREE(env->allocator, tmp2);
                 AXIS2_FREE(env->allocator, resource);
                 return AXIS2_FAILURE;
             }
@@ -131,6 +145,7 @@ axutil_parse_rest_url_for_params(
     }
     if(in_tok)
     {
+        AXIS2_FREE(env->allocator, tmp2);
         AXIS2_FREE(env->allocator, resource);
         return AXIS2_FAILURE;
     }
@@ -146,6 +161,13 @@ axutil_parse_rest_url_for_params(
     else
     {
         url_resource = axutil_strdup(env, url);
+    }
+
+    if (!url_resource)
+    {
+        AXIS2_FREE(env->allocator, tmp2);
+        AXIS2_FREE(env->allocator, resource);
+	return AXIS2_FAILURE;
     }
     i = strlen(url_resource);
 
@@ -310,6 +332,13 @@ axutil_parse_rest_url_for_params(
                             ret_count++;
                             ret = AXIS2_MALLOC(env->allocator, (size_t)ret_count * 2
                                 * (sizeof(axis2_char_t *)));
+			    if (!ret)
+                            {
+                                AXIS2_FREE(env->allocator, tmp2);
+                                AXIS2_FREE(env->allocator, resource);
+                                AXIS2_FREE(env->allocator, url_resource);
+                                return AXIS2_FAILURE;
+			    }
                             memset(ret, 0, ret_count * 2 * sizeof(axis2_char_t *));
                             for(i = 0; i < (size_t)ret_count - 1; i++)
                             {
@@ -317,6 +346,12 @@ axutil_parse_rest_url_for_params(
                             }
                             ret[i] = tmp2;
                             tmp2 = AXIS2_MALLOC(env->allocator, 2 * (sizeof(axis2_char_t *)));
+			    if (!tmp2)
+                            {
+                                AXIS2_FREE(env->allocator, resource);
+                                AXIS2_FREE(env->allocator, url_resource);
+                                return AXIS2_FAILURE;
+			    }
                             memset(tmp2, 0, 2 * sizeof(axis2_char_t *));
                             tmp3 = NULL;
                             break;
@@ -349,26 +384,17 @@ axutil_parse_rest_url_for_params(
         }
         tmp1 = tmp4 + 1;
     }
-    if(resource)
+    AXIS2_FREE(env->allocator, resource);
+    AXIS2_FREE(env->allocator, url_resource);
+    if(tmp2[0])
     {
-        AXIS2_FREE(env->allocator, resource);
+        AXIS2_FREE(env->allocator, tmp2[0]);
     }
-    if(url_resource)
+    if(tmp2[1])
     {
-        AXIS2_FREE(env->allocator, url_resource);
+        AXIS2_FREE(env->allocator, tmp2[1]);
     }
-    if(tmp2)
-    {
-        if(tmp2[0])
-        {
-            AXIS2_FREE(env->allocator, tmp2[0]);
-        }
-        if(tmp2[1])
-        {
-            AXIS2_FREE(env->allocator, tmp2[1]);
-        }
-        AXIS2_FREE(env->allocator, tmp2);
-    }
+    AXIS2_FREE(env->allocator, tmp2);
     if(finished)
     {
         status = AXIS2_SUCCESS;
