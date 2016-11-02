@@ -53,6 +53,11 @@ axutil_file_free(
     axutil_file_t *file,
     const axutil_env_t *env)
 {
+    if (!file)
+    {
+        return;
+    }
+
     if(file->name)
     {
         AXIS2_FREE(env->allocator, file->name);
@@ -63,10 +68,7 @@ axutil_file_free(
         AXIS2_FREE(env->allocator, file->path);
     }
 
-    if(file)
-    {
-        AXIS2_FREE(env->allocator, file);
-    }
+    AXIS2_FREE(env->allocator, file);
     return;
 }
 
