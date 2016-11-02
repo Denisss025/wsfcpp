@@ -257,18 +257,12 @@ axutil_stomp_frame_read(
     if (!p)
     {
         axutil_stomp_frame_free(frame, env);
-        if (buffer)
-        {
-            AXIS2_FREE(env->allocator, buffer);
-        }
+        AXIS2_FREE(env->allocator, buffer);
         return NULL;
     }
     *p = 0;
-    if (buffer)
-    {
-        AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, 
-                        "[stomp]read command %s", buffer);
-    }
+    AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, 
+                    "[stomp]read command %s", buffer);
     frame->command = buffer;
 
     buffer = p + 1;
@@ -277,22 +271,16 @@ axutil_stomp_frame_read(
         p = strstr(buffer, "\n");
         h = p - buffer;
         *p = 0;
-        if (buffer)
-        {
-            AXIS2_LOG_DEBUG(env->log, 
-                            AXIS2_LOG_SI, 
-                            "[stomp]read header %s", buffer);
-            axutil_array_list_add(frame->headers, env, (void *) buffer);
-        }
+        AXIS2_LOG_DEBUG(env->log, 
+                        AXIS2_LOG_SI, 
+                        "[stomp]read header %s", buffer);
+        axutil_array_list_add(frame->headers, env, (void *) buffer);
         buffer = p + 1;
     }
 
-    if (buffer)
-    {
-        AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, 
-                        "[stomp]read body %d length message", 
-                        strlen (buffer));
-    }
+    AXIS2_LOG_DEBUG(env->log, AXIS2_LOG_SI, 
+                    "[stomp]read body %d length message", 
+                    strlen (buffer));
     frame->body = buffer;
     return frame;
 }
