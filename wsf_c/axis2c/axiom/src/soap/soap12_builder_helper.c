@@ -236,18 +236,9 @@ axiom_soap12_builder_helper_handle_event(
             }
             else
             {
-                if(builder_helper->code_processing)
-                {
-                    AXIS2_ERROR_SET(env->error, AXIS2_ERROR_SOAP_FAULT_CODE_DOES_NOT_HAVE_A_VALUE,
-                        AXIS2_FAILURE);
-                    return AXIS2_FAILURE;
-                }
-                else
-                {
-                    AXIS2_ERROR_SET(env->error, AXIS2_ERROR_SOAP_FAULT_CODE_DOES_NOT_HAVE_A_VALUE,
-                        AXIS2_FAILURE);
-                    return AXIS2_FAILURE;
-                }
+                AXIS2_ERROR_SET(env->error, AXIS2_ERROR_SOAP_FAULT_CODE_DOES_NOT_HAVE_A_VALUE,
+                    AXIS2_FAILURE);
+                return AXIS2_FAILURE;
             }
         }
         else if(axutil_strcmp(ele_localname, AXIOM_SOAP12_SOAP_FAULT_NODE_LOCAL_NAME) == 0)
