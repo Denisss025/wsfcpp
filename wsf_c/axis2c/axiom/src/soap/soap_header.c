@@ -639,11 +639,8 @@ axiom_soap_header_qname_matches(
     {
         return AXIS2_TRUE;
     }
-    if(qname_to_match)
-    {
-        match_lpart = axutil_qname_get_localpart(qname_to_match, env);
-        match_nsuri = axutil_qname_get_uri(qname_to_match, env);
-    }
+    match_lpart = axutil_qname_get_localpart(qname_to_match, env);
+    match_nsuri = axutil_qname_get_uri(qname_to_match, env);
     if(element_qname)
     {
         ele_lpart = axutil_qname_get_localpart(element_qname, env);
