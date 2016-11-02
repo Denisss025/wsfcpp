@@ -301,6 +301,10 @@ axutil_qname_create_from_string(
         return NULL;
 
     temp_string = axutil_strdup(env, qstring);
+    if (!temp_string)
+    {
+        return NULL;
+    }
 
     idx = strchr(temp_string, '|');
     if(idx)
@@ -328,9 +332,6 @@ axutil_qname_create_from_string(
         /** only localpart is there in this qname */
         qname = axutil_qname_create(env, temp_string, NULL, NULL);
     }
-    if(temp_string)
-    {
-        AXIS2_FREE(env->allocator, temp_string);
-    }
+    AXIS2_FREE(env->allocator, temp_string);
     return qname;
 }
