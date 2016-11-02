@@ -44,12 +44,16 @@ axutil_tokenize(
     }
 
     str = axutil_strdup(env, in);
+    if (!str)
+    {
+        return NULL;
+    }
     temp = str;
 
     do
     {
         idx = strchr(str, delim);
-        if((!idx) && str && *str)
+        if((!idx) && *str)
         {
             axutil_array_list_add(list, env, axutil_strdup(env, str));
             break;
@@ -57,12 +61,12 @@ axutil_tokenize(
 
         rest = idx + 1;
         str[idx - str] = '\0';
-        if(str && *str)
+        if(*str)
         {
             axutil_array_list_add(list, env, axutil_strdup(env, str));
         }
 
-        if(!rest || !*rest)
+        if(!*rest)
         {
             break;
         }
@@ -72,10 +76,8 @@ axutil_tokenize(
 
     }
     while(loop_state);
-    if(temp)
-    {
-        AXIS2_FREE(env->allocator, temp);
-    }
+    AXIS2_FREE(env->allocator, temp);
+
     return list;
 }
 
