@@ -268,10 +268,7 @@ axutil_properties_load(
         AXIS2_FREE(env->allocator, buffer);
         return AXIS2_FAILURE;
     }
-    if(input)
-    {
-        fclose(input);
-    }
+    fclose(input);
     AXIS2_FREE(env->allocator, buffer);
     return AXIS2_SUCCESS;
 }
