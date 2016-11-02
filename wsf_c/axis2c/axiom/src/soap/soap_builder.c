@@ -176,13 +176,13 @@ axiom_soap_builder_free(
     }
     if(soap_builder->builder_helper)
     {
-        if(soap_builder->soap_version == AXIOM_SOAP11 && soap_builder->builder_helper)
+        if(soap_builder->soap_version == AXIOM_SOAP11)
         {
             axiom_soap11_builder_helper_free(
                 (axiom_soap11_builder_helper_t *)(soap_builder->builder_helper), env);
             soap_builder->builder_helper = NULL;
         }
-        else if(soap_builder->soap_version == AXIOM_SOAP12 && soap_builder->builder_helper)
+        else if(soap_builder->soap_version == AXIOM_SOAP12)
         {
             axiom_soap12_builder_helper_free(
                 (axiom_soap12_builder_helper_t *)(soap_builder->builder_helper), env);
