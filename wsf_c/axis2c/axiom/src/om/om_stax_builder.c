@@ -573,10 +573,8 @@ axiom_stax_builder_create_om_processing_instruction(
     axiom_node_set_builder(pi_node, env, om_builder);
     om_builder->element_level++;
 
-    if(target)
-    {
-        axiom_xml_reader_xml_free(om_builder->parser, env, target);
-    }
+    axiom_xml_reader_xml_free(om_builder->parser, env, target);
+
     if(value)
     {
         axiom_xml_reader_xml_free(om_builder->parser, env, value);
