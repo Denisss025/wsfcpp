@@ -465,11 +465,11 @@ axutil_error_create(
         return NULL;
 
     error = (axutil_error_t *)AXIS2_MALLOC(allocator, sizeof(axutil_error_t));
-    memset(error, 0, sizeof(axutil_error_t));
 
     if(!error)
         return NULL;
 
+    memset(error, 0, sizeof(axutil_error_t));
     error->allocator = allocator;
     error->status_code = AXIS2_SUCCESS;
 
