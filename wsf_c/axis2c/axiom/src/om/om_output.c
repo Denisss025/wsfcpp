@@ -370,11 +370,7 @@ axiom_output_get_next_content_id(
         AXIS2_FREE(env->allocator, temp_str1);
         temp_str1 = NULL;
     }
-    if(uuid)
-    {
-        AXIS2_FREE(env->allocator, uuid);
-        uuid = NULL;
-    }
+    AXIS2_FREE(env->allocator, uuid);
     return om_output->next_content_id;
 }
 
