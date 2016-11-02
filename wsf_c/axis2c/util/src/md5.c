@@ -190,7 +190,7 @@ axutil_md5_final(
     encode(digest, context->state, AXIS2_MD5_DIGESTSIZE);
 
     /* Zeroize sensitive information. */
-    memset(context, 0, sizeof(*context));
+    bzero(context, sizeof(*context));
 
     return AXIS2_SUCCESS;
 }
@@ -308,7 +308,7 @@ static void AXIS2_CALL md5_transform(
     state[3] += d;
 
     /* Zeroize sensitive information. */
-    memset(x, 0, sizeof(x));
+    bzero(x, sizeof(x));
 }
 
 /* encodes input (unsigned int) into output (unsigned char). Assumes len is
