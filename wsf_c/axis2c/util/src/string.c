@@ -561,17 +561,16 @@ axutil_strncasecmp(
     const axis2_char_t *s2,
     const int n)
 {
-    axis2_char_t *str1 = (axis2_char_t *)s1, *str2 = (axis2_char_t *)s2;
     int i = (int)n;
+    int c1, c2;
 
-    while(--i >= 0 && toupper((int)*str1) == toupper((int)*str2++))
-    {
-        if(toupper((int)*str1++) == '\0')
-        {
-            return (0);
-        }
+    c1 = toupper((int)*s1);
+    c2 = toupper((int)*s2);
+    for (i = n; i >= 0 && c1 == c2; --i, ++s1, ++s2) {
+        c1 = toupper((int)*s1);
+        c2 = toupper((int)*s2);
     }
-    return (i < 0 ? 0 : toupper((int)*str1) - toupper((int)*--str2));
+    return i < 0 ? 0 : (c1-c2);
 }
 
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL
