@@ -51,6 +51,11 @@ axutil_generic_obj_free(
     axutil_generic_obj_t *generic_obj,
     const axutil_env_t *env)
 {
+    if (!generic_obj)
+    {
+        return;
+    }
+
     if(generic_obj->value)
     {
         if(generic_obj->free_func)
@@ -64,10 +69,7 @@ axutil_generic_obj_free(
 
     }
 
-    if(generic_obj)
-    {
-        AXIS2_FREE(env->allocator, generic_obj);
-    }
+    AXIS2_FREE(env->allocator, generic_obj);
     return;
 }
 
