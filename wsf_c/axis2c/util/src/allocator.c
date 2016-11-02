@@ -64,9 +64,9 @@ axutil_allocator_clone(
     {
         axutil_allocator_t* clone = NULL;
         clone = (axutil_allocator_t *)malloc(sizeof(axutil_allocator_t));
-        memset(clone, 0, sizeof(axutil_allocator_t));
         if(clone)
         {
+            memset(clone, 0, sizeof(axutil_allocator_t));
             clone->malloc_fn = allocator->malloc_fn;
             clone->realloc = allocator->realloc;
             clone->free_fn = allocator->free_fn;
