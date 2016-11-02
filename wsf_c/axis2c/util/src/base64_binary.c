@@ -140,10 +140,7 @@ axutil_base64_binary_free(
         AXIS2_FREE(env->allocator, base64_binary->plain_binary);
     }
 
-    if(base64_binary)
-    {
-        AXIS2_FREE(env->allocator, base64_binary);
-    }
+    AXIS2_FREE(env->allocator, base64_binary);
 
     return;
 }
