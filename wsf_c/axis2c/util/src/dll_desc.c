@@ -87,10 +87,7 @@ axutil_dll_desc_free(
         dll_desc->path_qualified_dll_name = NULL;
     }
 
-    if(dll_desc)
-    {
-        AXIS2_FREE(env->allocator, dll_desc);
-    }
+    AXIS2_FREE(env->allocator, dll_desc);
     return;
 }
 
