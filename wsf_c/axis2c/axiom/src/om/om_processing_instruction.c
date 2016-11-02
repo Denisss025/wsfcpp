@@ -48,7 +48,6 @@ axiom_processing_instruction_create(
     }
 
     *node = axiom_node_create(env);
-
     if(!*node)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
@@ -64,33 +63,25 @@ axiom_processing_instruction_create(
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
         return NULL;
     }
-    processing_instruction->value = NULL;
-
-    if(value)
+    processing_instruction->value = (axis2_char_t *)axutil_strdup(env, value);
+    if(!processing_instruction->value)
     {
-        processing_instruction->value = (axis2_char_t *)axutil_strdup(env, value);
-        if(!processing_instruction->value)
-        {
-            AXIS2_FREE(env->allocator, processing_instruction);
-            AXIS2_FREE(env->allocator, *node);
-            AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
-            return NULL;
-        }
+        AXIS2_FREE(env->allocator, processing_instruction);
+        AXIS2_FREE(env->allocator, *node);
+        AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+        return NULL;
     }
 
     processing_instruction->target = NULL;
 
-    if(target)
+    processing_instruction->target = (axis2_char_t *)axutil_strdup(env, target);
+    if(!processing_instruction->target)
     {
-        processing_instruction->target = (axis2_char_t *)axutil_strdup(env, target);
-        if(!processing_instruction->target)
-        {
-            AXIS2_FREE(env->allocator, processing_instruction->value);
-            AXIS2_FREE(env->allocator, processing_instruction);
-            AXIS2_FREE(env->allocator, *node);
-            AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
-            return NULL;
-        }
+        AXIS2_FREE(env->allocator, processing_instruction->value);
+        AXIS2_FREE(env->allocator, processing_instruction);
+        AXIS2_FREE(env->allocator, *node);
+        AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+        return NULL;
     }
     axiom_node_set_data_element(*node, env, processing_instruction);
     axiom_node_set_node_type(*node, env, AXIOM_PROCESSING_INSTRUCTION);
