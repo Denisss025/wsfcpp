@@ -101,10 +101,7 @@ axutil_property_free(
         }
     }
 
-    if(property)
-    {
-        AXIS2_FREE(env->allocator, property);
-    }
+     AXIS2_FREE(env->allocator, property);
     return;
 }
 
