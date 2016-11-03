@@ -942,62 +942,20 @@ axiom_xpath_node_test_match(
         /* Prefix is checked ??? If changed to uri the cast
          method in xpath.c needs to be changed as well */
         name = axiom_namespace_get_prefix(context->ns, context->env);
-        ns = NULL;
 
-        if(node_test->type == AXIOM_XPATH_NODE_TEST_NONE)
+        if(node_test->type == AXIOM_XPATH_NODE_TEST_NONE || node_test->prefix)
         {
             return AXIS2_FALSE;
         }
-        else
+
+        if(node_test->type == AXIOM_XPATH_NODE_TEST_ALL)
         {
-            /* Check namespace */
-            if(node_test->type == AXIOM_XPATH_NODE_TEST_ALL)
-            {
-                if(!ns && node_test->prefix)
-                {
-                    return AXIS2_FALSE;
-                }
-            }
-            else
-            {
-                if((ns && !node_test->prefix) || (!ns && node_test->prefix))
-                {
-                    return AXIS2_FALSE;
-                }
-            }
+            return AXIS2_TRUE;
+        }
 
-            if(ns && node_test->prefix)
-            {
-                xpath_ns = axiom_xpath_get_namespace(context, node_test->prefix);
-
-                if(!xpath_ns)
-                {
-                    return AXIS2_FALSE;
-                }
-
-                if(axutil_strcmp(axiom_namespace_get_uri(ns, context->env),
-                    axiom_namespace_get_uri(xpath_ns, context->env)))
-                {
-                    return AXIS2_FALSE;
-                }
-            }
-
-            /* Check local name */
-            if(node_test->type == AXIOM_XPATH_NODE_TEST_ALL)
-            {
-                return AXIS2_TRUE;
-            }
-            else if(node_test->type == AXIOM_XPATH_NODE_TEST_STANDARD)
-            {
-                if(name && axutil_strcmp(node_test->name, name) == 0)
-                {
-                    return AXIS2_TRUE;
-                }
-                else
-                {
-                    return AXIS2_FALSE;
-                }
-            }
+        if(node_test->type == AXIOM_XPATH_NODE_TEST_STANDARD)
+        {
+            return (name && axutil_strcmp(node_test->name, name) == 0) ? AXIS2_TRUE : AXIS2_FALSE;
         }
     }
 
