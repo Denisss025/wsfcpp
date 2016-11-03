@@ -682,7 +682,7 @@ axis2_addr_out_handler_add_to_soap_header(
         axutil_array_list_t *meta_attribute_list = NULL;
         int i = 0;
 
-        if(!reference_node) /* may be we alredy created this in ref params block */
+        /*  if(!reference_node)*/  /* may be we alredy created this in ref params block */
         {
             addr_ns_obj = axiom_namespace_create(env, addr_ns, AXIS2_WSA_DEFAULT_PREFIX);
 

@@ -75,17 +75,18 @@ axis2_mod_addr_shutdown(
     axis2_module_t * module,
     const axutil_env_t * env)
 {
+    if(!module)
+    {
+        return AXIS2_SUCCESS;
+    }
+
     if(module->handler_create_func_map)
     {
         axutil_hash_free(module->handler_create_func_map, env);
         module->handler_create_func_map = NULL;
     }
 
-    if(module)
-    {
-        AXIS2_FREE(env->allocator, module);
-        module = NULL;
-    }
+    AXIS2_FREE(env->allocator, module);
     return AXIS2_SUCCESS;
 }
 
