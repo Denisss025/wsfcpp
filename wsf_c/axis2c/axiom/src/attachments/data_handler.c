@@ -115,6 +115,11 @@ axiom_data_handler_free(
     axiom_data_handler_t *data_handler,
     const axutil_env_t *env)
 {
+    if(!data_handler)
+    {
+        return;
+    }
+
     if(data_handler->file_name)
     {
         AXIS2_FREE(env->allocator, data_handler->file_name);
@@ -135,12 +140,7 @@ axiom_data_handler_free(
         AXIS2_FREE(env->allocator, data_handler->mime_id);
     }
 
-    if(data_handler)
-    {
-        AXIS2_FREE(env->allocator, data_handler);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, data_handler);
 }
 
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -287,10 +287,7 @@ axiom_data_handler_read_from(
                 {
                     AXIS2_FREE(env->allocator, byte_stream);
                 }
-                if(read_stream)
-                {
-                    AXIS2_FREE(env->allocator, read_stream);
-                }
+                AXIS2_FREE(env->allocator, read_stream);
                 fclose(f);
                 return AXIS2_FAILURE;
             }
@@ -310,10 +307,7 @@ axiom_data_handler_read_from(
                         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
                         AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
                             "No memory. Cannot create binary stream");
-                        if(read_stream)
-                        {
-                            AXIS2_FREE(env->allocator, read_stream);
-                        }
+                        AXIS2_FREE(env->allocator, read_stream);
                         if(temp_byte_stream)
                         {
                             AXIS2_FREE(env->allocator, temp_byte_stream);
@@ -325,10 +319,7 @@ axiom_data_handler_read_from(
                     memcpy(byte_stream, temp_byte_stream, temp_byte_stream_size);
                     memcpy(byte_stream + temp_byte_stream_size, read_stream, count);
 
-                    if(read_stream)
-                    {
-                        AXIS2_FREE(env->allocator, read_stream);
-                    }
+                    AXIS2_FREE(env->allocator, read_stream);
                     if(temp_byte_stream)
                     {
                         AXIS2_FREE(env->allocator, temp_byte_stream);
@@ -340,7 +331,7 @@ axiom_data_handler_read_from(
                     byte_stream_size = read_stream_size;
                 }
             }
-            else if(read_stream)
+            else
             {
                 AXIS2_FREE(env->allocator, read_stream);
             }

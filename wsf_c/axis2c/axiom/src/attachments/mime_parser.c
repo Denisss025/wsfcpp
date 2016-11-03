@@ -19,7 +19,7 @@
 #include <axutil_string.h>
 #include <axiom_data_handler.h>
 #include <stdio.h>
-#include <ctype.h>    
+#include <ctype.h>
 #include <axutil_http_chunked_stream.h>
 #include <axiom_mtom_caching_callback.h>
 #include <axutil_class_loader.h>
@@ -264,7 +264,7 @@ axiom_mime_parser_free(
     const axutil_env_t * env)
 {
     AXIS2_ENV_CHECK_VOID(env);
-    
+
     if (!mime_parser)
     {
 	    return;
@@ -307,10 +307,7 @@ axiom_mime_parser_free(
 		AXIS2_FREE(env->allocator, mime_parser->mime_boundary);
 	}
 
-    if(mime_parser)
-    {
-        AXIS2_FREE(env->allocator, mime_parser);
-    }
+    AXIS2_FREE(env->allocator, mime_parser);
 
     return;
 }
@@ -397,7 +394,7 @@ axiom_mime_parser_parse_for_soap(
     /*starting buffer for the current search*/
     part_start = buf_num;
 
-    /*We are passing the address of the buf_num , beacause that value 
+    /*We are passing the address of the buf_num , beacause that value
      is changing inside the method.*/
 
     /* Following call to the method will search first \r\n\r\n */
@@ -415,7 +412,7 @@ axiom_mime_parser_parse_for_soap(
 
     if(search_info->match_len2 == 0)
     {
-        /*Readjusting the buffers for the next search and discarding the prevoius 
+        /*Readjusting the buffers for the next search and discarding the prevoius
          buffers*/
 
         /* We need the remaining part in the buffer after the \r\n\r\n*/
@@ -428,7 +425,7 @@ axiom_mime_parser_parse_for_soap(
         }
         else
         {
-            /* Here we will create a new buffer of predefined size fill the 
+            /* Here we will create a new buffer of predefined size fill the
              * first portion from the remaining part after previous search
              * and then fill the remaining from the callback */
 
@@ -514,7 +511,7 @@ axiom_mime_parser_parse_for_soap(
         return AXIS2_FAILURE;
     }
 
-    /*Resetting the previous search data and getting ready 
+    /*Resetting the previous search data and getting ready
      for the next search */
 
     part_start = buf_num;
@@ -542,7 +539,7 @@ axiom_mime_parser_parse_for_soap(
             buf_array[buf_num]);
         if(soap_len > 0)
         {
-            /* Get the SOAP string from the starting and end buffers containing 
+            /* Get the SOAP string from the starting and end buffers containing
              * the SOAP  part */
 
             soap_str = axiom_mime_parser_create_part(env, soap_len, buf_num, len_array, part_start,
@@ -654,10 +651,10 @@ axiom_mime_parser_parse_for_soap(
     mime_parser->soap_body_len = soap_len;
     mime_parser->current_buf_num = buf_num;
 
-    /* There are multipart/related messages which does not contain attachments 
+    /* There are multipart/related messages which does not contain attachments
      * The only mime_part is the soap envelope. So for those messages the mime
      * boundary after the soap will end up with --
-     * So we will check that here and if we found then the logic inside the 
+     * So we will check that here and if we found then the logic inside the
      * while loop will not be executed */
 
     end_of_mime = (AXIOM_MIME_BOUNDARY_BYTE == *(buf_array[buf_num])) && (AXIOM_MIME_BOUNDARY_BYTE
@@ -727,7 +724,7 @@ axiom_mime_parser_parse_for_attachments(
      */
 
     /* This loop will extract all the attachments in the message. The condition
-     * with the count is needed because if the sender not marked the end of the 
+     * with the count is needed because if the sender not marked the end of the
      * attachment with -- then this loop may run infinitely. To prevent that
      * this additional condition has been put */
 
@@ -766,7 +763,7 @@ axiom_mime_parser_parse_for_attachments(
         /*The pattern contains in one buffer*/
         if(search_info->match_len2 == 0)
         {
-            /*We found it . so lets seperates the details of this binary into 
+            /*We found it . so lets seperates the details of this binary into
              mime headers.*/
 
             mime_headers_len = axiom_mime_parser_calculate_part_len(env, buf_num, len_array,
@@ -907,14 +904,14 @@ axiom_mime_parser_parse_for_attachments(
 
         if(pos)
         {
-            /*If it is small we are not caching. Hence the attachment 
+            /*If it is small we are not caching. Hence the attachment
              is in memory. So store it in a buffer. */
 
             if(!search_info->cached)
             {
                 if(search_info->match_len2 == 0)
                 {
-                    /* mime_binary contains the attachment when it does not 
+                    /* mime_binary contains the attachment when it does not
                      * cached */
 
                     mime_binary_len = axiom_mime_parser_calculate_part_len(env, buf_num, len_array,
@@ -956,7 +953,7 @@ axiom_mime_parser_parse_for_attachments(
             }
 
             /* The functionality below is common when it is cached or not. It deals with remaining
-             * after a particualr attachment, Those may be related to a end of mime_boundary or 
+             * after a particualr attachment, Those may be related to a end of mime_boundary or
              * another attachment */
 
             if(search_info->match_len2 == 0)
@@ -975,7 +972,7 @@ axiom_mime_parser_parse_for_attachments(
                         memcpy(buffer, pos + temp_mime_boundary_size, malloc_len);
                     }
 
-                    /*When the last buffer only containing -- we know this is the end 
+                    /*When the last buffer only containing -- we know this is the end
                      of the attachments. Hence we don't need to read again*/
 
                     if(malloc_len != 2)
@@ -1048,8 +1045,8 @@ axiom_mime_parser_parse_for_attachments(
             return NULL;
         }
 
-        /*We have the attachment now either cached or not. So lets put it in the mime_parts 
-         * hash map with the mime_id. Remember at this moment we have already processed the 
+        /*We have the attachment now either cached or not. So lets put it in the mime_parts
+         * hash map with the mime_id. Remember at this moment we have already processed the
          * mime_headers and mime_id is already there */
 
         /* In the case user has not specified the callback or the attachment dir . So we cached it to a memory
@@ -1202,7 +1199,7 @@ axiom_mime_parser_search_for_crlf(
     return found;
 }
 
-/* This method will search for the mime_boundary after the SOAP part 
+/* This method will search for the mime_boundary after the SOAP part
  * of the message */
 
 static axis2_char_t *
@@ -1244,7 +1241,7 @@ axiom_mime_parser_search_for_soap(
 
     while(!found)
     {
-        /* We need to create the second buffer and do the search for the 
+        /* We need to create the second buffer and do the search for the
          * mime_boundary in the both the buffers */
 
         *buf_num = *buf_num + 1;
@@ -1281,7 +1278,7 @@ axiom_mime_parser_search_for_soap(
     return found;
 }
 
-/*The caching is done in this function. Caching happens when we did not 
+/*The caching is done in this function. Caching happens when we did not
  find the mime_boundary in initial two buffers. So the maximum size
  that we are keeping in memory is 2 * size. This size can be configurable from
  the aixs.xml. The caching may starts when the search failed with the
@@ -1375,7 +1372,7 @@ axiom_mime_parser_search_for_attachment(
 
                     axis2_char_t *encoded_mime_id = NULL;
 
-                    /* Some times content-ids urls, hence we need to encode them 
+                    /* Some times content-ids urls, hence we need to encode them
                      * becasue we can't create files with / */
 
                     encoded_mime_id = AXIS2_MALLOC(env->allocator, (sizeof(axis2_char_t))
@@ -1414,7 +1411,7 @@ axiom_mime_parser_search_for_attachment(
 
             else
             {
-                /* Here the user has not specified the caching File location. So we are 
+                /* Here the user has not specified the caching File location. So we are
                  * not going to cache. Instead we store the attachment in the buffer */
                 status = axiom_mime_parser_cache_to_buffer(env, buf_array[*buf_num - 1],
                     len_array[*buf_num - 1], search_info, mime_parser);
@@ -1466,7 +1463,7 @@ axiom_mime_parser_search_for_attachment(
             break;
         }
 
-        /* Now there are two buffers. If the searching string is not 
+        /* Now there are two buffers. If the searching string is not
          * here then we must cache the first buffer */
 
         if(!found)
@@ -1487,16 +1484,16 @@ axiom_mime_parser_search_for_attachment(
         }
     }
 
-    /* Here we are out of the loop. If there is no error then this means 
+    /* Here we are out of the loop. If there is no error then this means
      * the searching string is found */
     if(search_info->cached && found)
     {
-        /* If the attachment is cached then we need to cache the 
+        /* If the attachment is cached then we need to cache the
          * final buffer */
 
         if(search_info->match_len2 == 0)
         {
-            /* This is the case where we found the whole string in one buffer 
+            /* This is the case where we found the whole string in one buffer
              * So we need to cache previous buffer and the data up to the starting
              * point of the search string in the current buffer */
 
@@ -1542,7 +1539,7 @@ axiom_mime_parser_search_for_attachment(
         }
         else if(search_info->match_len2 > 0)
         {
-            /*Here the curent buffer has partial mime boundary. So we need 
+            /*Here the curent buffer has partial mime boundary. So we need
              to cache only the previous buffer. */
 
             if(mime_parser->mtom_caching_callback)
@@ -1610,10 +1607,10 @@ axiom_mime_parser_search_for_attachment(
     return found;
 }
 
-/*following two functions are used to extract important information 
+/*following two functions are used to extract important information
  from the buffer list. eg: SOAP, MIME_HEADERS*/
 
-/*marker is the starting buffer of the required 
+/*marker is the starting buffer of the required
  part and pos is the end point of that part  */
 
 static size_t
@@ -1652,7 +1649,7 @@ axiom_mime_parser_create_part(
     axiom_mime_parser_t *mime_parser)
 {
     /*We will copy the set of buffers which contains the required part.
-     This part can be the SOAP message , mime headers or the mime 
+     This part can be the SOAP message , mime headers or the mime
      binary in the case of none cahced.*/
 
     axis2_char_t *part_str = NULL;
@@ -1668,7 +1665,7 @@ axiom_mime_parser_create_part(
         return NULL;
     }
 
-    /* Copy from the part starting buffer to the 
+    /* Copy from the part starting buffer to the
      * curent buffer */
 
     for(i = marker; i < buf_num; i++)
@@ -1868,7 +1865,7 @@ axiom_mime_parser_search_string(
     }
 }
 
-/* This method creates a data_handler out of the attachment 
+/* This method creates a data_handler out of the attachment
  * and store the data_handler in the mime_parts map */
 
 static axis2_status_t
@@ -1907,7 +1904,7 @@ axiom_mime_parser_store_attachment(
                 axis2_char_t *attachment_location = NULL;
                 axis2_char_t *encoded_mime_id = NULL;
 
-                /* Some times content-ids urls, hence we need to encode them 
+                /* Some times content-ids urls, hence we need to encode them
                  * becasue we can't create files with / */
 
                 encoded_mime_id = AXIS2_MALLOC(env->allocator, (sizeof(axis2_char_t)) * (strlen(
@@ -2282,7 +2279,7 @@ axiom_mime_parser_initiate_callback(
 
 }
 
-/* This method will tell whether there are more data in the 
+/* This method will tell whether there are more data in the
  * stream */
 
 static axis2_bool_t
@@ -2291,7 +2288,7 @@ axiom_mime_parser_is_more_data(
     const axutil_env_t *env,
     axis2_callback_info_t *callback_info)
 {
-    /* In the case of axutil_http_chunked stream it is the 
+    /* In the case of axutil_http_chunked stream it is the
      * end of chunk */
     AXIS2_ENV_CHECK(env, AXIS2_FALSE);
     AXIS2_PARAM_CHECK(env->error, mime_parser, AXIS2_FALSE);
@@ -2308,7 +2305,7 @@ axiom_mime_parser_is_more_data(
         }
     }
 
-    /* When we are using content length or any wrapped 
+    /* When we are using content length or any wrapped
      * stream it will be the unread_length */
 
     else if(callback_info->unread_len == 0)

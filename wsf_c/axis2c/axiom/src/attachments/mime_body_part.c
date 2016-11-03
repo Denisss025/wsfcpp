@@ -122,6 +122,11 @@ axiom_mime_body_part_free(
     axiom_mime_body_part_t *mime_body_part,
     const axutil_env_t *env)
 {
+    if(!mime_body_part)
+    {
+        return;
+    }
+
     if(mime_body_part->header_map)
     {
         axutil_hash_index_t *hash_index = NULL;
@@ -141,12 +146,7 @@ axiom_mime_body_part_free(
         mime_body_part->header_map = NULL;
     }
 
-    if(mime_body_part)
-    {
-        AXIS2_FREE(env->allocator, mime_body_part);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, mime_body_part);
 }
 
 /* This method will add a mime_header to the hash */
