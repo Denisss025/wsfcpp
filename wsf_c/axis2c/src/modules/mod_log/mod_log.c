@@ -71,15 +71,17 @@ axis2_mod_log_shutdown(
     axis2_module_t * module,
     const axutil_env_t * env)
 {
+    if(!module)
+    {
+        return AXIS2_SUCCESS;
+    }
+
     if(module->handler_create_func_map)
     {
         axutil_hash_free(module->handler_create_func_map, env);
     }
 
-    if(module)
-    {
-        AXIS2_FREE(env->allocator, module);
-    }
+    AXIS2_FREE(env->allocator, module);
     return AXIS2_SUCCESS;
 }
 
