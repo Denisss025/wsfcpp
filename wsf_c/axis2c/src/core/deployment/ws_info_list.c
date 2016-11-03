@@ -83,6 +83,11 @@ axis2_ws_info_list_free(
     axis2_ws_info_list_t * ws_info_list,
     const axutil_env_t * env)
 {
+    if(!ws_info_list)
+    {
+        return;
+    }
+
     if(ws_info_list->current_info_list)
     {
         int list_size = 0;
@@ -116,12 +121,7 @@ axis2_ws_info_list_free(
         axutil_array_list_free(ws_info_list->ws_info_list, env);
     }
 
-    if(ws_info_list)
-    {
-        AXIS2_FREE(env->allocator, ws_info_list);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, ws_info_list);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

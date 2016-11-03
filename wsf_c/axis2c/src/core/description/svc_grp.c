@@ -137,6 +137,10 @@ axis2_svc_grp_free(
     axis2_svc_grp_t * svc_grp,
     const axutil_env_t * env)
 {
+    if(!svc_grp)
+    {
+        return;
+    }
     if(svc_grp->param_container)
     {
         axutil_param_container_free(svc_grp->param_container, env);
@@ -168,11 +172,7 @@ axis2_svc_grp_free(
         axis2_desc_free(svc_grp->base, env);
     }
 
-    if(svc_grp)
-    {
-        AXIS2_FREE(env->allocator, svc_grp);
-    }
-    return;
+    AXIS2_FREE(env->allocator, svc_grp);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

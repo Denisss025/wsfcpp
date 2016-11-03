@@ -123,6 +123,11 @@ axis2_desc_builder_free(
     axis2_desc_builder_t * desc_builder,
     const axutil_env_t * env)
 {
+    if(!desc_builder)
+    {
+        return;
+    }
+
     if(desc_builder->file_name)
     {
         AXIS2_FREE(env->allocator, desc_builder->file_name);
@@ -136,11 +141,7 @@ axis2_desc_builder_free(
     /* we cannot free deployment engine here */
     desc_builder->engine = NULL;
 
-    if(desc_builder)
-    {
-        AXIS2_FREE(env->allocator, desc_builder);
-    }
-    return;
+    AXIS2_FREE(env->allocator, desc_builder);
 }
 
 AXIS2_EXTERN axiom_node_t *AXIS2_CALL

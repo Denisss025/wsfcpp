@@ -76,16 +76,16 @@ axis2_svc_grp_builder_free(
     axis2_svc_grp_builder_t * svc_grp_builder,
     const axutil_env_t * env)
 {
+    if(!svc_grp_builder)
+    {
+        return;
+    }
+
     if(svc_grp_builder->desc_builder)
     {
         axis2_desc_builder_free(svc_grp_builder->desc_builder, env);
     }
-    if(svc_grp_builder)
-    {
-        AXIS2_FREE(env->allocator, svc_grp_builder);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, svc_grp_builder);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

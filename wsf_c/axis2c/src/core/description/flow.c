@@ -54,6 +54,11 @@ axis2_flow_free(
     axis2_flow_t * flow,
     const axutil_env_t * env)
 {
+    if(!flow)
+    {
+        return;
+    }
+
     if(flow->list)
     {
         int i = 0;
@@ -70,12 +75,7 @@ axis2_flow_free(
         axutil_array_list_free(flow->list, env);
     }
 
-    if(flow)
-    {
-        AXIS2_FREE(env->allocator, flow);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, flow);
 }
 
 AXIS2_EXTERN void AXIS2_CALL

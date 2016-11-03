@@ -221,8 +221,7 @@ axis2_rest_disp_find_op(
                             method, location, param_keys, param_values);
                     }
                 }
-                if(url_tokens[0])
-                    AXIS2_FREE(env->allocator, url_tokens[0]);
+                AXIS2_FREE(env->allocator, url_tokens[0]);
                 if(url_tokens[1])
                     AXIS2_FREE(env->allocator, url_tokens[1]);
                 AXIS2_FREE(env->allocator, url_tokens);

@@ -131,6 +131,11 @@ axis2_policy_include_free(
 {
     AXIS2_ENV_CHECK_VOID(env);
 
+    if(!policy_include)
+    {
+        return;
+    }
+
     if(policy_include->registry)
     {
         neethi_registry_free(policy_include->registry, env);
@@ -154,10 +159,7 @@ axis2_policy_include_free(
         axutil_hash_free(policy_include->wrapper_elements, env);
     }
 
-    if(policy_include)
-    {
-        AXIS2_FREE(env->allocator, policy_include);
-    }
+    AXIS2_FREE(env->allocator, policy_include);
 
     return;
 }

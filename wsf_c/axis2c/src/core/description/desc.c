@@ -77,6 +77,11 @@ axis2_desc_free(
     axis2_desc_t * desc,
     const axutil_env_t * env)
 {
+    if(!desc)
+    {
+        return;
+    }
+
     if(desc->children)
     {
         axutil_hash_index_t *hi = NULL;
@@ -105,12 +110,7 @@ axis2_desc_free(
         axis2_policy_include_free(desc->policy_include, env);
     }
 
-    if(desc)
-    {
-        AXIS2_FREE(env->allocator, desc);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, desc);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

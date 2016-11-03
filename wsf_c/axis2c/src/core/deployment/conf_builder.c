@@ -115,17 +115,17 @@ axis2_conf_builder_free(
     axis2_conf_builder_t * conf_builder,
     const axutil_env_t * env)
 {
+    if(!conf_builder)
+    {
+        return;
+    }
+
     if(conf_builder->desc_builder)
     {
         axis2_desc_builder_free(conf_builder->desc_builder, env);
     }
 
-    if(conf_builder)
-    {
-        AXIS2_FREE(env->allocator, conf_builder);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, conf_builder);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

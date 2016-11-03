@@ -121,6 +121,11 @@ axis2_module_desc_free(
 {
     AXIS2_ENV_CHECK_VOID(env);
 
+    if(!module_desc)
+    {
+        return;
+    }
+
     if(module_desc->module)
     {
         axis2_module_shutdown(module_desc->module, env);
@@ -161,12 +166,7 @@ axis2_module_desc_free(
         axutil_hash_free(module_desc->ops, env);
     }
 
-    if(module_desc)
-    {
-        AXIS2_FREE(env->allocator, module_desc);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, module_desc);
 }
 
 AXIS2_EXTERN void AXIS2_CALL

@@ -54,6 +54,11 @@ axis2_flow_container_free(
     axis2_flow_container_t * flow_container,
     const axutil_env_t * env)
 {
+    if(!flow_container)
+    {
+        return;
+    }
+
     if(flow_container->in)
     {
         axis2_flow_free(flow_container->in, env);
@@ -74,12 +79,7 @@ axis2_flow_container_free(
         axis2_flow_free(flow_container->out_fault, env);
     }
 
-    if(flow_container)
-    {
-        AXIS2_FREE(env->allocator, flow_container);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, flow_container);
 }
 
 AXIS2_EXTERN axis2_flow_t *AXIS2_CALL

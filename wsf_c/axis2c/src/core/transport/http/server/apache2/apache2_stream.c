@@ -107,7 +107,7 @@ apache2_stream_read(
 
     stream_impl = AXIS2_INTF_TO_IMPL(stream);
 
-    while(count - len > 0)
+    while(count != len)
     {
         read = apache2_ap_get_client_block(stream_impl->request, (char *) buffer + len,
                                    count - len);

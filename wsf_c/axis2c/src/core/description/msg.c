@@ -103,6 +103,11 @@ axis2_msg_free(
 {
     AXIS2_ENV_CHECK_VOID(env);
 
+    if(!msg)
+    {
+        return;
+    }
+
     if(--(msg->ref) > 0)
     {
         return;
@@ -149,12 +154,7 @@ axis2_msg_free(
 
     msg->parent = NULL;
 
-    if(msg)
-    {
-        AXIS2_FREE(env->allocator, msg);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, msg);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

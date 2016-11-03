@@ -876,11 +876,8 @@ axis2_apache2_worker_process_request(
                 }
                 content_type = axutil_strtrim(env, temp, NULL);
 
-                if (temp)
-                {
-                    AXIS2_FREE(env->allocator, temp);
-                    temp = NULL;
-                }
+                AXIS2_FREE(env->allocator, temp);
+                temp = NULL;
                 if (content_type && accept_header_value &&
                     !axutil_strcasestr(accept_header_value, content_type))
                 {
@@ -1369,14 +1366,11 @@ axis2_apache2_worker_process_request(
              * is any mime_parts which has type callback. If we found then no point
              * of continuing we should return a failure */
 
-            if(!mtom_sending_callback_name)
+            if(axis2_http_transport_utils_is_callback_required(
+                env, mime_parts))
             {
-                if(axis2_http_transport_utils_is_callback_required(
-                    env, mime_parts))
-                {
-                    AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Sender callback not specified");
-                    return AXIS2_FAILURE;
-                }
+                AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Sender callback not specified");
+                return AXIS2_FAILURE;
             }
         }
 
@@ -1401,15 +1395,9 @@ axis2_apache2_worker_process_request(
         body_string = NULL;
     }
 
-    if (request_body)
-    {
-        axutil_stream_free(request_body, env);
-        request_body = NULL;
-    }
-
+    axutil_stream_free(request_body, env);
     axutil_string_free(soap_action, env);
 
-    msg_ctx = NULL;
     return send_status;
 }
 
@@ -1431,23 +1419,15 @@ axis2_apache2_worker_get_bytes(
     while(loop_status)
     {
         int data_read = 0;
-        int written = 0;
+        int written = -1;
 
         char buf[READ_SIZE];
         data_read = axutil_stream_read(stream, env, buf, READ_SIZE);
-        if(data_read < 0)
+        if(data_read >= 0)
         {
-            break;
+            written = (int)axutil_stream_write(tmp_stream, env, buf, (size_t)data_read);
         }
-        written = (int)axutil_stream_write(tmp_stream, env, buf, (size_t)data_read);
-	if (written < 0)
-	{
-	    break;
-	}
-        if(data_read < (READ_SIZE - 1))
-        {
-            break;
-        }
+	loop_status = (written < 0 || data_read < (READ_SIZE - 1)) ? AXIS2_FALSE : loop_status;
     }
     return_size = axutil_stream_get_len(tmp_stream, env);
 
@@ -1592,7 +1572,7 @@ apache2_worker_send_attachment_using_file(
     /*int written = 0;*/
     axis2_status_t status = AXIS2_SUCCESS;
 
-    if (buffer_size <= 0)
+    if (buffer_size <= 0 || !buffer)
     {
 	    return AXIS2_FAILURE;
     }
@@ -1603,11 +1583,7 @@ apache2_worker_send_attachment_using_file(
         if(ferror(fp))
         {
             AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Error in reading file containg the attachment");
-            if(buffer)
-            {
-                AXIS2_FREE(env->allocator, buffer);
-                buffer = NULL;
-            }
+            AXIS2_FREE(env->allocator, buffer);
             fclose(fp);
             return AXIS2_FAILURE;
         }
@@ -1616,39 +1592,23 @@ apache2_worker_send_attachment_using_file(
         {
             len = ap_rwrite(buffer, count, request);
             ap_rflush(request);
-            if(len == -1)
-            {
-                status = AXIS2_FAILURE;
-                break;
-            }
+	    status = (len == -1) ? AXIS2_FAILURE : status;
         }
         else
         {
-            if(buffer)
-            {
-                AXIS2_FREE(env->allocator, buffer);
-                buffer = NULL;
-            }
-            fclose(fp);
-            return AXIS2_FAILURE;
+            status = AXIS2_FAILURE;
         }
+
         if(status == AXIS2_FAILURE)
         {
-            if(buffer)
-            {
-                AXIS2_FREE(env->allocator, buffer);
-                buffer = NULL;
-            }
-            fclose(fp);
-            return AXIS2_FAILURE;
+            break;
         }
-        memset(buffer, 0, (size_t)buffer_size);
+        bzero(buffer, (size_t)buffer_size);
     }
     while(!feof(fp));
 
     fclose(fp);
     AXIS2_FREE(env->allocator, buffer);
-    buffer = NULL;
     return status;
 }
 

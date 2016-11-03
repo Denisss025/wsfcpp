@@ -314,6 +314,10 @@ axis2_svc_free(
     axis2_svc_t * svc,
     const axutil_env_t * env)
 {
+    if(!svc)
+    {
+        return;
+    }
     if(svc->impl_class)
     {
         AXIS2_SVC_SKELETON_FREE((axis2_svc_skeleton_t *)svc->impl_class, env);
@@ -469,12 +473,7 @@ axis2_svc_free(
     {
         axutil_thread_mutex_destroy(svc->mutex);
     }
-    if(svc)
-    {
-        AXIS2_FREE(env->allocator, svc);
-        svc = NULL;
-    }
-    return;
+    AXIS2_FREE(env->allocator, svc);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

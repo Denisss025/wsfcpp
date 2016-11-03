@@ -92,17 +92,17 @@ axis2_ws_info_free(
     axis2_ws_info_t * ws_info,
     const axutil_env_t * env)
 {
+    if(!ws_info)
+    {
+        return;
+    }
+
     if(ws_info->file_name)
     {
         AXIS2_FREE(env->allocator, ws_info->file_name);
     }
 
-    if(ws_info)
-    {
-        AXIS2_FREE(env->allocator, ws_info);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, ws_info);
 }
 
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL

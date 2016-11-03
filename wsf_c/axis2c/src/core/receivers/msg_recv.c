@@ -189,17 +189,17 @@ axis2_msg_recv_free(
 {
     AXIS2_ENV_CHECK_VOID(env);
 
+    if(!msg_recv)
+    {
+        return;
+    }
+
     if(msg_recv->scope)
     {
         AXIS2_FREE(env->allocator, msg_recv->scope);
     }
 
-    if(msg_recv)
-    {
-        AXIS2_FREE(env->allocator, msg_recv);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, msg_recv);
 }
 
 AXIS2_EXPORT axis2_svc_skeleton_t *AXIS2_CALL

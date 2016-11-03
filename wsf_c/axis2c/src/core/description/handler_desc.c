@@ -298,6 +298,11 @@ axis2_handler_desc_free(
     axis2_handler_desc_t * handler_desc,
     const axutil_env_t * env)
 {
+    if(!handler_desc)
+    {
+        return;
+    }
+
     if(handler_desc->param_container)
     {
         axutil_param_container_free(handler_desc->param_container, env);
@@ -322,12 +327,7 @@ axis2_handler_desc_free(
     {
         AXIS2_FREE(env->allocator, handler_desc->class_name);
     }
-    if(handler_desc)
-    {
-        AXIS2_FREE(env->allocator, handler_desc);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, handler_desc);
 }
 
 AXIS2_EXTERN axutil_param_container_t *AXIS2_CALL

@@ -82,17 +82,17 @@ axis2_module_builder_free(
     axis2_module_builder_t * module_builder,
     const axutil_env_t * env)
 {
+    if(!module_builder)
+    {
+        return;
+    }
+
     if(module_builder->desc_builder)
     {
         axis2_desc_builder_free(module_builder->desc_builder, env);
     }
 
-    if(module_builder)
-    {
-        AXIS2_FREE(env->allocator, module_builder);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, module_builder);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

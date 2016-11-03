@@ -1036,7 +1036,7 @@ axis2_http_transport_utils_process_http_put_request(
                  (void *) callback_ctx,
                  mime_boundary);*/
 		/* binary_data_map is always NULL */
-                if(!binary_data_map)
+                /*  if(!binary_data_map) */
                 {
                     return AXIS2_FAILURE;
                 }
@@ -1193,10 +1193,12 @@ axis2_http_transport_utils_process_http_put_request(
     }
 
     /* binary_data_map is always NULL */
+    /*
     if(binary_data_map)
     {
         axiom_soap_builder_set_mime_body_parts(soap_builder, env, binary_data_map);
     }
+    */
 
     axis2_msg_ctx_set_soap_envelope(msg_ctx, env, soap_envelope);
 

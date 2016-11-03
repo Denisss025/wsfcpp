@@ -58,6 +58,11 @@ axis2_phases_info_free(
     axis2_phases_info_t * phases_info,
     const axutil_env_t * env)
 {
+    if(!phases_info)
+    {
+        return;
+    }
+
     if(phases_info->in_phases)
     {
         axutil_array_list_free(phases_info->in_phases, env);
@@ -98,12 +103,7 @@ axis2_phases_info_free(
         axutil_hash_free(phases_info->op_out_faultphases, env);
     }
 
-    if(phases_info)
-    {
-        AXIS2_FREE(env->allocator, phases_info);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, phases_info);
 }
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

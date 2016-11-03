@@ -106,6 +106,11 @@ axis2_arch_file_data_free(
     axis2_arch_file_data_t * arch_file_data,
     const axutil_env_t * env)
 {
+    if(!arch_file_data)
+    {
+        return;
+    }
+
     if(arch_file_data->file)
     {
         axutil_file_free(arch_file_data->file, env);
@@ -152,12 +157,7 @@ axis2_arch_file_data_free(
         axutil_array_list_free(arch_file_data->deployable_svcs, env);
     }
 
-    if(arch_file_data)
-    {
-        AXIS2_FREE(env->allocator, arch_file_data);
-    }
-
-    return;
+    AXIS2_FREE(env->allocator, arch_file_data);
 }
 
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL

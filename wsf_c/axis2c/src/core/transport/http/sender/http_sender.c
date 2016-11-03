@@ -2353,11 +2353,13 @@ axis2_http_sender_configure_http_digest_auth(
                 temp = axutil_strchr(realm, AXIS2_ESC_DOUBLE_QUOTE);
                 alloc_temp = (axis2_char_t *)(AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
                     * (size_t)(temp - realm + 1)));
-                strncpy(alloc_temp, realm, (size_t)(temp - realm));
                 if(alloc_temp)
+                {
+                    strncpy(alloc_temp, realm, (size_t)(temp - realm));
                     alloc_temp[temp - realm] = AXIS2_ESC_NULL;
-                realm = alloc_temp;
-                alloc_temp = NULL;
+                    realm = alloc_temp;
+                    alloc_temp = NULL;
+                }
                 elen += print_const + axutil_strlen(AXIS2_HTTP_AUTHORIZATION_REQUEST_PARAM_REALM)
                     + axutil_strlen(realm);
             }
@@ -2377,11 +2379,13 @@ axis2_http_sender_configure_http_digest_auth(
                 temp = axutil_strchr(qop, AXIS2_ESC_DOUBLE_QUOTE);
                 alloc_temp = (axis2_char_t *)(AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
                     * (size_t)(temp - qop + 1)));
-                strncpy(alloc_temp, qop, (size_t)(temp - qop));
                 if(alloc_temp)
+                {
+                    strncpy(alloc_temp, qop, (size_t)(temp - qop));
                     alloc_temp[temp - qop] = AXIS2_ESC_NULL;
-                qop = alloc_temp;
-                alloc_temp = NULL;
+                    qop = alloc_temp;
+                    alloc_temp = NULL;
+                }
             }
         }
 
@@ -2395,12 +2399,13 @@ axis2_http_sender_configure_http_digest_auth(
                 temp = axutil_strchr(nonce, AXIS2_ESC_DOUBLE_QUOTE);
                 alloc_temp = (axis2_char_t *)(AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
                     * (size_t)(temp - nonce + 1)));
-                strncpy(alloc_temp, nonce, (size_t)(temp - nonce));
                 if(alloc_temp)
+                {
+                    strncpy(alloc_temp, nonce, (size_t)(temp - nonce));
                     alloc_temp[temp - nonce] = AXIS2_ESC_NULL;
-                nonce = alloc_temp;
-                alloc_temp = NULL;
-
+                    nonce = alloc_temp;
+                    alloc_temp = NULL;
+                }
                 elen += print_const + axutil_strlen(AXIS2_HTTP_AUTHORIZATION_REQUEST_PARAM_NONCE)
                     + axutil_strlen(nonce);
             }
@@ -2422,11 +2427,13 @@ axis2_http_sender_configure_http_digest_auth(
                 temp = axutil_strchr(opaque, AXIS2_ESC_DOUBLE_QUOTE);
                 alloc_temp = (axis2_char_t *)(AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
                     * (size_t)(temp - opaque + 1)));
-                strncpy(alloc_temp, opaque, (size_t)(temp - opaque));
                 if(alloc_temp)
+                {
+                    strncpy(alloc_temp, opaque, (size_t)(temp - opaque));
                     alloc_temp[temp - opaque] = AXIS2_ESC_NULL;
-                opaque = alloc_temp;
-                alloc_temp = NULL;
+                    opaque = alloc_temp;
+                    alloc_temp = NULL;
+                }
                 elen += print_const + axutil_strlen(AXIS2_HTTP_AUTHORIZATION_REQUEST_PARAM_OPAQUE)
                     + axutil_strlen(opaque);
             }
@@ -2465,7 +2472,8 @@ axis2_http_sender_configure_http_digest_auth(
                 + axutil_strlen(qop);
         }
 
-        axutil_digest_calc_get_h_a1(env, algo, uname, realm, passwd, cnonce, nonce, h_a1);
+        /*  axutil_digest_calc_get_h_a1(env, algo, uname, realm, passwd, cnonce, nonce, h_a1); */
+        axutil_digest_calc_get_h_a1(env, algo, uname, realm, passwd, nonce, cnonce, h_a1);
         axutil_digest_calc_get_response(env, h_a1, nonce, nc, cnonce, qop, method_value, url, h_a2,
             response);
 
@@ -2516,8 +2524,7 @@ axis2_http_sender_configure_http_digest_auth(
             AXIS2_FREE(env->allocator, realm);
         if(nonce)
             AXIS2_FREE(env->allocator, nonce);
-        if(cnonce)
-            AXIS2_FREE(env->allocator, cnonce);
+        AXIS2_FREE(env->allocator, cnonce);
         if(opaque)
             AXIS2_FREE(env->allocator, opaque);
         if(auth_str)
@@ -2864,11 +2871,13 @@ axis2_http_sender_configure_proxy_digest_auth(
                 temp = axutil_strchr(realm, AXIS2_ESC_DOUBLE_QUOTE);
                 alloc_temp = (axis2_char_t *)(AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
                     * (size_t)(temp - realm + 1)));
-                strncpy(alloc_temp, realm, (size_t)(temp - realm));
                 if(alloc_temp)
+                {
+                    strncpy(alloc_temp, realm, (size_t)(temp - realm));
                     alloc_temp[temp - realm] = AXIS2_ESC_NULL;
-                realm = alloc_temp;
-                alloc_temp = NULL;
+                    realm = alloc_temp;
+                    alloc_temp = NULL;
+                }
                 elen += print_const + axutil_strlen(AXIS2_HTTP_AUTHORIZATION_REQUEST_PARAM_REALM)
                     + axutil_strlen(realm);
             }
@@ -2888,11 +2897,13 @@ axis2_http_sender_configure_proxy_digest_auth(
                 temp = axutil_strchr(qop, AXIS2_ESC_DOUBLE_QUOTE);
                 alloc_temp = (axis2_char_t *)(AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
                     * (size_t)(temp - qop + 1)));
-                strncpy(alloc_temp, qop, (size_t)(temp - qop));
                 if(alloc_temp)
+                {
+                    strncpy(alloc_temp, qop, (size_t)(temp - qop));
                     alloc_temp[temp - qop] = AXIS2_ESC_NULL;
-                qop = alloc_temp;
-                alloc_temp = NULL;
+                    qop = alloc_temp;
+                    alloc_temp = NULL;
+                }
             }
         }
 
@@ -2906,11 +2917,13 @@ axis2_http_sender_configure_proxy_digest_auth(
                 temp = axutil_strchr(nonce, AXIS2_ESC_DOUBLE_QUOTE);
                 alloc_temp = (axis2_char_t *)(AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
                     * (size_t)(temp - nonce + 1)));
-                strncpy(alloc_temp, nonce, (size_t)(temp - nonce));
                 if(alloc_temp)
+                {
+                    strncpy(alloc_temp, nonce, (size_t)(temp - nonce));
                     alloc_temp[temp - nonce] = AXIS2_ESC_NULL;
-                nonce = alloc_temp;
-                alloc_temp = NULL;
+                    nonce = alloc_temp;
+                    alloc_temp = NULL;
+                }
 
                 elen += print_const + axutil_strlen(AXIS2_HTTP_AUTHORIZATION_REQUEST_PARAM_NONCE)
                     + axutil_strlen(nonce);
@@ -2933,11 +2946,13 @@ axis2_http_sender_configure_proxy_digest_auth(
                 temp = axutil_strchr(opaque, AXIS2_ESC_DOUBLE_QUOTE);
                 alloc_temp = (axis2_char_t *)(AXIS2_MALLOC(env->allocator, sizeof(axis2_char_t)
                     * (size_t)(temp - opaque + 1)));
-                strncpy(alloc_temp, opaque, (size_t)(temp - opaque));
                 if(alloc_temp)
+                {
+                    strncpy(alloc_temp, opaque, (size_t)(temp - opaque));
                     alloc_temp[temp - opaque] = AXIS2_ESC_NULL;
-                opaque = alloc_temp;
-                alloc_temp = NULL;
+                    opaque = alloc_temp;
+                    alloc_temp = NULL;
+                }
                 elen += print_const + axutil_strlen(AXIS2_HTTP_AUTHORIZATION_REQUEST_PARAM_OPAQUE)
                     + axutil_strlen(opaque);
             }
@@ -2977,7 +2992,10 @@ axis2_http_sender_configure_proxy_digest_auth(
                 + axutil_strlen(qop);
         }
 
-        axutil_digest_calc_get_h_a1(env, algo, uname, realm, passwd, cnonce, nonce, h_a1);
+        /* Original: */
+	/* axutil_digest_calc_get_h_a1(env, algo, uname, realm, passwd, cnonce, nonce, h_a1); */
+	/*  According to function description, nonce first, cnonce second */
+        axutil_digest_calc_get_h_a1(env, algo, uname, realm, passwd, nonce, cnonce, h_a1);
         axutil_digest_calc_get_response(env, h_a1, nonce, nc, cnonce, qop, method_value, url, h_a2,
             response);
 
@@ -3034,10 +3052,7 @@ axis2_http_sender_configure_proxy_digest_auth(
             AXIS2_FREE(env->allocator, nonce);
         }
 
-        if(cnonce)
-        {
-            AXIS2_FREE(env->allocator, cnonce);
-        }
+        AXIS2_FREE(env->allocator, cnonce);
 
         if(opaque)
         {
