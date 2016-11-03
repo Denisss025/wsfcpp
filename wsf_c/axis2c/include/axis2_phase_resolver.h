@@ -23,7 +23,7 @@
  * @defgroup axis2_phase_resolver phase resolver
  * @ingroup axis2_phase_resolver
  *
- * Engaging modules into axis2 configuration, services and operations are done here. 
+ * Engaging modules into axis2 configuration, services and operations are done here.
  * This is accomplished mainly by following operations respectively.
  * axis2_phase_resolver_engage_module_globally().
  * axis2_phase_resolver_engage_module_to_svc().
@@ -42,10 +42,10 @@
  * are added into axis2_conf_t structure and predefined handlers are added to them before module handlers
  * are added to them by phase resolver.
  *
- * Modules defined in axis2.xml are engaged by call to axis2_conf_engage_module() function. Modules defined in 
+ * Modules defined in axis2.xml are engaged by call to axis2_conf_engage_module() function. Modules defined in
  * services xml are engaged by call to axis2_svc_enage_module() or axis2_svc_grp_engage_module(). Modules
  * define in operation tag under services.xml are engaged by call to axis2_op_engage_module() function.
- * These function in tern call one of axis2_phase_resolver_engage_module_globally() or 
+ * These function in tern call one of axis2_phase_resolver_engage_module_globally() or
  * axis2_phase_resolver_engage_module_to_svc() or axis2_phase_resolver_engage_module_to_op.
  *
  * Also when you add a service programmaticaly into axis2_conf_t you need to build execution chains for that
@@ -108,8 +108,8 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Engages the given module globally. Engaging a module globally means 
-     * that the given module would be engaged to all operations in all 
+     * Engages the given module globally. Engaging a module globally means
+     * that the given module would be engaged to all operations in all
      * services.
      * @param phase_resolver pointer to phase resolver
      * @param env pointer to environment struct
@@ -124,9 +124,9 @@ extern "C"
         struct axis2_module_desc *module);
 
     /**
-     * Engages the given module to the given service. This means 
-     * the given module would be engaged to all operations of the given 
-     * service. 
+     * Engages the given module to the given service. This means
+     * the given module would be engaged to all operations of the given
+     * service.
      * @param phase_resolver pointer to phase resolver
      * @param env pointer to environment struct
      * @param svc pointer to service
@@ -157,7 +157,7 @@ extern "C"
         struct axis2_module_desc *module_desc);
 
     /**
-     * Builds the execution chains for service. Execution chains are collection of phases that are 
+     * Builds the execution chains for service. Execution chains are collection of phases that are
      * invoked in the execution path. Execution chains for system defined phases are created when
      * call to engage_module_globally() function. Here it is created for service operations.
      * @param phase_resolver pointer to phase resolver
@@ -184,9 +184,9 @@ extern "C"
         struct axis2_op *op);
 
     /**
-     * Disengages the given module from the given service. This means 
-     * the given module would be disengaged from all operations of the given 
-     * service. 
+     * Disengages the given module from the given service. This means
+     * the given module would be disengaged from all operations of the given
+     * service.
      * @param phase_resolver pointer to phase resolver
      * @param env pointer to environment struct
      * @param svc pointer to service
@@ -241,7 +241,7 @@ extern "C"
     /**
      * Creates phase resolver struct with given configuration.
      * @param env pointer to environment struct
-     * @param axis2_config pointer to aixs2 configuration, phase resolver 
+     * @param axis2_config pointer to aixs2 configuration, phase resolver
      * created would not assume ownership of configuration
      * @return pointer to newly created phase resolver
      */
@@ -254,9 +254,9 @@ extern "C"
     /**
      * Creates phase resolver struct with given configuration and service.
      * @param env pointer to environment struct
-     * @param aixs2_config pointer to aixs2 configuration,  phase resolver 
+     * @param aixs2_config pointer to aixs2 configuration,  phase resolver
      * created would not assume ownership of configuration
-     * @param svc pointer to service,  phase resolver 
+     * @param svc pointer to service,  phase resolver
      * created would not assume ownership of service
      * @return pointer to newly created phase resolver
      */

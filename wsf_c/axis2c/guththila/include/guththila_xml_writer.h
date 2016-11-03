@@ -94,7 +94,7 @@ typedef struct guththila_xml_writer_element_s
     guththila_char_t *name;
 #endif
     /* contains the number of the stack which holds the namespaces
-       for this element. When we close this element all the namespaces 
+       for this element. When we close this element all the namespaces
        that are below this should also must be closed */
     int name_sp_stack_no;
 }
@@ -120,7 +120,7 @@ guththila_xml_writer_namesp_t;
 
 /*Writer functions*/
 
-/* 
+/*
  * Create a writer which writes to a file.
  * @param file_name name of the file
  * @param env pointer to the environment
@@ -130,7 +130,7 @@ guththila_create_xml_stream_writer(
     char *file_name,
     const axutil_env_t * env);
 
-/* 
+/*
  * Create a writer which writes to a memory buffer.
  * @param env pointer to the environment
  */
@@ -138,8 +138,8 @@ GUTHTHILA_EXPORT guththila_xml_writer_t *GUTHTHILA_CALL
 guththila_create_xml_stream_writer_for_memory(
     const axutil_env_t * env);
 
-/* 
- * Jus write what ever the content in the buffer. If the writer was in 
+/*
+ * Jus write what ever the content in the buffer. If the writer was in
  * a start of a element it will close it.
  * @param wr pointer to the writer
  * @param buff buffer containing the data
@@ -157,7 +157,7 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_to_buffer(
  * @param wr pointer to the writer
  * @param prefix prefix of the namespace
  * @param uri uri of the namespace
- * @param env pointer to the environment 
+ * @param env pointer to the environment
  */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_namespace(
     guththila_xml_writer_t * wr,
@@ -172,7 +172,7 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_namespace(
  * @param uri uri of the namespace
  * @param local_name name of the attribute
  * @param value value of the attribute
- * @param env pointer to the environment 
+ * @param env pointer to the environment
  */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL
 guththila_do_write_attribute_with_prefix_and_namespace(
@@ -187,7 +187,7 @@ guththila_do_write_attribute_with_prefix_and_namespace(
 /*
  * Write the start document element with the xml version and encoding.
  * @param wr pointer to the writer
- * @param env pointer to the environment 
+ * @param env pointer to the environment
  * @param encoding encoding of the XML.
  * @param version xml version
  */
@@ -201,7 +201,7 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_start_document(
  * Write the start element.
  * @param wr pointer to the writer
  * @param name name of the element
- * @param env pointer to the environment 
+ * @param env pointer to the environment
  */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_start_element(
     guththila_xml_writer_t * wr,
@@ -209,9 +209,9 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_start_element(
     const axutil_env_t * env);
 
 /*
- * Write the end element. 
+ * Write the end element.
  * @param wr pointer to the writer
- * @param env pointer to the environment 
+ * @param env pointer to the environment
  */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_end_element(
     guththila_xml_writer_t * wr,
@@ -220,17 +220,17 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_end_element(
 /*
  * Not implemented.
  * @param wr pointer to the writer
- * @param env pointer to the environment 
+ * @param env pointer to the environment
  */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_close(
     guththila_xml_writer_t * wr,
     const axutil_env_t * env);
 
 /*
- * Write the text content of a element. 
+ * Write the text content of a element.
  * @param wr pointer to the writer
  * @param buff character string
- * @param env pointer to the environment 
+ * @param env pointer to the environment
  */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_characters(
     guththila_xml_writer_t * wr,
@@ -238,56 +238,56 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_characters(
     const axutil_env_t * env);
 
 /*
- * Write comment with the given text data. 
+ * Write comment with the given text data.
  * @param wr pointer to the writer
  * @param buff character string
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_comment(
     guththila_xml_writer_t * wr,
     char *buff,
     const axutil_env_t * env);
 
 /*
- * Write scape character. 
+ * Write scape character.
  * @param wr pointer to the writer
  * @param buff character string
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_escape_character(
     guththila_xml_writer_t * wr,
     char *buff,
     const axutil_env_t * env);
 
 /*
- * Start to write an empty element with the given name. 
+ * Start to write an empty element with the given name.
  * @param wr pointer to the writer
  * @param name name of the element
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_empty_element(
     guththila_xml_writer_t * wr,
     char *name,
     const axutil_env_t * env);
 
 /*
- * Write a defualt namespace. 
+ * Write a defualt namespace.
  * @param wr pointer to the writer
  * @param uri uri of the namespace
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_default_namespace(
     guththila_xml_writer_t * wr,
     char *uri,
     const axutil_env_t * env);
 
 /*
- * Write a attribute with the given name and value. 
+ * Write a attribute with the given name and value.
  * @param wr pointer to the writer
  * @param localname name of the attribute
  * @param value value of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_attribute(
     guththila_xml_writer_t * wr,
     char *localname,
@@ -295,14 +295,14 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_attribute(
     const axutil_env_t * env);
 
 /*
- * Write a attribute with the given name and value and namespace. 
+ * Write a attribute with the given name and value and namespace.
  * @param wr pointer to the writer
  * @param prefix prefix of the attribute
  * @param namespace_uri uri of the namespace
  * @param localname name of the attribute
  * @param value value of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL
 guththila_write_attribute_with_prefix_and_namespace(
     guththila_xml_writer_t * wr,
@@ -313,14 +313,14 @@ guththila_write_attribute_with_prefix_and_namespace(
     const axutil_env_t * env);
 
 /*
- * Write a attribute with the given name, value and prefix. If the prefix 
- * is not defined previously as a namespace this method will fail. 
+ * Write a attribute with the given name, value and prefix. If the prefix
+ * is not defined previously as a namespace this method will fail.
  * @param wr pointer to the writer
  * @param prefix prefix of the attribute
  * @param localname name of the attribute
  * @param value value of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_attribute_with_prefix(
     guththila_xml_writer_t * wr,
     char *prefix,
@@ -329,16 +329,16 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_attribute_with_prefix(
     const axutil_env_t * env);
 
 /*
- * Write a attribute with the given name, value and namespace uri.  
- * If the namespace is not defined previously as a namespace this 
- * method will fail. The prefix corresponding to the namespace uri 
- * will be used. 
+ * Write a attribute with the given name, value and namespace uri.
+ * If the namespace is not defined previously as a namespace this
+ * method will fail. The prefix corresponding to the namespace uri
+ * will be used.
  * @param wr pointer to the writer
  * @param namesp namespace uri
  * @param localname name of the attribute
  * @param value value of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_attribute_with_namespace(
     guththila_xml_writer_t * wr,
     char *namesp,
@@ -347,14 +347,14 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_attribute_with_namespace(
     const axutil_env_t * env);
 
 /*
- * Write a start element with prefix and namespace. If the namespace is not 
- * defined previoully new namespace will be written. 
+ * Write a start element with prefix and namespace. If the namespace is not
+ * defined previoully new namespace will be written.
  * @param wr pointer to the writer
  * @param prefix prefix of the attribute
  * @param namespace_uri uri
  * @param localname name of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL
 guththila_write_start_element_with_prefix_and_namespace(
     guththila_xml_writer_t * wr,
@@ -364,13 +364,13 @@ guththila_write_start_element_with_prefix_and_namespace(
     const axutil_env_t * env);
 
 /*
- * Write a start element with the namespace. If the namespace is not 
- * defined previously method will fail. 
+ * Write a start element with the namespace. If the namespace is not
+ * defined previously method will fail.
  * @param wr pointer to the writer
  * @param namespace_uri uri
  * @param localname name of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL
 guththila_write_start_element_with_namespace(
     guththila_xml_writer_t * wr,
@@ -379,13 +379,13 @@ guththila_write_start_element_with_namespace(
     const axutil_env_t * env);
 
 /*
- * Write a start element with the prefix. If the prefix is not 
- * defined previously method will fail. 
+ * Write a start element with the prefix. If the prefix is not
+ * defined previously method will fail.
  * @param wr pointer to the writer
  * @param namespace_uri uri
  * @param localname name of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL
 guththila_write_start_element_with_prefix(
     guththila_xml_writer_t * wr,
@@ -394,14 +394,14 @@ guththila_write_start_element_with_prefix(
     const axutil_env_t * env);
 
 /*
- * Write a empty element with prefix and namespace. If the namespace is not 
- * defined previoully new namespace will be written. 
+ * Write a empty element with prefix and namespace. If the namespace is not
+ * defined previoully new namespace will be written.
  * @param wr pointer to the writer
  * @param prefix prefix of the attribute
  * @param namespace_uri uri
  * @param localname name of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL
 guththila_write_empty_element_with_prefix_and_namespace(
     guththila_xml_writer_t * wr,
@@ -411,13 +411,13 @@ guththila_write_empty_element_with_prefix_and_namespace(
     const axutil_env_t * env);
 
 /*
- * Write a empty element with the namespace. If the namespace is not 
- * defined previously method will fail. 
+ * Write a empty element with the namespace. If the namespace is not
+ * defined previously method will fail.
  * @param wr pointer to the writer
  * @param namespace_uri uri
  * @param localname name of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL
 guththila_write_empty_element_with_namespace(
     guththila_xml_writer_t * wr,
@@ -426,13 +426,13 @@ guththila_write_empty_element_with_namespace(
     const axutil_env_t * env);
 
 /*
- * Write a empty element with the prefix. If the prefix is not 
- * defined previously method will fail. 
+ * Write a empty element with the prefix. If the prefix is not
+ * defined previously method will fail.
  * @param wr pointer to the writer
  * @param namespace_uri uri
  * @param localname name of the attribute
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL
 guththila_write_empty_element_with_prefix(
     guththila_xml_writer_t * wr,
@@ -444,12 +444,12 @@ guththila_write_empty_element_with_prefix(
  * Close all the elements that were started by writing the end elements.
  * @param wr pointer to the writer
  * @param env pointer to the environment
- */ 
+ */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_end_document(
     guththila_xml_writer_t * wr,
     const axutil_env_t * env);
-/* 
- * Write a new element with the name, then write the characters as text, 
+/*
+ * Write a new element with the name, then write the characters as text,
  * then close the element and write a new line.
  * @param wr pointer to the writer
  * @element_name name of the element
@@ -463,7 +463,7 @@ GUTHTHILA_EXPORT int GUTHTHILA_CALL guththila_write_line(
     const axutil_env_t * env);
 
 /*
- * Get the memory buffer that is written.  
+ * Get the memory buffer that is written.
  * @param wr pointer to the writer
  * @param env pointer to the environment
  * @return memory buffer
@@ -473,7 +473,7 @@ GUTHTHILA_EXPORT char *GUTHTHILA_CALL guththila_get_memory_buffer(
     const axutil_env_t * env);
 
 /*
- * Get the size of the memory buffer. 
+ * Get the size of the memory buffer.
  * @param wr pointer to the writer
  * @param env pointer to the environment
  * @return size of the buffer
@@ -484,7 +484,7 @@ guththila_get_memory_buffer_size(
     const axutil_env_t * env);
 
 /*
- * Free the writer. 
+ * Free the writer.
  * @param wr pointer to the writer
  * @param env pointer to the environment
  */

@@ -27,7 +27,7 @@
 
 /**
  * @file axis2_ws_info.h
- * @brief Axis2 Ws Info interface. ws_info construct contain file information 
+ * @brief Axis2 Ws Info interface. ws_info construct contain file information
  * for module or service configuration file.
  */
 #include <axis2_const.h>

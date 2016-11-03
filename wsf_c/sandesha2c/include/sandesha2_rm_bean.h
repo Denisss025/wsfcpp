@@ -34,39 +34,39 @@ struct sandesha2_transaction;
 AXIS2_DECLARE_DATA struct sandesha2_rm_bean_ops
 {
     void (AXIS2_CALL *
-            free) ( 
+            free) (
                 sandesha2_rm_bean_t *rm_bean,
                 const axutil_env_t *env);
 
     sandesha2_rm_bean_t * (AXIS2_CALL *
-            get_base) ( 
+            get_base) (
                 sandesha2_rm_bean_t *rm_bean,
                 const axutil_env_t *env);
-    
+
     void (AXIS2_CALL *
-            set_id) ( 
+            set_id) (
                 sandesha2_rm_bean_t *rm_bean,
-                const axutil_env_t *env, 
+                const axutil_env_t *env,
                 long id);
 
     long (AXIS2_CALL *
-            get_id) ( 
+            get_id) (
                 sandesha2_rm_bean_t *rm_bean,
                 const axutil_env_t *env);
 
     void (AXIS2_CALL *
-            set_transaction) ( 
+            set_transaction) (
                 sandesha2_rm_bean_t *rm_bean,
-                const axutil_env_t *env, 
+                const axutil_env_t *env,
                 struct sandesha2_transaction *transaction);
 
     struct sandesha2_transaction *(AXIS2_CALL *
-            get_transaction) ( 
+            get_transaction) (
                 sandesha2_rm_bean_t *rm_bean,
                 const axutil_env_t *env);
-    
+
     axis2_char_t *(AXIS2_CALL *
-            get_key) ( 
+            get_key) (
                 sandesha2_rm_bean_t *rm_bean,
                 const axutil_env_t *env);
 };
@@ -76,46 +76,46 @@ AXIS2_DECLARE_DATA struct sandesha2_rm_bean
     sandesha2_rm_bean_ops_t ops;
 };
 
-/* constructors 
+/* constructors
  */
 AXIS2_EXTERN sandesha2_rm_bean_t* AXIS2_CALL
 sandesha2_rm_bean_create(
     const axutil_env_t *env);
 
 void AXIS2_CALL
-sandesha2_rm_bean_free( 
+sandesha2_rm_bean_free(
     sandesha2_rm_bean_t *rm_bean,
 	const axutil_env_t *env);
 
 sandesha2_rm_bean_t * AXIS2_CALL
-sandesha2_rm_bean_get_base( 
+sandesha2_rm_bean_get_base(
     sandesha2_rm_bean_t *rm_bean,
     const axutil_env_t *env);
 
 void AXIS2_CALL
-sandesha2_rm_bean_set_id( 
+sandesha2_rm_bean_set_id(
     sandesha2_rm_bean_t *rm_bean,
-	const axutil_env_t *env, 
+	const axutil_env_t *env,
     long id);
 
 long AXIS2_CALL
-sandesha2_rm_bean_get_id( 
+sandesha2_rm_bean_get_id(
     sandesha2_rm_bean_t *rm_bean,
 	const axutil_env_t *env);
 
 void AXIS2_CALL
-sandesha2_rm_bean_set_transaction( 
+sandesha2_rm_bean_set_transaction(
     sandesha2_rm_bean_t *rm_bean,
-	const axutil_env_t *env, 
+	const axutil_env_t *env,
     struct sandesha2_transaction *transaction);
 
 struct sandesha2_transaction *AXIS2_CALL
-sandesha2_rm_bean_get_transaction( 
+sandesha2_rm_bean_get_transaction(
     sandesha2_rm_bean_t *rm_bean,
 	const axutil_env_t *env);
 
 axis2_char_t *AXIS2_CALL
-sandesha2_rm_bean_get_key( 
+sandesha2_rm_bean_get_key(
     sandesha2_rm_bean_t *rm_bean,
 	const axutil_env_t *env);
 
@@ -123,5 +123,5 @@ sandesha2_rm_bean_get_key(
 }
 
 #endif
-	
+
 #endif /* End of SANDESHA2_RM_BEAN_H */

@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_utility.h
-  * @brief The utility module for OMXMLSecurity 
+  * @brief The utility module for OMXMLSecurity
   */
 
 /**
@@ -38,11 +38,11 @@
 extern "C"
 {
 #endif
-    
+
     /**
      * Generate a nonce or a random text for a given length
      * @param env pointer to environment struct
-     * @param length the length of the nonce 
+     * @param length the length of the nonce
      * @return the generated nonce
      **/
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
@@ -64,7 +64,7 @@ extern "C"
      * Given the filename returns the format of the file.
      * These formats are defined in asym_ctx.h
      * @param env pointer to environment struct
-     * @param file_name the file name 
+     * @param file_name the file name
      **/
     AXIS2_EXTERN oxs_key_mgr_format_t AXIS2_CALL
     oxs_util_get_format_by_file_extension(const axutil_env_t *env,

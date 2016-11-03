@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_ACK_MSG_PROCESSOR_H
 #define SANDESHA2_ACK_MSG_PROCESSOR_H
 
 /**
   * @file sandesha2_ack_msg_processor.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -36,7 +36,7 @@ extern "C"
  * @ingroup sandesha2_msgprocessors
  * @{
  */
-    
+
 AXIS2_EXTERN sandesha2_msg_processor_t* AXIS2_CALL
 sandesha2_ack_msg_processor_create(
     const axutil_env_t *env);

@@ -50,8 +50,8 @@ extern "C"
     /**
      * creates relates to struct.
      * @param env pointer to environment struct
-     * @param value value string 
-     * @param relationship_type relationship type string 
+     * @param value value string
+     * @param relationship_type relationship type string
      */
     AXIS2_EXTERN axis2_relates_to_t *AXIS2_CALL
     axis2_relates_to_create(
@@ -60,7 +60,7 @@ extern "C"
         const axis2_char_t * relationship_type);
 
     /**
-     * Gets value. The value field represents the URI that corresponds to the 
+     * Gets value. The value field represents the URI that corresponds to the
      * related message's message ID
      * @param relates_to pointer to relates to struct
      * @param env pointer to environment struct
@@ -72,11 +72,11 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets value. The value field represents the URI that corresponds to the 
+     * Sets value. The value field represents the URI that corresponds to the
      * related message's message ID
      * @param relates_to pointer to relates to struct
      * @param env pointer to environment struct
-     * @param value value string 
+     * @param value value string
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -86,10 +86,10 @@ extern "C"
         const axis2_char_t * value);
 
     /**
-     * Gets relationship type. 
+     * Gets relationship type.
      * @param relates_to pointer to relates to struct
      * @param env pointer to environment struct
-     * @return relationship type string 
+     * @return relationship type string
      */
     AXIS2_EXTERN const axis2_char_t *AXIS2_CALL
     axis2_relates_to_get_relationship_type(
@@ -97,7 +97,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets relationship type. 
+     * Sets relationship type.
      * @param relates_to pointer to relates to struct
      * @param env pointer to environment struct
      * @param relationship_type relationship type string
@@ -110,7 +110,7 @@ extern "C"
         const axis2_char_t * relationship_type);
 
     /**
-     * Frees relates to struct.    
+     * Frees relates to struct.
      * @param relates_to pointer to relates to struct
      * @param env pointer to environment struct
      * @return void

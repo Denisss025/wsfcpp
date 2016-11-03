@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_CLIENT_CONSTANTS_H
 #define SANDESHA2_CLIENT_CONSTANTS_H
 
@@ -21,15 +21,15 @@
  * @file sandesha2_client_constants.h
  * @brief Axis2 Xml Sandesha Constants
  */
- 
+
 #include <axutil_utils.h>
 
 #ifdef __cplusplus
-extern "C" 
+extern "C"
 {
 #endif
-    
-/** @defgroup sandesha2_client_constants 
+
+/** @defgroup sandesha2_client_constants
   * @ingroup sandesha2_client
   * @{
   */
@@ -41,17 +41,17 @@ extern "C"
 #define SANDESHA2_CLIENT_SEQ_KEY "Sandesha2SequenceKey"
 #define SANDESHA2_CLIENT_MESSAGE_NUMBER "Sandesha2MessageNumber"
 #define SANDESHA2_CLIENT_RM_SPEC_VERSION "Sandesha2RMSpecVersion"
-#define SANDESHA2_CLIENT_DUMMY_MESSAGE "Sandesha2DummyMessage" /* If this 
- property is set, even though this message will invoke the RM handlers, 
+#define SANDESHA2_CLIENT_DUMMY_MESSAGE "Sandesha2DummyMessage" /* If this
+ property is set, even though this message will invoke the RM handlers,
  this will not be sent as an actual application message
  */
 #define SANDESHA2_CLIENT_LISTENER "Sandesha2Listener"
 
 
 
-/*********************************** Constants*********************************/   
-   
-   
+/*********************************** Constants*********************************/
+
+
 #ifdef __cplusplus
 }
 #endif

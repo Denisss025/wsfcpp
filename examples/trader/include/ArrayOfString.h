@@ -17,9 +17,9 @@
         namespace org_wso2_www_types{
             class ArrayOfString;
         }
-        
 
-        
+
+
 
         #include <stdio.h>
         #include <OMElement.h>
@@ -28,24 +28,24 @@
 
 namespace org_wso2_www_types
 {
-        
-        
+
+
 
         class ArrayOfString {
 
         private:
              std::vector<std::string*>* property_Value;
 
-                
+
                 bool isValidValue;
-            
+
 
         /*** Private methods ***/
-          
+
 
         bool WSF_CALL
         setValueNil();
-            
+
 
 
 
@@ -65,20 +65,20 @@ namespace org_wso2_www_types
         ~ArrayOfString();
 
 
-       
+
 
         /**
          * Constructor for creating ArrayOfString
-         * @param 
+         * @param
          * @param Value std::vector<std::string*>*
          * @return newly created ArrayOfString object
          */
         ArrayOfString(std::vector<std::string*>* arg_Value);
-        
-        
+
+
         /********************************** Class get set methods **************************************/
         /******** Deprecated for array types, Use 'Getters and Setters for Arrays' instead ***********/
-        
+
 
         /**
          * Getter for value. Deprecated for array types, Use getValueAt instead
@@ -102,7 +102,7 @@ namespace org_wso2_www_types
          */
         WSF_EXTERN bool WSF_CALL
         resetValue();
-        
+
         /****************************** Get Set methods for Arrays **********************************/
         /************ Array Specific Operations: get_at, set_at, add, remove_at, sizeof *****************/
 
@@ -122,13 +122,13 @@ namespace org_wso2_www_types
          *
          *     // Removing the ith value from an array
          *     adb_element->removePropertyAt(i);
-         *     
+         *
          * }
          *
          */
 
-        
-        
+
+
         /**
          * Get the ith element of value.
         * @param i index of the item to be obtained
@@ -172,7 +172,7 @@ namespace org_wso2_www_types
         WSF_EXTERN bool WSF_CALL
         removeValueAt(int i);
 
-        
+
 
 
         /******************************* Checking and Setting NIL values *********************************/
@@ -182,7 +182,7 @@ namespace org_wso2_www_types
          * NOTE: set_nil is only available for nillable properties
          */
 
-        
+
 
         /**
          * Check whether value is Nill
@@ -192,7 +192,7 @@ namespace org_wso2_www_types
         isValueNil();
 
 
-        
+
 
         /*************************** Checking and Setting 'NIL' values in Arrays *****************************/
 
@@ -200,7 +200,7 @@ namespace org_wso2_www_types
          * NOTE: You may set this to remove specific elements in the array
          *       But you can not remove elements, if the specific property is declared to be non-nillable or sizeof(array) < minOccurs
          */
-        
+
         /**
          * Check whether value is Nill at position i
          * @param i index of the item to return.
@@ -208,8 +208,8 @@ namespace org_wso2_www_types
          */
         bool WSF_CALL
         isValueNilAt(int i);
- 
-       
+
+
         /**
          * Set value to NILL at the  position i.
          * @param i . The index of the item to be set Nill.
@@ -218,27 +218,27 @@ namespace org_wso2_www_types
         bool WSF_CALL
         setValueNilAt(int i);
 
-        
+
 
         /**************************** Serialize and De serialize functions ***************************/
         /*********** These functions are for use only inside the generated code *********************/
 
-        
+
         /**
          * Deserialize the ADB object to an XML
          * @param dp_parent double pointer to the parent node to be deserialized
          * @param dp_is_early_node_valid double pointer to a flag (is_early_node_valid?)
-         * @param dont_care_minoccurs Dont set errors on validating minoccurs, 
+         * @param dont_care_minoccurs Dont set errors on validating minoccurs,
          *              (Parent will order this in a case of choice)
          * @return true on success, false otherwise
          */
         bool WSF_CALL
         deserialize(axiom_node_t** omNode, bool *isEarlyNodeValid, bool dontCareMinoccurs);
-                         
-            
+
+
 
        /**
-         * Declare namespace in the most parent node 
+         * Declare namespace in the most parent node
          * @param parent_element parent element
          * @param namespaces hash of namespace uri to prefix
          * @param next_ns_index pointer to an int which contain the next namespace index
@@ -247,7 +247,7 @@ namespace org_wso2_www_types
         declareParentNamespaces(axiom_element_t *parent_element, axutil_hash_t *namespaces, int *next_ns_index);
 
 
-        
+
 
         /**
          * Serialize the ADB object to an xml
@@ -273,8 +273,8 @@ namespace org_wso2_www_types
         /******************************* get the value by the property number  *********************************/
         /************NOTE: This method is introduced to resolve a problem in unwrapping mode *******************/
 
-      
-        
+
+
 
         /**
          * Getter for value by property number (1)
@@ -284,11 +284,11 @@ namespace org_wso2_www_types
         std::vector<std::string*>* WSF_CALL
         getProperty1();
 
-    
+
 
 };
 
-}        
+}
  #endif /* ARRAYOFSTRING_H */
-    
+
 

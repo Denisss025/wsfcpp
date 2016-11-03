@@ -36,8 +36,8 @@ extern "C"
 
     /**
       * Creates an error struct
-      * @param allocator allocator to be used. Mandatory, cannot be NULL  
-      * @return pointer to the newly created error struct 
+      * @param allocator allocator to be used. Mandatory, cannot be NULL
+      * @return pointer to the newly created error struct
       */
     AXIS2_EXTERN axutil_error_t *AXIS2_CALL
     axutil_error_create(

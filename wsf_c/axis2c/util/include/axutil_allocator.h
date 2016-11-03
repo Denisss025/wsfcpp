@@ -46,8 +46,8 @@ extern "C"
 
         /**
          * Function pointer representing the function that allocates memory.
-         * @param allocator pointer to allocator struct. In the default 
-         * implementation this is not used, however this parameter is useful 
+         * @param allocator pointer to allocator struct. In the default
+         * implementation this is not used, however this parameter is useful
          * when the allocator implementation is dealing with a memory pool.
          * @param size size of the memory block to be allocated
          * @return pointer to the allocated memory block
@@ -60,8 +60,8 @@ extern "C"
 
         /**
          * Function pointer representing the function that re-allocates memory.
-         * @param allocator pointer to allocator struct. In the default 
-         * implementation this is not used, however this parameter is useful 
+         * @param allocator pointer to allocator struct. In the default
+         * implementation this is not used, however this parameter is useful
          * when the allocator implementation is dealing with a memory pool.
          * @param ptr memory block who's size to be changed
          * @param size size of the memory block to be allocated
@@ -76,8 +76,8 @@ extern "C"
 
         /**
          * Function pointer representing the function that frees memory.
-         * @param allocator pointer to allocator struct. In the default 
-         * implementation this is not used, however this parameter is useful 
+         * @param allocator pointer to allocator struct. In the default
+         * implementation this is not used, however this parameter is useful
          * when the allocator implementation is dealing with a memory pool.
          * @param ptr pointer to be freed
          * @return void
@@ -88,36 +88,36 @@ extern "C"
                 struct axutil_allocator * allocator,
                 void *ptr);
 
-        /** 
-         * Local memory pool. Local pool is used to allocate per request 
-         * local values. 
+        /**
+         * Local memory pool. Local pool is used to allocate per request
+         * local values.
          */
         void *local_pool;
 
-        /** 
-         * Global memory pool. Global pool is used to allocate values that 
-         * live beyond a request 
+        /**
+         * Global memory pool. Global pool is used to allocate values that
+         * live beyond a request
          */
         void *global_pool;
 
-        /** 
+        /**
          * Memory pool currently in use. The functions
          * axutil_allocator_switch_to_global_pool and
-         * axutil_allocator_switch_to_local_pool should be used to 
-         * set the current pool to global pool or to local pool respectively. 
+         * axutil_allocator_switch_to_local_pool should be used to
+         * set the current pool to global pool or to local pool respectively.
          */
         void *current_pool;
 
         /**
-         * This variable has meaning only when allocator is initialized when Axis2/C is used in 
-         * Apache2 module. When switching to global poo this ref counter is increased by one. When 
-         * switching to local pool it is descreased by one. When creating allocator this variable 
+         * This variable has meaning only when allocator is initialized when Axis2/C is used in
+         * Apache2 module. When switching to global poo this ref counter is increased by one. When
+         * switching to local pool it is descreased by one. When creating allocator this variable
          * is initialized to 0 which means it points to the local pool. If user has switched to the
          * global pool several times without switching back to the local pool this ref counter has
          * a positive value. If at this stage switching to lcoal pool called then this ref counter
-         * is reduced and checked if its value is zero. If only it's value is zero then pool is 
+         * is reduced and checked if its value is zero. If only it's value is zero then pool is
          * switched to local pool. This functionality avoid unintended switching to localpool by
-         * some code fragment. Still user has to make sure that each global switch has a 
+         * some code fragment. Still user has to make sure that each global switch has a
          * corresponding local switch.
          */
         int global_pool_ref;
@@ -127,7 +127,7 @@ extern "C"
 
     /**
      * Initializes (creates) a memory allocator.
-     * @param allocator user defined allocator. If NULL, a default allocator 
+     * @param allocator user defined allocator. If NULL, a default allocator
      * will be returned.
      * @return initialized allocator. NULL on error.
      */
@@ -145,7 +145,7 @@ extern "C"
         axutil_allocator_t * allocator);
 
     /**
-     * This function should be used to deallocate memory if the default 
+     * This function should be used to deallocate memory if the default
      * allocator was provided by the axutil_allocator_init() call.
      * @param allocator allocator struct to be freed
      * @return void
@@ -155,12 +155,12 @@ extern "C"
         axutil_allocator_t * allocator);
 
     /**
-     * Swaps the local_pool and global_pool and makes the global pool the 
+     * Swaps the local_pool and global_pool and makes the global pool the
      * current pool.
      * In case of using pools, local_pool is supposed to hold the pool out of which
-     * local values are allocated. In case of values that live beyond a request 
-     * global pool should be used, hence this method has to be called to switch to 
-     * global pool for allocation. 
+     * local values are allocated. In case of values that live beyond a request
+     * global pool should be used, hence this method has to be called to switch to
+     * global pool for allocation.
      * @param allocator allocator whose memory pools are to be switched
      * @return void
       */
@@ -169,11 +169,11 @@ extern "C"
         axutil_allocator_t * allocator);
 
     /**
-     * Swaps the local_pool and global_pool and makes the local pool the 
-     * current pool. 
+     * Swaps the local_pool and global_pool and makes the local pool the
+     * current pool.
      * In case of using pools, local_pool is supposed to hold the pool out of which
-     * local values are allocated. In case of values that live beyond a request 
-     * global pool should be used. This method can be used to inverse the switching 
+     * local values are allocated. In case of values that live beyond a request
+     * global pool should be used. This method can be used to inverse the switching
      * done by axutil_allocator_switch_to_global_pool, to start using the local pool again.
      * @param allocator allocator whose memory pools are to be switched
      * @return void

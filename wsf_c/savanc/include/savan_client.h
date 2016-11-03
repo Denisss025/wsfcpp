@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
- 
+
+
 #ifndef SAVAN_CLIENT_H
 #define SAVAN_CLIENT_H
 
 
 /**
-* @defgroup savan_client 
+* @defgroup savan_client
 * @ingroup savan_client
 * @{
 */
@@ -48,7 +48,7 @@ extern "C"
      * @param env pointer to environment struct
      * @param svc_client client for the publisher service
      * @param options map containing options for the Subscribe request
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     savan_client_subscribe(
@@ -56,14 +56,14 @@ extern "C"
         const axutil_env_t *env,
         axis2_svc_client_t *svc_client,
         axutil_hash_t *options);
-    
+
     /**
      * Send Renew request using the given service client
      * @param client the client object
      * @param env pointer to environment struct
      * @param svc_client client for the publisher service
      * @param options map containing options for the Renew request
-     * @return new expiry date. 
+     * @return new expiry date.
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     savan_client_renew(
@@ -71,19 +71,19 @@ extern "C"
         const axutil_env_t *env,
         axis2_svc_client_t *svc_client,
         axutil_hash_t *options);
-            
+
     /**
      * Send Unsubscribe request using the given service client
      * @param client the client object
      * @param env pointer to environment struct
      * @param svc_client client for the publisher service
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     savan_client_unsubscribe(
         savan_client_t *client,
         const axutil_env_t *env,
-        axis2_svc_client_t *svc_client); 
+        axis2_svc_client_t *svc_client);
 
     /**
      * Send GetStatus request using the given service client
@@ -107,7 +107,7 @@ extern "C"
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     savan_client_get_sub_id(
         savan_client_t *client);
- 
+
     /**
      * Get the subscription url assigned by the event source
      * @param client the client object
@@ -117,7 +117,7 @@ extern "C"
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     savan_client_get_sub_url(
         savan_client_t *client);
-   
+
     /**
      * Create a savan client
      * @param env pointer to environment struct
@@ -126,8 +126,8 @@ extern "C"
     AXIS2_EXTERN savan_client_t * AXIS2_CALL
     savan_client_create(
         const axutil_env_t *env);
-            
-    
+
+
 /** @} */
 #ifdef __cplusplus
 }

@@ -24,7 +24,7 @@
 
 /**
   * @file openssl_hmac.h
-  * @brief HMAC function implementations. Supports SHA1  
+  * @brief HMAC function implementations. Supports SHA1
   */
 #ifndef OPENSSL_HMAC
 #define OPENSSL_HMAC
@@ -34,7 +34,7 @@ extern "C" {
 #endif
 
     /**
-      * @defgroup openssl_hmac OpenSSL Hmac 
+      * @defgroup openssl_hmac OpenSSL Hmac
       * @ingroup openssl
       * @{
       */
@@ -43,7 +43,7 @@ extern "C" {
         openssl_hmac_sha1(const axutil_env_t *env,
              oxs_key_t *secret,
              oxs_buffer_t *input,
-             oxs_buffer_t *output); 
+             oxs_buffer_t *output);
 
 		AXIS2_EXTERN axis2_status_t AXIS2_CALL
 		openssl_p_sha1(const axutil_env_t *env,
@@ -56,8 +56,8 @@ extern "C" {
         openssl_p_hash(const axutil_env_t *env,
 			unsigned char *secret,
             unsigned int secret_len,
-			unsigned char *seed, 
-			unsigned int seed_len, 
+			unsigned char *seed,
+			unsigned int seed_len,
 			unsigned char *output,
 			unsigned int output_len);
 

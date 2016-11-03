@@ -50,10 +50,10 @@ extern "C"
     /**
      * Creates a service group context struct.
      * @param env pointer to environment struct
-     * @param svc_grp pointer to service group that this service context 
+     * @param svc_grp pointer to service group that this service context
      * represents, service group context does not assume the ownership of the struct
-     * @param conf_ctx pointer to configuration context, the parent context 
-     * of the newly created service group context, service group context does not 
+     * @param conf_ctx pointer to configuration context, the parent context
+     * of the newly created service group context, service group context does not
      * assume the ownership of the struct
      * @return pointer to newly created service group context
      */
@@ -67,7 +67,7 @@ extern "C"
      * Gets base which is of type context.
      * @param svc_grp_ctx pointer to service group context
      * @param env pointer to environment
-     * @return pointer to base context struct, returns a reference not a 
+     * @return pointer to base context struct, returns a reference not a
      * cloned copy
      */
     AXIS2_EXTERN axis2_ctx_t *AXIS2_CALL
@@ -76,11 +76,11 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets parent. configuration context is the parent of any service group 
+     * Gets parent. configuration context is the parent of any service group
      * context instance.
      * @param svc_grp_ctx pointer to service group context
      * @param env pointer to environment struct
-     * @return pointer to configuration context, parent of service group 
+     * @return pointer to configuration context, parent of service group
      */
     AXIS2_EXTERN struct axis2_conf_ctx *AXIS2_CALL
     axis2_svc_grp_ctx_get_parent(
@@ -99,13 +99,13 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Initializes service group context. In this method, it pics the 
+     * Initializes service group context. In this method, it pics the
      * related service group from configuration and keeps a reference
-     * for future use. 
+     * for future use.
      * @param svc_grp_ctx pointer to service group context
      * @param env pointer to environment struct
      * @param conf pointer to configuration
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_grp_ctx_init(
@@ -129,7 +129,7 @@ extern "C"
      * @param svc_grp_ctx pointer to service group context
      * @param env pointer to environment struct
      * @param id service group context ID
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_grp_ctx_set_id(
@@ -151,11 +151,11 @@ extern "C"
         const axis2_char_t * svc_name);
 
     /**
-     * Fills service context map. This will create one service context per 
+     * Fills service context map. This will create one service context per
      * each service in the service group related to this service context.
      * @param svc_grp_ctx pointer to service group context
      * @param env pointer to environment struct
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_grp_ctx_fill_svc_ctx_map(
@@ -163,10 +163,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets service group related to this service context. 
+     * Gets service group related to this service context.
      * @param svc_grp_ctx pointer to service group context
      * @param env pointer to environment struct
-     * @return pointer to service group that this service group context 
+     * @return pointer to service group that this service group context
      * represents
      */
     AXIS2_EXTERN struct axis2_svc_grp *AXIS2_CALL

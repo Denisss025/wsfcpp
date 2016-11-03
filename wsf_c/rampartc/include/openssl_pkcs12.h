@@ -25,7 +25,7 @@
 #include <openssl/pkcs12.h>
 
 /**
-  * @file openssl_pkcs12.h 
+  * @file openssl_pkcs12.h
   * @brief Functions related to keys that are in pkcs12 format
   */
 #ifndef OPENSSL_PKCS12_H
@@ -45,7 +45,7 @@ extern "C" {
     openssl_pkcs12_load(const axutil_env_t *env,
                         axis2_char_t *filename,
                         PKCS12 **p12);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     openssl_pkcs12_load_from_buffer(const axutil_env_t *env,
                         axis2_char_t *buffer,

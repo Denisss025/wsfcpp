@@ -33,7 +33,7 @@
 
 
 /**
-  * @file openssl_pkcs12_keystore.h 
+  * @file openssl_pkcs12_keystore.h
   * @brief Key Store manager for keys that are in pkcs12 format
   */
 #ifndef OPENSSL_PKCS12_KEYSTORE_H
@@ -42,51 +42,51 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+
     typedef struct pkcs12_keystore pkcs12_keystore_t;
-    
+
     AXIS2_EXTERN pkcs12_keystore_t * AXIS2_CALL pkcs12_keystore_create(
-        const axutil_env_t *env, 
-        axis2_char_t *filename, 
+        const axutil_env_t *env,
+        axis2_char_t *filename,
         axis2_char_t *password);
-    
+
     AXIS2_EXTERN axutil_array_list_t * AXIS2_CALL pkcs12_keystore_populate_cert_array(
         const axutil_env_t *env,
         STACK_OF(X509) *other_certs);
-    
+
     oxs_x509_cert_t * AXIS2_CALL pkcs12_keystore_populate_oxs_cert(
-        const axutil_env_t *env, 
+        const axutil_env_t *env,
         X509 *cert_in);
-    
+
     AXIS2_EXTERN openssl_pkey_t * AXIS2_CALL pkcs12_keystore_get_owner_private_key(
         pkcs12_keystore_t *keystore,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN oxs_x509_cert_t * AXIS2_CALL pkcs12_keystore_get_owner_certificate(
-        pkcs12_keystore_t *keystore, 
+        pkcs12_keystore_t *keystore,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN oxs_x509_cert_t * AXIS2_CALL pkcs12_keystore_get_certificate_for_issuer_serial(
         pkcs12_keystore_t *keystore,
         const axutil_env_t *env,
         axis2_char_t *issuer,
         int serial_number);
-    
+
     AXIS2_EXTERN oxs_x509_cert_t * AXIS2_CALL pkcs12_keystore_get_certificate_for_thumbprint(
-        pkcs12_keystore_t *keystore, 
-        const axutil_env_t *env, 
+        pkcs12_keystore_t *keystore,
+        const axutil_env_t *env,
         axis2_char_t *thumbprint);
-    
+
     AXIS2_EXTERN oxs_x509_cert_t * AXIS2_CALL pkcs12_keystore_get_certificate_for_subject_key_id(
         pkcs12_keystore_t *keystore,
         const axutil_env_t *env,
         axis2_char_t *ski);
 
-    AXIS2_EXTERN oxs_x509_cert_t * AXIS2_CALL 
+    AXIS2_EXTERN oxs_x509_cert_t * AXIS2_CALL
     pkcs12_keystore_get_other_certificate(
     	pkcs12_keystore_t *keystore,
     	const axutil_env_t *env);
-     
+
     AXIS2_EXTERN pkcs12_keystore_t * AXIS2_CALL
     pkcs12_keystore_create_from_buffer(
         const axutil_env_t *env,
@@ -94,30 +94,30 @@ extern "C" {
         axis2_char_t *password,
         int len);
 
-    AXIS2_EXTERN axis2_char_t* AXIS2_CALL 
+    AXIS2_EXTERN axis2_char_t* AXIS2_CALL
 	pkcs12_keystore_get_keystore_file(
 		pkcs12_keystore_t* keystore);
 
-	AXIS2_EXTERN axis2_char_t* AXIS2_CALL 
+	AXIS2_EXTERN axis2_char_t* AXIS2_CALL
 	pkcs12_keystore_get_password(
 		pkcs12_keystore_t* keystore);
-    
-	AXIS2_EXTERN PKCS12* AXIS2_CALL 
+
+	AXIS2_EXTERN PKCS12* AXIS2_CALL
 	pkcs12_keystore_get_keystore(
 		pkcs12_keystore_t* keystore);
 
-	AXIS2_EXTERN X509* AXIS2_CALL 
+	AXIS2_EXTERN X509* AXIS2_CALL
 	pkcs12_keystore_get_cert(
 		pkcs12_keystore_t* keystore);
-    
-    AXIS2_EXTERN STACK_OF(X509)* AXIS2_CALL 
+
+    AXIS2_EXTERN STACK_OF(X509)* AXIS2_CALL
 	pkcs12_keystore_get_other_certs(
 		pkcs12_keystore_t* keystore);
 
-	AXIS2_EXTERN openssl_pkey_t* AXIS2_CALL 
+	AXIS2_EXTERN openssl_pkey_t* AXIS2_CALL
 	pkcs12_keystore_get_pvt_key(
-		pkcs12_keystore_t* keystore);    
-        
+		pkcs12_keystore_t* keystore);
+
 #ifdef __cplusplus
 }
 #endif

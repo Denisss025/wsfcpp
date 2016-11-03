@@ -47,7 +47,7 @@ extern "C"
     struct axis2_msg;
 
     /**
-     * Creates a description struct instance.    
+     * Creates a description struct instance.
      * @param env pointer to environment struct
      * @return pointer to newly created description
      */
@@ -118,8 +118,8 @@ extern "C"
 
     /**
      * Adds child to the description. The type of children is based on the
-     * level of the description hierarchy. As an example, service has 
-     * children of type operation, service group has children of type 
+     * level of the description hierarchy. As an example, service has
+     * children of type operation, service group has children of type
      * service
      * @param desc pointer to description
      * @param env pointer to environment struct
@@ -135,7 +135,7 @@ extern "C"
         const struct axis2_msg *child);
 
     /**
-     * Gets all children. 
+     * Gets all children.
      * @param desc pointer to description
      * @param env pointer to environment struct
      * @return pointer to hash map containing children
@@ -150,7 +150,7 @@ extern "C"
      * @param desc pointer to description
      * @param env pointer to environment struct
      * @param key key with which the child is stored
-     * @return pointer to child, returned as a void* value, need to cast to 
+     * @return pointer to child, returned as a void* value, need to cast to
      * correct type
      */
     AXIS2_EXTERN void *AXIS2_CALL
@@ -176,7 +176,7 @@ extern "C"
      * Sets parent description.
      * @param desc pointer to description
      * @param env pointer to environment struct
-     * @param parent pointer to parent description 
+     * @param parent pointer to parent description
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -189,7 +189,7 @@ extern "C"
      * Gets parent description.
      * @param desc pointer to description
      * @param env pointer to environment struct
-     * @return parent pointer to parent description 
+     * @return parent pointer to parent description
      */
     AXIS2_EXTERN axis2_desc_t *AXIS2_CALL
     axis2_desc_get_parent(
@@ -199,7 +199,7 @@ extern "C"
     /**
      * Sets policy include
      * @param desc pointer to description
-     * @param env pointer to environment struct 
+     * @param env pointer to environment struct
      * @param policy_include policy include to be added to description
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -212,7 +212,7 @@ extern "C"
     /**
      * Gets policy include
      * @param desc pointer to description
-     * @param env pointer to environment struct 
+     * @param env pointer to environment struct
      * @return returns policy include that was added to description
      * @sa axis2_policy_include
      */

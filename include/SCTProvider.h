@@ -41,9 +41,9 @@ namespace wso2wsf
 
     /**
      * @brief class SCTProvider Represents an interface needed implement any user specific
-     * security context token provider functionality. For implementing a Token provider, one 
+     * security context token provider functionality. For implementing a Token provider, one
      * need to extend from the SCTProvider class and implement the abstract public methods defined by
-     * the SCTProvider class. 
+     * the SCTProvider class.
      */
     class SCTProvider
     {
@@ -55,7 +55,7 @@ namespace wso2wsf
          * @return void pointer to the token object requested security context token.
          */
         virtual void* WSF_CALL getToken(
-            std::string& sct_id, 
+            std::string& sct_id,
             MessageContext* msgctx) = 0;
 
         /**
@@ -66,8 +66,8 @@ namespace wso2wsf
          * @return true if the operation is successful, false otherwise.
          */
         virtual bool WSF_CALL storeToken(
-            std::string& sct_id, 
-            MessageContext* msgctx, 
+            std::string& sct_id,
+            MessageContext* msgctx,
             void* sct) = 0;
 
         /**
@@ -77,7 +77,7 @@ namespace wso2wsf
          * @return true if the operation is successful, false otherwise.
          */
         virtual bool WSF_CALL removeToken(
-            std::string& sct_id, 
+            std::string& sct_id,
             MessageContext* msgctx) = 0;
 
         /**
@@ -87,7 +87,7 @@ namespace wso2wsf
          * @return true if the token is valid, false otherwise.
          */
         virtual bool WSF_CALL validateToken(
-            OMNode* sct_node, 
+            OMNode* sct_node,
             MessageContext* msgctx) = 0;
 
         /**
@@ -100,21 +100,21 @@ namespace wso2wsf
          *
          */
         WSF_EXTERN static axis2_status_t WSF_CALL storeToken(
-            const axutil_env_t *env, 
-            axis2_msg_ctx_t* msg_ctx, 
-            axis2_char_t *sct_global_id, 
-            axis2_char_t *sct_local_id, 
-            void *sct, 
+            const axutil_env_t *env,
+            axis2_msg_ctx_t* msg_ctx,
+            axis2_char_t *sct_global_id,
+            axis2_char_t *sct_local_id,
+            void *sct,
             void *user_params);
 
         /**
          * Static Handler to be invoked to get previously stored sct
          */
         WSF_EXTERN static void* WSF_CALL getToken(
-            const axutil_env_t *env, 
-            axis2_bool_t is_encryption, 
-            axis2_msg_ctx_t* msg_ctx, 
-            axis2_char_t *sct_id, 
+            const axutil_env_t *env,
+            axis2_bool_t is_encryption,
+            axis2_msg_ctx_t* msg_ctx,
+            axis2_char_t *sct_id,
             int sct_id_type,
             void* user_params);
 
@@ -122,19 +122,19 @@ namespace wso2wsf
          * Static Handler to be invoked to remove previously stored sct
          */
         WSF_EXTERN static axis2_status_t WSF_CALL removeToken(
-            const axutil_env_t *env, 
-            axis2_msg_ctx_t* msg_ctx, 
-            axis2_char_t *sct_id, 
+            const axutil_env_t *env,
+            axis2_msg_ctx_t* msg_ctx,
+            axis2_char_t *sct_id,
             int sct_id_type,
             void* user_params);
-        
+
         /**
          * Static Handler to be invoked to validate whether security context token is valid or not
          */
         WSF_EXTERN static axis2_status_t WSF_CALL validateToken(
-            const axutil_env_t *env, 
-            axiom_node_t *sct_node, 
-            axis2_msg_ctx_t *msg_ctx, 
+            const axutil_env_t *env,
+            axiom_node_t *sct_node,
+            axis2_msg_ctx_t *msg_ctx,
             void *user_params);
     };
     /** @} */

@@ -21,8 +21,8 @@
 #include <axis2_util.h>
 
 /**
-  * @file openssl_sign.h 
-  * @brief The signature functions in openssl wrapper 
+  * @file openssl_sign.h
+  * @brief The signature functions in openssl wrapper
   */
 #ifndef OPENSSL_SIGN_H
 #define OPENSSL_SIGN_H
@@ -45,8 +45,8 @@ extern "C" {
                      oxs_buffer_t *input_buf,
                      oxs_buffer_t *output_buf);
     /**
-     * Verifies a signature placed in @sig_buf with 
-     * the content placed in the @input_buf 
+     * Verifies a signature placed in @sig_buf with
+     * the content placed in the @input_buf
      * using the public key @pubkey
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL

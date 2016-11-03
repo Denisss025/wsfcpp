@@ -48,10 +48,10 @@ extern "C"
      * Creates a service context struct that corresponds to the given service
      * and with the given parent service group context.
      * @param env pointer to environment struct
-     * @param svc pointer to service that this service context represents, 
+     * @param svc pointer to service that this service context represents,
      * service context does not assume the ownership of service
-     * @param svc_grp_ctx pointer to service group context, the parent of the 
-     * newly created service context. service context does not assume the 
+     * @param svc_grp_ctx pointer to service group context, the parent of the
+     * newly created service context. service context does not assume the
      * ownership of parent
      * @return pointer to newly created service context
      */
@@ -109,7 +109,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Initializes service context. This method locates the corresponding 
+     * Initializes service context. This method locates the corresponding
      * service that is related to the service context from configuration
      * using service qname and keeps a reference to it for future use.
      * @param svc_ctx pointer to service context
@@ -124,7 +124,7 @@ extern "C"
         struct axis2_conf *conf);
 
     /**
-     * Gets the ID of the service that this service context is an instance 
+     * Gets the ID of the service that this service context is an instance
      * of.
      * @param svc_ctx pointer to service context
      * @param env pointer to environment struct
@@ -173,7 +173,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Creates an operation context for the named operation. The named 
+     * Creates an operation context for the named operation. The named
      * operation should be one of the operations in the service related
      * to this service context.
      * @param svc_ctx pointer to service context

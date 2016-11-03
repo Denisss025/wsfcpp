@@ -40,7 +40,7 @@ extern "C"
     /** @file axis2_addr.h */
 
     /* ====================== Common Message Addressing Properties =========== */
- 
+
     /** WS-Addressing Message ID */
 #define AXIS2_WSA_MESSAGE_ID "MessageID"
 
@@ -151,13 +151,13 @@ extern "C"
 #define AXIS2_WSA_PREFIX_REPLY_TO AXIS2_WSA_DEFAULT_PREFIX":"AXIS2_WSA_REPLY_TO
 
     /** WS-Addressing Prefixes for faults*/
-#define AXIS2_WSA_PREFIX_TO AXIS2_WSA_DEFAULT_PREFIX":"AXIS2_WSA_TO 
+#define AXIS2_WSA_PREFIX_TO AXIS2_WSA_DEFAULT_PREFIX":"AXIS2_WSA_TO
 
     /** WS-Addressing Prefixes for faults*/
 #define AXIS2_WSA_PREFIX_MESSAGE_ID AXIS2_WSA_DEFAULT_PREFIX":"AXIS2_WSA_MESSAGE_ID
 
     /** WS-Addressing Prefixes for faults*/
-#define AXIS2_WSA_PREFIX_ACTION AXIS2_WSA_DEFAULT_PREFIX":"AXIS2_WSA_ACTION 
+#define AXIS2_WSA_PREFIX_ACTION AXIS2_WSA_DEFAULT_PREFIX":"AXIS2_WSA_ACTION
 
     /* ======================================================================= */
 

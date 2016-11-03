@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_IDENTIFIER_H
 #define SANDESHA2_IDENTIFIER_H
 
 /**
   * @file sandesha2_identifier.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -49,46 +49,46 @@ sandesha2_identifier_free_void_arg(
     void *identifier,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_identifier_free (
-    sandesha2_identifier_t *identifier, 
-    const axutil_env_t *env);	
+    sandesha2_identifier_t *identifier,
+    const axutil_env_t *env);
 
 AXIS2_EXTERN sandesha2_identifier_t* AXIS2_CALL
 sandesha2_identifier_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *ns_value);
 
 AXIS2_EXTERN sandesha2_identifier_t* AXIS2_CALL
 sandesha2_identifier_clone(
-    const axutil_env_t *env,  
+    const axutil_env_t *env,
     sandesha2_identifier_t *identifier);
-                    	
+
 axis2_char_t * AXIS2_CALL
 sandesha2_identifier_get_identifier(
     sandesha2_identifier_t *identifier,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL                 
+axis2_status_t AXIS2_CALL
 sandesha2_identifier_set_identifier(
     sandesha2_identifier_t *identifier,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *str_id);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_identifier_get_namespace_value (
     sandesha2_identifier_t *identifier,
     const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_identifier_from_om_node(
     sandesha2_identifier_t *identifier,
     const axutil_env_t *env, axiom_node_t *om_node);
 
-axiom_node_t* AXIS2_CALL 
+axiom_node_t* AXIS2_CALL
 sandesha2_identifier_to_om_node(
     sandesha2_identifier_t *identifier,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     void *om_node);
 
 /** @} */

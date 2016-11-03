@@ -22,7 +22,7 @@
 
 /**
   * @file rampart_sec_processed_result.h
-  * @brief The module to keep  the results after processing the message 
+  * @brief The module to keep  the results after processing the message
   */
 #ifndef RAMPART_SEC_PROCESSED_RESULT
 #define RAMPART_SEC_PROCESSED_RESULT
@@ -54,7 +54,7 @@ extern "C" {
     /**
      * Get a security processed result from a message context.
      * A service  may use this method to retirieve a particular result by the key
-     * @env the environment 
+     * @env the environment
      * @msg_ctx the message context in which data are extracted
      * @key as specified in rampart_constants section SPR
      * @return value of the security processed result corresponding to @key
@@ -67,7 +67,7 @@ extern "C" {
 
     /**
      * Set a security processed result property to the message context
-     * @env the environment 
+     * @env the environment
      * @msg_ctx the message context in which data are stored/extracted
      * @return status of the operation
      */
@@ -78,7 +78,7 @@ extern "C" {
 
     /**
      * Get the complete set of security processed results
-     * @env the environment 
+     * @env the environment
      * @msg_ctx the message context in which data are extracted
      * @return complete set of security processed results.
      */
@@ -89,7 +89,7 @@ extern "C" {
 
     /**
      * Prints all ke/val pairs in the security processed results. For debugging purposes
-     * @env the environment 
+     * @env the environment
      * @msg_ctx the message context in which data are extracted
      * @return void
      */

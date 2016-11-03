@@ -87,7 +87,7 @@ extern "C"
         axis2_char_t *local_name);
 
     /**
-     * Traverse thru the node and its descendents. Check if the node has a particular attibure 
+     * Traverse thru the node and its descendents. Check if the node has a particular attibure
      * value, whose attribute name as in @attr and value as in @val
      * @param env Environment. MUST NOT be NULL,
      * @param node the node to be searched
@@ -105,7 +105,7 @@ extern "C"
         axis2_char_t *ns);
 
     /**
-     * Traverse thru the node and its descendents. Check if the node has a particular attribute with 
+     * Traverse thru the node and its descendents. Check if the node has a particular attribute with
      * name as in @attr and namespace as in @ns. Returns the attribute value.
      * @param env Environment. MUST NOT be NULL,
      * @param node the node to be searched
@@ -121,7 +121,7 @@ extern "C"
         axis2_char_t *ns);
 
     /**
-     * Traverse thru the node and its descendents. Check if the node has a particular attribute with 
+     * Traverse thru the node and its descendents. Check if the node has a particular attribute with
      * qname as in @qname. Returns the attribute value.
      * @param env Environment. MUST NOT be NULL,
      * @param node the node to be searched
@@ -160,18 +160,18 @@ extern "C"
      */
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     oxs_axiom_get_node_content(
-        const axutil_env_t *env, 
+        const axutil_env_t *env,
         axiom_node_t* node);
 
     /**
-     * Deserialises given buffer and creates the axiom node 
+     * Deserialises given buffer and creates the axiom node
      * @param env Environment. Must not be NULL
      * @param buffer representation of serialised node
      * @return deserialised node if success. NULL otherwise.
      */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     oxs_axiom_deserialize_node(
-        const axutil_env_t *env,  
+        const axutil_env_t *env,
         axis2_char_t* buffer);
 
     /**
@@ -184,9 +184,9 @@ extern "C"
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     oxs_axiom_check_node_name(
-        const axutil_env_t *env, 
-        axiom_node_t* node, 
-        axis2_char_t* name, 
+        const axutil_env_t *env,
+        axiom_node_t* node,
+        axis2_char_t* name,
         axis2_char_t* ns);
 
     /**
@@ -200,8 +200,8 @@ extern "C"
     oxs_axiom_interchange_nodes(
         const axutil_env_t *env,
         axiom_node_t *node_to_move,
-        axiom_node_t *node_before); 
-    
+        axiom_node_t *node_before);
+
     /**
      * Adds @child as the first child of @parent
      * @param env Environment. Must not be null
@@ -216,7 +216,7 @@ extern "C"
         axiom_node_t *child);
 
     /**
-	 * Traverse thru the node and its children. Check if the element has the 
+	 * Traverse thru the node and its children. Check if the element has the
 	 * given qname and has a id attribute equal to the given value.
 	 * @param env Environment. MUST NOT be NULL,
      * @param node the node to be searched
@@ -238,8 +238,8 @@ extern "C"
         axis2_char_t *attr_ns);
 
 	/**
-	 * First find the root of the scope node. Traverse thru the root node and its 
-	 * children. Check if the element has the given qname and has a attribute 
+	 * First find the root of the scope node. Traverse thru the root node and its
+	 * children. Check if the element has the given qname and has a attribute
 	 * equal to the given values.
 	 * @param env Environment. MUST NOT be NULL,
      * @param node the node to be searched
@@ -249,7 +249,7 @@ extern "C"
      * @param attr_val the attribute value of the node
 	 * @param attr_ns the attribute namespace. If NULL doesn't consider namespaces.
      * @return the node if found, else NULL
-     */	 
+     */
 	AXIS2_EXTERN axiom_node_t * AXIS2_CALL
 	oxs_axiom_get_first_node_by_name_and_attr_val_from_xml_doc(
         const axutil_env_t *env,
@@ -261,7 +261,7 @@ extern "C"
         axis2_char_t *attr_ns);
 
     /**
-     * Clones the given node. 
+     * Clones the given node.
      * @param env Environment. Must not be null
      * @param node node to be cloned
      * @return cloned node if success. NULL otherwise
@@ -270,7 +270,7 @@ extern "C"
     oxs_axiom_clone_node(
         const axutil_env_t *env,
         axiom_node_t *node);
-                          
+
     /** @} */
 #ifdef __cplusplus
 }

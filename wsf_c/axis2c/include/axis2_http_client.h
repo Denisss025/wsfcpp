@@ -184,7 +184,7 @@ extern "C"
     /**
      * @param client pointer to client
      * @param env pointer to environment struct
-     * @param key_file chain file containing 
+     * @param key_file chain file containing
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL

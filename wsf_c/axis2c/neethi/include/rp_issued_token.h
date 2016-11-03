@@ -35,89 +35,89 @@
 extern "C"
 {
 #endif
-	
+
 	typedef struct rp_issued_token rp_issued_token_t;
-	
+
 	AXIS2_EXTERN rp_issued_token_t * AXIS2_CALL
 	rp_issued_token_create(
 			const axutil_env_t *env);
-	
+
 	AXIS2_EXTERN void AXIS2_CALL
 	rp_issued_token_free(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env);
-	
+
 	AXIS2_EXTERN axis2_char_t * AXIS2_CALL
 	rp_issued_token_get_inclusion(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env);
-	
+
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	rp_issued_token_set_inclusion(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env,
 			axis2_char_t *inclusion);
-	
+
 	AXIS2_EXTERN axiom_node_t * AXIS2_CALL
 	rp_issued_token_get_issuer_epr(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env);
-	
+
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	rp_issued_token_set_issuer_epr(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env,
 			axiom_node_t *issuer_epr);
-	
+
 	AXIS2_EXTERN axiom_node_t * AXIS2_CALL
 	rp_issued_token_get_requested_sec_token_template(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env);
-	
+
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	rp_issued_token_set_requested_sec_token_template(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env,
 			axiom_node_t *req_sec_token_template);
-	
+
 	AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 	rp_issued_token_get_derivedkeys(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env);
-	
+
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	rp_issued_token_set_derivedkeys(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env,
 			axis2_bool_t derivedkeys);
-	
+
 	AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 	rp_issued_token_get_require_external_reference(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env);
-	
+
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	rp_issued_token_set_require_exernal_reference(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env,
 			axis2_bool_t require_external_reference);
-	
+
 	AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 	rp_issued_token_get_require_internal_reference(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env);
-	
+
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	rp_issued_token_set_require_internal_reference(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env,
 			axis2_bool_t require_internal_reference);
-	
+
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	rp_issued_token_increment_ref(
 			rp_issued_token_t *issued_token,
 			const axutil_env_t *env);
-	
+
 #ifdef __cplusplus
 }
 #endif

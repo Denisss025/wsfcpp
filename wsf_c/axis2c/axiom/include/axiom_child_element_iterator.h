@@ -40,13 +40,13 @@ extern "C"
      * @ingroup axiom_om
      * @{
      */
-    
+
     /**
      * Free the iterator
      * @param iterator a pointer to child element iterator struct
      * @param env environment, MUST NOT be NULL.
      */
-    
+
     AXIS2_EXTERN void AXIS2_CALL
     axiom_child_element_iterator_free(
         void *iterator,
@@ -61,14 +61,14 @@ extern "C"
     *  @param iterator a pointer to child element iterator struct
      * @param env environment, MUST NOT be NULL.
     */
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axiom_child_element_iterator_remove(
         axiom_child_element_iterator_t * iterator,
         const axutil_env_t * env);
 
     /**
-     * returns true if the iteration has more elements 
+     * returns true if the iteration has more elements
      * in otherwords it returns true if the next() would return an element
      * rather than null with an error code set to environments error
      * @param iterator a pointer to child element iterator struct
@@ -81,8 +81,8 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Returns the next element in the iteration. Returns null if there 
-     * is no more elements 
+     * Returns the next element in the iteration. Returns null if there
+     * is no more elements
      * @param iterator a pointer to child element iterator struct
      * @param env environment, MUST NOT be NULL.
      */

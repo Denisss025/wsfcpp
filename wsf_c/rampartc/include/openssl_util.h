@@ -19,7 +19,7 @@
 #include<openssl_cipher_property.h>
 
 /**
-  * @file openssl_util.h 
+  * @file openssl_util.h
   * @brief General utility routines for openssl related functions.
   */
 #ifndef OPENSSL_UTIL_H

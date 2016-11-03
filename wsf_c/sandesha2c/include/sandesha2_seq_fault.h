@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_SEQ_FAULT_H
 #define SANDESHA2_SEQ_FAULT_H
 
 /**
   * @file sandesha2_seq_fault.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -37,22 +37,22 @@ extern "C"
  * @ingroup sandesha2_wsrm
  * @{
  */
-    
+
 typedef struct sandesha2_seq_fault_t sandesha2_seq_fault_t;
 struct axiom_node;
 /**
  * @brief sandesha2_seq_fault
  *    sandesha2_seq_fault
  */
-    
+
 AXIS2_EXTERN sandesha2_seq_fault_t* AXIS2_CALL
 sandesha2_seq_fault_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *ns_value);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_seq_fault_free(
-    sandesha2_seq_fault_t *seq_fault, 
+    sandesha2_seq_fault_t *seq_fault,
 	const axutil_env_t *env);
 
 sandesha2_fault_code_t * AXIS2_CALL
@@ -60,27 +60,27 @@ sandesha2_seq_fault_get_fault_code(
     sandesha2_seq_fault_t *seq_fault,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL                 
+axis2_status_t AXIS2_CALL
 sandesha2_seq_fault_set_fault_code(
     sandesha2_seq_fault_t *seq_fault,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_fault_code_t *fault_code);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_seq_fault_get_namespace_value(
     sandesha2_seq_fault_t *seq_fault,
 	const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_seq_fault_from_om_node(
     sandesha2_seq_fault_t *seq_fault,
-   	const axutil_env_t *env, 
+   	const axutil_env_t *env,
     struct axiom_node *om_node);
 
-struct axiom_node* AXIS2_CALL 
+struct axiom_node* AXIS2_CALL
 sandesha2_seq_fault_to_om_node(
     sandesha2_seq_fault_t *seq_fault,
-   	const axutil_env_t *env, 
+   	const axutil_env_t *env,
     void *om_node);
 
 /** @} */

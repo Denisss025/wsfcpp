@@ -26,7 +26,7 @@
 
 /**
  * @file axis2_arch_file_data.h
- * @brief Axis2 Arch File Data interface. arch_file_data construct contain 
+ * @brief Axis2 Arch File Data interface. arch_file_data construct contain
  * deployment information retrieved from a module or service configuration file.
  */
 #include <axis2_const.h>

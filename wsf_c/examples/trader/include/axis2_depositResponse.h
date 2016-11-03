@@ -10,7 +10,7 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -38,12 +38,12 @@
             axis2_depositResponse_t* depositResponse,
             const axutil_env_t *env);
 
-        
+
         axutil_qname_t* AXIS2_CALL
         axis2_depositResponse_get_qname (
             axis2_depositResponse_t* depositResponse,
             const axutil_env_t *env);
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_depositResponse_serialize(
@@ -56,7 +56,7 @@
             axis2_depositResponse_t* depositResponse,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for depositStatus.
@@ -75,12 +75,12 @@
             const axutil_env_t *env,
             axis2_char_t*  param_depositStatus);
 
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_DEPOSITRESPONSE_H */
-    
+
 

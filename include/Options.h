@@ -51,7 +51,7 @@ namespace wso2wsf
       * of this class can be chained together for property inheritance, so that if
       * a property is not set in one instance it will check its parent for a setting.
       */
-    class Options 
+    class Options
     {
     /**
      * The ServiceClient Class can access private resources of this class.
@@ -237,7 +237,7 @@ namespace wso2wsf
         WSF_EXTERN bool WSF_CALL getEnableMTOM();
 
 		/**
-		* configure client to use the specified the SOAP/Addressing action                                                   
+		* configure client to use the specified the SOAP/Addressing action
 		* @param action, The soap action
 		* @return true if the action is successfully set, false otherwise.
 		*/
@@ -249,7 +249,7 @@ namespace wso2wsf
          */
         WSF_EXTERN void WSF_CALL setHTTPMethod(std::string http_method);
 		/**
-		* Returns the axis2_options used within Options class                                                   
+		* Returns the axis2_options used within Options class
 		*
 		*/
 		WSF_EXTERN axis2_options_t* WSF_CALL getAxis2Options();
@@ -295,20 +295,20 @@ namespace wso2wsf
 		* forcing authentication
 		* @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
 		*/
-		WSF_EXTERN bool WSF_CALL 
+		WSF_EXTERN bool WSF_CALL
 		setProxyAuthInfo(std::string username, std::string password, std::string authType);
-	
+
 		/**
 		 * Set NTLM Authentication information.
 		 * @param username username of the client
 		 * @param password of the client
-		 * @param NTLM Flags defined in the 
+		 * @param NTLM Flags defined in the
 		 * @param domain Domain String
 		 * @param workstation workstation string
 		 * @Param authType authtype string
 		 */
 		WSF_EXTERN bool WSF_CALL
-		setNTLMProxyAuthInfo(std::string username, std::string password, int flags, 
+		setNTLMProxyAuthInfo(std::string username, std::string password, int flags,
 			std::string domain, std::string workstation, std::string authType);
 
 		/**

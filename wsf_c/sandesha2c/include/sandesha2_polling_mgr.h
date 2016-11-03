@@ -20,8 +20,8 @@
 /**
  * @file sandesha2_polling_mgr.h
  * @brief Sandesha Polling Manager Interface
- * This class is responsible for sending MakeConnection requests. This is a 
- * separate thread that keeps running. Will do MakeConnection based on the 
+ * This class is responsible for sending MakeConnection requests. This is a
+ * separate thread that keeps running. Will do MakeConnection based on the
  * request queue or randomly.
  */
 
@@ -40,10 +40,10 @@ extern "C"
 {
 #endif
 
-            
-axis2_status_t AXIS2_CALL 
+
+axis2_status_t AXIS2_CALL
 sandesha2_polling_mgr_start (
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_conf_ctx_t *conf_ctx,
     sandesha2_storage_mgr_t *storage_mgr,
     sandesha2_sender_mgr_t *sender_mgr,
@@ -51,7 +51,7 @@ sandesha2_polling_mgr_start (
     const axis2_char_t *internal_sequence_id,
     axis2_char_t *sequence_id,
     const axis2_char_t *reply_to);
-            
+
 /** @} */
 #ifdef __cplusplus
 }

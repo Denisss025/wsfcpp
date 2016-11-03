@@ -34,7 +34,7 @@ extern "C"
 
     AXIS2_EXTERN wsf_trader_t *AXIS2_CALL
     wsf_trader_create(const axutil_env_t *env);
-    
+
     AXIS2_EXTERN void AXIS2_CALL
     wsf_trader_free(wsf_trader_t *wsf_trader,
         const axutil_env_t *env);
@@ -67,7 +67,7 @@ extern "C"
         axis2_char_t *password,
         axis2_char_t *symbol,
         int qty);
-    
+
 
 #ifdef __cplusplus
 }

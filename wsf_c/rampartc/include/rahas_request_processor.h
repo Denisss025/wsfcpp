@@ -44,8 +44,8 @@ extern "C"
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rahas_process_issue_request(
-        const axutil_env_t *env, 
-        trust_rst_t *rst, 
+        const axutil_env_t *env,
+        trust_rst_t *rst,
         trust_rstr_t *rstr,
         axis2_msg_ctx_t *msg_ctx,
         int trust_version);

@@ -15,16 +15,16 @@
 * limitations under the License.
 */
 
-#ifndef AXIOM_MTOM_CACHING_CALLBACK_H 
+#ifndef AXIOM_MTOM_CACHING_CALLBACK_H
 #define AXIOM_MTOM_CACHING_CALLBACK_H
 
 /**
   * @file axiom_mtom_caching_callback.h
-  * @brief Caching callback for mime parser 
+  * @brief Caching callback for mime parser
   */
 
 /**
-* @defgroup caching_callback 
+* @defgroup caching_callback
 * @ingroup axiom
 * @{
 */
@@ -38,7 +38,7 @@ extern "C"
 #endif
 
     /**
-     * Type name for struct axiom_mtom_caching_callback_ops 
+     * Type name for struct axiom_mtom_caching_callback_ops
      */
     typedef struct axiom_mtom_caching_callback_ops axiom_mtom_caching_callback_ops_t;
 

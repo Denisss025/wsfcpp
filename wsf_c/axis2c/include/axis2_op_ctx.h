@@ -56,7 +56,7 @@ extern "C"
     /**
      * Creates an operation context struct instance.
      * @param env pointer to environment struct
-     * @param op pointer to operation that is related to operation context. 
+     * @param op pointer to operation that is related to operation context.
      * operation context does not assume the ownership of the struct
      * @param svc_ctx pointer to parent service context
      * @return pointer to newly created operation context
@@ -90,7 +90,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Initializes operation context. This method traverses through all the 
+     * Initializes operation context. This method traverses through all the
      * message contexts stored within it and initialize them all.
      * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
@@ -115,10 +115,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets parent which is of service context type. 
+     * Gets parent which is of service context type.
      * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
-     * @return pointer to service context within which this operation 
+     * @return pointer to service context within which this operation
      * context lives
      */
     AXIS2_EXTERN struct axis2_svc_ctx *AXIS2_CALL
@@ -127,7 +127,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Adds a message context. 
+     * Adds a message context.
      * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
      * @param msg_ctx pointer to message context
@@ -144,8 +144,8 @@ extern "C"
      * Gets message context with the given message ID.
      * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
-     * @param message_id message label of type axis2_wsdl_msg_labels_t. 
-	 * This can be one of AXIS2_WSDL_MESSAGE_LABEL_IN or AXIS2_WSDL_MESSAGE_LABEL_OUT 
+     * @param message_id message label of type axis2_wsdl_msg_labels_t.
+	 * This can be one of AXIS2_WSDL_MESSAGE_LABEL_IN or AXIS2_WSDL_MESSAGE_LABEL_OUT
 	 * from the axis2_wsdl_msg_labels enum.
      * @return pointer to message context with given ID
      */
@@ -174,7 +174,7 @@ extern "C"
      * are associated with the MEP has arrived.
      * @param op_ctx pointer to operating context
      * @param env pointer to environment struct
-     * @param is_complete AXIS2_TRUE if MEP invocation is complete, else 
+     * @param is_complete AXIS2_TRUE if MEP invocation is complete, else
      * AXIS2_FALSE
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -185,7 +185,7 @@ extern "C"
         axis2_bool_t is_complete);
 
     /**
-     * Cleans up the operation context. Clean up includes removing all 
+     * Cleans up the operation context. Clean up includes removing all
      * message context references recorded in operation context.
      * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
@@ -225,7 +225,7 @@ extern "C"
      * Sets the bool value indicating the status of response.
      * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
-     * @param response_written AXIS2_TRUE if response is written, else 
+     * @param response_written AXIS2_TRUE if response is written, else
      * AXIS2_FALSE
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -239,7 +239,7 @@ extern "C"
      * Checks the response status, whether it is written or not.
      * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
-     * @return AXIS2_TRUE if response is already written, else AXIS2_FALSE    
+     * @return AXIS2_TRUE if response is already written, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     axis2_op_ctx_get_response_written(
@@ -263,7 +263,7 @@ extern "C"
      * is still in use
      * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
-     * @return AXIS2_TRUE if still in use, else AXIS2_FALSE    
+     * @return AXIS2_TRUE if still in use, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     axis2_op_ctx_is_in_use(
@@ -271,13 +271,13 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Set operation context's is_in_use attribute. This is necessary when 
-     * destroying the thread mutex at the http_worker to check whether the 
+     * Set operation context's is_in_use attribute. This is necessary when
+     * destroying the thread mutex at the http_worker to check whether the
      * operation context is still in use
      * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
      * @param is_in_use AXIS2_TRUE if still in use, else AXIS2_FALSE
-     * @return AXIS2_TRUE if still in use, else AXIS2_FALSE    
+     * @return AXIS2_TRUE if still in use, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_op_ctx_set_in_use(
@@ -286,12 +286,12 @@ extern "C"
         axis2_bool_t is_in_use);
 
     /**
-     * Incrementing the op_ctx ref count. This is necessary when 
-     * prevent freeing op_ctx through op_client when it is in use 
+     * Incrementing the op_ctx ref count. This is necessary when
+     * prevent freeing op_ctx through op_client when it is in use
      * as in sandesha where the msg_cts is stored.
-     * @param op_ctx pointer to operation context  
+     * @param op_ctx pointer to operation context
      * @param env pointer to environment struct
-     * @return AXIS2_TRUE if still in use, else AXIS2_FALSE 
+     * @return AXIS2_TRUE if still in use, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_op_ctx_increment_ref(

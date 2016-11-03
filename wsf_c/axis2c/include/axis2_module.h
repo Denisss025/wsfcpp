@@ -60,7 +60,7 @@ extern "C"
 
     struct axis2_conf;
 
-    /** 
+    /**
      * Struct containing operations available on a module.
      * \n
      * 1. init
@@ -80,7 +80,7 @@ extern "C"
          * @param env pointer to environment struct
          * @param conf_ctx pointer to configuration context
          * @param module_desc module description
-         * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+         * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
          */
         axis2_status_t(
             AXIS2_CALL
@@ -94,7 +94,7 @@ extern "C"
          * Shutdowns module.
          * @param module pointer to module struct
          * @param env pointer to environment struct
-         * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+         * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
          */
         axis2_status_t(
             AXIS2_CALL
@@ -106,7 +106,7 @@ extern "C"
          * Fills the hash map of handler create functions for the module.
          * @param module pointer to module struct
          * @param env pointer to environment struct
-         * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+         * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
          */
         axis2_status_t(
             AXIS2_CALL

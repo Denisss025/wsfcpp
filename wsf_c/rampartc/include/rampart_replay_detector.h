@@ -20,7 +20,7 @@
 
 /**
 * @file rampart_replay_detector.h
-* @brief The replay_detector module for rampart 
+* @brief The replay_detector module for rampart
 */
 
 /**
@@ -45,7 +45,7 @@ extern "C"
     struct rampart_replay_detector_ops
     {
         /**
-         * Check whether the message is replayed or not. If not replayed, message fields have to be 
+         * Check whether the message is replayed or not. If not replayed, message fields have to be
          * stored to check replay status of future messages
          * @param rrd the replay detector struct
          * @param env pointer to environment struct
@@ -78,7 +78,7 @@ extern "C"
 		axutil_param_t *param;
     };
 
-    
+
     /**
      * A linked list based implementation for replay detection.
      * This doesnt require addressing headers to be present. If the user doesn't give any replay
@@ -87,7 +87,7 @@ extern "C"
      * @param msg_ctx message context structure
      * @param rampart_context rampart context structure
      * @param user_params parameters given by user. (Not used in this method)
-     * @returns status of the op. AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op. AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_replay_detector_default(

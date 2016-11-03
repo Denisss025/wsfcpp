@@ -25,7 +25,7 @@
   */
 
 /**
-* @defgroup rampart_token_builder Token Builder 
+* @defgroup rampart_token_builder Token Builder
 * @ingroup rampart_utils
 * @{
 */
@@ -48,9 +48,9 @@ extern "C" {
 
     /**
      * Build a SecurityTokenReference element according to the pattern specified in @pattern.
-     * The token will be attached to the node @parent and relavent data will be extracted from 
-     * certificate @cert. Note that this method will internally call other token building methods 
-     * specified in this header depending on the @pattern. 
+     * The token will be attached to the node @parent and relavent data will be extracted from
+     * certificate @cert. Note that this method will internally call other token building methods
+     * specified in this header depending on the @pattern.
      * @param env pointer to environment struct
      * @param parent The parent node
      * @param cert The X509 certificate
@@ -97,7 +97,7 @@ extern "C" {
         const axutil_env_t *env,
         axiom_node_t *parent,
         oxs_x509_cert_t *cert);
-    
+
     /*
      * Build an X509Certificate token with data available in the certificate.
      *        <SecurityTokenReference>
@@ -144,7 +144,7 @@ extern "C" {
        <wsse:SecurityTokenReference>
                       <wsse:KeyIdentifier EncodingType="..." ValueType="...#
                         ThumbprintSHA1">bg6I8267h0TUcPYvYE0D6k6+UJQ=</wsse:KeyIdentifier>
-       </wsse:SecurityTokenReference> 
+       </wsse:SecurityTokenReference>
 
      * @param env pointer to environment struct
      * @param parent The parent node

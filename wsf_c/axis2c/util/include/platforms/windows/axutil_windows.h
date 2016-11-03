@@ -76,7 +76,7 @@ extern "C"
 
 
 	/* Get the last Error */
-    AXIS2_EXTERN void AXIS2_CALL 
+    AXIS2_EXTERN void AXIS2_CALL
     axutil_win32_get_last_error(axis2_char_t *buff,
 								unsigned int buf_size);
 
@@ -85,7 +85,7 @@ extern "C"
 	axutil_win32_get_last_wsa_error(axis2_char_t *buff,
 									unsigned int buf_size);
 
-#define AXUTIL_WIN32_ERROR_BUFSIZE 256 
+#define AXUTIL_WIN32_ERROR_BUFSIZE 256
 
     /***************************************************************
      * Default paths to shared library/DLLs and files
@@ -109,7 +109,7 @@ extern "C"
      */
 #define AXIS2_CONFIGURATION_RESOURCE "" /* should be set */
 
-/* 
+/*
  * =============================================================
  * Library loading and procedure resolution
  * =============================================================
@@ -127,7 +127,7 @@ extern "C"
 #define AXIS2_DLHANDLER void*
 
 
-/* 
+/*
  * =============================================================
  * National Language Support
  * =============================================================

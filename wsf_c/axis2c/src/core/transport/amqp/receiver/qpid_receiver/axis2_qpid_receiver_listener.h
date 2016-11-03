@@ -35,7 +35,7 @@ class Axis2QpidReceiverListener : public MessageListener
 
 	private:
 		virtual void received(Message& message);
-    
+
 		const axutil_env_t* env;
 		axis2_conf_ctx_t*   conf_ctx;
 };

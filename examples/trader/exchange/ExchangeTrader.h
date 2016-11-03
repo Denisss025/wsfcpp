@@ -25,7 +25,7 @@ using namespace org_wso2_www;
 #define WSF_SERVICE_SKEL_INIT(class_name) \
 ExchangeTraderSkeleton* wsfGetExchangeTraderSkeleton(){ return new class_name(); }
 
-ExchangeTraderSkeleton* wsfGetExchangeTraderSkeleton(); 
+ExchangeTraderSkeleton* wsfGetExchangeTraderSkeleton();
 
 
 
@@ -37,7 +37,7 @@ ExchangeTraderSkeleton* wsfGetExchangeTraderSkeleton();
             public:
 
                union {
-                     
+
                } fault;
 
 
@@ -49,12 +49,12 @@ ExchangeTraderSkeleton* wsfGetExchangeTraderSkeleton();
 
               bool WSF_CALL init();
 
-              ~ExchangeTrader(); 
+              ~ExchangeTrader();
       };
 
 
 
 #endif    //     EXCHANGETRADER_H
 
-    
+
 

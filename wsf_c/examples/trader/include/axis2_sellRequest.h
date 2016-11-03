@@ -10,7 +10,7 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -38,12 +38,12 @@
             axis2_sellRequest_t* sellRequest,
             const axutil_env_t *env);
 
-        
+
         axutil_qname_t* AXIS2_CALL
         axis2_sellRequest_get_qname (
             axis2_sellRequest_t* sellRequest,
             const axutil_env_t *env);
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_sellRequest_serialize(
@@ -56,7 +56,7 @@
             axis2_sellRequest_t* sellRequest,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for userid.
@@ -75,7 +75,7 @@
             const axutil_env_t *env,
             axis2_char_t*  param_userid);
 
-        
+
 
         /**
          * getter for password.
@@ -94,7 +94,7 @@
             const axutil_env_t *env,
             axis2_char_t*  param_password);
 
-        
+
 
         /**
          * getter for symbol.
@@ -113,7 +113,7 @@
             const axutil_env_t *env,
             axis2_char_t*  param_symbol);
 
-        
+
 
         /**
          * getter for qty.
@@ -132,12 +132,12 @@
             const axutil_env_t *env,
             int  param_qty);
 
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_SELLREQUEST_H */
-    
+
 

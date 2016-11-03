@@ -78,15 +78,15 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * This will add the deployment info struct(ws_info) into the deployment info 
-     * list and deployment info file to the deployment engine as new 
+     * This will add the deployment info struct(ws_info) into the deployment info
+     * list and deployment info file to the deployment engine as new
      * service or module deployment info struct/file.
-     * In doing this, it first create an deployment info struct called ws_info 
-     * to keep the file info that will be added to deployment info file 
-     * list and then create deployment info file called arch_file_data that will 
+     * In doing this, it first create an deployment info struct called ws_info
+     * to keep the file info that will be added to deployment info file
+     * list and then create deployment info file called arch_file_data that will
      * be added to deployment engine for actual deployment of the service/module.
      *
-     * This will add two entries to deployment engine one for new Deployment and 
+     * This will add two entries to deployment engine one for new Deployment and
      * other for undeployment.
      * @param info_list pointer to ws info list
      * @param env pointer to environment struct
@@ -103,8 +103,8 @@ extern "C"
         int type);
 
     /**
-     * This method is used to check whether the service/module configuration 
-     * file exist and if so it will return related ws_info object to the file, 
+     * This method is used to check whether the service/module configuration
+     * file exist and if so it will return related ws_info object to the file,
      * else return NULL;
      * @param info_list pointer to ws info list
      * @param env pointer to environment struct
@@ -146,10 +146,10 @@ extern "C"
 
     /**
      * This is to check whether to undeploy ws info struct.
-     * What this realy does is, it check ws_info list and current deployment 
-     * info name list. If ws_info exists in the ws_info_list but it's 
-     * corresponding file name does not exist in the current deploymet file 
-     * name list then, struct is deemed non existant. ie. that is hot 
+     * What this realy does is, it check ws_info list and current deployment
+     * info name list. If ws_info exists in the ws_info_list but it's
+     * corresponding file name does not exist in the current deploymet file
+     * name list then, struct is deemed non existant. ie. that is hot
      * undeployment.
      * @param info_list pointer to ws info list
      * @param env pointer to environment struct

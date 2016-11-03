@@ -91,7 +91,7 @@ extern "C"
 
     /**
      * This method is called from axis2_engine_receive method. This method's
-     * actual implementation is decided from the create method of the 
+     * actual implementation is decided from the create method of the
      * extended message receiver object. There depending on the synchronous or
      * asynchronous type, receive method is assigned with the synchronous or
      * asynchronous implementation of receive.
@@ -241,7 +241,7 @@ extern "C"
 	 * Configuration context is attached to the message receiver so that conf_ctx can be assccessed in load_and_init
 	 * method at service load time.
 	 * @param msg_recv axis2_msg_recv instance
-	 * @param env axutil environment 
+	 * @param env axutil environment
 	 * @param axis2_conf_ctx Configuration context instance
 	 */
 	AXIS2_EXPORT void AXIS2_CALL
@@ -253,7 +253,7 @@ extern "C"
 	/**
 	 * Returns the Configuration context which is attached to the message receiver
 	 * @param msg_recv axis2_msg_recv instance
-	 * @param env axutil environment 
+	 * @param env axutil environment
 	 * @returns configuration context
 	 */
 	AXIS2_EXPORT struct axis2_conf_ctx* AXIS2_CALL

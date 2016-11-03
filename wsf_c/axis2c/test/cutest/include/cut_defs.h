@@ -68,9 +68,9 @@ static int cut_strcmp(const char *str1, const char *str2)
 	return strcmp(str1, str2);
 }
 
-static int cut_assert(int bValue, 
+static int cut_assert(int bValue,
                unsigned int uiLine,
-               char strCondition[], 
+               char strCondition[],
                char strFile[])
 {
     ++cut_nb_asserts;
@@ -88,9 +88,9 @@ static int cut_ptr_equal(void *ptr, void *value, int equal,
     ++cut_nb_asserts;
     if ( (ptr == value) == equal) return 1;
     ++cut_nb_assert_failures;
-    printf("Assertion Failure %s %d: pointer %sexpected <%s>, found <%s>\n", strFile, uiLine, 
+    printf("Assertion Failure %s %d: pointer %sexpected <%s>, found <%s>\n", strFile, uiLine,
 	    equal?"":"not ", (char *) value, (char*) ptr);
-    AXIS2_LOG_ERROR(cut_axis2_env->log, strFile, uiLine, 
+    AXIS2_LOG_ERROR(cut_axis2_env->log, strFile, uiLine,
 	    "Assertion Failure : pointer %sexpected <%p>, found <%p>", equal?"":"not ", value, ptr);
 	return 0;
 }
@@ -102,9 +102,9 @@ static int cut_int_equal(long value, long expected, int equal,
     ++cut_nb_asserts;
     if ((expected == value)== equal) return 1;
     ++cut_nb_assert_failures;
-    printf("Assertion Failure %s %d: integer %sexpected <%ld>, found <%ld>\n", strFile, uiLine, 
+    printf("Assertion Failure %s %d: integer %sexpected <%ld>, found <%ld>\n", strFile, uiLine,
 	    equal?"":"not ", expected, value);
-    AXIS2_LOG_ERROR(cut_axis2_env->log, strFile, uiLine, 
+    AXIS2_LOG_ERROR(cut_axis2_env->log, strFile, uiLine,
 	    "Assertion Failure : integer %sexpected <%ld>, found <%ld>", equal?"":"not ", expected,value);
 	return 0;
 }
@@ -116,9 +116,9 @@ static int cut_str_equal(const char *value, const char *expected, int equal,
     ++cut_nb_asserts;
     if ( (cut_strcmp(expected,value) == 0) == equal) return 1;
     ++cut_nb_assert_failures;
-    printf("Assertion Failure %s %d: string %sexpected <%s>, found <%s>\n", strFile, uiLine, 
+    printf("Assertion Failure %s %d: string %sexpected <%s>, found <%s>\n", strFile, uiLine,
 	    equal?"":"not ", expected, value);
-    AXIS2_LOG_ERROR(cut_axis2_env->log, strFile, uiLine, 
+    AXIS2_LOG_ERROR(cut_axis2_env->log, strFile, uiLine,
 	    "Assertion Failure : string %sexpected <%s>, found <%s>", equal?"":"not ", expected,value);
 	return 0;
 }
@@ -131,7 +131,7 @@ axutil_env_t *cut_setup_env(char* testName)
         printf("\n");
         printf(CUT_LOG_HEADER, testName);
         printf("\n\n");
-        if (cut_axis2_env) 
+        if (cut_axis2_env)
         {
             AXIS2_LOG_INFO(cut_axis2_env->log, CUT_LOG_HEADER, testName);
         }

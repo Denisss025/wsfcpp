@@ -30,11 +30,11 @@ class Axis2QpidSender
 		Axis2QpidSender(string qpidBrokerIP, int qpidBrokerPort, const axutil_env_t* env);
 		~Axis2QpidSender(void);
 
-		bool SendReceive(string messageContent, string toQueueName, bool isSOAP11, 
+		bool SendReceive(string messageContent, string toQueueName, bool isSOAP11,
 				string contentType, string soapAction, axutil_array_list_t* mime_parts, int timeout);
-		bool Send(string messageContent, string toQueueName, string replyToQueueName, bool isSOAP11, 
+		bool Send(string messageContent, string toQueueName, string replyToQueueName, bool isSOAP11,
 				string contentType, string soapAction, axutil_array_list_t* mime_parts);
-		
+
 		string 		 responseContent;
 		string		 responseContentType;
 

@@ -87,7 +87,7 @@ extern "C"
     /**
      * Invoke is called to do the actual work assigned to the handler.
      * The phase that owns the handler is responsible for calling invoke
-     * on top of the handler. Those structs that implement the interface 
+     * on top of the handler. Those structs that implement the interface
      * of the handler should implement the logic for invoke and assign the
      * respective function pointer to invoke operation of the ops struct.
      * @param handler pointer to handler
@@ -128,7 +128,7 @@ extern "C"
       * Gets the handler description related to the handler.
       * @param handler pointer to handler
       * @param env pointer to environment struct
-      * @return pointer to handler description struct related to handler    
+      * @return pointer to handler description struct related to handler
       */
     AXIS2_EXTERN struct axis2_handler_desc *AXIS2_CALL
 
@@ -164,7 +164,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Creates a handler with invoke method implemented to fill in the service 
+     * Creates a handler with invoke method implemented to fill in the service
      * and operation context information.
      * @param env pointer to environment struct
      * @param qname pointer to qname, this is cloned within create method

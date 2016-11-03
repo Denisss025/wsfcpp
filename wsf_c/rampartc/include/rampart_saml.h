@@ -30,7 +30,7 @@
 
 /**
   * @file rampart_saml.h
-  * @brief build saml tokens and validate saml tokens 
+  * @brief build saml tokens and validate saml tokens
   */
 
 
@@ -44,12 +44,12 @@ extern "C" {
 #define RAMPART_ST_FAULT_SECURITYTOKENUNAVAILABLE_STR   "A referenced SAML assertion could not be retrieved."
 #define RAMPART_ST_FAULT_UNSUPPORTEDSECURITYTOKEN_STR   "An assertion contains a <saml:condition> element that the receive does not understand."
 #define RAMPART_ST_FAULT_FAILEDCHECK_STR                "A signature withing an assertion or referencing an assertion is invalid."
-#define RAMPART_ST_FAULT_INVALIDSECURITYTOKEN_STR       "The issuer of an assertion is not acceptable to the receiver."                
+#define RAMPART_ST_FAULT_INVALIDSECURITYTOKEN_STR       "The issuer of an assertion is not acceptable to the receiver."
 
 #define RAMPART_ST_FAULT_SECURITYTOKENUNAVAILABLE_CODE  "wsse:SecurityTokenUnavailable"
 #define RAMPART_ST_FAULT_UNSUPPORTEDSECURITYTOKEN_CODE  "wsse:UnsupportedSecurityToken"
 #define RAMPART_ST_FAULT_FAILEDCHECK_CODE               "wsse:FailedCheck"
-#define RAMPART_ST_FAULT_INVALIDSECURITYTOKEN_CODE      "wsse:InvalidSecurityToken"                
+#define RAMPART_ST_FAULT_INVALIDSECURITYTOKEN_CODE      "wsse:InvalidSecurityToken"
 
 #define RAMPART_SAML_FAULT_CODE                         "env:Sender"
     /**
@@ -58,13 +58,13 @@ extern "C" {
      * @param rampart_context
      * @param sec_node
      * @param sign_parts
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
-rampart_saml_supporting_token_build(const axutil_env_t *env, 
-                         rampart_context_t *rampart_context,                         
+rampart_saml_supporting_token_build(const axutil_env_t *env,
+                         rampart_context_t *rampart_context,
                          axiom_node_t *sec_node,
                          axutil_array_list_t *sign_parts);
     /**
@@ -72,75 +72,75 @@ rampart_saml_supporting_token_build(const axutil_env_t *env,
      * @param env pointer to environment struct,Must not be NULL.
      * @param rampart_context
      * @param assertion
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
-rampart_saml_token_validate(const axutil_env_t *env, 
-                            rampart_context_t *rampart_context, 
+rampart_saml_token_validate(const axutil_env_t *env,
+                            rampart_context_t *rampart_context,
                             axiom_node_t *assertion);
     /**
      *
      * @param env pointer to environment struct,Must not be NULL.
      * @param assertion
-     * @returns 
+     * @returns
      */
 
 AXIS2_EXTERN char * AXIS2_CALL
-rampart_saml_token_get_subject_confirmation(const axutil_env_t *env, 
+rampart_saml_token_get_subject_confirmation(const axutil_env_t *env,
                                             axiom_node_t *assertion);
 
 
     /**
-     * SAML token proccessing faults 
+     * SAML token proccessing faults
      * @param env pointer to environment struct,Must not be NULL.
      * @param ctx
-     * @returns 
+     * @returns
      */
 
 AXIS2_EXTERN int AXIS2_CALL
-rampart_saml_token_fault_securitytokenunavailable(axutil_env_t *env, 
+rampart_saml_token_fault_securitytokenunavailable(axutil_env_t *env,
                                                   axis2_msg_ctx_t *ctx);
     /**
-     * 
+     *
      * @param env pointer to environment struct,Must not be NULL.
      * @param ctx
-     * @returns 
+     * @returns
      */
 
 AXIS2_EXTERN int AXIS2_CALL
-rampart_saml_token_fault_unsupportedsecuritytoken(axutil_env_t *env, 
+rampart_saml_token_fault_unsupportedsecuritytoken(axutil_env_t *env,
                                                   axis2_msg_ctx_t *ctx);
     /**
-     * 
+     *
      * @param env pointer to environment struct,Must not be NULL.
      * @param ctx
-     * @returns 
+     * @returns
      */
 
 AXIS2_EXTERN int AXIS2_CALL
-rampart_saml_token_fault_failedcheck(axutil_env_t *env, 
+rampart_saml_token_fault_failedcheck(axutil_env_t *env,
                                                   axis2_msg_ctx_t *ctx);
     /**
-     * 
+     *
      * @param env pointer to environment struct,Must not be NULL.
      * @param ctx
-     * @returns 
+     * @returns
      */
 
 AXIS2_EXTERN int AXIS2_CALL
-rampart_saml_token_fault_invalidsecuritytoken(axutil_env_t *env, 
+rampart_saml_token_fault_invalidsecuritytoken(axutil_env_t *env,
                                                   axis2_msg_ctx_t *ctx);
 
 
 AXIS2_EXTERN rampart_saml_token_t * AXIS2_CALL
-rampart_saml_add_token(rampart_context_t *rampart_context, 
-					   const axutil_env_t *env, axiom_node_t *assertion, 
+rampart_saml_add_token(rampart_context_t *rampart_context,
+					   const axutil_env_t *env, axiom_node_t *assertion,
 					   axiom_node_t *str,
 					   rampart_st_type_t type);
 #ifdef __cplusplus
 }
 #endif
 
-#endif    
+#endif

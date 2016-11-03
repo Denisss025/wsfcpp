@@ -74,7 +74,7 @@ extern "C"
         struct axiom_namespace *om_namespace1);
 
     /**
-      * Serializes given namespace 
+      * Serializes given namespace
       * @param om_namespace namespace to be serialized.
       * @param env Environment. MUST NOT be NULL.
       * @param om_output AXIOM output handler to be used in serializing
@@ -120,7 +120,7 @@ extern "C"
     /**
       * to string , returns the string by combining namespace_uri,
       * and prefix seperated by a '|' character
-      * @param om_namespace 
+      * @param om_namespace
       * @param env Environment. MUST NOT be NULL
       * @returns pointer to string , This is a property of namespace,
       * should not be freed by user
@@ -185,7 +185,7 @@ extern "C"
      * @param om_namespace pointer to the axiom namespace struct
      * @param env Environment. MUST NOT be NULL
      *
-     * @return the prefix as a string 
+     * @return the prefix as a string
      */
     AXIS2_EXTERN axutil_string_t *AXIS2_CALL
     axiom_namespace_get_prefix_str(

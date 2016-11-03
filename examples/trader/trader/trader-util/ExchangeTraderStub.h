@@ -42,7 +42,7 @@ typedef enum
 
  class IExchangeTraderCallback;
 
- 
+
 
 class ExchangeTraderStub : public wso2wsf::Stub
 {
@@ -51,7 +51,7 @@ class ExchangeTraderStub : public wso2wsf::Stub
         /**
          *  Constructor of ExchangeTrader class
          *  @param client_home WSF/C home directory
-         *  
+         *
          */
         ExchangeTraderStub(std::string& client_home);
 
@@ -76,73 +76,73 @@ class ExchangeTraderStub : public wso2wsf::Stub
         std::string WSF_CALL
         getEndpointUriOfExchangeTrader();
 
-        
+
 
             /**
              * Auto generated function declaration
              * for "login|http://www.wso2.org" operation.
-             * 
+             *
              * @param _loginRequest of the org_wso2_www_types::LoginRequest
              *
-             * @return 
+             * @return
              */
 
             bool WSF_CALL login( org_wso2_www_types::LoginRequest*  _loginRequest);
-          
+
 
             /**
              * Auto generated function declaration
              * for "registerClient|http://www.wso2.org" operation.
-             * 
+             *
              * @param _registerClientRequest of the org_wso2_www_types::RegisterClientRequest
              *
              * @return org_wso2_www_types::RegisterClientResponse*
              */
 
             org_wso2_www_types::RegisterClientResponse* WSF_CALL registerClient( org_wso2_www_types::RegisterClientRequest*  _registerClientRequest);
-          
+
 
             /**
              * Auto generated function declaration
              * for "registerFeedTarget|http://www.wso2.org" operation.
-             * 
+             *
              * @param _registerFeedTargetRequest of the org_wso2_www_types::RegisterFeedTargetRequest
              *
-             * @return 
+             * @return
              */
 
             bool WSF_CALL registerFeedTarget( org_wso2_www_types::RegisterFeedTargetRequest*  _registerFeedTargetRequest);
-          
+
 
             /**
              * Auto generated function declaration
              * for "sell|http://www.wso2.org" operation.
-             * 
+             *
              * @param _sellRequest_ex of the org_wso2_www_types::SellRequest_ex
              *
-             * @return 
+             * @return
              */
 
             bool WSF_CALL sell( org_wso2_www_types::SellRequest_ex*  _sellRequest_ex);
-          
+
 
             /**
              * Auto generated function declaration
              * for "buy|http://www.wso2.org" operation.
-             * 
+             *
              * @param _buyRequest_ex of the org_wso2_www_types::BuyRequest_ex
              *
-             * @return 
+             * @return
              */
 
             bool WSF_CALL buy( org_wso2_www_types::BuyRequest_ex*  _buyRequest_ex);
-          
+
 
         /**
          * Auto generated function for asynchronous invocations
          * for "registerClient|http://www.wso2.org" operation.
          * @param stub The stub
-         * 
+         *
          * @param _registerClientRequest of the org_wso2_www_types::RegisterClientRequest
          * @param ICallback callback handler
          */
@@ -151,7 +151,7 @@ class ExchangeTraderStub : public wso2wsf::Stub
         void WSF_CALL
         start_registerClient(org_wso2_www_types::RegisterClientRequest*  _registerClientRequest,IExchangeTraderCallback* callback);
 
-          
+
 
 
 };
@@ -163,7 +163,7 @@ class ExchangeTraderStub : public wso2wsf::Stub
 }
 
 
-        
-#endif        
-   
+
+#endif
+
 

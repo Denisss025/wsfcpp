@@ -30,7 +30,7 @@ extern "C"
 #endif
 
 
-    #define array_sizeof(x) (sizeof (x) / sizeof ((x)[0]))    
+    #define array_sizeof(x) (sizeof (x) / sizeof ((x)[0]))
 
 
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -40,7 +40,7 @@ extern "C"
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
     wsf_create_client_data(
         const axutil_env_t *env);
-        
+
 
 #ifdef __cplusplus
 }

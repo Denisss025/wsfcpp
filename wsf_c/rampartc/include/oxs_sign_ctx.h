@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_sign_ctx.h
-  * @brief Keeps information relavent for a single node of signing. 
+  * @brief Keeps information relavent for a single node of signing.
   */
 /**
 * @defgroup oxs_sign_ctx Signature Context
@@ -75,7 +75,7 @@ extern "C"
     /**
      * Get signature algorithm of the signature context
      * @sign_ctx the signature context
-     * @env the environemnt struct 
+     * @env the environemnt struct
      * @return signature algorithm
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -86,7 +86,7 @@ extern "C"
     /**
      * Get cannocanicalization method of the signature context
      * @sign_ctx the signature context
-     * @env the environemnt struct 
+     * @env the environemnt struct
      * @return cannocanicalization method
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -97,7 +97,7 @@ extern "C"
     /**
      * Get sginature valueof the signature context
      * @sign_ctx the signature context
-     * @env the environemnt struct 
+     * @env the environemnt struct
      * @return signature value
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -108,7 +108,7 @@ extern "C"
     /**
      * Get signature parts of the signature context
      * @sign_ctx the signature context
-     * @env the environemnt struct 
+     * @env the environemnt struct
      * @return sgnature parts as a list
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -119,7 +119,7 @@ extern "C"
     /**
      * Get x509 certificate of the signature context
      * @sign_ctx the signature context
-     * @env the environemnt struct 
+     * @env the environemnt struct
      * @return x509 certificate
      */
     AXIS2_EXTERN oxs_x509_cert_t *AXIS2_CALL
@@ -129,8 +129,8 @@ extern "C"
     /**
      * Get private key of the signature context
      * @sign_ctx the signature context
-     * @env the environemnt struct 
-     * @return private key 
+     * @env the environemnt struct
+     * @return private key
      */
 
     AXIS2_EXTERN openssl_pkey_t *AXIS2_CALL
@@ -141,7 +141,7 @@ extern "C"
     /**
      * Get public key of the signature context
      * @sign_ctx the signature context
-     * @env the environemnt struct 
+     * @env the environemnt struct
      * @return public key
      */
     AXIS2_EXTERN openssl_pkey_t *AXIS2_CALL
@@ -152,18 +152,18 @@ extern "C"
     /**
      * Get shared secret of the signature context
      * @sign_ctx the signature context
-     * @env the environemnt struct 
+     * @env the environemnt struct
      * @return the shared secret
      */
     AXIS2_EXTERN oxs_key_t *AXIS2_CALL
     oxs_sign_ctx_get_secret(
     const oxs_sign_ctx_t *sign_ctx,
     const axutil_env_t *env);
- 
+
     /**
      * Get the operation of the signature context
      * @sign_ctx the signature context
-     * @env the environemnt struct 
+     * @env the environemnt struct
      * @return operation SIGN/VERIFY/NONE
      */
     AXIS2_EXTERN oxs_sign_operation_t AXIS2_CALL
@@ -215,7 +215,7 @@ extern "C"
      * Set signature parts of the signature context @sign_ctx
      * @sign_ctx the signature context
      * @env the environemnt struct
-     * @sign_parts signature parts 
+     * @sign_parts signature parts
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -275,12 +275,12 @@ extern "C"
         oxs_sign_ctx_t *sign_ctx,
         const axutil_env_t *env,
         oxs_key_t *secret);
-    
+
     /**
      * Set the operation of the signature context @sign_ctx
      * @sign_ctx the signature context
      * @env the environemnt struct
-     * @operation the operation 
+     * @operation the operation
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL

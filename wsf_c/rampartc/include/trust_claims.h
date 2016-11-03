@@ -29,30 +29,30 @@
 extern "C"
 {
 #endif
-    
+
     typedef struct trust_claims trust_claims_t;
-    
+
     AXIS2_EXTERN trust_claims_t * AXIS2_CALL
     trust_claims_create(
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN  axis2_status_t AXIS2_CALL
     trust_claims_free(
         trust_claims_t *claims,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_claims_deserialize(
         trust_claims_t *claims,
         const axutil_env_t *env,
         axiom_node_t *claims_node);
-    
+
     AXIS2_EXTERN axiom_node_t * AXIS2_CALL
     trust_claims_serialize(
         trust_claims_t *claims,
         const axutil_env_t *env,
         axiom_node_t *parent);
-        
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_claims_set_attr_dialect(
         trust_claims_t *claims,
@@ -85,9 +85,9 @@ extern "C"
     trust_claims_get_wst_ns_uri(
         trust_claims_t *claims,
         const axutil_env_t *env);
-        
-            
-    
+
+
+
 #ifdef __cplusplus
 }
 #endif

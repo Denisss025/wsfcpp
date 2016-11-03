@@ -37,7 +37,7 @@ extern "C"
                 axiom_processing_instruction_t;
 
     /**
-      * Creates a processing instruction 
+      * Creates a processing instruction
       * @param environment Environment. MUST NOT be NULL.
       * @param parent parent of the element node to be created. Optional, can be NULL.
       * @param target target of the processing instruction.cannot be NULL.
@@ -45,7 +45,7 @@ extern "C"
       * @param node This is an out parameter. cannot be NULL.
       *     Returns the node corresponding to the comment created.
       *     Node type will be set to AXIOM_PROCESSING_INSTRUCTION
-      * @return a pointer tonewly created processing instruction struct 
+      * @return a pointer tonewly created processing instruction struct
       */
     AXIS2_EXTERN axiom_processing_instruction_t *AXIS2_CALL
     axiom_processing_instruction_create(
@@ -70,7 +70,7 @@ extern "C"
      * Set processing instruction data
      * @param om_pi
      * @param env Environment. MUST NOT be NULL, .
-     * @param value 
+     * @param value
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axiom_processing_instruction_set_value(
@@ -82,7 +82,7 @@ extern "C"
      * Set processing instruction target
      * @param om_pi processing_instruction struct
      * @param env environment, MUST NOT be NULL.
-     * @param target 
+     * @param target
      * @return status of the op AXIS2_SUCCESS on success,
      *     AXIS2_FAILURE on error.
      */
@@ -105,7 +105,7 @@ extern "C"
 
     /**
      * Get data part of processing_instruction
-     * @param om_pi processing instruction 
+     * @param om_pi processing instruction
      * @param env environment , MUST NOT be NULL.
      * @return data text , NULL if there is no data,
      */
@@ -120,7 +120,7 @@ extern "C"
      * @param env environment, MUST NOT be NULL.
      * @param om_output om_output handler struct
      * @return status of the op, AXIS2_SUCCESS on success,
-     *     AXIS2_FAILURE on error 
+     *     AXIS2_FAILURE on error
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axiom_processing_instruction_serialize(

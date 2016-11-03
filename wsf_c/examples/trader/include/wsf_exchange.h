@@ -55,7 +55,7 @@ extern "C"
     wsf_exchange_sell(wsf_exchange_t *wsf_exchange,
         const axutil_env_t *env,
         int quantity);
-        
+
 
 #ifdef __cplusplus
 }

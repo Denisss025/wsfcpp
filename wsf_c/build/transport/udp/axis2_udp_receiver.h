@@ -31,8 +31,8 @@
 extern "C"
 {
 #endif
-	
-	/* 
+
+	/*
 	 * Create the receiver.
 	 * @param env pointer to axutil_env struct
 	 * @param file configuration file name
@@ -46,12 +46,12 @@ extern "C"
 		const axis2_char_t * repo,
 		const int port,
 		axis2_char_t *multicast_group);
-	
-	/* 
+
+	/*
 	 * Create the receiver with the configuration file.
 	 * @param env pointer to axutil_env struct
 	 * @param file configuration file name
-	 * @param port port to listen 
+	 * @param port port to listen
 	 */
 	AXIS2_EXTERN axis2_transport_receiver_t *AXIS2_CALL
 	axis2_udp_receiver_create_with_file(
@@ -59,7 +59,7 @@ extern "C"
     	const axis2_char_t * file,
     	const int port);
 
-	/* Stop the UDP receiver 
+	/* Stop the UDP receiver
 	 * @param receiver axis2_transport receiver
 	 * @param env pointer to axutil_env struct
 	 */
@@ -67,9 +67,9 @@ extern "C"
 	axis2_udp_receiver_stop(
 		axis2_transport_receiver_t * receiver,
 		const axutil_env_t * env);
-	
-	/* Set the receiving socket. Receiver will directly use this socket for listening. 
-	 * A binding to specific port won't happen. 
+
+	/* Set the receiving socket. Receiver will directly use this socket for listening.
+	 * A binding to specific port won't happen.
 	 * @param receiver axis2_transport receiver
 	 * @param env pointer to axutil_env struct
 	 * @param socket datagram socket
@@ -83,4 +83,4 @@ extern "C"
 }
 #endif
 
-#endif  
+#endif

@@ -21,7 +21,7 @@
 
 /**
  * @defgroup axis2_callback_recv callback message receiver. This can be considered as a
- * message receiver implementation for application client side which is similar to 
+ * message receiver implementation for application client side which is similar to
  * server side message receivers like raw_xml_in_out_msg_recv. Messages received by
  * listener manager will finally end up here.
  *
@@ -76,7 +76,7 @@ extern "C"
      * @param env pointer to environment struct
      * @param msg_id message ID indicating which message the callback is
      * supposed to deal with
-     * @param callback callback to be added. callback receiver assumes 
+     * @param callback callback to be added. callback receiver assumes
      * ownership of the callback
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */

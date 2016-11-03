@@ -32,7 +32,7 @@ extern "C"
 {
 #endif
 
-    /** 
+    /**
      * @defgroup axis2_util utilities
      * @ingroup axis2
      * @{
@@ -66,23 +66,23 @@ extern "C"
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axutil_digest_calc_get_h_a1(
         const axutil_env_t * env,
-        char * algorithm,               
-        char * user_name,              
-        char * realm,                 
-        char * password,             
-        char * nonce,               
-        char * cnonce,             
-        axutil_digest_hash_hex_t session_key); 
+        char * algorithm,
+        char * user_name,
+        char * realm,
+        char * password,
+        char * nonce,
+        char * cnonce,
+        axutil_digest_hash_hex_t session_key);
 
-    /** 
-      * calculate request-digest/response-digest as per HTTP Digest spec 
+    /**
+      * calculate request-digest/response-digest as per HTTP Digest spec
       * @param env, pointer to env struct
       * @param h_a1, H(A1)
       * @param nonce, nonce from server
       * @param cnonce, client nonce
       * @param qop, qop-value: "", "auth", "auth-int"
       * @param method, method from the request
-      * @param digest_uri, requested URL 
+      * @param digest_uri, requested URL
       * @param h_entry, H(entity body) if qop="auth-int"
       * @param response, request-digest or response-digest
       * @return AXIS2_SUCCESS on success or AXIS2_FAILURE
@@ -90,15 +90,15 @@ extern "C"
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axutil_digest_calc_get_response(
         const axutil_env_t * env,
-        axutil_digest_hash_hex_t h_a1,                       
-        char * nonce,                      
-        char * nonce_count,               
-        char * cnonce,                   
-        char * qop,                     
-        char * method,                 
-        char * digest_uri,            
-        axutil_digest_hash_hex_t h_entity,  
-        axutil_digest_hash_hex_t response); 
+        axutil_digest_hash_hex_t h_a1,
+        char * nonce,
+        char * nonce_count,
+        char * cnonce,
+        char * qop,
+        char * method,
+        char * digest_uri,
+        axutil_digest_hash_hex_t h_entity,
+        axutil_digest_hash_hex_t response);
 
     /** @} */
 

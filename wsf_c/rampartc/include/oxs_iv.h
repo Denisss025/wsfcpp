@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_iv.h
-  * @brief Initial Vector related functionalities 
+  * @brief Initial Vector related functionalities
   */
 
 /**
@@ -46,7 +46,7 @@ extern "C"
      * Generates an Initial Vector(IV) for the given algorithm
      * @param env pointer to environment struct
      * @param key_algo the algorithm
-     * @return the generated IV 
+     * @return the generated IV
      */
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     oxs_iv_generate_for_algo(const axutil_env_t *env,

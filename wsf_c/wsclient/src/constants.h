@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef WSCLIENT_CONSTANTS_H
 #define WSCLIENT_CONSTANTS_H
 
@@ -27,7 +27,7 @@ extern "C"
  * @ingroup WSclient Constants
  * @{
  */
-	 
+
 /** @} */
 #ifdef __cplusplus
 }

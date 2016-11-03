@@ -56,7 +56,7 @@ extern "C"
      */
 
     /**
-      * creates a soap body struct 
+      * creates a soap body struct
       * @param env Environment. MUST NOT be NULL
       * @param envelope the SOAP envelope to set the SOAP Body
       * @return created SOAP Body
@@ -72,7 +72,7 @@ extern "C"
      * But it does not deallocate the underlying om structure
      * @param body soap_body struct
      * @param env must not be null
-     * @return status code AXIS2_SUCCESS 
+     * @return status code AXIS2_SUCCESS
      */
     AXIS2_EXTERN void AXIS2_CALL
     axiom_soap_body_free(
@@ -80,8 +80,8 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Indicates whether a soap fault is available with this 
-     * soap body 
+     * Indicates whether a soap fault is available with this
+     * soap body
      * @param body soap_body struct
      * @param env environment must not be null
      * @return AXIS2_TRUE if fault is available, AXIS2_FALSE otherwise
@@ -92,10 +92,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * returns the soap fault in this soap_body 
+     * returns the soap fault in this soap_body
      * IF a soap_builder is associated with the soap_body
-     * Pulling will  take place 
-     * @param body soap_body 
+     * Pulling will  take place
+     * @param body soap_body
      * @param env environment must not be null
      * @return axiom_soap_fault_t if available, NULL otherwise
     */
@@ -107,7 +107,7 @@ extern "C"
     /**
      * in rare occasions we need to remove the fault associated
      * with the body, e.g. when the body content is being encrypted
-     * @param body soap_body 
+     * @param body soap_body
      * @param env environment must not be null
      * @return AXIS2_SUCCESS if fault was removed
     */
@@ -117,7 +117,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * get the underlying om_node 
+     * get the underlying om_node
      * @param body soap_body
      * @param env environment must not be null
      * @returns axiom_node_t
@@ -128,10 +128,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     *  return the soap version 
+     *  return the soap version
      * @param body soap_body
      * @param env environment must not be null
-     * @return one of AXIOM_SOAP11 or AXIOM_SOAP12 
+     * @return one of AXIOM_SOAP11 or AXIOM_SOAP12
      */
     AXIS2_EXTERN int AXIS2_CALL
     axiom_soap_body_get_soap_version(
@@ -150,7 +150,7 @@ extern "C"
         const axutil_env_t * env);
 
     /** add an om node as the child to this soap_body
-     * the child is added to as the first child 
+     * the child is added to as the first child
      * @param body pointer to soap_body struct
      * @param env axutil_environment struct MUST not be NULL
      * @returns status code , AXIS2_SUCCESS on success , AXIS2_ERROR
@@ -164,8 +164,8 @@ extern "C"
         axiom_node_t * child);
 
     /**
-    * SOAP builder construct a SOAP 1.2 fault all the time. 
-    * So when SOAP 1.1 is in use, we should convert SOAP fault to 
+    * SOAP builder construct a SOAP 1.2 fault all the time.
+    * So when SOAP 1.1 is in use, we should convert SOAP fault to
     * SOAP 1.1 fault format before use.
      * @param body pointer to soap_body struct
      * @param env axutil_environment struct MUST not be NULL

@@ -129,7 +129,7 @@ extern "C"
         axutil_url_t * url,
         const axutil_env_t * env);
 
-    AXIS2_EXTERN axis2_char_t *AXIS2_CALL 
+    AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axutil_url_encode (
         const axutil_env_t * env,
         axis2_char_t * dest,

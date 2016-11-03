@@ -85,7 +85,7 @@ extern "C"
 		const axis2_char_t * content_type,
 		const axis2_char_t * key);
 
-	AXIS2_EXTERN int AXIS2_CALL 
+	AXIS2_EXTERN int AXIS2_CALL
 	axis2_amqp_util_on_data_request(
 		char *buffer,
 		int size,
@@ -111,27 +111,27 @@ extern "C"
 		axis2_msg_ctx_t* msg_ctx,
 		const axutil_env_t* env);
 
-	AXIS2_EXTERN axis2_amqp_destination_info_t* AXIS2_CALL 
+	AXIS2_EXTERN axis2_amqp_destination_info_t* AXIS2_CALL
 	axis2_amqp_util_msg_ctx_get_destination_info(
 		axis2_msg_ctx_t* msg_ctx,
 		const axutil_env_t* env);
 
-	AXIS2_EXTERN int AXIS2_CALL 
+	AXIS2_EXTERN int AXIS2_CALL
 	axis2_amqp_util_msg_ctx_get_request_timeout(
 		axis2_msg_ctx_t* msg_ctx,
 		const axutil_env_t* env);
 
-	AXIS2_EXTERN axis2_bool_t AXIS2_CALL 
+	AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 	axis2_amqp_util_msg_ctx_get_server_side(
 		axis2_msg_ctx_t* msg_ctx,
 		const axutil_env_t* env);
 
-	AXIS2_EXTERN void AXIS2_CALL 
+	AXIS2_EXTERN void AXIS2_CALL
 	axis2_amqp_response_free(
 		axis2_amqp_response_t* response,
 		const axutil_env_t* env);
 
-	AXIS2_EXTERN void AXIS2_CALL 
+	AXIS2_EXTERN void AXIS2_CALL
 	axis2_amqp_destination_info_free(
 		axis2_amqp_destination_info_t* destination_info,
 		const axutil_env_t* env);

@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_derivation.h
-  * @brief The Key derivation module for OMXMLSecurity 
+  * @brief The Key derivation module for OMXMLSecurity
   */
 
 /**
@@ -41,11 +41,11 @@ extern "C"
 
 
     /**
-     * Derive Key depending on the secret key @secret 
+     * Derive Key depending on the secret key @secret
      * Caller must free memory for derived key
      * @param env pointer to environment struct
-     * @param secret The secret is the shared secret that is exchanged (note that if two secrets 
-     * were securely exchanged, possible as part of an initial exchange, they are concatenated in 
+     * @param secret The secret is the shared secret that is exchanged (note that if two secrets
+     * were securely exchanged, possible as part of an initial exchange, they are concatenated in
      * the order they were sent/received)
      * @param derived_key The derived key. Caller must create and free
 	 * @param build_fresh Whether to build fresh or build using details in derived key
@@ -77,7 +77,7 @@ extern "C"
         oxs_key_t *derived_key,
         axiom_node_t *parent,
         axis2_char_t *stref_uri,
-        axis2_char_t *stref_val_type, 
+        axis2_char_t *stref_val_type,
         axis2_char_t *wsc_ns_uri);
 
     /**
@@ -94,13 +94,13 @@ extern "C"
     oxs_derivation_build_derived_key_token_with_stre(
         const axutil_env_t *env,
         oxs_key_t *derived_key,
-        axiom_node_t *parent,    
+        axiom_node_t *parent,
         axiom_node_t *stre,
         axis2_char_t *wsc_ns_uri);
 
     /**
      * Extract information from an AXIOM node of typ <wsse:DerivedKeyToken> and build a key
-     * If the (optional) session_key is NULL then extract it form the refered EncryptedKey. 
+     * If the (optional) session_key is NULL then extract it form the refered EncryptedKey.
      * Otherwise use it to Derive a new key using information available in the dk_token.
      * @param env pointer to environment struct
      * @param dk_token The <wsse:DerivedKeyToken> axiom node

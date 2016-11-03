@@ -25,7 +25,7 @@
 #include <openssl/pkcs12.h>
 #include <oxs_error.h>
 /**
-  * @file openssl_pem.h 
+  * @file openssl_pem.h
   * @brief Funcitons related to keys that are in PEM format.
   */
 #ifndef OPENSSL_PEM_H

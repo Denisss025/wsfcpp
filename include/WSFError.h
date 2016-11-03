@@ -39,7 +39,7 @@
 #define WSF_LOG_DEBUG_MSG axutil_log_impl_log_debug
 /**
  * Macro to use for logging information.
- */   
+ */
 #define WSF_LOG_INFO_MSG axutil_log_impl_log_info
 /**
  * Macro to use for logging warnings.
@@ -62,7 +62,7 @@
  */
 #define WSF_LOG_SI AXIS2_LOG_SI
 /**
- *  Creation of the execution environment failed. 
+ *  Creation of the execution environment failed.
  */
 #define CREATION_OF_EXECUTION_ENVIRONMENT_FAILED "Creation of Execution Environment Failed"
 /**

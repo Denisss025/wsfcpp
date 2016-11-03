@@ -45,11 +45,11 @@ typedef struct sandesha2_seq_property_mgr_ops sandesha2_seq_property_mgr_ops_t;
   */
 AXIS2_DECLARE_DATA struct sandesha2_seq_property_mgr_ops
 {
-   /** 
+   /**
      * Deallocate memory
      * @return status code
      */
-    void (AXIS2_CALL * 
+    void (AXIS2_CALL *
             free)(
                 sandesha2_seq_property_mgr_t *seq_property,
                 const axutil_env_t *envv);
@@ -108,7 +108,7 @@ sandesha2_seq_property_mgr_create(
     const axutil_env_t *env,
     axis2_char_t *dbname);
 
-void AXIS2_CALL 
+void AXIS2_CALL
 sandesha2_seq_property_mgr_free(
     sandesha2_seq_property_mgr_t *seq_property,
     const axutil_env_t *envv);

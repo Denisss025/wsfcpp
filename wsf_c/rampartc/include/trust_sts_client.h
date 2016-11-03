@@ -59,7 +59,7 @@ extern "C"
         trust_sts_client_t * sts_client,
         const axutil_env_t * env);
 
-    
+
     /*Send RST to the specified STS/IP. RST Node that is built from RST_Context should be passed*/
     AXIS2_EXTERN void AXIS2_CALL
     trust_sts_client_request_security_token(
@@ -81,7 +81,7 @@ extern "C"
         trust_sts_client_t * sts_client,
         const axutil_env_t * env,
         axis2_char_t * action,
-        axis2_char_t * address_version, 
+        axis2_char_t * address_version,
         axis2_bool_t is_soap11);
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL

@@ -49,7 +49,7 @@ extern "C"
         axutil_qname_t * given_qname);
 
     /**
-     * free om_children_qname_iterator struct 
+     * free om_children_qname_iterator struct
      * @param iterator a pointer to axiom children iterator struct
      * @param env environment, MUST NOT be NULL
      */
@@ -75,7 +75,7 @@ extern "C"
 
     /**
      * Returns <tt>true</tt> if the iteration has more elements. (In other
-     * words, returns <tt>true</tt> if <tt>next</tt> would return an 
+     * words, returns <tt>true</tt> if <tt>next</tt> would return an
      * axiom_node_t struct rather than null with error code set in environment
      * @param iterator a pointer to axiom children iterator struct
      * @param env environment, MUST NOT be NULL

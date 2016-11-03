@@ -38,7 +38,7 @@ extern "C"
 
     /** Creates an axiom_navigator
      * @param env environment MUST not be NULL
-     * @param node a pointer to axiom_node_t struct 
+     * @param node a pointer to axiom_node_t struct
      * which is to be navigated
      * @returns a pointer to axiom_navigator_t struct
      * or returns NULL on error
@@ -52,7 +52,7 @@ extern "C"
      * free function , free the axiom_navigator struct
      * @param om_navigator axiom_navigator_struct
      * @param env environment MUST not be NULL
-     * @returns AXIS2_SUCCESS 
+     * @returns AXIS2_SUCCESS
      */
     AXIS2_EXTERN void AXIS2_CALL
     axiom_navigator_free(
@@ -60,10 +60,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Returns the navigable status 
+     * Returns the navigable status
      * @param  om_navigator axiom_navigator_struct
      * @param env environment MUST not be NULL
-     * @returns AXIS2_TRUE if the om is navigable 
+     * @returns AXIS2_TRUE if the om is navigable
      * otherwise returns AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -72,7 +72,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Returns the build status of this node 
+     * Returns the build status of this node
      * if the node is completly build returns AXIS2_TRUE
      * otherwise AXIS2_FALSE
      * @param om_navigator axiom_navigator struct
@@ -86,12 +86,12 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * gets the next node 
-     * @param om_navigator om_navigaot struct 
+     * gets the next node
+     * @param om_navigator om_navigaot struct
      * @param env environment MUST not be NULL
-     * @returns axiom_node_t pointer in the sequence of preorder travasal 
+     * @returns axiom_node_t pointer in the sequence of preorder travasal
      * however the an element node is treated slightly differently
-     * Once the om_element type om node is passed it returns the same om_node 
+     * Once the om_element type om node is passed it returns the same om_node
      * pointer in the next , returns NULL on error or if there is no more nodes
      */
 
@@ -101,7 +101,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * method visited 
+     * method visited
      * @param om_navigator om_navigaot struct
      * @param env environment MUST not be NULL
      * @returns AXIS2_TRUE if this node is alrady visited

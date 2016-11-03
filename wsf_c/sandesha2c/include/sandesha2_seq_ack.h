@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_SEQ_ACK_H
 #define SANDESHA2_SEQ_ACK_H
 
 /**
   * @file sandesha2_seq_ack.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -43,7 +43,7 @@ extern "C"
  * @ingroup sandesha2_wsrm
  * @{
  */
-    
+
 typedef struct sandesha2_seq_ack_t sandesha2_seq_ack_t;
 struct axiom_node;
 /**
@@ -55,10 +55,10 @@ AXIS2_EXTERN sandesha2_seq_ack_t* AXIS2_CALL
 sandesha2_seq_ack_create(
     const axutil_env_t *env,
 	axis2_char_t *ns_value);
- 
-axis2_status_t AXIS2_CALL 
+
+axis2_status_t AXIS2_CALL
 sandesha2_seq_ack_free (
-    sandesha2_seq_ack_t *seq_ack, 
+    sandesha2_seq_ack_t *seq_ack,
     const axutil_env_t *env);
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -74,9 +74,9 @@ sandesha2_seq_ack_get_identifier(
 axis2_status_t AXIS2_CALL
 sandesha2_seq_ack_set_identifier(
     sandesha2_seq_ack_t *seq_ack,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_identifier_t *identifier);
-        
+
 axutil_array_list_t * AXIS2_CALL
 sandesha2_seq_ack_get_nack_list(
     sandesha2_seq_ack_t *seq_ack,
@@ -85,9 +85,9 @@ sandesha2_seq_ack_get_nack_list(
 axis2_status_t AXIS2_CALL
 sandesha2_seq_ack_set_ack_final(
     sandesha2_seq_ack_t *seq_ack,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_ack_final_t *ack_final);
-                    
+
 axutil_array_list_t * AXIS2_CALL
 sandesha2_seq_ack_get_ack_range_list(
     sandesha2_seq_ack_t *seq_ack,
@@ -96,9 +96,9 @@ sandesha2_seq_ack_get_ack_range_list(
 axis2_status_t AXIS2_CALL
 sandesha2_seq_ack_add_ack_range(
     sandesha2_seq_ack_t *seq_ack,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_ack_range_t *ack_range);
-    
+
 axis2_bool_t AXIS2_CALL
 sandesha2_seq_ack_is_must_understand(
     sandesha2_seq_ack_t *element,
@@ -107,30 +107,30 @@ sandesha2_seq_ack_is_must_understand(
 axis2_status_t AXIS2_CALL
 sandesha2_seq_ack_set_must_understand(
     sandesha2_seq_ack_t *element,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_bool_t mu);
-                    	
+
 axis2_status_t AXIS2_CALL
 sandesha2_seq_ack_to_soap_envelope(
     sandesha2_seq_ack_t *seq_ack,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_soap_envelope_t *envelope);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_seq_ack_get_namespace_value(
     sandesha2_seq_ack_t *seq_ack,
     const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_seq_ack_from_om_node(
    sandesha2_seq_ack_t *seq_ack,
-   const axutil_env_t *env, 
+   const axutil_env_t *env,
    struct axiom_node *om_node);
 
-axiom_node_t* AXIS2_CALL 
+axiom_node_t* AXIS2_CALL
 sandesha2_seq_ack_to_om_node(
    sandesha2_seq_ack_t *seq_ack,
-   const axutil_env_t *env, 
+   const axutil_env_t *env,
    void *om_node);
 
 /** @} */

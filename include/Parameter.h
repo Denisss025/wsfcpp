@@ -40,7 +40,7 @@ namespace wso2wsf
 
     /**
      * @brief class Parameter
-     * Parameter is a class which abstract out name, value pairs which are used within Axis2/C Engine (WSF/CPP) to 
+     * Parameter is a class which abstract out name, value pairs which are used within Axis2/C Engine (WSF/CPP) to
      * manage internal runtime configurations.
      */
     class Parameter
@@ -63,7 +63,7 @@ namespace wso2wsf
 
     public:
         /**
-         * Constructor for the Paramter class. 
+         * Constructor for the Paramter class.
          * @param name key string.
          * @param value pointer to property to be set.
          * @param type scode of the paramter.

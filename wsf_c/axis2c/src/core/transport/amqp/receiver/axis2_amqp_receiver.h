@@ -41,40 +41,40 @@ axis2_amqp_receiver_create(
 	const axis2_char_t* qpid_broker_ip,
 	int qpid_broker_port);
 
-AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axis2_amqp_receiver_init(
 	axis2_transport_receiver_t* receiver,
 	const axutil_env_t* env,
 	axis2_conf_ctx_t* conf_ctx,
 	axis2_transport_in_desc_t* in_desc);
 
-AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axis2_amqp_receiver_start(
 	axis2_transport_receiver_t* receiver,
 	const axutil_env_t* env);
 
-AXIS2_EXTERN axis2_endpoint_ref_t* AXIS2_CALL 
+AXIS2_EXTERN axis2_endpoint_ref_t* AXIS2_CALL
 axis2_amqp_receiver_get_reply_to_epr(
 	axis2_transport_receiver_t* receiver,
 	const axutil_env_t* env,
 	const axis2_char_t* svc_name);
 
-AXIS2_EXTERN axis2_conf_ctx_t* AXIS2_CALL 
+AXIS2_EXTERN axis2_conf_ctx_t* AXIS2_CALL
 axis2_amqp_receiver_get_conf_ctx(
 	axis2_transport_receiver_t* receiver,
 	const axutil_env_t* env);
 
-AXIS2_EXTERN axis2_bool_t AXIS2_CALL 
+AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 axis2_amqp_receiver_is_running(
 	axis2_transport_receiver_t* receiver,
 	const axutil_env_t* env);
 
-AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+AXIS2_EXTERN axis2_status_t AXIS2_CALL
 axis2_amqp_receiver_stop(
 	axis2_transport_receiver_t* receiver,
 	const axutil_env_t* env);
 
-AXIS2_EXTERN void AXIS2_CALL 
+AXIS2_EXTERN void AXIS2_CALL
 axis2_amqp_receiver_free(
 	axis2_transport_receiver_t* receiver,
 	const axutil_env_t* env);

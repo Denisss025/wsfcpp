@@ -50,9 +50,9 @@ extern "C"
     /**
       * Gets the root element of the document.
       * @param document document to return the root of
-      * @param env Environment. MUST NOT be NULL.  
+      * @param env Environment. MUST NOT be NULL.
       * @return returns a pointer to the root node. If no root present,
-      *            this method tries to build the root. Returns NULL on error. 
+      *            this method tries to build the root. Returns NULL on error.
       */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     axiom_document_get_root_element(

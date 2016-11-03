@@ -39,8 +39,8 @@ extern "C"
 
     /**
      * Creates a string struct.
-     * @param str pointer to string. string struct would create a duplicate of 
-     * this    
+     * @param str pointer to string. string struct would create a duplicate of
+     * this
      * @param env pointer to environment struct
      * @return a pointer to newly created string struct
      */
@@ -51,7 +51,7 @@ extern "C"
 
     /**
      * Creates a string struct.
-     * @param str pointer to string. string struct would not create a duplicate 
+     * @param str pointer to string. string struct would not create a duplicate
      * of this, but would assume ownership
      * @param env pointer to environment struct
      * @return a pointer to newly created string struct
@@ -64,10 +64,10 @@ extern "C"
 
     /**
      * Creates a string struct.
-     * @param str pointer to string. string struct would not create a duplicate 
+     * @param str pointer to string. string struct would not create a duplicate
      * of this and assumes the str would have longer life than that of itself
      * @param env pointer to environment struct
-     * @return a pointer to newly created string struct    
+     * @return a pointer to newly created string struct
      */
     AXIS2_EXTERN axutil_string_t *AXIS2_CALL
     axutil_string_create_const(
@@ -91,7 +91,7 @@ extern "C"
      * @param string pointer to string struct
      * @param env pointer to environment struct
      * @param string1 pointer to string struct to be compared
-     * @return AXIS2_TRUE if string equals string1, AXIS2_FALSE otherwise 
+     * @return AXIS2_TRUE if string equals string1, AXIS2_FALSE otherwise
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     axutil_string_equals(
@@ -100,9 +100,9 @@ extern "C"
         const struct axutil_string *string1);
 
     /**
-     * Clones a given string. Does not duplicate the buffer, rather 
-     * increments the reference count. Each call to clone needs to have a 
-     * matching free, when the clone is done with. 
+     * Clones a given string. Does not duplicate the buffer, rather
+     * increments the reference count. Each call to clone needs to have a
+     * matching free, when the clone is done with.
      * @param string pointer to string struct
      * @param env pointer to environment struct
      * @returns pointer to cloned string struct instance
@@ -144,7 +144,7 @@ extern "C"
         const void *ptr);
 
     /**
-     * duplicate the first n characters of a string into memory allocated 
+     * duplicate the first n characters of a string into memory allocated
      * the new string will be null-terminated
      * @param ptr The string to duplicate
      * @param n The number of characters to duplicate
@@ -236,7 +236,7 @@ extern "C"
      * @param s String in which the character is searched
      * @param ch Character to be searched
      * @return Pointer to to the first occurence of the charecter if it could
-     *         be found in the string, NULL otherwise 
+     *         be found in the string, NULL otherwise
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axutil_strchr(
@@ -329,11 +329,11 @@ extern "C"
         axis2_char_t * str);
 
     /**
-     * Finds the first occurrence of the substring needle in the string 
-     * haystack, ignores the case of both arguments. 
+     * Finds the first occurrence of the substring needle in the string
+     * haystack, ignores the case of both arguments.
      * @param haystack string in which the given string is to be found
      * @param needle string to be found in haystack
-     * @return pointer to the beginning of the substring, 
+     * @return pointer to the beginning of the substring,
      * or NULL  if  the  substring  is  not found
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL

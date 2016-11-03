@@ -106,7 +106,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Frees flow passed as void pointer. This method would cast the void 
+     * Frees flow passed as void pointer. This method would cast the void
      * pointer to appropriate type and then call free method.
      * @param flow pointer to flow
      * @param env pointer to environment struct

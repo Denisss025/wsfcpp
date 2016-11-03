@@ -64,7 +64,7 @@ extern "C" {
      *@param expire		Date which token will expire
      *@returns pointer to trust_token_t
      */
-    AXIS2_EXTERN trust_token_t* AXIS2_CALL 
+    AXIS2_EXTERN trust_token_t* AXIS2_CALL
     trust_token_create_with_dates(
         const axutil_env_t *env,
         axis2_char_t *id,
@@ -84,7 +84,7 @@ extern "C" {
      *@param token		Trust token containing token data
      *@returns status of the life element processing
      */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_process_life_elem(
         const axutil_env_t *env,
         axiom_node_t *life_node,
@@ -96,7 +96,7 @@ extern "C" {
      *@param token		Trust token structure
      *@returns axis2_bool_t whether the token is changed or not
      */
-    AXIS2_EXTERN axis2_bool_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     trust_token_is_changed(
         const axutil_env_t *env,
         trust_token_t *token);
@@ -105,10 +105,10 @@ extern "C" {
      *Set the change status of trust token
      *@param env		const pointer to axutil environment
      *@param token		Trust token structure
-     *@param changed	Bollean value representing the if token is changed	
+     *@param changed	Bollean value representing the if token is changed
      *@returns axis2_status_t whether the operation is successful or not
      */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_set_changed(
         const axutil_env_t *env,
         trust_token_t *token,
@@ -120,7 +120,7 @@ extern "C" {
      *@param token		Trust token structure
      *@returns trust_token_state_t token's state can be ISSUED, EXPIRED, CANCELLED, RENEWED
      */
-    AXIS2_EXTERN trust_token_state_t AXIS2_CALL 
+    AXIS2_EXTERN trust_token_state_t AXIS2_CALL
     trust_token_get_state(
         const axutil_env_t *env,
         trust_token_t *token);
@@ -132,7 +132,7 @@ extern "C" {
      *@param state		State of the trust token
      *@returns axis2_status_t whether the set operation is successful or not
      */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_set_state(
         const axutil_env_t *env,
         trust_token_t *token,
@@ -144,7 +144,7 @@ extern "C" {
      *@param token		Trust token structure
      *@returns axiom_node_t axiom node pointer for token
      */
-    AXIS2_EXTERN axiom_node_t* AXIS2_CALL 
+    AXIS2_EXTERN axiom_node_t* AXIS2_CALL
     trust_token_get_token(
         const axutil_env_t *env,
         trust_token_t *token);
@@ -156,7 +156,7 @@ extern "C" {
      *@param token_node axiom node pointer for token
      *@returns axis2_status_t whether the set operation is successful or not
      */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_set_token(
         const axutil_env_t *env,
         trust_token_t *token,
@@ -168,7 +168,7 @@ extern "C" {
      *@param token		Trust token structure
      *@returns axis2_char_t identifier string of token
      */
-    AXIS2_EXTERN axis2_char_t* AXIS2_CALL 
+    AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     trust_token_get_id(
         const axutil_env_t *env,
         trust_token_t *token);
@@ -191,7 +191,7 @@ extern "C" {
      *@param prev_token axiom node pointer for previous token
      *@returns axis2_status_t whether the set operation is successful or not
      */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_set_previous_token(
         const axutil_env_t *env,
         trust_token_t *token,
@@ -217,9 +217,9 @@ extern "C" {
      *@param token		Trust token structure
      *@returns axiom_node_t axiom node pointer for attached reference
      */
-    AXIS2_EXTERN axiom_node_t* AXIS2_CALL 
+    AXIS2_EXTERN axiom_node_t* AXIS2_CALL
     trust_token_get_attached_reference(
-        const axutil_env_t *env, 
+        const axutil_env_t *env,
         trust_token_t *token);
 
     /**
@@ -229,7 +229,7 @@ extern "C" {
      *@param attached_reference axiom node pointer for attached reference
      *@returns axis2_status_t whether the set operation is successful or not
      */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_set_attached_reference(
         const axutil_env_t *env,
         trust_token_t *token,
@@ -241,7 +241,7 @@ extern "C" {
      *@param token		Trust token structure
      *@returns axiom_node_t axiom node pointer for unattached reference
      */
-    AXIS2_EXTERN axiom_node_t* AXIS2_CALL 
+    AXIS2_EXTERN axiom_node_t* AXIS2_CALL
     trust_token_get_unattached_reference(
         const axutil_env_t *env,
         trust_token_t *token);
@@ -253,7 +253,7 @@ extern "C" {
      *@param attached_reference axiom node pointer for unattached reference
      *@returns axis2_status_t whether the set operation is successful or not
      */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_set_unattached_reference(
         const axutil_env_t *env,
         trust_token_t *token,
@@ -265,7 +265,7 @@ extern "C" {
      *@param token		Trust token structure
      *@returns axutil_date_time_t ceated date
      */
-    AXIS2_EXTERN axutil_date_time_t* AXIS2_CALL 
+    AXIS2_EXTERN axutil_date_time_t* AXIS2_CALL
     trust_token_get_created(
         const axutil_env_t *env,
         trust_token_t *token);
@@ -277,7 +277,7 @@ extern "C" {
      *@param created	date which token is created
      *@returns axis2_status_t whether the set operation is successful or not
      */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_set_created(
         const axutil_env_t *env,
         trust_token_t *token,
@@ -289,7 +289,7 @@ extern "C" {
      *@param token		Trust token structure
      *@returns axutil_date_time_t expire date
      */
-    AXIS2_EXTERN axutil_date_time_t* AXIS2_CALL 
+    AXIS2_EXTERN axutil_date_time_t* AXIS2_CALL
     trust_token_get_expires(
         const axutil_env_t *env,
         trust_token_t *token);
@@ -301,7 +301,7 @@ extern "C" {
      *@param expire		Expire date of token
      *@returns axis2_status_t whether the set operation is successful or not
      */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_set_expires(
         const axutil_env_t *env,
         trust_token_t *token,
@@ -313,7 +313,7 @@ extern "C" {
      *@param token		Trust token structure
      *@returns axis2_char_t* issuer's address
      */
-    AXIS2_EXTERN axis2_char_t* AXIS2_CALL 
+    AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     trust_token_get_issuer_address(
         const axutil_env_t *env,
         trust_token_t *token);
@@ -331,12 +331,12 @@ extern "C" {
         trust_token_t *token,
         axis2_char_t *issuer_address);
 
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_token_process_life_elem(
         const axutil_env_t *env,
         axiom_node_t *life_node,
         trust_token_t *token);
-	
+
 
 #ifdef __cplusplus
 }

@@ -33,7 +33,7 @@ extern "C"
     neethi_is_mtom_required(
         const axutil_env_t *env,
         neethi_policy_t *policy);
-    
+
 
     /** @} */
 #ifdef __cplusplus

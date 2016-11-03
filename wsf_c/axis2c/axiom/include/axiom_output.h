@@ -45,10 +45,10 @@ extern "C"
     struct axiom_text;
 
     /**
-     * Creates AXIOM output struct 
+     * Creates AXIOM output struct
      * @param env Environment. MUST NOT be NULL, .
      * @param xml_writer XML writer. OM output takes
-     * ownership of the xml_writer. 
+     * ownership of the xml_writer.
      * @return a pointer to newly created output struct.
      */
     AXIS2_EXTERN axiom_output_t *AXIS2_CALL
@@ -59,8 +59,8 @@ extern "C"
     /**
      *  Performs xml writing.
      *  Accepts variable number of args depending on the on AXIOM type to be serialized
-     *  @param om_output Output struct to be used 
-     *  @param env Environment. MUST NOT be NULL, 
+     *  @param om_output Output struct to be used
+     *  @param env Environment. MUST NOT be NULL,
      *  @param type one of the AXIOM types
      *  @param no_of_args number of arguments passed in the variable parameter list
      *  @return satus of the op. AXIS2_SUCCESS on success else AXIS2_FAILURE
@@ -80,11 +80,11 @@ extern "C"
         struct axiom_text *om_text);
 
     /**
-     * Free om_output 
+     * Free om_output
      * @param om_output om_output struct
      * @param env environment
      * @return status code AXIS2_SUCCESS on success,
-     *  AXIS2_FAILURE otherwise 
+     *  AXIS2_FAILURE otherwise
      */
     AXIS2_EXTERN void AXIS2_CALL
     axiom_output_free(
@@ -95,7 +95,7 @@ extern "C"
      * If the xml to be serialized is soap 11, this property is set to true
      * @param om_output pointer to om_output struct
      * @param env environment must not be NULL
-     * @returns the output soap version 
+     * @returns the output soap version
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     axiom_output_is_soap11(
@@ -103,7 +103,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * @returns true if the ignore_xml_declaration property is true   
+     * @returns true if the ignore_xml_declaration property is true
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 
@@ -194,7 +194,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Writes the xml versio encoding 
+     * Writes the xml versio encoding
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axiom_output_write_xml_version_encoding(
@@ -202,7 +202,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * @returns whether the output is to be optimized 
+     * @returns whether the output is to be optimized
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     axiom_output_is_optimized(

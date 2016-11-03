@@ -61,12 +61,12 @@ extern "C"
         int);
 
     /**
-     * This function is called once the asynchronous operation is successfully 
+     * This function is called once the asynchronous operation is successfully
      * completed and the result is available.
      * @param callback pointer to callback struct
      * @param env pointer to environment struct
      * @param result pointer to async result
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_callback_invoke_on_complete(
@@ -75,8 +75,8 @@ extern "C"
         axis2_async_result_t * result);
 
     /**
-     * This function is called once the asynchronous operation fails and 
-     * the failure code returns. 
+     * This function is called once the asynchronous operation fails and
+     * the failure code returns.
      * @param callback pointer to callback struct
      * @param env pointer to environment struct
      * @param exception error code representing the error
@@ -89,7 +89,7 @@ extern "C"
         const int exception);
 
     /**
-     * Gets the complete status for the callback. This method is useful 
+     * Gets the complete status for the callback. This method is useful
      * for polling (busy waiting).
      * e.g.
      * <code>
@@ -98,7 +98,7 @@ extern "C"
      *          {
      *             sleep(10);
      *          }
-     * do whatever you need here 
+     * do whatever you need here
      *      </pre>
      * </code>
      * @param callback pointer to callback struct

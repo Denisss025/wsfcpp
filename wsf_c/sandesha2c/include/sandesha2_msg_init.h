@@ -21,7 +21,7 @@
  * @file sandesha2_msg_init.h
  * @brief Sandesha Message init Interface
  *  This class is used to create an RMMessageContext out of an MessageContext.
- * 
+ *
  */
 
 #include <axutil_allocator.h>
@@ -44,15 +44,15 @@ extern "C"
   */
 
 /**
- * Called to create a rm_msg_ctx out of an message context. Finds out things 
+ * Called to create a rm_msg_ctx out of an message context. Finds out things
  * like rm version and message type as well.
- * 
+ *
  * @param ctx
  * @param assumed_rm_ns
- * this is used for validation (to find out weather the rm_ns of the current 
- * message is equal to the regietered rm_ns of the sequence). 
+ * this is used for validation (to find out weather the rm_ns of the current
+ * message is equal to the regietered rm_ns of the sequence).
  * If NULL validation will not happen.
- * 
+ *
  * @return
  */
 sandesha2_msg_ctx_t *

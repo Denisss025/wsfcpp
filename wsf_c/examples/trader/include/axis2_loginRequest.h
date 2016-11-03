@@ -10,7 +10,7 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -38,12 +38,12 @@
             axis2_loginRequest_t* loginRequest,
             const axutil_env_t *env);
 
-        
+
         axutil_qname_t* AXIS2_CALL
         axis2_loginRequest_get_qname (
             axis2_loginRequest_t* loginRequest,
             const axutil_env_t *env);
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_loginRequest_serialize(
@@ -56,7 +56,7 @@
             axis2_loginRequest_t* loginRequest,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for username.
@@ -75,7 +75,7 @@
             const axutil_env_t *env,
             axis2_char_t*  param_username);
 
-        
+
 
         /**
          * getter for password.
@@ -94,12 +94,12 @@
             const axutil_env_t *env,
             axis2_char_t*  param_password);
 
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_LOGINREQUEST_H */
-    
+
 

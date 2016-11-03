@@ -22,8 +22,8 @@
 #define RAMPART_CALLBACK_H
 
 /**
-* @file rampart_callback.h 
-* @brief The callback module for a password 
+* @file rampart_callback.h
+* @brief The callback module for a password
 */
 
 
@@ -44,14 +44,14 @@ extern "C"
     struct rampart_callback_ops
     {
         /**
-         * Retuens a password for the given username. 
-         * By providing a function to this function pointer 
+         * Retuens a password for the given username.
+         * By providing a function to this function pointer
          * user can write custom password callback module
          * @param callback rampart callback pointer
          * @param env environment must not be null
          * @param username The username of the password expected.
          * @param param any parameter that is to be passed to the callback function.
-         * @return returns password if any. Otherwise NULL returns  
+         * @return returns password if any. Otherwise NULL returns
          */
         axis2_char_t *(AXIS2_CALL*
                        callback_password)(rampart_callback_t *callback,

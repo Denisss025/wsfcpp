@@ -25,7 +25,7 @@
 
 /**
  * @file ReplayDetector.h
- * @brief ReplayDetector class which defines the interface for user specific replay detection logic is 
+ * @brief ReplayDetector class which defines the interface for user specific replay detection logic is
  * defined here.
  */
 

@@ -70,7 +70,7 @@ extern "C"
      * @param accept_record pointer to accept record
      * @param env pointer to environment struct
      * @return level of accept record (1 meaning highest).
-     * A return value of -1 indicates that no level is 
+     * A return value of -1 indicates that no level is
      * associated.
      */
     AXIS2_EXTERN int AXIS2_CALL

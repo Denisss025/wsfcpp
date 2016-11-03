@@ -23,14 +23,14 @@ extern "C" {
 #define AXIS2_STOMP_ACK "ACK"
 #define AXIS2_STOMP_ABORT "ABORT"
 #define AXIS2_STOMP_COMMIT "COMMIT"
-    
-    typedef struct axutil_stomp_frame 
+
+    typedef struct axutil_stomp_frame
     {
         axis2_char_t *command;
         axutil_array_list_t *headers;
         axis2_char_t *body;
     }axutil_stomp_frame_t;
-    
+
     axutil_stomp_frame_t *
     axutil_stomp_frame_create (
         const axutil_env_t *env);
@@ -45,15 +45,15 @@ extern "C" {
         axutil_stomp_frame_t *frame,
         const axutil_env_t *env,
         axis2_char_t *command);
-    
+
     axis2_status_t
     axutil_stomp_frame_set_header (
         axutil_stomp_frame_t *frame,
         const axutil_env_t *env,
         axis2_char_t *header,
         axis2_char_t *value);
-    
-    axis2_status_t 
+
+    axis2_status_t
     axutil_stomp_frame_set_body (
         axutil_stomp_frame_t *frame,
         const axutil_env_t *env,

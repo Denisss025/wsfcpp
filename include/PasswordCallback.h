@@ -48,7 +48,7 @@ namespace wso2wsf
         /**
          * Handler to be invoked to get the password
          * @param username Username associated with the password
-         * @return The corresponding password if successful. 
+         * @return The corresponding password if successful.
          */
         virtual std::string WSF_CALL getPassword(std::string& username) = 0;
 
@@ -86,20 +86,20 @@ typedef struct wsf_rampart_callback
 {
     /**
      * Operations stuct pointer
-     */ 
+     */
     rampart_callback_ops_t *ops;
     /**
      * pointer to corresponding axis2 parameter
-     */ 
+     */
     axutil_param_t *param;
     /**
      * C++ Level Callback pointer
-     */ 	
+     */
     wso2wsf::PasswordCallback* callback;
 }wsf_rampart_callback_t;
 
 /**
- * Macro used to load the password callback shared library to the engine. The implementor should 
+ * Macro used to load the password callback shared library to the engine. The implementor should
  * include this macro in the code and the appropriate class name should be passed as the argument
  * for proper deployment and functioning of the service associated with this password callback.
  *

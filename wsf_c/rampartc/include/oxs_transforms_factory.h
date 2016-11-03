@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_transforms_factory.h
-  * @brief Produces transforms for OMXMLSecurity  
+  * @brief Produces transforms for OMXMLSecurity
   */
 
 #include <axis2_defines.h>

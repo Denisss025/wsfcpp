@@ -140,8 +140,8 @@ extern "C"
     );
 
     /**
-     * function is used to allocate a new key. This key now becomes valid for all threads in our process. 
-     * When a key is created, the value it points to defaults to NULL. Later on each thread may change 
+     * function is used to allocate a new key. This key now becomes valid for all threads in our process.
+     * When a key is created, the value it points to defaults to NULL. Later on each thread may change
      * its copy of the value as it wishes.
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -157,7 +157,7 @@ extern "C"
 
     /**
      * This function is used to get the value of a given key
-     * @param keys value. A key's value is simply a void pointer (void*), so we can 
+     * @param keys value. A key's value is simply a void pointer (void*), so we can
      *        store in it anything that we want
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL

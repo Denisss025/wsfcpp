@@ -68,7 +68,7 @@ extern "C"
     /**
      * Creates axutil_base64_binary struct.
      * @param env double pointer to environment struct. MUST NOT be NULL
-     * @param encoded_binary binary buffer to initialize 
+     * @param encoded_binary binary buffer to initialize
      * @return pointer to newly created axutil_base64_binary struct
      */
     AXIS2_EXTERN axutil_base64_binary_t *AXIS2_CALL

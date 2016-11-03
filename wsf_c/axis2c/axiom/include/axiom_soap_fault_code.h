@@ -44,11 +44,11 @@ extern "C"
      */
 
     /**
-      * creates a soap fault code struct 
+      * creates a soap fault code struct
       * @param env Environment. MUST NOT be NULL
       * @param fault_code the pointer to the AXIOM fault code struct
       *
-      * @return 
+      * @return
       */
     AXIS2_EXTERN axiom_soap_fault_code_t *AXIS2_CALL
     axiom_soap_fault_code_create_with_parent(
@@ -59,7 +59,7 @@ extern "C"
      * @param fault_code the pointer to the AXIOM fault code struct
      * @param  env Environment. MUST NOT be NULL
      *
-     * @return 
+     * @return
      */
     AXIS2_EXTERN axiom_soap_fault_code_t *AXIS2_CALL
     axiom_soap_fault_code_create_with_parent_value(
@@ -71,7 +71,7 @@ extern "C"
      * Free an axiom_soap_fault_code
      * @param  fault_code pointer to soap_fault_code struct
      * @param  env Environment. MUST NOT be NULL
-     * @return satus of the op. AXIS2_SUCCESS on success 
+     * @return satus of the op. AXIS2_SUCCESS on success
      *         else AXIS2_FAILURE
      */
     AXIS2_EXTERN void AXIS2_CALL

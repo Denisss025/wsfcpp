@@ -24,7 +24,7 @@
  */
 
 /**
-* @defgroup rahas_mod Rahas Module 
+* @defgroup rahas_mod Rahas Module
 * @{
 */
 #include <axis2_handler.h>
@@ -37,7 +37,7 @@ extern "C"
     /**
      * Creates In handler
      * @param env pointer to environment struct
-     * @param name 
+     * @param name
      * @return Created In handler
      */
     AXIS2_EXTERN axis2_handler_t* AXIS2_CALL

@@ -82,9 +82,9 @@ extern "C"
      * @param phase pointer to phase struct
      * @param env pointer to environment struct
      * @param index index
-     * @param handler pointer to handler, phase does not assume the 
+     * @param handler pointer to handler, phase does not assume the
      * ownership of the handler
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_add_handler_at(
@@ -97,9 +97,9 @@ extern "C"
      * Adds the given handler to the end of the handler list.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler pointer to handler, phase does not assume the 
-     * ownership of the handler 
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @param handler pointer to handler, phase does not assume the
+     * ownership of the handler
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_add_handler(
@@ -111,9 +111,9 @@ extern "C"
      * Remove the given handler from  the handler list.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler pointer to handler, phase does not assume the 
-     * ownership of the handler 
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @param handler pointer to handler, phase does not assume the
+     * ownership of the handler
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_remove_handler(
@@ -123,12 +123,12 @@ extern "C"
 
     /**
      * Invokes the phase. This function will in turn call invoke method of
-     * each handler in the handler list, in sequence, starting from the 
+     * each handler in the handler list, in sequence, starting from the
      * beginning of the list to the end of the list.
      * @param phase pointer to phase
      * @param env pointer to environment struct
      * @param msg_ctx pointer to message context
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_invoke(
@@ -162,9 +162,9 @@ extern "C"
      * Sets the first handler in the handler list.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler pointer to handler, phase does not assume the 
+     * @param handler pointer to handler, phase does not assume the
      * ownership of the handler
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_set_first_handler(
@@ -176,9 +176,9 @@ extern "C"
      * Sets the last handler in the handler list.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler pointer to handler, phase does not assume the 
+     * @param handler pointer to handler, phase does not assume the
      * ownership of the handler
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_set_last_handler(
@@ -187,14 +187,14 @@ extern "C"
         axis2_handler_t * handler);
 
     /**
-     * Adds handler within the handler description to the list of handlers 
+     * Adds handler within the handler description to the list of handlers
      * in the phase.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler_desc pointer to handler description, phase does not 
+     * @param handler_desc pointer to handler description, phase does not
      * assume the ownership of neither the handler description not the handler
      * within the handler description
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_add_handler_desc(
@@ -203,14 +203,14 @@ extern "C"
         axis2_handler_desc_t * handler_desc);
 
     /**
-     * Remove handler within the handler description from the list of handlers 
+     * Remove handler within the handler description from the list of handlers
      * in the phase.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler_desc pointer to handler description, phase does not 
+     * @param handler_desc pointer to handler description, phase does not
      * assume the ownership of neither the handler description not the handler
      * within the handler description
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_remove_handler_desc(
@@ -220,15 +220,15 @@ extern "C"
 
     /**
      * Inserts the handler into handler list of the phase based on the phase
-     * rules associated with the handler. This function takes into account 
+     * rules associated with the handler. This function takes into account
      * the before rules of the handler. Before rules specify the location
-     * of a current handler in the handler list, before which the given 
+     * of a current handler in the handler list, before which the given
      * handler is to be placed.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler pointer to handler, phase does not assume the 
+     * @param handler pointer to handler, phase does not assume the
      * ownership of the handler
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_insert_before(
@@ -238,15 +238,15 @@ extern "C"
 
     /**
      * Inserts the handler into handler list of the phase based on the phase
-     * rules associated with the handler. This function takes into account 
+     * rules associated with the handler. This function takes into account
      * the after rules of the handler. After rules specify the location
-     * of a current handler in the handler list, after which the given 
+     * of a current handler in the handler list, after which the given
      * handler is to be placed.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler pointer to handler, phase does not assume the 
+     * @param handler pointer to handler, phase does not assume the
      * ownership of the handler
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_insert_after(
@@ -255,16 +255,16 @@ extern "C"
         axis2_handler_t * handler);
 
     /**
-     * Inserts the handler into handler list of the phase based on both 
-     * before and after phase rules associated with the handler. 
-     * This method assume that both the before and after cannot be the same 
-     * handler . That condition is not checked by this function. 
+     * Inserts the handler into handler list of the phase based on both
+     * before and after phase rules associated with the handler.
+     * This method assume that both the before and after cannot be the same
+     * handler . That condition is not checked by this function.
      * It should be checked before calling this function
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler pointer to handler, phase does not assume the 
+     * @param handler pointer to handler, phase does not assume the
      * ownership of the handler
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -274,14 +274,14 @@ extern "C"
         axis2_handler_t * handler);
 
     /**
-     * Inserts the handler to the correct location in the handler list of 
+     * Inserts the handler to the correct location in the handler list of
      * the phase. Location is evaluated based on the phase rules.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param handler_desc pointer to handler description, phase does not 
+     * @param handler_desc pointer to handler description, phase does not
      * assume the ownership of neither the handler description not the handler
      * within the handler description
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_phase_insert_handler_desc(
@@ -305,10 +305,10 @@ extern "C"
      * Invokes handlers starting from the given handler index.
      * @param phase pointer to phase
      * @param env pointer to environment struct
-     * @param paused_handler_index index of the handler to start the 
+     * @param paused_handler_index index of the handler to start the
      * invocation from
      * @param msg_ctx pointer to message context
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
 

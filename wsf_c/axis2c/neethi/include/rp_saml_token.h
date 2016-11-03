@@ -29,9 +29,9 @@
 extern "C"
 {
 #endif
-    
+
     typedef struct rp_saml_token rp_saml_token_t;
-    
+
     AXIS2_EXTERN rp_saml_token_t * AXIS2_CALL
     rp_saml_token_create(
         const axutil_env_t *env);
@@ -40,57 +40,57 @@ extern "C"
     rp_saml_token_free(
         rp_saml_token_t *saml_token,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     rp_saml_token_get_inclusion(
             rp_saml_token_t *saml_token,
             const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rp_saml_token_set_inclusion(
             rp_saml_token_t *saml_token,
             const axutil_env_t *env,
             axis2_char_t * inclusion);
-    
+
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     rp_saml_token_get_derivedkeys(
                     rp_saml_token_t *saml_token,
                     const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rp_saml_token_set_derivedkeys(
                     rp_saml_token_t *saml_token,
                     const axutil_env_t *env,
                     axis2_bool_t derivedkeys);
-    
+
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     rp_saml_token_get_require_key_identifier_reference(
         rp_saml_token_t * saml_token,
         const axutil_env_t * env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rp_saml_token_set_require_key_identifier_reference(
         rp_saml_token_t * saml_token,
         const axutil_env_t * env,
         axis2_bool_t require_key_identifier_reference);
-    
+
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     rp_saml_token_get_token_version_and_type(
         rp_saml_token_t * saml_token,
         const axutil_env_t * env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rp_saml_token_set_token_version_and_type(
         rp_saml_token_t * saml_token,
         const axutil_env_t * env,
         axis2_char_t * token_version_and_type);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rp_saml_token_increment_ref(
         rp_saml_token_t * saml_token,
         const axutil_env_t * env);
-    
-    
+
+
 #ifdef __cplusplus
 }
 #endif

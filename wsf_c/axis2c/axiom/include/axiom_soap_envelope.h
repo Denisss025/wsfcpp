@@ -62,7 +62,7 @@ extern "C"
         axiom_namespace_t * ns);
 
     /**
-     * create a soap_envelope with the given namespace prefix and uri is selected 
+     * create a soap_envelope with the given namespace prefix and uri is selected
      * according to soap_version, soap version should be one of AXIOM_SOAP11
      * or AXIOM_SOAP12
      * @param env Environment. MUST NOT be NULL
@@ -128,12 +128,12 @@ extern "C"
          const axutil_env_t * env);
 
     /**
-     * serialize function , serialize the soap envelope 
-     * IF the soap version it set to soap11 the soap fault part is converted 
+     * serialize function , serialize the soap envelope
+     * IF the soap version it set to soap11 the soap fault part is converted
      * to soap11 fault even is the underlying soap fault is of soap12 type
      * @param envelope soap envelope
      * @param env environment must not be null
-     * @param om_output 
+     * @param om_output
      * @param cache whether caching is enabled or not
      * @return status code , AXIS2_SUCCESS if success ,
      *                 AXIS2_FAILURE otherwise
@@ -146,7 +146,7 @@ extern "C"
         axis2_bool_t cache);
 
     /**
-     * Free function, This function deallocate all the resources associated 
+     * Free function, This function deallocate all the resources associated
      * with the soap_envelope
      * IT frees it's soap body and soap headers as well as the underlying
      * om node tree by calling axiom_node_free_tree function
@@ -180,11 +180,11 @@ extern "C"
         axiom_soap_envelope_t * envelope,
         const axutil_env_t * env);
 
-    /** 
+    /**
      * Return the soap envelope namespace
-     * @param envelope 
-     * @param env 
-     * @return axiom_namespace_t 
+     * @param envelope
+     * @param env
+     * @return axiom_namespace_t
      */
     AXIS2_EXTERN axiom_namespace_t *AXIS2_CALL
     axiom_soap_envelope_get_namespace(
@@ -192,10 +192,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Set the SOAP version 
+     * Set the SOAP version
      * @param envelope OM SOAP Envelope
      * @param env Environment. MUST NOT be NULL
-     * @param soap_version, the SOAP version number. 
+     * @param soap_version, the SOAP version number.
      *      Must be either AXIOM_SOAP11 or AXIOM_SOAP12
      *
      * @return AXIS2_SUCCESS on success else AXIS2_FAILURE
@@ -207,7 +207,7 @@ extern "C"
         int soap_version);
 
     /**
-     * Increment the reference number for the created instance 
+     * Increment the reference number for the created instance
      * @param envelope OM SOAP Envelope
      * @param env Environment. MUST NOT be NULL
      *
@@ -219,7 +219,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * get the soap builder of the envelope 
+     * get the soap builder of the envelope
      * @param envelope OM SOAP Envelope
      * @param env Environment. MUST NOT be NULL
      *
@@ -229,7 +229,7 @@ extern "C"
     axiom_soap_envelope_get_soap_builder(
         axiom_soap_envelope_t * envelope,
         const axutil_env_t * env);
-    
+
     AXIS2_EXTERN struct axiom_soap_builder *AXIS2_CALL
     axiom_soap_envelope_get_builder(
         axiom_soap_envelope_t * envelope,

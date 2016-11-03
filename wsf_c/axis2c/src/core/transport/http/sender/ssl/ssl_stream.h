@@ -42,7 +42,7 @@ extern "C"
 
 	void AXIS2_CALL
 	axis2_ssl_stream_free(
-		void *stream, 
+		void *stream,
 		const axutil_env_t *env);
 
     /** @} */

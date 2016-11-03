@@ -65,7 +65,7 @@ extern "C"
     /**
      * @param svr_conn pointer to server connection struct
      * @param env pointer to environment struct
-     * @param keep_alive 
+     * @param keep_alive
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL

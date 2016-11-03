@@ -39,14 +39,14 @@ extern "C"
 
     /**
       * Creates a new text struct
-      * @param env Environment. 
-      * @param parent parent of the new node. Optinal, can be NULL. 
+      * @param env Environment.
+      * @param parent parent of the new node. Optinal, can be NULL.
       * The parent element must be of type AXIOM_ELEMENT
       * @param value Text value. Optinal, can be NULL.
       * @param comment_node This is an out parameter.  cannot be NULL.
       * Returns the node corresponding to the text struct created.
-      * Node type will be set to AXIOM_TEXT  
-      * @return pointer to newly created text struct 
+      * Node type will be set to AXIOM_TEXT
+      * @return pointer to newly created text struct
       */
     AXIS2_EXTERN axiom_text_t *AXIS2_CALL
     axiom_text_create(
@@ -57,14 +57,14 @@ extern "C"
 
     /**
       * Creates a new text struct
-      * @param env Environment. 
-      * @param parent parent of the new node. Optinal, can be NULL. 
+      * @param env Environment.
+      * @param parent parent of the new node. Optinal, can be NULL.
       * The parent element must be of type AXIOM_ELEMENT
       * @param value Text value string. Optinal, can be NULL.
       * @param comment_node This is an out parameter.  cannot be NULL.
       * Returns the node corresponding to the text struct created.
-      * Node type will be set to AXIOM_TEXT  
-      * @return pointer to newly created text struct 
+      * Node type will be set to AXIOM_TEXT
+      * @return pointer to newly created text struct
       */
     AXIS2_EXTERN axiom_text_t *AXIS2_CALL
     axiom_text_create_str(
@@ -75,14 +75,14 @@ extern "C"
 
     /**
       * Creates a new text struct for binary data (MTOM)
-      * @param env Environment. 
-      * @param parent parent of the new node. Optinal, can be NULL. 
+      * @param env Environment.
+      * @param parent parent of the new node. Optinal, can be NULL.
       * The parent element must be of type AXIOM_ELEMENT
       * @param data_handler data handler. Optinal, can be NULL.
       * @param comment_node This is an out parameter.  cannot be NULL.
       * Returns the node corresponding to the text struct created.
-      * Node type will be set to AXIOM_TEXT  
-      * @return pointer to newly created text struct 
+      * Node type will be set to AXIOM_TEXT
+      * @return pointer to newly created text struct
       */
     AXIS2_EXTERN axiom_text_t *AXIS2_CALL
     axiom_text_create_with_data_handler(
@@ -93,7 +93,7 @@ extern "C"
 
     /**
       * Free an axiom_text struct
-      * @param env environment. 
+      * @param env environment.
       * @param om_text pointer to om text struct to be freed.
       * @return satus of the op. AXIS2_SUCCESS on success
       * AXIS2_FAILURE on error.
@@ -105,7 +105,7 @@ extern "C"
 
     /**
       * Serialize op
-      * @param env environment. 
+      * @param env environment.
       * @param om_text pointer to om text struct to be serialized.
       * @param om_output AXIOM output handler to be used in serializing.
       * @return satus of the op. AXIS2_SUCCESS on success,
@@ -132,7 +132,7 @@ extern "C"
         const axis2_char_t * value);
 
     /**
-      * Gets text value 
+      * Gets text value
       * @param om_text om_text struct
       * @param env environment.
       * @return text value , NULL is returned if there is no text value.
@@ -160,7 +160,7 @@ extern "C"
       * Gets text value from the text node even when MTOM optimized
       * @param om_text om_text struct
       * @param env environment.
-      * @return text value base64 encoded text when MTOM optimized, 
+      * @return text value base64 encoded text when MTOM optimized,
       * NULL is returned if there is no text value.
       */
     AXIS2_EXTERN const axis2_char_t *AXIS2_CALL
@@ -169,7 +169,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-      * Gets text value 
+      * Gets text value
       * @param om_text om_text struct
       * @param env environment.
       * @return text valu stringe , NULL is returned if there is no text value.
@@ -180,7 +180,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-      * Sets optimized 
+      * Sets optimized
       * @param om_text pointer to om_text struct
       * @param env environment
       * @optimize optimize value
@@ -243,8 +243,8 @@ extern "C"
         const axis2_char_t * content_id);
 
     /**
-     * Sets the boolean value indicating if the binary data associated with the text 
-     * node should be sent in SOAP with Attachment (SwA) format or not. 
+     * Sets the boolean value indicating if the binary data associated with the text
+     * node should be sent in SOAP with Attachment (SwA) format or not.
      * @param om_text text node
      * @param env environment
      * @param is_swa bool value, AXIS2_TRUE means use SwA format, else AXIS2_FALSE

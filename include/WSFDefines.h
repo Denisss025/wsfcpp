@@ -31,17 +31,17 @@
  * @}
  */
 
-/** 
+/**
  * \mainpage WSF/CPP API Documentation
- * \image html "../../images/wsf_cpp_logo.gif" 
+ * \image html "../../images/wsf_cpp_logo.gif"
  *
- * \section intro_sec Introduction 
+ * \section intro_sec Introduction
  * This is the API documentation for WSF/CPP Project. A C++ Binding for the popular Web Services Library
- * <a href="http://wso2.org/projects/wsf/c">WSF/C</a>. WSF/CPP bring to the C++ world, not only the capability 
+ * <a href="http://wso2.org/projects/wsf/c">WSF/C</a>. WSF/CPP bring to the C++ world, not only the capability
  * to handle Basic Web Services, but also the ability add qualities of services such as security and reliable messaging.
  * Being a lightweight framework with support for mulitiple transport protocols including, HTTP, HTTPS, AMQP, XMPP,UDP,TCP
  * WSF/CPP bring the flexibility the C++ Developers are looking for, When trying to intergrate their lagacy applications and
- * Web Service enable their C++ applications. 
+ * Web Service enable their C++ applications.
  *
  * \section feature_sec Features available in this Release
  *
@@ -107,7 +107,7 @@
  *   <tr valign="top">
  *     <td width="145"><p>Other Features inherited from WSF/C</p>
  *     </td>
- *     <td width="502"><p>WSO2 WSF/C++ Inherits an array of features from it's 
+ *     <td width="502"><p>WSO2 WSF/C++ Inherits an array of features from it's
  *       base, WSO2 WSF/C such as,
  *       <ul>
  *       <li>Proven Interoperability</li>

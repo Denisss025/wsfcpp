@@ -42,7 +42,7 @@ namespace wso2wsf
      * and writing to files etc. This class has a great deal of importance with respect
      * to attachments.
      */
-    class OMDataHandler 
+    class OMDataHandler
     {
     private:
         /**
@@ -60,7 +60,7 @@ namespace wso2wsf
         WSF_EXTERN WSF_CALL OMDataHandler(std::string file_name, std::string mime_type);
 
         /**
-         * Constructor for OMDataHandler. 
+         * Constructor for OMDataHandler.
          * @param mime_type mime type.
          */
         WSF_EXTERN WSF_CALL OMDataHandler(std::string mime_type);
@@ -128,18 +128,18 @@ namespace wso2wsf
          */
         WSF_EXTERN bool WSF_CALL setFileName(std::string file_name);
 	/**
-	* Returns whether the attachment is cached or not                                                   
-	* @returns true if attachment is cached and false otherwise 
+	* Returns whether the attachment is cached or not
+	* @returns true if attachment is cached and false otherwise
 	*/
 	WSF_EXTERN bool WSF_CALL isCached();
 	/**
-	* Write to a file.The filename is the file to be written.                  
+	* Write to a file.The filename is the file to be written.
 	* @param filename Name of the file to which the binary content will be written by the DataHandler.
 	* Returns the true if the operation is successful, false otherwise
 	*/
 	WSF_EXTERN bool WSF_CALL writeTo(std::string filename);
 
-		
+
     };
     /** @} */
 }

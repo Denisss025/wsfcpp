@@ -70,7 +70,7 @@ extern "C"
 
     char *
     tcpmon_util_str_replace(
-        const axutil_env_t *env,    
+        const axutil_env_t *env,
         char *str,
         const char *search,
         const char *replace);

@@ -80,7 +80,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Returns the next element in the iteration. returns null if there is no 
+     * Returns the next element in the iteration. returns null if there is no
      * more elements in the iteration
      * @param iterator a pointer to axiom children with specific attribute iterator struct
      * @param env environment, MUST NOT be NULL

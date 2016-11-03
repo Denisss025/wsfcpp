@@ -24,7 +24,7 @@
  */
 
 /**
-* @defgroup rampart_mod Rampart Module 
+* @defgroup rampart_mod Rampart Module
 * @{
 */
 #include <axis2_handler.h>
@@ -37,7 +37,7 @@ extern "C"
     /**
      * Creates In handler
      * @param env pointer to environment struct
-     * @param name handler name 
+     * @param name handler name
      * @return Created In handler
      */
     AXIS2_EXTERN axis2_handler_t* AXIS2_CALL
@@ -48,7 +48,7 @@ extern "C"
     /**
      * Creates Out handler
      * @param env pointer to environment struct
-     * @param name handler name 
+     * @param name handler name
      * @return Created Out handler
      */
     AXIS2_EXTERN axis2_handler_t* AXIS2_CALL

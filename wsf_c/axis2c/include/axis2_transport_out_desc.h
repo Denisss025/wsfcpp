@@ -71,8 +71,8 @@ extern "C"
 
     /**
      * Frees transport out description given as a void pointer.
-     * @param transport_out_dec pointer to transport out description as a 
-     * void pointer 
+     * @param transport_out_dec pointer to transport out description as a
+     * void pointer
      * @param env pointer to environment struct
      * @return void
      */
@@ -85,7 +85,7 @@ extern "C"
      * Gets transport enum.
      * @param transport_out pointer to transport_out
      * @param env pointer to environment struct
-     * @return transport enum 
+     * @return transport enum
      */
     AXIS2_EXTERN AXIS2_TRANSPORT_ENUMS AXIS2_CALL
 
@@ -107,7 +107,7 @@ extern "C"
         const AXIS2_TRANSPORT_ENUMS trans_enum);
 
     /**
-     * Gets out flow. Out flow represents the list of phases invoked 
+     * Gets out flow. Out flow represents the list of phases invoked
      * along the sender path.
      * @param transport_out pointer to transport_out
      * @param env pointer to environment struct
@@ -121,11 +121,11 @@ extern "C"
                     const axutil_env_t * env);
 
     /**
-     * Sets out flow. Out flow represents the list of phases invoked 
+     * Sets out flow. Out flow represents the list of phases invoked
      * along the sender path.
      * @param transport_out pointer to transport_out
      * @param env pointer to environment struct
-     * @param out_flow pointer to out flow, transport out description 
+     * @param out_flow pointer to out flow, transport out description
      * assumes ownership of flow
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -137,8 +137,8 @@ extern "C"
         struct axis2_flow *out_flow);
 
     /**
-     * Gets fault out flow. Fault out flow represents the list of phases 
-     * invoked along the sender path if a fault happens.    
+     * Gets fault out flow. Fault out flow represents the list of phases
+     * invoked along the sender path if a fault happens.
      * @param transport_out pointer to transport_out
      * @param env pointer to environment struct
      * @return pointer to flow representing fault out flow
@@ -150,8 +150,8 @@ extern "C"
                     const axutil_env_t * env);
 
     /**
-     * Sets fault out flow. Fault out flow represents the list of phases 
-     * invoked along the sender path if a fault happens.    
+     * Sets fault out flow. Fault out flow represents the list of phases
+     * invoked along the sender path if a fault happens.
      * @param transport_out pointer to transport_out
      * @param env pointer to environment struct
      * @param fault_out_flow pointer to fault_out_flow
@@ -182,7 +182,7 @@ extern "C"
      * @param transport_out pointer to transport_out
      * @param env pointer to environment struct
      * @param sender pointer to transport sender, transport description
-     * assumes ownership of sender 
+     * assumes ownership of sender
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -196,7 +196,7 @@ extern "C"
      * Gets transport out phase.
      * @param transport_out pointer to transport_out
      * @param env pointer to environment struct
-     * @return pointer to phase representing transport out phase, returns a 
+     * @return pointer to phase representing transport out phase, returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN struct axis2_phase *AXIS2_CALL
@@ -207,7 +207,7 @@ extern "C"
 
     /**
      * Sets transport out phase.
-     * @param transport_out pointer to transport_out 
+     * @param transport_out pointer to transport_out
      * @param env pointer to environment struct
      * @param out_phase pointer to phase representing transport out phase,
      * transport out description assumes ownership of phase
@@ -224,7 +224,7 @@ extern "C"
      * Gets fault phase.
      * @param transport_out  pointer to transport_out
      * @param env pointer to environment struct
-     * @return pointer to phase representing fault phase, returns a 
+     * @return pointer to phase representing fault phase, returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN struct axis2_phase *AXIS2_CALL
@@ -237,7 +237,7 @@ extern "C"
      * Sets fault phase.
      * @param transport_out pointer to transport_out
      * @param env pointer to environment struct
-     * @param fault_phase pointer to phase representing fault phase, 
+     * @param fault_phase pointer to phase representing fault phase,
      * transport description assumes ownership of phase
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -264,7 +264,7 @@ extern "C"
         axutil_param_t * param);
 
     /**
-     * Gets named parameter. 
+     * Gets named parameter.
      * @param transport_out_desc pointer to transport out description
      * @param env pointer to environment struct
      * @param param_name parameter name string
@@ -309,8 +309,8 @@ extern "C"
 
     /**
      * Frees transport out description given as a void pointer.
-     * @param transport_out_dec pointer to transport out description as a 
-     * void pointer 
+     * @param transport_out_dec pointer to transport out description as a
+     * void pointer
      * @param env pointer to environment struct
      * @return void
      */

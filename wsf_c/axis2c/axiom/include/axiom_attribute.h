@@ -42,13 +42,13 @@ extern "C"
     typedef struct axiom_attribute axiom_attribute_t;
 
     /**
-      * creates an om_attribute struct 
+      * creates an om_attribute struct
       * @param env Environment. MUST NOT be NULL
       * @param localname localname of the attribute, should not be a null value.
       * @param value normalized attribute value. cannot be NULL
       * @param ns namespace, if any, of the attribute. Optional, can be NULL om_attribute wont free the ns
-      * @return a pointer to newly created attribute struct, returns NULL on error with 
-      *           error code set in environment's error. 
+      * @return a pointer to newly created attribute struct, returns NULL on error with
+      *           error code set in environment's error.
       */
     AXIS2_EXTERN axiom_attribute_t *AXIS2_CALL
     axiom_attribute_create(
@@ -64,7 +64,7 @@ extern "C"
       * @param  om_attribute pointer to attribute struct to be freed
       * @param  env Environment. MUST NOT be NULL
       */
-   
+
     AXIS2_EXTERN void AXIS2_CALL
     axiom_attribute_free_void_arg(
         void *om_attribute,
@@ -83,10 +83,10 @@ extern "C"
 
     /**
       * Creates and returns a qname struct for this attribute
-      * @param om_attribute pointer to attribute struct 
+      * @param om_attribute pointer to attribute struct
       *        for which the qname is to be returned
       * @param env Environment. MUST NOT be NULL
-      * @return returns qname for given attribute.NULL on error 
+      * @return returns qname for given attribute.NULL on error
       */
 
     AXIS2_EXTERN axutil_qname_t *AXIS2_CALL
@@ -109,7 +109,7 @@ extern "C"
         axiom_output_t * om_output);
 
     /** Returns the localname of this attribute
-      * @param om_attribute pointer to attribute struct 
+      * @param om_attribute pointer to attribute struct
       * @param env environment. MUST NOT not be NULL.
       * @return localname returns NULL on error.
       */
@@ -119,8 +119,8 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * returns value of this attribute 
-     *@param om_attribute pointer to om_attribute struct 
+     * returns value of this attribute
+     *@param om_attribute pointer to om_attribute struct
      *@param env environment N not be null
      *@return value , null on error
      */
@@ -130,7 +130,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * returns namespace of this attribute 
+     * returns namespace of this attribute
      *@param om_attribute
      *@param env environment MUST NOT be NULL
      *@return a pointer to om_namespace struct , returns NULL on error.
@@ -141,9 +141,9 @@ extern "C"
         const axutil_env_t * env);
 
     /** sets the localname of the attribute
-     *@param om_attribute pointer to om attribute struct. 
+     *@param om_attribute pointer to om attribute struct.
      *@param env environment, MUST NOT be null.
-     *@param localname localname that should be set for this attribute 
+     *@param localname localname that should be set for this attribute
      *@return status code AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -155,7 +155,7 @@ extern "C"
     /** set the attribute value
      *@param om_attribute a pointer to om_attribute struct.
      *@param env environment, MUST NOT be NULL.
-     *@param value value that should be set for this attribute 
+     *@param value value that should be set for this attribute
      *@return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
 
@@ -166,10 +166,10 @@ extern "C"
         const axis2_char_t * value);
 
     /** set namespace of the attribute
-     *@param om_attribute a pointer to om_attribute struct  
+     *@param om_attribute a pointer to om_attribute struct
      *@param env environment, MUST NOT be NULL.
-     *@param om_namespace a pointer to om_namespace struct that should be set 
-     *                    for this attribute 
+     *@param om_namespace a pointer to om_namespace struct that should be set
+     *                    for this attribute
      *@return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -180,7 +180,7 @@ extern "C"
 
     /**
      * clones an om attribute
-     * @param om_attibute 
+     * @param om_attibute
      * @param env environment
      * @returns pointer to cloned om attribute struct on success
      * NULL otherwise
@@ -191,7 +191,7 @@ extern "C"
                     const axutil_env_t * env);
 
     /** Increment the reference counter.
-     * @param om_attribute a pointer to om_attribute struct  
+     * @param om_attribute a pointer to om_attribute struct
      * @param env environment, MUST NOT be NULL.
      * @return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
@@ -200,8 +200,8 @@ extern "C"
         struct axiom_attribute *om_attribute,
         const axutil_env_t * env);
 
-    /** Create OM attribute 
-     * @param om_attribute a pointer to om_attribute struct  
+    /** Create OM attribute
+     * @param om_attribute a pointer to om_attribute struct
      * @param env environment, MUST NOT be NULL.
      * @return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
@@ -213,7 +213,7 @@ extern "C"
         axiom_namespace_t * ns);
 
     /**  Get the localname as a string
-     * @param om_attribute a pointer to om_attribute struct  
+     * @param om_attribute a pointer to om_attribute struct
      * @param env environment, MUST NOT be NULL.
      * @return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
@@ -223,7 +223,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**  Get the value as a string
-     * @param om_attribute a pointer to om_attribute struct  
+     * @param om_attribute a pointer to om_attribute struct
      * @param env environment, MUST NOT be NULL.
      * @return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
@@ -233,7 +233,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**  Set the localname of the attribute
-     * @param om_attribute a pointer to om_attribute struct  
+     * @param om_attribute a pointer to om_attribute struct
      * @param env environment, MUST NOT be NULL.
      * @return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
@@ -244,7 +244,7 @@ extern "C"
         axutil_string_t * localname);
 
     /**  Set the value of the attribute
-     * @param om_attribute a pointer to om_attribute struct  
+     * @param om_attribute a pointer to om_attribute struct
      * @param env environment, MUST NOT be NULL.
      * @return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */

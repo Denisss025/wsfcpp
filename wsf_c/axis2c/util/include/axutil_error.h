@@ -64,14 +64,14 @@ extern "C"
     enum axutil_error_codes
     {
 
-        /** 
+        /**
          * No error.
-         * This must be the first error all the time and the assigned value of 0 
-         * must not be changed as it is assumed in the error message array that 
+         * This must be the first error all the time and the assigned value of 0
+         * must not be changed as it is assumed in the error message array that
          * the error list starts with a value of 0.
-         * Further, none of the error codes in this enum should not be initialized 
-         * to an arbitrary value as it is assumed in the implementation when mapping 
-         * error codes to error messages that the error codes are contiguous and 
+         * Further, none of the error codes in this enum should not be initialized
+         * to an arbitrary value as it is assumed in the implementation when mapping
+         * error codes to error messages that the error codes are contiguous and
          * the last error value is always AXIS2_ERROR_LAST.
          */
         AXIS2_ERROR_NONE = 0,
@@ -79,7 +79,7 @@ extern "C"
         /*
          * Group - Common Errors
          */
-        
+
         /** Out of memory */
         AXIS2_ERROR_NO_MEMORY,
 
@@ -719,7 +719,7 @@ extern "C"
         AXIS2_ERROR_NEETHI_ALL_NOT_FOUND_WHILE_GETTING_CROSS_PRODUCT,
         /*Unknown Assertion*/
         AXIS2_ERROR_NEETHI_UNKNOWN_ASSERTION,
-        /** 
+        /**
          * The following has to be the last error value all the time.
          * All other error codes should appear above this.
          * AXIS2_ERROR_LAST is used to track the number of error codes present
@@ -740,14 +740,14 @@ extern "C"
 
     /**
      * Axutil error struct.
-     * Error holds the last error number, the status code as well as the 
+     * Error holds the last error number, the status code as well as the
      * last error message.
      */
     typedef struct axutil_error
     {
-        /** 
-         * Memory allocator associated with the error struct. 
-         * It is this allocator that would be used to allocate memory 
+        /**
+         * Memory allocator associated with the error struct.
+         * It is this allocator that would be used to allocate memory
          * for the error struct instance in create method.
          */
         axutil_allocator_t *allocator;
@@ -756,9 +756,9 @@ extern "C"
         int error_number;
         /** Last status code. */
         int status_code;
-        /** 
-         * Error message. This could be set to a custom message to be 
-         * returned, instead of standard errors set in the error messages 
+        /**
+         * Error message. This could be set to a custom message to be
+         * returned, instead of standard errors set in the error messages
          * array by the axutil_error_init function call.
          */
         axis2_char_t *message;
@@ -767,7 +767,7 @@ extern "C"
 
     /**
      * Gets the error message corresponding to the last error occurred.
-     * @param error pointer to error struct 
+     * @param error pointer to error struct
      * @return string representing the error message for the last error occurred
      */
     AXIS2_EXTERN const axis2_char_t *AXIS2_CALL
@@ -788,7 +788,7 @@ extern "C"
 
     /**
      * Sets the error number.
-     * @param error pointer to error struct 
+     * @param error pointer to error struct
      * @param error_number error number to be set
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -799,7 +799,7 @@ extern "C"
 
     /**
      * Sets the status code.
-     * @param error pointer to error struct 
+     * @param error pointer to error struct
      * @param status_code status code to be set
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -810,7 +810,7 @@ extern "C"
 
     /**
      * Gets the status code.
-     * @param error pointer to error struct 
+     * @param error pointer to error struct
      * @return last status code set on error struct
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -819,7 +819,7 @@ extern "C"
 
     /**
      * Sets error message to the given value.
-     * @param error pointer to error struct 
+     * @param error pointer to error struct
      * @param message error message to be set
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -829,7 +829,7 @@ extern "C"
         axis2_char_t *message);
 
     /**
-     * Initializes the axutil_error_messages array. This array holds the 
+     * Initializes the axutil_error_messages array. This array holds the
      * error messages that corresponds to the error codes. This function
      * must be call before using the error struct instance.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
@@ -846,11 +846,11 @@ extern "C"
     axutil_error_free(
         struct axutil_error *error);
 
-/** 
- * @deprecated The following macros are no longer useful as we can use the 
- * function calls directly. Hence these macros should be removed 
+/**
+ * @deprecated The following macros are no longer useful as we can use the
+ * function calls directly. Hence these macros should be removed
  */
-  
+
 #define AXIS2_ERROR_FREE(error) axutil_error_free(error)
 
 #define AXIS2_ERROR_GET_MESSAGE(error) \

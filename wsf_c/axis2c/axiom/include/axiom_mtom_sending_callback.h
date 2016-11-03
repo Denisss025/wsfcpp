@@ -15,12 +15,12 @@
 * limitations under the License.
 */
 
-#ifndef AXIOM_MTOM_SENDING_CALLBACK_H 
+#ifndef AXIOM_MTOM_SENDING_CALLBACK_H
 #define AXIOM_MTOM_SENDING_CALLBACK_H
 
 /**
   * @file axiom_mtom_sending_callback.h
-  * @brief sending callback for attachment sending 
+  * @brief sending callback for attachment sending
   */
 
 /**
@@ -38,7 +38,7 @@ extern "C"
 #endif
 
     /**
-     * Type name for struct axiom_mtom_sending_callback_ops 
+     * Type name for struct axiom_mtom_sending_callback_ops
      */
     typedef struct axiom_mtom_sending_callback_ops axiom_mtom_sending_callback_ops_t;
 

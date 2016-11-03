@@ -47,7 +47,7 @@ namespace wso2wsf
      * not a particular node has been fully parsed. A node may not be fully parsed, for
      * example, if all of the children of an element have not yet been parsed.
      */
-    class OMNode 
+    class OMNode
     {
         /**
          * Overloaded insertion operator, is used for printing the node onto a console.
@@ -82,7 +82,7 @@ namespace wso2wsf
 
 	protected:
 		/**
-		*  _parent variable holds reference for the parent of this node.                                                   
+		*  _parent variable holds reference for the parent of this node.
 		*/
 		OMNode *_parent;
 
@@ -154,10 +154,10 @@ namespace wso2wsf
          */
         virtual OMNode * WSF_CALL getParent();
 		/**
-		* 
-		* Set Parent of this Node.If the child node already has a parent which is different 
+		*
+		* Set Parent of this Node.If the child node already has a parent which is different
 		* to the parent being set, the child will be detached first.
-		* @param parent Parent element to be set 
+		* @param parent Parent element to be set
 		* @return bool true if success, false otherwise
 		*
 		*/

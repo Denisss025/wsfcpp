@@ -86,7 +86,7 @@ extern "C"
      * Compare two qnames
      * prefix is ignored when comparing
      * If ns_uri and localpart of qname1 and qname2 is equal returns true
-     * @return true if qname1 equals qname2, false otherwise 
+     * @return true if qname1 equals qname2, false otherwise
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -123,7 +123,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * returns a unique string created by concatanting namespace uri 
+     * returns a unique string created by concatanting namespace uri
      * and localpart .
      * The string is of the form localpart|url
      * The returned char* is freed when qname free function is called.

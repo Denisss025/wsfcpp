@@ -70,7 +70,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * This will creat OMElemnt for a given descrition document (axis2.xml , 
+     * This will creat OMElemnt for a given descrition document (axis2.xml ,
      * services.xml and module.xml)
      * @param desc_builder pointer to desc builder
      * @param env pointer to environment struct

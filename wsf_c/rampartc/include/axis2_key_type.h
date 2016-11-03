@@ -21,7 +21,7 @@
 
 /**
   * @file axis2_key_type.h
-  * @brief defines the key type 
+  * @brief defines the key type
   */
 
 #include <axis2_defines.h>
@@ -33,7 +33,7 @@ extern "C"
 #endif
 
     /** @defgroup key_file_type Key File Type
-     * @ingroup rampart_utils 
+     * @ingroup rampart_utils
      * @{
      */
 

@@ -75,7 +75,7 @@ extern "C"
      * Gets WSA fault to address.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @return pointer to endpoint reference struct representing fault to 
+     * @return pointer to endpoint reference struct representing fault to
      * address if set, else NULL
      */
     AXIS2_EXTERN axis2_endpoint_ref_t *AXIS2_CALL
@@ -87,7 +87,7 @@ extern "C"
      * Gets WSA from address.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @return pointer to endpoint reference struct representing from 
+     * @return pointer to endpoint reference struct representing from
      * address if set, else NULL
      */
     AXIS2_EXTERN axis2_endpoint_ref_t *AXIS2_CALL
@@ -245,7 +245,7 @@ extern "C"
 
     /**
      * Gets use separate listener status.
-     * @param options pointer to options struct 
+     * @param options pointer to options struct
      * @param env pointer to environment struct
      * @return AXIS2_TRUE if using separate listener, else AXIS2_FALSE
      */
@@ -337,7 +337,7 @@ extern "C"
      * Sets transport receiver.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param receiver pointer to transport receiver struct. options takes 
+     * @param receiver pointer to transport receiver struct. options takes
      * over the ownership of the struct.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -351,7 +351,7 @@ extern "C"
      * Sets transport in description.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param transport_in pointer to transport_in struct. options takes 
+     * @param transport_in pointer to transport_in struct. options takes
      * over the ownership of the struct.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -388,10 +388,10 @@ extern "C"
         const axis2_char_t * message_id);
 
     /**
-     * Sets the properties hash map. 
+     * Sets the properties hash map.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param properties pointer to properties hash map. options takes 
+     * @param properties pointer to properties hash map. options takes
      * over the ownership of the hash struct.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -420,7 +420,7 @@ extern "C"
      * Sets relates to.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param relates_to pointer to relates_to struct. options takes 
+     * @param relates_to pointer to relates_to struct. options takes
      * over the ownership of the struct.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -434,7 +434,7 @@ extern "C"
      * Sets reply to address.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param reply_to pointer to endpoint reference struct representing 
+     * @param reply_to pointer to endpoint reference struct representing
      * reply to address. options takes over the ownership of the struct.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -448,9 +448,9 @@ extern "C"
      * Sets the transport out description.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param transport_out pointer to transport out description struct. 
+     * @param transport_out pointer to transport out description struct.
      * options takes over the ownership of the struct.
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_options_set_transport_out(
@@ -463,7 +463,7 @@ extern "C"
      * @param options pointer to options struct
      * @param env pointer to environment struct
      * @param sender_transport name of the sender transport to be set
-     * @param conf pointer to conf struct, it is from the conf that the 
+     * @param conf pointer to conf struct, it is from the conf that the
      * transport is picked with the given name
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -478,8 +478,8 @@ extern "C"
      * Sets the SOAP version URI.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param soap_version_uri URI of the SOAP version to be set, can be 
-     * either AXIOM_SOAP11_SOAP_ENVELOPE_NAMESPACE_URI or 
+     * @param soap_version_uri URI of the SOAP version to be set, can be
+     * either AXIOM_SOAP11_SOAP_ENVELOPE_NAMESPACE_URI or
      * AXIOM_SOAP12_SOAP_ENVELOPE_NAMESPACE_URI
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -503,9 +503,9 @@ extern "C"
         const long timeout_in_milli_seconds);
 
     /**
-     * Sets transport information. Transport information includes the name 
-     * of the sender transport, name of the receiver transport and if a 
-     * separate listener to be used to receive response. 
+     * Sets transport information. Transport information includes the name
+     * of the sender transport, name of the receiver transport and if a
+     * separate listener to be used to receive response.
      * @param options pointer to options struct
      * @param env pointer to environment struct
      * @param sender_transport name of sender transport to be used
@@ -540,7 +540,7 @@ extern "C"
      * Adds a WSA reference parameter.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param reference_parameter pointer to reference parameter in the form 
+     * @param reference_parameter pointer to reference parameter in the form
      * of an AXIOM tree. options takes over the ownership of the struct.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -591,7 +591,7 @@ extern "C"
      * Gets WSA message information headers.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @return pointer to message information headers struct if set, 
+     * @return pointer to message information headers struct if set,
      * else NULL
      */
     AXIS2_EXTERN axis2_msg_info_headers_t *AXIS2_CALL
@@ -711,7 +711,7 @@ extern "C"
      * Sets the bool value indicating whether to enable REST or not.
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param enable_rest bool value indicating whether to enable REST 
+     * @param enable_rest bool value indicating whether to enable REST
      * or not, AXIS2_TRUE to enable, AXIS2_FALSE to disable
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -750,12 +750,12 @@ extern "C"
         axis2_options_t * options,
         const axutil_env_t * env,
         const axis2_bool_t test_proxy_auth);
-    
+
     /**
      * Sets the HTTP method to be used
      * @param options pointer to options struct
      * @param env pointer to environment struct
-     * @param http_method string representing HTTP method to use, 
+     * @param http_method string representing HTTP method to use,
      * can be either AXIS2_HTTP_GET or AXIS2_HTTP_POST
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -782,7 +782,7 @@ extern "C"
     /**
      * Creates the options struct.
      * @param env pointer to environment struct
-     * @return a pointer to newly created options struct, or NULL on error 
+     * @return a pointer to newly created options struct, or NULL on error
      * with error code set in environment's error.
      */
     AXIS2_EXTERN axis2_options_t *AXIS2_CALL
@@ -793,8 +793,8 @@ extern "C"
      * Creates the options struct with given parent.
      * @param env pointer to environment struct
      * @param parent pointer to parent struct
-     * @return a pointer to newly created options struct. Newly created options 
-     * assumes ownership of the parent 
+     * @return a pointer to newly created options struct. Newly created options
+     * assumes ownership of the parent
      * or NULL on error with error code set in environment's error.
      */
     AXIS2_EXTERN axis2_options_t *AXIS2_CALL

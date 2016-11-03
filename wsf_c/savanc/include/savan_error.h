@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SAVAN_ERROR_H
 #define SAVAN_ERROR_H
 
@@ -31,19 +31,19 @@ extern "C"
  */
    /**
     * Since we use the same env->error from Axis2 we need to start from
-    * a AXIS2_ERROR_LAST + some number to prevent ambiguity 
-    */  
+    * a AXIS2_ERROR_LAST + some number to prevent ambiguity
+    */
 	/**
     * \brief Savan error codes
     *
     * Set of error codes for Savan
     */
     typedef enum savan_error_codes
-    { 
+    {
         /* No error */
         SAVAN_ERROR_NONE = SAVAN_ERROR_CODES_START,
-   
-        /* The soap action of an eventing message was missing */    
+
+        /* The soap action of an eventing message was missing */
         SAVAN_ERROR_SOAP_ACTION_NULL,
         /* Failed to create an instance of subscriber */
         SAVAN_ERROR_FAILED_TO_CREATE_SUBSCRIBER,
@@ -95,9 +95,9 @@ extern "C"
         SAVAN_ERROR_FILTER_CREATION_FAILED,
         /* Could not create the filter module */
         SAVAN_ERROR_FILTER_MODULE_COULD_NOT_BE_RETRIEVED,
-        
+
         SAVAN_ERROR_LAST
-    
+
     } savan_error_codes_t;
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -131,12 +131,12 @@ extern "C"
 	#define SAVAN_FAULT_ESUP_CODE "s12:Receiver"
 	#define SAVAN_FAULT_ESUP_SUB_CODE "wse:EventSourceUnableToProcess"
 	#define SAVAN_FAULT_ESUP_DETAIL ""
-	
+
 	#define SAVAN_FAULT_UTR_CODE "s12:Receiver"
 	#define SAVAN_FAULT_UTR_SUB_CODE "wse:UnableToRenew"
 	#define SAVAN_FAULT_UTR_DETAIL1 "Could not find the subscriber"
 	#define SAVAN_FAULT_UTR_DETAIL2 "Subscription can not be renewed"
-        
+
 	/*typedef enum savan_fault_types
 	{
     	SAVAN_FAULT_DMRU = 0,
@@ -153,5 +153,5 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif
- 
+
 #endif /*SAVAN_ERROR_H*/

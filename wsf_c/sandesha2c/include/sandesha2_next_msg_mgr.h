@@ -46,11 +46,11 @@ typedef struct sandesha2_next_msg_mgr_ops sandesha2_next_msg_mgr_ops_t;
 
 AXIS2_DECLARE_DATA struct sandesha2_next_msg_mgr_ops
 {
-   /** 
+   /**
      * Deallocate memory
      * @return status code
      */
-    void (AXIS2_CALL * 
+    void (AXIS2_CALL *
         free)(
             sandesha2_next_msg_mgr_t *next_msg_mgr,
             const axutil_env_t *env);
@@ -107,7 +107,7 @@ sandesha2_next_msg_mgr_create(
     const axutil_env_t *env,
     axis2_char_t *dbname);
 
-void AXIS2_CALL 
+void AXIS2_CALL
 sandesha2_next_msg_mgr_free(
     sandesha2_next_msg_mgr_t *next_msg_mgr,
     const axutil_env_t *env);

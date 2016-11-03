@@ -27,7 +27,7 @@ extern "C"
 
 typedef struct sandesha2_seq_property_bean sandesha2_seq_property_bean_t ;
 
-/* constructors 
+/* constructors
  */
 AXIS2_EXTERN sandesha2_seq_property_bean_t* AXIS2_CALL
 sandesha2_seq_property_bean_create(
@@ -50,7 +50,7 @@ sandesha2_seq_property_bean_get_name (
     sandesha2_seq_property_bean_t *seq_property,
     const axutil_env_t *env);
 
-void AXIS2_CALL 
+void AXIS2_CALL
 sandesha2_seq_property_bean_set_name (
     sandesha2_seq_property_bean_t *seq_property,
     const axutil_env_t *env,
@@ -82,5 +82,5 @@ sandesha2_seq_property_bean_set_value (
 }
 
 #endif
-	
+
 #endif /* End of SANDESHA2_SEQ_PROPERTY_BEAN_H */

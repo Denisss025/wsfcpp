@@ -107,7 +107,7 @@ extern "C"
      * Adds a parameter to method.
      * @param op pointer to operation
      * @param env pointer to environment struct
-     * @param param pointer parameter to be added, operation assumes 
+     * @param param pointer parameter to be added, operation assumes
      * ownership of parameter
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -121,7 +121,7 @@ extern "C"
      * Gets named parameter.
      * @param op pointer to operation
      * @param env pointer to environment struct
-     * @param name name of parameter to be retrieved as a string 
+     * @param name name of parameter to be retrieved as a string
      * @return pointer to named parameter if exists, else NULL. Returns a
      * reference, not a cloned copy
      */
@@ -136,7 +136,7 @@ extern "C"
 	 * @param env pointer to environment struct
 	 * @param param_name parameter name to be removed
 	 */
-	AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	axis2_op_remove_param
 		(axis2_op_t *op,
 		const axutil_env_t *env,
@@ -172,7 +172,7 @@ extern "C"
      * @param op pointer to operation
      * @param env pointer to environment struct
      * @param svc pointer to parent service, operation does not assume
-     * ownership of service 
+     * ownership of service
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -185,7 +185,7 @@ extern "C"
      * Gets parent. Parent of an operation is of type service.
      * @param op pointer to operation
      * @param env pointer to environment struct
-     * @return pointer to parent service, returns a reference, not a cloned 
+     * @return pointer to parent service, returns a reference, not a cloned
      * copy
      */
     AXIS2_EXTERN struct axis2_svc *AXIS2_CALL
@@ -249,7 +249,7 @@ extern "C"
      * Sets operation QName.
      * @param op pointer to operation as a void pointer.
      * @param env pointer to environment struct
-     * @param qname pointer to QName, this method creates a clone of the 
+     * @param qname pointer to QName, this method creates a clone of the
      * QName
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -300,7 +300,7 @@ extern "C"
      * the business logic associated with the operation.
      * @param op pointer to operation
      * @param env pointer to environment struct
-     * @param msg_recv pointer to message receiver, operation assumes 
+     * @param msg_recv pointer to message receiver, operation assumes
      * ownership of message receiver
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -315,7 +315,7 @@ extern "C"
      * the business logic associated with the operation.
      * @param op pointer to operation
      * @param env pointer to environment struct
-     * @return pointer to message receiver, returns a reference, not a 
+     * @return pointer to message receiver, returns a reference, not a
      * cloned copy
      */
     AXIS2_EXTERN struct axis2_msg_recv *AXIS2_CALL
@@ -324,7 +324,7 @@ extern "C"
                     const axutil_env_t * env);
 
     /**
-     * Gets style of operation. Style is that mentioned in WSDL, either 
+     * Gets style of operation. Style is that mentioned in WSDL, either
      * RPC or document literal.
      * @param op pointer to operation
      * @param env pointer to environment struct
@@ -336,7 +336,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets style of operation. Style is that mentioned in WSDL, either 
+     * Sets style of operation. Style is that mentioned in WSDL, either
      * RPC or document literal.
      * @param op pointer to operation
      * @param env pointer to environment struct
@@ -355,7 +355,7 @@ extern "C"
      * @param env pointer to environment struct
      * @param module_desc pointer to module description, operation does not
      * assume ownership of struct
-     * @param conf pointer to configuration, operation does not assume 
+     * @param conf pointer to configuration, operation does not assume
      * ownership of configuration
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -393,8 +393,8 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets Axis specific MEP constant. This method simply maps the string 
-     * URI of the MEP to an integer. 
+     * Gets Axis specific MEP constant. This method simply maps the string
+     * URI of the MEP to an integer.
      * @param op pointer to operation
      * @param env pointer to environment struct
      * @return integer representing MEP
@@ -419,7 +419,7 @@ extern "C"
 
     /**
      * Gets fault out flow. Fault out flow is the list of phases invoked
-     * when a fault happens along out path.    
+     * when a fault happens along out path.
      * @param op pointer to operation
      * @param env pointer to environment struct
      * @return pointer to array list containing phases, returns a reference,
@@ -432,11 +432,11 @@ extern "C"
 
     /**
      * Gets out flow. Out flow is the list of phases invoked
-     * along out path.    
+     * along out path.
      * @param op pointer to operation
      * @param env pointer to environment struct
      * @return pointer to array list containing phases, returns a reference,
-     * not a cloned copy    
+     * not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
     axis2_op_get_out_flow(
@@ -444,7 +444,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets in flow. In flow is the list of phases 
+     * Gets in flow. In flow is the list of phases
      * invoked along in path.
      * @param op pointer to operation
      * @param env pointer to environment struct
@@ -458,11 +458,11 @@ extern "C"
 
     /**
      * Sets fault in flow. Fault in flow is the list of phases invoked
-     * when a fault happens along in path.    
+     * when a fault happens along in path.
      * @param op pointer to operation
      * @param env pointer to environment struct
      * @param list pointer to array list containing phases, operation takes
-     * over the ownership of list    
+     * over the ownership of list
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -473,7 +473,7 @@ extern "C"
 
     /**
      * Sets fault out flow. Fault out flow is the list of phases invoked
-     * when a fault happens along out path.    
+     * when a fault happens along out path.
      * @param op pointer to operation
      * @param env pointer to environment struct
      * @param list pointer to array list containing phases, operation takes
@@ -488,7 +488,7 @@ extern "C"
 
     /**
      * Sets out flow. Out flow is the list of phases invoked
-     * along out path.    
+     * along out path.
      * @param op pointer to operation
      * @param env pointer to environment struct
      * @param list pointer to array list containing phases, operation takes
@@ -502,7 +502,7 @@ extern "C"
         axutil_array_list_t * list);
 
     /**
-     * Sets in flow. In flow is the list of phases 
+     * Sets in flow. In flow is the list of phases
      * invoked along in path.
      * @param op pointer to operation
      * @param env pointer to environment struct
@@ -520,8 +520,8 @@ extern "C"
      * Adds given QName to module QName list.
      * @param op pointer to operation
      * @param env pointer to environment struct
-     * @param module_name pointer to module QName, QName would be cloned by 
-     * this method 
+     * @param module_name pointer to module QName, QName would be cloned by
+     * this method
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -534,7 +534,7 @@ extern "C"
      * Gets all module QNames as a list.
      * @param op pointer to operation
      * @param env pointer to environment struct
-     * @return pointer to array list containing module QNames, 
+     * @return pointer to array list containing module QNames,
      * returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -563,14 +563,14 @@ extern "C"
 
     /**
      * Finds operation context related to this operation using given message
-     * context. This method will not create a new operation context if 
+     * context. This method will not create a new operation context if
      * an associated operation context could not be found.
      * @param op pointer to operation
      * @param env pointer to environment struct
      * @param msg_ctx pointer to message context
      * @return pointer to operation context if found, else NULL. Returns
      * a reference, not a cloned copy
-     
+
      */
     AXIS2_EXTERN struct axis2_op_ctx *AXIS2_CALL
 
@@ -601,7 +601,7 @@ extern "C"
      * Gets message with given label.
      * @param op pointer to operation
      * @param env pointer to environment struct
-     * @return pointer to message corresponding to given label, returns 
+     * @return pointer to message corresponding to given label, returns
      * a reference, not a cloned copy
      */
     AXIS2_EXTERN struct axis2_msg *AXIS2_CALL
@@ -615,7 +615,7 @@ extern "C"
      * @param op pointer to operation
      * @param env pointer to environment struct
      * @param label label string
-     * @param msg pointer to message 
+     * @param msg pointer to message
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -695,7 +695,7 @@ extern "C"
         const axutil_qname_t * name);
 
     /**
-     * Frees the operation given as a void pointer. This method would cast the 
+     * Frees the operation given as a void pointer. This method would cast the
      * void parameter to an operation pointer and then call free method.
      * @param pointer to operation as a void pointer
      * @param env pointer to environment struct

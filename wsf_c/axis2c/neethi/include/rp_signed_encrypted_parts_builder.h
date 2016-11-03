@@ -46,7 +46,7 @@ extern "C"
     rp_signed_encrypted_parts_builder_build(
         const axutil_env_t * env,
         axiom_node_t * node,
-        axiom_element_t * element, 
+        axiom_element_t * element,
         axis2_bool_t is_signed);
 
 #ifdef __cplusplus

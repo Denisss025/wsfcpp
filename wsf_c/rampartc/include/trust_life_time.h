@@ -35,30 +35,30 @@
 extern "C"
 {
 #endif
-    
+
     typedef struct trust_life_time trust_life_time_t;
-    
+
     AXIS2_EXTERN trust_life_time_t * AXIS2_CALL
     trust_life_time_create(
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_life_time_free(
         trust_life_time_t *life_time,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_life_time_deserialize(
         trust_life_time_t *life_time,
         const axutil_env_t *env,
         axiom_node_t *life_time_node);
-    
+
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     trust_life_time_serialize(
         trust_life_time_t *life_time,
         const axutil_env_t *env,
         axiom_node_t *parent);
-    
+
     AXIS2_EXTERN int AXIS2_CALL
     trust_life_time_get_ttl(
         trust_life_time_t *life_time,
@@ -68,7 +68,7 @@ extern "C"
     trust_life_time_set_ttl(
             trust_life_time_t *life_time,
             const axutil_env_t *env,
-            int ttl);        
+            int ttl);
 
     AXIS2_EXTERN axutil_date_time_t * AXIS2_CALL
     trust_life_time_get_created(
@@ -106,8 +106,8 @@ extern "C"
             const axutil_env_t *env,
             axis2_char_t *ns_uri);
 
-    
+
 #ifdef __cplusplus
 }
 #endif
-#endif 
+#endif

@@ -68,7 +68,7 @@ sandesha2_client_get_outgoing_seq_report_with_internal_seq_id(
  * Users can get a list of seq_reports each describing a incoming
  * sequence, which are the sequences the client work as a RMD.
  * Caller must free the returned array.
- * 
+ *
  * @param config_ctx
  * @return
  */
@@ -81,7 +81,7 @@ sandesha2_client_get_incoming_seq_reports(
  * sandesha2_report gives the details of all incoming and outgoing sequences.
  * The outgoing sequence have to pass the initial state (CS/CSR exchange) to
  * be included in a sandesha2_report
- * 
+ *
  * @param conf_ctx
  * @return
  */
@@ -105,7 +105,7 @@ sandesha2_client_create_seq_with_svc_client_and_seq_key(
 
 /**
  * User can terminate the sequence defined by the passed svc_client.
- * 
+ *
  * @param svc_client
  */
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -123,7 +123,7 @@ sandesha2_client_terminate_seq_with_svc_client_and_seq_key(
 
 /**
  * User can close the seq defined by the passed svc_client.
- * 
+ *
  * @param svc_client
  */
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -141,7 +141,7 @@ sandesha2_client_close_seq_with_svc_client_and_seq_key(
 
 /**
  * This blocks the system until the messages sent have been completed.
- * 
+ *
  * @param svc_client
  */
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -158,7 +158,7 @@ sandesha2_client_wait_until_seq_completed_with_svc_client_and_seq_key(
 /**
  * This blocks the system until the messages sent have been completed
  * or until the given time interval exceeds. (the time is taken in seconds)
- * 
+ *
  * @param svc_client
  * @param max_waiting_time
  */
@@ -175,7 +175,7 @@ sandesha2_client_wait_until_seq_completed_with_svc_client_and_max_waiting_time_a
     long max_waiting_time,
     axis2_char_t *seq_key);
 
-/* 
+/*
  * gives the out seqID if CS/CSR exchange is done. Otherwise an error
  */
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL

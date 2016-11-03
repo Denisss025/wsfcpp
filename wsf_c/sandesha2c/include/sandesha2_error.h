@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_ERROR_H
 #define SANDESHA2_ERROR_H
 
@@ -36,7 +36,7 @@ extern "C"
     */
     typedef enum sandesha2_error_codes sandesha2_error_codes_t;
     enum sandesha2_error_codes
-    { 
+    {
         /* No error */
         SANDESHA2_ERROR_NONE = SANDESHA2_ERROR_CODES_START,
         /* A namespace that is not supported by Sandesha2 */
@@ -46,7 +46,7 @@ extern "C"
         SANDESHA2_ERROR_NULL_OM_ELEMENT,
         /* The om element has no child elements or attributes */
         SANDESHA2_ERROR_EMPTY_OM_ELEMENT,
-        /* om_element cannot be generated since the element corresponding 
+        /* om_element cannot be generated since the element corresponding
          * to that is NULL*/
         SANDESHA2_ERROR_TO_OM_NULL_ELEMENT,
         /* Required OM attribute is NULL */
@@ -104,7 +104,7 @@ extern "C"
         /* Unknown specification error message */
         SANDESHA2_ERROR_UNKNOWN_SPEC_ERROR_MESSAGE,
         /* Could not send the terminate message */
-        SANDESHA2_ERROR_COULD_NOT_SEND_TERMINATE_MESSAGE, 
+        SANDESHA2_ERROR_COULD_NOT_SEND_TERMINATE_MESSAGE,
         /* This rm spec version does not define a sequence close action */
         SANDESHA2_ERROR_RM_SPEC_VERSION_DOES_NOT_DEFINE_A_SEQ_CLOSE_ACTION,
         /* Could not send the close sequence message */
@@ -112,9 +112,9 @@ extern "C"
         /* Close Sequence feature is only available for WSRM 1.1 */
         SANDESHA2_ERROR_CLOSE_SEQ_FEATURE_ONLY_AVAILABLE_FOR_WSRM1_1,
         /* Cannnot find a seq report for the given data */
-        SANDESHA2_ERROR_CANNOT_FIND_SEQ_REPORT_FOR_GIVEN_DATA, 
+        SANDESHA2_ERROR_CANNOT_FIND_SEQ_REPORT_FOR_GIVEN_DATA,
         /* Cannnot find a seq report for the given sequence id */
-        SANDESHA2_ERROR_CANNOT_FIND_SEQ_REPORT_FOR_GIVEN_SEQ_ID, 
+        SANDESHA2_ERROR_CANNOT_FIND_SEQ_REPORT_FOR_GIVEN_SEQ_ID,
         /* Sequence is not in a active state. Either create seq response has not
          * being received or seq has been terminated, cannot get seqID
          */
@@ -159,13 +159,13 @@ extern "C"
         SANDESHA2_ERROR_ACKS_TO_IS_NULL,
         /* Create sequence message does not have the WSA:Action value */
         SANDESHA2_ERROR_CREATE_SEQ_MSG_DOES_NOT_HAVE_WSA_ACTION_VALUE,
-        /* Create sequence message does not has a valid RM namespace value. 
+        /* Create sequence message does not has a valid RM namespace value.
          * Can't decide the RM version
          */
         SANDESHA2_ERROR_CREATE_SEQ_MSG_DOES_NOT_HAVE_VALID_RM_NS_VALUE,
 
         /* Application message is NULL */
-        SANDESHA2_ERROR_APPLICATION_MSG_NULL, 
+        SANDESHA2_ERROR_APPLICATION_MSG_NULL,
         /* Configuration Context is NULL */
         SANDESHA2_ERROR_CONF_CTX_NULL,
         /* Cannot find the rmVersion of the given message */
@@ -212,7 +212,7 @@ extern "C"
 
         SANDESHA2_ERROR_LAST
     };
-        
+
 axis2_status_t AXIS2_CALL
 sandesha2_error_init();
 
@@ -220,5 +220,5 @@ sandesha2_error_init();
 #ifdef __cplusplus
 }
 #endif
- 
+
 #endif /*SANDESHA2_ERROR_H*/

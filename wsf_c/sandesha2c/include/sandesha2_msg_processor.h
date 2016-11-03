@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_MSG_PROCESSOR_H
 #define SANDESHA2_MSG_PROCESSOR_H
 
 /**
   * @file sandesha2_msg_processor.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -34,11 +34,11 @@ extern "C"
 {
 #endif
 
-/** 
+/**
  * @ingroup sandesha2_msgprocessors
  * @{
  */
- 
+
  typedef struct sandesha2_msg_processor_ops sandesha2_msg_processor_ops_t;
  typedef struct sandesha2_msg_processor sandesha2_msg_processor_t;
  /**
@@ -52,7 +52,7 @@ AXIS2_DECLARE_DATA struct sandesha2_msg_processor_ops
                     sandesha2_msg_processor_t *proc,
                     const axutil_env_t *env,
                     sandesha2_msg_ctx_t *rm_msg_ctx);
-                    
+
     axis2_status_t (AXIS2_CALL *
                 process_out_msg)(
                     sandesha2_msg_processor_t *proc,
@@ -72,30 +72,30 @@ AXIS2_DECLARE_DATA struct sandesha2_msg_processor
     sandesha2_msg_processor_ops_t *ops;
 };
 
-/** 
+/**
  * @brief Application Message Processor Creator struct impl
  *	Sandesha2 App Msg Processor Creator
  */
-sandesha2_msg_processor_t *AXIS2_CALL   
+sandesha2_msg_processor_t *AXIS2_CALL
 sandesha2_msg_processor_create_msg_processor(
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *rm_msg_ctx);
-                        
-axis2_status_t AXIS2_CALL 
+
+axis2_status_t AXIS2_CALL
 sandesha2_msg_processor_free (
-    sandesha2_msg_processor_t *msg_processor, 
+    sandesha2_msg_processor_t *msg_processor,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_msg_processor_process_in_msg (
     sandesha2_msg_processor_t *msg_processor,
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *rm_msg_ctx);
-    
-axis2_status_t AXIS2_CALL 
+
+axis2_status_t AXIS2_CALL
 sandesha2_msg_processor_process_out_msg(
     sandesha2_msg_processor_t *msg_processor,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_msg_ctx_t *rm_msg_ctx);
 
 /** @} */

@@ -18,7 +18,7 @@
 #include <oxs_buffer.h>
 
 /**
-  * @file oxs_axis2_utils.h 
+  * @file oxs_axis2_utils.h
   * @brief Utility functions related to Axis2/C
   */
 #ifndef OXS_AXIS_UTILS

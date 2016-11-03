@@ -37,14 +37,14 @@ extern "C"
      * @{
      */
 
-    /* 
+    /*
      * For DLL Types, starting index is 10000, and ending
      * index is 10999, this is for unique indexing purposes.
      * Indexes 10000-10099 are reserved for Axis2 Core.
      */
 
     /* service dll */
-    #define AXIS2_SVC_DLL 10000 
+    #define AXIS2_SVC_DLL 10000
 
     /* handler dll */
     #define AXIS2_HANDLER_DLL 10001

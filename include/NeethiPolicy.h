@@ -43,7 +43,7 @@ namespace wso2wsf
      * provide WS-Policy information. This is a wrapper to the XML policy
      * advertisement used in WS-Security, WS-Reliable Messaging etc.
      */
-    class NeethiPolicy 
+    class NeethiPolicy
     {
     private:
         /**

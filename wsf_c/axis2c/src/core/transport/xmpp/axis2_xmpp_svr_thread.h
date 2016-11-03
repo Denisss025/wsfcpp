@@ -18,7 +18,7 @@
 #define AXIS2_XMPP_SVR_THREAD_H
 
 /**
- * @defgroup axis2_xmpp_svr_thread xmpp server thread 
+ * @defgroup axis2_xmpp_svr_thread xmpp server thread
  * @ingroup axis2_core_trans_xmpp
  * @{
  */

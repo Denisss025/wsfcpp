@@ -24,7 +24,7 @@
 
 /**
   * @file rampart_handler_util.h
-  * @brief Utilities related to handlers 
+  * @brief Utilities related to handlers
   */
 
 /**
@@ -41,7 +41,7 @@ extern "C"
     * Get the security header from the header block
     * @param env pointer to environment struct
     * @param msg_ctx message context
-    * @param soap_header header block 
+    * @param soap_header header block
     * @return security soap header node
     */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
@@ -56,7 +56,7 @@ extern "C"
     * @param sub_code the text of the Subcode element of a SOAP fault message
     * @param reason_text the text in soapenv:Reason element
     * @param detail_node_text the text in the soapenv:Detail element
-    * @param msg_ctx the msg_ctx 
+    * @param msg_ctx the msg_ctx
     * @return void
     */
     AXIS2_EXTERN void AXIS2_CALL

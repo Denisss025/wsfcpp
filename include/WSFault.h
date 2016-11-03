@@ -37,20 +37,20 @@ namespace wso2wsf
 
     /**
      * @brief class WSFault. This class is a derivation of the Exception Class, and
-     * is used to implement exceptions generated from WSF/C++ Framework when a client 
+     * is used to implement exceptions generated from WSF/C++ Framework when a client
 	 * or a server error happens.
      */
     class WSFault: public Exception
     {
-	
+
 	private:
 		/**
-		* _detail corresponds to SOAP Fault detail string                                                   
+		* _detail corresponds to SOAP Fault detail string
 		*/
 		std::string _detail;
 
 		/**
-		* _role Corresponds to SOAP Fault role                             
+		* _role Corresponds to SOAP Fault role
 		*/
 		std::string _role;
 
@@ -67,14 +67,14 @@ namespace wso2wsf
         WSF_EXTERN WSF_CALL WSFault(char const * reason);
 
 		/**
-		* Constructor accepting a reason and a code for the exception.                                                   
+		* Constructor accepting a reason and a code for the exception.
 		* @param reason, Reason explaining the exception or soap fault reason
 		* @param code,    Exception code
 		*/
 		WSF_EXTERN WSF_CALL WSFault(char const* reason, char const *detail);
 
 		/**
-		* Constructor accepting a reason and a code for the exception.                                                   
+		* Constructor accepting a reason and a code for the exception.
 		* @param reason, Reason explaining the exception.
 		* @param code,   Fault code
 		* @param detail  Fault Detail
@@ -82,7 +82,7 @@ namespace wso2wsf
 		WSF_EXTERN WSF_CALL WSFault(char const *reason, char const *detail, char const* code);
 
 		/**
-		* Constructor accepting a reason and a code for the exception.                                                   
+		* Constructor accepting a reason and a code for the exception.
 		* @param reason, Reason explaining the exception.
 		* @param code,   Fault code
 		* @param detail  Fault Detail
@@ -92,12 +92,12 @@ namespace wso2wsf
 		WSF_EXTERN WSF_CALL WSFault(char const *reason, char const *detail, char const* code, char const *role);
 
 		/**
-		* @returns Returns the soap fault detail string                                                  
+		* @returns Returns the soap fault detail string
 		*/
 		WSF_EXTERN std::string WSF_CALL getFaultDetail();
-		
+
 		/**
-		* @returns Returns the soap fault role string                                                  
+		* @returns Returns the soap fault role string
 		*/
 		WSF_EXTERN std::string WSF_CALL getFaultRole();
 

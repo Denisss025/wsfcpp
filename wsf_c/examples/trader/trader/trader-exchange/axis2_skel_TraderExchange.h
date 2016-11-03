@@ -18,18 +18,18 @@
     #include <stdio.h>
 
 
-   
-     #include "axis2_updateRequest.h"
-    
 
-		 
+     #include "axis2_updateRequest.h"
+
+
+
         /**
          * auto generated function declaration
          * for "update|http://www.wso2.org" operation.
-         
+
          * @param updateRequest
          */
         axis2_status_t  axis2_skel_TraderExchange_update (const axutil_env_t *env  ,
                                           axis2_updateRequest_t* updateRequest );
-     
+
 

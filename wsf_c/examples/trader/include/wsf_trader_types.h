@@ -53,7 +53,7 @@
 
 /**
 * @file wsf_trader_types.h
-* @brief includes most types headers for trader. 
+* @brief includes most types headers for trader.
 */
 #ifdef __cplusplus
 extern "C"

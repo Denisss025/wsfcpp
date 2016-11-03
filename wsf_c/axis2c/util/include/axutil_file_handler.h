@@ -75,10 +75,10 @@ extern "C"
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axutil_file_handler_copy(
-        FILE *from, 
+        FILE *from,
         FILE *to);
 
-    AXIS2_EXTERN long AXIS2_CALL 
+    AXIS2_EXTERN long AXIS2_CALL
     axutil_file_handler_size(
         const axis2_char_t *const name);
 

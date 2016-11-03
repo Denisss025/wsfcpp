@@ -61,7 +61,7 @@ extern "C"
     struct axis2_transport_receiver;
 
     /**
-     * Frees transport in description. 
+     * Frees transport in description.
      * @param transport_in_desc pointer to transport in description struct
      * @param env pointer to environment struct
      * @return void
@@ -73,7 +73,7 @@ extern "C"
 
     /**
      * Frees transport in description given as a void parameter.
-     * @param transport_in pointer to transport in description as a void 
+     * @param transport_in pointer to transport in description as a void
      * pointer
      * @param env pointer to environment struct
      * @return void
@@ -87,7 +87,7 @@ extern "C"
      * Gets transport enum.
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
-     * @return transport enum 
+     * @return transport enum
      */
     AXIS2_EXTERN AXIS2_TRANSPORT_ENUMS AXIS2_CALL
 
@@ -100,7 +100,7 @@ extern "C"
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
      * @param trans_enum transport enum
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_transport_in_desc_set_enum(
@@ -109,7 +109,7 @@ extern "C"
         const AXIS2_TRANSPORT_ENUMS trans_enum);
 
     /**
-     * Gets in flow. In flow represents the list of phases invoked 
+     * Gets in flow. In flow represents the list of phases invoked
      * along the receive path.
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
@@ -123,13 +123,13 @@ extern "C"
                     const axutil_env_t * env);
 
     /**
-     * Sets in flow. In flow represents the list of phases invoked 
+     * Sets in flow. In flow represents the list of phases invoked
      * along the receive path.
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
-     * @param in_flow pointer to in flow representing in flow, transport in 
+     * @param in_flow pointer to in flow representing in flow, transport in
      * description assumes ownership of the flow
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -139,12 +139,12 @@ extern "C"
         struct axis2_flow *in_flow);
 
     /**
-     * Gets fault in flow. Fault in flow represents the list of phases 
+     * Gets fault in flow. Fault in flow represents the list of phases
      * invoked along the receive path if a fault happens.
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
-     * @return pointer to flow representing fault in flow, returns a 
-     * reference, not a cloned copy 
+     * @return pointer to flow representing fault in flow, returns a
+     * reference, not a cloned copy
      */
     AXIS2_EXTERN struct axis2_flow *AXIS2_CALL
 
@@ -153,13 +153,13 @@ extern "C"
                     const axutil_env_t * env);
 
     /**
-     * Sets fault in flow. Fault in flow represents the list of phases 
+     * Sets fault in flow. Fault in flow represents the list of phases
      * invoked along the receive path if a fault happens.
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
-     * @param fault_in_flow pointer to flow representing fault in flow, 
+     * @param fault_in_flow pointer to flow representing fault in flow,
      * transport in description assumes the ownership of the flow
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -172,7 +172,7 @@ extern "C"
      * Gets transport receiver associated with the transport in description.
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
-     * @return pointer to transport receiver, returns a reference, not 
+     * @return pointer to transport receiver, returns a reference, not
      * a cloned copy
      */
     AXIS2_EXTERN struct axis2_transport_receiver *AXIS2_CALL
@@ -185,9 +185,9 @@ extern "C"
      * Sets transport receiver associated with the transport in description.
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
-     * @param recv pointer to transport receiver, transport in 
+     * @param recv pointer to transport receiver, transport in
      * description assumes ownership of the receiver
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_transport_in_desc_set_recv(
@@ -211,9 +211,9 @@ extern "C"
      * Sets the transport in phase associated with transport in description.
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
-     * @param in_phase pointer to phase representing transport in phase, 
+     * @param in_phase pointer to phase representing transport in phase,
      * transport in description assumes ownership of phase
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -239,7 +239,7 @@ extern "C"
      * @param transport_in pointer to transport in description struct
      * @param env pointer to environment struct
      * @param fault_phase pointer to fault phase
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -254,7 +254,7 @@ extern "C"
      * @param env pointer to environment struct
      * @param param pointer to parameter, transport in description assumes
      * ownership of parameter
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_transport_in_desc_add_param(
@@ -300,7 +300,7 @@ extern "C"
     /**
      * Creates transport in description with given transport enum.
      * @param env pointer to environment struct
-     * @param trans_enum transport enum 
+     * @param trans_enum transport enum
      * @return pointer to newly created phase holder
      */
     AXIS2_EXTERN axis2_transport_in_desc_t *AXIS2_CALL
@@ -311,7 +311,7 @@ extern "C"
 
     /**
      * Frees transport in description given as a void parameter.
-     * @param transport_in pointer to transport in description as a void 
+     * @param transport_in pointer to transport in description as a void
      * pointer
      * @param env pointer to environment struct
      * @return void

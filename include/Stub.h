@@ -43,8 +43,8 @@ namespace wso2wsf
      */
     class Stub
     {
-	
-	
+
+
 	protected:
 		/**
 		 * ServiceClient object instance associated with the stub
@@ -55,15 +55,15 @@ namespace wso2wsf
 		 * Options object instance associated with the stub
 		 */
 		Options *clientOptions;
-		
+
     public:
-        
-      	
+
+
       	/**
-		 * Initialize the Stub. 
+		 * Initialize the Stub.
 		 * @param client_home string referring to the client repository location.
 		 * @param endpointUri The endpoint URI of the service which will be invoked using this stub.
-		 */ 	 
+		 */
 		WSF_EXTERN void WSF_CALL init(std::string& client_home, std::string& endpointUri);
 
 		/**
@@ -79,16 +79,16 @@ namespace wso2wsf
 		* @returns A pointer to the ServiceClient Object instance
 		*/
 		WSF_EXTERN ServiceClient* WSF_CALL getServiceClient();
-		
+
 		/**
 		* setServiceClient() Used to set ServiceClient instance to the stub and configure stub.
 		* @param client Pointer to a ServiceClient instance
 		* @returns true on success, false otherwise.
 		*/
- 		
+
 
 		WSF_EXTERN bool WSF_CALL setServiceClient(ServiceClient *client);
-		
+
 		/**
 		 *  engageModule Engage an Axis2/C module to this Stub
 		 *  @param moduleName identifying name for the module
@@ -98,12 +98,12 @@ namespace wso2wsf
 
 		/**
 		 * addAnnonymousOperations
-		 */ 
+		 */
 		WSF_EXTERN void WSF_CALL addAnonymousOperations();
 
 		/**
-		 * Destroy the Stub. 
-		 */ 	 
+		 * Destroy the Stub.
+		 */
 		WSF_EXTERN virtual WSF_CALL ~Stub();
 
 

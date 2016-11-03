@@ -60,7 +60,7 @@ extern "C"
       * Free an axiom_soap_header_block
       * @param  header_block pointer to soap_header_block struct
       * @param  env Environment. MUST NOT be NULL
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN void AXIS2_CALL
@@ -73,7 +73,7 @@ extern "C"
       * @param  header_block pointer to soap_header_block struct
       * @param  env Environment. MUST NOT be NULL
       * @param uri the role URI
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -82,13 +82,13 @@ extern "C"
         const axutil_env_t * env,
         axis2_char_t * uri);
 
-    /** 
+    /**
      * Set the mustunderstand attribute of the SOAP header
      *  If must_understand=TRUE its set to 1, otherwise set to 0
       * @param  header_block pointer to soap_header_block struct
       * @param  env Environment. MUST NOT be NULL
       * @param must_understand SOAP mustunderstand attribute value
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -102,7 +102,7 @@ extern "C"
       * @param  header_block pointer to soap_header_block struct
       * @param  env Environment. MUST NOT be NULL
       * @param must_understand SOAP mustunderstand attribute
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -116,8 +116,8 @@ extern "C"
      *  If must_understand=TRUE its set to 1, otherwise set to 0
       * @param  header_block pointer to soap_header_block struct
       * @param  env Environment. MUST NOT be NULL
-      * 
-      * @return AXIS2_TRUE if mustunderstand is set true. AXIS2_FALSE otherwise 
+      *
+      * @return AXIS2_TRUE if mustunderstand is set true. AXIS2_FALSE otherwise
       */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     axiom_soap_header_block_get_must_understand(
@@ -128,8 +128,8 @@ extern "C"
      *  To chk if the SOAP header is processed or not
       * @param  header_block pointer to soap_header_block struct
       * @param  env Environment. MUST NOT be NULL
-      * 
-      * @return AXIS2_TRUE if checked AXIS2_FALSE otherwise 
+      *
+      * @return AXIS2_TRUE if checked AXIS2_FALSE otherwise
       */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     axiom_soap_header_block_is_processed(
@@ -140,8 +140,8 @@ extern "C"
      *  Set the SOAP header as processed
       * @param  header_block pointer to soap_header_block struct
       * @param  env Environment. MUST NOT be NULL
-      * 
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      *
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -169,7 +169,7 @@ extern "C"
       * @param attr_value the attribute value
       * @param soap_envelope_namespace_uri the namsepace URI value
       *
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -200,8 +200,8 @@ extern "C"
      *  Get the base node of the header block
       * @param  header_block pointer to soap_header_block struct
       * @param  env Environment. MUST NOT be NULL
-      * 
-      * @return the base node of the of the header block 
+      *
+      * @return the base node of the of the header block
       */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     axiom_soap_header_block_get_base_node(
@@ -209,11 +209,11 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     *  Get  the SOAP version of the header block 
+     *  Get  the SOAP version of the header block
       * @param  header_block pointer to soap_header_block struct
       * @param  env Environment. MUST NOT be NULL
-      * 
-      * @return the SOAP version of the header block 
+      *
+      * @return the SOAP version of the header block
       */
     AXIS2_EXTERN int AXIS2_CALL
     axiom_soap_header_block_get_soap_version(

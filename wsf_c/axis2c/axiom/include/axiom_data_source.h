@@ -49,13 +49,13 @@ extern "C"
     /**
       * Creates a new data_source struct
       * @param env Environment. MUST  NOT be NULL, .
-      * @param parent parent of the new node. Optinal, can be NULL. 
+      * @param parent parent of the new node. Optinal, can be NULL.
       *          The parent element must be of type AXIOM_ELEMENT
       * @param value Text value. Optinal, can be NULL.
       * @param comment_node This is an out parameter.  cannot be NULL.
       *                       Returns the node corresponding to the data_source struct created.
-      *                       Node type will be set to AXIOM_DATA_SOURCE  
-      * @return pointer to newly created data_source struct 
+      *                       Node type will be set to AXIOM_DATA_SOURCE
+      * @return pointer to newly created data_source struct
       */
     AXIS2_EXTERN axiom_data_source_t *AXIS2_CALL
     axiom_data_source_create(
@@ -93,9 +93,9 @@ extern "C"
      *  set the data_source value
      * @param om_data_source om_data_source struct
      * @param env environment , MUST NOT be NULL.
-     * @param value data_source 
+     * @param value data_source
      * @return status of the op. AXIS2_SUCCESS on success,
-     *           AXIS2_FAILURE on error.   
+     *           AXIS2_FAILURE on error.
      */
     AXIS2_EXTERN axutil_stream_t *AXIS2_CALL
     axiom_data_source_get_stream(

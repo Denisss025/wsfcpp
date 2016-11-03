@@ -70,8 +70,8 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * while parsing the axis2.xml the module refferences have to be stored some 
-     * where , since at that time none of module availble (they load after parsing 
+     * while parsing the axis2.xml the module refferences have to be stored some
+     * where , since at that time none of module availble (they load after parsing
      * the document)
      * @param dep_engine pointer to deployment engine
      * @param env pointer to environment struct
@@ -270,7 +270,7 @@ extern "C"
         const axis2_dep_engine_t * dep_engine,
         const axutil_env_t * env);
 
-	
+
 	/**
      * @param dep_engine pointer to module directory
      * @param env pointer to environment struct
@@ -279,7 +279,7 @@ extern "C"
     	axis2_dep_engine_get_module_dir(
         const axis2_dep_engine_t * dep_engine,
         const axutil_env_t * env);
-	
+
 	/**
      * @param dep_engine pointer to module directory
      * @param env pointer to environment struct
@@ -350,8 +350,8 @@ extern "C"
     axis2_dep_engine_create_with_repos_name(
         const axutil_env_t * env,
         const axis2_char_t * repos_path);
-	
-	
+
+
 	/**
      * Creates description builder struct using axis2 xml
      * This the constructor which is used by Engine in order to start
@@ -359,7 +359,7 @@ extern "C"
      * @param env pointer to environment struct
      * @param axis2_xml is the path of the axis2.xml .
      * @return pointer to newly created deployment engine
-     */	
+     */
 	AXIS2_EXTERN axis2_dep_engine_t *AXIS2_CALL
 	axis2_dep_engine_create_with_axis2_xml(
 	    const axutil_env_t * env,

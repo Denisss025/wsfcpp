@@ -39,8 +39,8 @@ extern "C"
 
     /**
       * Creates a log struct
-      * @param allocator allocator to be used. Mandatory, cannot be NULL  
-      * @return pointer to the newly created log struct 
+      * @param allocator allocator to be used. Mandatory, cannot be NULL
+      * @return pointer to the newly created log struct
       */
     AXIS2_EXTERN axutil_log_t *AXIS2_CALL
     axutil_log_create(

@@ -283,7 +283,7 @@ extern "C"
 
 
 	/**
-	 *  RESPONSE_HTTP_FORBIDDEN_CODE_NAME                                                                     
+	 *  RESPONSE_HTTP_FORBIDDEN_CODE_NAME
 	 */
     #define AXIS2_HTTP_RESPONSE_HTTP_FORBIDDEN_CODE_NAME "Forbidden"
 
@@ -964,17 +964,17 @@ extern "C"
       * Proxy authentication password property name
       */
     #define AXIS2_PROXY_AUTH_PASSWD "PROXY_AUTH_PASSWD"
-    
+
     /**
      * NTLM authentication domain property name
      */
     #define AXIS2_NTLM_AUTH_DOMAIN "NTLM_AUTH_DOMAIN"
-    
+
     /**
      * NTLM authentication workstation property name
      */
     #define AXIS2_NTLM_AUTH_WORKSTATION "NTLM_AUTH_WORKSTATION"
-    
+
     /**
      * NTLM authentication flags property name
      */
@@ -992,7 +992,7 @@ extern "C"
      * HTTP "Digest" authentication
      */
     #define AXIS2_HTTP_AUTH_TYPE_DIGEST "Digest"
-    
+
     /**
      * "NTLM" authentication
      */
@@ -1007,7 +1007,7 @@ extern "C"
       * Proxy "Digest" authentication
       */
     #define AXIS2_PROXY_AUTH_TYPE_DIGEST "Digest"
-    
+
     /**
       * Proxy "NTLM" authentication
       */
@@ -1130,7 +1130,7 @@ extern "C"
 
     #define AXIS2_HTTP_NOT_FOUND "<html><head><title>404 Not Found</title></head>\
  <body><h2>Not Found</h2><p>The requested URL was not found on this server.\
-</p></body></html>"  
+</p></body></html>"
 
 
     #define AXIS2_HTTP_NOT_IMPLEMENTED "<html><head><title>501 Not Implemented\
@@ -1158,7 +1158,7 @@ the requested resource could not be found on this server.</p></body></html>"
 
     #define AXIS2_HTTP_REQUEST_TIMEOUT "<html><head><title>408 Request Timeout\
 </title></head><body><h2>Request Timeout</h2><p>Cannot wait any longer for \
-the HTTP request from the client.</p></body></html>" 
+the HTTP request from the client.</p></body></html>"
 
     #define AXIS2_HTTP_CONFLICT "<html><head><title>409 Conflict</title></head>\
 <body><h2>Conflict</h2><p>The client attempted to put the server\'s resources\

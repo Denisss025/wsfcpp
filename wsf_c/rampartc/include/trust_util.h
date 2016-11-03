@@ -290,7 +290,7 @@ extern "C"
         axiom_node_t * parent_node,
         axis2_char_t * key_type);
 
-    
+
     /*AuthenticationType*/
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     trust_util_create_authentication_type_element(
@@ -306,7 +306,7 @@ extern "C"
         axis2_char_t *wst_ns_uri,
         axiom_node_t * parent_node,
         axis2_char_t * signature_algo);
-    
+
     /*EncryptionAlgorithm*/
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     trust_util_create_encryption_algo_element(
@@ -314,7 +314,7 @@ extern "C"
         axis2_char_t *wst_ns_uri,
         axiom_node_t * parent_node,
         axis2_char_t * encryption_algo);
-        
+
     /*CanonicalizationAlgorithm*/
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     trust_util_create_canonicalization_algo_element(
@@ -330,7 +330,7 @@ extern "C"
         axis2_char_t *wst_ns_uri,
         axiom_node_t * parent_node,
         axis2_char_t * computedkey_algo);
-    
+
    /*(Desired)Encryption*/
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     trust_util_create_desired_encryption_element(
@@ -338,7 +338,7 @@ extern "C"
         axis2_char_t * wst_ns_uri,
         axiom_node_t * parent_node,
         axiom_node_t * encryption_key); /*@param encryption_key - This can be either a key or a STR*/
-   
+
    /*ProofEncryption*/
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     trust_util_create_proof_encryption_element(
@@ -362,7 +362,7 @@ extern "C"
         axis2_char_t *wst_ns_uri,
         axiom_node_t * parent_node,
         axis2_char_t * signwith);
-       
+
    /*EncryptWith*/
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     trust_util_create_encryptwith_element(
@@ -370,7 +370,7 @@ extern "C"
         axis2_char_t *wst_ns_uri,
         axiom_node_t * parent_node,
         axis2_char_t * encryptwith);
- 
+
     /**
      * Create LifeTime element.
      *

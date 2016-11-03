@@ -56,7 +56,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * 
+     *
      * @param repos_listener pointer to repos listener
      * @param env pointer to environment struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
@@ -68,7 +68,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * 
+     *
      * @param repos_listener pointer to repos listener
      * @param env pointer to environment struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
@@ -79,7 +79,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * 
+     *
      * @param repos_listener pointer to repos listener
      * @param env pointer to environment struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
@@ -90,7 +90,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * 
+     *
      * then it call to check_modules to load all the modules.
      * and then it call to update() method inorder to update the deployment engine and engine.
      * @param repos_listener pointer to repos listener
@@ -124,13 +124,13 @@ extern "C"
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_repos_listener_set_conf(
-        axis2_repos_listener_t *repo_listener,        
+        axis2_repos_listener_t *repo_listener,
         const axutil_env_t * env,
         axis2_conf_t *conf);
 
     AXIS2_EXTERN axis2_conf_t *AXIS2_CALL
     axis2_repos_listener_get_conf(
-        axis2_repos_listener_t *repo_listener,        
+        axis2_repos_listener_t *repo_listener,
         const axutil_env_t * env);
 
 

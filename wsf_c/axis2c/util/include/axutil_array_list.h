@@ -119,7 +119,7 @@ extern "C"
 
     /**
      * Returns the lowest index at which element appears in this List, or
-     * -1 if it does not appear. This looks for the pointer value equality only, 
+     * -1 if it does not appear. This looks for the pointer value equality only,
      * does not look into pointer content
      * @param array_list pointer to array list
      * @param env pointer to environment struct

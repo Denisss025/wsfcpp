@@ -26,17 +26,17 @@
 
 axiom_node_t *
 rm_sample_svc_echo(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *node);
 
 void
 rm_sample_svc_ping (
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *node);
 
 axiom_node_t *
 rm_sample_svc_mtom(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *node,
     axis2_msg_ctx_t *msg_ctx);
 

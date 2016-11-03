@@ -17,7 +17,7 @@
 #include <axis2_util.h>
 
 /**
-  * @file openssl_constants.h 
+  * @file openssl_constants.h
   * @brief Constants for the openssl wrapper
   */
 #ifndef OPENSSL_CONSTANTS_H
@@ -25,7 +25,7 @@
 
 /**
  * @defgroup openssl OpenSSL wrapper
- * 
+ *
  * @{
  */
 

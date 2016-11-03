@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_LAST_MSG_NUMBER_H
 #define SANDESHA2_LAST_MSG_NUMBER_H
 
 /**
   * @file sandesha2_last_msg_number.h
-  * @brief 
+  * @brief
   */
 
 #include <sandesha2_error.h>
@@ -37,7 +37,7 @@ extern "C"
  * @{
  */
 typedef struct sandesha2_last_msg_number_t sandesha2_last_msg_number_t;
- 
+
 /**
  * @brief Last Msg Number ops struct
  * Encapsulator struct for ops of sandesha2_last_msg_number
@@ -58,37 +58,37 @@ sandesha2_last_msg_number_free_void_arg(
     void *msg_num,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_last_msg_number_free(
-    sandesha2_last_msg_number_t *msg_num, 
+    sandesha2_last_msg_number_t *msg_num,
 	const axutil_env_t *env);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_last_msg_number_get_namespace_value(
     sandesha2_last_msg_number_t *msg_num,
 	const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL                 
+axis2_status_t AXIS2_CALL
 sandesha2_last_msg_number_set_last_msg_number(
     sandesha2_last_msg_number_t *msg_num,
-   	const axutil_env_t *env, 
+   	const axutil_env_t *env,
     long value);
-                    	
+
 long AXIS2_CALL
 sandesha2_last_msg_number_get_last_msg_number(
     sandesha2_last_msg_number_t *msg_num,
    	const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_last_msg_number_from_om_node(
     sandesha2_last_msg_number_t *msg_num,
-   	const axutil_env_t *env, 
+   	const axutil_env_t *env,
     axiom_node_t *om_node);
-    
-axiom_node_t* AXIS2_CALL 
+
+axiom_node_t* AXIS2_CALL
 sandesha2_last_msg_number_to_om_node(
     sandesha2_last_msg_number_t *msg_num,
-   	const axutil_env_t *env, 
+   	const axutil_env_t *env,
     void *om_node);
 
 

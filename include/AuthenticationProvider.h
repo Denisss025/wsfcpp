@@ -55,8 +55,8 @@ namespace wso2wsf
          * @return msgctx pointer to message context
          */
         virtual bool WSF_CALL checkPassword(
-            std::string& username, 
-            std::string& password, 
+            std::string& username,
+            std::string& password,
             MessageContext* msgctx) = 0;
 
         /**
@@ -70,10 +70,10 @@ namespace wso2wsf
          *
          */
         virtual bool WSF_CALL checkDigestPassword(
-            std::string& username, 
-            std::string& nonce, 
-            std::string& created, 
-            std::string& digest, 
+            std::string& username,
+            std::string& nonce,
+            std::string& created,
+            std::string& digest,
             MessageContext* msgctx) = 0;
 
         /**
@@ -85,8 +85,8 @@ namespace wso2wsf
          * Static Handler to be invoked to check plain password
          */
         WSF_EXTERN static rampart_authn_provider_status_t WSF_CALL callbackPasswordPlain(
-            rampart_authn_provider_t * authn_provider, 
-            const axutil_env_t* env, 
+            rampart_authn_provider_t * authn_provider,
+            const axutil_env_t* env,
             axis2_msg_ctx_t *msg_ctx,
             const axis2_char_t *username,
             const axis2_char_t *password);

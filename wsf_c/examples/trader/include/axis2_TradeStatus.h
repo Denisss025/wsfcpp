@@ -10,7 +10,7 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -38,7 +38,7 @@
             axis2_TradeStatus_t* TradeStatus,
             const axutil_env_t *env);
 
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_TradeStatus_serialize(
@@ -51,7 +51,7 @@
             axis2_TradeStatus_t* TradeStatus,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for status.
@@ -70,7 +70,7 @@
             const axutil_env_t *env,
             axis2_bool_t  param_status);
 
-        
+
 
         /**
          * getter for reason.
@@ -89,12 +89,12 @@
             const axutil_env_t *env,
             axis2_char_t*  param_reason);
 
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_TRADESTATUS_H */
-    
+
 

@@ -34,7 +34,7 @@ extern "C"
     typedef enum
     {
         DERIVEKEY_NONE =0,
-        DERIVEKEY_NEEDED, 
+        DERIVEKEY_NEEDED,
         DERIVEKEY_IMPLIED,
         DERIVEKEY_EXPLICIT
     } derive_key_type_t;
@@ -107,24 +107,24 @@ extern "C"
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rp_token_set_derive_key_version(
-        rp_token_t *token, 
-        const axutil_env_t *env, 
+        rp_token_t *token,
+        const axutil_env_t *env,
         derive_key_version_t version);
 
     AXIS2_EXTERN derive_key_version_t AXIS2_CALL
     rp_token_get_derive_key_version(
-        rp_token_t *token, 
+        rp_token_t *token,
         const axutil_env_t *env);
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rp_token_set_inclusion(
-        rp_token_t *token, 
-        const axutil_env_t *env, 
+        rp_token_t *token,
+        const axutil_env_t *env,
         axis2_char_t *inclusion);
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     rp_token_get_inclusion(
-        rp_token_t *token, 
+        rp_token_t *token,
         const axutil_env_t *env);
 
 

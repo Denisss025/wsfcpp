@@ -67,7 +67,7 @@ extern "C"
      * @param ctx pointer to context struct
      * @param env pointer to environment struct
      * @param key key string to store the property with
-     * @param value pointer to property to be stored, context assumes the 
+     * @param value pointer to property to be stored, context assumes the
      * ownership of the property
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -104,7 +104,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets all properties stored within context. 
+     * Gets all properties stored within context.
      * @param ctx pointer to context struct
      * @param env pointer to environment struct
      * @return pointer to hash table containing all properties

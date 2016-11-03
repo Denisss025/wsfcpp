@@ -18,20 +18,20 @@
     #include <stdio.h>
 
 
-   
-     #include  "axis2_getInfoResponse.h"
-    
-     #include "axis2_getInfoRequest.h"
-    
 
-		 
+     #include  "axis2_getInfoResponse.h"
+
+     #include "axis2_getInfoRequest.h"
+
+
+
         /**
          * auto generated function declaration
          * for "getInfo|http://www.wso2.org" operation.
-         
+
          * @param getInfoRequest
          */
         axis2_getInfoResponse_t* axis2_skel_ExchangeClient_getInfo (const axutil_env_t *env  ,
                                           axis2_getInfoRequest_t* getInfoRequest );
-     
+
 

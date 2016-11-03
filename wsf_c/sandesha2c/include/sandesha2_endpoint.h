@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_ENDPOINT_H
 #define SANDESHA2_ENDPOINT_H
 
 /**
   * @file sandesha2_endpoint.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -46,44 +46,44 @@ typedef struct sandesha2_endpoint_t sandesha2_endpoint_t;
 
 AXIS2_EXTERN sandesha2_endpoint_t * AXIS2_CALL
 sandesha2_endpoint_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_address_t *address,
-    axis2_char_t *rm_ns_value, 
+    axis2_char_t *rm_ns_value,
     axis2_char_t *addr_ns_value);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_endpoint_free(
-    sandesha2_endpoint_t *endpoint, 
-    const axutil_env_t *env);								
+    sandesha2_endpoint_t *endpoint,
+    const axutil_env_t *env);
 
 sandesha2_address_t * AXIS2_CALL
 sandesha2_endpoint_get_address(
     sandesha2_endpoint_t *endpoint,
     const axutil_env_t *env);
-                    	
-axis2_status_t AXIS2_CALL 
+
+axis2_status_t AXIS2_CALL
 sandesha2_endpoint_set_address (
-    sandesha2_endpoint_t *endpoint, 
-    const axutil_env_t *env, 
-    sandesha2_address_t *address);								
- 
-axis2_char_t* AXIS2_CALL 
+    sandesha2_endpoint_t *endpoint,
+    const axutil_env_t *env,
+    sandesha2_address_t *address);
+
+axis2_char_t* AXIS2_CALL
 sandesha2_endpoint_get_namespace_value(
     sandesha2_endpoint_t *endpoint,
 	const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_endpoint_from_om_node(
     sandesha2_endpoint_t *endpoint,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *om_node);
-    
-axiom_node_t* AXIS2_CALL 
+
+axiom_node_t* AXIS2_CALL
 sandesha2_endpoint_to_om_node(
     sandesha2_endpoint_t *endpoint,
-   	const axutil_env_t *env, 
+   	const axutil_env_t *env,
     void *om_node);
- 
+
 /** @} */
 #ifdef __cplusplus
 }

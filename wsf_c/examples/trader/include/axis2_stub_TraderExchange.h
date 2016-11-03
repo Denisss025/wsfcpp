@@ -14,9 +14,9 @@
         #include <axis2_client.h>
         #include <axis2_stub.h>
 
-       
+
          #include "axis2_updateRequest.h"
-        
+
         /* function prototypes - for header file*/
         /**
          * axis2_stub_TraderExchange_create
@@ -40,25 +40,25 @@
          */
         axis2_char_t *axis2_stub_TraderExchange_get_endpoint_uri_from_wsdl ( const axutil_env_t *env );
 
-        
+
         /**
          * auto generated function declaration
          * for "update|http://www.wso2.org" operation.
-         
+
          * @param updateRequest2
          */
 
         axis2_status_t axis2_stub_TraderExchange_update( axis2_stub_t *stub, const axutil_env_t *env,
                                                     axis2_updateRequest_t* updateRequest2);
-        
+
         /**
          * auto generated function declaration
          * for "update|http://www.wso2.org" operation.
-         
+
          * @param updateRequest2
          * @param on_complete callback to handle on complete
          * @param on_error callback to handle on error
          */
 
-        
+
 

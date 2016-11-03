@@ -34,7 +34,7 @@ struct dirent
     off_t d_off;          /* offset to this dirent */
     unsigned short d_reclen;  /* length of d_name */
     char d_name[_MAX_FNAME + 1];  /* filename (null terminated) */
-    
+
     /*unsigned char      d_type; *//*type of file */
 };
 
@@ -48,7 +48,7 @@ typedef struct
     struct _finddata_t fileinfo;  /* from _findfirst/_findnext */
     char *dirname;        /* the dir we are reading */
     struct dirent dent;   /* the dirent to return */
-    
+
 }
 AXIS2_DIR;
 

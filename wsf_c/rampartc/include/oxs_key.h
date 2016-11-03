@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_key.h
-  * @brief represents a Key in OMXMLSecurity 
+  * @brief represents a Key in OMXMLSecurity
   */
 
 /**
@@ -47,7 +47,7 @@ extern "C"
     /*Key is a signature session key*/
 #define OXS_KEY_USAGE_SIGNATURE_SESSION 2
     /*Key is a derived key */
-#define OXS_KEY_USAGE_DERIVED           3 
+#define OXS_KEY_USAGE_DERIVED           3
 
 #define OXS_KEY_DEFAULT_SIZE            64
 
@@ -58,7 +58,7 @@ extern "C"
     * Gets data of the key.
     * @param key oxs_key ptr to key
     * @param env pointer to environment struct
-    * @return data 
+    * @return data
     */
 
     AXIS2_EXTERN unsigned char *AXIS2_CALL
@@ -171,13 +171,13 @@ extern "C"
     oxs_key_set_nonce(
         oxs_key_t *key,
         const axutil_env_t *env,
-        axis2_char_t *nonce); 
+        axis2_char_t *nonce);
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_key_set_label(
         oxs_key_t *key,
         const axutil_env_t *env,
-        axis2_char_t *label); 
+        axis2_char_t *label);
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_key_set_offset(
@@ -269,7 +269,7 @@ extern "C"
         oxs_key_t *key,
         const axutil_env_t *env,
         axis2_char_t *key_sha);
-    
+
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     oxs_key_get_key_sha(
         const oxs_key_t *key,

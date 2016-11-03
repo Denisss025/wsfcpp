@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SAVAN_SUBSCRIBER_H
 #define SAVAN_SUBSCRIBER_H
- 
+
 /**
-* @defgroup savan_subscribers 
+* @defgroup savan_subscribers
 * @ingroup savan_subscribers
 * subscriber represents a client subscribing to an eventing service
 * @{
@@ -65,7 +65,7 @@ extern "C"
 	* Get the delivery mode
 	* @param subscriber pointer to the subscriber
 	* @param env pointer to the environment
-	*/ 
+	*/
 
 	AXIS2_EXTERN axis2_char_t * AXIS2_CALL
 		savan_subscriber_get_delivery_mode(
@@ -76,13 +76,13 @@ extern "C"
      * Retrive subscriber id.
      * @param subscriber pointer to subscriber
      * @param env pointer to environment struct
-     * @return the unique id assigned to the subscriber 
+     * @return the unique id assigned to the subscriber
      */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     savan_subscriber_get_id(
         savan_subscriber_t *subscriber,
         const axutil_env_t *env);
-    
+
     /**
      * Set id.
      * @param subscriber pointer to subscriber
@@ -94,7 +94,7 @@ extern "C"
         savan_subscriber_t *subscriber,
         const axutil_env_t *env,
         const axis2_char_t *id);
-    
+
     /**
      * Set EndTo end point.
      * @param subscriber pointer to subscriber
@@ -106,18 +106,18 @@ extern "C"
         savan_subscriber_t *subscriber,
         const axutil_env_t *env,
         axis2_endpoint_ref_t *end_to);
- 
+
     /**
      * Get EndTo end point.
      * @param subscriber pointer to subscriber
      * @param env pointer to environment struct
-     * @return end_to 
+     * @return end_to
      */
     AXIS2_EXTERN axis2_endpoint_ref_t *AXIS2_CALL
     savan_subscriber_get_end_to(
         savan_subscriber_t *subscriber,
         const axutil_env_t *env);
-               
+
     /**
      * Set NotifyTo end point.
      * @param subscriber pointer to subscriber
@@ -204,7 +204,7 @@ extern "C"
      * @param subscriber pointer to subscriber
      * @param env pointer to environment struct
      * @param msg_ctx the msg to be published
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     savan_subscriber_set_renew_status(
@@ -217,7 +217,7 @@ extern "C"
      * @param subscriber pointer to subscriber
      * @param env pointer to environment struct
      * @param msg_ctx the msg to be published
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     savan_subscriber_get_renew_status(
@@ -232,15 +232,15 @@ extern "C"
     AXIS2_EXTERN savan_subscriber_t * AXIS2_CALL
     savan_subscriber_create(
         const axutil_env_t *env);
-   
+
     AXIS2_EXTERN void AXIS2_CALL
     savan_subscriber_free(
-        savan_subscriber_t *subscriber, 
+        savan_subscriber_t *subscriber,
         const axutil_env_t *env);
 
     AXIS2_EXTERN void AXIS2_CALL
     savan_subscriber_free_void_arg(
-        void *subscriber, 
+        void *subscriber,
         const axutil_env_t *env);
 
 /** @} */

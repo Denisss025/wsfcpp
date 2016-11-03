@@ -112,8 +112,8 @@ extern "C"
      * @param phase_holder pointer to phase holder
      * @param env pointer to environment struct
      * @param phase_name pointer to phase name
-     * @return pointer to named phase if it exists, else NULL. Returns a 
-     * reference, not a cloned copy 
+     * @return pointer to named phase if it exists, else NULL. Returns a
+     * reference, not a cloned copy
      */
     AXIS2_EXTERN struct axis2_phase *AXIS2_CALL
                 axis2_phase_holder_get_phase(
@@ -122,15 +122,15 @@ extern "C"
                     const axis2_char_t * phase_name);
 
     /**
-     * Builds the transport phase. This method loads the corresponding handlers and added them into 
+     * Builds the transport phase. This method loads the corresponding handlers and added them into
      * correct phase. This function is no longer used in Axis2/C and
      * marked as deprecated.
      * @deprecated
      * @param phase_holder pointer to phase holder
      * @param env pointer to environment struct
-     * @param phase pointer to phase, phase holder does not assume the 
+     * @param phase pointer to phase, phase holder does not assume the
      * ownership the phase
-     * @param handlers pointer to array list of handlers, phase holder does 
+     * @param handlers pointer to array list of handlers, phase holder does
      * not assume the ownership of the list
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */

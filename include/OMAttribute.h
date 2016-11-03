@@ -44,7 +44,7 @@ namespace wso2wsf
      * This class provides an abstraction to occurrences of attributes associated
      * with the XML model.
      */
-    class OMAttribute 
+    class OMAttribute
     {
         /**
          * Overloaded insertion operator, is used for printing the attribute onto a console.
@@ -141,11 +141,11 @@ namespace wso2wsf
         WSF_EXTERN OMNamespace * WSF_CALL getNamespace();
 
 		/**
-		* Method to set the OMNamespace. The passed OMNamespace will be owned by the Attribute. 
+		* Method to set the OMNamespace. The passed OMNamespace will be owned by the Attribute.
 		* @param ns The OMNamespace object to be set.
 		* @param deleteExisting When this is set to true, it will delete the underlying c axiom
-		* namespace in addition to the referenced OMNamespace currently existing. If false, it will 
-		* only delete the CPP level namespace. 
+		* namespace in addition to the referenced OMNamespace currently existing. If false, it will
+		* only delete the CPP level namespace.
 		* @returns true If the operation is successful. false if the operation failed. If false is returned,
 		* the namespace object is not owned by the attribute object.
 		*/

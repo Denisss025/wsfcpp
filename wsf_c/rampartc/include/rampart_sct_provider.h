@@ -20,7 +20,7 @@
 
 /**
   * @file rampart_sct_provider.h
-  * @brief Security context token provider module for rampart 
+  * @brief Security context token provider module for rampart
   */
 
 /**
@@ -43,36 +43,36 @@ extern "C"
 
     struct rampart_sct_provider_ops
     {
-        /* This function will be called to get previously stored sct. If secure conversation token 
-         * is referred by this method, then sct_id will be not null. However, if security context 
-         * token (pre-agreed and established offline) is refered then sct_id might be NULL. 
-         * is_encryption is passed, so that if pre-agreed sct is different for encryption and 
-         * signature, then it could be accessed. sct_id_type can be RAMPART_SCT_ID_TYPE_LOCAL 
-         * or RAMPART_SCT_ID_TYPE_GLOBAL. user_param will be whatever stored using 
-         * rampart_context_set_security_context_token_user_params. 
+        /* This function will be called to get previously stored sct. If secure conversation token
+         * is referred by this method, then sct_id will be not null. However, if security context
+         * token (pre-agreed and established offline) is refered then sct_id might be NULL.
+         * is_encryption is passed, so that if pre-agreed sct is different for encryption and
+         * signature, then it could be accessed. sct_id_type can be RAMPART_SCT_ID_TYPE_LOCAL
+         * or RAMPART_SCT_ID_TYPE_GLOBAL. user_param will be whatever stored using
+         * rampart_context_set_security_context_token_user_params.
          */
         obtain_security_context_token_fn obtain_security_context_token;
 
-        /* This function will be used to store sct. Global id, local id will be given so function 
-         * writer can store them in anyway. Get or Delete method will use any of the Global id or 
-         * local id, so Store function writer should be ready for that. 
+        /* This function will be used to store sct. Global id, local id will be given so function
+         * writer can store them in anyway. Get or Delete method will use any of the Global id or
+         * local id, so Store function writer should be ready for that.
          */
         store_security_context_token_fn store_security_context_token;
 
-        /* This function will be called to delete previously stored sct. sct_id_type can be 
+        /* This function will be called to delete previously stored sct. sct_id_type can be
          * RAMPART_SCT_ID_TYPE_LOCAL or RAMPART_SCT_ID_TYPE_GLOBAL
          */
         delete_security_context_token_fn delete_security_context_token;
 
-        /* Validates whether security context token is valid or not. Normally, we can directly send 
-         * true as response. But if syntax of security context token is altered/added by using 
-         * extensible mechanism (e.g having sessions, etc.) then user can implement this method. 
-         * Axiom representation of the sct will be given as the parameter, because if sct is 
+        /* Validates whether security context token is valid or not. Normally, we can directly send
+         * true as response. But if syntax of security context token is altered/added by using
+         * extensible mechanism (e.g having sessions, etc.) then user can implement this method.
+         * Axiom representation of the sct will be given as the parameter, because if sct is
          * extended, we don't know the syntax. Method writer can implement whatever needed.
          */
         validate_security_context_token_fn validate_security_context_token;
 
-        /* This function will be called to get the user paramters. It will be called only when 
+        /* This function will be called to get the user paramters. It will be called only when
          * loading sct_provider module. If user_params are not needed, this method can return NULL
          */
         void* (AXIS2_CALL*

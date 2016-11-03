@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SAVAN_UTIL_H
 #define SAVAN_UTIL_H
 
@@ -76,7 +76,7 @@ struct savan_subs_mgr;
  	* @param reason, fault reason
  	* @param detail, details about fault,
  	* and solution to avoid.
- 	*/ 
+ 	*/
 
     /*
 	int AXIS2_CALL
@@ -97,7 +97,7 @@ struct savan_subs_mgr;
  	* @param reason, fault reason
  	* @param detail, details about fault,
  	* and solution to avoid.
- 	*/ 
+ 	*/
 
 	AXIS2_EXTERN axiom_node_t * AXIS2_CALL
 	savan_util_build_fault_msg(
@@ -111,7 +111,7 @@ struct savan_subs_mgr;
     savan_util_get_message_type(
         axis2_msg_ctx_t *msg_ctx,
         const axutil_env_t *env);
-    
+
     /**
     * Extracts the subscription ID from the given messsage
     * context.
@@ -161,14 +161,14 @@ struct savan_subs_mgr;
     savan_util_get_renewed_expiry_time(
         const axutil_env_t *env,
         axis2_char_t *expiry);
-    
+
     /**
     * Create subs hash and set as a service parameter.
     * @param env pointer to environment struct
     * @param svc subscription service
-    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     savan_util_set_store(
         axis2_svc_t *svc,
         const axutil_env_t *env,
@@ -183,12 +183,12 @@ struct savan_subs_mgr;
     savan_util_get_resource_connection_string(
         const axutil_env_t *env,
         axis2_conf_t *conf);
-    
+
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     savan_util_get_resource_username(
         const axutil_env_t *env,
         axis2_conf_t *conf);
-    
+
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     savan_util_get_resource_password(
         const axutil_env_t *env,
@@ -226,12 +226,12 @@ struct savan_subs_mgr;
 
     AXIS2_EXTERN axiom_node_t * AXIS2_CALL
     savan_util_create_savan_specific_subscriber_node(
-        const axutil_env_t *env, 
+        const axutil_env_t *env,
         savan_subscriber_t *subscriber,
         axiom_node_t *parent_node);
 
     /**
-     * Retrieve filter handler. If it is already created for this request scope then it should be 
+     * Retrieve filter handler. If it is already created for this request scope then it should be
      * available as a message context property. Otherwise create it and set as message context
      * property.
      * @param env environment object
@@ -247,5 +247,5 @@ struct savan_subs_mgr;
 #ifdef __cplusplus
 }
 #endif
- 
+
 #endif /*SAVAN_UTIL_H*/

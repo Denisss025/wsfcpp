@@ -47,14 +47,14 @@ extern "C"
 #endif
 
     /**
-     * Given an axiom model this function will return 
+     * Given an axiom model this function will return
      * a neethi_policy object.
      * @param env pointer to environment struct
      * @param node to an axiom_node
      * @param node to an axiom_element
      * @return pointer to a neethi_policy_t struct
-     */    
-    
+     */
+
     AXIS2_EXTERN neethi_policy_t *AXIS2_CALL
     neethi_engine_get_policy(
         const axutil_env_t * env,
@@ -63,14 +63,14 @@ extern "C"
 
      /**
      * Given a neethi_policy object this will return the
-     * normalized policy object.     
+     * normalized policy object.
      * @param env pointer to environment struct
      * @param deep to specify whether assertion level normalization
-       needed.  
+       needed.
      * @param neethi_policy_t to the policy which is not
-       normalized. 
+       normalized.
      * @return pointer to a normalized neethi_policy_t struct
-     */   
+     */
 
     /*This function will return a new neethi_policy struct.
       So it is callers responsibility to free the neethi_policy
@@ -84,16 +84,16 @@ extern "C"
 
     /**
      * Given a neethi_policy object this will return the
-     * normalized policy object.     
+     * normalized policy object.
      * @param env pointer to environment struct
      * @param deep to specify whether assertion level normalization
-       needed.  
+       needed.
      * @param neethi_policy_t to the policy which is not
-       normalized. 
+       normalized.
      * @param registry neethi_registry_t struct which contains
-       policy objects. 
+       policy objects.
      * @return pointer to a normalized neethi_policy_t struct
-     */   
+     */
 
     /*This function will return a new neethi_policy struct.
       So it is callers responsibility to free the neethi_policy
@@ -125,7 +125,7 @@ extern "C"
         neethi_policy_t * neethi_policy1,
         neethi_policy_t * neethi_policy2);
 
-    /*Given a policy object this function will give the 
+    /*Given a policy object this function will give the
      * corresponding axiom model for that policy object.
      * @param policy pointer to the neethi_policy_t struct.
      * @param env pointer to environment struct

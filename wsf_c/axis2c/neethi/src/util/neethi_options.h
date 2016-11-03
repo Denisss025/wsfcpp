@@ -21,7 +21,7 @@
 
 /**
   * @file neethi_options.h
-  * @build a om from a client options. 
+  * @build a om from a client options.
   */
 
 #include <axis2_defines.h>
@@ -48,7 +48,7 @@ extern "C"
         neethi_options_t *options,
         const axutil_env_t *env);
 
-    AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+    AXIS2_EXTERN axis2_status_t AXIS2_CALL
     neethi_options_set_binding(
         neethi_options_t *options,
         const axutil_env_t *env,

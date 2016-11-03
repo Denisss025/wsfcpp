@@ -7,7 +7,7 @@ extern "C" {
 
 #include "axutil_stomp_frame.h"
 
-    typedef struct axutil_stomp 
+    typedef struct axutil_stomp
     {
         axutil_stomp_frame_t *frame;
         axutil_stream_t *stream;
@@ -43,7 +43,7 @@ extern "C" {
         axis2_char_t *header,
         axis2_char_t *value);
 
-    int 
+    int
     axutil_stomp_write (
         axutil_stomp_t *stomp,
         const axutil_env_t *env);
@@ -58,7 +58,7 @@ extern "C" {
         axutil_stomp_t *stomp,
         const axutil_env_t *env);
 
-    void 
+    void
     axutil_stomp_free (
         axutil_stomp_t *stomp,
         const axutil_env_t *env);

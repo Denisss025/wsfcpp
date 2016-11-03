@@ -24,7 +24,7 @@
 
 using namespace wso2wsf;
 
-class MTOMService: public ServiceSkeleton 
+class MTOMService: public ServiceSkeleton
 {
 public:
 	WSF_EXTERN WSF_CALL MTOMService(){};

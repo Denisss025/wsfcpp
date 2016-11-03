@@ -78,10 +78,10 @@ extern "C"
 #define TRUST_VALIDATION_STATUS		"Status"
 #define TRUST_VALIDATION_CODE		"Code"
 #define TRUST_VALIDATION_REASON		"Reason"
-    
+
 #define TRUST_CANCEL_TARGET			"CancelTarget"
 
-    
+
 #define ATTR_TYPE                   "Type"
 #define	TRUST_BIN_SEC_TYPE_NONCE	"/Nonce"
 
@@ -90,14 +90,14 @@ extern "C"
 #define TRUST_REQ_TYPE_VALIDATE		"/Validate"
 #define TRUST_REQ_TYPE_RENEW		"/Renew"
 #define TRUST_REQ_TYPE_CANCEL		"/Cancel"
-    
-#define TRUST_RST_ACTION_ISSUE		"/RST/Issue" 
+
+#define TRUST_RST_ACTION_ISSUE		"/RST/Issue"
 #define TRUST_RST_ACTION_VALIDATE	"/RST/Validate"
 #define TRUST_RST_ACTION_RENEW		"/RST/Renew"
 #define TRUST_RST_ACTION_CANCEL		"/RST/Cancel"
 #define TRUST_RST_ACTION_SCT		"/RST/SCT"
 #define TRUST_RST_ACTION_CANCEL_SCT	"/RST/SCT/Cancel"
-    
+
 #define TRUST_KEY_TYPE_SYMM_KEY		"/SymmetricKey"
 #define TRUST_KEY_TYPE_PUBLIC_KEY	"/PublicKey"
 #define TRUST_KEY_TYPE_BEARER		"/Bearer"

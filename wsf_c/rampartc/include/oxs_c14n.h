@@ -43,7 +43,7 @@
 extern "C"
 {
 #endif
-    
+
     /**
      * Perform given XML-Canonicalization (XML-C14N) method and returns the
      * result as an <pre>axis2_char_t</pre> buffer.

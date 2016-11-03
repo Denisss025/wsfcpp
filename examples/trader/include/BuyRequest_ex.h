@@ -17,11 +17,11 @@
         namespace org_wso2_www_types{
             class BuyRequest_ex;
         }
-        
 
-        
+
+
         #include <axutil_qname.h>
-        
+
 
         #include <stdio.h>
         #include <OMElement.h>
@@ -30,42 +30,42 @@
 
 namespace org_wso2_www_types
 {
-        
-        
+
+
 
         class BuyRequest_ex {
 
         private:
-             
+
                 axutil_qname_t* qname;
             std::string property_Userid;
 
-                
+
                 bool isValidUserid;
             std::string property_Symbol;
 
-                
+
                 bool isValidSymbol;
             int property_Qty;
 
-                
+
                 bool isValidQty;
-            
+
 
         /*** Private methods ***/
-          
+
 
         bool WSF_CALL
         setUseridNil();
-            
+
 
         bool WSF_CALL
         setSymbolNil();
-            
+
 
         bool WSF_CALL
         setQtyNil();
-            
+
 
 
 
@@ -85,25 +85,25 @@ namespace org_wso2_www_types
         ~BuyRequest_ex();
 
 
-       
+
 
         /**
          * Constructor for creating BuyRequest_ex
-         * @param 
+         * @param
          * @param Userid std::string
          * @param Symbol std::string
          * @param Qty int
          * @return newly created BuyRequest_ex object
          */
         BuyRequest_ex(std::string arg_Userid,std::string arg_Symbol,int arg_Qty);
-        
-        
+
+
         /********************************** Class get set methods **************************************/
-        
-        
+
+
 
         /**
-         * Getter for userid. 
+         * Getter for userid.
          * @return std::string*
          */
         WSF_EXTERN std::string WSF_CALL
@@ -123,11 +123,11 @@ namespace org_wso2_www_types
          */
         WSF_EXTERN bool WSF_CALL
         resetUserid();
-        
-        
+
+
 
         /**
-         * Getter for symbol. 
+         * Getter for symbol.
          * @return std::string*
          */
         WSF_EXTERN std::string WSF_CALL
@@ -147,11 +147,11 @@ namespace org_wso2_www_types
          */
         WSF_EXTERN bool WSF_CALL
         resetSymbol();
-        
-        
+
+
 
         /**
-         * Getter for qty. 
+         * Getter for qty.
          * @return int*
          */
         WSF_EXTERN int WSF_CALL
@@ -171,17 +171,17 @@ namespace org_wso2_www_types
          */
         WSF_EXTERN bool WSF_CALL
         resetQty();
-        
+
 
 
         /******************************* Checking and Setting NIL values *********************************/
-        
+
 
         /**
          * NOTE: set_nil is only available for nillable properties
          */
 
-        
+
 
         /**
          * Check whether userid is Nill
@@ -191,7 +191,7 @@ namespace org_wso2_www_types
         isUseridNil();
 
 
-        
+
 
         /**
          * Check whether symbol is Nill
@@ -201,7 +201,7 @@ namespace org_wso2_www_types
         isSymbolNil();
 
 
-        
+
 
         /**
          * Check whether qty is Nill
@@ -211,27 +211,27 @@ namespace org_wso2_www_types
         isQtyNil();
 
 
-        
+
 
         /**************************** Serialize and De serialize functions ***************************/
         /*********** These functions are for use only inside the generated code *********************/
 
-        
+
         /**
          * Deserialize the ADB object to an XML
          * @param dp_parent double pointer to the parent node to be deserialized
          * @param dp_is_early_node_valid double pointer to a flag (is_early_node_valid?)
-         * @param dont_care_minoccurs Dont set errors on validating minoccurs, 
+         * @param dont_care_minoccurs Dont set errors on validating minoccurs,
          *              (Parent will order this in a case of choice)
          * @return true on success, false otherwise
          */
         bool WSF_CALL
         deserialize(axiom_node_t** omNode, bool *isEarlyNodeValid, bool dontCareMinoccurs);
-                         
-            
+
+
 
        /**
-         * Declare namespace in the most parent node 
+         * Declare namespace in the most parent node
          * @param parent_element parent element
          * @param namespaces hash of namespace uri to prefix
          * @param next_ns_index pointer to an int which contain the next namespace index
@@ -240,7 +240,7 @@ namespace org_wso2_www_types
         declareParentNamespaces(axiom_element_t *parent_element, axutil_hash_t *namespaces, int *next_ns_index);
 
 
-        
+
 
         /**
          * Serialize the ADB object to an xml
@@ -266,8 +266,8 @@ namespace org_wso2_www_types
         /******************************* get the value by the property number  *********************************/
         /************NOTE: This method is introduced to resolve a problem in unwrapping mode *******************/
 
-      
-        
+
+
 
         /**
          * Getter for userid by property number (1)
@@ -277,8 +277,8 @@ namespace org_wso2_www_types
         std::string WSF_CALL
         getProperty1();
 
-    
-        
+
+
 
         /**
          * Getter for symbol by property number (2)
@@ -288,8 +288,8 @@ namespace org_wso2_www_types
         std::string WSF_CALL
         getProperty2();
 
-    
-        
+
+
 
         /**
          * Getter for qty by property number (3)
@@ -299,11 +299,11 @@ namespace org_wso2_www_types
         int WSF_CALL
         getProperty3();
 
-    
+
 
 };
 
-}        
+}
  #endif /* BUYREQUEST_EX_H */
-    
+
 

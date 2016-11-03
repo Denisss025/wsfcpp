@@ -89,7 +89,7 @@ extern "C" {
     /**
      * extract certificate using reference id given in reference node
      * @param env Environment structure
-     * @param ref_node security token reference node. 
+     * @param ref_node security token reference node.
      * @param scope_node node where certificate details should be found using reference id
      * @param cert certificate where values extracted should be populated
      * @return status of the operation
@@ -104,7 +104,7 @@ extern "C" {
     /**
      * extract embedded certificate from given embed_node
      * @param env Environment structure
-     * @param embed_node node where certificate is embedded. 
+     * @param embed_node node where certificate is embedded.
      * @param cert certificate where values extracted should be populated
      * @return status of the operation
      */
@@ -117,7 +117,7 @@ extern "C" {
     /**
      * extract key identifier and populate the certificate
      * @param env Environment structure
-     * @param ki_node node where key identifier is available. 
+     * @param ki_node node where key identifier is available.
      * @param cert certificate where values extracted should be populated
      * @return status of the operation
      */
@@ -130,7 +130,7 @@ extern "C" {
     /**
      * extract key details from x509data node
      * @param env Environment structure
-     * @param x509_data_node x509data node. 
+     * @param x509_data_node x509data node.
      * @param cert certificate where values extracted should be populated
      * @return status of the operation
      */

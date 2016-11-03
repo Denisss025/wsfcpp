@@ -67,14 +67,14 @@ extern "C"
                 axis2_http_out_transport_info_t * info,
                 const axutil_env_t * env,
                 const axis2_char_t * encoding);
-        
+
         axis2_status_t(
             AXIS2_CALL
             * set_cookie_header)(
                 axis2_http_out_transport_info_t * info,
                 const axutil_env_t * env,
                 const axis2_char_t * cookie_header);
-        
+
         axis2_status_t(
             AXIS2_CALL
             * set_session)(
@@ -126,7 +126,7 @@ extern "C"
         axis2_http_out_transport_info_t * info,
         const axutil_env_t * env,
         const axis2_char_t * cookie_header);
-     
+
     /** @param info pointer to info
      * @param env pointer to environment struct
      * @param session_str pointer to session string
@@ -193,7 +193,7 @@ extern "C"
                 set_content_type)(axis2_http_out_transport_info_t *,
                         const axutil_env_t *,
                         const axis2_char_t *));
-    
+
     AXIS2_EXTERN void AXIS2_CALL
     axis2_http_out_transport_info_set_cookie_header_func(
         axis2_http_out_transport_info_t * out_transport_info,
@@ -203,7 +203,7 @@ extern "C"
                 set_cookie_header)(axis2_http_out_transport_info_t *,
                         const axutil_env_t *,
                         const axis2_char_t *));
-    
+
     AXIS2_EXTERN void AXIS2_CALL
     axis2_http_out_transport_info_set_session_func(
         axis2_http_out_transport_info_t * out_transport_info,
@@ -230,11 +230,11 @@ extern "C"
     /** Set char encoding. */
 #define AXIS2_HTTP_OUT_TRANSPORT_INFO_SET_CHAR_ENCODING(out_transport_info,\
                env, encoding) axis2_http_out_transport_info_set_char_encoding(out_transport_info, env, encoding)
-    
+
     /** Set cookie_header. */
 #define AXIS2_HTTP_OUT_TRANSPORT_INFO_SET_COOKIE_HEADER(out_transport_info, \
                env, cookie_header) axis2_http_out_transport_info_set_cookie_header (out_transport_info, env, cookie_header)
-    
+
     /** Set session. */
 #define AXIS2_HTTP_OUT_TRANSPORT_INFO_SET_SESSION(out_transport_info, \
                env, session_id, session_value) axis2_http_out_transport_info_set_session (out_transport_info, env, session_id, session_value)

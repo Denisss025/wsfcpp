@@ -26,16 +26,16 @@
 
 axiom_node_t *
 wsclient_payload (
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     char *input_buffer);
 
 axiom_node_t *
 wsclient_soap_header (
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     char *input_buffer);
 
 axis2_char_t *
-wsclient_get_password (const axutil_env_t *env, 
+wsclient_get_password (const axutil_env_t *env,
 					   const axis2_char_t *username,
 					   axis2_char_t *password_file_name);
 
@@ -65,7 +65,7 @@ axis2_char_t *
 wsclient_content_type (const axutil_env_t *env,
 					   axis2_char_t *content_type);
 
-axis2_status_t 
+axis2_status_t
 wsclient_output_http_headers (const axutil_env_t *env,
 							  axis2_svc_client_t *svc_client,
 							  axis2_char_t *file_name);

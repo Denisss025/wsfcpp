@@ -46,12 +46,12 @@ extern "C"
     /**
       * Creates a axiom_doctype_t struct
       * @param env Environment. MUST  NOT be NULL,
-      * @param parent parent of the new node. Optinal, can be NULL. 
+      * @param parent parent of the new node. Optinal, can be NULL.
       * @param value doctype text
       * @param node This is an out parameter.cannot be NULL.
       *               Returns the node corresponding to the doctype created.
       *               Node type will be set to AXIOM_DOCTYPE
-      * @return pointer to newly created doctype struct 
+      * @return pointer to newly created doctype struct
       */
     AXIS2_EXTERN axiom_doctype_t *AXIS2_CALL
     axiom_doctype_create(
@@ -74,8 +74,8 @@ extern "C"
 
     /**
      * @param om_doctype pointer to a axiom_doctype_t struct
-     * @param env environment must not be null   
-     * @return DTD text 
+     * @param env environment must not be null
+     * @return DTD text
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axiom_doctype_get_value(
@@ -97,7 +97,7 @@ extern "C"
         const axis2_char_t * value);
 
     /**
-     * serialize op 
+     * serialize op
      * @param om_doctype pointer to axiom_doctype_t struct
      * @param env environment , MUST NOT be NULL
      * @param om_output pointer to axiom_output_t struct

@@ -22,7 +22,7 @@
 #include <rampart_context.h>
 /**
   * @file rampart_signature.h
-  * @brief sign a SOAP message 
+  * @brief sign a SOAP message
   */
 
 /**
@@ -50,7 +50,7 @@ extern "C" {
                              axis2_msg_ctx_t *msg_ctx,
                              rampart_context_t *rampart_context,
                              axiom_node_t *sec_node);
-                
+
     /**
     * Sign a message depending on the security policies
     * @param env pointer to environment struct
@@ -65,7 +65,7 @@ extern "C" {
                              axis2_msg_ctx_t *msg_ctx,
                              rampart_context_t *rampart_context,
                              axiom_soap_envelope_t *soap_envelope,
-                             axiom_node_t *sec_node, 
+                             axiom_node_t *sec_node,
                              axutil_array_list_t *sign_parts_list);
 
 

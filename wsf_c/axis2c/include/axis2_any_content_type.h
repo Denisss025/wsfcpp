@@ -28,7 +28,7 @@
  * @{
  */
 
-/** 
+/**
  * @file axis2_any_content_type.h
  */
 
@@ -71,11 +71,11 @@ extern "C"
         const axis2_char_t * value);
 
     /**
-     * Gets the value corresponding to the given QName from the content 
+     * Gets the value corresponding to the given QName from the content
      * value map.
      * @param any_content_type pointer to any content type struct
      * @param env pointer to environment struct
-     * @param qname pointer to QName of the corresponding value to be 
+     * @param qname pointer to QName of the corresponding value to be
      * retrieved
      * @return value string if present, else returns NULL
      */
@@ -89,8 +89,8 @@ extern "C"
      * Gets the map of all values.
      * @param any_content_type pointer to any content type struct
      * @param env pointer to environment struct
-     * @return pointer to hash table containing all values, returns a 
-     * reference, not a cloned copy 
+     * @return pointer to hash table containing all values, returns a
+     * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
     axis2_any_content_type_get_value_map(

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_PROPERTY_MGR_H
 #define SANDESHA2_PROPERTY_MGR_H
 
@@ -21,7 +21,7 @@
 
 /**
   * @file sandesha2_property_mgr.h
-  * @brief 
+  * @brief
   */
 
 #include <sandesha2_storage_mgr.h>

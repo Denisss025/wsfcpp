@@ -38,14 +38,14 @@ typedef struct sandesha2_transaction_ops sandesha2_transaction_ops_t;
 struct sandesha2_storage_mgr;
 struct sandesha2_rm_bean;
 
-/** @defgroup sandesha2_transaction In Memory Transaction 
+/** @defgroup sandesha2_transaction In Memory Transaction
   * @ingroup sandesha2
   * @{
   */
 
 AXIS2_DECLARE_DATA struct sandesha2_transaction_ops
 {
-   /** 
+   /**
      * Deallocate memory
      * @return status code
      */
@@ -58,7 +58,7 @@ AXIS2_DECLARE_DATA struct sandesha2_transaction_ops
             is_active)(
                 sandesha2_transaction_t *transaction,
                 const axutil_env_t *env);
-     
+
     void (AXIS2_CALL *
             commit) (
                 sandesha2_transaction_t *transaction,
@@ -86,7 +86,7 @@ sandesha2_transaction_create(
     const axutil_env_t *env,
     struct sandesha2_storage_mgr *storage_mgr);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_transaction_free(
     sandesha2_transaction_t *transaction,
     const axutil_env_t *env);

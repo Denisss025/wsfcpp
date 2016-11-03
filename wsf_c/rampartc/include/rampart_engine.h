@@ -19,7 +19,7 @@
 
 /**
   * @file rampart_engine.h
-  * @brief Loads configuratins for Rampart, which defines its behaviuor. 
+  * @brief Loads configuratins for Rampart, which defines its behaviuor.
   * Also loads modules and initialize Rampart
   */
 
@@ -40,11 +40,11 @@ extern "C"
 {
 #endif
     /**
-     * 
-     * @param env pointer to environment struct,Must not be 
+     *
+     * @param env pointer to environment struct,Must not be
      * @param msg_ctx
      * @param is_inflow
-     * returns 
+     * returns
      */
 
     AXIS2_EXTERN rampart_context_t *AXIS2_CALL

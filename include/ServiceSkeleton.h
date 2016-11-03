@@ -89,7 +89,7 @@ namespace wso2wsf
      * @brief class ServiceSkeleton represents the Interface that should be implemented by
      * any CPP service to be deployed with WSF/CPP. This class defines 3 virtual methods which should be overridden
      * by the implementation class. They are init() which performs any initialization required, invoke() which should handle
-     * the business logic processing for the services, and onFault() which should implement the fault handling. 
+     * the business logic processing for the services, and onFault() which should implement the fault handling.
 	 * A service can be loaded at startup by setting the parameter 	loadServiceAtStartup.
      */
     class WSF_EXTERN ServiceSkeleton
@@ -108,13 +108,13 @@ namespace wso2wsf
 		 */
 		void WSF_CALL setServiceContext(axis2_svc_ctx_t *svcCtx);
 		/**
-		 * Stores Property to a given context. This axis2 context hirachy is used for this activitity. 
+		 * Stores Property to a given context. This axis2 context hirachy is used for this activitity.
 		 * @param ContextType ContextType can be one of SERVICE_CONTEXT or CONFIGURATION_CONTEXT.
 		 * @param Parameter Pointer to a parameter instance.
 		 */
 		bool WSF_CALL setProperty(ContextType type,std::string key, Property *prop);
 		/**
-		 * Returns an stored Property from the context hierachy.Specify the property name. 
+		 * Returns an stored Property from the context hierachy.Specify the property name.
 		 */
 		Property* WSF_CALL getProperty(std::string key);
 
@@ -134,19 +134,19 @@ namespace wso2wsf
         /**
          * This is the handler to be invoked when a Fault occurs. The Service implementor should implement any service specific fault
 	 * handling here. This method is called, when the message exchange pattern is Request,Response and the invoke() method has already failed.
-	 * @param omEle omEle is the received SOAP Body's first child element. 
+	 * @param omEle omEle is the received SOAP Body's first child element.
          * @returns OMElement Constructed Fault OMElement.
          */
 	virtual OMElement* WSF_CALL onFault(OMElement* omEle){return NULL;};
 
      /**
-         *Initialization method. Any service specific initialization can be done here.                                                    
+         *Initialization method. Any service specific initialization can be done here.
 	 */
 	virtual bool WSF_CALL init(){ return true;};
-	
+
 	/**
-	 * Destructor for ServiceSkeleton.			
-	 */ 			
+	 * Destructor for ServiceSkeleton.
+	 */
         virtual WSF_CALL ~ServiceSkeleton();
     };
     /** @} */

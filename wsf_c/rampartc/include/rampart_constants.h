@@ -43,11 +43,11 @@ extern "C"
       * This is the API documetation of Apache Rampart/C, which is the
       * security module for Apache Axis2/C.
       * It features in many ways to protect SOAP messages exchanged.
-      * This includes SOAP message encryption and signature as specified in WS-Security Specification. 
+      * This includes SOAP message encryption and signature as specified in WS-Security Specification.
       * In addition Apache Rampart/C configurations are based on security policy assertions as per WS-Security Policy specification
       * <p>We welcome your feedback on this implementation and documentation.
       * Please send your feedback to <a href="mailto:rampart-c-dev@ws.apache.org">
-      * rampart-c-dev@ws.apache.org</a> 
+      * rampart-c-dev@ws.apache.org</a>
       *
       */
 

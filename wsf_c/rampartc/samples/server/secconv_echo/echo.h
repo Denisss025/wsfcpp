@@ -27,14 +27,14 @@
 
 axiom_node_t *
 axis2_echo_echo(
-    const axutil_env_t *env, 
-    axiom_node_t *node, 
+    const axutil_env_t *env,
+    axiom_node_t *node,
     axis2_msg_ctx_t *msg_ctx);
 
 axiom_node_t *
 secconv_echo_sts_request_security_token(
-    const axutil_env_t *env, 
-    axiom_node_t *node, 
+    const axutil_env_t *env,
+    axiom_node_t *node,
     axis2_msg_ctx_t *msg_ctx);
 
 

@@ -23,17 +23,17 @@
 
 using namespace wso2wsf;
 
-class NotifyService: public ServiceSkeleton 
+class NotifyService: public ServiceSkeleton
 {
 public:
 	WSF_EXTERN WSF_CALL NotifyService(){};
 
 	OMElement* WSF_CALL invoke(OMElement *message, MessageContext *msgCtx);
-	
+
 	OMElement* WSF_CALL onFault(OMElement *message);
 
 	OMElement* WSF_CALL notify(OMElement *message);
-	
+
 	bool WSF_CALL init(){ return true;};
 };
 

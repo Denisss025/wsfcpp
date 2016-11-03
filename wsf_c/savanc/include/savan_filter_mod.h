@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SAVAN_FILTER_MOD_H
 #define SAVAN_FILTER_MOD_H
 
 /**
   * @file savan_filter_mod.h
-  * @brief 
+  * @brief
   */
 #include <platforms/axutil_platform_auto_sense.h>
 #include <axutil_utils_defines.h>
@@ -33,11 +33,11 @@ extern "C"
 {
 #endif
 
-/** 
+/**
  * @ingroup savan_filter_mod
  * @{
  */
- 
+
 typedef struct savan_filter_mod savan_filter_mod_t;
 typedef struct savan_filter_mod_ops savan_filter_mod_ops_t;
 
@@ -46,15 +46,15 @@ typedef struct savan_filter_mod_ops savan_filter_mod_ops_t;
  * Encapsulator struct for ops of savan_filter_mod
  */
 AXIS2_DECLARE_DATA struct savan_filter_mod_ops
-{ 
-    void (AXIS2_CALL * 
+{
+    void (AXIS2_CALL *
             free)(
                 savan_filter_mod_t *filter,
                 const axutil_env_t *env);
 
     axis2_bool_t (AXIS2_CALL *
             apply)(
-                savan_filter_mod_t *filter, 
+                savan_filter_mod_t *filter,
                 const axutil_env_t *env,
                 savan_subscriber_t *subscriber,
                 axiom_node_t *payload);
@@ -84,7 +84,7 @@ savan_filter_mod_create(
  * @param filter
  * @param env environment object
  */
-AXIS2_EXTERN void AXIS2_CALL 
+AXIS2_EXTERN void AXIS2_CALL
 savan_filter_mod_free(
     savan_filter_mod_t *filtermod,
     const axutil_env_t *envv);
@@ -99,7 +99,7 @@ savan_filter_mod_free(
  */
 AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 savan_filter_mod_apply(
-    savan_filter_mod_t *filtermod, 
+    savan_filter_mod_t *filtermod,
     const axutil_env_t *env,
     savan_subscriber_t *subscriber,
     axiom_node_t *payload);

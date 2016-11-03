@@ -57,7 +57,7 @@ extern "C"
      * Gets QName.
      * @param disp_checker pointer to dispatcher checker
      * @param env pointer to environment struct
-     * @return returns a pointer to the QName, returns a reference not a 
+     * @return returns a pointer to the QName, returns a reference not a
      * cloned copy
      */
     AXIS2_EXTERN axutil_string_t *AXIS2_CALL

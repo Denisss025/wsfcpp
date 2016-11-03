@@ -28,7 +28,7 @@ extern "C"
 
 typedef struct sandesha2_next_msg_bean sandesha2_next_msg_bean_t;
 
-/* constructors 
+/* constructors
  */
 AXIS2_EXTERN sandesha2_next_msg_bean_t* AXIS2_CALL
 	sandesha2_next_msg_bean_create(
@@ -36,7 +36,7 @@ AXIS2_EXTERN sandesha2_next_msg_bean_t* AXIS2_CALL
 
 AXIS2_EXTERN sandesha2_next_msg_bean_t* AXIS2_CALL
 sandesha2_next_msg_bean_create_with_data(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *seq_id,
     long msg_no);
 
@@ -53,7 +53,7 @@ sandesha2_next_msg_bean_get_seq_id(
 void AXIS2_CALL
 sandesha2_next_msg_bean_set_seq_id(
     sandesha2_next_msg_bean_t *next_msg_bean,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *seq_id);
 
 axis2_char_t* AXIS2_CALL
@@ -64,7 +64,7 @@ sandesha2_next_msg_bean_get_internal_seq_id(
 void AXIS2_CALL
 sandesha2_next_msg_bean_set_internal_seq_id(
     sandesha2_next_msg_bean_t *next_msg_bean,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *internal_seq_id);
 
 long AXIS2_CALL
@@ -86,7 +86,7 @@ void AXIS2_CALL
 sandesha2_next_msg_bean_set_polling_mode(
     sandesha2_next_msg_bean_t *next_msg_bean,
     const axutil_env_t *env,
-    axis2_bool_t polling_mode); 
+    axis2_bool_t polling_mode);
 
 axis2_char_t *AXIS2_CALL
 sandesha2_next_msg_bean_get_ref_msg_key(
@@ -97,11 +97,11 @@ void AXIS2_CALL
 sandesha2_next_msg_bean_set_ref_msg_key(
     sandesha2_next_msg_bean_t *next_msg_bean,
     const axutil_env_t *env,
-    axis2_char_t *ref_msg_key); 
+    axis2_char_t *ref_msg_key);
 
 #ifdef __cplusplus
 }
 
 #endif
-	
+
 #endif /* End of SANDESHA2_NEXT_MSG_BEAN_H */

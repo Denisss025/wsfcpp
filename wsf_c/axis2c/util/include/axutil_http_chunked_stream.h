@@ -56,7 +56,7 @@ extern "C"
     /**
     * @param chunked_stream pointer to chunked stream
     * @param env pointer to environment struct
-    * @param buffer 
+    * @param buffer
     * @param count
     */
     AXIS2_EXTERN int AXIS2_CALL
@@ -123,7 +123,7 @@ extern "C"
     axutil_http_chunked_stream_get_end_of_chunks(
         axutil_http_chunked_stream_t * chunked_stream,
         const axutil_env_t * env);
-    
+
 
     /** @} */
 #ifdef __cplusplus

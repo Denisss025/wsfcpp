@@ -8,11 +8,11 @@
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: #axisVersion# #today#
  */
-       
-#include "RegisterClientResponse.h"
-        
 
-#include "ExchangeTraderStub.h" 
+#include "RegisterClientResponse.h"
+
+
+#include "ExchangeTraderStub.h"
 
  namespace org_wso2_www
    {
@@ -52,17 +52,17 @@
 
      void* getClientData();
 
-    
+
            // No methods generated for meps other than in-out
-            
+
            /**
             * auto generated WSF/C++ call back method for registerClient method
             * override this method for handling normal response from registerClient operation
             */
           virtual void receiveResult_registerClient(
-              
+
                     org_wso2_www_types::RegisterClientResponse* result
-                    
+
                     ){}
 
 
@@ -71,18 +71,18 @@
            * override this method for handling error response from registerClient operation
            */
            virtual void receiveError_registerClient(int exception){}
-            
+
            // No methods generated for meps other than in-out
-            
+
            // No methods generated for meps other than in-out
-            
+
            // No methods generated for meps other than in-out
-            
+
 
 
     };
 }
 
 #endif  //IEXCHANGETRADERCALLBACK_H
-    
+
 

@@ -55,7 +55,7 @@ extern "C"
      * Gets the base struct which is of type handler.
      * @param disp pointer to dispatcher
      * @param env pointer to environment struct
-     * @return pointer to base handler struct. Returns a reference, not a 
+     * @return pointer to base handler struct. Returns a reference, not a
      * cloned copy
      */
     AXIS2_EXTERN axis2_handler_t *AXIS2_CALL
@@ -67,7 +67,7 @@ extern "C"
      * Gets the name of the dispatcher.
      * @param disp pointer to dispatcher
      * @param env pointer to environment struct
-     * @return pointer to name. Returns a reference, not a 
+     * @return pointer to name. Returns a reference, not a
      * cloned copy
      */
     AXIS2_EXTERN axutil_string_t *AXIS2_CALL
@@ -79,7 +79,7 @@ extern "C"
      * Sets the name of the dispatcher.
      * @param disp pointer to dispatcher
      * @param env pointer to environment struct
-     * @param name pointer to name, dispatcher assumes ownership of the 
+     * @param name pointer to name, dispatcher assumes ownership of the
      * name struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_NACK_H
 #define SANDESHA2_NACK_H
 
 /**
   * @file sandesha2_nack.h
-  * @brief 
+  * @brief
   */
 #include <axutil_utils_defines.h>
 #include <axutil_env.h>
@@ -37,7 +37,7 @@ extern "C"
  * @{
  */
 typedef struct sandesha2_nack_t sandesha2_nack_t;
- 
+
 /**
  * @brief Nack ops struct
  * Encapsulator struct for ops of sandesha2_nack
@@ -53,37 +53,37 @@ sandesha2_nack_create(
     const axutil_env_t *env,
     axis2_char_t *ns_value);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_nack_free(
-    sandesha2_nack_t *nack, 
+    sandesha2_nack_t *nack,
 	const axutil_env_t *env);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_nack_get_namespace_value(
     sandesha2_nack_t *nack,
 	const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_nack_from_om_node(
     sandesha2_nack_t *nack,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *om_node);
-    
-axiom_node_t* AXIS2_CALL 
+
+axiom_node_t* AXIS2_CALL
 sandesha2_nack_to_om_node(
     sandesha2_nack_t *nack,
     const axutil_env_t *env,
     void *om_node);
-                    	
+
 long AXIS2_CALL
 sandesha2_nack_get_nack_num(
     sandesha2_nack_t *nack,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL                 
+axis2_status_t AXIS2_CALL
 sandesha2_nack_set_nack_num(
     sandesha2_nack_t *nack,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     long value);
 
 

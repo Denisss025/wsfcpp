@@ -34,7 +34,7 @@
 #define TEST_DIR_HANDLER_LIST_DIRS_FOLDER_COUNT 0
 
 /* uncomment to enable test_axutil_dir_handler_list_services_or_modules_in_dir */
-/* #define TEST_DIR_HANDLER_LIST_DLLS_IMPLEMENTED */ 
+/* #define TEST_DIR_HANDLER_LIST_DLLS_IMPLEMENTED */
 
 /* Absolute path to AXIS2C_HOME */
 #ifndef WIN32

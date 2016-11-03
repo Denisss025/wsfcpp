@@ -64,7 +64,7 @@ extern "C"
     struct axis2_callback_recv;
 
     /**
-     * Sets the options that is to be used by this operation client. 
+     * Sets the options that is to be used by this operation client.
      * @param op_client pointer to operation client struct
      * @param env pointer to environment struct
      * @param options pointer to options struct to be set
@@ -77,11 +77,11 @@ extern "C"
         const axis2_options_t * options);
 
     /**
-     * Gets options used by operation client. 
+     * Gets options used by operation client.
      * @param op_client pointer to operation client struct
      * @param env pointer to environment struct
      * @return a pointer to the options struct if options set, else NULL.
-     * Returns a reference, not a cloned copy.    
+     * Returns a reference, not a cloned copy.
      */
     AXIS2_EXTERN const axis2_options_t *AXIS2_CALL
     axis2_op_client_get_options(
@@ -89,10 +89,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Adds a message context to the client for processing. 
+     * Adds a message context to the client for processing.
      * @param op_client pointer to operation client struct
      * @param env pointer to environment struct
-     * @param msg_ctx message context to be added. operation client takes 
+     * @param msg_ctx message context to be added. operation client takes
      * over the ownership of the message context struct.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -103,10 +103,10 @@ extern "C"
         axis2_msg_ctx_t * msg_ctx);
 
     /**
-     * Adds out message context to the client for processing. 
+     * Adds out message context to the client for processing.
      * @param op_client pointer to operation client struct
      * @param env pointer to environment struct
-     * @param msg_ctx message context to be added. operation client takes 
+     * @param msg_ctx message context to be added. operation client takes
      * over the ownership of the message context struct.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -137,10 +137,10 @@ extern "C"
         const axis2_wsdl_msg_labels_t message_label);
 
     /**
-     * Sets the callback to be executed when a response message is received. 
+     * Sets the callback to be executed when a response message is received.
      * @param op_client pointer to operation client struct
      * @param env pointer to environment struct
-     * @param callback the callback to be used. operation client takes 
+     * @param callback the callback to be used. operation client takes
      * over the ownership of the message context struct.
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -151,7 +151,7 @@ extern "C"
         axis2_callback_t * callback);
 
     /**
-     * Gets the callback. 
+     * Gets the callback.
      * @param op_client pointer to operation client struct
      * @param env pointer to environment struct
      * @return callback
@@ -193,7 +193,7 @@ extern "C"
 
     /**
      * Completes the execution by closing the transports if necessary.
-     * This method is useful when client uses two transports for sending and 
+     * This method is useful when client uses two transports for sending and
      * receiving.
      * @param op_client pointer to operation client struct
      * @param env pointer to environment struct
@@ -209,7 +209,7 @@ extern "C"
     /**
      * Gets the operation context of the operation client.
      * @param op_client pointer to operation client struct
-     * @param env pointer to environment struct    
+     * @param env pointer to environment struct
      * @return operation context related to operation client
      */
     AXIS2_EXTERN axis2_op_ctx_t *AXIS2_CALL
@@ -243,15 +243,15 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Creates an operation client struct for the specified operation, service 
+     * Creates an operation client struct for the specified operation, service
      * context and given options.
      * @param env pointer to environment struct
-     * @param op pointer to operation struct corresponding to the operation to 
+     * @param op pointer to operation struct corresponding to the operation to
      * to be executed. Newly created client assumes ownership of the operation.
      * @param svc_ctx pointer to service context struct representing the service
-     * to be consumed. Newly created client assumes ownership of the service 
+     * to be consumed. Newly created client assumes ownership of the service
      * context.
-     * @param options options to be used by operation client. Newly created 
+     * @param options options to be used by operation client. Newly created
      * client assumes ownership of the options
      * context.
      * @return a pointer to newly created operation client struct,
@@ -292,11 +292,11 @@ extern "C"
         axis2_msg_ctx_t * msg_ctx);
 
     /**
-     * Prepares the SOAP envelope using the payload. 
+     * Prepares the SOAP envelope using the payload.
      * @param op_client pointer to op client struct
      * @param env pointer to environment struct
      * @param to_send payload to be sent in AXIOM node format
-     * @return a pointer to message context struct filled with the SOAP 
+     * @return a pointer to message context struct filled with the SOAP
      * envelope to be sent
      */
     AXIS2_EXTERN axis2_msg_ctx_t *AXIS2_CALL
@@ -332,13 +332,13 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Engage named module. The named module must have been configured in 
-     * the Axis2 configuration. For a module to be detected by the 
-     * deployment engine, the modules has to be placed in the 
+     * Engage named module. The named module must have been configured in
+     * the Axis2 configuration. For a module to be detected by the
+     * deployment engine, the modules has to be placed in the
      * AXIS2_REPOSITORY/modules directory.
      * @param op_client pointer to op client struct
      * @param env pointer to environment struct
-     * @param qname QName representing the module name 
+     * @param qname QName representing the module name
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -389,7 +389,7 @@ extern "C"
     /**
      * Gets service context.
      * @param op_client pointer to op client struct
-     * @param env pointer to environment struct    
+     * @param env pointer to environment struct
      * @return pointer to service context struct if set, else NULL
      */
     AXIS2_EXTERN axis2_svc_ctx_t *AXIS2_CALL
@@ -401,7 +401,7 @@ extern "C"
     /**
      * Sets whether to reuse op client.
      * @param op_client pointer to op client struct
-     * @param env pointer to environment struct    
+     * @param env pointer to environment struct
      * @param reuse flag is a boolean value
      * @return void
      */
@@ -415,7 +415,7 @@ extern "C"
      * Sends a message represented by the given message context and captures
      * the response in return message context.
      * @param env pointer to environment struct
-     * @param msg_ctx pointer to message context representing the message to 
+     * @param msg_ctx pointer to message context representing the message to
      * be sent
      * @return message context representing the received response
      */
@@ -425,10 +425,10 @@ extern "C"
         axis2_msg_ctx_t * msg_ctx);
 
     /**
-     * Receives a message corresponding to a request depicted by given 
+     * Receives a message corresponding to a request depicted by given
      * message context.
      * @param env pointer to environment struct
-     * @param msg_ctx pointer to message context representing the response to 
+     * @param msg_ctx pointer to message context representing the response to
      * be received
      * @return message context representing the received response
      */

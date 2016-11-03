@@ -188,18 +188,18 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Unparse a axutil_uri_t structure to an URI string.  Optionally 
+     * Unparse a axutil_uri_t structure to an URI string.  Optionally
      * suppress the password for security reasons.
      * @param uptr All of the parts of the uri
      * @param flags How to unparse the uri.  One of:
      * <PRE>
-     *    AXIS2_URI_UNP_OMITSITEPART        Suppress "scheme://user\@site:port" 
-     *    AXIS2_URI_UNP_OMITUSER            Just omit user 
-     *    AXIS2_URI_UNP_OMITPASSWORD        Just omit password 
+     *    AXIS2_URI_UNP_OMITSITEPART        Suppress "scheme://user\@site:port"
+     *    AXIS2_URI_UNP_OMITUSER            Just omit user
+     *    AXIS2_URI_UNP_OMITPASSWORD        Just omit password
      *    AXIS2_URI_UNP_OMITUSERINFO        Omit "user:password\@" part
      *    AXIS2_URI_UNP_REVEALPASSWORD      Show plain text password (default: show XXXXXXXX)
-     *    AXIS2_URI_UNP_OMITPATHINFO        Show "scheme://user\@site:port" only 
-     *    AXIS2_URI_UNP_OMITQUERY           Omit "?queryarg" or "#fragment" 
+     *    AXIS2_URI_UNP_OMITPATHINFO        Show "scheme://user\@site:port" only
+     *    AXIS2_URI_UNP_OMITQUERY           Omit "?queryarg" or "#fragment"
      * </PRE>
      * @return The uri as a string
      */
@@ -242,7 +242,7 @@ extern "C"
 
     /**
      * @return returns actual reference, not a cloned copy.
-     */   
+     */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axutil_uri_get_path(
         axutil_uri_t * uri,

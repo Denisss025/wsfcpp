@@ -46,7 +46,7 @@ extern "C"
     typedef struct axis2_async_result axis2_async_result_t;
 
     /**
-     * Gets the SOAP envelope stored inside the resulting message context.    
+     * Gets the SOAP envelope stored inside the resulting message context.
      * @param async_result pointer to async result struct
      * @param env pointer to environment struct
      * @return pointer to the result SOAP envelope in the message context.

@@ -38,8 +38,8 @@ extern "C"
 #endif
 
     typedef struct axiom_mime_part_t axiom_mime_part_t;
-    
-    
+
+
     /* An enum to keep different mime_part types */
 
     typedef enum axiom_mime_part_type_t
@@ -47,21 +47,21 @@ extern "C"
 
         /** Char buffer */
         AXIOM_MIME_PART_BUFFER = 0,
-        
+
         /* A file */
         AXIOM_MIME_PART_FILE,
 
         /* User specified callback */
         AXIOM_MIME_PART_CALLBACK,
-        
+
         /* User specified handler functions */
         AXIOM_MIME_PART_HANDLER,
-        
+
         /* unknown type*/
         AXIOM_MIME_PART_UNKNOWN
-        
+
     } axiom_mime_part_type_t;
-    
+
     struct axiom_mime_part_t
     {
         /* This is when the mime part is a buffer.
@@ -72,8 +72,8 @@ extern "C"
          * NULL when the part is a buffer */
         axis2_char_t *file_name;
 
-        /* Size of the part. In the case of buffer this is 
-         * the buffer size and in the case of file this is 
+        /* Size of the part. In the case of buffer this is
+         * the buffer size and in the case of file this is
            the file size */
         size_t part_size;
 
@@ -104,17 +104,17 @@ extern "C"
         axis2_char_t * char_set_encoding,
         const axis2_char_t * soap_content_type);
 
-    
+
     /**
      * Creates mime_part struct
      * @return pointer to newly created mime_part
      */
-    
-    AXIS2_EXTERN axiom_mime_part_t *AXIS2_CALL 
+
+    AXIS2_EXTERN axiom_mime_part_t *AXIS2_CALL
     axiom_mime_part_create(
         const axutil_env_t *env);
 
-    /* This method will create the output part 
+    /* This method will create the output part
      * list.*/
 
     AXIS2_EXTERN axutil_array_list_t  *AXIS2_CALL
@@ -133,7 +133,7 @@ extern "C"
         axiom_mime_part_t *mime_part,
         const axutil_env_t *env);
 
-    
+
 
 
     /** @} */

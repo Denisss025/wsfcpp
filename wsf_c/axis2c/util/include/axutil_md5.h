@@ -31,7 +31,7 @@ extern "C"
 {
 #endif
 
-    /** 
+    /**
      * @defgroup axis2_util utilities
      * @ingroup axis2
      * @{
@@ -64,12 +64,12 @@ extern "C"
      * process.
      * @param env, pointer to the env struct.
      * @return pointer to md5_ctx struct created.
-     */ 
+     */
     AXIS2_EXTERN axutil_md5_ctx_t *AXIS2_CALL
     axutil_md5_ctx_create(
         const axutil_env_t * env);
 
-    /** 
+    /**
      * Frees the md5_ctx struct
      * @param md5_ctx, pointer to struct to free.
      * @param env, pointer to the env struct.
@@ -80,7 +80,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * MD5 block update operation. Continue an MD5 message-digest operation, 
+     * MD5 block update operation. Continue an MD5 message-digest operation,
      * processing another message block, and updating the context.
      * @param context The MD5 content to update.
      * @param env, pointer to the env struct.
@@ -95,7 +95,7 @@ extern "C"
         size_t inputLen);
 
     /**
-     * MD5 finalization. Ends an MD5 message-digest operation, writing the 
+     * MD5 finalization. Ends an MD5 message-digest operation, writing the
      * message digest and zeroing the context.
      * @param digest The final MD5 digest.
      * @param env, pointer to the env struct.
@@ -116,7 +116,7 @@ extern "C"
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axutil_md5(
-         const axutil_env_t * env, 
+         const axutil_env_t * env,
          unsigned char digest[AXIS2_MD5_DIGESTSIZE],
          const void *input_str,
          size_t inputLen);

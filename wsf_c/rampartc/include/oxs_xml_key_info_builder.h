@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_xml_key_info_builder.h
-  * @brief Process elements available under ds:KeyInfo  
+  * @brief Process elements available under ds:KeyInfo
   */
 /**
 * @defgroup oxs_xml_key_info_builder XML Eky Information Builder

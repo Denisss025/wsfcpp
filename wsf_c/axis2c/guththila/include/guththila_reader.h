@@ -22,7 +22,7 @@
 #include <guththila_defines.h>
 #include <axutil_utils.h>
 
-EXTERN_C_START()  
+EXTERN_C_START()
 
 typedef int(GUTHTHILA_CALL * GUTHTHILA_READ_INPUT_CALLBACK)(
         guththila_char_t *buffer,
@@ -31,8 +31,8 @@ typedef int(GUTHTHILA_CALL * GUTHTHILA_READ_INPUT_CALLBACK)(
 
 enum guththila_reader_type
 {
-    GUTHTHILA_FILE_READER = 1, 
-	GUTHTHILA_IO_READER, 
+    GUTHTHILA_FILE_READER = 1,
+	GUTHTHILA_IO_READER,
 	GUTHTHILA_MEMORY_READER
 };
 
@@ -48,13 +48,13 @@ typedef struct guththila_reader_s
 
 #ifndef GUTHTHILA_READER_SET_LAST_START
 #define GUTHTHILA_READER_SET_LAST_START(_reader, _start) ((_reader)->start = _start)
-#endif  
+#endif
 
 #ifndef GUTHTHILA_READER_STEP_BACK
 #define GUTHTHILA_READER_STEP_BACK(_reader) ((_reader->next--))
-#endif  
+#endif
 
-/* 
+/*
  * Reading a file.
  * @param filename	name of the file
  * @param env environment
@@ -88,14 +88,14 @@ guththila_reader_create_for_memory(
     int size,
     const axutil_env_t * env);
 
-/* 
+/*
  * Read the specified number of character to the given buffer.
  * @param r reader
  * @param buffer buffer to place the read data
  * @param offset position to place the data on the given buffer
  * @param length number of bytes to read
  * @param env environment
- * @return number of bytes put in to the buffer. -1 if end of the read. 
+ * @return number of bytes put in to the buffer. -1 if end of the read.
  */
 GUTHTHILA_EXPORT int GUTHTHILA_CALL
 guththila_reader_read(
@@ -105,7 +105,7 @@ guththila_reader_read(
     int length,
     const axutil_env_t * env);
 
-/* 
+/*
  * Free the reader.
  * @param r reader
  * @param env environment
@@ -115,6 +115,6 @@ guththila_reader_free(
     guththila_reader_t * r,
     const axutil_env_t * env);
 
-EXTERN_C_END() 
+EXTERN_C_END()
 #endif  /*  */
 

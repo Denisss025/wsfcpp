@@ -64,7 +64,7 @@ extern "C"
      * Sets QName.
      * @param handler_desc pointer to handler description
      * @param env pointer to environment struct
-     * @param name pointer to string representing handler name 
+     * @param name pointer to string representing handler name
      * of QName
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -103,7 +103,7 @@ extern "C"
      * Gets named parameter.
      * @param handler_desc pointer to handler description
      * @param env pointer to environment struct
-     * @param name parameter name string 
+     * @param name parameter name string
      * @return pointer to parameter if found, else NULL. Return a reference
      * not a cloned copy
      */
@@ -130,7 +130,7 @@ extern "C"
      * Gets all parameters stored within handler description.
      * @param handler_desc pointer to handler description
      * @param env pointer to environment struct
-     * @return pointer to array list containing parameters, returns a 
+     * @return pointer to array list containing parameters, returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -142,7 +142,7 @@ extern "C"
      * Checks if the named parameter is locked at any level
      * @param handler_desc pointer to handler description
      * @param env pointer to environment struct
-     * @param param_name parameter name string 
+     * @param param_name parameter name string
      * @return AXIS2_TRUE if the parameter is locked, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -177,7 +177,7 @@ extern "C"
         axis2_handler_t * handler);
 
     /**
-     * Gets the class name. Class name is the name of the shared library 
+     * Gets the class name. Class name is the name of the shared library
      * file that contains the implementation of the handler.
      * @param handler_desc pointer to handler description
      * @param env pointer to environment struct
@@ -189,7 +189,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets the class name. Class name is the name of the shared library 
+     * Sets the class name. Class name is the name of the shared library
      * file that contains the implementation of the handler.
      * @param handler_desc pointer to handler description
      * @param env pointer to environment struct
@@ -256,8 +256,8 @@ extern "C"
     /**
      * Creates handler description struct instance.
      * @param env pointer to env pointer to environment struct
-     * @param name pointer to string representing handler name, can be NULL, create function 
-     * clones this    
+     * @param name pointer to string representing handler name, can be NULL, create function
+     * clones this
      * @return pointer to newly created handler description struct
      */
     AXIS2_EXTERN axis2_handler_desc_t *AXIS2_CALL

@@ -82,7 +82,7 @@ namespace wso2wsf
          * @param scope scope of property.
          */
         WSF_EXTERN WSF_CALL Property(std::string name, void * value, axis2_scope_t scope);
-		
+
 		/**
          * Creates a Property instance.
          * @param name property key string.
@@ -90,7 +90,7 @@ namespace wso2wsf
          * @param scope scope of property.
          */
         WSF_EXTERN WSF_CALL Property(std::string name, void * value, axis2_scope_t scope, bool ownValue);
-		
+
         /**
          * Gets Property name.
          * @return property key string.

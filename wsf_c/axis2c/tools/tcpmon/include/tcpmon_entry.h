@@ -112,7 +112,7 @@ extern "C"
                 const axutil_env_t * env);
 
         /**
-        * retrieve the sent headers 
+        * retrieve the sent headers
         * @param entry represet the type object.
         * @param env pointer to environment struct. MUST NOT be NULL.
         */

@@ -131,7 +131,7 @@ extern "C"
         AXIS2_ERROR_SET(env->error, error_number, status_code);  \
         AXIS2_LOG_ERROR(env->log, file_name_line_no,             \
             AXIS2_ERROR_GET_MESSAGE(env->error));                \
-    } 
+    }
 
     /**
      * This macro is used to set and error, and log it
@@ -189,7 +189,7 @@ extern "C"
 #define AXIS2_TARGET_EPR "target_epr"
 #define AXIS2_DUMP_INPUT_MSG_TRUE "dump"
 
-    /** 
+    /**
      * This function allows the user match a REST URL template with the
      * Request URL. It returns a 3-dimensional array with pairs of elements
      * of axis2_char_t arrays (strings). The caller is responsible to free
@@ -210,7 +210,7 @@ extern "C"
         axis2_char_t **** matches);
 
     /**
-     * This function allows users to resolve the service and op from the 
+     * This function allows users to resolve the service and op from the
      * url. It returns an array of 2 elements of axis2_char_t arrays (strings).
      * The caller is responsible to free the memory allocated by the function
      * for the return value.
@@ -232,7 +232,7 @@ extern "C"
      * @param quotes if AXIS2_TRUE then replace double quote with '&quot;'.
      * quotes is typically set to true for XML strings that will occur within
      * double quotes -- attribute values.
-     * @return Encoded string if there are characters to be encoded, else NULL. 
+     * @return Encoded string if there are characters to be encoded, else NULL.
      * The caller is responsible to free the memory allocated by the function
      * for the return value
      */
@@ -250,7 +250,7 @@ extern "C"
         const axutil_env_t * env,
         axis2_char_t * dest,
         axis2_char_t * src);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_char_2_byte(
         const axutil_env_t *env,

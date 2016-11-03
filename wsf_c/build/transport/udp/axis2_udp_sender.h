@@ -36,8 +36,8 @@ extern "C"
 #endif
 
     /**
-	 * Creates a udp transport sender. 
-     * @param env pointer to environment struct 
+	 * Creates a udp transport sender.
+     * @param env pointer to environment struct
      */
     AXIS2_EXTERN axis2_transport_sender_t *AXIS2_CALL
     axis2_udp_ender_create(

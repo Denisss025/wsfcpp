@@ -68,7 +68,7 @@ namespace wso2wsf
         std::string _reason;
 
 		/**
-		* _code Error code corresponding the exception.                                                  
+		* _code Error code corresponding the exception.
 		*/
 		std::string _code;
 
@@ -92,12 +92,12 @@ namespace wso2wsf
         virtual WSF_CALL operator std::string() const;
 
 		/**
-		* Method to obtain the exception fault reason                                                   
+		* Method to obtain the exception fault reason
 		* @return Returns the fault reason string
 		*/
 		std::string WSF_CALL getFaultReason();
 		/**
-		* Method to get the exception fault code                                                   
+		* Method to get the exception fault code
 		* @return Returns the fault code
 		*/
 		std::string WSF_CALL getFaultCode();
@@ -109,12 +109,12 @@ namespace wso2wsf
          */
         WSF_CALL Exception(char const * reason);
 		/**
-		* Constructor accepting both the reason and code the exception                                                   
+		* Constructor accepting both the reason and code the exception
 		* @param reason Reason for the exception.
 		* @param code   The Fault code corresponding to the exception.
 		*/
 		WSF_CALL Exception(char const *reason, char const *code);
-		
+
     };
     /** @} */
 
@@ -126,6 +126,6 @@ namespace wso2wsf
     inline std::ostream & WSF_CALL operator <<(std::ostream & str, Exception const * e)
     {
         return str << const_cast<Exception *>(e)->operator std::string();
-    }    
+    }
 }
 #endif // WSFEXCEPTION_H

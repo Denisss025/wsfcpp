@@ -26,7 +26,7 @@
 
 /**
  * @file rampart_encryption.h
- * @brief encrypts a SOAP message 
+ * @brief encrypts a SOAP message
  */
 
 /**
@@ -71,7 +71,7 @@ extern "C" {
         rampart_context_t *rampart_context,
         axiom_soap_envelope_t *soap_envelope,
         axiom_node_t *sec_node);
- 
+
 
     /**
     * @param env pointer to environment struct

@@ -43,7 +43,7 @@ extern "C"
      */
 
     /**
-      * creates a SOAP fault reason struct 
+      * creates a SOAP fault reason struct
       * @param env Environment. MUST NOT be NULL
       * @param fault the SOAP fault
       *
@@ -59,7 +59,7 @@ extern "C"
       * @param  fault_reason pointer to soap_fault_reason struct
       * @param  env Environment. MUST NOT be NULL
       *
-      * @return VOID 
+      * @return VOID
       */
     AXIS2_EXTERN void AXIS2_CALL
     axiom_soap_fault_reason_free(
@@ -72,7 +72,7 @@ extern "C"
       * @param  env Environment. MUST NOT be NULL
       * @param lang string to be compares
       *
-      * @return the SOAP fault text of the SOAP fault string 
+      * @return the SOAP fault text of the SOAP fault string
       */
     AXIS2_EXTERN struct axiom_soap_fault_text *AXIS2_CALL
     axiom_soap_fault_reason_get_soap_fault_text(
@@ -110,7 +110,7 @@ extern "C"
       * @param  env Environment. MUST NOT be NULL
       * @param fault_text The text to be added as the SOAP fault reason
       *
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -123,7 +123,7 @@ extern "C"
       * Get the  base node of the SOAP fault reason
       * @param  fault_reason pointer to soap_fault_reason struct
       * @param  env Environment. MUST NOT be NULL
-      * @return the base node of the SOAP fault reason 
+      * @return the base node of the SOAP fault reason
       */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     axiom_soap_fault_reason_get_base_node(

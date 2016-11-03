@@ -10,7 +10,7 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -38,7 +38,7 @@
             axis2_ArrayOfString_t* ArrayOfString,
             const axutil_env_t *env);
 
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_ArrayOfString_serialize(
@@ -51,7 +51,7 @@
             axis2_ArrayOfString_t* ArrayOfString,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for value.
@@ -70,7 +70,7 @@
             const axutil_env_t *env,
             axutil_array_list_t*  param_value);
 
-        
+
         /**
         * resetter for value
         */
@@ -78,12 +78,12 @@
         axis2_ArrayOfString_reset_value(
             axis2_ArrayOfString_t* ArrayOfString,
             const axutil_env_t *env);
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_ARRAYOFSTRING_H */
-    
+
 

@@ -53,7 +53,7 @@ extern "C"
          * Free xml writer
          * @param writer pointer to xml_writer struct to be freed
          * @param env environment, MUST NOT be NULL.
-         * @returns status of the op. 
+         * @returns status of the op.
          *       AXIS2_SUCCESS on success and AXIS2_FAILURE on error
          */
 
@@ -65,7 +65,7 @@ extern "C"
 
         /**
          *  Write a start tag to output stream with localname.
-         *  Internally the writer keeps track of the opened tags 
+         *  Internally the writer keeps track of the opened tags
          *  @param writer pointer to xml writer struct
          *  @param env environment. MUST NOT be NULL.
          *  @param localname localname of the tag, May not be NULL.
@@ -95,7 +95,7 @@ extern "C"
                 const axutil_env_t * env);
 
         /**
-         * Write an element tag with localname and namespace uri 
+         * Write an element tag with localname and namespace uri
          * @param writer pointer to xml writer struct
          * @param env environment struct
          * @param localname localname of the tag, May not be null.
@@ -119,7 +119,7 @@ extern "C"
          * @param localname localname of the tag, May not be null.
          * @param namespace_uri namespace to bind the prefix to
          * @param prefix the prefix to the tag.May not be NULL.
-         * @return status of the op 
+         * @return status of the op
                    AXIS2_SUCCESS on success. AXIS2_FAILURE on error.
          */
         axis2_status_t(
@@ -132,10 +132,10 @@ extern "C"
                 axis2_char_t * prefix);
 
         /**
-         * write an element tag with localname 
+         * write an element tag with localname
          * @param writer xml_writer
          * @param env environment
-         * @param localname localname 
+         * @param localname localname
          * @return status of the op AXIS2_SUCCESS on success,
          *                AXIS2_FAILURE on error.
          */
@@ -150,7 +150,7 @@ extern "C"
          * write empty_element with localname and namespace uri.
          * @param writer xml writer
          * @param env environment
-         * @param localname localname 
+         * @param localname localname
          * @param namespace uri
          * @return status of the op, AXIS2_SUCCESS on success,
          *               AXIS2_FAILURE on error.
@@ -165,11 +165,11 @@ extern "C"
                 axis2_char_t * namespace_uri);
 
         /**
-         * write empty element with namespace uri and prefix 
+         * write empty element with namespace uri and prefix
          * @param writer xml_writer
          * @param env environment
          * @param localname localname
-         * @param namespace_uri namespace uri 
+         * @param namespace_uri namespace uri
          * @param prefix prefix
          * @return status of the op, AXIS2_SUCCESS on success,
          *                    AXIS2_FAILURE on error.
@@ -184,11 +184,11 @@ extern "C"
                 axis2_char_t * prefix);
 
         /**
-         * write end tag with correct localname prefix resolved internally 
+         * write end tag with correct localname prefix resolved internally
          * @param writer xml writer
          * @param env environment
          * @return status of the op, AXIS2_SUCCESS on success,
-         *            AXIS2_FAILURE on failure 
+         *            AXIS2_FAILURE on failure
          */
         axis2_status_t(
             AXIS2_CALL
@@ -213,7 +213,7 @@ extern "C"
          * write attribute with localname and value
          * @param writer writer
          * @param env environment
-         * @param localname localname 
+         * @param localname localname
          * @param value text value of attribute
          * @return status of the op AXIS2_SUCCESS on success,
          *                 AXIS2_FAILURE on error.
@@ -250,7 +250,7 @@ extern "C"
          * @param localname localname
          * @param value text value of attribute
          * @param namespace uri namespaceuri
-         * @param prefix prefix 
+         * @param prefix prefix
          */
         axis2_status_t(
             AXIS2_CALL
@@ -265,7 +265,7 @@ extern "C"
         /**
          * @param writer xml_writer
          * @param env environment
-         * @param prefix prefix 
+         * @param prefix prefix
          * @param namespace uri namespaceuri
          * @return status of op AXIS2_SUCCESS on success,
          *               AXIS2_FAILURE on error.
@@ -312,7 +312,7 @@ extern "C"
         /**
          * @param writer xml_writer
          * @param env environment
-         * @param target pi target 
+         * @param target pi target
          * @return status of op AXIS2_SUCCESS on success,
          *               AXIS2_FAILURE on error.
          */
@@ -398,7 +398,7 @@ extern "C"
         /**
          * @param writer xml_writer
          * @param env environment
-         * @param version version 
+         * @param version version
          * @return status of op AXIS2_SUCCESS on success,
          *               AXIS2_FAILURE on error.
          */
@@ -428,7 +428,7 @@ extern "C"
         /**
          * @param writer xml_writer
          * @param env environment
-         * @param text text 
+         * @param text text
          * @return status of op AXIS2_SUCCESS on success,
          *               AXIS2_FAILURE on error.
          */
@@ -487,7 +487,7 @@ extern "C"
          * @param writer xml_writer
          * @param env environment
          * @param text text
-         * @param in_attr 
+         * @param in_attr
          * @return status of op AXIS2_SUCCESS on success,
          *               AXIS2_FAILURE on error.
          */
@@ -544,11 +544,11 @@ extern "C"
     /**
      * create function for axiom_xml_writer
      * @param env environment
-     * @param filename filename 
+     * @param filename filename
      * @param encoding encoding
-     * @param is_prefix_default 
+     * @param is_prefix_default
      * @param compression
-     * return xml writer wrapper structure 
+     * return xml writer wrapper structure
      */
     AXIS2_EXTERN axiom_xml_writer_t *AXIS2_CALL
     axiom_xml_writer_create(
@@ -564,7 +564,7 @@ extern "C"
      * @param env environment
      * @param encoding encoding
      * @param is_prefix_default
-     * @param compression 
+     * @param compression
      * @return xml writer wrapper structure.
      */
     AXIS2_EXTERN axiom_xml_writer_t *AXIS2_CALL
@@ -579,8 +579,8 @@ extern "C"
      * free method for axiom xml writer
      * @param writer pointer to the OM XML Writer struct
      * @param env environment struct, must not be null
-     * 
-     * @return 
+     *
+     * @return
      */
     AXIS2_EXTERN void AXIS2_CALL
     axiom_xml_writer_free(
@@ -684,7 +684,7 @@ extern "C"
     /**
      * @param writer pointer to the OM XML Writer struct
      * @param env environment struct, must not be null
-     * 
+     *
      * @return status of the op. AXIS2_SUCCESS on success else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -707,7 +707,7 @@ extern "C"
      * @param writer pointer to the OM XML Writer struct
      * @param env environment struct, must not be null
      * @param localname local name of the element
-     * @param value value of the element 
+     * @param value value of the element
      * @return status of the op. AXIS2_SUCCESS on success else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -768,7 +768,7 @@ extern "C"
     /**
      * @param writer pointer to the OM XML Writer struct
      * @param env environment struct, must not be null
-     * 
+     *
      * @return status of the op. AXIS2_SUCCESS on success else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -902,7 +902,7 @@ extern "C"
      * @param writer pointer to the OM XML Writer struct
      * @param env environment struct, must not be null
      *
-     * @return 
+     * @return
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axiom_xml_writer_get_prefix(
@@ -914,7 +914,7 @@ extern "C"
      * @param writer pointer to the OM XML Writer struct
      * @param env environment struct, must not be null
      *
-     * @return prefix 
+     * @return prefix
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axiom_xml_writer_set_prefix(
@@ -953,7 +953,7 @@ extern "C"
      * @param writer pointer to the OM XML Writer struct
      * @param env environment struct, must not be null
      *
-     * @return 
+     * @return
      */
     AXIS2_EXTERN void *AXIS2_CALL
     axiom_xml_writer_get_xml(
@@ -964,7 +964,7 @@ extern "C"
      * @param writer pointer to the OM XML Writer struct
      * @param env environment struct, must not be null
      *
-     * @return 
+     * @return
      */
     AXIS2_EXTERN unsigned int AXIS2_CALL
     axiom_xml_writer_get_xml_size(
@@ -986,7 +986,7 @@ extern "C"
      * @param writer pointer to the OM XML Writer struct
      * @param env environment struct, must not be null
      *
-     * @return type 
+     * @return type
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axiom_xml_writer_write_raw(

@@ -70,10 +70,10 @@ extern "C"
 #define RP_MUST_SUPPORT_REF_ENCRYPTED_KEY "MustSupportRefEncryptedKey"
 #define RP_REQUIRE_SIGNATURE_CONFIRMATION "RequireSignatureConfirmation"
 #define RP_MUST_SUPPORT_CLIENT_CHALLENGE "MustSupportClientChallenge"
-#define RP_MUST_SUPPORT_SERVER_CHALLENGE "MustSupportServerChallenge"    
+#define RP_MUST_SUPPORT_SERVER_CHALLENGE "MustSupportServerChallenge"
 #define RP_REQUIRE_CLIENT_ENTROPY "RequireClientEntropy"
-#define RP_REQUIRE_SERVER_ENTROPHY "RequireServerEntropy"    
-#define RP_MUST_SUPPORT_ISSUED_TOKENS "MustSupportIssuedTokens"    
+#define RP_REQUIRE_SERVER_ENTROPHY "RequireServerEntropy"
+#define RP_MUST_SUPPORT_ISSUED_TOKENS "MustSupportIssuedTokens"
 
 #define RP_PROTECTION_TOKEN "ProtectionToken"
 #define RP_ENCRYPTION_TOKEN "EncryptionToken"
@@ -164,7 +164,7 @@ extern "C"
 #define RP_INCLUDE_ALWAYS_SP12 "http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/Always"
 
 #define RP_REQUEST_SEC_TOKEN_TEMPLATE "RequestSecurityTokenTemplate"
-    
+
 #define RP_REQUIRE_KEY_IDENTIFIRE_REFERENCE "RequireKeyIdentifierReference"
 #define RP_REQUIRE_ISSUER_SERIAL_REFERENCE "RequireIssuerSerialReference"
 #define RP_REQUIRE_EMBEDDED_TOKEN_REFERENCE "RequireEmbeddedTokenReference"
@@ -180,10 +180,10 @@ extern "C"
 #define RP_WSS_X509_V3_TOKEN_11 "WssX509V3Token11"
 #define RP_WSS_X509_PKCS7_TOKEN_11 "WssX509Pkcs7Token11"
 #define RP_WSS_X509_PKI_PATH_V1_TOKEN_11 "WssX509PkiPathV1Token11"
-    
+
 #define RP_WSS_USERNAME_TOKEN_10 "WssUsernameToken10"
 #define RP_WSS_USERNAME_TOKEN_11 "WssUsernameToken11"
-    
+
 #define RP_WSS_SAML_V10_TOKEN_V10 "WssSamlV10Token10"
 #define RP_WSS_SAML_V11_TOKEN_V10 "WssSamlV11Token10"
 #define RP_WSS_SAML_V10_TOKEN_V11 "WssSamlV10Token11"

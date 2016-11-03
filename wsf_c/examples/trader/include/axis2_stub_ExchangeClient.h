@@ -14,11 +14,11 @@
         #include <axis2_client.h>
         #include <axis2_stub.h>
 
-       
+
          #include "axis2_getInfoResponse.h"
-        
+
          #include "axis2_getInfoRequest.h"
-        
+
         /* function prototypes - for header file*/
         /**
          * axis2_stub_ExchangeClient_create
@@ -42,31 +42,31 @@
          */
         axis2_char_t *axis2_stub_ExchangeClient_get_endpoint_uri_from_wsdl ( const axutil_env_t *env );
 
-        
+
         /**
          * auto generated function declaration
          * for "getInfo|http://www.wso2.org" operation.
-         
+
          * @param getInfoRequest4
          */
 
         axis2_getInfoResponse_t* axis2_stub_ExchangeClient_getInfo( axis2_stub_t *stub, const axutil_env_t *env,
                                                     axis2_getInfoRequest_t* getInfoRequest4);
-        
+
         /**
          * auto generated function declaration
          * for "getInfo|http://www.wso2.org" operation.
-         
+
          * @param getInfoRequest4
          * @param on_complete callback to handle on complete
          * @param on_error callback to handle on error
          */
 
-        
+
         void axis2_stub_ExchangeClient_getInfo_start( axis2_stub_t *stub, const axutil_env_t *env,
                                                         axis2_getInfoRequest_t* getInfoRequest4,
                                                         axis2_status_t ( AXIS2_CALL *on_complete ) (struct axis2_callback *, const axutil_env_t* ) ,
                                                         axis2_status_t ( AXIS2_CALL *on_error ) (struct axis2_callback *, const axutil_env_t*, int ) );
 
-        
+
 

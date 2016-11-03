@@ -42,7 +42,7 @@ extern "C"
      */
 
     /**
-      * creates a soap struct 
+      * creates a soap struct
       * @param env Environment. MUST NOT be NULL
       * @param fault_code SOAP fault code
       *
@@ -71,7 +71,7 @@ extern "C"
       * Free an axiom_soap_fault_sub_code
       * @param  fault_sub_code pointer to soap_fault_sub_code struct
       * @param  env Environment. MUST NOT be NULL
-      * @return VOID 
+      * @return VOID
       */
     AXIS2_EXTERN void AXIS2_CALL
     axiom_soap_fault_sub_code_free(
@@ -103,7 +103,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-      * Get the base node of the SOAP fault sub code 
+      * Get the base node of the SOAP fault sub code
       * @param  fault_sub_code pointer to soap_fault_sub_code struct
       * @param  env Environment. MUST NOT be NULL
       *

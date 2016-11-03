@@ -37,7 +37,7 @@ extern "C"
 #endif
 
 
-/** 
+/**
  * @brief Savan Database Manager Struct Impl
  *   Savan Database Manager
  */
@@ -56,25 +56,25 @@ savan_db_mgr_free(
     savan_db_mgr_t *db_mgr,
     const axutil_env_t *env);
 
-AXIS2_EXTERN int 
+AXIS2_EXTERN int
 savan_db_mgr_topic_find_callback(
-    void *not_used, 
-    int argc, 
-    char **argv, 
+    void *not_used,
+    int argc,
+    char **argv,
     char **col_name);
 
-AXIS2_EXTERN int 
+AXIS2_EXTERN int
 savan_db_mgr_subs_find_callback(
-    void *not_used, 
-    int argc, 
-    char **argv, 
+    void *not_used,
+    int argc,
+    char **argv,
     char **col_name);
 
-AXIS2_EXTERN int 
+AXIS2_EXTERN int
 savan_db_mgr_subs_retrieve_callback(
-    void *not_used, 
-    int argc, 
-    char **argv, 
+    void *not_used,
+    int argc,
+    char **argv,
     char **col_name);
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL

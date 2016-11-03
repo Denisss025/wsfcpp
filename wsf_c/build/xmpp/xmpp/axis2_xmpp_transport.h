@@ -69,7 +69,7 @@ extern "C"
 #define AXIS2_XMPP_PROPERTIES "XMPP_PROPERTIES"
 
 /**
- * Parameter which maps a service to a JID 
+ * Parameter which maps a service to a JID
  */
 #define AXIS2_XMPP_PARAM_ID "xmpp_id"
 
@@ -98,7 +98,7 @@ extern "C"
 
 /* Subscribe entity types */
 #define AXIS2_XMPP_SUB_TYPE_USER    "user"
-#define AXIS2_XMPP_SUB_TYPE_ROOM    "room" 
+#define AXIS2_XMPP_SUB_TYPE_ROOM    "room"
 
 /** @} */
 

@@ -87,9 +87,9 @@ extern "C"
      * Adds operation.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param op pointer to operation struct, service assumes ownership of 
+     * @param op pointer to operation struct, service assumes ownership of
      * operation
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_add_op(
@@ -129,10 +129,10 @@ extern "C"
 
 
     /**
-     * Gets the RESTful operation map for a given service 
+     * Gets the RESTful operation map for a given service
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return pointer to hash with the information 
+     * @return pointer to hash with the information
      * (method, url)=> processing structure for each ops
      */
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -169,7 +169,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param svc_grp pointer to parent service group
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_parent(
@@ -193,7 +193,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param qname pointer to QName
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_qname(
@@ -218,7 +218,7 @@ extern "C"
      * @param env pointer to environment struct
      * @param param pointer to parameter, service assumes ownership of
      * parameter
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_add_param(
@@ -227,12 +227,12 @@ extern "C"
         axutil_param_t * param);
 
     /**
-     * Gets named parameter.    
+     * Gets named parameter.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param name name string
-     * @return pointer to named parameter if exists, else NULL. Returns a 
-     * reference, not a cloned copy    
+     * @return pointer to named parameter if exists, else NULL. Returns a
+     * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_param_t *AXIS2_CALL
     axis2_svc_get_param(
@@ -281,11 +281,11 @@ extern "C"
      * Engages given module to service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param  module_desc pointer to module description to be engaged, 
-     * service does not assume the ownership of module 
-     * @param conf pointer to configuration, it is configuration that holds 
+     * @param  module_desc pointer to module description to be engaged,
+     * service does not assume the ownership of module
+     * @param conf pointer to configuration, it is configuration that holds
      * module information
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_engage_module(
@@ -298,11 +298,11 @@ extern "C"
      * Disengages given module from service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param  module_desc pointer to module description to be engaged, 
-     * service does not assume the ownership of module 
-     * @param conf pointer to configuration, it is configuration that holds 
+     * @param  module_desc pointer to module description to be engaged,
+     * service does not assume the ownership of module
+     * @param conf pointer to configuration, it is configuration that holds
      * module information
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_disengage_module(
@@ -315,8 +315,8 @@ extern "C"
      * Check whether a given module is engaged to the service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param  module_qname pointer to module qname to be engaged, 
-     * @return AXIS2_TRUE if module is engaged, else AXIS2_FALSE 
+     * @param  module_qname pointer to module qname to be engaged,
+     * @return AXIS2_TRUE if module is engaged, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     axis2_svc_is_module_engaged(
@@ -328,7 +328,7 @@ extern "C"
      * Return the engaged module list.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return engaged module list 
+     * @return engaged module list
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
     axis2_svc_get_engaged_module_list(
@@ -336,19 +336,19 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Adds operations defined in a module to this service. It is possible 
-     * to define operations that are associated to a module in a module.xml 
-     * file. These operations in turn could be invoked in relation to a 
-     * service. This method allows those module related operation to be 
-     * added to a service. 
+     * Adds operations defined in a module to this service. It is possible
+     * to define operations that are associated to a module in a module.xml
+     * file. These operations in turn could be invoked in relation to a
+     * service. This method allows those module related operation to be
+     * added to a service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param module_desc pointer to module description containing module
      * related operation information. service does not assume the ownership
      * of module description
-     * @param conf pointer to configuration, it is configuration that stores 
+     * @param conf pointer to configuration, it is configuration that stores
      * the modules
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_add_module_ops(
@@ -361,9 +361,9 @@ extern "C"
      * Adds given module description to engaged module list.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param module_desc pointer to module description, service does not 
+     * @param module_desc pointer to module description, service does not
      * assume the ownership of module description
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -387,7 +387,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param style style of service as defined in WSDL
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_style(
@@ -408,7 +408,7 @@ extern "C"
 
     /**
      * Gets in flow. In flow is the list of phases invoked
-     * along in path.    
+     * along in path.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @return pointer to flow representing in flow
@@ -420,11 +420,11 @@ extern "C"
 
     /**
      * Sets in flow. In flow is the list of phases invoked
-     * along in path.    
+     * along in path.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param in_flow pointer to flow representing in flow
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -434,7 +434,7 @@ extern "C"
 
     /**
      * Gets out flow. Out flow is the list of phases invoked
-     * along out path.    
+     * along out path.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @return pointer to flow representing out flow
@@ -447,11 +447,11 @@ extern "C"
 
     /**
      * Sets out flow. Out flow is the list of phases invoked
-     * along out path.    
+     * along out path.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @return out_flow pointer to flow representing out flow
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -462,7 +462,7 @@ extern "C"
 
     /**
      * Gets fault in flow. Fault in flow is the list of phases invoked
-     * along in path if a fault happens.    
+     * along in path if a fault happens.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @return pointer to flow representing fault in flow
@@ -475,11 +475,11 @@ extern "C"
 
     /**
      * Sets fault in flow. Fault in flow is the list of phases invoked
-     * along in path if a fault happens.    
+     * along in path if a fault happens.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param fault_flow pointer to flow representing fault in flow
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -490,7 +490,7 @@ extern "C"
 
     /**
      * Gets fault out flow. Fault out flow is the list of phases invoked
-     * along out path if a fault happens.    
+     * along out path if a fault happens.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @return pointer to flow representing fault out flow
@@ -503,11 +503,11 @@ extern "C"
 
     /**
      * Sets fault out flow. Fault out flow is the list of phases invoked
-     * along out path if a fault happens.    
+     * along out path if a fault happens.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param fault_flow pointer to flow representing fault out flow
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -521,7 +521,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param soap_action SOAP action string
-     * @return pointer to operation corresponding to given SOAP action if 
+     * @return pointer to operation corresponding to given SOAP action if
      * one exists, else NULL. Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN struct axis2_op *AXIS2_CALL
@@ -536,7 +536,7 @@ extern "C"
      * @param env pointer to environment struct
      * @param soap_action SOAP action string
      * @param endpoint pointer QName representing endpoint URI
-     * @return pointer operation corresponding to given SOAP Action and 
+     * @return pointer operation corresponding to given SOAP Action and
      * endpoint QName.
      */
     /*AXIS2_EXTERN struct axis2_op *AXIS2_CALL
@@ -563,7 +563,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param svc_name service name string
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_name(
@@ -575,7 +575,7 @@ extern "C"
      * Sets current time as last update time of the service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_last_update(
@@ -609,7 +609,7 @@ extern "C"
      * Set the description of the service which is in service.xml
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_svc_desc(
@@ -633,7 +633,7 @@ extern "C"
      * Set the wsdl path of the service which is in service.xml
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_svc_wsdl_path(
@@ -657,7 +657,7 @@ extern "C"
      * Set the folder path of the service which is in service.xml
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_svc_folder_path(
@@ -666,9 +666,9 @@ extern "C"
         const axis2_char_t * folder_path);
 
     /**
-     * Gets the name of the file that holds the implementation of the 
-     * service. service implementation is compiled into shared libraries 
-     * and is placed in the respective sub folder in the services folder 
+     * Gets the name of the file that holds the implementation of the
+     * service. service implementation is compiled into shared libraries
+     * and is placed in the respective sub folder in the services folder
      * of Axis2 repository.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
@@ -680,14 +680,14 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets the name of the file that holds the implementation of the 
-     * service. service implementation is compiled into shared libraries 
-     * and is placed in the respective sub folder in the services folder 
+     * Sets the name of the file that holds the implementation of the
+     * service. service implementation is compiled into shared libraries
+     * and is placed in the respective sub folder in the services folder
      * of Axis2 repository.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param file_name file name string
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_file_name(
@@ -708,11 +708,11 @@ extern "C"
        const axutil_env_t *env); */
 
     /**
-     * Sets the list of endpoints associated with the service. 
+     * Sets the list of endpoints associated with the service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param endpoints pointer to hash map containing all endpoints
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -722,7 +722,7 @@ extern "C"
        axutil_hash_t *endpoints); */
 
     /**
-     * Gets namespace. 
+     * Gets namespace.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @return namespace URI string
@@ -736,16 +736,16 @@ extern "C"
 
     /**
      * Adds WS-Addressing mapping for a given operation. The services.xml
-     * configuration file could specify a SOAP action that would map to 
-     * one of the service operations. This method could be used to register 
-     * that mapping against operations. WS-Addressing based dispatcher 
+     * configuration file could specify a SOAP action that would map to
+     * one of the service operations. This method could be used to register
+     * that mapping against operations. WS-Addressing based dispatcher
      * makes use of this mapping to identify the operation to be invoked,
      * given WSA action.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param wsa_action WSA action string
      * @param op pointer to operation that maps to the given WSA action
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_add_mapping(
@@ -757,7 +757,7 @@ extern "C"
     /**
      * Adds a REST mapping for a given RESTful operation. The services.xml
      * configuration file could specify a HTTP Method and Location that would
-     * map to one of the service operations. This method could be used to register 
+     * map to one of the service operations. This method could be used to register
      * that mapping against operations. The REST based dispatcher makes use
      * of this mapping to identify the operation to be invoked, given the URL.
      * @param svc pointer to service struct
@@ -765,7 +765,7 @@ extern "C"
      * @param method REST HTTP Method
      * @param location REST HTTP Location
      * @param op pointer to operation that maps to the given WSA action
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_add_rest_mapping(
@@ -781,7 +781,7 @@ extern "C"
      * @param env pointer to environment struct
      * @param module_qname pointer to QName to be added, this method clones
      * the QName
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_add_module_qname(
@@ -819,7 +819,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param adjusted AXIS2_TRUE if XML schema is adjusted, else AXIS2_FALSE
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -830,10 +830,10 @@ extern "C"
        const axis2_bool_t adjusted); */
 
     /**
-     * Gets XML schema mapping table for service. 
+     * Gets XML schema mapping table for service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return pointer to hash map with XML schema mappings, returns a 
+     * @return pointer to hash map with XML schema mappings, returns a
      * reference, not a cloned copy
      */
     /*
@@ -844,12 +844,12 @@ extern "C"
        const axutil_env_t *env); */
 
     /**
-     * Sets XML schema mapping table for service. 
+     * Sets XML schema mapping table for service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param table pointer to hash map with XML schema mappings, service 
+     * @param table pointer to hash map with XML schema mappings, service
      * assumes ownership of the map
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*
        AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -877,7 +877,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param prefix custom schema prefix string
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*
        AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -905,7 +905,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param suffix custom schema suffix string
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -920,7 +920,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param out_stream stream to print to
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*
        AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -945,13 +945,13 @@ extern "C"
        const int index); */
 
     /**
-     * Adds all namespaces in the namespace map to the XML schema at 
+     * Adds all namespaces in the namespace map to the XML schema at
      * the given index of the XML schema array list.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param index index of the XML schema to be processed
-     * @return pointer to XML schema with namespaces added, 
-     * returns a reference, not a cloned copy    
+     * @return pointer to XML schema with namespaces added,
+     * returns a reference, not a cloned copy
      */
 
     /*    AXIS2_EXTERN xml_schema_t *AXIS2_CALL
@@ -962,7 +962,7 @@ extern "C"
                     int index);*/
 
     /**
-     * Gets the list of XML schemas associated with service. 
+     * Gets the list of XML schemas associated with service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @return pointer to array list of XML schemas, returns a reference,
@@ -976,13 +976,13 @@ extern "C"
        const axutil_env_t *env); */
 
     /**
-     * Adds the given XML schema to the list of XML schemas associated 
+     * Adds the given XML schema to the list of XML schemas associated
      * with the service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param schema pointer to XML schema struct, service assumes the 
+     * @param schema pointer to XML schema struct, service assumes the
      * ownership of struct
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -997,7 +997,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param schemas pointer to array list containing XML schemas
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*
        AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1011,7 +1011,7 @@ extern "C"
      * Gets XML schema's target namespace.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return XML schema target namespace string 
+     * @return XML schema target namespace string
      */
     /*
        AXIS2_EXTERN const axis2_char_t *AXIS2_CALL
@@ -1024,8 +1024,8 @@ extern "C"
      * Sets XML schema's target namespace.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param ns namespace string 
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @param ns namespace string
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*
        AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1039,7 +1039,7 @@ extern "C"
      * Gets XML schema's target namespace prefix.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return XML schema target namespace prefix string 
+     * @return XML schema target namespace prefix string
      */
     /*
        AXIS2_EXTERN const axis2_char_t *AXIS2_CALL
@@ -1052,8 +1052,8 @@ extern "C"
      * Sets XML schema's target namespace prefix.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param prefix namespace prefix string 
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @param prefix namespace prefix string
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*
        AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1067,7 +1067,7 @@ extern "C"
      * Gets target namespace.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return target namespace as a string 
+     * @return target namespace as a string
      */
     AXIS2_EXTERN const axis2_char_t *AXIS2_CALL
     axis2_svc_get_target_ns(
@@ -1078,8 +1078,8 @@ extern "C"
      * Sets target namespace.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @param ns target namespace as a string 
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @param ns target namespace as a string
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     saxis2_svc_et_target_ns(
@@ -1104,7 +1104,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param prefix target namespace prefix string
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_target_ns_prefix(
@@ -1117,7 +1117,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param qname QName of the XML schema element to be retrieved
-     * @return pointer to XML schema element, returns a reference, not a 
+     * @return pointer to XML schema element, returns a reference, not a
      * cloned copy
      */
     /*AXIS2_EXTERN xml_schema_element_t *AXIS2_CALL
@@ -1131,7 +1131,7 @@ extern "C"
      * Gets the namespace map with all namespaces related to service.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return pointer to hash map containing all namespaces, returns a 
+     * @return pointer to hash map containing all namespaces, returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -1144,7 +1144,7 @@ extern "C"
      * @param svc pointer to service struct
      * @param env pointer to environment struct
      * @param ns_map pointer to hash map containing all namespaces
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_svc_set_ns_map(
@@ -1154,11 +1154,11 @@ extern "C"
 
     /**
      * Populates the schema mappings. This method is used in code generation
-     * and WSDL generation (WSDL2C and C2WSDL). This method deals with the 
+     * and WSDL generation (WSDL2C and C2WSDL). This method deals with the
      * imported schemas that would be there in the WSDL.
      * @param svc pointer to service struct
      * @param env pointer to environment struct
-     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+     * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     /*AXIS2_EXTERN axis2_status_t AXIS2_CALL
 
@@ -1220,7 +1220,7 @@ extern "C"
         const axis2_svc_t * svc,
         const axutil_env_t * env);
 
-	/* Get the mutex associated with this service 
+	/* Get the mutex associated with this service
 	 * @param svc pointer to message
      * @param env pointer to environment struct
      * @return pointer to a axutil_thread_mutext_t

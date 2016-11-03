@@ -42,8 +42,8 @@ extern "C"
 
     /**
      * @param current child
-     * @param env environment 
-     * return axiom_children_iterator_t 
+     * @param env environment
+     * return axiom_children_iterator_t
      */
 
     AXIS2_EXTERN axiom_children_iterator_t *AXIS2_CALL
@@ -78,7 +78,7 @@ extern "C"
 
     /**
      * @returns true if the iteration has more elements. In other
-     * words, returns true if next() would return an om_node_t struct 
+     * words, returns true if next() would return an om_node_t struct
      * rather than null with error code set in environment
      * @param iterator a pointer to axiom children iterator struct
      * @param env environment, MUST NOT be NULL

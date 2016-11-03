@@ -80,7 +80,7 @@ typedef struct guththila_buffer_s
  * return status of op AXIS2_SUCCESS on success,
  * AXIS2_FAILURE on error
  */
-int GUTHTHILA_CALL 
+int GUTHTHILA_CALL
 guththila_buffer_init(guththila_buffer_t * buffer,
 					  int size,
 					  const axutil_env_t * env);
@@ -92,7 +92,7 @@ guththila_buffer_init(guththila_buffer_t * buffer,
  * return status of op AXIS2_SUCCESS on success,
  * AXIS2_FAILURE on error
  */
-int GUTHTHILA_CALL 
+int GUTHTHILA_CALL
 guththila_buffer_un_init(guththila_buffer_t * buffer,
 					   const axutil_env_t * env);
 
@@ -106,42 +106,42 @@ guththila_buffer_un_init(guththila_buffer_t * buffer,
  * return status of op AXIS2_SUCCESS on success,
  * AXIS2_FAILURE on error
  */
-int GUTHTHILA_CALL 
-guththila_buffer_init_for_buffer(guththila_buffer_t * mu_buff, 
-								 guththila_char_t *buffer, 
-								 int size, 
+int GUTHTHILA_CALL
+guththila_buffer_init_for_buffer(guththila_buffer_t * mu_buff,
+								 guththila_char_t *buffer,
+								 int size,
 								 const axutil_env_t * env);
 
-void *GUTHTHILA_CALL 
+void *GUTHTHILA_CALL
 guththila_get_position(guththila_buffer_t * buffer,
-					   int pos, 
+					   int pos,
 					   const axutil_env_t * env);
 
-int GUTHTHILA_CALL 
-guththila_buffer_next(guththila_buffer_t * buffer, 
+int GUTHTHILA_CALL
+guththila_buffer_next(guththila_buffer_t * buffer,
 					  const axutil_env_t * env);
 
 
 /**
- * This method create new xml element which is having the 
+ * This method create new xml element which is having the
  * size of cur_buff
  * data by buffer variable
- * @param buffer 
+ * @param buffer
  * @param env environment, MUST NOT be NULL.
- * return xml element of guththila_buffer_s structure 
+ * return xml element of guththila_buffer_s structure
  */
-void *GUTHTHILA_CALL 
-guththila_buffer_get(guththila_buffer_t * buffer, 
+void *GUTHTHILA_CALL
+guththila_buffer_get(guththila_buffer_t * buffer,
 					 const axutil_env_t * env);
 
 
-int GUTHTHILA_CALL 
-guththila_buffer_shift(guththila_buffer_t * buffer, 
+int GUTHTHILA_CALL
+guththila_buffer_shift(guththila_buffer_t * buffer,
 					   int no, const axutil_env_t * env);
 
-int GUTHTHILA_CALL 
-guththila_buffer_insert_data(guththila_buffer_t * buffer, 
-							 void *buff, size_t buff_len, 
+int GUTHTHILA_CALL
+guththila_buffer_insert_data(guththila_buffer_t * buffer,
+							 void *buff, size_t buff_len,
 							 const axutil_env_t * env);
 
 EXTERN_C_END()

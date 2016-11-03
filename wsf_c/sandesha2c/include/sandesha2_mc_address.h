@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_MC_ADDRESS_H
 #define SANDESHA2_MC_ADDRESS_H
 
 /**
   * @file sandesha2_mc_address.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -43,19 +43,19 @@ typedef struct sandesha2_mc_address_t sandesha2_mc_address_t;
  * @brief sandesha2_mc_address
  *    sandesha2_mc_address
  */
-    
+
 AXIS2_EXTERN sandesha2_mc_address_t* AXIS2_CALL
 sandesha2_mc_address_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *ns_value,
     axis2_endpoint_ref_t *epr);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_mc_address_free (
-    sandesha2_mc_address_t *mc_address, 
+    sandesha2_mc_address_t *mc_address,
     const axutil_env_t *env);
 
-axis2_endpoint_ref_t * AXIS2_CALL                    	
+axis2_endpoint_ref_t * AXIS2_CALL
 sandesha2_mc_address_get_epr(
     sandesha2_mc_address_t *mc_address,
    	const axutil_env_t *env);
@@ -63,26 +63,26 @@ sandesha2_mc_address_get_epr(
 axis2_status_t AXIS2_CALL
 sandesha2_mc_address_set_epr(
     sandesha2_mc_address_t *mc_address,
-   	const axutil_env_t *env, 
+   	const axutil_env_t *env,
     axis2_endpoint_ref_t *epr);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_mc_address_get_namespace_value (
     sandesha2_mc_address_t *mc_address,
     const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_mc_address_from_om_node(
     sandesha2_mc_address_t *mc_address,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *om_node);
-    
-axiom_node_t* AXIS2_CALL 
+
+axiom_node_t* AXIS2_CALL
 sandesha2_mc_address_to_om_node(
     sandesha2_mc_address_t *mc_address,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     void *om_node);
- 
+
 /** @} */
 #ifdef __cplusplus
 }

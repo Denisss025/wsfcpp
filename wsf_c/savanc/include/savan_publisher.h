@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SAVAN_PUBLISHER_H
 #define SAVAN_PUBLISHER_H
 
 /**
   * @file savan_publisher.h
-  * @brief 
+  * @brief
   */
 #include <platforms/axutil_platform_auto_sense.h>
 #include <axutil_utils_defines.h>
@@ -33,11 +33,11 @@ extern "C"
 {
 #endif
 
-/** 
+/**
  * @ingroup savan_publisher
  * @{
  */
- 
+
 typedef struct savan_publisher savan_publisher_t;
 typedef struct savan_publisher_ops savan_publisher_ops_t;
 struct savan_subs_mgr;
@@ -47,15 +47,15 @@ struct savan_subs_mgr;
  * Encapsulator struct for ops of savan_publisher
  */
 AXIS2_DECLARE_DATA struct savan_publisher_ops
-{ 
-    void (AXIS2_CALL * 
+{
+    void (AXIS2_CALL *
             free)(
                 savan_publisher_t *publisher,
                 const axutil_env_t *env);
 
     void (AXIS2_CALL *
             publish)(
-                savan_publisher_t *publisher, 
+                savan_publisher_t *publisher,
                 const axutil_env_t *env,
                 void *msg_ctx,
                 struct savan_subs_mgr *subs_mgr);
@@ -93,7 +93,7 @@ savan_publisher_create(
  * @param publisher
  * @param env environment object
  */
-AXIS2_EXTERN void AXIS2_CALL 
+AXIS2_EXTERN void AXIS2_CALL
 savan_publisher_free(
     savan_publisher_t *publishermod,
     const axutil_env_t *env);
@@ -106,7 +106,7 @@ savan_publisher_free(
  */
 AXIS2_EXTERN void AXIS2_CALL
 savan_publisher_publish(
-    savan_publisher_t *publishermod, 
+    savan_publisher_t *publishermod,
     const axutil_env_t *env,
     void *msg_ctx,
     struct savan_subs_mgr *subs_mgr);

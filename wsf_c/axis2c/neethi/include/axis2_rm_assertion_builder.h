@@ -40,7 +40,7 @@ extern "C"
         const axutil_env_t *env,
         axiom_node_t *rm_assertion_node,
         axiom_element_t *rm_assertion_ele);
- 
+
 
 #ifdef __cplusplus
 }

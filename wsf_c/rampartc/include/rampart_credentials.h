@@ -30,7 +30,7 @@
 */
 
 /**
-* @defgroup rampart_credentials Credentials Provider 
+* @defgroup rampart_credentials Credentials Provider
 * @{
 */
 
@@ -66,7 +66,7 @@ extern "C"
          * @param msg_ctx Message context
          * @param username Reference to the username
          * @param password Reference to the password
-         * @return The status of extracting credentials 
+         * @return The status of extracting credentials
          */
         rampart_credentials_status_t (AXIS2_CALL*
         rampart_credentials_username_get)(

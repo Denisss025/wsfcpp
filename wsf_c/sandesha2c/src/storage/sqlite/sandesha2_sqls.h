@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_SQLS_H
 #define SANDESHA2_SQLS_H
 
@@ -30,24 +30,24 @@ extern "C"
 	/**
 	 * Create Sequence Table
 	 */
-	
+
 	/**
 	 * Invoker Table
 	 */
-	
+
 	/**
 	 * Sender Table
 	 */
-			
+
     /* Next Message Table */
 
 	/**
 	 * Sequence Property Table
 	 */
-	 
+
 /** @} */
 #ifdef __cplusplus
 }
 #endif
- 
+
 #endif /*SANDESHA2_SQLS_H*/

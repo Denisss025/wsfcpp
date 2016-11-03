@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_cipher.h
-  * @brief Cipher related functions in OMXMLSecurity 
+  * @brief Cipher related functions in OMXMLSecurity
   */
 
 #include <axis2_defines.h>
@@ -44,7 +44,7 @@ extern "C"
      * Get the cipher property  for the given url
      * @param env pointer to environment struct
      * @param url 	 the url as a string
-     * @param return the property 
+     * @param return the property
      */
     AXIS2_EXTERN openssl_cipher_property_t *AXIS2_CALL
     oxs_get_cipher_property_for_url(const axutil_env_t *env,
@@ -54,7 +54,7 @@ extern "C"
      * Get the cipher name for the given url
      * @param env pointer to environment struct
      * @param url 	 the url as a string
-     * @param return the name as a string	
+     * @param return the name as a string
      */
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     oxs_get_cipher_name_for_url(const axutil_env_t *env,

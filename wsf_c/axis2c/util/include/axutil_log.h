@@ -47,7 +47,7 @@ extern "C"
       *similar macros are defined for different log levels: CRITICAL,ERROR,WARNING and INFO
       * and SERVICE
       *
-      *CRITICAL and ERROR logs are always written to file and other logs are written 
+      *CRITICAL and ERROR logs are always written to file and other logs are written
       *depending on the log level set (log->level)
       */
 
@@ -71,13 +71,13 @@ extern "C"
 
         /** Debug level, logs everything */
         AXIS2_LOG_LEVEL_DEBUG,
-        
+
         /** User level, logs only user level debug messages */
         AXIS2_LOG_LEVEL_USER,
 
         /** Trace level, Enable with compiler time option AXIS2_TRACE */
         AXIS2_LOG_LEVEL_TRACE
-        
+
     } axutil_log_levels_t;
 
     /**
@@ -128,7 +128,7 @@ extern "C"
 
         /** Log level */
         axutil_log_levels_t level;
-        
+
         /** Maximum log file size */
         int size;
 
@@ -237,7 +237,7 @@ extern "C"
 #ifndef AXIS2_LOG_PROJECT_PREFIX
     /** Each module/project should undef and define the following.. */
 #define AXIS2_LOG_PROJECT_PREFIX "[axis2c]"
-#endif 
+#endif
 
 #define AXIS2_LOG_USER_MSG(log, msg) AXIS2_LOG_USER (log, AXIS2_LOG_SI, "%s %s", AXIS2_LOG_PROJECT_PREFIX, msg)
 #define AXIS2_LOG_DEBUG_MSG(log, msg) AXIS2_LOG_DEBUG (log, AXIS2_LOG_SI, "%s %s", AXIS2_LOG_PROJECT_PREFIX, msg)

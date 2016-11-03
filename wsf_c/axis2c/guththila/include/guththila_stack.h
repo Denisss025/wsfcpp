@@ -25,7 +25,7 @@
 #include <axutil_utils.h>
 #define GUTHTHILA_STACK_DEFAULT	16
 
-EXTERN_C_START() 
+EXTERN_C_START()
 
 typedef struct guththila_stack_s
 {
@@ -33,16 +33,16 @@ typedef struct guththila_stack_s
     int top;
     /* Max number of Items that can be hold in data */
     int max;
-    void ** data;    
+    void ** data;
 } guththila_stack_t;
 
 #ifndef GUTHTHILA_STACK_SIZE
 #define GUTHTHILA_STACK_SIZE(_stack) ((_stack).top)
-#endif  
+#endif
 
 #ifndef GUTHTHILA_STACK_TOP_INDEX
 #define GUTHTHILA_STACK_TOP_INDEX(_stack) (((_stack).top - 1))
-#endif  
+#endif
 
 int GUTHTHILA_CALL
 guththila_stack_init(
@@ -91,6 +91,6 @@ guththila_stack_is_empty(
     guththila_stack_t * stack,
     const axutil_env_t * env);
 
-EXTERN_C_END() 
-#endif  
+EXTERN_C_END()
+#endif
 

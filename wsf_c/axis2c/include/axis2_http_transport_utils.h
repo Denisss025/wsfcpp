@@ -51,7 +51,7 @@
 extern "C"
 {
 #endif
-	
+
 	typedef enum axis2_http_method_types
 	{
 		AXIS2_HTTP_METHOD_GET = 0,
@@ -61,7 +61,7 @@ extern "C"
 		AXIS2_HTTP_METHOD_DELETE
 	}axis2_http_method_types_t;
 
-	
+
 	typedef struct axis2_http_transport_in
 	{
 		/** HTTP Content type */
@@ -70,31 +70,31 @@ extern "C"
 		int content_length;
 		/** Input message context */
 		axis2_msg_ctx_t *msg_ctx;
-		
+
 		/** soap action */
 		axis2_char_t *soap_action;
-		
+
 		/** complete request uri */
 		axis2_char_t *request_uri;
-		
+
 		/** Input stream */
 		axutil_stream_t *in_stream;
-		
+
 		/** remote request ip  corresponds to CGI header REMOTE_ADDR */
 		axis2_char_t *remote_ip;
-		
+
 		/** server port */
 		axis2_char_t *svr_port;
-		
+
 		/** HTTP transfer encoding header value */
 		axis2_char_t *transfer_encoding;
-		
+
 		/** HTTP Accept header */
 		axis2_char_t *accept_header;
-		
+
 		/** HTTP Accept language header */
 		axis2_char_t *accept_language_header;
-		
+
 		/** HTTP accept charset header */
 		axis2_char_t *accept_charset_header;
 		/** H&TTP METHOD  Should be one of AXIS2_HTTP_METHOD_GET | AXIS2_HTTP_METHOD_POST |"
@@ -125,13 +125,13 @@ extern "C"
 		axis2_char_t *content_language;
 		/** output headers list */
 		axutil_array_list_t *output_headers;
-		
+
 	}axis2_http_transport_out_t;
 
     /**
      * size of the key stored in the session file
      */
-    #define AXIS2_TRANSPORT_SESSION_KEY_SIZE 64 
+    #define AXIS2_TRANSPORT_SESSION_KEY_SIZE 64
     /**
      * size of the value stored in the session file
      */
@@ -143,8 +143,8 @@ extern "C"
     } axis2_session_file_record_t;
 
     /**
-     * This will retrieve the session table, set by a service or a module and store it in a session 
-     * file named with the unique session id, generated here in. Then it return the Set-Cookie http 
+     * This will retrieve the session table, set by a service or a module and store it in a session
+     * file named with the unique session id, generated here in. Then it return the Set-Cookie http
      * header with value containing session id and session expire time.
      * @param env, environments
      * @param msg_ctx
@@ -152,14 +152,14 @@ extern "C"
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axis2_http_transport_utils_get_session(
-            const axutil_env_t *env, 
+            const axutil_env_t *env,
             axis2_msg_ctx_t *msg_ctx);
 
     /**
      * When the transport receive a Cookie header it calls this function. This will retrieve the
-     * stored session info from the file related to the id value of the cookie. It also check 
+     * stored session info from the file related to the id value of the cookie. It also check
      * whether the session has timeout by comparing the session expire time contained in the cookie
-     * value with the expire time contained in the file. If session expired then it return nothing. 
+     * value with the expire time contained in the file. If session expired then it return nothing.
      * If session is still valid it put the values in a hash table and set it into message context.
      * @param env, environments
      * @param id
@@ -167,71 +167,71 @@ extern "C"
      */
     AXIS2_EXTERN void AXIS2_CALL
     axis2_http_transport_utils_set_session(
-            const axutil_env_t *env, 
+            const axutil_env_t *env,
             axis2_msg_ctx_t *msg_ctx,
             axis2_char_t *session_str);
 
     /**
      * After receiving Set-Cookie header in client side store it
      * @param env, environments
-     * @param msg_ctx  
-     * @param cookie 
+     * @param msg_ctx
+     * @param cookie
      */
     AXIS2_EXTERN void AXIS2_CALL
     axis2_http_transport_utils_store_cookie(
-            const axutil_env_t *env, 
-            axis2_msg_ctx_t *msg_ctx, 
+            const axutil_env_t *env,
+            axis2_msg_ctx_t *msg_ctx,
             axis2_char_t *cookie);
 
-    /** 
+    /**
      * Read from cookie store before sending from client side
-     * @param env, environments 
+     * @param env, environments
      * @param msg_ctx
      * @return cookie string
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axis2_http_transport_utils_read_from_cookie_store(
-            const axutil_env_t *env, 
+            const axutil_env_t *env,
             axis2_msg_ctx_t *msg_ctx);
 
-	/** 
-	 * Initialize the axis2_http_tranport_in_t. Before using this structure users should 
+	/**
+	 * Initialize the axis2_http_tranport_in_t. Before using this structure users should
 	 * initialize it using this method.
-	 * @param in a pointer to a axis2_http_tranport_in_t 
-	 * @param env, environments 
+	 * @param in a pointer to a axis2_http_tranport_in_t
+	 * @param env, environments
 	 */
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
-	axis2_http_transport_utils_transport_in_init(axis2_http_transport_in_t *in, 
+	axis2_http_transport_utils_transport_in_init(axis2_http_transport_in_t *in,
 												const axutil_env_t *env);
 
-	/** 
-	 * Uninitialize the axis2_http_tranport_in_t. Before using this structure users should 
+	/**
+	 * Uninitialize the axis2_http_tranport_in_t. Before using this structure users should
 	 * initialize it using this method.
-	 * @param in a pointer to a axis2_http_tranport_in_t 
-	 * @param env, environments 
+	 * @param in a pointer to a axis2_http_tranport_in_t
+	 * @param env, environments
 	 */
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
-	axis2_http_transport_utils_transport_in_uninit(axis2_http_transport_in_t *request, 
+	axis2_http_transport_utils_transport_in_uninit(axis2_http_transport_in_t *request,
 												   const axutil_env_t *env);
 
-	/** 
-	 * Initialize the axis2_http_tranport_out_t. Before using this structure users should 
+	/**
+	 * Initialize the axis2_http_tranport_out_t. Before using this structure users should
 	 * initialize it using this method.
-	 * @param out a pointer to a axis2_http_tranport_out_t 
-	 * @param env, environments 
+	 * @param out a pointer to a axis2_http_tranport_out_t
+	 * @param env, environments
 	 */
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
-	axis2_http_transport_utils_transport_out_init(axis2_http_transport_out_t *out, 
+	axis2_http_transport_utils_transport_out_init(axis2_http_transport_out_t *out,
 												const axutil_env_t *env);
 
 
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
-	axis2_http_transport_utils_transport_out_uninit(axis2_http_transport_out_t *response, 
+	axis2_http_transport_utils_transport_out_uninit(axis2_http_transport_out_t *response,
 												const axutil_env_t *env);
 	/**
-	* This methods provides the HTTP request handling functionality using axis2 for server side 
+	* This methods provides the HTTP request handling functionality using axis2 for server side
 	* HTTP modules.
-	* @param env, environments 
+	* @param env, environments
 	* @param conf_ctx, Instance of axis2_conf_ctx_t
 	* @param request, populated instance of axis2_http_transport_in_t struct
 	* @param response, an instance of axis2_http_transport_out_t struct
@@ -248,9 +248,9 @@ extern "C"
 
     /**
     * This function handles the HTTP POST request that comes to the axis2 engine.
-	* The request can be either a SOAP request OR a REST request. 
+	* The request can be either a SOAP request OR a REST request.
     * @param env, axutil_env_t instance
-    * @param msg_ctx, Input message context. (an instance of axis2_msg_ctx_t struct.) 
+    * @param msg_ctx, Input message context. (an instance of axis2_msg_ctx_t struct.)
     * @param in_stream, This is the input message content represented as an axutil_stream instance.
 	*  A callback function will be used to read as required from the stream with in the engine.
     * @param out_stream, This is the output stream. The outgoing message contents is represented as
@@ -456,12 +456,12 @@ extern "C"
         axutil_array_list_t *mime_parts,
         axis2_char_t *sending_callback_name);
 
-    AXIS2_EXTERN void AXIS2_CALL 
+    AXIS2_EXTERN void AXIS2_CALL
     axis2_http_transport_utils_destroy_mime_parts(
         axutil_array_list_t *mime_parts,
         const axutil_env_t *env);
 
-    AXIS2_EXTERN void *AXIS2_CALL 
+    AXIS2_EXTERN void *AXIS2_CALL
         axis2_http_transport_utils_initiate_callback(
         const axutil_env_t *env,
         axis2_char_t *callback_name,

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SAVAN_SUBS_MGR_H
 #define SAVAN_SUBS_MGR_H
 
 /**
   * @file savan_subs_mgr.h
-  * @brief 
+  * @brief
   */
 #include <platforms/axutil_platform_auto_sense.h>
 #include <axutil_utils_defines.h>
@@ -32,11 +32,11 @@ extern "C"
 {
 #endif
 
-/** 
+/**
  * @ingroup savan subscription manager
  * @{
  */
- 
+
 typedef struct savan_subs_mgr savan_subs_mgr_t;
 typedef struct savan_subs_mgr_ops savan_subs_mgr_ops_t;
 struct axis2_conf_ctx;
@@ -46,45 +46,45 @@ struct axis2_conf_ctx;
  * Encapsulator struct for ops of savan_subs_mgr
  */
 AXIS2_DECLARE_DATA struct savan_subs_mgr_ops
-{ 
-    void (AXIS2_CALL * 
+{
+    void (AXIS2_CALL *
             free)(
                 savan_subs_mgr_t *subs_mgr,
                 const axutil_env_t *env);
 
     axis2_status_t (AXIS2_CALL *
             insert_subscriber)(
-                savan_subs_mgr_t *subs_mgr, 
+                savan_subs_mgr_t *subs_mgr,
                 const axutil_env_t *env,
                 savan_subscriber_t *subscriber);
 
     axis2_status_t (AXIS2_CALL *
             update_subscriber)(
-                savan_subs_mgr_t *subs_mgr, 
+                savan_subs_mgr_t *subs_mgr,
                 const axutil_env_t *env,
                 savan_subscriber_t *subscriber);
 
     axis2_status_t (AXIS2_CALL *
             remove_subscriber)(
-                savan_subs_mgr_t *subs_mgr, 
+                savan_subs_mgr_t *subs_mgr,
                 const axutil_env_t *env,
                 const axis2_char_t *subscription_id);
 
     savan_subscriber_t *(AXIS2_CALL *
             retrieve_subscriber)(
-                savan_subs_mgr_t *subs_mgr, 
+                savan_subs_mgr_t *subs_mgr,
                 const axutil_env_t *env,
                 const axis2_char_t *subscription_id);
 
     axutil_array_list_t *(AXIS2_CALL *
             retrieve_all_subscribers)(
-                savan_subs_mgr_t *subs_mgr, 
+                savan_subs_mgr_t *subs_mgr,
                 const axutil_env_t *env,
                 const axis2_char_t *topic_name);
 
     axis2_status_t (AXIS2_CALL *
             insert_topic)(
-                savan_subs_mgr_t *subs_mgr, 
+                savan_subs_mgr_t *subs_mgr,
                 const axutil_env_t *env,
                 const axis2_char_t *topic_name,
                 const axis2_char_t *topic_url);
@@ -120,7 +120,7 @@ savan_subs_mgr_create_with_connection_info(
  * @param subs_mgr
  * @param env environment object
  */
-AXIS2_EXTERN void AXIS2_CALL 
+AXIS2_EXTERN void AXIS2_CALL
 savan_subs_mgr_free(
     savan_subs_mgr_t *subs_mgr,
     const axutil_env_t *envv);
@@ -134,7 +134,7 @@ savan_subs_mgr_free(
  */
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
 savan_subs_mgr_insert_subscriber(
-    savan_subs_mgr_t *subs_mgr, 
+    savan_subs_mgr_t *subs_mgr,
     const axutil_env_t *env,
     savan_subscriber_t *subscriber);
 
@@ -147,7 +147,7 @@ savan_subs_mgr_insert_subscriber(
  */
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
 savan_subs_mgr_update_subscriber(
-    savan_subs_mgr_t *subs_mgr, 
+    savan_subs_mgr_t *subs_mgr,
     const axutil_env_t *env,
     savan_subscriber_t *subscriber);
 
@@ -160,7 +160,7 @@ savan_subs_mgr_update_subscriber(
  */
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
 savan_subs_mgr_remove_subscriber(
-    savan_subs_mgr_t *subs_mgr, 
+    savan_subs_mgr_t *subs_mgr,
     const axutil_env_t *env,
     const axis2_char_t *subscription_id);
 
@@ -173,7 +173,7 @@ savan_subs_mgr_remove_subscriber(
  */
 AXIS2_EXTERN savan_subscriber_t *AXIS2_CALL
 savan_subs_mgr_retrieve_subscriber(
-    savan_subs_mgr_t *subs_mgr, 
+    savan_subs_mgr_t *subs_mgr,
     const axutil_env_t *env,
     const axis2_char_t *subscription_id);
 
@@ -186,7 +186,7 @@ savan_subs_mgr_retrieve_subscriber(
  */
 AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
 savan_subs_mgr_retrieve_all_subscribers(
-    savan_subs_mgr_t *subs_mgr, 
+    savan_subs_mgr_t *subs_mgr,
     const axutil_env_t *env,
     const axis2_char_t *filter);
 
@@ -200,7 +200,7 @@ savan_subs_mgr_retrieve_all_subscribers(
  */
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
 savan_subs_mgr_insert_topic(
-    savan_subs_mgr_t *subs_mgr, 
+    savan_subs_mgr_t *subs_mgr,
     const axutil_env_t *env,
     const axis2_char_t *topic_name,
     const axis2_char_t *topic_url);
@@ -241,7 +241,7 @@ savan_subs_mgr_remove_subscriber_with_msg_ctx(
     savan_subscriber_t *subscriber);
 
 /**
- * Retrieve subs mgr. If it is already created for this request scope then it should be 
+ * Retrieve subs mgr. If it is already created for this request scope then it should be
  * available as a message context property. Otherwise create it and set as message context
  * property.
  * @param env environment object

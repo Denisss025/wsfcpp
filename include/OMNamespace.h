@@ -44,7 +44,7 @@ namespace wso2wsf
      * which identifies the particular occurrence. This class provides an abstraction to
      * namespace associated with the XML model.
      */
-    class OMNamespace 
+    class OMNamespace
     {
         /**
          * Overloaded insertion operator, is used for printing the namespace onto a console.
@@ -69,13 +69,13 @@ namespace wso2wsf
          */
         axiom_namespace_t * _wsf_axiom_namespace;
 	/**
-	* ref This variable keeps track of the number of references to this namespace object.                                                   
+	* ref This variable keeps track of the number of references to this namespace object.
 	*/
 	int _refcounter;
 
     /**
-     * This flag is used to indicate that OMNamspace desructor will release the memory for the 
-     * Axis2/C namespace associated with the OMNamespace. 
+     * This flag is used to indicate that OMNamspace desructor will release the memory for the
+     * Axis2/C namespace associated with the OMNamespace.
      */
     bool _own_axiom_namespace;
 
@@ -97,7 +97,7 @@ namespace wso2wsf
 	* @param uri namespace URI.
 	*/
 	WSF_EXTERN WSF_CALL OMNamespace(std::string uri);
-        
+
 	/**
      * Creates a OMNamespace instance from a uri and a prefix value
      * @param uri namespace URI.
@@ -106,7 +106,7 @@ namespace wso2wsf
     WSF_EXTERN WSF_CALL OMNamespace(std::string uri, std::string prefix);
 
 	/**
-	* Creates an OMNamespace instance from an axiom_namespace_t                                                   
+	* Creates an OMNamespace instance from an axiom_namespace_t
 	* @param ns Pointer to an axiom_namespace
 	* @return an OMNamespace
 	*/
@@ -154,7 +154,7 @@ namespace wso2wsf
 	*/
 	WSF_EXTERN int WSF_CALL incrementRef();
 	/**
-	* Decrement the ref counter by one                                                   
+	* Decrement the ref counter by one
 	* @return the current reference counter
 	*/
 	WSF_EXTERN int WSF_CALL decrementRef();

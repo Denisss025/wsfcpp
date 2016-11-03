@@ -10,7 +10,7 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -38,7 +38,7 @@
             axis2_ClientInfo_t* ClientInfo,
             const axutil_env_t *env);
 
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_ClientInfo_serialize(
@@ -51,7 +51,7 @@
             axis2_ClientInfo_t* ClientInfo,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for name.
@@ -70,7 +70,7 @@
             const axutil_env_t *env,
             axis2_char_t*  param_name);
 
-        
+
 
         /**
          * getter for ssn.
@@ -89,12 +89,12 @@
             const axutil_env_t *env,
             axis2_char_t*  param_ssn);
 
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_CLIENTINFO_H */
-    
+
 

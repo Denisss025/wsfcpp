@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_ACCEPT_H
 #define SANDESHA2_ACCEPT_H
 
 /**
   * @file sandesha2_accept.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -37,50 +37,50 @@ extern "C"
  * @{
  */
 typedef struct sandesha2_accept_t sandesha2_accept_t;
- 
+
 /**
  * @brief sandesha2_accept
  *    sandesha2_accept
  */
 AXIS2_EXTERN sandesha2_accept_t* AXIS2_CALL
 sandesha2_accept_create(
-    const axutil_env_t *env, 
-    axis2_char_t *rm_ns_value, 
+    const axutil_env_t *env,
+    axis2_char_t *rm_ns_value,
     axis2_char_t *addr_ns_value);
-                        
-axis2_status_t AXIS2_CALL 
+
+axis2_status_t AXIS2_CALL
 sandesha2_accept_free(
-    sandesha2_accept_t *accept, 
+    sandesha2_accept_t *accept,
     const axutil_env_t *env);
 
 axis2_status_t AXIS2_CALL
 sandesha2_accept_set_acks_to(
     sandesha2_accept_t *accept,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_acks_to_t *acks_to);
 
 sandesha2_acks_to_t * AXIS2_CALL
 sandesha2_accept_get_acks_to(
     sandesha2_accept_t *accept,
-    const axutil_env_t *env);                    	 
+    const axutil_env_t *env);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_accept_get_namespace_value(
     sandesha2_accept_t *accept,
 	const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_accept_from_om_node(
     sandesha2_accept_t *accept,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *om_node);
-    
-axiom_node_t* AXIS2_CALL 
+
+axiom_node_t* AXIS2_CALL
 sandesha2_accept_to_om_node(
     sandesha2_accept_t *accept,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     void *om_node);
- 
+
 /** @} */
 #ifdef __cplusplus
 }

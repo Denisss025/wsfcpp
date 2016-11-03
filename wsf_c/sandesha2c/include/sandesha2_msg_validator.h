@@ -37,7 +37,7 @@ extern "C"
 
 struct sandesha2_seq_property_mgr;
 
-/** @defgroup sandesha2_msg_validator 
+/** @defgroup sandesha2_msg_validator
   * @ingroup sandesha2
   * @{
   */
@@ -45,7 +45,7 @@ struct sandesha2_seq_property_mgr;
 axis2_status_t AXIS2_CALL
 sandesha2_msg_validator_validate_msg(
     const axutil_env_t *env,
-    sandesha2_msg_ctx_t *rm_msg_ctx, 
+    sandesha2_msg_ctx_t *rm_msg_ctx,
     struct sandesha2_seq_property_mgr *seq_prop_mgr);
 
 

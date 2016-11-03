@@ -40,7 +40,7 @@ extern "C"
      */
 
     /**
-      * creates a soap fault node struct 
+      * creates a soap fault node struct
       * @param env Environment. MUST NOT be NULL
       * @param  fault_node pointer to soap_fault_node struct
       *
@@ -55,7 +55,7 @@ extern "C"
       * Free an axiom_soap_fault_node
       * @param  fault_node pointer to soap_fault_node struct
       * @param  env Environment. MUST NOT be NULL
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN void AXIS2_CALL
@@ -69,7 +69,7 @@ extern "C"
       * @param  env Environment. MUST NOT be NULL
       * @param fault_val the fault string value
       *
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -82,7 +82,7 @@ extern "C"
      * Get the string value of the SOAP fault node
      * @param fault_node pointer to soap_fault_node struct
      * @param  env Environment. MUST NOT be NULL
-     * 
+     *
      * @return satus of the op. AXIS2_SUCCESS on success
      *       else AXIS2_FAILURE
      */

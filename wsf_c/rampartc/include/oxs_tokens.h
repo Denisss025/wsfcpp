@@ -45,7 +45,7 @@ extern "C"
      * @ingroup oxs
      * @{
      */
-    
+
     /**
     * Creates <wsse:BinarySecurityToken> element
     */
@@ -57,7 +57,7 @@ extern "C"
 		axis2_char_t * encoding_type,
 		axis2_char_t * value_type,
 		axis2_char_t * data);
-   
+
     /**
     * Creates <ds:CanonicalizationMethod> element
     */
@@ -72,7 +72,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_c14n_method(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * c14n_mtd_node);
 
     /**
@@ -122,7 +122,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_data_reference(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * data_ref_node);
 
     /**
@@ -139,7 +139,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_digest_method(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * enc_mtd_node);
 
 	/**
@@ -175,7 +175,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_ds_reference(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * ref_node);
 
 	/**
@@ -192,7 +192,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_embedded_id(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * embedded_node);
 
     /**
@@ -232,7 +232,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_encryption_method(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * enc_mtd_node);
 
     /**
@@ -278,7 +278,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_reference(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * ref_node);
 
 	/**
@@ -286,7 +286,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_reference_value_type(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
         axiom_node_t * ref_node);
 
 	/**
@@ -302,8 +302,8 @@ extern "C"
 	 */
     AXIS2_EXTERN axiom_node_t* AXIS2_CALL
     oxs_token_build_data_reference_list(
-		const axutil_env_t * env, 
-		axiom_node_t * parent, 
+		const axutil_env_t * env,
+		axiom_node_t * parent,
 		axutil_array_list_t * id_list);
 
 	/**
@@ -311,7 +311,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axutil_array_list_t * AXIS2_CALL
     oxs_token_get_reference_list_data(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * ref_list_node);
 
 	/**
@@ -354,7 +354,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_signature_method(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * enc_mtd_node);
 
 	/**
@@ -396,7 +396,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_transform(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * transform_node);
 
     /**
@@ -456,7 +456,7 @@ extern "C"
     oxs_token_build_x509_issuer_serial_element(
 		const axutil_env_t * env,
 		axiom_node_t * parent);
-	
+
 	/**
 	 * Creates <ds:X509IssuerSerial> element with issuer name and serial number
 	 */
@@ -492,14 +492,14 @@ extern "C"
 		const axutil_env_t * env,
 		axiom_node_t * parent,
 		axis2_char_t * id,
-		axis2_char_t * val); 
+		axis2_char_t * val);
 
 	/**
 	 * Gets value from <wsse11:SignatureConfirmation> element
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_signature_confirmation_value(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * signature_confirmation_node);
 
 	/**
@@ -507,7 +507,7 @@ extern "C"
 	 */
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_token_get_signature_confirmation_id(
-		const axutil_env_t * env, 
+		const axutil_env_t * env,
 		axiom_node_t * signature_confirmation_node);
 
     /**
@@ -518,7 +518,7 @@ extern "C"
         const axutil_env_t * env,
         axiom_node_t * parent,
         axis2_char_t * id,
-        axis2_char_t * algo, 
+        axis2_char_t * algo,
         axis2_char_t* wsc_ns_uri);
 
     /**
@@ -528,7 +528,7 @@ extern "C"
     oxs_token_build_length_element(
         const axutil_env_t *env,
         axiom_node_t *parent,
-        int length, 
+        int length,
         axis2_char_t *wsc_ns_uri);
 
 	/**
@@ -546,7 +546,7 @@ extern "C"
     oxs_token_build_offset_element(
         const axutil_env_t *env,
         axiom_node_t *parent,
-        int offset, 
+        int offset,
         axis2_char_t *wsc_ns_uri);
 
 	/**
@@ -582,7 +582,7 @@ extern "C"
 	oxs_token_build_label_element(
         const axutil_env_t *env,
 		axiom_node_t *parent,
-		axis2_char_t *label, 
+		axis2_char_t *label,
         axis2_char_t *wsc_ns_uri);
 
 	/**
@@ -600,7 +600,7 @@ extern "C"
     oxs_token_build_properties_element(
         const axutil_env_t *env,
         axiom_node_t *parent,
-        axis2_char_t* properties_val, 
+        axis2_char_t* properties_val,
         axis2_char_t *wsc_ns_uri);
 
 	/**
@@ -610,7 +610,7 @@ extern "C"
     oxs_token_get_properties_value(
         const axutil_env_t *env,
         axiom_node_t *properties_node);
-    
+
     /**
      * Creates <wsc:Generation> element
      */
@@ -618,9 +618,9 @@ extern "C"
     oxs_token_build_generation_element(
         const axutil_env_t *env,
         axiom_node_t *parent,
-        axis2_char_t *generation_val, 
+        axis2_char_t *generation_val,
         axis2_char_t *wsc_ns_uri);
-    
+
 	/**
 	 * Gets value from <wsc:Generation> element
 	 */

@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_xml_signature.h
-  * @brief Does the XML Signature for OMXMLSecurity  
+  * @brief Does the XML Signature for OMXMLSecurity
   */
 /**
 * @defgroup  oxs_xml_signature XML Signature
@@ -42,7 +42,7 @@ extern "C"
 {
 #endif
     /**
-     * Sign according to the information available in the @sign_ctx. 
+     * Sign according to the information available in the @sign_ctx.
      * @env pointer to environment struct
      * @sign_ctx the signature context
      * @parent the node that the ds:Signature element should be attached.

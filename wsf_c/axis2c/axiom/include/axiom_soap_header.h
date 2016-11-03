@@ -57,7 +57,7 @@ extern "C"
       * Free an axiom_soap_header
       * @param  header pointer to soap_header struct
       * @param  env Environment. MUST NOT be NULL
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN void AXIS2_CALL
@@ -107,7 +107,7 @@ extern "C"
      * returns an arraylist of header_blocks which has a given namesapce uri
      * @param  header pointer to soap_header struct
      * @param  env Environment. MUST NOT be NULL
-     * @param ns_uri namespace uri 
+     * @param ns_uri namespace uri
      * @return pointer to axutil_array_list_t, or null if no header_blocks with
      * given namespace uri exists
      * The returned array_list must be freed by the user.
@@ -119,10 +119,10 @@ extern "C"
         const axis2_char_t * ns_uri);
 
     /**
-     * returns an iterator to iterate through all soap header block's om nodes 
+     * returns an iterator to iterate through all soap header block's om nodes
      * @param  header pointer to soap_header struct
      * @param  env Environment. MUST NOT be NULL
-     * @returns axiom_children_qname_iterator_t or null if no header blocks 
+     * @returns axiom_children_qname_iterator_t or null if no header blocks
      * present
      */
     AXIS2_EXTERN axiom_children_qname_iterator_t *AXIS2_CALL
@@ -131,12 +131,12 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * returns an iterator to iterate through all  header blocks om_nodes 
+     * returns an iterator to iterate through all  header blocks om_nodes
      * with the matching role attribute
      * @param  header pointer to soap_header struct
      * @param  env Environment. MUST NOT be NULL
-     * @param role 
-     * @returns iterator or null if no header blocks present with matching 
+     * @param role
+     * @returns iterator or null if no header blocks present with matching
      * role attribute
      */
     AXIS2_EXTERN axiom_children_with_specific_attribute_iterator_t
@@ -188,7 +188,7 @@ extern "C"
      * qname should not be null
      * @param  header pointer to soap_header struct
      * @param  env Environment. MUST NOT be NULL
-     * 
+     *
      * @return status of the op. AXIS2_SUCCESS on success
      *         else AXIS2_FAILURE
      */

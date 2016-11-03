@@ -10,7 +10,7 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -38,12 +38,12 @@
             axis2_depositRequest_t* depositRequest,
             const axutil_env_t *env);
 
-        
+
         axutil_qname_t* AXIS2_CALL
         axis2_depositRequest_get_qname (
             axis2_depositRequest_t* depositRequest,
             const axutil_env_t *env);
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_depositRequest_serialize(
@@ -56,7 +56,7 @@
             axis2_depositRequest_t* depositRequest,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for useridr.
@@ -75,7 +75,7 @@
             const axutil_env_t *env,
             axis2_char_t*  param_useridr);
 
-        
+
 
         /**
          * getter for password.
@@ -94,7 +94,7 @@
             const axutil_env_t *env,
             axis2_char_t*  param_password);
 
-        
+
 
         /**
          * getter for amount.
@@ -113,12 +113,12 @@
             const axutil_env_t *env,
             float  param_amount);
 
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_DEPOSITREQUEST_H */
-    
+
 

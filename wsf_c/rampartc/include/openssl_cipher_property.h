@@ -18,7 +18,7 @@
 #include<oxs_buffer.h>
 
 /**
-  * @file openssl_cipher_property.h 
+  * @file openssl_cipher_property.h
   * @brief The class to store cipher properties such as name, key size, block size etc
   */
 #ifndef OPENSSL_CIPHER_PROPERTY_H
@@ -41,9 +41,9 @@ extern "C" {
 
     /**
      * Given the OpenSSL cipher property returns the cipher
-     * @param cprop The OpenSSL cipher property 
+     * @param cprop The OpenSSL cipher property
      * @param env pointer to environment struct
-     * @return the cipher 
+     * @return the cipher
      */
     EVP_CIPHER * AXIS2_CALL
     openssl_cipher_property_get_cipher(
@@ -52,7 +52,7 @@ extern "C" {
 
     /**
      * Given the OpenSSL cipher property returns the name of the property
-     * @param cprop The OpenSSL cipher property 
+     * @param cprop The OpenSSL cipher property
      * @param env pointer to environment struct
      * @return the name of the cipher property
      */
@@ -64,7 +64,7 @@ extern "C" {
     /**
      * Given the OpenSSL cipher property returns the URL
      * Which usually is an algorithm URL
-     * @param cprop The OpenSSL cipher property 
+     * @param cprop The OpenSSL cipher property
      * @param env pointer to environment struct
      * @return the URL
      */
@@ -75,7 +75,7 @@ extern "C" {
 
     /**
      * Given the OpenSSL cipher property returns the size of the key
-     * @param cprop The OpenSSL cipher property 
+     * @param cprop The OpenSSL cipher property
      * @param env pointer to environment struct
      * @return size of the key
      */
@@ -85,8 +85,8 @@ extern "C" {
         const axutil_env_t *env);
 
     /**
-     * Given the OpenSSL cipher property returns the cipher block size 
-     * @param cprop The OpenSSL cipher property 
+     * Given the OpenSSL cipher property returns the cipher block size
+     * @param cprop The OpenSSL cipher property
      * @param env pointer to environment struct
      * @return the block size of the cipher
      */
@@ -97,9 +97,9 @@ extern "C" {
 
     /**
      * Given the OpenSSL cipher property returns the size of the initial vector
-     * @param cprop The OpenSSL cipher property 
+     * @param cprop The OpenSSL cipher property
      * @param env pointer to environment struct
-     * @return the size of the initial vector 
+     * @return the size of the initial vector
      */
     int AXIS2_CALL
     openssl_cipher_property_get_iv_size(
@@ -110,7 +110,7 @@ extern "C" {
      * Set the Cipher for the OpenSSL cipher property
      * @param cprop The OpenSSL cipher property
      * @param env pointer to environment struct
-     * @param cipher The cipher to be set in the property 
+     * @param cipher The cipher to be set in the property
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     axis2_status_t AXIS2_CALL
@@ -149,7 +149,7 @@ extern "C" {
      * Set the the size of the key for the OpenSSL cipher property
      * @param cprop The OpenSSL cipher property
      * @param env pointer to environment struct
-     * @param key_size the size of the key 
+     * @param key_size the size of the key
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     axis2_status_t AXIS2_CALL
@@ -176,7 +176,7 @@ extern "C" {
      * Set the size of the initial vector for the OpenSSL cipher property
      * @param cprop The OpenSSL cipher property
      * @param env pointer to environment struct
-     * @param iv_size the size of the initial vector 
+     * @param iv_size the size of the initial vector
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     axis2_status_t AXIS2_CALL
@@ -192,7 +192,7 @@ extern "C" {
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     axis2_status_t AXIS2_CALL
-    openssl_cipher_property_free(openssl_cipher_property_t * cprop, 
+    openssl_cipher_property_free(openssl_cipher_property_t * cprop,
         const axutil_env_t *env);
 
 

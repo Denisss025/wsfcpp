@@ -42,7 +42,7 @@ extern "C"
      */
 
     /**
-      * creates a soap struct 
+      * creates a soap struct
       * @param env Environment. MUST NOT be NULL
       * @param  fault The SOAP fault
       *
@@ -57,7 +57,7 @@ extern "C"
       * Free an axiom_soap_fault_detail
       * @param  fault_detail pointer to soap_fault_detail struct
       * @param  env Environment. MUST NOT be NULL
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN void AXIS2_CALL
@@ -66,10 +66,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Adds a detail entry to the SOAP fault detail 
+     * Adds a detail entry to the SOAP fault detail
      * @param  fault_detail pointer to soap_fault_detail struct
      * @param  env Environment. MUST NOT be NULL
-     * @return satus of the op. AXIS2_SUCCESS on success 
+     * @return satus of the op. AXIS2_SUCCESS on success
      *         else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -82,7 +82,7 @@ extern "C"
      * Return all detail entries in the SOAP fault detail
      * @param  fault_detail pointer to soap_fault_detail struct
      * @param  env Environment. MUST NOT be NULL
-     * @return satus of the op. AXIS2_SUCCESS on success 
+     * @return satus of the op. AXIS2_SUCCESS on success
      *         else AXIS2_FAILURE
      */
     AXIS2_EXTERN axiom_children_iterator_t *AXIS2_CALL
@@ -94,7 +94,7 @@ extern "C"
      * Returns the base node of the SOAP fault detail
      * @param  fault_detail pointer to soap_fault_detail struct
      * @param  env Environment. MUST NOT be NULL
-     * @return satus of the op. AXIS2_SUCCESS on success 
+     * @return satus of the op. AXIS2_SUCCESS on success
      *         else AXIS2_FAILURE
      */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL

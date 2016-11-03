@@ -91,6 +91,6 @@ enum guththila_error_codes
     GUTHTHILA_WRITER_ERROR_SAME_ATTRIBUTE_REPEAT,
     GUTHTHILA_ERROR_ATTRIBUTE_FREE
 };
-EXTERN_C_END() 
+EXTERN_C_END()
 #endif  /*  */
 

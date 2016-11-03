@@ -78,7 +78,7 @@ axis2_xmpp_session_create (
 
 AXIS2_EXTERN void AXIS2_CALL
 axis2_xmpp_session_free (
-    axis2_xmpp_session_data_t *session, 
+    axis2_xmpp_session_data_t *session,
     const axutil_env_t *env);
 
 AXIS2_EXTERN void AXIS2_CALL

@@ -10,7 +10,7 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -38,7 +38,7 @@
             axis2_MarketInfo_t* MarketInfo,
             const axutil_env_t *env);
 
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_MarketInfo_serialize(
@@ -51,7 +51,7 @@
             axis2_MarketInfo_t* MarketInfo,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for totalTraded.
@@ -70,7 +70,7 @@
             const axutil_env_t *env,
             float  param_totalTraded);
 
-        
+
 
         /**
          * getter for avgPrice.
@@ -89,7 +89,7 @@
             const axutil_env_t *env,
             float  param_avgPrice);
 
-        
+
 
         /**
          * getter for avgPriceOfTrade.
@@ -108,7 +108,7 @@
             const axutil_env_t *env,
             float  param_avgPriceOfTrade);
 
-        
+
 
         /**
          * getter for marketCap.
@@ -127,12 +127,12 @@
             const axutil_env_t *env,
             float  param_marketCap);
 
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_MARKETINFO_H */
-    
+
 

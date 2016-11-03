@@ -21,7 +21,7 @@
 
 /**
   * @file openssl_digest.h
-  * @brief Digest function implementations. Supports SHA1 and MD5 
+  * @brief Digest function implementations. Supports SHA1 and MD5
   */
 #ifndef OPENSSL_DIGEST
 #define OPENSSL_DIGEST
@@ -31,7 +31,7 @@ extern "C" {
 #endif
 
     /**
-      * @defgroup openssl_digest OpenSSL Digest 
+      * @defgroup openssl_digest OpenSSL Digest
       * @ingroup openssl
       * @{
       */

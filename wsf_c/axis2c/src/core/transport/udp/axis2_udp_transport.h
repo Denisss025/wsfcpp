@@ -66,7 +66,7 @@ extern "C"
 
 #define AXIS2_UDP_BACKCHANNEL_INFO					"UDPBackChannelInfo"
 
-		
+
 typedef struct axis2_udp_transport_params
 {
 	int udp_repeat;
@@ -88,5 +88,5 @@ typedef struct axis2_udp_backchannel_info
 }
 #endif
 
-#endif   
+#endif
 

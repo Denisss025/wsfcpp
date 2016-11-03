@@ -62,11 +62,11 @@ extern "C"
     axiom_data_handler_get_content_type(
         axiom_data_handler_t * data_handler,
         const axutil_env_t * env);
-	
+
     /**
      * @param data_handler, a pointer to data handler struct
      * @param env environment, MUST NOT be NULL.
-	 * @param mime type, 
+	 * @param mime type,
      * @return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -84,11 +84,11 @@ extern "C"
     axiom_data_handler_get_cached(
         axiom_data_handler_t * data_handler,
         const axutil_env_t * env);
-	
+
     /**
      * @param data_handler, a pointer to data handler struct
      * @param env environment, MUST NOT be NULL.
-	 * @param cached, 
+	 * @param cached,
      * @return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
     AXIS2_EXTERN void AXIS2_CALL
@@ -120,10 +120,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * The data_handler is responsible for memory occupied by the stream 
+     * The data_handler is responsible for memory occupied by the stream
      * returned
      * @param output_stream parameter to store reference to output byte stream.
-     * @param output_stream_size parameter to store reference to output byte 
+     * @param output_stream_size parameter to store reference to output byte
      * stream length
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -200,18 +200,18 @@ extern "C"
     /* Add the binary to the array_list
      * @param data_handler, a pointer to data handler struct
      * data_handler, a pointer to data handler struct
-     * list, a pointer to an array_list which containing some message parts need 
+     * list, a pointer to an array_list which containing some message parts need
      * to be written to the wire
      * data_handler, a pointer to data handler struct
-     */ 
-    
+     */
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axiom_data_handler_add_binary_data(
         axiom_data_handler_t *data_handler,
         const axutil_env_t *env,
         axutil_array_list_t *list);
-   
- 
+
+
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axiom_data_handler_get_mime_id(
         axiom_data_handler_t *data_handler,
@@ -220,7 +220,7 @@ extern "C"
      /**
      * @param data_handler, a pointer to data handler struct
      * @param env environment, MUST NOT be NULL.
-     * @param mime id, 
+     * @param mime id,
      * @return status code, AXIS2_SUCCESS on success and AXIS2_FAILURE on error.
      */
 
@@ -264,7 +264,7 @@ extern "C"
         const axutil_env_t *env,
         void *user_param);
 
-    
+
     /** @} */
 
 #ifdef __cplusplus

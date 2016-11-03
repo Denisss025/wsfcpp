@@ -51,7 +51,7 @@ namespace wso2wsf
      */
 
     /**
-     * @brief Class ServiceClient 
+     * @brief Class ServiceClient
      * The service client Class serves as the primary client
      * interface for consuming services. The Service Client is
      * associated to a repository which includes an axis2.xml.
@@ -66,12 +66,12 @@ namespace wso2wsf
      * supported by service client are out-only and out-in. Each MEP
      * can be used in either blocking or non-blocking mode.Out-only MEP
      * means one way message which does not expect a response. Out-In MEP means
-     * a request response message exchange. The operation invocations using 
-     * the service client API are based on the XML-in/XML-out principle: both 
-     * the payload to be sent to the service and the result from the service 
+     * a request response message exchange. The operation invocations using
+     * the service client API are based on the XML-in/XML-out principle: both
+     * the payload to be sent to the service and the result from the service
      * are in XML, represented in AXIOM.
      */
-    class ServiceClient 
+    class ServiceClient
     {
 
 	friend class Stub;
@@ -133,8 +133,8 @@ namespace wso2wsf
 
 	/**
 	*  isValid This variable is used to keep track of the consistency of
-	* service client. If the value is false, that means, ServiceClient object 
-	* instance is in an inconsistent stage due to an error condition.                                                    
+	* service client. If the value is false, that means, ServiceClient object
+	* instance is in an inconsistent stage due to an error condition.
 	*/
 	bool isValid;
     /**
@@ -143,12 +143,12 @@ namespace wso2wsf
      */
     bool WSF_CALL initializeClient();
 	/**
-	*  @returns the message contexts associated with the current service client.                                                   
+	*  @returns the message contexts associated with the current service client.
 	*/
 	MessageContext* WSF_CALL getMessageContext(axis2_wsdl_msg_labels_t message_lebel);
 
 	/**
-	* Reset the OMNamespace for the remove of the Payload Axiom Node                                                   
+	* Reset the OMNamespace for the remove of the Payload Axiom Node
 	*/
 	void resetAxiomPayloadNamespace(OMElement *payload);
 
@@ -180,11 +180,11 @@ namespace wso2wsf
     WSF_EXTERN WSF_CALL ServiceClient(const axis2_conf_ctx_t * conf_ctx, std::string endpoint_address);
 
     /**
-     * Destructor frees resources. 
+     * Destructor frees resources.
      */
     WSF_EXTERN virtual WSF_CALL ~ServiceClient();
 	/**
-	* Checks whether the ServiceClient got properly initialized or not. 
+	* Checks whether the ServiceClient got properly initialized or not.
 	* If the service client is properly initialized, it will return true  and will return false otherwise.
 	* @return true on success, false otherwise.
 	*/
@@ -384,7 +384,7 @@ namespace wso2wsf
      * Returns the axis2_svc_client used within ServiceClient.
 	 */
 	WSF_EXTERN axis2_svc_client_t* WSF_CALL getAxis2SvcClient();
-	/** 
+	/**
 	 * Returns the axis2_conf_ctx_t which can be used to create a configuration context once and pass it when creating multiple service clients.
 	 */
 	WSF_EXTERN axis2_conf_ctx_t* WSF_CALL getAxis2ConfCtx(std::string repositoryPath);
@@ -398,7 +398,7 @@ namespace wso2wsf
 	WSF_EXTERN bool WSF_CALL setProxy(std::string proxyHost, std::string proxyPort);
 
 	/**
-	 * Set proxy with authentication                                                   
+	 * Set proxy with authentication
 	 * @param proxyHost Proxy host
 	 * @param proxyPort proxy port
 	 * @param username  username required for proxy authentication
@@ -421,20 +421,20 @@ namespace wso2wsf
 	WSF_EXTERN bool WSF_CALL getProxyAuthRequired();
 
 	/**
-	 * Returns the MessageContext object used in the inflow of the Engine.                                                   
+	 * Returns the MessageContext object used in the inflow of the Engine.
 	 * @returns MessageContext
 	 */
 	WSF_EXTERN MessageContext* WSF_CALL getInMessageContext();
 
 	/**
-	 * Returns the MessageContext object used in the outflow of the engine. 
+	 * Returns the MessageContext object used in the outflow of the engine.
 	 * This method is only valid when calling after a service invocation call using
-	 * ServiceClient::request or ServiceClient::send methods. 
+	 * ServiceClient::request or ServiceClient::send methods.
 	 * @returns MessageContext. Freeing the returned MessageContext must be freed by the
-	 * user. Before freeing the message context use 
+	 * user. Before freeing the message context use
 	 */
 	WSF_EXTERN MessageContext* WSF_CALL	getOutMessageContext();
-    
+
     WSF_EXTERN bool WSF_CALL close();
 
     };

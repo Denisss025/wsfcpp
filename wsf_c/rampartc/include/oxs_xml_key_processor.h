@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_xml_key_processor.h
-  * @brief Process elements available under ds:KeyInfo  
+  * @brief Process elements available under ds:KeyInfo
   */
 
 /**

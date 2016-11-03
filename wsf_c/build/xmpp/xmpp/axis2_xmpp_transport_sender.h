@@ -42,7 +42,7 @@ extern "C"
 #endif
 
     /**
-     * @param env pointer to environment struct 
+     * @param env pointer to environment struct
      */
     AXIS2_EXTERN axis2_transport_sender_t *AXIS2_CALL
     axis2_xmpp_transport_sender_create(

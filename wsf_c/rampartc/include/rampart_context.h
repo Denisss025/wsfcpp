@@ -80,65 +80,65 @@ extern "C"
         const char *digest,
         void *ctx);
 
-    /* This function will be used to store sct. Global id, local id will be given so function 
-     * writer can store them in anyway. Get or Delete method will use any of the Global id or local 
+    /* This function will be used to store sct. Global id, local id will be given so function
+     * writer can store them in anyway. Get or Delete method will use any of the Global id or local
      * id, so Store function writer should be ready for that.
      */
     typedef axis2_status_t (AXIS2_CALL*
         store_security_context_token_fn)(
-        const axutil_env_t *env, 
-        axis2_msg_ctx_t* msg_ctx, 
-        axis2_char_t *sct_global_id, 
-        axis2_char_t *sct_local_id, 
-        void *sct, 
+        const axutil_env_t *env,
+        axis2_msg_ctx_t* msg_ctx,
+        axis2_char_t *sct_global_id,
+        axis2_char_t *sct_local_id,
+        void *sct,
         void *user_params);
 
-    /* This function will be called to get previously stored sct. If secure conversation token is 
-     * referred by this method, then sct_id will be not null. However, if security context token 
-     * (pre-agreed and established offline) is refered then sct_id might be NULL. is_encryption is 
-     * passed, so that if pre-agreed sct is different for encryption and signature, then it could be 
-     * accessed. sct_id_type will be RAMPART_SCT_ID_TYPE_LOCAL or RAMPART_SCT_ID_TYPE_GLOBAL if 
+    /* This function will be called to get previously stored sct. If secure conversation token is
+     * referred by this method, then sct_id will be not null. However, if security context token
+     * (pre-agreed and established offline) is refered then sct_id might be NULL. is_encryption is
+     * passed, so that if pre-agreed sct is different for encryption and signature, then it could be
+     * accessed. sct_id_type will be RAMPART_SCT_ID_TYPE_LOCAL or RAMPART_SCT_ID_TYPE_GLOBAL if
      * sct_id is NOT NULL. If sct_id is NULL, then sct_id_type will be RAMPART_SCT_ID_TYPE_UNKNOWN
      */
     typedef void* (AXIS2_CALL*
         obtain_security_context_token_fn)(
-        const axutil_env_t *env, 
-        axis2_bool_t is_encryption, 
-        axis2_msg_ctx_t* msg_ctx, 
-        axis2_char_t *sct_id, 
+        const axutil_env_t *env,
+        axis2_bool_t is_encryption,
+        axis2_msg_ctx_t* msg_ctx,
+        axis2_char_t *sct_id,
         int sct_id_type,
         void* user_params);
 
-    /* This function will be called to delete previously stored sct. sct_id_type can be 
+    /* This function will be called to delete previously stored sct. sct_id_type can be
      * RAMPART_SCT_ID_TYPE_LOCAL or RAMPART_SCT_ID_TYPE_GLOBAL
      */
     typedef axis2_status_t (AXIS2_CALL*
         delete_security_context_token_fn)(
-        const axutil_env_t *env, 
-        axis2_msg_ctx_t* msg_ctx, 
-        axis2_char_t *sct_id, 
+        const axutil_env_t *env,
+        axis2_msg_ctx_t* msg_ctx,
+        axis2_char_t *sct_id,
         int sct_id_type,
         void* user_params);
 
-    /* Validates whether security context token is valid or not. Normally, we can directly send 
-     * true as response. But if syntax of security context token is altered/added by using 
-     * extensible mechanism (e.g having sessions, etc.) then user can implement this method. 
-     * Axiom representation of the sct will be given as the parameter, because if sct is 
+    /* Validates whether security context token is valid or not. Normally, we can directly send
+     * true as response. But if syntax of security context token is altered/added by using
+     * extensible mechanism (e.g having sessions, etc.) then user can implement this method.
+     * Axiom representation of the sct will be given as the parameter, because if sct is
      * extended, we don't know the syntax. Method writer can implement whatever needed.
      */
     typedef axis2_status_t (AXIS2_CALL*
     validate_security_context_token_fn)(
-        const axutil_env_t *env, 
-        axiom_node_t *sct_node, 
-        axis2_msg_ctx_t *msg_ctx, 
+        const axutil_env_t *env,
+        axiom_node_t *sct_node,
+        axis2_msg_ctx_t *msg_ctx,
         void *user_params);
 
-	
+
     /**
     * Create a rampart_context.rampart_context is the wrapper
     * of secpolicy and the main configuration for rampart.
     * @param env pointer to environment struct,Must not be NULL.
-    * @return ramaprt_context_t* on successful creation.Else NULL; 
+    * @return ramaprt_context_t* on successful creation.Else NULL;
     */
 
     AXIS2_EXTERN rampart_context_t *AXIS2_CALL
@@ -162,12 +162,12 @@ extern "C"
 
     /**
     * Sets the policy node which is an om_node containing policy.This om_node
-    * can be build outside rampart. 
+    * can be build outside rampart.
     * @param rampart_context the rampart_context
     * @param env pointer to environment struct,Must not be NULL.
     * @param policy_node is an axiom_node.
-    * @returns status of the op.                                                                                                        
-    * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+    * @returns status of the op.
+    * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
     */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -177,12 +177,12 @@ extern "C"
 
     /**
     * Sets private key of sender as a buffer.This can be
-    * set from outside rampart.  
+    * set from outside rampart.
     * @param rampart_context the rampart_context
     * @param env pointer to environment struct,Must not be NULL.
     * @param prv_key is a void buffer.
-    * @returns status of the op.                                                                                                        
-    * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+    * @returns status of the op.
+    * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
     */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -194,8 +194,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @type
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -207,8 +207,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param certificate
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -220,8 +220,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param type
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -232,10 +232,10 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
+     * @returns status of the op.
      * @param receiver_certificate
      * returns status of the op.
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -247,8 +247,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param type
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -260,8 +260,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param user
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -273,8 +273,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param password
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -286,8 +286,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param prv_key_password
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -300,8 +300,8 @@ extern "C"
      * @param env pointer to environment struct,Must not be NULL.
      * @param pwcb_function
      * @param ctx
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -314,8 +314,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param is_replayed_function
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -323,7 +323,7 @@ extern "C"
         const axutil_env_t *env,
         rampart_is_replayed_fn is_replayed_function,
         void *user_params);
-    
+
     /**
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
@@ -338,8 +338,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param password_type
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
 
@@ -352,8 +352,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param ttl
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -379,8 +379,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param rd_val
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -392,8 +392,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param private_key_file
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -405,22 +405,22 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param cerficate_file
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_certificate_file(rampart_context_t *rampart_context,
                                          const axutil_env_t *env,
                                          axis2_char_t *certificate_file);
-    
+
 	/**
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param key
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -434,8 +434,8 @@ extern "C"
     /**
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
@@ -446,8 +446,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN void *AXIS2_CALL
@@ -458,8 +458,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_key_type_t AXIS2_CALL
@@ -470,8 +470,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN void *AXIS2_CALL
@@ -482,8 +482,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_key_type_t AXIS2_CALL
@@ -494,8 +494,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN void *AXIS2_CALL
@@ -506,8 +506,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_key_type_t AXIS2_CALL
@@ -518,8 +518,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -530,8 +530,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -542,8 +542,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -554,8 +554,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN password_callback_fn AXIS2_CALL
@@ -564,10 +564,10 @@ extern "C"
         const axutil_env_t *env);
     /**
      *
-     * @param rampart_context     
+     * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN rampart_is_replayed_fn AXIS2_CALL
@@ -578,8 +578,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN void * AXIS2_CALL
@@ -590,8 +590,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN int AXIS2_CALL
@@ -613,8 +613,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
@@ -625,8 +625,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
 
@@ -638,8 +638,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axutil_array_list_t* AXIS2_CALL
@@ -650,8 +650,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param key_id
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN oxs_key_t* AXIS2_CALL
@@ -663,8 +663,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param hash
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN oxs_key_t* AXIS2_CALL
@@ -679,8 +679,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN rp_secpolicy_t *AXIS2_CALL
@@ -692,8 +692,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param secpolicy
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -704,8 +704,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN rampart_callback_t *AXIS2_CALL
@@ -716,8 +716,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -729,8 +729,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param password_callback_module
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN auth_password_func AXIS2_CALL
@@ -742,8 +742,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param authentication_with_password
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -754,8 +754,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN auth_digest_func AXIS2_CALL
@@ -767,8 +767,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param authentication_with_digest
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -779,8 +779,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN rampart_authn_provider_t *AXIS2_CALL
@@ -790,8 +790,8 @@ extern "C"
     /**
      *
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN void *AXIS2_CALL
@@ -802,8 +802,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN void *AXIS2_CALL
@@ -815,8 +815,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param authn_provider
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -828,10 +828,10 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param replay_detector
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
-	
+
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	rampart_context_set_replay_detector(rampart_context_t *rampart_context,
        const axutil_env_t *env,
@@ -841,8 +841,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param sct_module
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -853,8 +853,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -865,8 +865,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -877,8 +877,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN rp_property_type_t AXIS2_CALL
@@ -889,8 +889,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -901,8 +901,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -916,14 +916,14 @@ extern "C"
      * @param server_side
      * @param is_inpath
      * @param token_type
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
 	AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 	rampart_context_is_include_supporting_token(
 		rampart_context_t *rampart_context, const axutil_env_t *env,
-		axis2_bool_t server_side, axis2_bool_t is_inpath, 
+		axis2_bool_t server_side, axis2_bool_t is_inpath,
 		rp_property_type_t token_type);
     /**
      *
@@ -931,21 +931,21 @@ extern "C"
      * @param server_side
      * @param is_inpath
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     rampart_context_is_include_protection_saml_token(
-        rampart_context_t *rampart_context, axis2_bool_t server_side, 
+        rampart_context_t *rampart_context, axis2_bool_t server_side,
         axis2_bool_t is_inpath, const axutil_env_t *env);
     /**
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param token_type
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
 	AXIS2_EXTERN rp_property_t * AXIS2_CALL
@@ -956,8 +956,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -968,8 +968,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -980,8 +980,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -990,10 +990,10 @@ extern "C"
         const axutil_env_t *env);
     /**
      *
-     * @param rampart_context     
+     * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -1004,8 +1004,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -1016,8 +1016,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -1030,8 +1030,8 @@ extern "C"
      * @param env pointer to environment struct,Must not be NULL.
      * @param soap_envelope
      * @param nodes_to_encrypt
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1046,8 +1046,8 @@ extern "C"
      * @param env pointer to environment struct,Must not be NULL.
      * @param soap_envelope
      * @param nodes_to_sign
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1062,8 +1062,8 @@ extern "C"
      * @param env pointer to environment struct,Must not be NULL.
      * @param soap_envelope
      * @param nodes_to_encrypt
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1078,8 +1078,8 @@ extern "C"
      * @param env pointer to environment struct,Must not be NULL.
      * @param soap_envelope
      * @param nodes_to_sign
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1092,11 +1092,11 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
+     * @returns status of the op.
      * @param for_encryption
      * @param sever_side
      * @param is_inpath
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN rp_property_t *AXIS2_CALL
@@ -1110,8 +1110,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN rp_property_t *AXIS2_CALL
@@ -1122,7 +1122,7 @@ extern "C"
      *
      * @param env pointer to environment struct,Must not be NULL.
      * @param token
-     * @returns whether derived key needed or not                                                                                                        
+     * @returns whether derived key needed or not
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     rampart_context_check_is_derived_keys(
@@ -1132,19 +1132,19 @@ extern "C"
     /**
      * @param env pointer to environment struct,Must not be NULL.
      * @param token
-     * @returns derived key version. NULL on error.                                                                                                        
+     * @returns derived key version. NULL on error.
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     rampart_context_get_derived_key_version(
-        const axutil_env_t *env, 
+        const axutil_env_t *env,
         rp_property_t *token);
 
     /**
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -1155,8 +1155,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -1167,8 +1167,8 @@ extern "C"
     /**
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     rampart_context_get_asym_sig_algo(
@@ -1190,8 +1190,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -1202,8 +1202,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -1218,8 +1218,8 @@ extern "C"
      * @param server_side
      * @param is_inpath
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -1235,10 +1235,10 @@ extern "C"
      * @param rampart_context
      * @param token
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
-    
+
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     rampart_context_get_key_identifier(
         rampart_context_t *rampart_context,
@@ -1248,8 +1248,8 @@ extern "C"
      *
      * @param token_type
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -1262,8 +1262,8 @@ extern "C"
      * @param token
      * @param identifier
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -1276,20 +1276,20 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     rampart_context_get_layout(
         rampart_context_t *rampart_context,
         const axutil_env_t *env);
-    /** 
+    /**
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -1300,8 +1300,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -1312,8 +1312,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1324,8 +1324,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1336,8 +1336,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -1348,8 +1348,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -1360,8 +1360,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
@@ -1372,8 +1372,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1395,8 +1395,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1407,8 +1407,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN oxs_key_t *AXIS2_CALL
@@ -1420,8 +1420,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param session_key
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1433,8 +1433,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN oxs_key_t *AXIS2_CALL
@@ -1446,8 +1446,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param session_key
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1459,8 +1459,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1471,8 +1471,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -1483,57 +1483,57 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     rampart_context_get_encryption_token_id(
         rampart_context_t *rampart_context,
-        const axutil_env_t *env, 
+        const axutil_env_t *env,
         axis2_msg_ctx_t* msg_ctx);
     /**
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     rampart_context_get_signature_token_id(
         rampart_context_t *rampart_context,
-        const axutil_env_t *env, 
+        const axutil_env_t *env,
         axis2_msg_ctx_t* msg_ctx);
     /**
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param sct_id
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_encryption_token_id(
         rampart_context_t *rampart_context,
         const axutil_env_t *env,
-        axis2_char_t *sct_id, 
+        axis2_char_t *sct_id,
         axis2_msg_ctx_t* msg_ctx);
     /**
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param sct_id
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_signature_token_id(
         rampart_context_t *rampart_context,
         const axutil_env_t *env,
-        axis2_char_t *sct_id, 
+        axis2_char_t *sct_id,
         axis2_msg_ctx_t* msg_ctx);
 
 
@@ -1543,8 +1543,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param token_type
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN rampart_saml_token_t * AXIS2_CALL
@@ -1558,8 +1558,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param token
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1571,8 +1571,8 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param tokens
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
      AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1584,21 +1584,21 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN issued_token_callback_func AXIS2_CALL
     rampart_context_get_issued_token_aquire_function(
-        rampart_context_t *rampart_context, 
-	const axutil_env_t *env);  
+        rampart_context_t *rampart_context,
+	const axutil_env_t *env);
     /**
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param issued_token_aquire
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -1610,8 +1610,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN int AXIS2_CALL
@@ -1622,8 +1622,8 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN int AXIS2_CALL
@@ -1634,15 +1634,15 @@ extern "C"
      *
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
     AXIS2_EXTERN rp_algorithmsuite_t *AXIS2_CALL
     rampart_context_get_algorithmsuite(
         rampart_context_t *rampart_context,
         const axutil_env_t *env);
-    
+
     /**
      * Get the key manager from rampart context.
      * @param rampart_context Pointer to rampart context struct.
@@ -1663,10 +1663,10 @@ extern "C"
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_key_mgr(
-        rampart_context_t *rampart_context, 
-	const axutil_env_t *env, 
-        oxs_key_mgr_t *key_mgr); 
-    
+        rampart_context_t *rampart_context,
+	const axutil_env_t *env,
+        oxs_key_mgr_t *key_mgr);
+
     /**
      * Get the pkcs12 file name from rampart context.
      * @param rampart_context Pointer to rampart context struct.
@@ -1684,20 +1684,20 @@ extern "C"
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
      * @param tokens the token list as an array
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_custom_tokens(rampart_context_t *rampart_context,
                                         const axutil_env_t *env,
-                                        axutil_array_list_t *tokens); 
+                                        axutil_array_list_t *tokens);
 
     /**
      * Get the node or the token list as an array. If the size is 0
      * that means there are no custom tokens specified by the client
      * @param rampart_context
      * @param env pointer to environment struct,Must not be NULL.
-     * @returns the custom tokens list 
+     * @returns the custom tokens list
      */
     AXIS2_EXTERN axutil_array_list_t* AXIS2_CALL
     rampart_context_get_custom_tokens(rampart_context_t *rampart_context,
@@ -1713,7 +1713,7 @@ extern "C"
     rampart_context_get_receiver_certificate_file(
         rampart_context_t *rampart_context,
         const axutil_env_t *env);
-      
+
     /**
      * Get the found_cert_in_shp from rampart context.
      * @param rampart_context Pointer to rampart context struct.
@@ -1724,7 +1724,7 @@ extern "C"
     rampart_context_get_found_cert_in_shp(
         rampart_context_t *rampart_context,
         const axutil_env_t *env);
-    
+
     /**
      * Set the certificate found status to rampart context.
      * @param rampart_context Pointer to rampart context struct.
@@ -1737,25 +1737,25 @@ extern "C"
         rampart_context_t *rampart_context,
         const axutil_env_t *env,
         axis2_bool_t found_cert_in_shp);
-    
+
     /**
      * Get the certificate found in shp from rampart context.
      * @param rampart_context Pointer to rampart context struct.
      * @param env Pointer to environment struct
      * @returns oxs_x509_cert_t Client certificate found when processing sec header, otherwise NULL
-     */   
+     */
     AXIS2_EXTERN oxs_x509_cert_t *AXIS2_CALL
     rampart_context_get_receiver_cert_found_in_shp(
         rampart_context_t *rampart_context,
         const axutil_env_t *env);
-    
+
     /**
      * Set the found_cert_in_shp to rampart context.
      * @param rampart_context Pointer to rampart context struct.
      * @param env Pointer to environment struct
      * @param cert pointer to the certficate
      * @returns status of the operation
-     */    
+     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_receiver_cert_found_in_shp(
         rampart_context_t *rampart_context,
@@ -1780,7 +1780,7 @@ extern "C"
      * @param env Pointer to environment struct
      * @param store_fn funtion pointer used to store sct
      * @returns status of the operation
-     */    
+     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_store_security_context_token_fn(
         rampart_context_t *rampart_context,
@@ -1793,7 +1793,7 @@ extern "C"
      * @param env Pointer to environment struct
      * @param get_fn funtion pointer used to get stored sct
      * @returns status of the operation
-     */    
+     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_obtain_security_context_token_fn(
         rampart_context_t *rampart_context,
@@ -1806,7 +1806,7 @@ extern "C"
      * @param env Pointer to environment struct
      * @param delete_fn funtion pointer used to delete stored sct
      * @returns status of the operation
-     */    
+     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_delete_security_context_token_fn(
         rampart_context_t *rampart_context,
@@ -1819,7 +1819,7 @@ extern "C"
      * @param env Pointer to environment struct
      * @param user_params pointer to user params
      * @returns status of the operation
-     */    
+     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_security_context_token_user_params(
         rampart_context_t *rampart_context,
@@ -1832,7 +1832,7 @@ extern "C"
      * @param env Pointer to environment struct
      * @param validate_fn funtion pointer used to validate sct
      * @returns status of the operation
-     */    
+     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_context_set_validate_security_context_token_fn(
         rampart_context_t *rampart_context,
@@ -1844,7 +1844,7 @@ extern "C"
      * @param rampart_context Pointer to rampart context struct.
      * @param env Pointer to environment struct
      * @returns untion pointer used to store sct
-     */    
+     */
     AXIS2_EXTERN store_security_context_token_fn AXIS2_CALL
     rampart_context_get_store_security_context_token_fn(
         rampart_context_t *rampart_context,
@@ -1855,7 +1855,7 @@ extern "C"
      * @param rampart_context Pointer to rampart context struct.
      * @param env Pointer to environment struct
      * @returns funtion pointer used to get stored sct
-     */    
+     */
     AXIS2_EXTERN obtain_security_context_token_fn AXIS2_CALL
     rampart_context_get_obtain_security_context_token_fn(
         rampart_context_t *rampart_context,
@@ -1866,7 +1866,7 @@ extern "C"
      * @param rampart_context Pointer to rampart context struct.
      * @param env Pointer to environment struct
      * @returns funtion pointer used to delete stored sct
-     */    
+     */
     AXIS2_EXTERN delete_security_context_token_fn AXIS2_CALL
     rampart_context_get_delete_security_context_token_fn(
         rampart_context_t *rampart_context,
@@ -1878,7 +1878,7 @@ extern "C"
      * @param env Pointer to environment struct
      * @param user_params pointer to user params
      * @returns pointer to user parameter.
-     */    
+     */
     AXIS2_EXTERN void* AXIS2_CALL
     rampart_context_get_security_context_token_user_params(
         rampart_context_t *rampart_context,
@@ -1889,7 +1889,7 @@ extern "C"
      * @param rampart_context Pointer to rampart context struct.
      * @param env Pointer to environment struct
      * @returns funtion pointer used to validate sct
-     */    
+     */
     AXIS2_EXTERN validate_security_context_token_fn AXIS2_CALL
     rampart_context_get_validate_security_context_token_fn(
         rampart_context_t *rampart_context,
@@ -1913,7 +1913,7 @@ rampart_context_set_receiver_certificate_file(
 	axis2_char_t *receiver_certificate_file);
 
 
-    
+
 #ifdef __cplusplus
 }
 #endif

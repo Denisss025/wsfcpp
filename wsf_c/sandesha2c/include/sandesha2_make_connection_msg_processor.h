@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_MAKE_CONNECTION_MSG_PROCESSOR_H
 #define SANDESHA2_MAKE_CONNECTION_MSG_PROCESSOR_H
 
 /**
   * @file sandesha2_make_connection_msg_processor.h
-  * @brief 
-  * This struct is responsible for processing MakeConnection request messages 
+  * @brief
+  * This struct is responsible for processing MakeConnection request messages
   * that come to the system. MakeConnection is only supported by WSRM 1.1
-  * Here a client can ask for reply messages using a polling mechanism, so even 
+  * Here a client can ask for reply messages using a polling mechanism, so even
   * clients without real endpoints can ask for reliable response messages.
   */
 
@@ -40,7 +40,7 @@ extern "C"
  * @ingroup sandesha2_msgprocessors
  * @{
  */
-    
+
 AXIS2_EXTERN sandesha2_msg_processor_t* AXIS2_CALL
 sandesha2_make_connection_msg_processor_create(
     const axutil_env_t *env);

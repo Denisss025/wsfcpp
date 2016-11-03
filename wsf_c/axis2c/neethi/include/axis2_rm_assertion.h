@@ -121,7 +121,7 @@ extern "C"
         axis2_rm_assertion_t *rm_assertion,
         const axutil_env_t * env,
         axis2_char_t* inactivity_timeout);
-       
+
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     axis2_rm_assertion_get_retrans_interval(
         axis2_rm_assertion_t *rm_assertion,
@@ -165,7 +165,7 @@ extern "C"
         axis2_rm_assertion_t *rm_assertion,
         const axutil_env_t * env,
         axis2_char_t* storage_mgr);
-       
+
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     axis2_rm_assertion_get_message_types_to_drop(
         axis2_rm_assertion_t *rm_assertion,
@@ -209,7 +209,7 @@ extern "C"
         axis2_rm_assertion_t *rm_assertion,
         const axutil_env_t * env,
         axis2_char_t* invoker_sleep_time);
-       
+
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     axis2_rm_assertion_get_polling_wait_time(
         axis2_rm_assertion_t *rm_assertion,

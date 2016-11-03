@@ -41,7 +41,7 @@ extern "C"
      */
 
     /**
-      * creates a soap struct 
+      * creates a soap struct
       * @param env Environment. MUST NOT be NULL
       */
     AXIS2_EXTERN axiom_soap_fault_value_t *AXIS2_CALL
@@ -50,11 +50,11 @@ extern "C"
         axiom_soap_fault_sub_code_t * parent);
 
     /**
-      * Create s SOAP fault value givn a SOAP fault code 
+      * Create s SOAP fault value givn a SOAP fault code
       * @param  fault_value pointer to soap_fault_value struct
       * @param  env Environment. MUST NOT be NULL
       *
-      * @return Created SOAP fault value 
+      * @return Created SOAP fault value
       */
     AXIS2_EXTERN axiom_soap_fault_value_t *AXIS2_CALL
     axiom_soap_fault_value_create_with_code(
@@ -66,7 +66,7 @@ extern "C"
       * @param  fault_value pointer to soap_fault_value struct
       * @param  env Environment. MUST NOT be NULL
       *
-      * @return VOID 
+      * @return VOID
       */
     AXIS2_EXTERN void AXIS2_CALL
     axiom_soap_fault_value_free(
@@ -77,7 +77,7 @@ extern "C"
       * Get the text value of the soapenv:Value element directly under soapenv:Code element
       * @param fault_value pointer to axiom_soap_fault_t
       * @param env Environment. MUST NOT BE NULL
-      * @return text value 
+      * @return text value
       */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axiom_soap_fault_value_get_text(
@@ -98,11 +98,11 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * set the text value of soap_fault_value element 
+     * set the text value of soap_fault_value element
      * @param fault_value pointer to soap fault value struct
      * @param env environment MUST not be NULL
      * @param text Text value to be set
-     * @return satus of the op. AXIS2_SUCCESS on success 
+     * @return satus of the op. AXIS2_SUCCESS on success
      *         else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL

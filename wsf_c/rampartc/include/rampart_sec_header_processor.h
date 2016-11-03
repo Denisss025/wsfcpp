@@ -25,7 +25,7 @@
 #include <oxs_key_mgr.h>
 /**
   * @file rampart_sec_header_processor.h
-  * @brief Processes a message depending on it's security related claims 
+  * @brief Processes a message depending on it's security related claims
   */
 
 /**
@@ -45,7 +45,7 @@ extern "C" {
     * Processes a message depending on it's security related claims.
     * This is the main module in the infow of a message if rampart is enabled.
     * Processing is depending on the order of tokens apear in the @sec_node
-    * Also the module will check for security policy settings	
+    * Also the module will check for security policy settings
     * @param env pointer to environment struct
     * @param msg_ctx message context
     * @param soap_envelope the SOAP envelope

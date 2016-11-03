@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_MSG_PENDING_H
 #define SANDESHA2_MSG_PENDING_H
 
 /**
   * @file sandesha2_msg_pending.h
-  * @brief 
+  * @brief
   */
 
 #include <axiom_soap_envelope.h>
@@ -35,9 +35,9 @@ extern "C"
  * @ingroup sandesha2_wsrm
  * @{
  */
-    
+
 typedef struct sandesha2_msg_pending_t sandesha2_msg_pending_t;
- 
+
 /**
  * @brief sandesha2_msg_pending
  *    sandesha2_msg_pending
@@ -45,7 +45,7 @@ typedef struct sandesha2_msg_pending_t sandesha2_msg_pending_t;
 
 AXIS2_EXTERN sandesha2_msg_pending_t* AXIS2_CALL
 sandesha2_msg_pending_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
 	axis2_char_t *ns_value);
 
 axis2_status_t AXIS2_CALL
@@ -53,43 +53,43 @@ sandesha2_msg_pending_free_void_arg(
     void *msg_pending,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_msg_pending_free (
-    sandesha2_msg_pending_t *msg_pending, 
-	const axutil_env_t *env);								
-                    	
+    sandesha2_msg_pending_t *msg_pending,
+	const axutil_env_t *env);
+
 axis2_bool_t AXIS2_CALL
 sandesha2_msg_pending_is_pending(
     sandesha2_msg_pending_t *msg_pending,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL                 
+axis2_status_t AXIS2_CALL
 sandesha2_msg_pending_set_pending(
     sandesha2_msg_pending_t *msg_pending,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_bool_t pending);
 
 axis2_status_t AXIS2_CALL
 sandesha2_msg_pending_to_soap_envelope(
     sandesha2_msg_pending_t *msg_pending,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_soap_envelope_t *envelope);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_msg_pending_get_namespace_value (
     sandesha2_msg_pending_t *msg_pending,
 	const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_msg_pending_from_om_node(
     sandesha2_msg_pending_t *msg_pending,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *msg_pending_node);
 
-axiom_node_t* AXIS2_CALL 
+axiom_node_t* AXIS2_CALL
 sandesha2_msg_pending_to_om_node(
     sandesha2_msg_pending_t *msg_pending,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     void *header_node);
 
 /** @} */

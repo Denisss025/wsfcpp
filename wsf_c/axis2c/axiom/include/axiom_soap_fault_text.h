@@ -40,7 +40,7 @@ extern "C"
      */
 
     /**
-      * creates a soap fault struct 
+      * creates a soap fault struct
       * @param env Environment. MUST NOT be NULL
       * @param fault the SOAP fault reason
       *
@@ -55,7 +55,7 @@ extern "C"
       * Free an axiom_soap_fault_text
       * @param  fault_text pointer to soap_fault_text struct
       * @param  env Environment. MUST NOT be NULL
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN void AXIS2_CALL
@@ -68,7 +68,7 @@ extern "C"
       * @param  fault_text pointer to soap_fault_text struct
       * @param  env Environment. MUST NOT be NULL
       * @param lang the string to be set
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -81,8 +81,8 @@ extern "C"
       * Get the lang of the SOAP fault
       * @param  fault_text pointer to soap_fault_text struct
       * @param  env Environment. MUST NOT be NULL
-      * 
-      * @return the lang of the SOAP fault 
+      *
+      * @return the lang of the SOAP fault
       */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axiom_soap_fault_text_get_lang(
@@ -93,8 +93,8 @@ extern "C"
       * Get the base node of the SOAP fault text
       * @param  fault_text pointer to soap_fault_text struct
       * @param  env Environment. MUST NOT be NULL
-      * 
-      * @return the base node of the SOAP fault text 
+      *
+      * @return the base node of the SOAP fault text
       */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     axiom_soap_fault_text_get_base_node(
@@ -102,12 +102,12 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-      * Set the SOAP fault text 
+      * Set the SOAP fault text
       * @param  fault_text pointer to soap_fault_text struct
       * @param  env Environment. MUST NOT be NULL
       * @param value the text value
       * @param lang string to be compared
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -118,11 +118,11 @@ extern "C"
         axis2_char_t * lang);
 
     /**
-      * get the SOAP fault text 
+      * get the SOAP fault text
       * @param  fault_text pointer to soap_fault_text struct
       * @param  env Environment. MUST NOT be NULL
-      * 
-      * @return the Text of the SOAP fault 
+      *
+      * @return the Text of the SOAP fault
       */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axiom_soap_fault_text_get_text(

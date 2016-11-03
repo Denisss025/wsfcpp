@@ -10,9 +10,9 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
           #include "axis2_ClientInfo.h"
-          
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -40,12 +40,12 @@
             axis2_createAccountRequest_t* createAccountRequest,
             const axutil_env_t *env);
 
-        
+
         axutil_qname_t* AXIS2_CALL
         axis2_createAccountRequest_get_qname (
             axis2_createAccountRequest_t* createAccountRequest,
             const axutil_env_t *env);
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_createAccountRequest_serialize(
@@ -58,7 +58,7 @@
             axis2_createAccountRequest_t* createAccountRequest,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for clientinfo.
@@ -77,7 +77,7 @@
             const axutil_env_t *env,
             axis2_ClientInfo_t*  param_clientinfo);
 
-        
+
 
         /**
          * getter for password.
@@ -96,12 +96,12 @@
             const axutil_env_t *env,
             axis2_char_t*  param_password);
 
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_CREATEACCOUNTREQUEST_H */
-    
+
 

@@ -101,7 +101,7 @@ extern "C"
 
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     rp_security_context_token_get_issuer(
-         rp_security_context_token_t *security_context_token, 
+         rp_security_context_token_t *security_context_token,
          const axutil_env_t *env);
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -112,7 +112,7 @@ extern "C"
 
     AXIS2_EXTERN neethi_policy_t *AXIS2_CALL
     rp_security_context_token_get_bootstrap_policy(
-         rp_security_context_token_t *security_context_token, 
+         rp_security_context_token_t *security_context_token,
          const axutil_env_t *env);
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -123,7 +123,7 @@ extern "C"
 
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     rp_security_context_token_get_is_secure_conversation_token(
-         rp_security_context_token_t *security_context_token, 
+         rp_security_context_token_t *security_context_token,
          const axutil_env_t *env);
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL

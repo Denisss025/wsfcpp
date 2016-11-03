@@ -119,7 +119,7 @@ namespace wso2wsf
          * @param localname local name of the element. cannot be NULL.
          */
         WSF_EXTERN WSF_CALL OMElement(OMNode * parent, std::string localname);
-        
+
         /**
          * Creates an om element struct.
          * @param parent parent element.
@@ -193,24 +193,24 @@ namespace wso2wsf
 
         /**
          * Declare a namespace in current element (in the scope of this element).
-         * It checks to see if it is already declared. 
+         * It checks to see if it is already declared.
          * @param ns pointer to the namespace struct to be declared.
          * @return status of the op. true on success else false.
          */
         WSF_EXTERN bool WSF_CALL setNamespace(OMNamespace * ns);
 
         /**
-         * Get the OMNamespace of associated with this element. If the object is not yet built, it will be built and 
-         * returned. 
+         * Get the OMNamespace of associated with this element. If the object is not yet built, it will be built and
+         * returned.
          * @return pointer to Namespace. NULL if there is no namespace.
          */
         WSF_EXTERN OMNamespace* WSF_CALL getNamespace();
 
 
         /**
-         * Get the existing OMNamespace of om_element. If this is not yet build, NULL will be 
+         * Get the existing OMNamespace of om_element. If this is not yet build, NULL will be
          * returned. The parameter is_default is deprecated and will be dropped in future releases.
-         * @param is_default whether the retrieved namespace is default. 
+         * @param is_default whether the retrieved namespace is default.
          * @return pointer to Namespace. NULL if there is no namespace.
          * associated with the element.
          */

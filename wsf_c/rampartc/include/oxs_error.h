@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_error.h
-  * @brief Represents an Error occured during the OMXMLSecurity execution 
+  * @brief Represents an Error occured during the OMXMLSecurity execution
   */
 /**
 * @defgroup oxs_error Error
@@ -105,10 +105,10 @@ extern "C"
     /**
      * Print/log the error message
      * @file:      file name
-     * @line:      line number 
-     * @func:      function 
+     * @line:      line number
+     * @func:      function
      * @code:      the error code.
-     * @msg:       the error message 
+     * @msg:       the error message
      *
      */
     AXIS2_EXTERN void AXIS2_CALL

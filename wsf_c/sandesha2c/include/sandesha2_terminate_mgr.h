@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_TERMINATER_MGR_H
 #define SANDESHA2_TERMINATER_MGR_H
 
@@ -21,7 +21,7 @@
 
 /**
   * @file sandesha2_terminate_mgr.h
-  * @brief 
+  * @brief
   */
 
 #include <sandesha2_storage_mgr.h>
@@ -71,7 +71,7 @@ sandesha2_terminate_mgr_clean_recv_side_after_invocation(
     sandesha2_storage_mgr_t *storage_mgr,
     struct sandesha2_seq_property_mgr *seq_prop_mgr,
     struct sandesha2_next_msg_mgr *next_msg_mgr);
-                        
+
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
 sandesha2_terminate_mgr_terminate_sending_side(
     const axutil_env_t *env,
@@ -114,7 +114,7 @@ sandesha2_terminate_mgr_send_terminate_seq_msg(
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
 sandesha2_terminate_mgr_process_response(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_msg_ctx_t *msg_ctx,
     sandesha2_storage_mgr_t *storage_mgr);
 

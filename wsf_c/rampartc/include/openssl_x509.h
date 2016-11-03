@@ -25,7 +25,7 @@
 #include <openssl/pkcs12.h>
 #include <oxs_error.h>
 /**
-  * @file openssl_x509.h 
+  * @file openssl_x509.h
   * @brief Extracts information from a X509 certificate.
   */
 #ifndef OPENSSL_X509_H
@@ -112,7 +112,7 @@ extern "C" {
     openssl_x509_get_info(const axutil_env_t *env,
                           openssl_x509_info_type_t type,
                           X509 *cert);
-	
+
 	AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     openssl_x509_get_common_name(
     	const axutil_env_t *env,

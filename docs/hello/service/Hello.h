@@ -22,15 +22,15 @@
 
 using namespace wso2wsf;
 
-class Hello: public ServiceSkeleton 
+class Hello: public ServiceSkeleton
 {
 public:
 	WSF_EXTERN WSF_CALL Hello(){};
 
 	OMElement* WSF_CALL invoke(OMElement *message, MessageContext *msgCtx);
-	
+
 	OMElement* WSF_CALL onFault(OMElement *message);
-	
+
 	void WSF_CALL init();
 
 	OMElement* greet(OMElement *inMsg);

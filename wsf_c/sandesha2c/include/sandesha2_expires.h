@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_EXPIRES_H
 #define SANDESHA2_EXPIRES_H
 
 /**
   * @file sandesha2_expires.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -43,15 +43,15 @@ struct axiom_node;
  * @brief sandesha2_expires
  *    sandesha2_expires
  */
-    
+
 AXIS2_EXTERN sandesha2_expires_t* AXIS2_CALL
 sandesha2_expires_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *ns_value);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_expires_free (
-    sandesha2_expires_t *expires, 
+    sandesha2_expires_t *expires,
 	const axutil_env_t *env);
 
 axis2_char_t *AXIS2_CALL
@@ -59,29 +59,29 @@ sandesha2_expires_get_duration(
     sandesha2_expires_t *expires,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_expires_set_duration(
     sandesha2_expires_t *expires,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *duration);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_expires_get_namespace_value (
     sandesha2_expires_t *expires,
 	const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_expires_from_om_node(
     sandesha2_expires_t *expires,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     struct axiom_node *om_node);
-    
-struct axiom_node* AXIS2_CALL 
+
+struct axiom_node* AXIS2_CALL
 sandesha2_expires_to_om_node(
     sandesha2_expires_t *expires,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     void *om_node);
- 
+
 /** @} */
 #ifdef __cplusplus
 }

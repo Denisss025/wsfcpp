@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_FAULT_MGR_H
 #define SANDESHA2_FAULT_MGR_H
 
 /**
   * @file sandesha2_fault_mgr.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -38,30 +38,30 @@ extern "C"
 {
 #endif
 
-/** 
+/**
  * @ingroup sandesha2_util
  * @{
  */
- 
-sandesha2_msg_ctx_t* AXIS2_CALL 
+
+sandesha2_msg_ctx_t* AXIS2_CALL
 sandesha2_fault_mgr_check_for_create_seq_refused(
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *rm_create_seq_msg_ctx,
     sandesha2_seq_property_mgr_t *seq_prop_mgr);
-        
-sandesha2_msg_ctx_t* AXIS2_CALL 
+
+sandesha2_msg_ctx_t* AXIS2_CALL
 sandesha2_fault_mgr_check_for_last_msg_num_exceeded(
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *app_rm_msg,
     sandesha2_seq_property_mgr_t *seq_prop_mgr);
-            
-sandesha2_msg_ctx_t* AXIS2_CALL 
+
+sandesha2_msg_ctx_t* AXIS2_CALL
 sandesha2_fault_mgr_check_for_msg_num_rollover(
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *rm_msg_ctx,
     sandesha2_seq_property_mgr_t *seq_prop_mgr);
 
-sandesha2_msg_ctx_t* AXIS2_CALL 
+sandesha2_msg_ctx_t* AXIS2_CALL
 sandesha2_fault_mgr_check_for_unknown_seq(
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *rm_msg_ctx,
@@ -70,20 +70,20 @@ sandesha2_fault_mgr_check_for_unknown_seq(
     sandesha2_create_seq_mgr_t *create_seq_mgr,
     sandesha2_next_msg_mgr_t *next_msg_mgr);
 
-sandesha2_msg_ctx_t* AXIS2_CALL 
+sandesha2_msg_ctx_t* AXIS2_CALL
 sandesha2_fault_mgr_check_for_invalid_ack(
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *ack_rm_msg,
     sandesha2_seq_property_mgr_t *seq_prop_mgr);
 
-sandesha2_msg_ctx_t* AXIS2_CALL 
+sandesha2_msg_ctx_t* AXIS2_CALL
 sandesha2_fault_mgr_check_for_seq_closed(
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *rm_msg_ctx,
     axis2_char_t *seq_id,
     sandesha2_seq_property_mgr_t *seq_prop_mgr);
 
-sandesha2_msg_ctx_t* AXIS2_CALL 
+sandesha2_msg_ctx_t* AXIS2_CALL
 sandesha2_fault_mgr_get_fault(
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *rm_msg_ctx,

@@ -24,7 +24,7 @@
 */
 
 /**
-* @defgroup rampart_authn_provider Authentication Provider 
+* @defgroup rampart_authn_provider Authentication Provider
 * @{
 */
 
@@ -62,7 +62,7 @@ extern "C"
     struct rampart_authn_provider_ops
     {
         /**
-         * Check plain text passwords. If the UseranmeToken is in plain text 
+         * Check plain text passwords. If the UseranmeToken is in plain text
          * this function will be called.
          * @param authn_provider the authentication provider struct
          * @param env pointer to environment struct
@@ -80,7 +80,7 @@ extern "C"
             const axis2_char_t *password);
 
         /**
-         * Check digested passwords. If the UseranmeToken is in password digest form 
+         * Check digested passwords. If the UseranmeToken is in password digest form
          * this function will be called.
          * @param authn_provider the authentication provider struct
          * @param env pointer to environment struct

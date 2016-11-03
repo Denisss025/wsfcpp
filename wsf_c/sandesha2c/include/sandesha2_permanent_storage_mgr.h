@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_PERMANENT_STORAGE_MGR_H
 #define SANDESHA2_PERMANENT_STORAGE_MGR_H
 
 /**
   * @file sandesha2_permanent_storage_mgr.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -38,7 +38,7 @@ typedef struct sandesha2_response
     axis2_char_t *response_str;
 } sandesha2_response_t;
 
-/** 
+/**
  * @ingroup sandesha2_storage
  * @{
  */

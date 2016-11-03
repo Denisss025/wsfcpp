@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_SEQ_OFFER_H
 #define SANDESHA2_SEQ_OFFER_H
 
 /**
   * @file sandesha2_seq_offer.h
-  * @brief 
+  * @brief
   */
 
 #include <sandesha2_error.h>
@@ -36,9 +36,9 @@ extern "C"
  * @ingroup sandesha2_wsrm
  * @{
  */
-    
+
 typedef struct sandesha2_seq_offer_t sandesha2_seq_offer_t;
- 
+
 /**
  * @brief sandesha2_seq_offer
  *    sandesha2_seq_offer
@@ -46,13 +46,13 @@ typedef struct sandesha2_seq_offer_t sandesha2_seq_offer_t;
 
 AXIS2_EXTERN sandesha2_seq_offer_t* AXIS2_CALL
 sandesha2_seq_offer_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *ns_value,
 	axis2_char_t *addr_ns_val);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_seq_offer_free(
-    sandesha2_seq_offer_t *seq_offer, 
+    sandesha2_seq_offer_t *seq_offer,
 	const axutil_env_t *env);
 
 sandesha2_identifier_t * AXIS2_CALL
@@ -60,10 +60,10 @@ sandesha2_seq_offer_get_identifier(
     sandesha2_seq_offer_t *seq_offer,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL                 
+axis2_status_t AXIS2_CALL
 sandesha2_seq_offer_set_identifier(
     sandesha2_seq_offer_t *seq_offer,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_identifier_t *identifier);
 
 sandesha2_endpoint_t * AXIS2_CALL
@@ -71,37 +71,37 @@ sandesha2_seq_offer_get_endpoint(
     sandesha2_seq_offer_t *seq_offer,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL                 
+axis2_status_t AXIS2_CALL
 sandesha2_seq_offer_set_endpoint(
     sandesha2_seq_offer_t *seq_offer,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_endpoint_t *endpoint);
 
-sandesha2_expires_t * AXIS2_CALL                    	
+sandesha2_expires_t * AXIS2_CALL
 sandesha2_seq_offer_get_expires(
     sandesha2_seq_offer_t *seq_offer,
     const axutil_env_t *env);
-                    	
+
 axis2_status_t AXIS2_CALL
 sandesha2_seq_offer_set_expires(
     sandesha2_seq_offer_t *seq_offer,
     const axutil_env_t *env, sandesha2_expires_t *expires);
- 
-axis2_char_t* AXIS2_CALL 
+
+axis2_char_t* AXIS2_CALL
 sandesha2_seq_offer_get_namespace_value(
     sandesha2_seq_offer_t *seq_offer,
 	const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_seq_offer_from_om_node(
     sandesha2_seq_offer_t *seq_offer,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *om_node);
 
-axiom_node_t* AXIS2_CALL 
+axiom_node_t* AXIS2_CALL
 sandesha2_seq_offer_to_om_node(
     sandesha2_seq_offer_t *seq_offer,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     void *om_node);
 /** @} */
 #ifdef __cplusplus

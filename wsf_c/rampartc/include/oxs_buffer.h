@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_buffer.h
-  * @brief The buffer representation in OMXMLSecurity. 
+  * @brief The buffer representation in OMXMLSecurity.
   */
 
 #include <axis2_defines.h>
@@ -86,7 +86,7 @@ extern "C"
     *Removes the last (size) charcters from the buffer
     *@param buffer pointer to the OMXMLSec buffer struct
     *@param env pointer to environment struct
-    *@param size number of characters to be removed		
+    *@param size number of characters to be removed
     *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL

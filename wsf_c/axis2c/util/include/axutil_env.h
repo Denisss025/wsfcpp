@@ -34,7 +34,7 @@ extern "C"
 {
 #endif
 
-    /** 
+    /**
      * @defgroup axis2_util utilities
      * @ingroup axis2
      * @{
@@ -53,7 +53,7 @@ extern "C"
     /**
       * \brief Axis2 Environment struct
       *
-      * Environment acts as a container for error, log, memory allocator and 
+      * Environment acts as a container for error, log, memory allocator and
       * threading routines
       */
     typedef struct axutil_env
@@ -82,11 +82,11 @@ extern "C"
     axutil_env_t;
 
     /**
-     * Creates an environment struct. Would include a default log and error 
-     * structs within the created environment. By default, logging would be enabled 
+     * Creates an environment struct. Would include a default log and error
+     * structs within the created environment. By default, logging would be enabled
      * and the default log level would be debug.
-     * @param allocator pointer to an instance of allocator struct. Must not be NULL   
-     * @return pointer to the newly created environment struct 
+     * @param allocator pointer to an instance of allocator struct. Must not be NULL
+     * @return pointer to the newly created environment struct
      */
     AXIS2_EXTERN axutil_env_t *AXIS2_CALL
     axutil_env_create(
@@ -96,9 +96,9 @@ extern "C"
      * Creates an environment struct with all of its default parts,
      * that is an allocator, error, log and a thread pool.
      * @param log_file name of the log file. If NULL, a default log would be created.
-     * @param log_level log level to be used. If not valid, debug would be 
+     * @param log_level log level to be used. If not valid, debug would be
      * used as the default log level
-     * @return pointer to the newly created environment struct 
+     * @return pointer to the newly created environment struct
      */
     AXIS2_EXTERN axutil_env_t *AXIS2_CALL
     axutil_env_create_all(
@@ -110,7 +110,7 @@ extern "C"
       * Creates an environment struct with given error struct.
       * @param allocator pointer to an instance of allocator struct. Must not be NULL
       * @param error pointer to an instance of error struct. Must not be NULL
-      * @return pointer to the newly created environment struct 
+      * @return pointer to the newly created environment struct
       */
     AXIS2_EXTERN axutil_env_t *AXIS2_CALL
     axutil_env_create_with_error(
@@ -121,9 +121,9 @@ extern "C"
      * Creates an environment struct with given error and log structs.
      * @param allocator pointer to an instance of allocator struct. Must not be NULL
      * @param error pointer to an instance of error struct. Must not be NULL
-     * @param log pointer to an instance of log struct. If NULL it would be 
+     * @param log pointer to an instance of log struct. If NULL it would be
      * assumed that logging is disabled.
-     * @return pointer to the newly created environment struct 
+     * @return pointer to the newly created environment struct
      */
     AXIS2_EXTERN axutil_env_t *AXIS2_CALL
     axutil_env_create_with_error_log(
@@ -138,7 +138,7 @@ extern "C"
      * @param log pointer to an instance of log struct. If NULL it would be
      * assumed that logging is disabled.
      * @param pool pointer to an instance of thread_pool. Must not be NULL
-     * @return pointer to the newly created environment struct 
+     * @return pointer to the newly created environment struct
      */
     AXIS2_EXTERN axutil_env_t *AXIS2_CALL
     axutil_env_create_with_error_log_thread_pool(
@@ -150,7 +150,7 @@ extern "C"
     /**
      * Enable or disable logging.
      * @param env pointer to environment struct
-     * @param enable AXIS2_TRUE to enable logging and AXIS2_FALSE to 
+     * @param enable AXIS2_TRUE to enable logging and AXIS2_FALSE to
      * disable logging
      * @return AXIS2_SUCCESS on success else AXIS2_FAILURE
      */
@@ -186,7 +186,7 @@ extern "C"
     /**
      * Frees the environment components based on the mask.
      * @param env pointer to environment struct to be freed
-     * @param mask bit pattern indicating which components of the env 
+     * @param mask bit pattern indicating which components of the env
      * struct are to be freed
      *       AXIS_ENV_FREE_LOG        - Frees the log
      *       AXIS_ENV_FREE_ERROR      - Frees the error
@@ -201,16 +201,16 @@ extern "C"
         char mask);
 
     /**
-     * Incrent the reference count.This is used when objects are created 
+     * Incrent the reference count.This is used when objects are created
      * using this env and keeping this for future use.
      * @param env pointer to environment struct instance to be freed.
      * @return void
      */
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axutil_env_increment_ref(
         axutil_env_t * env);
-    
+
 
 
 #define AXIS2_ALLOCATOR_CHECK(allocator) ((allocator) ? \

@@ -85,7 +85,7 @@ extern "C"
      * Sets flow representing in flow.
      * @param module_desc pointer to module description
      * @param env pointer to environment struct
-     * @param in_flow pointer to flow representing in flow, module assumes 
+     * @param in_flow pointer to flow representing in flow, module assumes
      * ownership of flow
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -100,7 +100,7 @@ extern "C"
      * @param module_desc pointer to module description
      * @param env pointer to environment struct
      * @return pointer to flow that represents out flow, returns a reference
-     * not a cloned copy    
+     * not a cloned copy
      */
     AXIS2_EXTERN axis2_flow_t *AXIS2_CALL
     axis2_module_desc_get_out_flow(
@@ -111,7 +111,7 @@ extern "C"
      * Sets flow representing out flow.
      * @param module_desc pointer to module description
      * @param env pointer to environment struct
-     * @param out_flow pointer to flow representing out flow, module assumes 
+     * @param out_flow pointer to flow representing out flow, module assumes
      * ownership of flow
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -126,7 +126,7 @@ extern "C"
      * @param module_desc pointer to module description
      * @param env pointer to environment struct
      * @return pointer to flow that represents fault in flow, returns a reference
-     * not a cloned copy    
+     * not a cloned copy
      */
     AXIS2_EXTERN axis2_flow_t *AXIS2_CALL
     axis2_module_desc_get_fault_in_flow(
@@ -137,7 +137,7 @@ extern "C"
      * Sets flow representing fault in flow.
      * @param module_desc pointer to module description
      * @param env pointer to environment struct
-     * @param falut_in_flow pointer to flow representing fault in flow, 
+     * @param falut_in_flow pointer to flow representing fault in flow,
      * module assumes ownership of flow
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -151,8 +151,8 @@ extern "C"
      * Gets flow representing fault out flow.
      * @param module_desc pointer to module description
      * @param env pointer to environment struct
-     * @return pointer to flow that represents fault out flow, returns a 
-     * reference not a cloned copy    
+     * @return pointer to flow that represents fault out flow, returns a
+     * reference not a cloned copy
      */
     AXIS2_EXTERN axis2_flow_t *AXIS2_CALL
     axis2_module_desc_get_fault_out_flow(
@@ -163,7 +163,7 @@ extern "C"
      * Sets flow representing fault out flow.
      * @param module_desc pointer to module description
      * @param env pointer to environment struct
-     * @param fault_out_flow pointer to flow representing fault out flow, 
+     * @param fault_out_flow pointer to flow representing fault out flow,
      * module assumes ownership of flow
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -225,7 +225,7 @@ extern "C"
      * Gets parent which is of type configuration.
      * @param module_desc pointer to module description
      * @param env pointer to environment struct
-     * @return pointer to configuration, returns a reference not a 
+     * @return pointer to configuration, returns a reference not a
      * cloned copy
      */
     AXIS2_EXTERN struct axis2_conf *AXIS2_CALL
@@ -288,7 +288,7 @@ extern "C"
      * Checks if a given parameter is locked.
      * @param module_desc pointer to module description
      * @param env pointer to environment struct
-     * @param param_name parameter name string 
+     * @param param_name parameter name string
      * @return AXIS2_TRUE if named parameter is locked, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -366,8 +366,8 @@ extern "C"
         const axutil_qname_t * qname);
 
     /**
-     * Frees module description passed as void pointer. This method will cast 
-     * the void pointer parameter into appropriate type and then call module 
+     * Frees module description passed as void pointer. This method will cast
+     * the void pointer parameter into appropriate type and then call module
      * description free method on top of that pointer.
      * @param module_desc pointer to module description as a void pointer
      * @param env pointer to environment struct

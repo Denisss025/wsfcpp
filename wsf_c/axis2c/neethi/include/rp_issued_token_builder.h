@@ -35,15 +35,15 @@
 extern "C"
 {
 #endif
-	
+
 	AXIS2_EXTERN neethi_assertion_t * AXIS2_CALL
 	rp_issued_token_builder_build(const axutil_env_t *env,
 			axiom_node_t *node, axiom_element_t *element);
-	
+
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL rp_issued_token_builder_process_alternatives(
 			const axutil_env_t *env, neethi_all_t *all,
 			rp_issued_token_t *issued_token);
-	
+
 #ifdef __cplusplus
 }
 #endif

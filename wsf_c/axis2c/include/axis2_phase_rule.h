@@ -47,7 +47,7 @@ extern "C"
     typedef struct axis2_phase_rule axis2_phase_rule_t;
 
     /**
-     * Gets the name of the handler before which the handler associated with 
+     * Gets the name of the handler before which the handler associated with
      * this rule should be placed.
      * @param phase_rule pointer to phase rule
      * @param env pointer to environment struct
@@ -59,7 +59,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets the name of the handler before which the handler associated with 
+     * Sets the name of the handler before which the handler associated with
      * this rule should be placed.
      * @param phase_rule pointer to phase rule
      * @param env pointer to environment struct
@@ -73,7 +73,7 @@ extern "C"
         const axis2_char_t * before);
 
     /**
-     * Gets the name of the handler after which the handler associated with 
+     * Gets the name of the handler after which the handler associated with
      * this rule should be placed.
      * @param phase_rule pointer to phase rule
      * @param env pointer to environment struct
@@ -85,7 +85,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets the name of the handler after which the handler associated with 
+     * Sets the name of the handler after which the handler associated with
      * this rule should be placed.
      * @param phase_rule pointer to phase rule
      * @param env pointer to environment struct
@@ -123,10 +123,10 @@ extern "C"
         const axis2_char_t * name);
 
     /**
-     * Checks if the handler is the first in phase. 
+     * Checks if the handler is the first in phase.
      * @param phase_rule pointer to phase rule
      * @param env pointer to environment struct
-     * @return AXIS2_TRUE if the handler associated with this rule is the 
+     * @return AXIS2_TRUE if the handler associated with this rule is the
      * first in phase, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -138,7 +138,7 @@ extern "C"
      * Sets handler to be the first in phase.
      * @param phase_rule pointer to phase rule
      * @param env pointer to environment struct
-     * @param first AXIS2_TRUE if the handler associated with this rule is the 
+     * @param first AXIS2_TRUE if the handler associated with this rule is the
      * first in phase, else AXIS2_FALSE
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -149,10 +149,10 @@ extern "C"
         axis2_bool_t first);
 
     /**
-     * Checks if the handler is the last in phase. 
+     * Checks if the handler is the last in phase.
      * @param phase_rule pointer to phase rule
      * @param env pointer to environment struct
-     * @return AXIS2_TRUE if the handler associated with this rule is the 
+     * @return AXIS2_TRUE if the handler associated with this rule is the
      * last in phase, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -164,7 +164,7 @@ extern "C"
      * Sets handler to be the last in phase.
      * @param phase_rule pointer to phase rule
      * @param env pointer to environment struct
-     * @param last AXIS2_TRUE if the handler associated with this rule is the 
+     * @param last AXIS2_TRUE if the handler associated with this rule is the
      * last in phase, else AXIS2_FALSE
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -199,7 +199,7 @@ extern "C"
     /**
      * Creates a phase rule struct instance.
      * @param env pointer to environment struct
-     * @param phase_name name of the phase rule 
+     * @param phase_name name of the phase rule
      * @return pointer to newly created phase rule
      */
     AXIS2_EXTERN axis2_phase_rule_t *AXIS2_CALL

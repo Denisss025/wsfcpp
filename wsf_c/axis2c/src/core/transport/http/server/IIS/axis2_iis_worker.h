@@ -28,11 +28,11 @@
 extern "C"
 {
 
-#endif  /* 
+#endif  /*
  */
-    
+
 typedef struct axis2_iis_worker axis2_iis_worker_t;
-    
+
 int server_version;
 
 int AXIS2_CALL
@@ -40,23 +40,23 @@ int AXIS2_CALL
      axis2_iis_worker_t * iis_worker,
      const axutil_env_t * env,
      void *r);
-    
+
 
 void AXIS2_CALL
  axis2_iis_worker_free(
      axis2_iis_worker_t * iis_worker,
      const axutil_env_t * env);
-    
 
-axis2_iis_worker_t * AXIS2_CALL 
-   axis2_iis_worker_create(        
+
+axis2_iis_worker_t * AXIS2_CALL
+   axis2_iis_worker_create(
        const axutil_env_t * env,
        axis2_char_t * repo_path);
-    
+
 
 #ifdef __cplusplus
 }
-#endif  /* 
+#endif  /*
  */
 
 #endif  /* AXIS2_IIS_WORKER_H */

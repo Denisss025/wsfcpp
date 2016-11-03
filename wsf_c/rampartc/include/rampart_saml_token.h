@@ -30,12 +30,12 @@
 extern "C"
 {
 #endif
-    
+
 /*
- * Rampart saml token subject confirmation types. Rampart support both holder 
+ * Rampart saml token subject confirmation types. Rampart support both holder
  * of key and sender vouches methods of subject confiramtions.
  */
-typedef enum 
+typedef enum
 {
     RAMPART_ST_CONFIR_TYPE_UNSPECIFIED = 0,
     RAMPART_ST_CONFIR_TYPE_SENDER_VOUCHES,
@@ -62,7 +62,7 @@ typedef struct rampart_saml_token_t rampart_saml_token_t;
      */
 
 AXIS2_EXTERN rampart_saml_token_t *AXIS2_CALL
-rampart_saml_token_create(const axutil_env_t *env, axiom_node_t *assertion, 
+rampart_saml_token_create(const axutil_env_t *env, axiom_node_t *assertion,
                           rampart_st_confir_type_t type);
     /**
      * @param tok
@@ -82,7 +82,7 @@ rampart_saml_token_free(rampart_saml_token_t *tok, const axutil_env_t *env);
      */
 
 AXIS2_EXTERN int AXIS2_CALL
-rampart_saml_token_set_assertion(rampart_saml_token_t *tok, const axutil_env_t *env, 
+rampart_saml_token_set_assertion(rampart_saml_token_t *tok, const axutil_env_t *env,
                                  axiom_node_t *assertion);
     /**
      *
@@ -102,7 +102,7 @@ rampart_saml_token_get_assertion(rampart_saml_token_t *tok, const axutil_env_t *
      */
 
 AXIS2_EXTERN int AXIS2_CALL
-rampart_saml_token_set_type(rampart_saml_token_t *tok, const axutil_env_t *env, 
+rampart_saml_token_set_type(rampart_saml_token_t *tok, const axutil_env_t *env,
                             rampart_st_confir_type_t type);
     /**
      *
@@ -122,7 +122,7 @@ rampart_saml_token_get_type(rampart_saml_token_t *tok, const axutil_env_t *env);
      */
 
 AXIS2_EXTERN int AXIS2_CALL
-rampart_saml_token_set_key_value(rampart_saml_token_t *tok, const axutil_env_t *env, 
+rampart_saml_token_set_key_value(rampart_saml_token_t *tok, const axutil_env_t *env,
                                  oxs_key_t *key);
     /**
      *
@@ -142,19 +142,19 @@ rampart_saml_token_get_str(rampart_saml_token_t *tok, const axutil_env_t *env);
      */
 
 AXIS2_EXTERN int AXIS2_CALL
-rampart_saml_token_set_str(rampart_saml_token_t *tok, const axutil_env_t *env, 
+rampart_saml_token_set_str(rampart_saml_token_t *tok, const axutil_env_t *env,
                            axiom_node_t *str);
     /**
      *
      * @param tok
      * @param env pointer to environment struct,Must not be NULL.
      * @param is_token_added
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
-rampart_saml_token_set_is_added_to_header(rampart_saml_token_t *tok, 
+rampart_saml_token_set_is_added_to_header(rampart_saml_token_t *tok,
                                       const axutil_env_t *env,
                                       axis2_bool_t is_token_added);
     /**
@@ -165,15 +165,15 @@ rampart_saml_token_set_is_added_to_header(rampart_saml_token_t *tok,
      */
 
 AXIS2_EXTERN axis2_bool_t AXIS2_CALL
-rampart_saml_token_is_added_to_header(rampart_saml_token_t *tok, 
+rampart_saml_token_is_added_to_header(rampart_saml_token_t *tok,
                                       const axutil_env_t *env);
     /**
      *
      * @param tok
      * @param env pointer to environment struct,Must not be NULL.
      * @param token_type
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -192,19 +192,19 @@ rampart_saml_token_get_token_type(rampart_saml_token_t *tok,
 								  const axutil_env_t *env);
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
-rampart_saml_token_set_session_key(rampart_saml_token_t *tok, 
+rampart_saml_token_set_session_key(rampart_saml_token_t *tok,
 								   const axutil_env_t *env,
 								   oxs_key_t *key);
 
 
 AXIS2_EXTERN oxs_key_t * AXIS2_CALL
-rampart_saml_token_get_session_key(rampart_saml_token_t *tok, 
+rampart_saml_token_get_session_key(rampart_saml_token_t *tok,
 								   const axutil_env_t *env);
 #ifdef __cplusplus
 }
 #endif
 
 
-#endif 
+#endif
 
 

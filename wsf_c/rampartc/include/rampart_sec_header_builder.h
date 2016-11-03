@@ -54,7 +54,7 @@ extern "C" {
                               axiom_soap_envelope_t *soap_envelope);
     /**
      * After building the SOPA message as per the policy,
-     * this function will re-order the header elements of the SOAP message 
+     * this function will re-order the header elements of the SOAP message
      * to make sure that the processing doesnt fail.
      * @param env pointer to environment struct
      * @param msg_ctx message context

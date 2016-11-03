@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_signature.h
-  * @brief Does the XML Signature for OMXMLSecurity  
+  * @brief Does the XML Signature for OMXMLSecurity
   */
 
 /**

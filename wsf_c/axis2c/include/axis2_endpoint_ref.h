@@ -54,7 +54,7 @@ extern "C"
     /**
      * Creates endpoint reference struct.
      * @param env pointer to environment struct
-     * @param address endpoint address string 
+     * @param address endpoint address string
      * @return pointer to newly created endpoint reference
      */
     AXIS2_EXTERN axis2_endpoint_ref_t *AXIS2_CALL
@@ -63,7 +63,7 @@ extern "C"
         const axis2_char_t * address);
 
     /**
-     * Frees the endpoint_ref given as a void pointer. This method would cast the 
+     * Frees the endpoint_ref given as a void pointer. This method would cast the
      * void parameter to an endpoint_ref pointer and then call free method.
      * @param endpoint_ref pointer to endpoint_ref as a void pointer
      * @param env pointer to environment struct
@@ -75,7 +75,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets endpoint address. Address URI identifies the endpoint. 
+     * Gets endpoint address. Address URI identifies the endpoint.
      * This may be a network address or a logical address.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
@@ -87,7 +87,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets endpoint address. Address URI identifies the endpoint. 
+     * Sets endpoint address. Address URI identifies the endpoint.
      * This may be a network address or a logical address.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
@@ -101,7 +101,7 @@ extern "C"
         const axis2_char_t * address);
 
     /**
-     * Gets interface QName. QName represents the primary portType of 
+     * Gets interface QName. QName represents the primary portType of
      * the endpoint being conveyed.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
@@ -114,7 +114,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets interface QName. QName represents the primary portType of 
+     * Sets interface QName. QName represents the primary portType of
      * the endpoint being conveyed.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
@@ -129,15 +129,15 @@ extern "C"
         const axutil_qname_t * interface_qname);
 
     /**
-     * Gets reference parameter list. A reference may contain a number 
-     * of individual parameters which are associated with the endpoint 
-     * to facilitate a particular interaction. Reference parameters 
-     * are element information items that are named by QName and are 
-     * required to properly interact with the endpoint. 
+     * Gets reference parameter list. A reference may contain a number
+     * of individual parameters which are associated with the endpoint
+     * to facilitate a particular interaction. Reference parameters
+     * are element information items that are named by QName and are
+     * required to properly interact with the endpoint.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
      * @return pointer to array list containing all reference parameters,
-     * returns a reference, not a cloned copy 
+     * returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
     axis2_endpoint_ref_get_ref_param_list(
@@ -145,11 +145,11 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets the list of metadata. An endpoint can have different associated 
+     * Gets the list of metadata. An endpoint can have different associated
      * metadata such as WSDL, XML Schema, and WS-Policy policies.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
-     * @return pointer to array list containing metadata, returns a 
+     * @return pointer to array list containing metadata, returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -158,10 +158,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets the list of reference attributes. 
+     * Gets the list of reference attributes.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
-     * @return pointer to array list containing reference attributes, 
+     * @return pointer to array list containing reference attributes,
      * returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -173,7 +173,7 @@ extern "C"
      * Gets the list of metadata attributes.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
-     * @return pointer to array list containing metadata attributes, 
+     * @return pointer to array list containing metadata attributes,
      * returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -182,11 +182,11 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets the list of extensions. Extensions are a mechanism to allow 
+     * Gets the list of extensions. Extensions are a mechanism to allow
      * additional elements to be specified in association with the endpoint.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
-     * @return pointer to array list containing extensions, 
+     * @return pointer to array list containing extensions,
      * returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -195,12 +195,12 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Adds a reference parameter in the form of an AXIOM node. 
+     * Adds a reference parameter in the form of an AXIOM node.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
-     * @param ref_param_node pointer to AXIOM node representing reference 
-     * parameter, endpoint reference does not assume the ownership of 
-     * the node 
+     * @param ref_param_node pointer to AXIOM node representing reference
+     * parameter, endpoint reference does not assume the ownership of
+     * the node
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -210,13 +210,13 @@ extern "C"
         axiom_node_t * ref_param_node);
 
     /**
-     * Adds metadata in the form of an AXIOM node. An endpoint can have 
-     * different associated metadata such as WSDL, XML Schema and 
+     * Adds metadata in the form of an AXIOM node. An endpoint can have
+     * different associated metadata such as WSDL, XML Schema and
      * WS-Policy policies.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
-     * @param metadata_node AXIOM node representing metadata, 
-     * endpoint reference does not assume the ownership of the node 
+     * @param metadata_node AXIOM node representing metadata,
+     * endpoint reference does not assume the ownership of the node
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -268,13 +268,13 @@ extern "C"
         axiom_node_t * extension_node);
 
     /**
-     * Gets service name. An endpoint in WS-Addressing has a QName 
-     * identifying the WSDL service element that contains the definition 
-     * of the endpoint being conveyed. The service name provides a link 
+     * Gets service name. An endpoint in WS-Addressing has a QName
+     * identifying the WSDL service element that contains the definition
+     * of the endpoint being conveyed. The service name provides a link
      * to a full description of the service endpoint.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct
-     * @return pointer to service name struct, returns a reference, not 
+     * @return pointer to service name struct, returns a reference, not
      * a cloned copy
      */
     AXIS2_EXTERN axis2_svc_name_t *AXIS2_CALL
@@ -283,9 +283,9 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets service name. An endpoint in WS-Addressing has a QName 
-     * identifying the WSDL service element that contains the definition 
-     * of the endpoint being conveyed. The service name provides a link 
+     * Sets service name. An endpoint in WS-Addressing has a QName
+     * identifying the WSDL service element that contains the definition
+     * of the endpoint being conveyed. The service name provides a link
      * to a full description of the service endpoint.
      * @param endpoint_ref pointer to endpoint reference struct
      * @param env pointer to environment struct

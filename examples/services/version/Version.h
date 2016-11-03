@@ -23,15 +23,15 @@
 
 using namespace wso2wsf;
 
-class Version: public ServiceSkeleton 
+class Version: public ServiceSkeleton
 {
 public:
 	WSF_EXTERN WSF_CALL Version(){};
 
 	OMElement* WSF_CALL invoke(OMElement *message, MessageContext *msgCtx);
-	
+
 	OMElement* WSF_CALL onFault(OMElement *message);
-	
+
 	bool WSF_CALL init(){return true;};
 };
 

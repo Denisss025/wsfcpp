@@ -25,17 +25,17 @@ namespace org_wso2_www
 		~SimpleExchange(void);
 
 		/**
-		*  Registers a client with the stock market and returns the name 
+		*  Registers a client with the stock market and returns the name
 		*  Of the registered client.
 		*/
 		std::string registerClient(ClientInfo *clientInfo);
 
 		/**
-		* Buys stocks of a given quantity.                                                   
+		* Buys stocks of a given quantity.
 		*/
 		int buy(int quantity);
 		/**
-		* Sells stocks of a given quantity                                                   
+		* Sells stocks of a given quantity
 		*/
 		int sell(int quantity);
 

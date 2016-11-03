@@ -79,8 +79,8 @@ extern "C"
          * @param env pointer to environment struct
          * @param node pointer to node struct
          * @param msg_ctx pointer to message context struct
-         * @return pointer to AXIOM node resulting from the invocation. 
-         * In case of one way operations, NULL would be returned with 
+         * @return pointer to AXIOM node resulting from the invocation.
+         * In case of one way operations, NULL would be returned with
          * status in environment error set to AXIS2_SUCCESS. On error
          * NULL would be returned with error status set to AXIS2_FAILURE
          */

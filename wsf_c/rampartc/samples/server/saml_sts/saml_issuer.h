@@ -31,7 +31,7 @@
 #define SAML_TOKEN		"oasis:names:tc:SAML:1.0:assertion"
 
 axiom_node_t *axis2_saml_issuer_issue(
-    const axutil_env_t * env, 
+    const axutil_env_t * env,
     trust_context_t *trust_ctx);
 
-#endif                          
+#endif

@@ -54,7 +54,7 @@ typedef struct sandesha2_msg_creator_ops sandesha2_msg_creator_ops_t;
 sandesha2_msg_ctx_t *AXIS2_CALL
 sandesha2_msg_creator_create_create_seq_msg(
     const axutil_env_t *env,
-    sandesha2_msg_ctx_t *application_rm_msg, 
+    sandesha2_msg_ctx_t *application_rm_msg,
     axis2_char_t *internal_seq_id,
     axis2_char_t *acks_to,
     sandesha2_seq_property_mgr_t *seq_prop_mgr);
@@ -73,7 +73,7 @@ sandesha2_msg_creator_create_create_seq_res_msg(
     axis2_msg_ctx_t *out_msg,
     axis2_char_t *new_seq_id,
     sandesha2_seq_property_mgr_t *seq_prop_mgr);
- 
+
 /**
  * Create a new create_close_seq_msg
  * @param env
@@ -86,7 +86,7 @@ sandesha2_msg_creator_create_create_seq_res_msg(
 sandesha2_msg_ctx_t *AXIS2_CALL
 sandesha2_msg_creator_create_close_seq_msg(
     const axutil_env_t *env,
-    sandesha2_msg_ctx_t *ref_rm_msg, 
+    sandesha2_msg_ctx_t *ref_rm_msg,
     axis2_char_t *seq_id,
     axis2_char_t *internal_seq_id,
     sandesha2_seq_property_mgr_t *seq_prop_mgr);
@@ -124,7 +124,7 @@ sandesha2_msg_creator_create_terminate_seq_res_msg(
 
 /**
  * Adds an ack message to the given application message.
- * 
+ *
  * @param app_msg
  * @param sequence_id
  */
@@ -138,7 +138,7 @@ sandesha2_msg_creator_add_ack_msg(
 sandesha2_msg_ctx_t *AXIS2_CALL
 sandesha2_msg_creator_create_make_connection_msg(
     const axutil_env_t *env,
-    sandesha2_msg_ctx_t *ref_rm_msg_ctx, 
+    sandesha2_msg_ctx_t *ref_rm_msg_ctx,
     axis2_char_t *make_conn_seq_id,
     const axis2_char_t *internal_seq_id,
     axis2_char_t *make_conn_anon_uri,

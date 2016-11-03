@@ -83,7 +83,7 @@ extern "C"
      * Adds a parameter.
      * @param msg pointer to message
      * @param env pointer to environment struct
-     * @param param pointer to parameter, message assumes ownership of 
+     * @param param pointer to parameter, message assumes ownership of
      * parameter
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -111,7 +111,7 @@ extern "C"
      * Gets all parameters stored in message.
      * @param msg pointer to message
      * @param env pointer to environment struct
-     * @return pointer to list of parameters, returns a reference, not a 
+     * @return pointer to list of parameters, returns a reference, not a
      * cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -124,7 +124,7 @@ extern "C"
      * @param msg pointer to message
      * @param env pointer to environment struct
      * @param param_name parameter name string
-     * @return AXIS2_TRUE if the parameter is locked, else AXIS2_FALSE    
+     * @return AXIS2_TRUE if the parameter is locked, else AXIS2_FALSE
      */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
     axis2_msg_is_param_locked(
@@ -136,7 +136,7 @@ extern "C"
      * Sets parent. Parent of a message is of type operation.
      * @param msg pointer to message
      * @param env pointer to environment struct
-     * @param op pointer to parent operation, message does not assume 
+     * @param op pointer to parent operation, message does not assume
      * ownership of parent
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -150,7 +150,7 @@ extern "C"
      * Gets parent. Parent of a message is of type operation.
      * @param msg pointer to message
      * @param env pointer to environment struct
-     * @return pointer to parent operation, returns a reference, not a 
+     * @return pointer to parent operation, returns a reference, not a
      * cloned copy
      */
     AXIS2_EXTERN axis2_op_t *AXIS2_CALL
@@ -162,7 +162,7 @@ extern "C"
      * Gets flow of execution associated with the message.
      * @param msg pointer to message
      * @param env pointer to environment struct
-     * @return pointer to array list containing the list of phases 
+     * @return pointer to array list containing the list of phases
      * representing the flow
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -223,7 +223,7 @@ extern "C"
      * Sets QName representing message.
      * @param msg pointer to message
      * @param env pointer to environment struct
-     * @param element_qname pointer to QName representing message, this 
+     * @param element_qname pointer to QName representing message, this
      * function creates a clone of QName
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -281,7 +281,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Increments the reference count to this oject 
+     * Increments the reference count to this oject
      * @param msg pointer to message
      * @param env pointer to environment struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE

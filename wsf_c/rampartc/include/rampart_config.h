@@ -59,7 +59,7 @@ extern "C"
     /**
      * Create a rampart_config which can be used to get rampart specific configurations from user
      * @param env pointer to environment struct,Must not be NULL.
-     * @return ramaprt_config_t* on successful creation. Else NULL; 
+     * @return ramaprt_config_t* on successful creation. Else NULL;
      */
     AXIS2_EXTERN rampart_config_t *AXIS2_CALL
     rampart_config_create(
@@ -80,7 +80,7 @@ extern "C"
      * @param rampart_config rampart configuration structure
      * @param evn pointer to environment struct,Must not be NULL.
      * @param user name of the user
-     * @returns status of the op. AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op. AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_config_set_username(
@@ -136,8 +136,8 @@ extern "C"
      */
 	AXIS2_EXTERN int AXIS2_CALL
 	rampart_config_add_saml_token(
-        rampart_config_t *rampart_config, 
-		const axutil_env_t *env, 
+        rampart_config_t *rampart_config,
+		const axutil_env_t *env,
 		rampart_saml_token_t *saml);
 
     /**
@@ -205,8 +205,8 @@ extern "C"
      */
 	AXIS2_EXTERN axutil_array_list_t * AXIS2_CALL
 	rampart_config_get_saml_tokens(
-        rampart_config_t *rampart_config, 
-		const axutil_env_t *env);    
+        rampart_config_t *rampart_config,
+		const axutil_env_t *env);
 
     /**
      * Gets stored issued token aquire function pointer
@@ -216,8 +216,8 @@ extern "C"
      */
 	AXIS2_EXTERN issued_token_callback_func AXIS2_CALL
 	rampart_config_get_issued_token_aquire_function(
-        rampart_config_t *rampart_config, 
-		const axutil_env_t *env);    
+        rampart_config_t *rampart_config,
+		const axutil_env_t *env);
 
     /* @} */
 #ifdef __cplusplus

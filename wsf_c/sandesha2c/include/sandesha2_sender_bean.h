@@ -27,7 +27,7 @@ extern "C"
 
 typedef struct sandesha2_sender_bean sandesha2_sender_bean_t;
 
-/* constructors 
+/* constructors
  */
 AXIS2_EXTERN sandesha2_sender_bean_t* AXIS2_CALL
 sandesha2_sender_bean_create(
@@ -64,7 +64,7 @@ sandesha2_sender_bean_get_msg_id (
     sandesha2_sender_bean_t *sender,
     const axutil_env_t *env);
 
-void AXIS2_CALL 
+void AXIS2_CALL
 sandesha2_sender_bean_set_msg_id (
     sandesha2_sender_bean_t *sender,
     const axutil_env_t *env,
@@ -75,7 +75,7 @@ sandesha2_sender_bean_is_send (
     sandesha2_sender_bean_t *sender,
     const axutil_env_t *env);
 
-void AXIS2_CALL 
+void AXIS2_CALL
 sandesha2_sender_bean_set_send (
     sandesha2_sender_bean_t *sender,
     const axutil_env_t *env,
@@ -86,18 +86,18 @@ sandesha2_sender_bean_get_internal_seq_id (
     sandesha2_sender_bean_t *sender,
     const axutil_env_t *env);
 
-void AXIS2_CALL 
+void AXIS2_CALL
 sandesha2_sender_bean_set_internal_seq_id (
     sandesha2_sender_bean_t *sender,
     const axutil_env_t *env,
     axis2_char_t *int_seq_id);
 
-int AXIS2_CALL 
+int AXIS2_CALL
 sandesha2_sender_bean_get_sent_count (
     sandesha2_sender_bean_t *sender,
 	const axutil_env_t *env);
 
-void AXIS2_CALL 
+void AXIS2_CALL
 sandesha2_sender_bean_set_sent_count (
     sandesha2_sender_bean_t *sender,
     const axutil_env_t *env,
@@ -184,5 +184,5 @@ sandesha2_sender_bean_get_to_address(
 }
 
 #endif
-	
+
 #endif /* End of SANDESHA2_SENDER_BEAN_H */

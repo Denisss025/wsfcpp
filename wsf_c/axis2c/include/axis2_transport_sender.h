@@ -121,7 +121,7 @@ extern "C"
 
     /**
      * Transport Sender struct
-     * This send the SOAP Message to other SOAP nodes and this alone write the SOAP 
+     * This send the SOAP Message to other SOAP nodes and this alone write the SOAP
      * Message to the wire. Out flow must be end with one of this kind
      */
     struct axis2_transport_sender

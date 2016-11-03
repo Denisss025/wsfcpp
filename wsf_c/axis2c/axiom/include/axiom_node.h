@@ -95,7 +95,7 @@ extern "C"
     /**
       * Creates a node struct.
       * @param env Environment. MUST NOT be NULL, .
-      * @return a pointer to newly created node struct. NULL on error. 
+      * @return a pointer to newly created node struct. NULL on error.
       */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     axiom_node_create(
@@ -105,10 +105,10 @@ extern "C"
       * Creates a node struct from a character buffer.
       * @param env Environment. MUST NOT be NULL, .
       * @param buffer string. buffer to make the node
-      * @return a pointer to newly created node struct. NULL on error. 
+      * @return a pointer to newly created node struct. NULL on error.
       */
     AXIS2_EXTERN axiom_node_t* AXIS2_CALL
-    axiom_node_create_from_buffer(    
+    axiom_node_create_from_buffer(
         const axutil_env_t * env,
         axis2_char_t *buffer);
 
@@ -194,7 +194,7 @@ extern "C"
     * Serializes the given node. This op makes the node go
     * through its children and  serialize them in order.
     * @param om_node node to be serialized.  cannot be NULL.
-    * @param env Environment .MUST NOT be NULL.    
+    * @param env Environment .MUST NOT be NULL.
     * @param om_output AXIOM output handler to be used in serializing
     * @return satus of the op. AXIS2_SUCCESS on success else AXIS2_FAILURE
     */
@@ -205,7 +205,7 @@ extern "C"
         struct axiom_output *om_output);
 
     /** get parent of om_node
-    *@om_node node 
+    *@om_node node
     *@param env environment
     *@return pointer to parent node of om_node, return NULL if no parent exists or
     *        when an error occured.
@@ -220,7 +220,7 @@ extern "C"
     * get the first child of om_node
     * @param om_node node
     * @param env environment must not be null.
-    * @returns pointer to first child node , NULL is returned on error with 
+    * @returns pointer to first child node , NULL is returned on error with
     *                     error code set in environments error
     */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
@@ -251,8 +251,8 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-    * get the previous sibling 
-    * @param om_node om_node struct 
+    * get the previous sibling
+    * @param om_node om_node struct
     * @param env environment , must node be null
     * @returns a pointer to previous sibling , NULL if a previous sibling does not exits
     *                (happens when this node is the first child of a node )
@@ -264,7 +264,7 @@ extern "C"
 
     /**
     * get the previous sibling of type AXIOM_ELEMENT
-    * @param om_node om_node struct 
+    * @param om_node om_node struct
     * @param env environment , must node be null
     * @returns a pointer to previous sibling , NULL if a previous sibling does not exits
     *                (happens when this node is the first element of a node )
@@ -316,7 +316,7 @@ extern "C"
     * @param om_node node
     * @param env environment, MUST NOT be NULL.
     * @returns pointer to struct contained in the node
-    *          returns NULL if no struct is contained 
+    *          returns NULL if no struct is contained
     */
     AXIS2_EXTERN void *AXIS2_CALL
     axiom_node_get_data_element(
@@ -324,10 +324,10 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-    * Indicates whether parser has parsed this information item completely or not 
+    * Indicates whether parser has parsed this information item completely or not
     * @param om_node om_node struct
     * @param env environment, MUST NOT be NULL.
-    * @returns AXIS2_TRUE if node is completly build, 
+    * @returns AXIS2_TRUE if node is completly build,
     *          AXIS2_FALSE if node is not completed
     */
     AXIS2_EXTERN axis2_bool_t AXIS2_CALL
@@ -337,10 +337,10 @@ extern "C"
 
     /**
      * returns the associated document,
-     * only valid if built using builder and for a node of type 
+     * only valid if built using builder and for a node of type
      * AXIOM_ELEMENT
      * returns null if no document is available
-     * @param om_node 
+     * @param om_node
      * @param env environment, MUST NOT be NULL.
      *
      * @return the OM document of the node
@@ -389,18 +389,18 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Convert the node to string, treating the binary contents, if any, 
+     * Convert the node to string, treating the binary contents, if any,
      * as non-optimized content.
      * @param om_node pointer to the OM node struct
      * @param env environment, MUST NOT be NULL
      *
-     * @return the none optimized string 
+     * @return the none optimized string
      */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axiom_node_to_string_non_optimized(
         axiom_node_t * om_node,
         const axutil_env_t * env);
-    
+
 
     /** @} */
 

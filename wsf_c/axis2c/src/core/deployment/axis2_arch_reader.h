@@ -63,7 +63,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * To create a service descrption <code>axis2_svc_t</code> using given 
+     * To create a service descrption <code>axis2_svc_t</code> using given
      * deployment info file.
      * @param env pointer to environment struct
      * @param file pointer to file
@@ -75,7 +75,7 @@ extern "C"
 
     /**
      * Construct the path to the service group configuration file(services.xml)
-     * using the passed file name and populate the passed service group 
+     * using the passed file name and populate the passed service group
      * description.
      * @param arch_reader pointer to arch reader
      * @param env pointer to environment struct
@@ -93,7 +93,7 @@ extern "C"
         axis2_svc_grp_t * svc_grp);
 
     /**
-     * Populate the passed service group description using the service group 
+     * Populate the passed service group description using the service group
      * configuration file(services.xml).
      * @param arch_reader pointer to arch reader
      * @param env pointer to environment struct

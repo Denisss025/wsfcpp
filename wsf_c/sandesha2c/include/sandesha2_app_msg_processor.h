@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_APP_MSG_PROCESSOR_H
 #define SANDESHA2_APP_MSG_PROCESSOR_H
 
 /**
   * @file sandesha2_app_msg_processor.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -39,18 +39,18 @@ struct sandesha2_storage_mgr;
  * @ingroup sandesha2_msgprocessors
  * @{
  */
-    
+
 AXIS2_EXTERN sandesha2_msg_processor_t* AXIS2_CALL
 sandesha2_app_msg_processor_create(
     const axutil_env_t *env);
-                        
-long AXIS2_CALL                 
+
+long AXIS2_CALL
 sandesha2_app_msg_processor_get_prev_msg_no(
     const axutil_env_t *env,
     axis2_char_t *internal_seq_id,
     struct sandesha2_seq_property_mgr *seq_prop_mgr);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_app_msg_processor_send_ack_if_reqd(
     const axutil_env_t *env,
     sandesha2_msg_ctx_t *msg_ctx,

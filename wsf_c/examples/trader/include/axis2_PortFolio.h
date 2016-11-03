@@ -10,9 +10,9 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
           #include "axis2_PortFolioItem.h"
-          
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -40,7 +40,7 @@
             axis2_PortFolio_t* PortFolio,
             const axutil_env_t *env);
 
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_PortFolio_serialize(
@@ -53,7 +53,7 @@
             axis2_PortFolio_t* PortFolio,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for portFolioItem.
@@ -72,7 +72,7 @@
             const axutil_env_t *env,
             axutil_array_list_t*  param_portFolioItem);
 
-        
+
         /**
         * resetter for portFolioItem
         */
@@ -80,12 +80,12 @@
         axis2_PortFolio_reset_portFolioItem(
             axis2_PortFolio_t* PortFolio,
             const axutil_env_t *env);
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_PORTFOLIO_H */
-    
+
 

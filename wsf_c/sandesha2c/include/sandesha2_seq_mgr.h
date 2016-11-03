@@ -47,10 +47,10 @@ struct sandesha2_next_msg_mgr;
 AXIS2_EXTERN axis2_char_t *AXIS2_CALL
 sandesha2_seq_mgr_setup_new_incoming_sequence(
     const axutil_env_t *env,
-    sandesha2_msg_ctx_t *create_seq_msg, 
+    sandesha2_msg_ctx_t *create_seq_msg,
     struct sandesha2_seq_property_mgr *seq_prop_mgr,
     struct sandesha2_next_msg_mgr *next_msg_mgr);
-       
+
 /**
  * Takes the internal_seq_id as the param. Not the seq_id
  * @param internal_seq_id
@@ -61,7 +61,7 @@ sandesha2_seq_mgr_update_last_activated_time(
     const axutil_env_t *env,
     axis2_char_t *property_key,
     struct sandesha2_seq_property_mgr *seq_prop_mgr);
-    
+
 AXIS2_EXTERN axis2_bool_t AXIS2_CALL
 sandesha2_seq_mgr_has_seq_timedout(
     const axutil_env_t *env,
@@ -69,7 +69,7 @@ sandesha2_seq_mgr_has_seq_timedout(
     struct sandesha2_seq_property_mgr *seq_prop_mgr,
     axis2_svc_t *svc
     /*axis2_conf_ctx_t *conf_ctx*/);
-        
+
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
 sandesha2_seq_mgr_setup_new_outgoing_sequence(
     const axutil_env_t *env,

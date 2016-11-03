@@ -74,7 +74,7 @@ extern "C"
      * Sets in flow.
      * @param flow_container pointer to flow container
      * @param env pointer to environment struct
-     * @param in_flow pointer to in flow struct, flow container assumes 
+     * @param in_flow pointer to in flow struct, flow container assumes
      * ownership of struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -99,7 +99,7 @@ extern "C"
      * Sets out flow.
      * @param flow_container pointer to flow container
      * @param env pointer to environment struct
-     * @param out_flow pointer to out flow, flow container assumes 
+     * @param out_flow pointer to out flow, flow container assumes
      * ownership of struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -124,7 +124,7 @@ extern "C"
      * Sets fault in flow.
      * @param flow_container pointer to flow container
      * @param env pointer to environment struct
-     * @param falut_in_flow pointer to falut in flow, flow container assumes 
+     * @param falut_in_flow pointer to falut in flow, flow container assumes
      * ownership of struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -149,7 +149,7 @@ extern "C"
      * Sets fault out flow.
      * @param flow_container pointer to flow container
      * @param env pointer to environment struct
-     * @param fault_out_flow pointer to fault out flow, flow container assumes 
+     * @param fault_out_flow pointer to fault out flow, flow container assumes
      * ownership of struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */

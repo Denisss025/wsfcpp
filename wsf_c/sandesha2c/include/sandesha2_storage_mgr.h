@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_STORAGE_MGR_H
 #define SANDESHA2_STORAGE_MGR_H
 
 /**
   * @file sandesha2_storage_mgr.h
-  * @brief 
+  * @brief
   */
 #include <platforms/axutil_platform_auto_sense.h>
 #include <axutil_utils_defines.h>
@@ -34,11 +34,11 @@ extern "C"
 {
 #endif
 
-/** 
+/**
  * @ingroup sandesha2_storage
  * @{
  */
- 
+
 typedef struct sandesha2_storage_mgr sandesha2_storage_mgr_t;
 typedef struct sandesha2_storage_mgr_ops sandesha2_storage_mgr_ops_t;
 struct sandesha2_rm_bean;
@@ -52,8 +52,8 @@ struct sandesha2_next_msg_mgr;
  * Encapsulator struct for ops of sandesha2_storage_mgr
  */
 AXIS2_DECLARE_DATA struct sandesha2_storage_mgr_ops
-{ 
-    axis2_status_t (AXIS2_CALL * 
+{
+    axis2_status_t (AXIS2_CALL *
             free)(
                 sandesha2_storage_mgr_t *storage_mgr,
                 const axutil_env_t *envv);
@@ -68,7 +68,7 @@ AXIS2_DECLARE_DATA struct sandesha2_storage_mgr_ops
                 sandesha2_storage_mgr_t *storage_mgr,
                 const axutil_env_t *env,
                 axis2_conf_ctx_t *conf_ctx);
-        
+
     axis2_msg_ctx_t *(AXIS2_CALL *
             retrieve_msg_ctx)(
                 sandesha2_storage_mgr_t *storage_mgr,
@@ -76,7 +76,7 @@ AXIS2_DECLARE_DATA struct sandesha2_storage_mgr_ops
                 axis2_char_t *key,
                 axis2_conf_ctx_t *conf_ctx,
                 const axis2_bool_t persistent);
-            
+
     axis2_status_t (AXIS2_CALL *
             store_msg_ctx)(
                 sandesha2_storage_mgr_t *storage_mgr,
@@ -84,7 +84,7 @@ AXIS2_DECLARE_DATA struct sandesha2_storage_mgr_ops
                 axis2_char_t *key,
                 axis2_msg_ctx_t *msg_ctx,
                 axis2_bool_t store_in_memory);
-                
+
     axis2_status_t (AXIS2_CALL *
             update_msg_ctx)(
                 sandesha2_storage_mgr_t *storage_mgr,
@@ -118,7 +118,7 @@ AXIS2_DECLARE_DATA struct sandesha2_storage_mgr_ops
                 const axutil_env_t *env,
                 axiom_soap_envelope_t *soap_env,
                 axis2_char_t *key);
-	
+
     axis2_status_t (AXIS2_CALL *
             store_response) (
                 sandesha2_storage_mgr_t *storage_mgr,
@@ -130,15 +130,15 @@ AXIS2_DECLARE_DATA struct sandesha2_storage_mgr_ops
 
     axiom_soap_envelope_t * (AXIS2_CALL *
             retrieve_response) (
-                sandesha2_storage_mgr_t *storage_mgr, 
-                const axutil_env_t *env, 
+                sandesha2_storage_mgr_t *storage_mgr,
+                const axutil_env_t *env,
                 axis2_char_t *seq_id,
                 int msg_no);
 
     axis2_status_t (AXIS2_CALL *
             remove_response) (
-                sandesha2_storage_mgr_t *storage_mgr, 
-                const axutil_env_t *env, 
+                sandesha2_storage_mgr_t *storage_mgr,
+                const axutil_env_t *env,
                 axis2_char_t *seq_id,
                 int msg_no);
 };
@@ -149,7 +149,7 @@ AXIS2_DECLARE_DATA struct sandesha2_storage_mgr
 };
 
 /**
- * Frees the storage_mgr given as a void pointer. This method would cast the 
+ * Frees the storage_mgr given as a void pointer. This method would cast the
  * void parameter to an storage_mgr pointer and then call free method.
  * @param storage_mgr pointer to storage_mgr as a void pointer
  * @param env pointer to environment struct
@@ -160,7 +160,7 @@ sandesha2_storage_mgr_free_void_arg(
     void *storage_mgr,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_storage_mgr_free(
     sandesha2_storage_mgr_t *storage_mgr,
     const axutil_env_t *envv);
@@ -204,7 +204,7 @@ sandesha2_storage_mgr_store_msg_ctx(
     axis2_char_t *key,
     axis2_msg_ctx_t *msg_ctx,
     axis2_bool_t store_in_memory);
-			
+
 axis2_status_t AXIS2_CALL
 sandesha2_storage_mgr_update_msg_ctx(
     sandesha2_storage_mgr_t *storage_mgr,
@@ -250,18 +250,18 @@ sandesha2_storage_mgr_store_response(
 
 axiom_soap_envelope_t * AXIS2_CALL
 sandesha2_storage_mgr_retrieve_response(
-    sandesha2_storage_mgr_t *storage_mgr, 
-    const axutil_env_t *env, 
+    sandesha2_storage_mgr_t *storage_mgr,
+    const axutil_env_t *env,
     axis2_char_t *seq_id,
     int msg_no);
 
 axis2_status_t AXIS2_CALL
 sandesha2_storage_mgr_remove_response(
-    sandesha2_storage_mgr_t *storage_mgr, 
-    const axutil_env_t *env, 
+    sandesha2_storage_mgr_t *storage_mgr,
+    const axutil_env_t *env,
     axis2_char_t *seq_id,
     int msg_no);
-                       
+
 /** @} */
 #ifdef __cplusplus
 }

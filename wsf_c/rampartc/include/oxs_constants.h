@@ -45,7 +45,7 @@ extern "C"
 
 
     /****************************************************************
-       Global prefixes 
+       Global prefixes
     ****************************************************************/
 #define OXS_XENC "xenc"
 #define OXS_DS "ds"
@@ -69,7 +69,7 @@ extern "C"
 #define OXS_LOCAL_REFERENCE_PREFIX "#"
 
     /****************************************************************
-       Global namespaces 
+       Global namespaces
     ****************************************************************/
 #define OXS_DSIG_NS                "http://www.w3.org/2000/09/xmldsig#"
 #define OXS_ENC_NS                 "http://www.w3.org/2001/04/xmlenc#"
@@ -79,7 +79,7 @@ extern "C"
 #define OXS_WSC_NS_05_12 "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512"
 
     /****************************************************************
-        DSig Nodes  
+        DSig Nodes
     ****************************************************************/
 #define OXS_NODE_SIGNATURE         "Signature"
 #define OXS_NODE_SIGNEDINFO        "SignedInfo"
@@ -94,7 +94,7 @@ extern "C"
 #define OXS_NODE_SIGNATURE_CONFIRMATION "SignatureConfirmation" /*SOAP 11*/
 
     /****************************************************************
-       Encryption Nodes 
+       Encryption Nodes
     ****************************************************************/
 #define OXS_NODE_ENCRYPTED_DATA             "EncryptedData"
 #define OXS_NODE_ENCRYPTION_METHOD          "EncryptionMethod"
@@ -165,7 +165,7 @@ extern "C"
 
 
     /****************************************************************
-       AES 
+       AES
     ****************************************************************/
 
 #define OXS_NAME_AES_128_CBC        "aes128-cbc"
@@ -187,14 +187,14 @@ extern "C"
 #define OXS_HREF_KW_AES_256         "http://www.w3.org/2001/04/xmlenc#kw-aes256"
 
     /****************************************************************
-      BASE64 
+      BASE64
     ****************************************************************/
 #define OXS_NAME_BASE64           "base64"
 #define OXS_HREF_BASE64           "http://www.w3.org/2000/09/xmldsig#base64"
 
 
     /****************************************************************
-     DES 
+     DES
     ****************************************************************/
 #define OXS_NAME_DES_KEY_VALUE       "des"
 
@@ -207,7 +207,7 @@ extern "C"
 
 
     /****************************************************************
-        DSA 
+        DSA
     ****************************************************************/
 #define OXS_NAME_DSA_KEY_VALUE          "dsa"
 #define OXS_NODE_DSA_KEY_VALUE          "DSAKeyValue"
@@ -253,14 +253,14 @@ extern "C"
 
 
     /****************************************************************
-        KeyValue 
+        KeyValue
     ****************************************************************/
 #define OXS_NAME_KEY_VALUE         "key-value"
 #define OXS_NODE_KEY_VALUE         "KeyValue"
 
 
     /****************************************************************
-        MD5 
+        MD5
     ****************************************************************/
 #define OXS_NAME_MD5              "md5"
 #define OXS_HREF_MD5              "http://www.w3.org/2001/04/xmldsig-more#md5"
@@ -272,7 +272,7 @@ extern "C"
 #define OXS_NODE_RETRIEVAL_METHOD      "RetrievalMethod"
 
     /****************************************************************
-        RSA 
+        RSA
     ****************************************************************/
 #define OXS_NAME_RSAKEY_VALUE          "rsa"
 #define OXS_NODE_RSAKEY_VALUE          "RSAKeyValue"
@@ -308,7 +308,7 @@ extern "C"
 
 
     /****************************************************************
-        SHA1 
+        SHA1
     ****************************************************************/
 #define OXS_NAME_SHA1             "sha1"
 #define OXS_HREF_SHA1             "http://www.w3.org/2000/09/xmldsig#sha1"
@@ -328,7 +328,7 @@ extern "C"
 #define OXS_SC_DK_NAME_P_SHA1     "P_SHA-1"
 #define OXS_SC_DK_HREF_P_SHA1     "http://schemas.xmlsoap.org/ws/2005/02/sc/dk/p_sha1"
     /****************************************************************
-        X509 
+        X509
     ****************************************************************/
 #define OXS_NAME_X509_DATA         "x509"
 #define OXS_NODE_X509_DATA         "X509Data"
@@ -395,7 +395,7 @@ extern "C"
 #define OXS_STR_EXTERNAL_URI "ExternalUri"
 #define OXS_STR_ENCRYPTED_KEY "Encryptedkey"
 
-    
+
     /****************************************************************
         WS Security 1.1
     ****************************************************************/

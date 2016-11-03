@@ -25,7 +25,7 @@ axutil_env_t*
 init_server_env(axutil_allocator_t* allocator,
 		const axis2_char_t* log_file_name);
 
-void 
+void
 server_exit(int status);
 
 void

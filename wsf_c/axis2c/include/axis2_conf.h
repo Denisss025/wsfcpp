@@ -81,7 +81,7 @@ extern "C"
      * Adds a service group to the configuration.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @param svc_grp pointer to service group, conf takes over the 
+     * @param svc_grp pointer to service group, conf takes over the
      * ownership of the service group
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -96,7 +96,7 @@ extern "C"
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
      * @param svc_grp_name name of the service group to be accessed
-     * @return pointer to service group with the given name if exists, 
+     * @return pointer to service group with the given name if exists,
      * else NULL. Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN struct axis2_svc_grp *AXIS2_CALL
@@ -109,7 +109,7 @@ extern "C"
      * Gets all service group added to conf.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return pointer to hash table containing the service groups, returns 
+     * @return pointer to hash table containing the service groups, returns
      * a reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -121,7 +121,7 @@ extern "C"
      * Adds a service to configuration.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @param svc pointer to service, conf takes over the ownership of the 
+     * @param svc pointer to service, conf takes over the ownership of the
      * service
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -189,7 +189,7 @@ extern "C"
      * Gets all the parameters added to the configuration.
      * @param conf pointer to conf struct
      * @param env pointer to environment
-     * @return pointer to array list containing parameters if exists, 
+     * @return pointer to array list containing parameters if exists,
      * else NULL. Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -214,8 +214,8 @@ extern "C"
      * Gets in transport corresponding to the given transport QName.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @param qname QName of transport 
-     * @return pointer to transport in description if exists, 
+     * @param qname QName of transport
+     * @return pointer to transport in description if exists,
      * else NULL. Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axis2_transport_in_desc_t *AXIS2_CALL
@@ -245,7 +245,7 @@ extern "C"
      * @param conf pointer to conf struct
      * @param env pointer to environment strcut
      * @param qname pointer to transport qname
-     * @return pointer to transport out description if exists, 
+     * @return pointer to transport out description if exists,
      * else NULL. Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axis2_transport_out_desc_t *AXIS2_CALL
@@ -274,7 +274,7 @@ extern "C"
      * Gets all in transports.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return hash table containing all transport in descriptions. 
+     * @return hash table containing all transport in descriptions.
      * Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axis2_transport_in_desc_t **AXIS2_CALL
@@ -287,7 +287,7 @@ extern "C"
      * Gets all out transports.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return hash table containing all transport out descriptions. 
+     * @return hash table containing all transport out descriptions.
      * Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axis2_transport_out_desc_t **AXIS2_CALL
@@ -313,7 +313,7 @@ extern "C"
      * Gets the list of engaged modules.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to the array list of engaged modules. Returns a 
+     * @return a pointer to the array list of engaged modules. Returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -336,11 +336,11 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets the out flow. Out flow is a list of phases invoked in the out 
+     * Gets the out flow. Out flow is a list of phases invoked in the out
      * path of execution of the engine.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to the array list of out flow phases. Returns a 
+     * @return a pointer to the array list of out flow phases. Returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -349,11 +349,11 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets the in fault flow. In fault flow is a list of phases invoked in 
+     * Gets the in fault flow. In fault flow is a list of phases invoked in
      * the in path of execution, if some fault happens.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to the array list of in fault flow phases. Returns a 
+     * @return a pointer to the array list of in fault flow phases. Returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -363,11 +363,11 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets the out fault flow. Out fault flow is a list of phases invoked in 
+     * Gets the out fault flow. Out fault flow is a list of phases invoked in
      * the out path of execution, if some fault happens.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to the array list of out fault flow phases. Returns a 
+     * @return a pointer to the array list of out fault flow phases. Returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -377,12 +377,12 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets faulty services. A faulty service is a service that does not 
-     * meet the service configuration criteria or a service with errors in 
+     * Gets faulty services. A faulty service is a service that does not
+     * meet the service configuration criteria or a service with errors in
      * the service dynamic link library.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to the hash table of faulty services. Returns a 
+     * @return a pointer to the hash table of faulty services. Returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -391,12 +391,12 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Gets faulty modules. A faulty module is a module that does not 
-     * meet the module configuration criteria or a module with errors in 
+     * Gets faulty modules. A faulty module is a module that does not
+     * meet the module configuration criteria or a module with errors in
      * the service dynamic link library.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to the hash table of faulty modules. Returns a 
+     * @return a pointer to the hash table of faulty modules. Returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -408,7 +408,7 @@ extern "C"
      * Gets all the list of services loaded into configuration.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to the hash table of services. Returns a 
+     * @return a pointer to the hash table of services. Returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -421,7 +421,7 @@ extern "C"
      * at the start up of the axis2 engine.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to the hash table of services. Returns a 
+     * @return a pointer to the hash table of services. Returns a
      * reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -446,7 +446,7 @@ extern "C"
      * Gets phases information struct.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to the struct containing phases information. 
+     * @return a pointer to the struct containing phases information.
      * Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN struct axis2_phases_info *AXIS2_CALL
@@ -459,7 +459,7 @@ extern "C"
      * Sets phases information struct.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @param phases_info pointer to phases_info struct. conf assumes 
+     * @param phases_info pointer to phases_info struct. conf assumes
      * ownership of the struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -474,7 +474,7 @@ extern "C"
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
      * @param key key string with which the message receive is to be added
-     * @param msg_recv pointer to message receiver 
+     * @param msg_recv pointer to message receiver
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -488,9 +488,9 @@ extern "C"
      * Gets message receiver with the given key.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @param key key string corresponding to the message receiver to 
+     * @param key key string corresponding to the message receiver to
      * be retrieved
-     * @return pointer to the message receiver with the given key if it 
+     * @return pointer to the message receiver with the given key if it
      * exists, else null. Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN struct axis2_msg_recv *AXIS2_CALL
@@ -503,7 +503,7 @@ extern "C"
      * Sets the list of out phases.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @param out_phases pointer to array list of the phases. conf assumes 
+     * @param out_phases pointer to array list of the phases. conf assumes
      * ownership of the struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -517,7 +517,7 @@ extern "C"
      * Gets the list of out phases.
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return pointer to array list of out phases. Returns a reference, 
+     * @return pointer to array list of out phases. Returns a reference,
      * not a cloned copy
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
@@ -555,7 +555,7 @@ extern "C"
      * Gets all modules configured,
      * @param conf pointer to conf struct
      * @param env pointer to environment struct
-     * @return a pointer to hash table containing the list of modules. 
+     * @return a pointer to hash table containing the list of modules.
      * Returns a reference, not a cloned copy
      */
     AXIS2_EXTERN axutil_hash_t *AXIS2_CALL
@@ -624,8 +624,8 @@ extern "C"
         axis2_conf_t * conf,
         const axutil_env_t * env,
         axis2_char_t * axis2_repo);
-	
-	
+
+
 	/**
      * Gets the axis2.xml location.
      * @param conf pointer to conf struct
@@ -767,7 +767,7 @@ extern "C"
         axis2_conf_t * conf,
         const axutil_env_t * env,
         axis2_bool_t enable_mtom);
-	
+
 	/**
 	 * set a flag to mark conf created by axis2.xml
 	 */
@@ -829,8 +829,8 @@ extern "C"
 		const axutil_env_t * env);
 
 	/**
-	 * Disengage a module 
-	 * @param 
+	 * Disengage a module
+	 * @param
 	 *
 	 */
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL

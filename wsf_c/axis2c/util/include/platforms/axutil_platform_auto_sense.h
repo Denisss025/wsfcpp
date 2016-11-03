@@ -58,6 +58,6 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif
-*/ 
+*/
 
 #endif                      /* AXIS2_PLATFORM_AUTOSENSE_H */

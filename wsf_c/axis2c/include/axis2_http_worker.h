@@ -70,7 +70,7 @@ extern "C"
         axis2_http_worker_t * http_worker,
         const axutil_env_t * env,
         int port);
-    
+
     AXIS2_EXTERN void AXIS2_CALL
     axis2_http_worker_set_is_application_client_side(
         axis2_http_worker_t *http_worker,

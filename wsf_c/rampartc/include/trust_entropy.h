@@ -31,10 +31,10 @@
 extern "C"
 {
 #endif
-    
+
     #define BIN_SEC_ASSYM   "/AsymmetricKey"
     #define BIN_SEC_SYM     "/SymmetricKey"
-    #define BIN_SEC_NONCE   "/Nonce"    
+    #define BIN_SEC_NONCE   "/Nonce"
 
     typedef enum
     {
@@ -47,28 +47,28 @@ extern "C"
     typedef struct trust_entropy trust_entropy_t;
 
     #define TRUST_BIN_SEC_TYPE_ATTR "Type"
-            
+
     AXIS2_EXTERN trust_entropy_t * AXIS2_CALL
     trust_entropy_create(
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_entropy_free(
         trust_entropy_t *entropy,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_entropy_deserialize(
         trust_entropy_t *entropy,
         const axutil_env_t *env,
         axiom_node_t *entropy_node);
-    
+
     AXIS2_EXTERN axiom_node_t * AXIS2_CALL
     trust_entropy_serialize(
         trust_entropy_t *entropy,
         const axutil_env_t *env,
         axiom_node_t *parent);
-    
+
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     trust_entropy_get_binary_secret(
         trust_entropy_t *entropy,
@@ -78,34 +78,34 @@ extern "C"
 	trust_entropy_get_bin_sec_type_from_str(
         axis2_char_t *str,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
         trust_entropy_get_str_for_bin_sec_type(
         trust_bin_sec_type_t type,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_entropy_set_binary_secret(
         trust_entropy_t *entropy,
         const axutil_env_t *env,
         axis2_char_t *bin_sec);
-    
+
     AXIS2_EXTERN axiom_node_t * AXIS2_CALL
     trust_entropy_get_other(
         trust_entropy_t *entropy,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_entropy_set_other(
         trust_entropy_t *entropy,
         const axutil_env_t *env,
         axiom_node_t *other_node);
-    
+
     AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     trust_entropy_get_ns_uri(
         trust_entropy_t *entropy,
         const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     trust_entropy_set_ns_uri(
         trust_entropy_t *entropy,

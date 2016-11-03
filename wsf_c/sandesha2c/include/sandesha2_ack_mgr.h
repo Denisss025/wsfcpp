@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_ACK_MGR_H
 #define SANDESHA2_ACK_MGR_H
 
 /**
   * @file sandesha2_ack_mgr.h
-  * @brief 
+  * @brief
   */
 #include <axutil_utils_defines.h>
 #include <axutil_env.h>
@@ -46,9 +46,9 @@ sandesha2_ack_mgr_generate_ack_msg(
     struct sandesha2_seq_property_mgr *seq_prop_mgr);
 
 /**
- * This is used to get the acked messages of a sequence. If this is an outgoing 
+ * This is used to get the acked messages of a sequence. If this is an outgoing
  * message the sequence_identifier should be the internal sequenceID.
- * 
+ *
  * @param sequence_identifier
  * @param out_going_msg
  * @return
@@ -58,7 +58,7 @@ sandesha2_ack_mgr_get_client_completed_msgs_list(
     const axutil_env_t *env,
     axis2_char_t *seq_id,
     struct sandesha2_seq_property_mgr *seq_prop_mgr);
- 
+
 AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL
 sandesha2_ack_mgr_get_svr_completed_msgs_list(
     const axutil_env_t *env,

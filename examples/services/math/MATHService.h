@@ -23,7 +23,7 @@
 
 using namespace wso2wsf;
 
-class MathService: public ServiceSkeleton 
+class MathService: public ServiceSkeleton
 {
 public:
 	WSF_EXTERN WSF_CALL MathService(){};

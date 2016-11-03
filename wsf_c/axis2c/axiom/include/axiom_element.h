@@ -116,7 +116,7 @@ extern "C"
      * @param node node containing an instance of an AXIOM element,cannot be NULL.
      * @param uri namespace uri..
      * @param prefix namespace prefix. can be NULL.
-     * @return pointer to the namespace, if found, else NULL. On error, returns 
+     * @return pointer to the namespace, if found, else NULL. On error, returns
      *           NULL and sets error code in environment,s error
      */
     AXIS2_EXTERN axiom_namespace_t *AXIS2_CALL
@@ -433,7 +433,7 @@ extern "C"
         axiom_node_t * element_node);
 
     /**
-	 * This method will declare the namespace without checking whether it is already declared. 
+	 * This method will declare the namespace without checking whether it is already declared.
 	 * (This method is only used by codegen. We have to remove this method in future)
      * @param om_element pointer to om_element
      * @param env environment MUST not be NULL

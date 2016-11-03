@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef RAMPART_ERROR_H
 #define RAMPART_ERROR_H
 
@@ -40,7 +40,7 @@ extern "C"
     * Set of error codes for rampart
     */
     enum rampart_error_codes
-    { 
+    {
         /* No error */
         RAMPART_ERROR_NONE = RAMPART_ERROR_CODES_START,
         RAMPART_ERROR_UNSUPPORTED_SECURITY_TOKEN,
@@ -59,13 +59,13 @@ extern "C"
         RAMPART_ERROR_IN_POLICY ,
         RAMPART_ERROR_LAST
     };
-      
+
     typedef enum rampart_error_codes rampart_error_codes_t;
 
     /**
      * initialising method for error
-     * @returns status of the op.                                                                                                        
-     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error          
+     * @returns status of the op.
+     * AXIS2_SUCCESS on success and AXIS2_FAILURE on error
      */
 
 AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -75,5 +75,5 @@ rampart_error_init();
 #ifdef __cplusplus
 }
 #endif
- 
+
 #endif /*RAMPART_ERROR_H*/

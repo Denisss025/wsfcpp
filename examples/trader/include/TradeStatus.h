@@ -17,9 +17,9 @@
         namespace org_wso2_www_types{
             class TradeStatus;
         }
-        
 
-        
+
+
 
         #include <stdio.h>
         #include <OMElement.h>
@@ -28,32 +28,32 @@
 
 namespace org_wso2_www_types
 {
-        
-        
+
+
 
         class TradeStatus {
 
         private:
              bool property_Status;
 
-                
+
                 bool isValidStatus;
             std::string property_Reason;
 
-                
+
                 bool isValidReason;
-            
+
 
         /*** Private methods ***/
-          
+
 
         bool WSF_CALL
         setStatusNil();
-            
+
 
         bool WSF_CALL
         setReasonNil();
-            
+
 
 
 
@@ -73,24 +73,24 @@ namespace org_wso2_www_types
         ~TradeStatus();
 
 
-       
+
 
         /**
          * Constructor for creating TradeStatus
-         * @param 
+         * @param
          * @param Status bool
          * @param Reason std::string
          * @return newly created TradeStatus object
          */
         TradeStatus(bool arg_Status,std::string arg_Reason);
-        
-        
+
+
         /********************************** Class get set methods **************************************/
-        
-        
+
+
 
         /**
-         * Getter for status. 
+         * Getter for status.
          * @return bool
          */
         WSF_EXTERN bool WSF_CALL
@@ -110,11 +110,11 @@ namespace org_wso2_www_types
          */
         WSF_EXTERN bool WSF_CALL
         resetStatus();
-        
-        
+
+
 
         /**
-         * Getter for reason. 
+         * Getter for reason.
          * @return std::string*
          */
         WSF_EXTERN std::string WSF_CALL
@@ -134,17 +134,17 @@ namespace org_wso2_www_types
          */
         WSF_EXTERN bool WSF_CALL
         resetReason();
-        
+
 
 
         /******************************* Checking and Setting NIL values *********************************/
-        
+
 
         /**
          * NOTE: set_nil is only available for nillable properties
          */
 
-        
+
 
         /**
          * Check whether status is Nill
@@ -154,7 +154,7 @@ namespace org_wso2_www_types
         isStatusNil();
 
 
-        
+
 
         /**
          * Check whether reason is Nill
@@ -164,27 +164,27 @@ namespace org_wso2_www_types
         isReasonNil();
 
 
-        
+
 
         /**************************** Serialize and De serialize functions ***************************/
         /*********** These functions are for use only inside the generated code *********************/
 
-        
+
         /**
          * Deserialize the ADB object to an XML
          * @param dp_parent double pointer to the parent node to be deserialized
          * @param dp_is_early_node_valid double pointer to a flag (is_early_node_valid?)
-         * @param dont_care_minoccurs Dont set errors on validating minoccurs, 
+         * @param dont_care_minoccurs Dont set errors on validating minoccurs,
          *              (Parent will order this in a case of choice)
          * @return true on success, false otherwise
          */
         bool WSF_CALL
         deserialize(axiom_node_t** omNode, bool *isEarlyNodeValid, bool dontCareMinoccurs);
-                         
-            
+
+
 
        /**
-         * Declare namespace in the most parent node 
+         * Declare namespace in the most parent node
          * @param parent_element parent element
          * @param namespaces hash of namespace uri to prefix
          * @param next_ns_index pointer to an int which contain the next namespace index
@@ -193,7 +193,7 @@ namespace org_wso2_www_types
         declareParentNamespaces(axiom_element_t *parent_element, axutil_hash_t *namespaces, int *next_ns_index);
 
 
-        
+
 
         /**
          * Serialize the ADB object to an xml
@@ -219,8 +219,8 @@ namespace org_wso2_www_types
         /******************************* get the value by the property number  *********************************/
         /************NOTE: This method is introduced to resolve a problem in unwrapping mode *******************/
 
-      
-        
+
+
 
         /**
          * Getter for status by property number (1)
@@ -230,8 +230,8 @@ namespace org_wso2_www_types
         bool WSF_CALL
         getProperty1();
 
-    
-        
+
+
 
         /**
          * Getter for reason by property number (2)
@@ -241,11 +241,11 @@ namespace org_wso2_www_types
         std::string WSF_CALL
         getProperty2();
 
-    
+
 
 };
 
-}        
+}
  #endif /* TRADESTATUS_H */
-    
+
 

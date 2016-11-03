@@ -20,7 +20,7 @@
 
 /**
   * @file rampart_timestamp_token.h
-  * @brief Timestamp token related functions. 
+  * @brief Timestamp token related functions.
   */
 
 /**
@@ -40,7 +40,7 @@ extern "C"
      * @param env pointer to environment struct
      * @param sec_node security node
      * @param ttl Time to live. The time difference btwn Created and Expired. If it is zero or less
-     * than zero, then Expired element will not be created. 
+     * than zero, then Expired element will not be created.
      * @param with_millisecond shows whether millisecond precision is needed
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -48,7 +48,7 @@ extern "C"
     rampart_timestamp_token_build(
         const axutil_env_t *env,
         axiom_node_t *sec_node,
-        int ttl, 
+        int ttl,
         axis2_bool_t with_millisecond);
 
     /**

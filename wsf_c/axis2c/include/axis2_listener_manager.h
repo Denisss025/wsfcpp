@@ -49,13 +49,13 @@ extern "C"
     typedef struct axis2_listener_manager axis2_listener_manager_t;
 
     /**
-     * Ensures that the named transport's listener is started. Starts a listener 
-     * if it is not already started. Only one listener would be started for a given 
+     * Ensures that the named transport's listener is started. Starts a listener
+     * if it is not already started. Only one listener would be started for a given
      * transport.
      * @param listener_manager pointer to listener manager struct
-     * @param env pointer to environment struct    
+     * @param env pointer to environment struct
      * @param transport name of the transport
-     * @param conf_ctx configuration context to pick transport info for the 
+     * @param conf_ctx configuration context to pick transport info for the
      * named transport
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
@@ -69,7 +69,7 @@ extern "C"
     /**
       * Stops the named listener transport.
       * @param listener_manager pointer to listener manager struct
-      * @param env pointer to environment struct   
+      * @param env pointer to environment struct
       * @param transport name of the transport whose listener is to be stopped
       * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
       */
@@ -80,13 +80,13 @@ extern "C"
         const AXIS2_TRANSPORT_ENUMS transport);
 
     /**
-     * Gets reply to end point reference. The engine will direct the 
+     * Gets reply to end point reference. The engine will direct the
      * response for the message to this reply to address.
      * @param listener_manager pointer to listener manager struct
-     * @param env pointer to environment struct    
+     * @param env pointer to environment struct
      * @param svc_name name of the service for which the epr is to be returned
      * @param transport name of the transport corresponding to the endpoint
-     * @return a pointer to endpoint reference struct representing the reply 
+     * @return a pointer to endpoint reference struct representing the reply
      * endpoint
      */
     AXIS2_EXTERN axis2_endpoint_ref_t *AXIS2_CALL
@@ -97,10 +97,10 @@ extern "C"
         const AXIS2_TRANSPORT_ENUMS transport);
 
     /**
-     * Gets the configuration context that holds information on the transports 
+     * Gets the configuration context that holds information on the transports
      * managed by the listener manager.
      * @param listener_manager pointer to listener manager struct
-     * @param env pointer to environment struct    
+     * @param env pointer to environment struct
      */
     AXIS2_EXTERN axis2_conf_ctx_t *AXIS2_CALL
     axis2_listener_manager_get_conf_ctx(
@@ -110,7 +110,7 @@ extern "C"
     /**
       * Frees listener manager struct.
       * @param listener_manager pointer to listener manager struct
-      * @param env pointer to environment struct   
+      * @param env pointer to environment struct
       * @return void
       */
     AXIS2_EXTERN void AXIS2_CALL

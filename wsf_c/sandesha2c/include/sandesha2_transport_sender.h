@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_TRANSPORT_SENDER_H
 #define SANDESHA2_TRANSPORT_SENDER_H
 
 /**
   * @file sandesha2_transport_sender.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -40,7 +40,7 @@ extern "C"
 AXIS2_EXTERN axis2_transport_sender_t* AXIS2_CALL
 sandesha2_transport_sender_create(
     const axutil_env_t *env);
-                        
+
 /** @} */
 #ifdef __cplusplus
 }

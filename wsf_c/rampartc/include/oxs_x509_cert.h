@@ -36,7 +36,7 @@ extern "C"
 
     /**
      * @defgroup oxs_x509_cert X509 Certificate
-     * @ingroup oxs 
+     * @ingroup oxs
      * @{
      */
 
@@ -44,7 +44,7 @@ extern "C"
     typedef struct oxs_x509_cert_t oxs_x509_cert_t;
 
     /**
-     * Create function of the X509 certificate 
+     * Create function of the X509 certificate
      * @param env pointer to environment struct
      * @return created X509 certificate
      **/
@@ -52,7 +52,7 @@ extern "C"
     oxs_x509_cert_create( const axutil_env_t *env);
 
     /**
-     * Free function of the X509 certificate 
+     * Free function of the X509 certificate
      * @param x509_cert the X509 certificate to be freed
      * @param env pointer to environment struct
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
@@ -269,7 +269,7 @@ extern "C"
                            axis2_char_t *value);
 
     /**
-     * Set the data of X509 Certificate. 
+     * Set the data of X509 Certificate.
      * This is the base64 encoded string in between the  --BEGIN CERTIFICATE- --END CERTIFICATE-- lines
      * @param x509_cert the X509 certificate
      * @param env pointer to environment struct
@@ -300,20 +300,20 @@ extern "C"
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
 
-	AXIS2_EXTERN axis2_status_t AXIS2_CALL 
-	oxs_x509_cert_set_valid_from(oxs_x509_cert_t* x509_cert, 
-								 const axutil_env_t* env, 
-								 axis2_char_t* valid_from); 
+	AXIS2_EXTERN axis2_status_t AXIS2_CALL
+	oxs_x509_cert_set_valid_from(oxs_x509_cert_t* x509_cert,
+								 const axutil_env_t* env,
+								 axis2_char_t* valid_from);
 
-	AXIS2_EXTERN axis2_status_t AXIS2_CALL 
-	oxs_x509_cert_set_version(oxs_x509_cert_t* x509_cert, 
-							  const axutil_env_t* env, 
-							  int version); 
+	AXIS2_EXTERN axis2_status_t AXIS2_CALL
+	oxs_x509_cert_set_version(oxs_x509_cert_t* x509_cert,
+							  const axutil_env_t* env,
+							  int version);
 
-	AXIS2_EXTERN axis2_status_t AXIS2_CALL 
-	oxs_x509_cert_set_alias(oxs_x509_cert_t* x509_cert, 
-							const axutil_env_t* env, 
-							axis2_char_t* alias); 
+	AXIS2_EXTERN axis2_status_t AXIS2_CALL
+	oxs_x509_cert_set_alias(oxs_x509_cert_t* x509_cert,
+							const axutil_env_t* env,
+							axis2_char_t* alias);
 
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_x509_cert_copy_to(oxs_x509_cert_t *x509_cert,
@@ -323,7 +323,7 @@ extern "C"
 	AXIS2_EXTERN axis2_char_t * AXIS2_CALL
     oxs_x509_cert_get_common_name(oxs_x509_cert_t *x509_cert,
     					  const axutil_env_t *env);
-    
+
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_x509_cert_set_common_name(oxs_x509_cert_t *x509_cert,
     		const axutil_env_t *env,

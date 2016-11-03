@@ -102,7 +102,7 @@ extern "C" {
      * Load security context token provider
      * User MUST free memory
      * @param env pointer to environment struct
-     * @param sct_provider_name name of the security context token provider 
+     * @param sct_provider_name name of the security context token provider
      * @return created security context token provider module
      */
     AXIS2_EXTERN rampart_sct_provider_t* AXIS2_CALL
@@ -171,7 +171,7 @@ extern "C" {
 	rampart_callback_pkcs12_password(
 	    const axutil_env_t *env,
 	    rampart_callback_t *callback_module,
-	    const axis2_char_t *username);	
+	    const axis2_char_t *username);
 
     /**
      * Generates time.
@@ -182,8 +182,8 @@ extern "C" {
      **/
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     rampart_generate_time(
-        const axutil_env_t *env, 
-        int ttl, 
+        const axutil_env_t *env,
+        int ttl,
         axis2_bool_t with_millisecond);
 
     /**
@@ -195,8 +195,8 @@ extern "C" {
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     rampart_compare_date_time(
-        const axutil_env_t *env, 
-        axis2_char_t *dt1, 
+        const axutil_env_t *env,
+        axis2_char_t *dt1,
         axis2_char_t *dt2);
 
     /* @} */

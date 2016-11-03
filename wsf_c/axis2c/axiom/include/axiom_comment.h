@@ -61,7 +61,7 @@ extern "C"
       * Free a axis2_comment_t struct
       * @param om_comment pointer to axis2_commnet_t struct to be freed
       * @param env Environment. MUST NOT be NULL.
-      * @return satus of the op. 
+      * @return satus of the op.
       *                AXIS2_SUCCESS on success ,AXIS2_FAILURE on error.
       */
     AXIS2_EXTERN void AXIS2_CALL
@@ -71,7 +71,7 @@ extern "C"
 
     /** get the comments data
      * @param om_comment a pointer to axiom_comment_t struct
-     * @param env environment, MUST NOT be NULL 
+     * @param env environment, MUST NOT be NULL
      * @returns comment text
      */
 
@@ -94,7 +94,7 @@ extern "C"
         const axis2_char_t * value);
 
     /**
-     *  serialize function 
+     *  serialize function
      *  @param om_comment pointer to axiom_comment_t struct
      *  @param env environment, MUST NOT be NULL.
      *  @param om_output pointer to om_output_t struct

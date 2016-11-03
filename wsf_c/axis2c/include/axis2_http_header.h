@@ -69,7 +69,7 @@ extern "C"
     axis2_http_header_get_value(
         const axis2_http_header_t * header,
         const axutil_env_t * env);
-    
+
     /**
      * @param header pointer to header
      * @param env pointer to environment struct

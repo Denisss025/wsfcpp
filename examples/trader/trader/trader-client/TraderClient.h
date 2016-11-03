@@ -25,7 +25,7 @@ using namespace org_wso2_www;
 #define WSF_SERVICE_SKEL_INIT(class_name) \
 TraderClientSkeleton* wsfGetTraderClientSkeleton(){ return new class_name(); }
 
-TraderClientSkeleton* wsfGetTraderClientSkeleton(); 
+TraderClientSkeleton* wsfGetTraderClientSkeleton();
 
 
 
@@ -37,7 +37,7 @@ TraderClientSkeleton* wsfGetTraderClientSkeleton();
             public:
 
                union {
-                     
+
                } fault;
 
 
@@ -49,12 +49,12 @@ TraderClientSkeleton* wsfGetTraderClientSkeleton();
 
               bool WSF_CALL init();
 
-              ~TraderClient(); 
+              ~TraderClient();
       };
 
 
 
 #endif    //     TRADERCLIENT_H
 
-    
+
 

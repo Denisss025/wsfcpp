@@ -44,12 +44,12 @@ namespace wso2wsf
 	*/
 	class TLSKey
 	{
-		private: 	
+		private:
 #ifdef WIN32
 		DWORD tls_key;
-#else				
+#else
 		pthread_key_t tls_key;
-#endif		
+#endif
 		public:
 		/**
 		 *  Constructor for the TLSKey class.
@@ -57,7 +57,7 @@ namespace wso2wsf
 		TLSKey()
 		{
 #ifdef WIN32
-			 if ((tls_key = TlsAlloc()) == TLS_OUT_OF_INDEXES) 
+			 if ((tls_key = TlsAlloc()) == TLS_OUT_OF_INDEXES)
 				 ExitProcess(0);
 #else
 			pthread_key_create(&tls_key, NULL);
@@ -66,7 +66,7 @@ namespace wso2wsf
 		/**
 		 * Returns the unique key associated with the index created for thread local storage.
 		 */
-#ifdef WIN32 
+#ifdef WIN32
 		DWORD getTLSKey()
 #else
 		pthread_key_t getTLSKey()
@@ -89,7 +89,7 @@ namespace wso2wsf
 
 	/**
 	 *@brief Class Environment wraps the underlying axis2_environment which deals with memory allocation,
-	 * threading, logging and error handling within the framework. Environment class hides all the complexcities of 
+	 * threading, logging and error handling within the framework. Environment class hides all the complexcities of
 	 * these  and provides a simple interface. All the methods defined within the environment class are static. The method
 	 * Environment::initialize() must be called before invoking any other methods from the WSF/CPP Framework for client side.
   	 */
@@ -103,29 +103,29 @@ namespace wso2wsf
 		 */
 		static TLSKey key;
 	public:
-		/** 
-		 * keeps the log file name 
+		/**
+		 * keeps the log file name
 		 */
 		static std::string _logFileName;
-		/** 
- 		* keeps the log level 
+		/**
+ 		* keeps the log level
  		*/
 		static axutil_log_levels_t _logLevel;
 		/**
-		 * Constructor for the Environment class 
-		*/ 
+		 * Constructor for the Environment class
+		*/
 		Environment();
 		/**
-		*  Method to store the current thread specific environment. 
+		*  Method to store the current thread specific environment.
 		*  @param env Pointer to the axutil_env
 		*/
 		static WSF_EXTERN void WSF_CALL setEnv(const axutil_env_t *env);
 		/**
-		* Get the environment related to current thread context                                                   
+		* Get the environment related to current thread context
 		*/
 		static WSF_EXTERN const axutil_env_t* WSF_CALL getEnv();
 		/**
-		* Remove the environment related to current thread context.                                                   
+		* Remove the environment related to current thread context.
 		*/
 		static WSF_EXTERN void WSF_CALL removeEnv();
 
@@ -140,17 +140,17 @@ namespace wso2wsf
 		*/
 		static WSF_EXTERN void WSF_CALL switchToGlobalPool();
 		/**
-		 * Switch to local memory pool                                                                  
+		 * Switch to local memory pool
 		 */
 		static WSF_EXTERN void WSF_CALL switchToLocalPool();
 		/**
 		* Initialize with log file and log level. This function must be called prior to using the framework for client
-		* side. For the server, calling the method for initialization is not required 
+		* side. For the server, calling the method for initialization is not required
 		* @param logFileName name of the log file name which will be created by the environment and used to write logs.
 		* @param logLevel The level of details that should be written to the log file. There are several log levels available.
 		* 1. WSF_LOG_LEVEL_CRITICAL Only Critical level logs will be written. Suitable for production deployment.
 		* 2. WSF_LOG_LEVEL_ERROR  Only Error messages will be written to the log.
-		* 3. WSF_LOG_LEVEL_INFO   Logs information 
+		* 3. WSF_LOG_LEVEL_INFO   Logs information
 		* 4. WSF_LOG_LEVEL_DEBUG  logs everything
 		* 5. WSF_LOG_LEVEL_USER   log user level messages.
 		* 6. WSF_LOG_LEVEL_TRACE  Trace Level logging.
@@ -159,7 +159,7 @@ namespace wso2wsf
 		/**
 		 * Destructor for Environment Object
 		 */
-		WSF_CALL ~Environment(); 
+		WSF_CALL ~Environment();
 	};
 	/** @} */
 }

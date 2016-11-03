@@ -108,20 +108,20 @@ extern "C"
      * @param data pointer to xmpp session data struct
      */
 
-    AXIS2_EXTERN int AXIS2_CALL 
+    AXIS2_EXTERN int AXIS2_CALL
     axis2_xmpp_worker_on_data(
         void* user_data,
         int type,
         iks* node);
 
-    AXIS2_EXTERN void AXIS2_CALL 
+    AXIS2_EXTERN void AXIS2_CALL
     axis2_xmpp_worker_on_log(
         void *user_data,
         const char* data,
         size_t size,
         int is_incoming);
 
-    AXIS2_EXTERN int AXIS2_CALL 
+    AXIS2_EXTERN int AXIS2_CALL
     axis2_xmpp_worker_on_iq(
         void *user_data,
         ikspak *pak);
@@ -135,7 +135,7 @@ extern "C"
     @sa axis2_xmpp_worker_ops#run */
 #define AXIS2_XMPP_WORKER_RUN(xmpp_worker, env) \
     ((xmpp_worker)->ops->run(xmpp_worker, env))
-    
+
 /** Sets the server port.
     @sa axis2_xmpp_worker_ops#set_svr_port */
 #define AXIS2_XMPP_WORKER_SET_SVR_PORT(xmpp_worker, env, port) \

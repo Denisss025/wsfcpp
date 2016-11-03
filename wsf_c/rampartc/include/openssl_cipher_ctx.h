@@ -53,7 +53,7 @@ extern "C" {
      * Given the ctx return the CIPHER
      * @param ctx to the openssl cipher ctx struct
      * @param env pointer to environment struct
-     * @return RVP_CIPHER the cipher 
+     * @return RVP_CIPHER the cipher
      */
     const EVP_CIPHER* AXIS2_CALL
     openssl_cipher_ctx_get_cipher(
@@ -63,7 +63,7 @@ extern "C" {
      * Given the ctx return key
      * @param ctx to the openssl cipher ctx struct
      * @param env pointer to environment struct
-     * @return key 
+     * @return key
      */
     oxs_key_t *AXIS2_CALL
     openssl_cipher_ctx_get_key(
@@ -73,7 +73,7 @@ extern "C" {
      * Given the ctx return iv
      * @param ctx to the openssl cipher ctx struct
      * @param env pointer to environment struct
-     * @return iv 
+     * @return iv
      */
     axis2_char_t *AXIS2_CALL
     openssl_cipher_ctx_get_iv(
@@ -107,7 +107,7 @@ extern "C" {
      * Set the Key for the cipher context.
      * @param ctx to the openssl cipher ctx struct
      * @param env pointer to environment struct
-     * @param key The key to be set in the cipher context 
+     * @param key The key to be set in the cipher context
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     axis2_status_t AXIS2_CALL
@@ -133,7 +133,7 @@ extern "C" {
      * Set the pad for the cipher context.
      * @param ctx to the openssl cipher ctx struct
      * @param env pointer to environment struct
-     * @param pad the pad to be set in the cipher context 
+     * @param pad the pad to be set in the cipher context
      * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
      */
     axis2_status_t AXIS2_CALL

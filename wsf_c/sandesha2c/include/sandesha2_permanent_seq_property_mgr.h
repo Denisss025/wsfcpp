@@ -32,8 +32,8 @@
 extern "C"
 {
 #endif
-    
-/** @defgroup sandesha2_permanent_seq_property_mgr Permanat Sequence Property 
+
+/** @defgroup sandesha2_permanent_seq_property_mgr Permanat Sequence Property
   * Manager
   * @ingroup sandesha2
   * @{

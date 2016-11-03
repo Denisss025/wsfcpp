@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_asym_ctx.h
-  * @brief Keeps information relavent for asymmetric encryption. 
+  * @brief Keeps information relavent for asymmetric encryption.
   */
 
 #include <axis2_defines.h>
@@ -36,7 +36,7 @@ extern "C"
 #endif
 
     /** @defgroup oxs_asym_ctx Asymmetric Context
-     * @ingroup oxs 
+     * @ingroup oxs
      * @{
      */
 
@@ -71,7 +71,7 @@ extern "C"
     * Free function for the asymmetric context struct
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_asym_ctx_free(oxs_asym_ctx_t *ctx,
@@ -81,7 +81,7 @@ extern "C"
     *Get the algorithm used to encrypt
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     oxs_asym_ctx_get_algorithm(const oxs_asym_ctx_t *ctx,
@@ -91,7 +91,7 @@ extern "C"
     *Get the SecurityTokenReference pattern. For ex: IssuerSerial
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN axis2_char_t* AXIS2_CALL
     oxs_asym_ctx_get_st_ref_pattern(const oxs_asym_ctx_t *ctx,
@@ -101,7 +101,7 @@ extern "C"
     *Get the operation. For ex: Public Key encrypt, Private Key Decrypt
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN oxs_asym_ctx_operation_t AXIS2_CALL
     oxs_asym_ctx_get_operation(const oxs_asym_ctx_t *ctx,
@@ -111,7 +111,7 @@ extern "C"
     *Get the private key used
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN openssl_pkey_t* AXIS2_CALL
     oxs_asym_ctx_get_private_key(const oxs_asym_ctx_t *ctx,
@@ -121,7 +121,7 @@ extern "C"
     * Get the x509 crtificate used.
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN oxs_x509_cert_t* AXIS2_CALL
     oxs_asym_ctx_get_certificate(const oxs_asym_ctx_t *ctx,
@@ -132,7 +132,7 @@ extern "C"
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
     *@algorithm  used to encrypt
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_asym_ctx_set_algorithm(oxs_asym_ctx_t *ctx,
@@ -143,7 +143,7 @@ extern "C"
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
     *@st_ref_pattern SecurityTokenReference pattern. For ex: IssuerSerial
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_asym_ctx_set_st_ref_pattern(oxs_asym_ctx_t *ctx,
@@ -154,7 +154,7 @@ extern "C"
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
     *@operation the operation. For ex: Public Key encrypt, Private Key Decrypt
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_asym_ctx_set_operation(oxs_asym_ctx_t *ctx,
@@ -165,7 +165,7 @@ extern "C"
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
     *@certificate the x509 crtificate used.
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_asym_ctx_set_certificate(oxs_asym_ctx_t *ctx,
@@ -176,7 +176,7 @@ extern "C"
     *@ctx pointer to the OMXMLSec asymmetric context struct
     *@env pointer to environment struct
     *@private_key private key used
-    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE	
+    *@return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     oxs_asym_ctx_set_private_key(oxs_asym_ctx_t *asym_ctx,

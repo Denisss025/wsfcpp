@@ -197,7 +197,7 @@ extern "C"
      * retrieve the year of the date time
      * @param date_time represet the type object
      * @param env pointer to environment struct. MUST NOT be NULL
-     * @return year as an integer 
+     * @return year as an integer
      */
     AXIS2_EXTERN int AXIS2_CALL
     axutil_date_time_get_year(
@@ -208,7 +208,7 @@ extern "C"
      * retrieve the month of the date time
      * @param date_time represet the type object
      * @param env pointer to environment struct. MUST NOT be NULL
-     * @return month as an integer 
+     * @return month as an integer
      */
     AXIS2_EXTERN int AXIS2_CALL
     axutil_date_time_get_month(
@@ -230,7 +230,7 @@ extern "C"
      * retrieve the hour of the date time
      * @param date_time represet the type object
      * @param env pointer to environment struct. MUST NOT be NULL
-     * @return hour as an integer 
+     * @return hour as an integer
      */
     AXIS2_EXTERN int AXIS2_CALL
     axutil_date_time_get_hour(
@@ -241,7 +241,7 @@ extern "C"
      * retrieve the minute of the date time
      * @param date_time represet the type object
      * @param env pointer to environment struct. MUST NOT be NULL
-     * @return minute as an integer 
+     * @return minute as an integer
      */
     AXIS2_EXTERN int AXIS2_CALL
     axutil_date_time_get_minute(
@@ -252,7 +252,7 @@ extern "C"
      * retrieve the second of the date time
      * @param date_time represet the type object
      * @param env pointer to environment struct. MUST NOT be NULL
-     * @return second as an integer 
+     * @return second as an integer
      */
     AXIS2_EXTERN int AXIS2_CALL
     axutil_date_time_get_second(

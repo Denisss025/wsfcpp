@@ -32,23 +32,23 @@ AXIS2_EXTERN axis2_module_t * AXIS2_CALL
 mod_sandesha2_create(
     const axutil_env_t *env);
 
-AXIS2_EXTERN axis2_handler_t* AXIS2_CALL 
+AXIS2_EXTERN axis2_handler_t* AXIS2_CALL
 sandesha2_global_in_handler_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axutil_qname_t *qname);
 
-AXIS2_EXTERN axis2_handler_t* AXIS2_CALL 
+AXIS2_EXTERN axis2_handler_t* AXIS2_CALL
 sandesha2_in_handler_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axutil_qname_t *qname);
 
-AXIS2_EXTERN axis2_handler_t* AXIS2_CALL 
+AXIS2_EXTERN axis2_handler_t* AXIS2_CALL
 sandesha2_out_handler_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axutil_qname_t *qname);
-    
+
 /** @} */
-    
+
 #ifdef __cplusplus
 }
 #endif

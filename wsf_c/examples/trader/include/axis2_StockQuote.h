@@ -10,7 +10,7 @@
         * by the Apache Axis2 version: #axisVersion# #today#
         */
 
-        
+
 
         #include <stdio.h>
         #include <axiom.h>
@@ -38,7 +38,7 @@
             axis2_StockQuote_t* StockQuote,
             const axutil_env_t *env);
 
-        
+
 
         axiom_node_t* AXIS2_CALL
         axis2_StockQuote_serialize(
@@ -51,7 +51,7 @@
             axis2_StockQuote_t* StockQuote,
             const axutil_env_t *env, axiom_node_t* parent);
 
-        
+
 
         /**
          * getter for name.
@@ -70,7 +70,7 @@
             const axutil_env_t *env,
             axis2_char_t*  param_name);
 
-        
+
 
         /**
          * getter for symbol.
@@ -89,7 +89,7 @@
             const axutil_env_t *env,
             axis2_char_t*  param_symbol);
 
-        
+
 
         /**
          * getter for price.
@@ -108,7 +108,7 @@
             const axutil_env_t *env,
             float  param_price);
 
-        
+
 
         /**
          * getter for high.
@@ -127,7 +127,7 @@
             const axutil_env_t *env,
             float  param_high);
 
-        
+
 
         /**
          * getter for low.
@@ -146,12 +146,12 @@
             const axutil_env_t *env,
             float  param_low);
 
-        
+
 
      #ifdef __cplusplus
      }
      #endif
 
      #endif /* AXIS2_STOCKQUOTE_H */
-    
+
 

@@ -117,7 +117,7 @@ http_server(axutil_thread_t *td, void *param)
 	repo_path = getenv("AXIS2C_HOME");
 	if (!repo_path) repo_path = DEFAULT_REPO_PATH;
     td_http_server = td;
-    /* Set the service URL prefix to be used. This could default to services if not 
+    /* Set the service URL prefix to be used. This could default to services if not
      set with AXIS2_REQUEST_URL_PREFIX macro at compile time */
     axis2_request_url_prefix = AXIS2_REQUEST_URL_PREFIX;
 
@@ -131,7 +131,7 @@ http_server(axutil_thread_t *td, void *param)
 
     env = init_system_env(allocator, log_file);
     CUT_ASSERT(env != NULL);
-    if (env == NULL) 
+    if (env == NULL)
     {
         server_free(NULL);
         return NULL;

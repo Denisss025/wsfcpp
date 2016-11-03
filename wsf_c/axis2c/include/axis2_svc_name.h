@@ -48,7 +48,7 @@ extern "C"
     typedef struct axis2_svc_name axis2_svc_name_t;
 
     /**
-     * Creates a service name struct with given QName and endpoint name. 
+     * Creates a service name struct with given QName and endpoint name.
      * @param env pointer to environment struct
      * @param qname pointer to QName, this method creates a clone of QName
      * @param endpoint_name endpoint name string
@@ -61,11 +61,11 @@ extern "C"
         const axis2_char_t * endpoint_name);
 
     /**
-     * Gets QName. QName identifies the WSDL service element that contains 
+     * Gets QName. QName identifies the WSDL service element that contains
      * the definition of the endpoint being conveyed.
      * @param svc_name pointer to service name struct
      * @param env pointer to environment struct
-     * @return pointer to QName struct, returns a reference, not a cloned 
+     * @return pointer to QName struct, returns a reference, not a cloned
      * copy
      */
     AXIS2_EXTERN const axutil_qname_t *AXIS2_CALL
@@ -74,7 +74,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets QName. QName identifies the WSDL service element that contains 
+     * Sets QName. QName identifies the WSDL service element that contains
      * the definition of the endpoint being conveyed.
      * @param svc_name pointer to service name struct
      * @param env pointer to environment struct
@@ -88,8 +88,8 @@ extern "C"
         const axutil_qname_t * qname);
 
     /**
-     * Gets endpoint name. Endpoint name is a non-qualified name that 
-     * identifies the specific port in the service that corresponds to 
+     * Gets endpoint name. Endpoint name is a non-qualified name that
+     * identifies the specific port in the service that corresponds to
      * the endpoint.
      * @param svc_name pointer to service name struct
      * @param env pointer to environment struct
@@ -101,8 +101,8 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Sets endpoint name. Endpoint name is a non-qualified name that 
-     * identifies the specific port in the service that corresponds to 
+     * Sets endpoint name. Endpoint name is a non-qualified name that
+     * identifies the specific port in the service that corresponds to
      * the endpoint.
      * @param svc_name pointer to service name struct
      * @param env pointer to environment struct

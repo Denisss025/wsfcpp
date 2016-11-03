@@ -21,7 +21,7 @@
 
 /** @defgroup axis2_phases_info phases information
  * @ingroup axis2_deployment
- * 
+ *
  * In deployment engine when configuration builder parse phase order elements in axis2.xml, for
  * phases defined in a phase order it will create a phase name list and add it to the phases
  * info. There are four phase orders. inflow, outflow, in faultflow and out faultflow.
@@ -29,7 +29,7 @@
  *
  * At the time of module engagement phase resolver call the functions here to retrieve phase
  * lists for each flow for the purpose of adding handlers. When such a request come what each
- * function do is, create phase instances list for corresponding phase names stored in the phase name 
+ * function do is, create phase instances list for corresponding phase names stored in the phase name
  * list for that flow and return.
  *
  * @{
@@ -64,7 +64,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * Set the inflow phase names as an array list. These phases are defined in the inflow phase 
+     * Set the inflow phase names as an array list. These phases are defined in the inflow phase
      * order element defined in axis2.xml.
      *
      * @param phases_info pointer to phases info
@@ -79,7 +79,7 @@ extern "C"
         axutil_array_list_t * in_phases);
 
     /**
-     * Set the outflow phase names as an array list. These phases are defined in the outflow phase 
+     * Set the outflow phase names as an array list. These phases are defined in the outflow phase
      * order element defined in axis2.xml.
      *
      * @param phases_info pointer to phases info
@@ -94,7 +94,7 @@ extern "C"
         axutil_array_list_t * out_phases);
 
     /**
-     * Set the INfaultflow phase names as an array list. These phases are defined in the INfaultflow 
+     * Set the INfaultflow phase names as an array list. These phases are defined in the INfaultflow
      * phase order element defined in axis2.xml.
      *
      * @param phases_info pointer to phases info
@@ -110,7 +110,7 @@ extern "C"
         axutil_array_list_t * in_faultphases);
 
     /**
-     * Set the Outfaultflow phase names as an array list. These phases are defined in the 
+     * Set the Outfaultflow phase names as an array list. These phases are defined in the
      * Outfaultflow phase order element defined in axis2.xml.
      *
      * @param phases_info pointer to phases info
@@ -186,7 +186,7 @@ extern "C"
         const axutil_env_t * env);
 
     /**
-     * @param phases_info pointer to phases info 
+     * @param phases_info pointer to phases info
      * @param env pointer to environment struct
      */
     AXIS2_EXTERN axutil_array_list_t *AXIS2_CALL

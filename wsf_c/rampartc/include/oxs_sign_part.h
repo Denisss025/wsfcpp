@@ -21,7 +21,7 @@
 
 /**
   * @file oxs_sign_part.h
-  * @brief Keeps information relavent for a single node of signing. 
+  * @brief Keeps information relavent for a single node of signing.
   */
 
 /**
@@ -124,7 +124,7 @@ extern "C"
 	oxs_sign_part_set_id_name(
 		oxs_sign_part_t *sign_part,
 		const axutil_env_t *env,
-		axis2_char_t *id_name);		
+		axis2_char_t *id_name);
 
 	AXIS2_EXTERN axis2_status_t AXIS2_CALL
 	oxs_sign_part_set_sign_namespace(

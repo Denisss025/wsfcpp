@@ -55,7 +55,7 @@ typedef struct sandesha2_seq_report sandesha2_seq_report_t;
   * @ingroup sandesha2
   * @{
   */
-AXIS2_EXTERN axis2_status_t AXIS2_CALL 
+AXIS2_EXTERN axis2_status_t AXIS2_CALL
 sandesha2_seq_report_free(
     void *report,
     const axutil_env_t *envv);

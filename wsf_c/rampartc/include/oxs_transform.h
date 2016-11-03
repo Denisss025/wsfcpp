@@ -40,7 +40,7 @@ extern "C"
         OXS_TRANSFORM_TYPE_UNKNOWN = 0,
         OXS_TRANSFORM_TYPE_CHAR,
         OXS_TRANSFORM_TYPE_NODE,
-        OXS_TRANSFORM_TYPE_NODE_ARRAY_LIST        
+        OXS_TRANSFORM_TYPE_NODE_ARRAY_LIST
     } oxs_tr_dtype_t;
 
 

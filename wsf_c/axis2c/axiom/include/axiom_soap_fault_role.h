@@ -40,7 +40,7 @@ extern "C"
      */
 
     /**
-      * creates a soap struct 
+      * creates a soap struct
       * @param env Environment. MUST NOT be NULL
       */
     AXIS2_EXTERN axiom_soap_fault_role_t *AXIS2_CALL
@@ -52,7 +52,7 @@ extern "C"
       * Free an axiom_soap_fault_role
       * @param  fault_role pointer to soap_fault_role struct
       * @param  env Environment. MUST NOT be NULL
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
 
@@ -65,9 +65,9 @@ extern "C"
       * Set the SOAP fault role value
       * @param  fault_role pointer to soap_fault_role struct
       * @param  env Environment. MUST NOT be NULL
-      * @param uri the URI to be set 
+      * @param uri the URI to be set
       *
-      * @return satus of the op. AXIS2_SUCCESS on success 
+      * @return satus of the op. AXIS2_SUCCESS on success
       *         else AXIS2_FAILURE
       */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
@@ -77,11 +77,11 @@ extern "C"
         axis2_char_t * uri);
 
     /**
-      * Get the SOAP fault role value 
+      * Get the SOAP fault role value
       * @param  fault_role pointer to soap_fault_role struct
       * @param  env Environment. MUST NOT be NULL
       *
-      * @return the SOAP fault role value 
+      * @return the SOAP fault role value
       */
     AXIS2_EXTERN axis2_char_t *AXIS2_CALL
     axiom_soap_fault_role_get_role_value(
@@ -92,8 +92,8 @@ extern "C"
       * Get the base node of the OM SOAP fault role
       * @param  fault_role pointer to soap_fault_role struct
       * @param  env Environment. MUST NOT be NULL
-      * 
-      * @return the base node of the OM SOAP fault role 
+      *
+      * @return the base node of the OM SOAP fault role
       */
     AXIS2_EXTERN axiom_node_t *AXIS2_CALL
     axiom_soap_fault_role_get_base_node(

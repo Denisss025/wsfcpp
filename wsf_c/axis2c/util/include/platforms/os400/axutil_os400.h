@@ -84,18 +84,18 @@ extern char *os400_dlerror();
 
 // STRTOASC is to translate single byte 'native' character representation to ASCII
 // ASCTOSTR is to translate single byte ascii representation to 'native' character (EBCDIC)
-// CANNOT be used with constants.  
+// CANNOT be used with constants.
 extern char*      strtoasc( char* );
 extern char*      asctostr( char* );
 #define AXIS2_PLATFORM_STRTOASC( x ) strtoasc( (char*)(x) )
 #define AXIS2_PLATFORM_ASCTOSTR( x ) asctostr( (char*)(x) )
 
-// reference to ebcdic to ascii conversion table 
+// reference to ebcdic to ascii conversion table
 extern const char EBCDICtoASCII[256];
 
 // Turkish double quote in EBCDIC is not invariant (i.e. the hexadecimal
 // value for double quote is different in turkish locale than when running
-// in english locale).  This, when using double quotes we must reference the 
+// in english locale).  This, when using double quotes we must reference the
 // following, which will be set to proper value on EBCDIC-based systems.
 
 extern char AXIS2_PLATFORM_DOUBLE_QUOTE_S[];
@@ -161,11 +161,11 @@ static long os400_getThreadID()
     /**
      * Platform specific method to obtain current time in milli seconds
      */
-struct os400_timeb                                                               
-{                                                                          
-     long  time;                       
-     long  millitm;                    
-};  
+struct os400_timeb
+{
+     long  time;
+     long  millitm;
+};
 
 static int os400_ftime(struct os400_timeb * tp)
 {

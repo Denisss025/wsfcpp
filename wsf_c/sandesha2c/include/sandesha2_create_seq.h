@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #ifndef SANDESHA2_CREATE_SEQ_H
 #define SANDESHA2_CREATE_SEQ_H
 
 /**
   * @file sandesha2_create_seq.h
-  * @brief 
+  * @brief
   */
 
 #include <axutil_utils_defines.h>
@@ -39,17 +39,17 @@ extern "C"
  * @ingroup sandesha2_wsrm
  * @{
  */
-    
+
 typedef struct sandesha2_create_seq_t sandesha2_create_seq_t;
- 
+
 /**
  * @brief sandesha2_create_seq
  *    sandesha2_create_seq
  */
 
-axis2_status_t AXIS2_CALL 
+axis2_status_t AXIS2_CALL
 sandesha2_create_seq_free (
-    sandesha2_create_seq_t *create_seq, 
+    sandesha2_create_seq_t *create_seq,
     const axutil_env_t *env);
 
 axis2_status_t AXIS2_CALL
@@ -59,19 +59,19 @@ sandesha2_create_seq_free_void_arg(
 
 AXIS2_EXTERN sandesha2_create_seq_t* AXIS2_CALL
 sandesha2_create_seq_create(
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axis2_char_t *addr_ns_value,
     axis2_char_t *rm_ns_value);
-                    	
+
 sandesha2_acks_to_t * AXIS2_CALL
 sandesha2_create_seq_get_acks_to(
     sandesha2_create_seq_t *create_seq,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL                 
+axis2_status_t AXIS2_CALL
 sandesha2_create_seq_set_acks_to(
     sandesha2_create_seq_t *create_seq,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_acks_to_t *acks_to);
 
 sandesha2_seq_offer_t * AXIS2_CALL
@@ -79,33 +79,33 @@ sandesha2_create_seq_get_seq_offer(
     sandesha2_create_seq_t *create_seq,
     const axutil_env_t *env);
 
-axis2_status_t AXIS2_CALL                 
+axis2_status_t AXIS2_CALL
 sandesha2_create_seq_set_seq_offer(
     sandesha2_create_seq_t *create_seq,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     sandesha2_seq_offer_t *seq_offer);
- 
+
 axis2_status_t AXIS2_CALL
 sandesha2_create_seq_to_soap_envelope(
     sandesha2_create_seq_t *create_seq,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_soap_envelope_t *envelope);
 
-axis2_char_t* AXIS2_CALL 
+axis2_char_t* AXIS2_CALL
 sandesha2_create_seq_get_namespace_value (
     sandesha2_create_seq_t *create_seq,
 	const axutil_env_t *env);
 
-void* AXIS2_CALL 
+void* AXIS2_CALL
 sandesha2_create_seq_from_om_node(
     sandesha2_create_seq_t *create_seq,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     axiom_node_t *om_node);
 
-axiom_node_t* AXIS2_CALL 
+axiom_node_t* AXIS2_CALL
 sandesha2_create_seq_to_om_node(
     sandesha2_create_seq_t *element,
-    const axutil_env_t *env, 
+    const axutil_env_t *env,
     void *om_node);
 
 

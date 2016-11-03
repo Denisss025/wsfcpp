@@ -138,7 +138,7 @@ extern "C"
         axis2_bool_t value);
 
     /**
-     * 
+     *
      * @param builder pointer to the SOAP Builder struct
      * @param env Environment. MUST NOT be NULL
      *
@@ -191,7 +191,7 @@ extern "C"
      * @param builder pointer to the SOAP Builder struct
      * @param env Environment. MUST NOT be NULL
      * @paran mime_parser pointer to a axiom_mime_parser_t instance
-     */ 
+     */
 
     AXIS2_EXTERN void AXIS2_CALL
     axiom_soap_builder_set_mime_parser(
@@ -213,11 +213,11 @@ extern "C"
         AXIS2_READ_INPUT_CALLBACK callback);
 
      /**
-     * Set the callback_ctx 
+     * Set the callback_ctx
      * @param builder pointer to the SOAP Builder struct
      * @param env Environment. MUST NOT be NULL
-     * @param void pointer to the callback_ctx 
-     */ 
+     * @param void pointer to the callback_ctx
+     */
 
     AXIS2_EXTERN void AXIS2_CALL
     axiom_soap_builder_set_callback_ctx(
@@ -238,7 +238,7 @@ extern "C"
         const axutil_env_t * env,
         axiom_node_t *om_element_node,
         axiom_element_t *om_element);
-        
+
     AXIS2_EXTERN axiom_stax_builder_t *AXIS2_CALL
     axiom_soap_builder_get_om_builder(
         axiom_soap_builder_t * builder,

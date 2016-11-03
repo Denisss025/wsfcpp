@@ -61,8 +61,8 @@ extern "C"
     {
         /**
         * free pull_ntlm
-        * @param ntlm axis2_ntlm struct 
-        * @param env    axutil_environment MUST NOT be NULL 
+        * @param ntlm axis2_ntlm struct
+        * @param env    axutil_environment MUST NOT be NULL
         * @returns axis2_status_code
         */
 
@@ -74,8 +74,8 @@ extern "C"
 
         /**
          * Create Type1 NTLM message. This will create a type1 message and assign
-         * it to the return type. 
-         * @param ntlm axis2_ntlm  
+         * it to the return type.
+         * @param ntlm axis2_ntlm
          * @param env    axutil_environment, MUST NOT be NULL.
          * @param encoded_message    return type passed by caller.
          * @param encoded_len length of the encoded message
@@ -83,7 +83,7 @@ extern "C"
          * @param passwd password
          * @param flags NTLM flags
          * @param domain domain
-         * @returns status , AXIS2_FAILURE on error 
+         * @returns status , AXIS2_FAILURE on error
          */
 
         axis2_status_t (
@@ -100,8 +100,8 @@ extern "C"
 
         /**
          * Create Type3 NTLM message. This will create a type3 message and assign
-         * it to the return type. 
-         * @param ntlm axis2_ntlm  
+         * it to the return type.
+         * @param ntlm axis2_ntlm
          * @param env    axutil_environment, MUST NOT be NULL.
          * @param header_value Header value extracted from the type2 message
          * @param encoded_message    return type passed by caller.
@@ -110,7 +110,7 @@ extern "C"
          * @param passwd password
          * @param domain domain
          * @param workstation workstation
-         * @returns status , AXIS2_FAILURE on error 
+         * @returns status , AXIS2_FAILURE on error
          */
 
         axis2_status_t(
@@ -155,7 +155,7 @@ extern "C"
      * @param ntlm pointer to the NTLM struct
      * @param env environment struct, must not be null
      *
-     * @return 
+     * @return
      */
     AXIS2_EXTERN void AXIS2_CALL
     axis2_ntlm_free(
@@ -164,8 +164,8 @@ extern "C"
 
     /**
      * Create Type1 NTLM message. This will create a type1 message and assign
-     * it to the return type. 
-     * @param ntlm axis2_ntlm  
+     * it to the return type.
+     * @param ntlm axis2_ntlm
      * @param env    axutil_environment, MUST NOT be NULL.
      * @param encoded_message    return type passed by caller.
      * @param encoded_len length of the encoded message
@@ -173,7 +173,7 @@ extern "C"
      * @param passwd password
      * @param flags NTLM flags
      * @param domain domain
-     * @returns status , AXIS2_FAILURE on error 
+     * @returns status , AXIS2_FAILURE on error
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_ntlm_auth_create_type1_message(
@@ -188,8 +188,8 @@ extern "C"
 
     /**
      * Create Type3 NTLM message. This will create a type3 message and assign
-     * it to the return type. 
-     * @param ntlm axis2_ntlm  
+     * it to the return type.
+     * @param ntlm axis2_ntlm
      * @param env    axutil_environment, MUST NOT be NULL.
      * @param header_value Header value extracted from the type2 message
      * @param encoded_message    return type passed by caller.
@@ -198,7 +198,7 @@ extern "C"
      * @param passwd password
      * @param domain domain
      * @param workstation workstation
-     * @returns status , AXIS2_FAILURE on error 
+     * @returns status , AXIS2_FAILURE on error
      */
     AXIS2_EXTERN axis2_status_t AXIS2_CALL
     axis2_ntlm_auth_create_type3_message(

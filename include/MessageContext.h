@@ -56,33 +56,33 @@ namespace wso2wsf
 	* such as if it should be doing MTOM, REST.
 	* As message context is inherited form context, it has the capability of
 	* storing user defined properties. In addition to the methods exposed by the MessageContex
-	* class, the underlying axis2 level message context can also be accessed if required. 
+	* class, the underlying axis2 level message context can also be accessed if required.
 	* @{
 	*/
 	class MessageContext
 	{
 	private:
 		/**
-		 *  pointer to the underlying axis2_msg_context 
+		 *  pointer to the underlying axis2_msg_context
 		 */
 		axis2_msg_ctx_t *_msg_ctx;
-		
+
 	public:
-		 
+
 		/**
-		 * Create message Context using the axis2_msg_ctx object                                                                     
+		 * Create message Context using the axis2_msg_ctx object
 		 */
 		 WSF_EXTERN MessageContext(axis2_msg_ctx_t *_msg_ctx);
-	
+
         /**
         * Returns existing axis2_msg_ctx object
 		* @returns A pointer to the axis2_msg_ctx_t object. Since the returned axis2_msg_ctx_t
-		* Belongs to the MessageContext Object, it should not be freed. 
+		* Belongs to the MessageContext Object, it should not be freed.
         */
     	WSF_EXTERN axis2_msg_ctx_t * getAxis2MessageContext();
-		
+
 		/**
-		* Sets the internal reference to the internal axis2_msg_ctx_t object. 
+		* Sets the internal reference to the internal axis2_msg_ctx_t object.
 		* This method is specially useful when deleting the MessageContex Object
 		* returned the Framework. When the internal reference belongs to the framework
 		* the MessageContext would require freeing. Then this method can be used to reset
@@ -93,9 +93,9 @@ namespace wso2wsf
 		WSF_EXTERN bool setAxis2MessageContext(axis2_msg_ctx_t *msg_ctx);
 
 		 /**
-		* This method returns the WS-Addressing fault to address. Fault to address tells where to 
+		* This method returns the WS-Addressing fault to address. Fault to address tells where to
 		* send the fault in case there is an error.
-		* @return returns an string of the fault to endpoint 
+		* @return returns an string of the fault to endpoint
 		*/
 		WSF_EXTERN std::string WSF_CALL getFaultTo();
 
@@ -110,7 +110,7 @@ namespace wso2wsf
 		* @return true if there is a fault, false otherwise
 		*/
 		WSF_EXTERN bool WSF_CALL getInFaultFlow();
-		
+
 		/**
 		* Gets the SOAP envelope associated with the MessageContex. If the MessageContex is an In Message
 		* Context, the SOAP Envelope will be the Request SOAP envelope. If the MessageContext is an out MessageContext,
@@ -126,21 +126,21 @@ namespace wso2wsf
 		WSF_EXTERN OMElement* WSF_CALL getResponseSoapEnvelope();
 
 		/**
-		* Gets the fault soap envelope 
+		* Gets the fault soap envelope
 		* @return A pointer to an OMElement representing the SOAP Fault Envelope
 		*/
 		WSF_EXTERN OMElement* WSF_CALL getFaultSoapEnvelope();
 		/**
 		* Gets message ID.
-		* @return message ID string corresponding to the message the message 
+		* @return message ID string corresponding to the message the message
 		* context is related to
 		*/
 
 		WSF_EXTERN std::string WSF_CALL getMessageId();
 
 		/**
-		* Gets WS-Addressing reply to endpoint as a string. Reply to address tells where 
-		* the the response should be sent to.    
+		* Gets WS-Addressing reply to endpoint as a string. Reply to address tells where
+		* the the response should be sent to.
 		* @return return a string corresponding to the reply to endpoint uri
 		*/
 		WSF_EXTERN std::string WSF_CALL getReplyTo();
@@ -150,23 +150,23 @@ namespace wso2wsf
 		* @return true if process fault is on, false otherwise
 		*/
 		WSF_EXTERN bool WSF_CALL getProcessFault();
-				
+
 		/**
-		* Checks if it is on the server side that the message is being dealt 
+		* Checks if it is on the server side that the message is being dealt
 		* with, or on the client side.
 		* @return true if it is server side, false otherwise
 		*/
 		WSF_EXTERN bool WSF_CALL getServerSide();
-		
+
 		/**
-		* Gets WS-Addressing to endpoint URL. To address tells where message should 
+		* Gets WS-Addressing to endpoint URL. To address tells where message should
 		* be sent to.
 		* @return Returns the to Endpoint URI
 		*/
 		WSF_EXTERN std::string WSF_CALL getTo();
 
 		/**
-		* Sets WS-Addressing fault to endpoint. Fault to address tells where 
+		* Sets WS-Addressing fault to endpoint. Fault to address tells where
 		* the fault message should be sent when there is an error.
 		* @param toUri To uri
 		* @return true if successful, false otherwise.
@@ -174,7 +174,7 @@ namespace wso2wsf
 		WSF_EXTERN bool WSF_CALL setFaultTo(std::string toUri);
 
 		/**
-		* Sets WS-Addressing from endpoint. From address tells where 
+		* Sets WS-Addressing from endpoint. From address tells where
 		* the message came from.
 		* @param fromUri uri identifying the message origin
 		* @return true on success, false otherwise
@@ -182,7 +182,7 @@ namespace wso2wsf
 		WSF_EXTERN bool WSF_CALL setFrom(std::string fromUri);
 
 		/**
-		* Sets in fault flow status. 
+		* Sets in fault flow status.
 		* @param inFault true if there is a fault on in path, false otherwise
 		* @return true if success false otherwise
 		*/
@@ -202,12 +202,12 @@ namespace wso2wsf
 		* @param serverSide true if it is server side, false if it is client side
 		* @return true on success, false otherwise.
 		*/
-		
+
 		WSF_EXTERN bool WSF_CALL setServerSide(bool serverSide);
 
 		/**
 		* Sets WS-Addressing to address url.
-		* @param toUri A uri of the endpoint where the request should be sent to. 
+		* @param toUri A uri of the endpoint where the request should be sent to.
 		* @return true on success, else false
 		*/
 		WSF_EXTERN bool WSF_CALL setTo(std::string toUri);
@@ -221,14 +221,14 @@ namespace wso2wsf
 
 		/**
 		* Sets the bool value indicating if it is required to have a new thread
-		* for the invocation, or if the same thread of execution could be used.    
+		* for the invocation, or if the same thread of execution could be used.
 		* @param newThreadRequired true if a new thread is required.
 		* @return true on success, else false.
 		*/
 		WSF_EXTERN bool WSF_CALL setNewThreadRequired(bool newThreadRequired);
-			
+
 		/**
-		* Sets WS-Addressing action. 
+		* Sets WS-Addressing action.
 		* @param actionUri WSA action URI string
 		* @return true on success, else false
 		*/
@@ -248,13 +248,13 @@ namespace wso2wsf
 		WSF_EXTERN bool WSF_CALL setWSAMessageId(std::string messageId);
 
 		/**
-		* Gets WS-Addressing message ID. 
+		* Gets WS-Addressing message ID.
 		* @return WSA message ID string
 		*/
 		WSF_EXTERN std::string WSF_CALL getWSAMessageId();
 
 		/**
-		* Gets the bool value indicating the paused status. It is possible 
+		* Gets the bool value indicating the paused status. It is possible
 		* to pause the engine invocation by any handler. By calling this method
 		* one can find out if some handler has paused the invocation.
 		* @return true if message context is paused, else false
@@ -269,7 +269,7 @@ namespace wso2wsf
 		WSF_EXTERN bool WSF_CALL setPaused(bool paused);
 
 		/**
-		* Gets the bool value indicating the keep alive status. It is possible 
+		* Gets the bool value indicating the keep alive status. It is possible
 		* to keep alive the message context by any handler. By calling this method
 		* one can see whether it is possible to clean the message context.
 		* @return true if message context is keep alive, else false
@@ -279,7 +279,7 @@ namespace wso2wsf
 
 		/**
 		* Sets the bool value indicating the keep alive status of invocation.
-		* By setting this one can indicate the engine not to clean the message 
+		* By setting this one can indicate the engine not to clean the message
 		* context.
 		* @param keepAlive keep alive
 		* @return true on success, else false
@@ -287,20 +287,20 @@ namespace wso2wsf
 		WSF_EXTERN bool WSF_CALL setKeepAlive(bool keepAlive);
 
 		/**
-		* Gets the bool value indicating the output written status. 
+		* Gets the bool value indicating the output written status.
 		* @return true if output is written, else false
 		*/
 		WSF_EXTERN bool WSF_CALL getOutputWritten();
 
 		/**
-		* Sets the bool value indicating the output written status. 
-		* @param outputWritten  
+		* Sets the bool value indicating the output written status.
+		* @param outputWritten
 		* @return true on success, else false
 		*/
 		WSF_EXTERN bool WSF_CALL setOutputWritten(bool outputWritten);
 
 		/**
-		* Gets the HTTP Method that relates to the service that is 
+		* Gets the HTTP Method that relates to the service that is
 		* related to the message context.
 		* @return HTTP Method string, returns a reference,
 		* not a cloned copy
@@ -308,7 +308,7 @@ namespace wso2wsf
 		WSF_EXTERN std::string WSF_CALL getRestHTTPMethod();
 
 		/**
-		* Sets the HTTP Method that relates to the service that is 
+		* Sets the HTTP Method that relates to the service that is
 		* related to the message context.
 		* @param HTTPMethod HTTP Method string
 		* @return true on success, else false
@@ -316,19 +316,19 @@ namespace wso2wsf
 		WSF_EXTERN axis2_status_t WSF_CALL setRESTHTTPMethod(std::string HTTPMethod);
 
 		/**
-		* Gets configuration descriptor parameter with given key. This method 
-		* recursively search the related description hierarchy for the parameter 
-		* with given key until it is found or the parent of the description 
+		* Gets configuration descriptor parameter with given key. This method
+		* recursively search the related description hierarchy for the parameter
+		* with given key until it is found or the parent of the description
 		* hierarchy is reached. The order of search is as follows:
 		* \n
 		* 1. search in operation description, if its there return
 		* \n
-		* 2. if the parameter is not found in operation or operation is NULL, 
+		* 2. if the parameter is not found in operation or operation is NULL,
 		* search in service
 		* \n
-		* 3. if the parameter is not found in service or service is NULL search 
+		* 3. if the parameter is not found in service or service is NULL search
 		* in configuration
-		* @param key parameter key  
+		* @param key parameter key
 		* @return pointer to parameter struct corresponding to the given key
 		*/
 		WSF_EXTERN Parameter* WSF_CALL getParameter(std::string key);
@@ -350,7 +350,7 @@ namespace wso2wsf
 		/**
 		* Sets property with given key.
 		*
-		
+
 		* @param key key string
 		* @param value property to be stored
 		* @return true on success, else false
@@ -416,18 +416,18 @@ namespace wso2wsf
 		WSF_EXTERN bool WSF_CALL setDoingREST(bool doingREST);
 
 		/**
-		* Sets the boolean value indicating if REST should be done through 
+		* Sets the boolean value indicating if REST should be done through
 		* HTTP POST or not.
-		* @param doRESTThroughPost true if REST is to be done with 
+		* @param doRESTThroughPost true if REST is to be done with
 		* HTTP POST, else false if REST is not to be done with HTTP POST
 		* @return true on success, else false
 		*/
 		WSF_EXTERN bool WSF_CALL setDoRESTThroughPOST(bool doRESTThroughPost);
 
 		/**
-		* Sets the boolean value indicating if REST should be done through 
+		* Sets the boolean value indicating if REST should be done through
 		* HTTP POST or not.
-		* @return true if REST is to be done with HTTP POST, else 
+		* @return true if REST is to be done with HTTP POST, else
 		* false if REST is not to be done with HTTP POST
 		*/
 		WSF_EXTERN bool WSF_CALL getDoRESTThroughPOST();
@@ -448,7 +448,7 @@ namespace wso2wsf
 		/**
 		* Gets the bool value indicating the SOAP version being used either
 		* SOAP 1.1 or SOAP 1.2
-		* @return true if SOAP 1.1 is being used, else false if 
+		* @return true if SOAP 1.1 is being used, else false if
 		* SOAP 1.2 is being used
 		*/
 
@@ -464,7 +464,7 @@ namespace wso2wsf
 
 		/**
 		* Gets the options to be used in invocation.
-		* @return options pointer to options struct, message context does not 
+		* @return options pointer to options struct, message context does not
 		* assume the ownership of the struct
 		*/
 		WSF_EXTERN Options* WSF_CALL getOptions();
@@ -477,7 +477,7 @@ namespace wso2wsf
 
 		/**
 		* Sets the options to be used in invocation.
-		* @param options pointer to options struct, message context does not 
+		* @param options pointer to options struct, message context does not
 		* assume the ownership of the struct
 		* @return true on success, else false
 		*/
@@ -498,13 +498,13 @@ namespace wso2wsf
 
 		/**
 		* Sets the list of supported REST HTTP Methods
-		* @param methods A pointer to a vector containing the list of HTTP Methods supported. 
+		* @param methods A pointer to a vector containing the list of HTTP Methods supported.
 		* @return true on success otherwise false.
 		*/
 		WSF_EXTERN bool WSF_CALL setSupportedRESTHTTPMethods(std::vector<std::string> *methods);
 
 		/**
-		* Gets the list of supported REST HTTP Methods 
+		* Gets the list of supported REST HTTP Methods
 		* @return pointer array list containing
 		* the list of HTTP Methods supported. Message context does
 		* assumes the ownership of the array list
@@ -512,7 +512,7 @@ namespace wso2wsf
 		WSF_EXTERN  std::vector<std::string>* WSF_CALL getSupportedRESTHTTPMethods();
 
 		/**
-		* Sets current handler index, indicating which handler is currently 
+		* Sets current handler index, indicating which handler is currently
 		* being invoked in the execution chain
 		* @param index index of currently executed handler
 		* @return true on success, else false
@@ -520,28 +520,28 @@ namespace wso2wsf
 		WSF_EXTERN bool WSF_CALL setCurrentHandlerIndex(int index);
 
 		/**
-		* Gets current handler index, indicating which handler is currently 
-		* being invoked in the execution chain    
+		* Gets current handler index, indicating which handler is currently
+		* being invoked in the execution chain
 		* @return index of currently executed handler
 		*/
 		WSF_EXTERN int WSF_CALL getCurrentHandlerIndex();
 
 		/**
-		* Gets paused handler index, indicating at which handler the execution 
+		* Gets paused handler index, indicating at which handler the execution
 		* chain was paused.
 		* @return index of handler at which invocation was paused
 		*/
 		WSF_EXTERN int WSF_CALL getPausedHandlerIndex();
 
 		/**
-		* Sets index of the current phase being invoked.    
+		* Sets index of the current phase being invoked.
 		* @param index index of current phase
 		* @return true on success, else false
 		*/
 		WSF_EXTERN bool WSF_CALL setCurrentPhaseIndex(int index);
 
 		/**
-		* Gets index of the current phase being invoked.    
+		* Gets index of the current phase being invoked.
 		* @return index of current phase
 		*/
 		WSF_EXTERN int WSF_CALL getCurrentPhaseIndex();
@@ -719,7 +719,7 @@ namespace wso2wsf
 		* Gets whether HTTP Authentication is required or
 		* whether Proxy Authentication is required
 		*
-		
+
 		* @return returns true for HTTP Authentication
 		* and false for Proxy Authentication
 		*/
@@ -746,19 +746,19 @@ namespace wso2wsf
 		* @return Authentication type string
 		*/
 		WSF_EXTERN std::string WSF_CALL getAuthType();
-		
+
 		/**
-		* Incrementing the msg_ctx ref count. This is necessary when 
-		* prevent freeing msg_ctx through op_client when it is in use 
+		* Incrementing the msg_ctx ref count. This is necessary when
+		* prevent freeing msg_ctx through op_client when it is in use
 		* as in sandesha2.
-		* @return true if still in use, else false 
+		* @return true if still in use, else false
 		*/
 		WSF_EXTERN bool WSF_CALL incrementRef();
 		/**
-		* Destructor for message context                                                   
+		* Destructor for message context
 		*/
 		WSF_EXTERN virtual WSF_CALL ~MessageContext();
-		
+
 	};
 	/** @} */
 

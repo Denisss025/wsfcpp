@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
  #ifndef SAVAN_SUB_PROCESSOR_H
  #define SAVAN_SUB_PROCESSOR_H
- 
+
  /**
- * @defgroup savan_core 
+ * @defgroup savan_core
  * @ingroup savan_core
  * subcription processor is responsible for processing incoming eventing message
  * headers and is invoked from the savan_in_handler. This will create 'subcription'
@@ -40,7 +40,7 @@
 extern "C"
 {
 #endif
-    
+
     typedef struct savan_sub_processor savan_sub_processor_t;
     struct savan_subs_mgr;
 
@@ -51,7 +51,7 @@ extern "C"
     * @param env pointer to environment struct
     * @param msg_ctx pointer to message context representing current state
     * that is used when receiving message
-    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     axis2_status_t AXIS2_CALL
     savan_sub_processor_subscribe(
@@ -66,7 +66,7 @@ extern "C"
     * @param env pointer to environment struct
     * @param msg_ctx pointer to message context representing current state
     * that is used when receiving message
-    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     axis2_status_t AXIS2_CALL
     savan_sub_processor_unsubscribe(
@@ -81,7 +81,7 @@ extern "C"
     * @param env pointer to environment struct
     * @param msg_ctx pointer to message context representing current state
     * that is used when receiving message
-    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     axis2_status_t AXIS2_CALL
     savan_sub_processor_renew_subscription(
@@ -95,7 +95,7 @@ extern "C"
     * @param env pointer to environment struct
     * @param msg_ctx pointer to message context representing current state
     * that is used when receiving message
-    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE 
+    * @return AXIS2_SUCCESS on success, else AXIS2_FAILURE
     */
     axis2_status_t AXIS2_CALL
     savan_sub_processor_get_status(
@@ -112,17 +112,17 @@ extern "C"
     savan_sub_processor_create(
         const axutil_env_t *env,
         struct savan_subs_mgr *subs_mgr);
-    
+
     /**
     * Freesf a subscription manager instance.
     * @param env pointer to the environment struct
     * @param sub_processor pointer to the sub_processor struct
     */
-    AXIS2_EXTERN void AXIS2_CALL 
+    AXIS2_EXTERN void AXIS2_CALL
     savan_sub_processor_free(
         savan_sub_processor_t * sub_processor,
         const axutil_env_t * env);
- 
+
     AXIS2_EXTERN savan_subscriber_t *AXIS2_CALL
     savan_sub_processor_get_subscriber_from_msg(
         const axutil_env_t *env,
@@ -158,10 +158,10 @@ extern "C"
         struct savan_subs_mgr *subs_mgr,
         savan_subscriber_t *subscriber);
 
-   
+
 /** @} */
 #ifdef __cplusplus
 }
 #endif
-  
+
 #endif /* SAVAN_SUB_PROCESSOR_H */

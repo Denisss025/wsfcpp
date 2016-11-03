@@ -434,9 +434,9 @@ extern "C"
 /** wsdl location in repo*/
 #define AXIS2_WSDL_LOCATION_IN_REPO "woden"
 
-#define AXIS2_SVC_CLIENT_CLOSED "closed"    
+#define AXIS2_SVC_CLIENT_CLOSED "closed"
 
-#define AXIS2_STATISTICS_COUNT_ARG "stat_count_arg"    
+#define AXIS2_STATISTICS_COUNT_ARG "stat_count_arg"
 
 #ifdef __cplusplus
 }
