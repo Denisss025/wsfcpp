@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 #include <sandesha2_msg_validator.h>
 #include <sandesha2_utils.h>
 #include <sandesha2_constants.h>
@@ -24,17 +24,17 @@
 axis2_status_t AXIS2_CALL
 sandesha2_msg_validator_validate_msg(
     const axutil_env_t *env,
-    sandesha2_msg_ctx_t *rm_msg_ctx, 
+    sandesha2_msg_ctx_t *rm_msg_ctx,
     sandesha2_seq_property_mgr_t *seq_prop_mgr)
 {
     int msg_type = -1;
     axis2_char_t *seq_id = NULL;
-    
+
     AXIS2_PARAM_CHECK(env->error, rm_msg_ctx, AXIS2_FAILURE);
     AXIS2_PARAM_CHECK(env->error, seq_prop_mgr, AXIS2_FAILURE);
-    
+
     msg_type = sandesha2_msg_ctx_get_msg_type(rm_msg_ctx, env);
-    if(SANDESHA2_MSG_TYPE_CREATE_SEQ != msg_type && 
+    if(SANDESHA2_MSG_TYPE_CREATE_SEQ != msg_type &&
         SANDESHA2_MSG_TYPE_UNKNOWN != msg_type)
     {
         seq_id = sandesha2_utils_get_seq_id_from_rm_msg_ctx(env, rm_msg_ctx);
@@ -45,20 +45,20 @@ sandesha2_msg_validator_validate_msg(
             axis2_char_t *rm_ns_msg = NULL;
             axis2_char_t *addr_ns_msg = NULL;
             axis2_char_t *rm_ns_seq = NULL;
-            
+
             rm_version = sandesha2_utils_get_rm_version(env, sandesha2_msg_ctx_get_msg_ctx(
                         rm_msg_ctx, env));
-            addr_ns_seq = sandesha2_utils_get_seq_property(env, seq_id, 
+            addr_ns_seq = sandesha2_utils_get_seq_property(env, seq_id,
                 SANDESHA2_SEQ_PROP_ADDRESSING_NAMESPACE_VALUE, seq_prop_mgr);
             rm_ns_msg = sandesha2_msg_ctx_get_rm_ns_val(rm_msg_ctx, env);
             addr_ns_msg = sandesha2_msg_ctx_get_addr_ns_val(rm_msg_ctx, env);
-            
+
             if(rm_version)
             {
                 rm_ns_seq = sandesha2_spec_specific_consts_get_rm_ns_val(env,
                         rm_version);
             }
-            
+
             if(NULL != rm_ns_seq && 0 != axutil_strcmp(rm_ns_seq, rm_ns_msg))
             {
                 AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "[sandesha2] Validation"
@@ -67,21 +67,20 @@ sandesha2_msg_validator_validate_msg(
                 if(addr_ns_seq)
                     AXIS2_FREE(env->allocator, addr_ns_seq);
                 return AXIS2_FAILURE;
-            } 
+            }
             if(NULL != addr_ns_seq && 0 != axutil_strcmp(addr_ns_seq, addr_ns_msg))
             {
                 AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "[sandesha2] Validation"
                         " failed. The Addressing namespace of the message does"
                         " not match with the sequence");
-                if(addr_ns_seq)
-                    AXIS2_FREE(env->allocator, addr_ns_seq);
+                AXIS2_FREE(env->allocator, addr_ns_seq);
                 return AXIS2_FAILURE;
-            }            
+            }
             if(addr_ns_seq)
                 AXIS2_FREE(env->allocator, addr_ns_seq);
-            
-        }   
+
+        }
     }
     return AXIS2_SUCCESS;
 }
-  
+
