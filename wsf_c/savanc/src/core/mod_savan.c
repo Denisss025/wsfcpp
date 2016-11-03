@@ -51,12 +51,12 @@ mod_savan_create(const axutil_env_t *env)
     if(!module)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
-        AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
+        AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
            "[savan] Memory allocation failed for Savan Module");
         return NULL;
     }
     /* Do the memset*/
-    
+
     module->ops = &savan_module_ops_var;
     return module;
 }
@@ -72,7 +72,7 @@ mod_savan_init(
     axis2_status_t status = AXIS2_SUCCESS;
 
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "[savan] Entry:mod_savan_init");
-    
+
     savan_error_init();
 
     AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, "[savan] Exit:mod_savan_init");
@@ -84,6 +84,11 @@ axis2_status_t AXIS2_CALL
 mod_savan_shutdown(axis2_module_t *module,
                         const axutil_env_t *env)
 {
+    if(!module)
+    {
+        return AXIS2_SUCCESS;
+    }
+
     if(module->handler_create_func_map)
     {
         /* TODO
@@ -91,11 +96,8 @@ mod_savan_shutdown(axis2_module_t *module,
          */
         axutil_hash_free(module->handler_create_func_map, env);
     }
-    if(module)
-    {
-        AXIS2_FREE(env->allocator, module);
-    }
-    return AXIS2_SUCCESS; 
+    AXIS2_FREE(env->allocator, module);
+    return AXIS2_SUCCESS;
 }
 
 axis2_status_t AXIS2_CALL
@@ -103,23 +105,23 @@ mod_savan_fill_handler_create_func_map(axis2_module_t *module,
                                             const axutil_env_t *env)
 {
     AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
-    
+
     module->handler_create_func_map = axutil_hash_make(env);
     if(!module->handler_create_func_map)
     {
         AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
-        AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, 
+        AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI,
            "[savan] Memory allocation failed for Savan Module");
         return AXIS2_FAILURE;
     }
     /* Remove the hard coded strings. Instead use macros */
-    axutil_hash_set(module->handler_create_func_map, SAVAN_IN_HANDLER, 
+    axutil_hash_set(module->handler_create_func_map, SAVAN_IN_HANDLER,
         AXIS2_HASH_KEY_STRING, savan_in_handler_create);
 
 
-    axutil_hash_set(module->handler_create_func_map, SAVAN_OUT_HANDLER, 
+    axutil_hash_set(module->handler_create_func_map, SAVAN_OUT_HANDLER,
         AXIS2_HASH_KEY_STRING, savan_out_handler_create);
-    
+
     return AXIS2_SUCCESS;
 }
 
@@ -127,7 +129,7 @@ mod_savan_fill_handler_create_func_map(axis2_module_t *module,
  * Following block distinguish the exposed part of the dll.
  */
 
-AXIS2_EXPORT int 
+AXIS2_EXPORT int
 axis2_get_instance(axis2_module_t **inst,
                    const axutil_env_t *env)
 {
@@ -140,7 +142,7 @@ axis2_get_instance(axis2_module_t **inst,
     return AXIS2_SUCCESS;
 }
 
-AXIS2_EXPORT int 
+AXIS2_EXPORT int
 axis2_remove_instance(axis2_module_t *inst,
                       const axutil_env_t *env)
 {
