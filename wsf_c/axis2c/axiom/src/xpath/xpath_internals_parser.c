@@ -141,7 +141,7 @@ axiom_xpath_compile_andexpr(
 
     AXIOM_XPATH_SKIP_WHITESPACES;
 
-    while(AXIOM_XPATH_CURRENT == 'a' && AXIOM_XPATH_NEXT(1) == 'n' && AXIOM_XPATH_NEXT(1) == 'd')
+    while(AXIOM_XPATH_CURRENT == 'a' && AXIOM_XPATH_NEXT(1) == 'n' && AXIOM_XPATH_NEXT(2) == 'd')
     {
         AXIOM_XPATH_READ(2);
         AXIOM_XPATH_SKIP_WHITESPACES;
