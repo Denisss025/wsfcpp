@@ -261,13 +261,8 @@ WSF_EXTERN bool WSF_CALL MessageContext::setFaultTo(std::string faultToUri)
 WSF_EXTERN bool WSF_CALL MessageContext::setFrom(std::string fromUri)
 {
 	axis2_endpoint_ref_t *endpoint = NULL;
-	if(fromUri.c_str())
-	{
-		endpoint = axis2_endpoint_ref_create(Environment::getEnv(), fromUri.c_str());
-		if(axis2_msg_ctx_set_from(_msg_ctx, Environment::getEnv(), endpoint))
-			return true;
-	}
-	return false;
+	endpoint = axis2_endpoint_ref_create(Environment::getEnv(), fromUri.c_str());
+	return axis2_msg_ctx_set_from(_msg_ctx, Environment::getEnv(), endpoint);
 }
 
 /**
