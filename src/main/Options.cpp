@@ -337,7 +337,12 @@ bool Options::setAction(std::string action)
 	if(_wsf_options)
 	{
 		status = axis2_options_set_action(_wsf_options, Environment::getEnv(), action.c_str());
-		status =axis2_options_set_soap_action(_wsf_options, 
+		if (!status)
+		{
+			return false;
+		}
+
+		status = axis2_options_set_soap_action(_wsf_options, 
 			Environment::getEnv(),
 			axutil_string_create(Environment::getEnv(),action.c_str()));
 		return status  ? true :false;
@@ -372,4 +377,5 @@ Options::setNTLMHTTPAuthInfo(std::string username, std::string password, int fla
 			authType.c_str());
 		return status ? true : false;	
 	}
+	return false;
 }

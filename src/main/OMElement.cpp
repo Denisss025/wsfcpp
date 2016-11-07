@@ -99,13 +99,10 @@ OMElement::OMElement(OMNode * parent, axiom_node_t * node)
     {
         setAxiomNode(node);
         _parent = parent;
-        if (_parent)
+        if (_parent && _parent->nodeType() == AXIOM_ELEMENT)
         {
-            OMElement * dp = static_cast<OMElement *>(_parent);
-			if(dp)
-			{
-                dp->addChildLocal(this);
-			}
+            OMElement *dp = static_cast<OMElement *>(_parent);
+            dp->addChildLocal(this);
         }
         axiom_namespace_t * ns = axiom_element_get_namespace(_wsf_axiom_element, Environment::getEnv(), node);
         if (ns)

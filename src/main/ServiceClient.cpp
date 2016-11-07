@@ -694,8 +694,7 @@ bool ServiceClient::getProxyAuthRequired()
 bool ServiceClient::setProxy(string proxyHost, string proxyPort)
 {
 	assert(isValid);
-	axis2_status_t status = AXIS2_SUCCESS;
-	status = axis2_svc_client_set_proxy(_wsf_service_client, Environment::getEnv(), 
+	axis2_status_t status = axis2_svc_client_set_proxy(_wsf_service_client, Environment::getEnv(),
 		(axis2_char_t *)proxyHost.c_str(), (axis2_char_t *)proxyPort.c_str());
 	return status ? true : false;
 }
@@ -703,9 +702,8 @@ bool ServiceClient::setProxy(string proxyHost, string proxyPort)
 bool ServiceClient::setProxyWithAuth(string proxyHost, string proxyPort, string username, string password)
 {
 	assert(isValid);
-	axis2_status_t status = AXIS2_SUCCESS;
-	status = axis2_svc_client_set_proxy_with_auth(_wsf_service_client, Environment::getEnv(), 
-		(axis2_char_t *)proxyHost.c_str(), (axis2_char_t *)proxyPort.c_str(), (axis2_char_t *)username.c_str(), 
+	axis2_status_t status = axis2_svc_client_set_proxy_with_auth(_wsf_service_client, Environment::getEnv(),
+		(axis2_char_t *)proxyHost.c_str(), (axis2_char_t *)proxyPort.c_str(), (axis2_char_t *)username.c_str(),
 		(axis2_char_t *)password.c_str());
 	return status ? true: false;
 }

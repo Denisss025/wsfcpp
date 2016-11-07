@@ -23,10 +23,7 @@
 using namespace std;
 using namespace wso2wsf;
 
-OMNode::OMNode()
-{
-    _wsf_axiom_node = NULL;
-}
+OMNode::OMNode() : _wsf_axiom_node(NULL), _parent(NULL) {}
 
 OMNode::~OMNode()
 {
@@ -123,7 +120,7 @@ OMNode * OMNode::detach()
 			dp->removeChildLocal(this);
 			dp = NULL;
 		}
-		
+
 		return this;
 	}
 }
