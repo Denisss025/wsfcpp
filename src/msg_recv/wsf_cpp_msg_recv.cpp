@@ -320,15 +320,12 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 					inputEle = new OMElement(NULL,om_node);
 				}
 
-				if(skel)
+				OMElement *faultEle = skel->onFault(inputEle);
+				if(faultEle)
 				{
-					OMElement *faultEle = skel->onFault(inputEle);
-					if(faultEle)
-					{
-						fault_node = faultEle->getAxiomNode();
-						faultEle->setAxiomNode(NULL);
-						delete faultEle;
-					}
+					fault_node = faultEle->getAxiomNode();
+					faultEle->setAxiomNode(NULL);
+					delete faultEle;
 				}
 				if(inputEle)
 				{
@@ -357,15 +354,12 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 							inputEle = new OMElement(NULL,om_node);
 						}
 
-						if(skel)
+						OMElement *faultEle = skel->onFault(inputEle);
+						if(faultEle)
 						{
-							OMElement *faultEle = skel->onFault(inputEle);
-							if(faultEle)
-							{
-								fault_node = faultEle->getAxiomNode();
-								faultEle->setAxiomNode(NULL);
-								delete faultEle;
-							}
+							fault_node = faultEle->getAxiomNode();
+							faultEle->setAxiomNode(NULL);
+							delete faultEle;
 						}
 						if(inputEle)
 						{
