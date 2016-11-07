@@ -1,18 +1,18 @@
 /*
-* Copyright 2005-2009 WSO2, Inc. http://wso2.com
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright 2005-2009 WSO2, Inc. http://wso2.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 
 #include <string.h>
@@ -39,27 +39,27 @@ using namespace wso2wsf;
 
 static axis2_status_t WSF_CALL
 wsf_cpp_msg_recv_invoke_business_logic_sync(
-    axis2_msg_recv_t * msg_recv,
-    const axutil_env_t * env,
-    axis2_msg_ctx_t * msg_ctx,
-    axis2_msg_ctx_t * new_msg_ctx);
+		axis2_msg_recv_t * msg_recv,
+		const axutil_env_t * env,
+		axis2_msg_ctx_t * msg_ctx,
+		axis2_msg_ctx_t * new_msg_ctx);
 
 WSF_EXTERN ServiceSkeleton* WSF_CALL
 wsf_cpp_msg_recv_get_svc_obj(
-axis2_msg_recv_t * msg_recv,
-const axutil_env_t * env,
-struct axis2_msg_ctx * msg_ctx);
+		axis2_msg_recv_t * msg_recv,
+		const axutil_env_t * env,
+		struct axis2_msg_ctx * msg_ctx);
 
-static axis2_status_t WSF_CALL
+	static axis2_status_t WSF_CALL
 wsf_cpp_msg_recv_load_and_init_svc(
-	axis2_msg_recv_t * msg_recv,
-	const axutil_env_t * env,
-	struct axis2_svc *svc)
+		axis2_msg_recv_t * msg_recv,
+		const axutil_env_t * env,
+		struct axis2_svc *svc)
 {
 	ServiceSkeleton *impl_class = NULL;
 	axutil_param_t *impl_info_param = NULL;
 	axis2_conf_ctx_t *conf_ctx = NULL;
-	AXIS2_ENV_CHECK(env, NULL);
+	AXIS2_ENV_CHECK(env, AXIS2_FAILURE);
 	if (!svc)
 	{
 		return AXIS2_FAILURE;
@@ -79,7 +79,7 @@ wsf_cpp_msg_recv_load_and_init_svc(
 	if (!impl_info_param)
 	{
 		AXIS2_ERROR_SET(env->error, AXIS2_ERROR_INVALID_STATE_SVC,
-			AXIS2_FAILURE);
+				AXIS2_FAILURE);
 		axutil_thread_mutex_unlock(axis2_svc_get_mutex(svc, env));
 		return AXIS2_FAILURE;
 	}
@@ -87,18 +87,18 @@ wsf_cpp_msg_recv_load_and_init_svc(
 	axutil_allocator_switch_to_global_pool(env->allocator);
 
 	axutil_class_loader_init(env);
-	
+
 	impl_class = (ServiceSkeleton*)axutil_class_loader_create_dll(env, impl_info_param);
-	
+
 
 	if (impl_class)
 	{
 		const axis2_char_t *svc_name = axis2_svc_get_name(svc, env);
-		axis2_svc_ctx_t *svc_ctx = axis2_conf_ctx_get_svc_ctx(conf_ctx, env, svc_name); 
+		axis2_svc_ctx_t *svc_ctx = axis2_conf_ctx_get_svc_ctx(conf_ctx, env, svc_name);
 		impl_class->setServiceContext(svc_ctx);
 		bool value = impl_class->init();
 		if(!value)
-				AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Service Initinalization Failed");
+			AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "Service Initinalization Failed");
 	}
 
 	axis2_svc_set_impl_class(svc, env, impl_class);
@@ -110,39 +110,39 @@ wsf_cpp_msg_recv_load_and_init_svc(
 }
 
 
-WSF_EXTERN axis2_msg_recv_t *WSF_CALL
+	WSF_EXTERN axis2_msg_recv_t *WSF_CALL
 wsf_cpp_msg_recv_create(
-    const axutil_env_t * env)
+		const axutil_env_t * env)
 {
-    axis2_msg_recv_t *msg_recv = NULL;
-    axis2_status_t status = AXIS2_FAILURE;
+	axis2_msg_recv_t *msg_recv = NULL;
+	axis2_status_t status = AXIS2_FAILURE;
 
-    msg_recv = axis2_msg_recv_create(env);
-    if (!msg_recv)
-    {
-        AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
-        return NULL;
-    }
-    status = axis2_msg_recv_set_scope(msg_recv, env, AXIS2_APPLICATION_SCOPE);
-    if (!status)
-    {
-        axis2_msg_recv_free(msg_recv, env);
-        return NULL;
-    }
+	msg_recv = axis2_msg_recv_create(env);
+	if (!msg_recv)
+	{
+		AXIS2_ERROR_SET(env->error, AXIS2_ERROR_NO_MEMORY, AXIS2_FAILURE);
+		return NULL;
+	}
+	status = axis2_msg_recv_set_scope(msg_recv, env, AXIS2_APPLICATION_SCOPE);
+	if (!status)
+	{
+		axis2_msg_recv_free(msg_recv, env);
+		return NULL;
+	}
 
-    axis2_msg_recv_set_invoke_business_logic(msg_recv, env,
-        wsf_cpp_msg_recv_invoke_business_logic_sync);
-	axis2_msg_recv_set_load_and_init_svc(msg_recv, env, 
-		wsf_cpp_msg_recv_load_and_init_svc);
-    return msg_recv;
+	axis2_msg_recv_set_invoke_business_logic(msg_recv, env,
+			wsf_cpp_msg_recv_invoke_business_logic_sync);
+	axis2_msg_recv_set_load_and_init_svc(msg_recv, env,
+			wsf_cpp_msg_recv_load_and_init_svc);
+	return msg_recv;
 }
 
-static  axis2_status_t WSF_CALL
+	static  axis2_status_t WSF_CALL
 wsf_cpp_msg_recv_invoke_business_logic_sync(
-	axis2_msg_recv_t * msg_recv,
-	const axutil_env_t * env,
-	axis2_msg_ctx_t * msg_ctx,
-	axis2_msg_ctx_t * new_msg_ctx)
+		axis2_msg_recv_t * msg_recv,
+		const axutil_env_t * env,
+		axis2_msg_ctx_t * msg_ctx,
+		axis2_msg_ctx_t * new_msg_ctx)
 {
 	axis2_op_ctx_t *op_ctx = NULL;
 	axis2_op_t *op_desc = NULL;
@@ -166,16 +166,16 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 	axiom_node_t *fault_node = NULL;
 	axiom_soap_fault_detail_t *fault_detail;
 	axis2_bool_t is_fault = AXIS2_FALSE;
-	axis2_char_t *soapEnvelopePrefix = "soapenv";
+	const axis2_char_t *soapEnvelopePrefix = "soapenv";
 
 	AXIS2_PARAM_CHECK(env->error, msg_ctx, AXIS2_FAILURE);
 	AXIS2_PARAM_CHECK(env->error, new_msg_ctx, AXIS2_FAILURE);
 
-	AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, 
-		"[axis2]Entry:wsf_cpp_msg_recv_invoke_business_logic_sync");
+	AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI,
+			"[axis2]Entry:wsf_cpp_msg_recv_invoke_business_logic_sync");
 
 	Environment::setEnv(env);
-	
+
 	/* get the implementation class for the Web Service */
 	ServiceSkeleton *skel = wsf_cpp_msg_recv_get_svc_obj(msg_recv, env, msg_ctx);
 
@@ -193,8 +193,8 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 			svc_name = "unknown";
 		}
 
-		AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "IMPL object for service '%s' not set in message receiver. %d :: %s", svc_name, 
-			env->error->error_number, AXIS2_ERROR_GET_MESSAGE(env->error));
+		AXIS2_LOG_ERROR(env->log, AXIS2_LOG_SI, "IMPL object for service '%s' not set in message receiver. %d :: %s", svc_name,
+				env->error->error_number, AXIS2_ERROR_GET_MESSAGE(env->error));
 		status = AXIS2_FAILURE;
 	}
 	else
@@ -256,14 +256,14 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 			OMElement *resultEle = NULL;
 
 			resultEle = skel->invoke(inputEle, outCtx);
-				/** Remove the newly created CPP Request Element wrapper */
-			
+			/** Remove the newly created CPP Request Element wrapper */
+
 			if(inputEle)
 			{
 				inputEle->setAxiomNode(NULL);
 				delete inputEle;
 			}
-			
+
 			/** Remove the resultant CPP Response Element after extracting the axiom node contained within */
 			if(resultEle){
 				result_node = resultEle->getAxiomNode();
@@ -298,11 +298,11 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 				body_content_node = result_node;
 			}
 		}
-		else 
+		else
 		{
 			axis2_char_t *mep = (axis2_char_t *)axis2_op_get_msg_exchange_pattern(op_desc, env);
-			if (axutil_strcmp(mep, AXIS2_MEP_URI_IN_ONLY) && 
-				axutil_strcmp(mep, AXIS2_MEP_URI_ROBUST_IN_ONLY))
+			if (axutil_strcmp(mep, AXIS2_MEP_URI_IN_ONLY) &&
+					axutil_strcmp(mep, AXIS2_MEP_URI_ROBUST_IN_ONLY))
 			{
 				status = AXIS2_ERROR_GET_STATUS_CODE(env->error);
 				if (status == AXIS2_SUCCESS)
@@ -316,7 +316,7 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 
 				OMElement *inputEle = NULL;
 				if(om_node)
-				{	
+				{
 					inputEle = new OMElement(NULL,om_node);
 				}
 
@@ -338,7 +338,7 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 				is_fault = AXIS2_TRUE;
 			}
 			else
-			{	
+			{
 
 				status = AXIS2_ERROR_GET_STATUS_CODE(env->error);
 				if (status == AXIS2_SUCCESS)
@@ -348,7 +348,7 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 				else
 				{
 					axis2_msg_ctx_set_status_code(msg_ctx, env,
-						axis2_msg_ctx_get_status_code(new_msg_ctx, env));
+							axis2_msg_ctx_get_status_code(new_msg_ctx, env));
 					if (!axutil_strcmp(mep, AXIS2_MEP_URI_ROBUST_IN_ONLY))
 					{
 						OMElement *inputEle = NULL;
@@ -460,8 +460,8 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 			fault_reason_str = "An error has occurred, but could not determine exact details";
 		}
 
-		soap_fault = axiom_soap_fault_create_default_fault(env, out_body, fault_value_str, 
-			fault_reason_str, soap_version);
+		soap_fault = axiom_soap_fault_create_default_fault(env, out_body, fault_value_str,
+				fault_reason_str, soap_version);
 
 		AXIS2_FREE((Environment::getEnv()->allocator), (void*)fault_value_str);
 
@@ -491,17 +491,17 @@ wsf_cpp_msg_recv_invoke_business_logic_sync(
 		default_envelope = NULL;
 	}
 
-	AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI, 
-		"[axis2]Exit:wsf_cpp_msg_recv_invoke_business_logic_sync");
+	AXIS2_LOG_TRACE(env->log, AXIS2_LOG_SI,
+			"[axis2]Exit:wsf_cpp_msg_recv_invoke_business_logic_sync");
 	Environment::removeEnv();
 	return AXIS2_SUCCESS;
 }
 
-WSF_EXTERN ServiceSkeleton* WSF_CALL
+	WSF_EXTERN ServiceSkeleton* WSF_CALL
 wsf_cpp_msg_recv_get_svc_obj(
-	axis2_msg_recv_t * msg_recv,
-	const axutil_env_t * env,
-	struct axis2_msg_ctx * msg_ctx)
+		axis2_msg_recv_t * msg_recv,
+		const axutil_env_t * env,
+		struct axis2_msg_ctx * msg_ctx)
 {
 
 	struct axis2_svc *svc = NULL;
@@ -539,7 +539,7 @@ wsf_cpp_msg_recv_get_svc_obj(
 		if (!impl_info_param)
 		{
 			AXIS2_ERROR_SET(env->error, AXIS2_ERROR_INVALID_STATE_SVC,
-				AXIS2_FAILURE);
+					AXIS2_FAILURE);
 			axutil_thread_mutex_unlock(axis2_svc_get_mutex(svc, env));
 			return NULL;
 		}
@@ -572,31 +572,31 @@ extern "C"
 {
 #endif
 
-WSF_EXTERN int
-axis2_get_instance(
-    struct axis2_msg_recv **inst,
-    const axutil_env_t * env)
-{
-    *inst = wsf_cpp_msg_recv_create(env);
-    if (!(*inst))
-    {
-        return AXIS2_FAILURE;
-    }
+	WSF_EXTERN int
+		axis2_get_instance(
+				struct axis2_msg_recv **inst,
+				const axutil_env_t * env)
+		{
+			*inst = wsf_cpp_msg_recv_create(env);
+			if (!(*inst))
+			{
+				return AXIS2_FAILURE;
+			}
 
-    return AXIS2_SUCCESS;
-}
+			return AXIS2_SUCCESS;
+		}
 
-WSF_EXTERN int
-axis2_remove_instance(
-    struct axis2_msg_recv *inst,
-    const axutil_env_t * env)
-{
-    if (inst)
-    {
-        axis2_msg_recv_free(inst, env);
-    }
-    return AXIS2_SUCCESS;
-}
+	WSF_EXTERN int
+		axis2_remove_instance(
+				struct axis2_msg_recv *inst,
+				const axutil_env_t * env)
+		{
+			if (inst)
+			{
+				axis2_msg_recv_free(inst, env);
+			}
+			return AXIS2_SUCCESS;
+		}
 
 #ifdef __cplusplus
 }
